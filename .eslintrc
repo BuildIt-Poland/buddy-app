@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "react-app",
+    "./node_modules/react-redux-typescript-scripts/eslint.js"
+  ],
+  "rules": {
+    "no-console": "error",
+    "jsx-quotes": [
+      "error",
+      "prefer-single"
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ]
+      }
+    ],
+    "object-curly-spacing": [
+      "error", "always"
+    ]
+  }
+}
