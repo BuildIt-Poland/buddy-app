@@ -1,5 +1,6 @@
 {
   "name": "buddy-app",
+  "description": "A PWA app that aims to help Buddy and Newbie go through the induction process.",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,7 +17,20 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "prettier": "prettier src/**/*.ts src/**/*.tsx --write",
+    "pre-commit": "lint-staged",
     "eject": "react-scripts eject"
+  },
+  "lint-staged": {
+    "*.{tsx,ts, js}": [
+      "npm run prettier",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pre-commit"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -32,5 +46,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "husky": "3.0.5",
+    "lint-staged": "9.4.0",
+    "prettier": "1.18.2"
   }
 }
