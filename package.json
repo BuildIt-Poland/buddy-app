@@ -16,6 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "lint": "eslint . --ext .ts --ext .tsx --ext js",
+    "lint:fix": "eslint . --ext .ts --ext .tsx --ext js --fix",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "prettier": "prettier src/**/*.ts src/**/*.tsx --write",
@@ -24,6 +25,7 @@
   },
   "lint-staged": {
     "*.{tsx,ts, js}": [
+      "npm run lint:fix",
       "npm run prettier",
       "git add"
     ]
