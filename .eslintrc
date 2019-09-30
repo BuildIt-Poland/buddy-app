@@ -1,9 +1,13 @@
 {
   "extends": [
     "react-app",
-    "./node_modules/react-redux-typescript-scripts/eslint.js"
+    "prettier"
+  ],
+  "plugins": [
+    "prettier"
   ],
   "rules": {
+    "prettier/prettier": "error",
     "no-console": "error",
     "jsx-quotes": [
       "error",
@@ -23,7 +27,8 @@
       }
     ],
     "object-curly-spacing": [
-      "error", "always"
+      "error",
+      "always"
     ],
     "indent": [
       "error",
