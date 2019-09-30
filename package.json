@@ -19,6 +19,7 @@
     "lint:fix": "eslint . --ext .ts --ext .tsx --ext js --fix",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:ci": "npm run test -- --no-watch",
     "prettier": "prettier src/**/*.ts src/**/*.tsx --write",
     "pre-commit": "lint-staged",
     "eject": "react-scripts eject"
@@ -48,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "codecov": "^3.6.1",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-prettier": "^3.1.1",
     "husky": "3.0.5",
