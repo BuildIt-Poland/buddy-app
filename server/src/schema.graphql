@@ -1,0 +1,135 @@
+scalar DateTime
+scalar EmailAddress
+scalar PhoneNumber
+scalar URL
+
+enum TaskStatus {
+  COMPLETED
+  UNCOMPLETED
+}
+
+enum UserRole {
+  NEWBIE
+  BUDDY
+}
+
+type Query {
+  newbie(newbieId: ID!): Newbie!
+  buddy(buddyId: ID!): Buddy!
+  task(taskId: ID!): Task!
+  newbies(filter: String, first: Int): [Newbie]!
+  newbieTasks(title: String, status: TaskStatus, first: Int): [Task]!
+  buddyTasks(title: String, status: TaskStatus, first: Int): [Task]!
+}
+
+type Mutation {
+  addBuddy(input: UserInput!): Buddy!
+  addNewbie(buddyId: ID!, input: UserInput!): Newbie!
+  deleteNewbie(newbieId: ID!): Newbie!
+  deleteBuddy(buddyId: ID!): Buddy!
+  login(email: String!, password: String!): AuthPayload!
+  addNewbieTask(newbieId: ID!, input: TaskInput!): Task!
+  addBuddyTask(newbieId: ID!, input: TaskInput!): Task!
+  deleteTask(taskId: ID!): Task!
+  updateTask(taskId: ID!, input: TaskInput!): Task!
+  updateTaskStatus(taskId: ID!): Task!
+}
+
+interface User {
+  id: ID!
+  email: EmailAddress!
+  name: String!
+  role: UserRole!
+  position: String
+  photo: URL
+  phoneNumber: PhoneNumber
+  startDate: DateTime
+  notifications: Boolean!
+}
+
+input UserInput {
+  email: EmailAddress!
+  name: String!
+  password: String!
+  position: String
+  photo: URL
+  phoneNumber: PhoneNumber
+  startDate: DateTime
+}
+
+type Buddy implements User {
+  id: ID!
+  email: EmailAddress!
+  name: String!
+  role: UserRole!
+  position: String
+  photo: URL
+  phoneNumber: PhoneNumber
+  startDate: DateTime
+  notifications: Boolean!
+  newbiesCount: Int!
+  newbies: [Newbie]!
+}
+
+type Newbie implements User {
+  id: ID!
+  email: EmailAddress!
+  name: String!
+  role: UserRole!
+  position: String
+  photo: URL
+  phoneNumber: PhoneNumber
+  startDate: DateTime
+  notifications: Boolean!
+  buddy: Buddy!
+  notes: String
+  tasksRating: Float!
+  buddyTasksRating: Float!
+  tasksCompletedCount: Int!
+  tasksUncompletedCount: Int!
+  buddyTasksCompletedCount: Int!
+  buddyTasksUncompletedCount: Int!
+  newbieTasks: [NewbieTask]!
+  buddyTasks: [BuddyTask]!
+}
+
+interface Task {
+  id: ID!
+  title: String!
+  description: String!
+  createdAt: DateTime!
+  status: TaskStatus!
+  newbie: Newbie!
+}
+
+input TaskInput {
+  title: String
+  description: String
+  status: TaskStatus
+  notes: String
+}
+
+type NewbieTask implements Task {
+  id: ID!
+  title: String!
+  description: String!
+  createdAt: DateTime!
+  status: TaskStatus!
+  newbie: Newbie!
+  notes: String
+}
+
+type BuddyTask implements Task {
+  id: ID!
+  title: String!
+  description: String!
+  createdAt: DateTime!
+  status: TaskStatus!
+  newbie: Newbie!
+}
+
+type AuthPayload {
+  token: String!
+  role: UserRole!
+  userId: ID!
+}

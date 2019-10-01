@@ -1,0 +1,67 @@
+enum TaskStatus {
+  COMPLETED
+  UNCOMPLETED
+}
+
+enum UserRole {
+  NEWBIE
+  BUDDY
+}
+
+type NewbieTask {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  description: String! @default(value: "")
+  title: String! @default(value: "")
+  status: TaskStatus! @default(value: UNCOMPLETED)
+  newbie: Newbie!
+  notes: String
+}
+
+type BuddyTask {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  description: String! @default(value: "")
+  title: String! @default(value: "")
+  status: TaskStatus! @default(value: UNCOMPLETED)
+  newbie: Newbie!
+}
+
+type Buddy {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  role: UserRole! @default(value: BUDDY)
+  password: String!
+  position: String
+  photo: String
+  phoneNumber: String
+  startDate: DateTime
+  notifications: Boolean! @default(value: false)
+  newbiesCount: Int! @default(value: 0)
+  newbies: [Newbie]!
+}
+
+type Newbie {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  role: UserRole! @default(value: NEWBIE)
+  password: String!
+  position: String
+  photo: String
+  phoneNumber: String
+  startDate: DateTime
+  notifications: Boolean! @default(value: false)
+  buddy: Buddy!
+  notes: String! @default(value: "")
+  tasksRating: Float! @default(value: 0)
+  buddyTasksRating: Float! @default(value: 0)
+  tasksCompletedCount: Int! @default(value: 0)
+  tasksUncompletedCount: Int! @default(value: 0)
+  buddyTasksCompletedCount: Int! @default(value: 0)
+  buddyTasksUncompletedCount: Int! @default(value: 0)
+  newbieTasks: [NewbieTask]!
+  buddyTasks: [BuddyTask]!
+}
+
