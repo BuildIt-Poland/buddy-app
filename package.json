@@ -15,10 +15,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "lint": "eslint . --ext .ts --ext .tsx --ext js",
-    "lint:fix": "eslint . --ext .ts --ext .tsx --ext js --fix",
+    "lint": "eslint './src/**/*.{ts,tsx}'",
+    "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:ci": "npm run test -- --no-watch",
     "prettier": "prettier src/**/*.ts src/**/*.tsx --write",
     "pre-commit": "lint-staged",
     "eject": "react-scripts eject"
