@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const APP_SECRET = 'GraphQL-is-aw3some'
+const APP_SECRET = 'BUDDY-APP-GraphQL-1s-aw3some'
 
 const STATUS = {
   COMPLETED: 'COMPLETED',

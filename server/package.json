@@ -9,11 +9,8 @@
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "dotenv": "^8.1.0",
-    "express-jwt": "^5.3.1",
     "graphql-yoga": "^1.7.0",
     "jsonwebtoken": "^8.2.0",
-    "jwks-rsa": "^1.6.0",
     "prisma-client-lib": "^1.31.0"
   },
   "devDependencies": {
