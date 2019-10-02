@@ -6,6 +6,9 @@ endpoint: https://eu1.prisma.sh/anton-lunov/Buddy-app/test
 # Defines your models, each model is mapped to the database as a table.
 datamodel: datamodel.prisma
 
+# Defines a secret to get the database access
+secret: buddy-app-graphql-prisma-secret
+
 # Specifies the language and directory for the generated Prisma client.
 generate:
   - generator: javascript-client

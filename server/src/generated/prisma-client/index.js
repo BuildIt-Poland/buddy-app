@@ -32,6 +32,7 @@ var models = [
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://eu1.prisma.sh/anton-lunov/Buddy-app/test`
+  endpoint: `https://eu1.prisma.sh/anton-lunov/Buddy-app/test`,
+  secret: `buddy-app-graphql-prisma-secret`
 });
 exports.prisma = new exports.Prisma();

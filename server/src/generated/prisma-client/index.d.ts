@@ -6,7 +6,8 @@ import { DocumentNode } from 'graphql';
 import { makePrismaClientClass, BaseClientOptions, Model } from 'prisma-client-lib';
 import { typeDefs } from './prisma-schema';
 
-export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> & U[keyof U];
+export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
+  U[keyof U];
 
 export type Maybe<T> = T | undefined | null;
 
@@ -27,7 +28,10 @@ export interface Fragmentable {
 
 export interface Prisma {
   $exists: Exists;
-  $graphql: <T = any>(query: string, variables?: { [key: string]: any }) => Promise<T>;
+  $graphql: <T = any>(
+    query: string,
+    variables?: { [key: string]: any }
+  ) => Promise<T>;
 
   /**
    * Queries
@@ -116,8 +120,14 @@ export interface Prisma {
    */
 
   createBuddy: (data: BuddyCreateInput) => BuddyPromise;
-  updateBuddy: (args: { data: BuddyUpdateInput; where: BuddyWhereUniqueInput }) => BuddyPromise;
-  updateManyBuddies: (args: { data: BuddyUpdateManyMutationInput; where?: BuddyWhereInput }) => BatchPayloadPromise;
+  updateBuddy: (args: {
+    data: BuddyUpdateInput;
+    where: BuddyWhereUniqueInput;
+  }) => BuddyPromise;
+  updateManyBuddies: (args: {
+    data: BuddyUpdateManyMutationInput;
+    where?: BuddyWhereInput;
+  }) => BatchPayloadPromise;
   upsertBuddy: (args: {
     where: BuddyWhereUniqueInput;
     create: BuddyCreateInput;
@@ -126,7 +136,10 @@ export interface Prisma {
   deleteBuddy: (where: BuddyWhereUniqueInput) => BuddyPromise;
   deleteManyBuddies: (where?: BuddyWhereInput) => BatchPayloadPromise;
   createBuddyTask: (data: BuddyTaskCreateInput) => BuddyTaskPromise;
-  updateBuddyTask: (args: { data: BuddyTaskUpdateInput; where: BuddyTaskWhereUniqueInput }) => BuddyTaskPromise;
+  updateBuddyTask: (args: {
+    data: BuddyTaskUpdateInput;
+    where: BuddyTaskWhereUniqueInput;
+  }) => BuddyTaskPromise;
   updateManyBuddyTasks: (args: {
     data: BuddyTaskUpdateManyMutationInput;
     where?: BuddyTaskWhereInput;
@@ -139,8 +152,14 @@ export interface Prisma {
   deleteBuddyTask: (where: BuddyTaskWhereUniqueInput) => BuddyTaskPromise;
   deleteManyBuddyTasks: (where?: BuddyTaskWhereInput) => BatchPayloadPromise;
   createNewbie: (data: NewbieCreateInput) => NewbiePromise;
-  updateNewbie: (args: { data: NewbieUpdateInput; where: NewbieWhereUniqueInput }) => NewbiePromise;
-  updateManyNewbies: (args: { data: NewbieUpdateManyMutationInput; where?: NewbieWhereInput }) => BatchPayloadPromise;
+  updateNewbie: (args: {
+    data: NewbieUpdateInput;
+    where: NewbieWhereUniqueInput;
+  }) => NewbiePromise;
+  updateManyNewbies: (args: {
+    data: NewbieUpdateManyMutationInput;
+    where?: NewbieWhereInput;
+  }) => BatchPayloadPromise;
   upsertNewbie: (args: {
     where: NewbieWhereUniqueInput;
     create: NewbieCreateInput;
@@ -149,7 +168,10 @@ export interface Prisma {
   deleteNewbie: (where: NewbieWhereUniqueInput) => NewbiePromise;
   deleteManyNewbies: (where?: NewbieWhereInput) => BatchPayloadPromise;
   createNewbieTask: (data: NewbieTaskCreateInput) => NewbieTaskPromise;
-  updateNewbieTask: (args: { data: NewbieTaskUpdateInput; where: NewbieTaskWhereUniqueInput }) => NewbieTaskPromise;
+  updateNewbieTask: (args: {
+    data: NewbieTaskUpdateInput;
+    where: NewbieTaskWhereUniqueInput;
+  }) => NewbieTaskPromise;
   updateManyNewbieTasks: (args: {
     data: NewbieTaskUpdateManyMutationInput;
     where?: NewbieTaskWhereInput;
@@ -170,10 +192,18 @@ export interface Prisma {
 }
 
 export interface Subscription {
-  buddy: (where?: BuddySubscriptionWhereInput) => BuddySubscriptionPayloadSubscription;
-  buddyTask: (where?: BuddyTaskSubscriptionWhereInput) => BuddyTaskSubscriptionPayloadSubscription;
-  newbie: (where?: NewbieSubscriptionWhereInput) => NewbieSubscriptionPayloadSubscription;
-  newbieTask: (where?: NewbieTaskSubscriptionWhereInput) => NewbieTaskSubscriptionPayloadSubscription;
+  buddy: (
+    where?: BuddySubscriptionWhereInput
+  ) => BuddySubscriptionPayloadSubscription;
+  buddyTask: (
+    where?: BuddyTaskSubscriptionWhereInput
+  ) => BuddyTaskSubscriptionPayloadSubscription;
+  newbie: (
+    where?: NewbieSubscriptionWhereInput
+  ) => NewbieSubscriptionPayloadSubscription;
+  newbieTask: (
+    where?: NewbieTaskSubscriptionWhereInput
+  ) => NewbieTaskSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -726,10 +756,18 @@ export interface NewbieUpdateManyWithoutBuddyInput {
   connect?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
   set?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
   disconnect?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
-  update?: Maybe<NewbieUpdateWithWhereUniqueWithoutBuddyInput[] | NewbieUpdateWithWhereUniqueWithoutBuddyInput>;
-  upsert?: Maybe<NewbieUpsertWithWhereUniqueWithoutBuddyInput[] | NewbieUpsertWithWhereUniqueWithoutBuddyInput>;
+  update?: Maybe<
+    | NewbieUpdateWithWhereUniqueWithoutBuddyInput[]
+    | NewbieUpdateWithWhereUniqueWithoutBuddyInput
+  >;
+  upsert?: Maybe<
+    | NewbieUpsertWithWhereUniqueWithoutBuddyInput[]
+    | NewbieUpsertWithWhereUniqueWithoutBuddyInput
+  >;
   deleteMany?: Maybe<NewbieScalarWhereInput[] | NewbieScalarWhereInput>;
-  updateMany?: Maybe<NewbieUpdateManyWithWhereNestedInput[] | NewbieUpdateManyWithWhereNestedInput>;
+  updateMany?: Maybe<
+    NewbieUpdateManyWithWhereNestedInput[] | NewbieUpdateManyWithWhereNestedInput
+  >;
 }
 
 export interface BuddyTaskUpdateManyWithWhereNestedInput {
@@ -786,19 +824,26 @@ export interface BuddySubscriptionWhereInput {
 }
 
 export interface NewbieTaskUpdateManyWithoutNewbieInput {
-  create?: Maybe<NewbieTaskCreateWithoutNewbieInput[] | NewbieTaskCreateWithoutNewbieInput>;
+  create?: Maybe<
+    NewbieTaskCreateWithoutNewbieInput[] | NewbieTaskCreateWithoutNewbieInput
+  >;
   delete?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
   connect?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
   set?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
   disconnect?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
   update?: Maybe<
-    NewbieTaskUpdateWithWhereUniqueWithoutNewbieInput[] | NewbieTaskUpdateWithWhereUniqueWithoutNewbieInput
+    | NewbieTaskUpdateWithWhereUniqueWithoutNewbieInput[]
+    | NewbieTaskUpdateWithWhereUniqueWithoutNewbieInput
   >;
   upsert?: Maybe<
-    NewbieTaskUpsertWithWhereUniqueWithoutNewbieInput[] | NewbieTaskUpsertWithWhereUniqueWithoutNewbieInput
+    | NewbieTaskUpsertWithWhereUniqueWithoutNewbieInput[]
+    | NewbieTaskUpsertWithWhereUniqueWithoutNewbieInput
   >;
   deleteMany?: Maybe<NewbieTaskScalarWhereInput[] | NewbieTaskScalarWhereInput>;
-  updateMany?: Maybe<NewbieTaskUpdateManyWithWhereNestedInput[] | NewbieTaskUpdateManyWithWhereNestedInput>;
+  updateMany?: Maybe<
+    | NewbieTaskUpdateManyWithWhereNestedInput[]
+    | NewbieTaskUpdateManyWithWhereNestedInput
+  >;
 }
 
 export interface NewbieUpsertWithoutNewbieTasksInput {
@@ -916,15 +961,26 @@ export interface NewbieCreateInput {
 }
 
 export interface BuddyTaskUpdateManyWithoutNewbieInput {
-  create?: Maybe<BuddyTaskCreateWithoutNewbieInput[] | BuddyTaskCreateWithoutNewbieInput>;
+  create?: Maybe<
+    BuddyTaskCreateWithoutNewbieInput[] | BuddyTaskCreateWithoutNewbieInput
+  >;
   delete?: Maybe<BuddyTaskWhereUniqueInput[] | BuddyTaskWhereUniqueInput>;
   connect?: Maybe<BuddyTaskWhereUniqueInput[] | BuddyTaskWhereUniqueInput>;
   set?: Maybe<BuddyTaskWhereUniqueInput[] | BuddyTaskWhereUniqueInput>;
   disconnect?: Maybe<BuddyTaskWhereUniqueInput[] | BuddyTaskWhereUniqueInput>;
-  update?: Maybe<BuddyTaskUpdateWithWhereUniqueWithoutNewbieInput[] | BuddyTaskUpdateWithWhereUniqueWithoutNewbieInput>;
-  upsert?: Maybe<BuddyTaskUpsertWithWhereUniqueWithoutNewbieInput[] | BuddyTaskUpsertWithWhereUniqueWithoutNewbieInput>;
+  update?: Maybe<
+    | BuddyTaskUpdateWithWhereUniqueWithoutNewbieInput[]
+    | BuddyTaskUpdateWithWhereUniqueWithoutNewbieInput
+  >;
+  upsert?: Maybe<
+    | BuddyTaskUpsertWithWhereUniqueWithoutNewbieInput[]
+    | BuddyTaskUpsertWithWhereUniqueWithoutNewbieInput
+  >;
   deleteMany?: Maybe<BuddyTaskScalarWhereInput[] | BuddyTaskScalarWhereInput>;
-  updateMany?: Maybe<BuddyTaskUpdateManyWithWhereNestedInput[] | BuddyTaskUpdateManyWithWhereNestedInput>;
+  updateMany?: Maybe<
+    | BuddyTaskUpdateManyWithWhereNestedInput[]
+    | BuddyTaskUpdateManyWithWhereNestedInput
+  >;
 }
 
 export interface NewbieUpsertWithoutBuddyTasksInput {
@@ -1531,7 +1587,9 @@ export interface BuddyUpdateManyMutationInput {
 }
 
 export interface BuddyTaskCreateManyWithoutNewbieInput {
-  create?: Maybe<BuddyTaskCreateWithoutNewbieInput[] | BuddyTaskCreateWithoutNewbieInput>;
+  create?: Maybe<
+    BuddyTaskCreateWithoutNewbieInput[] | BuddyTaskCreateWithoutNewbieInput
+  >;
   connect?: Maybe<BuddyTaskWhereUniqueInput[] | BuddyTaskWhereUniqueInput>;
 }
 
@@ -1602,7 +1660,9 @@ export interface BuddyTaskCreateInput {
 }
 
 export interface NewbieTaskCreateManyWithoutNewbieInput {
-  create?: Maybe<NewbieTaskCreateWithoutNewbieInput[] | NewbieTaskCreateWithoutNewbieInput>;
+  create?: Maybe<
+    NewbieTaskCreateWithoutNewbieInput[] | NewbieTaskCreateWithoutNewbieInput
+  >;
   connect?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
 }
 
@@ -1638,7 +1698,9 @@ export interface NewbieTaskPreviousValues {
   notes?: String;
 }
 
-export interface NewbieTaskPreviousValuesPromise extends Promise<NewbieTaskPreviousValues>, Fragmentable {
+export interface NewbieTaskPreviousValuesPromise
+  extends Promise<NewbieTaskPreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   description: () => Promise<String>;
@@ -1668,7 +1730,9 @@ export interface BuddyEdgePromise extends Promise<BuddyEdge>, Fragmentable {
   cursor: () => Promise<String>;
 }
 
-export interface BuddyEdgeSubscription extends Promise<AsyncIterator<BuddyEdge>>, Fragmentable {
+export interface BuddyEdgeSubscription
+  extends Promise<AsyncIterator<BuddyEdge>>,
+    Fragmentable {
   node: <T = BuddySubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
@@ -1732,7 +1796,9 @@ export interface NewbiePromise extends Promise<Newbie>, Fragmentable {
   }) => T;
 }
 
-export interface NewbieSubscription extends Promise<AsyncIterator<Newbie>>, Fragmentable {
+export interface NewbieSubscription
+  extends Promise<AsyncIterator<Newbie>>,
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
@@ -1815,13 +1881,17 @@ export interface BuddyTaskConnection {
   edges: BuddyTaskEdge[];
 }
 
-export interface BuddyTaskConnectionPromise extends Promise<BuddyTaskConnection>, Fragmentable {
+export interface BuddyTaskConnectionPromise
+  extends Promise<BuddyTaskConnection>,
+    Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
   edges: <T = FragmentableArray<BuddyTaskEdge>>() => T;
   aggregate: <T = AggregateBuddyTaskPromise>() => T;
 }
 
-export interface BuddyTaskConnectionSubscription extends Promise<AsyncIterator<BuddyTaskConnection>>, Fragmentable {
+export interface BuddyTaskConnectionSubscription
+  extends Promise<AsyncIterator<BuddyTaskConnection>>,
+    Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <T = Promise<AsyncIterator<BuddyTaskEdgeSubscription>>>() => T;
   aggregate: <T = AggregateBuddyTaskSubscription>() => T;
@@ -1835,7 +1905,9 @@ export interface BuddyTaskPreviousValues {
   status: TaskStatus;
 }
 
-export interface BuddyTaskPreviousValuesPromise extends Promise<BuddyTaskPreviousValues>, Fragmentable {
+export interface BuddyTaskPreviousValuesPromise
+  extends Promise<BuddyTaskPreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   description: () => Promise<String>;
@@ -1857,11 +1929,15 @@ export interface AggregateBuddy {
   count: Int;
 }
 
-export interface AggregateBuddyPromise extends Promise<AggregateBuddy>, Fragmentable {
+export interface AggregateBuddyPromise
+  extends Promise<AggregateBuddy>,
+    Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateBuddySubscription extends Promise<AsyncIterator<AggregateBuddy>>, Fragmentable {
+export interface AggregateBuddySubscription
+  extends Promise<AsyncIterator<AggregateBuddy>>,
+    Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
@@ -1879,7 +1955,9 @@ export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
   endCursor: () => Promise<String>;
 }
 
-export interface PageInfoSubscription extends Promise<AsyncIterator<PageInfo>>, Fragmentable {
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
   hasNextPage: () => Promise<AsyncIterator<Boolean>>;
   hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
   startCursor: () => Promise<AsyncIterator<String>>;
@@ -1894,7 +1972,9 @@ export interface BatchPayloadPromise extends Promise<BatchPayload>, Fragmentable
   count: () => Promise<Long>;
 }
 
-export interface BatchPayloadSubscription extends Promise<AsyncIterator<BatchPayload>>, Fragmentable {
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
 }
 
@@ -1917,7 +1997,9 @@ export interface NewbieTaskPromise extends Promise<NewbieTask>, Fragmentable {
   notes: () => Promise<String>;
 }
 
-export interface NewbieTaskSubscription extends Promise<AsyncIterator<NewbieTask>>, Fragmentable {
+export interface NewbieTaskSubscription
+  extends Promise<AsyncIterator<NewbieTask>>,
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   description: () => Promise<AsyncIterator<String>>;
@@ -1927,7 +2009,9 @@ export interface NewbieTaskSubscription extends Promise<AsyncIterator<NewbieTask
   notes: () => Promise<AsyncIterator<String>>;
 }
 
-export interface NewbieTaskNullablePromise extends Promise<NewbieTask | null>, Fragmentable {
+export interface NewbieTaskNullablePromise
+  extends Promise<NewbieTask | null>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   description: () => Promise<String>;
@@ -1957,7 +2041,9 @@ export interface NewbiePreviousValues {
   buddyTasksUncompletedCount: Int;
 }
 
-export interface NewbiePreviousValuesPromise extends Promise<NewbiePreviousValues>, Fragmentable {
+export interface NewbiePreviousValuesPromise
+  extends Promise<NewbiePreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   email: () => Promise<String>;
@@ -1977,7 +2063,9 @@ export interface NewbiePreviousValuesPromise extends Promise<NewbiePreviousValue
   buddyTasksUncompletedCount: () => Promise<Int>;
 }
 
-export interface NewbiePreviousValuesSubscription extends Promise<AsyncIterator<NewbiePreviousValues>>, Fragmentable {
+export interface NewbiePreviousValuesSubscription
+  extends Promise<AsyncIterator<NewbiePreviousValues>>,
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
@@ -2002,12 +2090,16 @@ export interface NewbieTaskEdge {
   cursor: String;
 }
 
-export interface NewbieTaskEdgePromise extends Promise<NewbieTaskEdge>, Fragmentable {
+export interface NewbieTaskEdgePromise
+  extends Promise<NewbieTaskEdge>,
+    Fragmentable {
   node: <T = NewbieTaskPromise>() => T;
   cursor: () => Promise<String>;
 }
 
-export interface NewbieTaskEdgeSubscription extends Promise<AsyncIterator<NewbieTaskEdge>>, Fragmentable {
+export interface NewbieTaskEdgeSubscription
+  extends Promise<AsyncIterator<NewbieTaskEdge>>,
+    Fragmentable {
   node: <T = NewbieTaskSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
@@ -2017,13 +2109,17 @@ export interface BuddyConnection {
   edges: BuddyEdge[];
 }
 
-export interface BuddyConnectionPromise extends Promise<BuddyConnection>, Fragmentable {
+export interface BuddyConnectionPromise
+  extends Promise<BuddyConnection>,
+    Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
   edges: <T = FragmentableArray<BuddyEdge>>() => T;
   aggregate: <T = AggregateBuddyPromise>() => T;
 }
 
-export interface BuddyConnectionSubscription extends Promise<AsyncIterator<BuddyConnection>>, Fragmentable {
+export interface BuddyConnectionSubscription
+  extends Promise<AsyncIterator<BuddyConnection>>,
+    Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <T = Promise<AsyncIterator<BuddyEdgeSubscription>>>() => T;
   aggregate: <T = AggregateBuddySubscription>() => T;
@@ -2033,11 +2129,15 @@ export interface AggregateNewbie {
   count: Int;
 }
 
-export interface AggregateNewbiePromise extends Promise<AggregateNewbie>, Fragmentable {
+export interface AggregateNewbiePromise
+  extends Promise<AggregateNewbie>,
+    Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateNewbieSubscription extends Promise<AsyncIterator<AggregateNewbie>>, Fragmentable {
+export interface AggregateNewbieSubscription
+  extends Promise<AsyncIterator<AggregateNewbie>>,
+    Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
@@ -2078,7 +2178,9 @@ export interface BuddyPromise extends Promise<Buddy>, Fragmentable {
   }) => T;
 }
 
-export interface BuddySubscription extends Promise<AsyncIterator<Buddy>>, Fragmentable {
+export interface BuddySubscription
+  extends Promise<AsyncIterator<Buddy>>,
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
@@ -2129,13 +2231,17 @@ export interface NewbieConnection {
   edges: NewbieEdge[];
 }
 
-export interface NewbieConnectionPromise extends Promise<NewbieConnection>, Fragmentable {
+export interface NewbieConnectionPromise
+  extends Promise<NewbieConnection>,
+    Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
   edges: <T = FragmentableArray<NewbieEdge>>() => T;
   aggregate: <T = AggregateNewbiePromise>() => T;
 }
 
-export interface NewbieConnectionSubscription extends Promise<AsyncIterator<NewbieConnection>>, Fragmentable {
+export interface NewbieConnectionSubscription
+  extends Promise<AsyncIterator<NewbieConnection>>,
+    Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <T = Promise<AsyncIterator<NewbieEdgeSubscription>>>() => T;
   aggregate: <T = AggregateNewbieSubscription>() => T;
@@ -2148,7 +2254,9 @@ export interface NewbieSubscriptionPayload {
   previousValues: NewbiePreviousValues;
 }
 
-export interface NewbieSubscriptionPayloadPromise extends Promise<NewbieSubscriptionPayload>, Fragmentable {
+export interface NewbieSubscriptionPayloadPromise
+  extends Promise<NewbieSubscriptionPayload>,
+    Fragmentable {
   mutation: () => Promise<MutationType>;
   node: <T = NewbiePromise>() => T;
   updatedFields: () => Promise<String[]>;
@@ -2174,7 +2282,9 @@ export interface BuddyTaskEdgePromise extends Promise<BuddyTaskEdge>, Fragmentab
   cursor: () => Promise<String>;
 }
 
-export interface BuddyTaskEdgeSubscription extends Promise<AsyncIterator<BuddyTaskEdge>>, Fragmentable {
+export interface BuddyTaskEdgeSubscription
+  extends Promise<AsyncIterator<BuddyTaskEdge>>,
+    Fragmentable {
   node: <T = BuddyTaskSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
@@ -2183,11 +2293,15 @@ export interface AggregateNewbieTask {
   count: Int;
 }
 
-export interface AggregateNewbieTaskPromise extends Promise<AggregateNewbieTask>, Fragmentable {
+export interface AggregateNewbieTaskPromise
+  extends Promise<AggregateNewbieTask>,
+    Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateNewbieTaskSubscription extends Promise<AsyncIterator<AggregateNewbieTask>>, Fragmentable {
+export interface AggregateNewbieTaskSubscription
+  extends Promise<AsyncIterator<AggregateNewbieTask>>,
+    Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
@@ -2198,7 +2312,9 @@ export interface BuddyTaskSubscriptionPayload {
   previousValues: BuddyTaskPreviousValues;
 }
 
-export interface BuddyTaskSubscriptionPayloadPromise extends Promise<BuddyTaskSubscriptionPayload>, Fragmentable {
+export interface BuddyTaskSubscriptionPayloadPromise
+  extends Promise<BuddyTaskSubscriptionPayload>,
+    Fragmentable {
   mutation: () => Promise<MutationType>;
   node: <T = BuddyTaskPromise>() => T;
   updatedFields: () => Promise<String[]>;
@@ -2231,7 +2347,9 @@ export interface BuddyTaskPromise extends Promise<BuddyTask>, Fragmentable {
   newbie: <T = NewbiePromise>() => T;
 }
 
-export interface BuddyTaskSubscription extends Promise<AsyncIterator<BuddyTask>>, Fragmentable {
+export interface BuddyTaskSubscription
+  extends Promise<AsyncIterator<BuddyTask>>,
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   description: () => Promise<AsyncIterator<String>>;
@@ -2240,7 +2358,9 @@ export interface BuddyTaskSubscription extends Promise<AsyncIterator<BuddyTask>>
   newbie: <T = NewbieSubscription>() => T;
 }
 
-export interface BuddyTaskNullablePromise extends Promise<BuddyTask | null>, Fragmentable {
+export interface BuddyTaskNullablePromise
+  extends Promise<BuddyTask | null>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
   description: () => Promise<String>;
@@ -2263,7 +2383,9 @@ export interface BuddyPreviousValues {
   newbiesCount: Int;
 }
 
-export interface BuddyPreviousValuesPromise extends Promise<BuddyPreviousValues>, Fragmentable {
+export interface BuddyPreviousValuesPromise
+  extends Promise<BuddyPreviousValues>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   email: () => Promise<String>;
@@ -2277,7 +2399,9 @@ export interface BuddyPreviousValuesPromise extends Promise<BuddyPreviousValues>
   newbiesCount: () => Promise<Int>;
 }
 
-export interface BuddyPreviousValuesSubscription extends Promise<AsyncIterator<BuddyPreviousValues>>, Fragmentable {
+export interface BuddyPreviousValuesSubscription
+  extends Promise<AsyncIterator<BuddyPreviousValues>>,
+    Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   email: () => Promise<AsyncIterator<String>>;
@@ -2298,7 +2422,9 @@ export interface BuddySubscriptionPayload {
   previousValues: BuddyPreviousValues;
 }
 
-export interface BuddySubscriptionPayloadPromise extends Promise<BuddySubscriptionPayload>, Fragmentable {
+export interface BuddySubscriptionPayloadPromise
+  extends Promise<BuddySubscriptionPayload>,
+    Fragmentable {
   mutation: () => Promise<MutationType>;
   node: <T = BuddyPromise>() => T;
   updatedFields: () => Promise<String[]>;
@@ -2319,13 +2445,17 @@ export interface NewbieTaskConnection {
   edges: NewbieTaskEdge[];
 }
 
-export interface NewbieTaskConnectionPromise extends Promise<NewbieTaskConnection>, Fragmentable {
+export interface NewbieTaskConnectionPromise
+  extends Promise<NewbieTaskConnection>,
+    Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
   edges: <T = FragmentableArray<NewbieTaskEdge>>() => T;
   aggregate: <T = AggregateNewbieTaskPromise>() => T;
 }
 
-export interface NewbieTaskConnectionSubscription extends Promise<AsyncIterator<NewbieTaskConnection>>, Fragmentable {
+export interface NewbieTaskConnectionSubscription
+  extends Promise<AsyncIterator<NewbieTaskConnection>>,
+    Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <T = Promise<AsyncIterator<NewbieTaskEdgeSubscription>>>() => T;
   aggregate: <T = AggregateNewbieTaskSubscription>() => T;
@@ -2338,7 +2468,9 @@ export interface NewbieTaskSubscriptionPayload {
   previousValues: NewbieTaskPreviousValues;
 }
 
-export interface NewbieTaskSubscriptionPayloadPromise extends Promise<NewbieTaskSubscriptionPayload>, Fragmentable {
+export interface NewbieTaskSubscriptionPayloadPromise
+  extends Promise<NewbieTaskSubscriptionPayload>,
+    Fragmentable {
   mutation: () => Promise<MutationType>;
   node: <T = NewbieTaskPromise>() => T;
   updatedFields: () => Promise<String[]>;
@@ -2358,11 +2490,15 @@ export interface AggregateBuddyTask {
   count: Int;
 }
 
-export interface AggregateBuddyTaskPromise extends Promise<AggregateBuddyTask>, Fragmentable {
+export interface AggregateBuddyTaskPromise
+  extends Promise<AggregateBuddyTask>,
+    Fragmentable {
   count: () => Promise<Int>;
 }
 
-export interface AggregateBuddyTaskSubscription extends Promise<AsyncIterator<AggregateBuddyTask>>, Fragmentable {
+export interface AggregateBuddyTaskSubscription
+  extends Promise<AsyncIterator<AggregateBuddyTask>>,
+    Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
 }
 
@@ -2376,7 +2512,9 @@ export interface NewbieEdgePromise extends Promise<NewbieEdge>, Fragmentable {
   cursor: () => Promise<String>;
 }
 
-export interface NewbieEdgeSubscription extends Promise<AsyncIterator<NewbieEdge>>, Fragmentable {
+export interface NewbieEdgeSubscription
+  extends Promise<AsyncIterator<NewbieEdge>>,
+    Fragmentable {
   node: <T = NewbieSubscription>() => T;
   cursor: () => Promise<AsyncIterator<String>>;
 }
