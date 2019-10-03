@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - App renders without crashing 1`] = `
+exports[`Component - App renders correctly 1`] = `
 Array [
   <CssBaseline />,
   <Typography>
