@@ -1,13 +1,7 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { colorSchemes } from '@buildit/gravity-particles';
 
-//TODO: Review and redo colors.
-const gravityColors = {
-  primary: '#4d4848',
-  secondary: '#008d7c',
-  primaryText: '#ffffff',
-  secondaryText: '#ffffff',
-  background: '#ffffff',
-};
+const { tealWhite } = colorSchemes;
 
 let theme = createMuiTheme({
   typography: {
@@ -15,18 +9,18 @@ let theme = createMuiTheme({
   },
   palette: {
     primary: {
-      main: gravityColors.primary,
-      contrastText: gravityColors.primaryText,
+      main: tealWhite.groupB.neutral,
+      contrastText: tealWhite.groupA.neutral,
     },
     secondary: {
-      main: gravityColors.secondary,
-      contrastText: gravityColors.secondaryText,
+      main: tealWhite.groupB.accent,
+      contrastText: tealWhite.groupA.neutral,
     },
     background: {
-      default: gravityColors.background,
+      default: tealWhite.groupA.neutral,
     },
     text: {
-      primary: gravityColors.primary,
+      primary: tealWhite.groupB.neutral,
     },
   },
 });
