@@ -20,6 +20,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "server": "npm start --prefix server",
+    "postinstall": "npm install --prefix server",
     "lint": "eslint './src/**/*.{ts,tsx}'",
     "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
     "build": "react-scripts build",

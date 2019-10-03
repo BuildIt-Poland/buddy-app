@@ -13,6 +13,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
+### `npm run server`
+
+Runs the GraphQL server.<br>
+Open [http://localhost:4000](http://localhost:4000) to view GraphQL playground it in the browser.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br>
