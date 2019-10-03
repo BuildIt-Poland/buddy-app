@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - App renders without crashing 1`] = `
+Array [
+  <CssBaseline />,
+  <Typography>
+    Buddy App
+  </Typography>,
+]
+`;

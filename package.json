@@ -49,10 +49,12 @@
     ]
   },
   "devDependencies": {
+    "@types/react-test-renderer": "^16.9.0",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-prettier": "^3.1.1",
     "husky": "3.0.5",
     "lint-staged": "9.4.0",
-    "prettier": "^1.18.2"
+    "prettier": "^1.18.2",
+    "react-test-renderer": "^16.10.1"
   }
 }
