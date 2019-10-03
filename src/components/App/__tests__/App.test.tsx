@@ -7,7 +7,7 @@ jest.mock('@material-ui/core/CssBaseline', () => 'CssBaseline');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 
 describe('Component - App', () => {
-  test('renders without crashing', () => {
+  test('renders correctly', () => {
     const component = create(<App />);
 
     expect(component.toJSON()).toMatchSnapshot();
