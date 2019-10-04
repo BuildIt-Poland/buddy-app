@@ -1,13 +1,12 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const { APP_SECRET, STATUS, isBuddyAuth } = require("../utils");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { APP_SECRET, STATUS } = require('../utils');
 
 async function addBuddy(parent, args, context) {
-  await isBuddyAuth(context)
   const password = await bcrypt.hash(args.input.password, 10);
 
   const userExist = await context.prisma.$exists.buddy({
-    email: args.input.email
+    email: args.input.email,
   });
   if (userExist) {
     throw new Error(`Account already exist`);
@@ -19,12 +18,10 @@ async function addBuddy(parent, args, context) {
 }
 
 async function addNewbie(parent, args, context) {
-  await isBuddyAuth(context)
-
   const password = await bcrypt.hash(args.input.password, 10);
 
   const userExist = await context.prisma.$exists.newbie({
-    email: args.input.email
+    email: args.input.email,
   });
   if (userExist) {
     throw new Error(`Account already exist`);
@@ -34,22 +31,18 @@ async function addNewbie(parent, args, context) {
     ...args.input,
     password,
     buddy: {
-      connect: { id: args.buddyId }
-    }
+      connect: { id: args.buddyId },
+    },
   });
 
   return newbie;
 }
 
 async function deleteNewbie(parent, args, context) {
-  await isBuddyAuth(context)
-
   return await context.prisma.deleteNewbie({ id: args.newbieId });
 }
 
 async function deleteBuddy(parent, args, context) {
-  await isBuddyAuth(context)
-
   return await context.prisma.deleteBuddy({ id: args.buddyId });
 }
 
@@ -60,48 +53,42 @@ async function login(parent, args, context) {
   const user = buddy || newbie;
 
   if (!user) {
-    throw new Error("No such user found");
+    throw new Error('No such user found');
   }
 
   if (args.password !== user.password) {
-    throw new Error("Invalid password");
+    throw new Error('Invalid password');
   }
 
   return {
     token: jwt.sign({ userId: user.id }, APP_SECRET),
     role: user.role,
-    userId: user.id
+    userId: user.id,
   };
 }
 
 async function addNewbieTask(parent, args, context) {
-  await isBuddyAuth(context)
-
   return context.prisma.createNewbieTask({
     ...args.input,
     newbie: {
-      connect: { id: args.newbieId }
-    }
+      connect: { id: args.newbieId },
+    },
   });
 }
 
 async function addBuddyTask(parent, args, context) {
-  await isBuddyAuth(context)
-
   return context.prisma.createBuddyTask({
     ...args.input,
     newbie: {
-      connect: { id: args.newbieId }
-    }
+      connect: { id: args.newbieId },
+    },
   });
 }
 
 async function deleteTask(parent, args, context) {
-  await isBuddyAuth(context)
-
   try {
     const buddyTask = await context.prisma.deleteBuddyTask({
-      id: args.taskId
+      id: args.taskId,
     });
 
     return buddyTask;
@@ -109,26 +96,24 @@ async function deleteTask(parent, args, context) {
 
   try {
     const newbieTask = await context.prisma.deleteNewbieTask({
-      id: args.taskId
+      id: args.taskId,
     });
 
     return newbieTask;
   } catch (error) {}
 
-  throw new Error("No such task found");
+  throw new Error('No such task found');
 }
 
 async function updateTask(parent, args, context) {
-  await isBuddyAuth(context)
-
   try {
     const updatedBuddyTask = await context.prisma.updateBuddyTask({
       data: {
-        ...args.input
+        ...args.input,
       },
       where: {
-        id: args.taskId
-      }
+        id: args.taskId,
+      },
     });
 
     return updatedBuddyTask;
@@ -137,24 +122,22 @@ async function updateTask(parent, args, context) {
   try {
     const updatedNewbieTask = await context.prisma.updateNewbieTask({
       data: {
-        ...args.input
+        ...args.input,
       },
       where: {
-        id: args.taskId
-      }
+        id: args.taskId,
+      },
     });
     return updatedNewbieTask;
   } catch (error) {}
 
-  throw new Error("No such task found");
+  throw new Error('No such task found');
 }
 
 async function updateTaskStatus(parent, args, context) {
-  await isBuddyAuth(context)
-
   const buddyTask = await context.prisma.buddyTask({ id: args.taskId });
   const newbieTask = await context.prisma.newbieTask({
-    id: args.taskId
+    id: args.taskId,
   });
 
   const task = buddyTask || newbieTask;
@@ -163,11 +146,11 @@ async function updateTaskStatus(parent, args, context) {
     const updatedBuddyTask = await context.prisma.updateBuddyTask({
       data: {
         status:
-          task.status === STATUS.COMPLETED ? STATUS.UNCOMPLETED : STATUS.COMPLETED
+          task.status === STATUS.COMPLETED ? STATUS.UNCOMPLETED : STATUS.COMPLETED,
       },
       where: {
-        id: args.taskId
-      }
+        id: args.taskId,
+      },
     });
 
     return updatedBuddyTask;
@@ -177,16 +160,16 @@ async function updateTaskStatus(parent, args, context) {
     const updatedNewbieTask = await context.prisma.updateNewbieTask({
       data: {
         status:
-          task.status === STATUS.COMPLETED ? STATUS.UNCOMPLETED : STATUS.COMPLETED
+          task.status === STATUS.COMPLETED ? STATUS.UNCOMPLETED : STATUS.COMPLETED,
       },
       where: {
-        id: args.taskId
-      }
+        id: args.taskId,
+      },
     });
     return updatedNewbieTask;
   } catch (error) {}
 
-  throw new Error("No such task found");
+  throw new Error('No such task found');
 }
 
 module.exports = {
@@ -199,5 +182,5 @@ module.exports = {
   addBuddyTask,
   deleteTask,
   updateTask,
-  updateTaskStatus
+  updateTaskStatus,
 };
