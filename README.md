@@ -61,14 +61,12 @@ Fixes a typo on the word "Notification" in the settings screen
 
 Do not add `TODO` in the code. TODOs are indications of unfinished work, so please finish your work before submitting it. If you CAN'T finish your development for any reason, please open an issue regard it, so that work can be planned and awareness is properly raised around that. Mention of the unfinished work must be added to the pull request description aside of the new issue reference.
 
-Use regular `function()` instead of arrow functions at the `top level` (applies for functional components as well)
-
 Use `arrow functions` for `anonymous functions`
 
 For targeting components directly in tests (e2e and unit) use `data-testid` property, for example:
 
 ```html
-<button data-testid="forontend-role-button">Front End Developer</button>
+<button data-testid="add-task-button">New task</button>
 ```
 
 Separate `external and internal imports` with new line
