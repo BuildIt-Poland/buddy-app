@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - App renders correctly 1`] = `
+<ThemeProvider>
+  <CssBaseline />
+  <Typography>
+    Buddy App
+  </Typography>
+</ThemeProvider>
+`;

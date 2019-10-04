@@ -1,4 +1,7 @@
 # Buddy-app
+
+[![Build Status](https://travis-ci.org/BuildIt-Poland/buddy-app.svg?branch=master)](https://travis-ci.org/BuildIt-Poland/buddy-app)
+
 > App that easies the follow up process between a Buddy and his assigned new joiner
 
 ## Develop
