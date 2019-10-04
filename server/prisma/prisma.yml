@@ -1,13 +1,13 @@
 # Specifies the HTTP endpoint of your Prisma API.
 #endpoint: ''
 #endpoint:
-endpoint: https://eu1.prisma.sh/anton-lunov/Buddy-app/test
+endpoint: ${env:PRISMA_ENDPOINT}
 
 # Defines your models, each model is mapped to the database as a table.
 datamodel: datamodel.prisma
 
 # Defines a secret to get the database access
-secret: buddy-app-graphql-prisma-secret
+secret: ${env:SECRET}
 
 # Specifies the language and directory for the generated Prisma client.
 generate:

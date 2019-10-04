@@ -3,23 +3,19 @@ import ReactDOM from 'react-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient, ApolloLink, InMemoryCache, HttpLink } from 'apollo-boost';
 import * as serviceWorker from './serviceWorker';
-import './index.css';
-import App, { AUTH_TOKEN } from './App';
+import App from './components/App';
 
-const httpLink = new HttpLink({ uri: 'http://localhost:4000' });
+const httpLink = new HttpLink({ uri: process.env.REACT_APP_SERVER_URL });
 
 const authLink = new ApolloLink((operation, forward) => {
-  // Retrieve the authorization token from local storage.
-  const token = localStorage.getItem(AUTH_TOKEN);
+  const token = localStorage.getItem(process.env.REACT_APP_AUTH_TOKEN || '');
 
-  // Use the setContext method to set the HTTP headers.
   operation.setContext({
     headers: {
       authorization: token ? `Bearer ${token}` : '',
     },
   });
 
-  // Call the next link in the middleware chain.
   return forward(operation);
 });
 
@@ -34,7 +30,5 @@ ReactDOM.render(
   </ApolloProvider>,
   document.getElementById('root')
 );
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+
 serviceWorker.unregister();

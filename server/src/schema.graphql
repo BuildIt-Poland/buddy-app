@@ -44,7 +44,7 @@ interface User {
   photo: URL
   phoneNumber: PhoneNumber
   startDate: DateTime
-  notifications: Boolean!
+  allowPushedNotifications: Boolean!
 }
 
 input UserInput {
@@ -66,7 +66,7 @@ type Buddy implements User {
   photo: URL
   phoneNumber: PhoneNumber
   startDate: DateTime
-  notifications: Boolean!
+  allowPushedNotifications: Boolean!
   newbiesCount: Int!
   newbies: [Newbie]!
 }
@@ -80,17 +80,21 @@ type Newbie implements User {
   photo: URL
   phoneNumber: PhoneNumber
   startDate: DateTime
-  notifications: Boolean!
+  allowPushedNotifications: Boolean!
   buddy: Buddy!
   notes: String
-  tasksRating: Float!
-  buddyTasksRating: Float!
-  tasksCompletedCount: Int!
-  tasksUncompletedCount: Int!
-  buddyTasksCompletedCount: Int!
-  buddyTasksUncompletedCount: Int!
   newbieTasks: [NewbieTask]!
   buddyTasks: [BuddyTask]!
+  tasksInfo: TasksInfo!
+}
+
+type TasksInfo {
+  newbieProgress: Float!
+  buddyProgress: Float!
+  newbieCompleted: Int!
+  newbieUncompleted: Int!
+  buddyCompleted: Int!
+  buddyUncompleted: Int!
 }
 
 interface Task {

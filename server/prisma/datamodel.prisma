@@ -37,8 +37,7 @@ type Buddy {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean! @default(value: false)
-  newbiesCount: Int! @default(value: 0)
+  allowPushedNotifications: Boolean! @default(value: false)
   newbies: [Newbie]!
 }
 
@@ -52,15 +51,9 @@ type Newbie {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean! @default(value: false)
+  allowPushedNotifications: Boolean! @default(value: false)
   buddy: Buddy!
   notes: String! @default(value: "")
-  tasksRating: Float! @default(value: 0)
-  buddyTasksRating: Float! @default(value: 0)
-  tasksCompletedCount: Int! @default(value: 0)
-  tasksUncompletedCount: Int! @default(value: 0)
-  buddyTasksCompletedCount: Int! @default(value: 0)
-  buddyTasksUncompletedCount: Int! @default(value: 0)
   newbieTasks: [NewbieTask]!
   buddyTasks: [BuddyTask]!
 }

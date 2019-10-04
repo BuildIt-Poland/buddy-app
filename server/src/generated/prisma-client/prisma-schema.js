@@ -33,8 +33,7 @@ type Buddy {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean!
-  newbiesCount: Int!
+  allowPushedNotifications: Boolean!
   newbies(where: NewbieWhereInput, orderBy: NewbieOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Newbie!]
 }
 
@@ -54,8 +53,7 @@ input BuddyCreateInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
-  newbiesCount: Int
+  allowPushedNotifications: Boolean
   newbies: NewbieCreateManyWithoutBuddyInput
 }
 
@@ -74,8 +72,7 @@ input BuddyCreateWithoutNewbiesInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
-  newbiesCount: Int
+  allowPushedNotifications: Boolean
 }
 
 type BuddyEdge {
@@ -102,10 +99,8 @@ enum BuddyOrderByInput {
   phoneNumber_DESC
   startDate_ASC
   startDate_DESC
-  notifications_ASC
-  notifications_DESC
-  newbiesCount_ASC
-  newbiesCount_DESC
+  allowPushedNotifications_ASC
+  allowPushedNotifications_DESC
 }
 
 type BuddyPreviousValues {
@@ -118,8 +113,7 @@ type BuddyPreviousValues {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean!
-  newbiesCount: Int!
+  allowPushedNotifications: Boolean!
 }
 
 type BuddySubscriptionPayload {
@@ -406,8 +400,7 @@ input BuddyUpdateInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
-  newbiesCount: Int
+  allowPushedNotifications: Boolean
   newbies: NewbieUpdateManyWithoutBuddyInput
 }
 
@@ -420,8 +413,7 @@ input BuddyUpdateManyMutationInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
-  newbiesCount: Int
+  allowPushedNotifications: Boolean
 }
 
 input BuddyUpdateOneRequiredWithoutNewbiesInput {
@@ -440,8 +432,7 @@ input BuddyUpdateWithoutNewbiesDataInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
-  newbiesCount: Int
+  allowPushedNotifications: Boolean
 }
 
 input BuddyUpsertWithoutNewbiesInput {
@@ -560,16 +551,8 @@ input BuddyWhereInput {
   startDate_lte: DateTime
   startDate_gt: DateTime
   startDate_gte: DateTime
-  notifications: Boolean
-  notifications_not: Boolean
-  newbiesCount: Int
-  newbiesCount_not: Int
-  newbiesCount_in: [Int!]
-  newbiesCount_not_in: [Int!]
-  newbiesCount_lt: Int
-  newbiesCount_lte: Int
-  newbiesCount_gt: Int
-  newbiesCount_gte: Int
+  allowPushedNotifications: Boolean
+  allowPushedNotifications_not: Boolean
   newbies_every: NewbieWhereInput
   newbies_some: NewbieWhereInput
   newbies_none: NewbieWhereInput
@@ -630,15 +613,9 @@ type Newbie {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean!
+  allowPushedNotifications: Boolean!
   buddy: Buddy!
   notes: String!
-  tasksRating: Float!
-  buddyTasksRating: Float!
-  tasksCompletedCount: Int!
-  tasksUncompletedCount: Int!
-  buddyTasksCompletedCount: Int!
-  buddyTasksUncompletedCount: Int!
   newbieTasks(where: NewbieTaskWhereInput, orderBy: NewbieTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NewbieTask!]
   buddyTasks(where: BuddyTaskWhereInput, orderBy: BuddyTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [BuddyTask!]
 }
@@ -659,15 +636,9 @@ input NewbieCreateInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
+  allowPushedNotifications: Boolean
   buddy: BuddyCreateOneWithoutNewbiesInput!
   notes: String
-  tasksRating: Float
-  buddyTasksRating: Float
-  tasksCompletedCount: Int
-  tasksUncompletedCount: Int
-  buddyTasksCompletedCount: Int
-  buddyTasksUncompletedCount: Int
   newbieTasks: NewbieTaskCreateManyWithoutNewbieInput
   buddyTasks: BuddyTaskCreateManyWithoutNewbieInput
 }
@@ -697,14 +668,8 @@ input NewbieCreateWithoutBuddyInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
+  allowPushedNotifications: Boolean
   notes: String
-  tasksRating: Float
-  buddyTasksRating: Float
-  tasksCompletedCount: Int
-  tasksUncompletedCount: Int
-  buddyTasksCompletedCount: Int
-  buddyTasksUncompletedCount: Int
   newbieTasks: NewbieTaskCreateManyWithoutNewbieInput
   buddyTasks: BuddyTaskCreateManyWithoutNewbieInput
 }
@@ -719,15 +684,9 @@ input NewbieCreateWithoutBuddyTasksInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
+  allowPushedNotifications: Boolean
   buddy: BuddyCreateOneWithoutNewbiesInput!
   notes: String
-  tasksRating: Float
-  buddyTasksRating: Float
-  tasksCompletedCount: Int
-  tasksUncompletedCount: Int
-  buddyTasksCompletedCount: Int
-  buddyTasksUncompletedCount: Int
   newbieTasks: NewbieTaskCreateManyWithoutNewbieInput
 }
 
@@ -741,15 +700,9 @@ input NewbieCreateWithoutNewbieTasksInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
+  allowPushedNotifications: Boolean
   buddy: BuddyCreateOneWithoutNewbiesInput!
   notes: String
-  tasksRating: Float
-  buddyTasksRating: Float
-  tasksCompletedCount: Int
-  tasksUncompletedCount: Int
-  buddyTasksCompletedCount: Int
-  buddyTasksUncompletedCount: Int
   buddyTasks: BuddyTaskCreateManyWithoutNewbieInput
 }
 
@@ -777,22 +730,10 @@ enum NewbieOrderByInput {
   phoneNumber_DESC
   startDate_ASC
   startDate_DESC
-  notifications_ASC
-  notifications_DESC
+  allowPushedNotifications_ASC
+  allowPushedNotifications_DESC
   notes_ASC
   notes_DESC
-  tasksRating_ASC
-  tasksRating_DESC
-  buddyTasksRating_ASC
-  buddyTasksRating_DESC
-  tasksCompletedCount_ASC
-  tasksCompletedCount_DESC
-  tasksUncompletedCount_ASC
-  tasksUncompletedCount_DESC
-  buddyTasksCompletedCount_ASC
-  buddyTasksCompletedCount_DESC
-  buddyTasksUncompletedCount_ASC
-  buddyTasksUncompletedCount_DESC
 }
 
 type NewbiePreviousValues {
@@ -805,14 +746,8 @@ type NewbiePreviousValues {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean!
+  allowPushedNotifications: Boolean!
   notes: String!
-  tasksRating: Float!
-  buddyTasksRating: Float!
-  tasksCompletedCount: Int!
-  tasksUncompletedCount: Int!
-  buddyTasksCompletedCount: Int!
-  buddyTasksUncompletedCount: Int!
 }
 
 input NewbieScalarWhereInput {
@@ -926,8 +861,8 @@ input NewbieScalarWhereInput {
   startDate_lte: DateTime
   startDate_gt: DateTime
   startDate_gte: DateTime
-  notifications: Boolean
-  notifications_not: Boolean
+  allowPushedNotifications: Boolean
+  allowPushedNotifications_not: Boolean
   notes: String
   notes_not: String
   notes_in: [String!]
@@ -942,54 +877,6 @@ input NewbieScalarWhereInput {
   notes_not_starts_with: String
   notes_ends_with: String
   notes_not_ends_with: String
-  tasksRating: Float
-  tasksRating_not: Float
-  tasksRating_in: [Float!]
-  tasksRating_not_in: [Float!]
-  tasksRating_lt: Float
-  tasksRating_lte: Float
-  tasksRating_gt: Float
-  tasksRating_gte: Float
-  buddyTasksRating: Float
-  buddyTasksRating_not: Float
-  buddyTasksRating_in: [Float!]
-  buddyTasksRating_not_in: [Float!]
-  buddyTasksRating_lt: Float
-  buddyTasksRating_lte: Float
-  buddyTasksRating_gt: Float
-  buddyTasksRating_gte: Float
-  tasksCompletedCount: Int
-  tasksCompletedCount_not: Int
-  tasksCompletedCount_in: [Int!]
-  tasksCompletedCount_not_in: [Int!]
-  tasksCompletedCount_lt: Int
-  tasksCompletedCount_lte: Int
-  tasksCompletedCount_gt: Int
-  tasksCompletedCount_gte: Int
-  tasksUncompletedCount: Int
-  tasksUncompletedCount_not: Int
-  tasksUncompletedCount_in: [Int!]
-  tasksUncompletedCount_not_in: [Int!]
-  tasksUncompletedCount_lt: Int
-  tasksUncompletedCount_lte: Int
-  tasksUncompletedCount_gt: Int
-  tasksUncompletedCount_gte: Int
-  buddyTasksCompletedCount: Int
-  buddyTasksCompletedCount_not: Int
-  buddyTasksCompletedCount_in: [Int!]
-  buddyTasksCompletedCount_not_in: [Int!]
-  buddyTasksCompletedCount_lt: Int
-  buddyTasksCompletedCount_lte: Int
-  buddyTasksCompletedCount_gt: Int
-  buddyTasksCompletedCount_gte: Int
-  buddyTasksUncompletedCount: Int
-  buddyTasksUncompletedCount_not: Int
-  buddyTasksUncompletedCount_in: [Int!]
-  buddyTasksUncompletedCount_not_in: [Int!]
-  buddyTasksUncompletedCount_lt: Int
-  buddyTasksUncompletedCount_lte: Int
-  buddyTasksUncompletedCount_gt: Int
-  buddyTasksUncompletedCount_gte: Int
   AND: [NewbieScalarWhereInput!]
   OR: [NewbieScalarWhereInput!]
   NOT: [NewbieScalarWhereInput!]
@@ -1317,15 +1204,9 @@ input NewbieUpdateInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
+  allowPushedNotifications: Boolean
   buddy: BuddyUpdateOneRequiredWithoutNewbiesInput
   notes: String
-  tasksRating: Float
-  buddyTasksRating: Float
-  tasksCompletedCount: Int
-  tasksUncompletedCount: Int
-  buddyTasksCompletedCount: Int
-  buddyTasksUncompletedCount: Int
   newbieTasks: NewbieTaskUpdateManyWithoutNewbieInput
   buddyTasks: BuddyTaskUpdateManyWithoutNewbieInput
 }
@@ -1339,14 +1220,8 @@ input NewbieUpdateManyDataInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
+  allowPushedNotifications: Boolean
   notes: String
-  tasksRating: Float
-  buddyTasksRating: Float
-  tasksCompletedCount: Int
-  tasksUncompletedCount: Int
-  buddyTasksCompletedCount: Int
-  buddyTasksUncompletedCount: Int
 }
 
 input NewbieUpdateManyMutationInput {
@@ -1358,14 +1233,8 @@ input NewbieUpdateManyMutationInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
+  allowPushedNotifications: Boolean
   notes: String
-  tasksRating: Float
-  buddyTasksRating: Float
-  tasksCompletedCount: Int
-  tasksUncompletedCount: Int
-  buddyTasksCompletedCount: Int
-  buddyTasksUncompletedCount: Int
 }
 
 input NewbieUpdateManyWithoutBuddyInput {
@@ -1408,14 +1277,8 @@ input NewbieUpdateWithoutBuddyDataInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
+  allowPushedNotifications: Boolean
   notes: String
-  tasksRating: Float
-  buddyTasksRating: Float
-  tasksCompletedCount: Int
-  tasksUncompletedCount: Int
-  buddyTasksCompletedCount: Int
-  buddyTasksUncompletedCount: Int
   newbieTasks: NewbieTaskUpdateManyWithoutNewbieInput
   buddyTasks: BuddyTaskUpdateManyWithoutNewbieInput
 }
@@ -1429,15 +1292,9 @@ input NewbieUpdateWithoutBuddyTasksDataInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
+  allowPushedNotifications: Boolean
   buddy: BuddyUpdateOneRequiredWithoutNewbiesInput
   notes: String
-  tasksRating: Float
-  buddyTasksRating: Float
-  tasksCompletedCount: Int
-  tasksUncompletedCount: Int
-  buddyTasksCompletedCount: Int
-  buddyTasksUncompletedCount: Int
   newbieTasks: NewbieTaskUpdateManyWithoutNewbieInput
 }
 
@@ -1450,15 +1307,9 @@ input NewbieUpdateWithoutNewbieTasksDataInput {
   photo: String
   phoneNumber: String
   startDate: DateTime
-  notifications: Boolean
+  allowPushedNotifications: Boolean
   buddy: BuddyUpdateOneRequiredWithoutNewbiesInput
   notes: String
-  tasksRating: Float
-  buddyTasksRating: Float
-  tasksCompletedCount: Int
-  tasksUncompletedCount: Int
-  buddyTasksCompletedCount: Int
-  buddyTasksUncompletedCount: Int
   buddyTasks: BuddyTaskUpdateManyWithoutNewbieInput
 }
 
@@ -1594,8 +1445,8 @@ input NewbieWhereInput {
   startDate_lte: DateTime
   startDate_gt: DateTime
   startDate_gte: DateTime
-  notifications: Boolean
-  notifications_not: Boolean
+  allowPushedNotifications: Boolean
+  allowPushedNotifications_not: Boolean
   buddy: BuddyWhereInput
   notes: String
   notes_not: String
@@ -1611,54 +1462,6 @@ input NewbieWhereInput {
   notes_not_starts_with: String
   notes_ends_with: String
   notes_not_ends_with: String
-  tasksRating: Float
-  tasksRating_not: Float
-  tasksRating_in: [Float!]
-  tasksRating_not_in: [Float!]
-  tasksRating_lt: Float
-  tasksRating_lte: Float
-  tasksRating_gt: Float
-  tasksRating_gte: Float
-  buddyTasksRating: Float
-  buddyTasksRating_not: Float
-  buddyTasksRating_in: [Float!]
-  buddyTasksRating_not_in: [Float!]
-  buddyTasksRating_lt: Float
-  buddyTasksRating_lte: Float
-  buddyTasksRating_gt: Float
-  buddyTasksRating_gte: Float
-  tasksCompletedCount: Int
-  tasksCompletedCount_not: Int
-  tasksCompletedCount_in: [Int!]
-  tasksCompletedCount_not_in: [Int!]
-  tasksCompletedCount_lt: Int
-  tasksCompletedCount_lte: Int
-  tasksCompletedCount_gt: Int
-  tasksCompletedCount_gte: Int
-  tasksUncompletedCount: Int
-  tasksUncompletedCount_not: Int
-  tasksUncompletedCount_in: [Int!]
-  tasksUncompletedCount_not_in: [Int!]
-  tasksUncompletedCount_lt: Int
-  tasksUncompletedCount_lte: Int
-  tasksUncompletedCount_gt: Int
-  tasksUncompletedCount_gte: Int
-  buddyTasksCompletedCount: Int
-  buddyTasksCompletedCount_not: Int
-  buddyTasksCompletedCount_in: [Int!]
-  buddyTasksCompletedCount_not_in: [Int!]
-  buddyTasksCompletedCount_lt: Int
-  buddyTasksCompletedCount_lte: Int
-  buddyTasksCompletedCount_gt: Int
-  buddyTasksCompletedCount_gte: Int
-  buddyTasksUncompletedCount: Int
-  buddyTasksUncompletedCount_not: Int
-  buddyTasksUncompletedCount_in: [Int!]
-  buddyTasksUncompletedCount_not_in: [Int!]
-  buddyTasksUncompletedCount_lt: Int
-  buddyTasksUncompletedCount_lte: Int
-  buddyTasksUncompletedCount_gt: Int
-  buddyTasksUncompletedCount_gte: Int
   newbieTasks_every: NewbieTaskWhereInput
   newbieTasks_some: NewbieTaskWhereInput
   newbieTasks_none: NewbieTaskWhereInput
