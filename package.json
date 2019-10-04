@@ -9,7 +9,8 @@
     "lint:fix": "eslint ./src/**/*.{ts,tsx} --fix",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "coverage": "npm run test -- --coverage --watchAll=false",
+    "test:ci": "npm test -- --coverage --watchAll=false",
+    "coverage": "npm test -- --coverage --watchAll=false",
     "prettier": "prettier ./src/**/*.{ts,tsx} --write",
     "pre-commit": "lint-staged",
     "eject": "react-scripts eject"
