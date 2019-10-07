@@ -1,6 +1,10 @@
 language: node_js
 node_js:
   - "stable"
+addons:
+  apt:
+    packages:
+    - libgconf-2-4
 cache:
   directories:
     - node_modules
