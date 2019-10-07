@@ -20,6 +20,7 @@
   "dependencies": {
     "@buildit/gravity-particles": "^0.3.0",
     "@material-ui/core": "^4.5.0",
+    "@types/cypress": "^1.1.3",
     "@types/jest": "24.0.18",
     "@types/node": "12.7.8",
     "@types/react": "16.9.3",
