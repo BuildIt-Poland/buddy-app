@@ -1,15 +1,16 @@
 import React from 'react';
+
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
 
+import Root from '../Root';
 import theme from '../../styles/theme';
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Typography>Buddy App</Typography>
+      <Root />
     </ThemeProvider>
   );
 };

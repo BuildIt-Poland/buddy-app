@@ -7,6 +7,7 @@ jest.mock('@material-ui/core/CssBaseline', () => 'CssBaseline');
 jest.mock('@material-ui/styles/ThemeProvider', () => 'ThemeProvider');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('../../../styles/theme.ts', () => {});
+jest.mock('../../Root/', () => 'Root');
 
 describe('Component - App', () => {
   test('renders correctly', () => {

@@ -1,6 +1,7 @@
 # Buddy-app
 
 [![Build Status](https://travis-ci.org/BuildIt-Poland/buddy-app.svg?branch=master)](https://travis-ci.org/BuildIt-Poland/buddy-app)
+[![codecov](https://codecov.io/gh/BuildIt-Poland/buddy-app/branch/master/graph/badge.svg)](https://codecov.io/gh/BuildIt-Poland/buddy-app)
 
 > App that easies the follow up process between a Buddy and his assigned new joiner
 
