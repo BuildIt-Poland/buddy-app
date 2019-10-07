@@ -3,6 +3,17 @@
   "description": "A PWA app that aims to help Buddy and Newbie go through the induction process.",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "lint": "eslint ./src/**/*.{ts,tsx}",
+    "lint:fix": "eslint ./src/**/*.{ts,tsx} --fix",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "coverage": "npm test -- --coverage --watchAll=false",
+    "prettier": "prettier ./src/**/*.{ts,tsx} --write",
+    "pre-commit": "lint-staged",
+    "eject": "react-scripts eject"
+  },
   "dependencies": {
     "@buildit/gravity-particles": "^0.3.0",
     "@material-ui/core": "^4.5.0",
@@ -15,15 +26,14 @@
     "react-scripts": "3.1.2",
     "typescript": "3.6.3"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "lint": "eslint ./src/**/*.{ts,tsx}",
-    "lint:fix": "eslint ./src/**/*.{ts,tsx} --fix",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "prettier": "prettier ./src/**/*.{ts,tsx} --write",
-    "pre-commit": "lint-staged",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "@types/react-test-renderer": "^16.9.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "husky": "3.0.5",
+    "lint-staged": "9.4.0",
+    "prettier": "^1.18.2",
+    "react-test-renderer": "^16.10.1"
   },
   "lint-staged": {
     "*.{tsx,ts, js}": [
@@ -49,13 +59,21 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@types/react-test-renderer": "^16.9.0",
-    "eslint-config-prettier": "^6.3.0",
-    "eslint-plugin-prettier": "^3.1.1",
-    "husky": "3.0.5",
-    "lint-staged": "9.4.0",
-    "prettier": "^1.18.2",
-    "react-test-renderer": "^16.10.1"
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 70,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    },
+    "collectCoverageFrom": [
+      "src/**/*.{tsx,ts}",
+      "!src/styles/**/*",
+      "!src/index.tsx",
+      "!src/serviceWorker.ts",
+      "!<rootDir>/node_modules/"
+    ]
   }
 }
