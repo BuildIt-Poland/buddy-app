@@ -4,7 +4,11 @@ exports[`Component - App renders correctly 1`] = `
 <ThemeProvider>
   <CssBaseline />
   <Typography>
-    Buddy App
+    <span
+      data-cy="root"
+    >
+      Buddy App
+    </span>
   </Typography>
 </ThemeProvider>
 `;
