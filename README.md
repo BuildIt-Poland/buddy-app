@@ -10,13 +10,13 @@ Please assure that you have Node.js installed on your machine.
 
 The following commands are intended to be launched from the project root directory.
 - ```$ npm install``` - Install all the needed dependencies.
-- ```$ npm run start``` - Runs the app in the development mode.<br>
+- ```$ npm start``` - Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 - ```$ npm run cy:open``` - Runs the Cypress app, then you can navigate and choose a test to run
 - ```$ npm run cy:run``` - Runs tests headlessly in the Electron browser
 - ```$ npm run cy:ci``` - Runs the app in the development mode, then runs tests headlessly in the Electron browser and close dev server.
-- ```$ npm run test``` - Launches the test runner in the interactive watch mode.
+- ```$ npm test``` - Launches the test runner in the interactive watch mode.
 - ```$ npm run eject``` - Removes the single build dependency from your project.
 
 ## Production
