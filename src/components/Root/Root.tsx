@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Root: React.FunctionComponent = () => {
+const Root: React.FC = () => {
   const classes = useStyles();
 
   return (
