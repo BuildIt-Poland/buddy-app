@@ -11,7 +11,11 @@ const useStyles = makeStyles(theme => ({
 const Root: React.FunctionComponent = () => {
   const classes = useStyles();
 
-  return <Container className={classes.container} component='main' maxWidth='md'></Container>;
+  return (
+    <Container className={classes.container} component='main' maxWidth='md'>
+      Buddy App
+    </Container>
+  );
 };
 
 export default Root;

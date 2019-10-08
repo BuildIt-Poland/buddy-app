@@ -5,5 +5,7 @@ exports[`Component - Root renders correctly 1`] = `
   className="makeStyles-container-1"
   component="main"
   maxWidth="md"
-/>
+>
+  Buddy App
+</Container>
 `;
