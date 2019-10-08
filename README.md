@@ -6,8 +6,22 @@
 
 ## Develop
 
-Please assure that you have Node.js installed on your machine.
+### Prerequisites
 
+- Please assure that you have Node.js installed on your machine.
+
+- To make it work, please create `.env` file in the `root` folder:
+```
+REACT_APP_SERVER_URL=http://localhost:4000
+REACT_APP_AUTH_TOKEN=auth-token
+```
+- And one more `.env` file in the `/server` folder(the values can be changed to your own):
+```
+PRISMA_ENDPOINT=https://eu1.prisma.sh/anton-lunov/Buddy-app/test
+SECRET=buddy-app-graphql-prisma-secret
+```
+
+### Commands
 The following commands are intended to be launched from the project root directory.
 - ```$ npm install``` - Install all the needed dependencies.
 - ```$ npm start``` - Runs the app in the development mode.<br>
