@@ -3,12 +3,6 @@
 exports[`Component - App renders correctly 1`] = `
 <ThemeProvider>
   <CssBaseline />
-  <Typography>
-    <span
-      data-testid="root"
-    >
-      Buddy App
-    </span>
-  </Typography>
+  <AppWrapper />
 </ThemeProvider>
 `;
