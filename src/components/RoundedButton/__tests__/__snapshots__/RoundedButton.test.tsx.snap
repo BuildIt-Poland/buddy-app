@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - RoundedButton renders correctly 1`] = `
+<Button
+  classes={
+    Object {
+      "root": "Button-root-1",
+    }
+  }
+>
+  Rounded Button Dummy
+</Button>
+`;
