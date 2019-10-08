@@ -4,7 +4,7 @@ exports[`Component - AppWrapper renders correctly 1`] = `
 <Container
   className="makeStyles-container-1"
   component="main"
-  data-cy="root"
+  data-testid="root"
   maxWidth="md"
 >
   Buddy App

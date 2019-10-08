@@ -12,7 +12,7 @@ const Root: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <Container data-cy={'root'} className={classes.container} component='main' maxWidth='md'>
+    <Container data-testid={'root'} className={classes.container} component='main' maxWidth='md'>
       Buddy App
     </Container>
   );
