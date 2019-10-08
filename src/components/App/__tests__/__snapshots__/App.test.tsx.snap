@@ -5,7 +5,7 @@ exports[`Component - App renders correctly 1`] = `
   <CssBaseline />
   <Typography>
     <span
-      data-cy="root"
+      data-testid="root"
     >
       Buddy App
     </span>
