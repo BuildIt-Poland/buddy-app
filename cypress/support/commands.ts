@@ -8,6 +8,8 @@ declare namespace Cypress {
   }
 }
 
-Cypress.Commands.add('dataTest', (value: string) => {
+const dataTest = (value: string): Cypress.Chainable<JQuery> => {
   return cy.get(`[data-testid=${value}]`);
-});
+};
+
+Cypress.Commands.add('dataTest', dataTest);
