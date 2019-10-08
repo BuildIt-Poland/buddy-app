@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - Root renders correctly 1`] = `
+exports[`Component - AppWrapper renders correctly 1`] = `
 <Container
   className="makeStyles-container-1"
   component="main"
