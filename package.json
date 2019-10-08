@@ -11,6 +11,9 @@
     "lint:fix": "eslint ./src/**/*.{ts,tsx} --fix",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:ci": "start-server-and-test start http://localhost:3000 cy:run",
     "coverage": "npm test -- --coverage --watchAll=false",
     "prettier": "prettier ./src/**/*.{ts,tsx} --write",
     "pre-commit": "lint-staged",
@@ -33,13 +36,17 @@
     "typescript": "3.6.3"
   },
   "devDependencies": {
+    "@bahmutov/add-typescript-to-cypress": "^2.1.2",
     "@types/react-test-renderer": "^16.9.0",
+    "cypress": "^3.4.1",
     "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-cypress": "^2.7.0",
     "eslint-plugin-prettier": "^3.1.1",
     "husky": "3.0.5",
     "lint-staged": "9.4.0",
     "prettier": "^1.18.2",
-    "react-test-renderer": "^16.10.1"
+    "react-test-renderer": "^16.10.1",
+    "start-server-and-test": "^1.10.4"
   },
   "lint-staged": {
     "*.{tsx,ts, js}": [

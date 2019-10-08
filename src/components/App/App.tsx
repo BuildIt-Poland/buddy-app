@@ -9,7 +9,9 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Typography>Buddy App</Typography>
+      <Typography>
+        <span data-testid='root'>Buddy App</span>
+      </Typography>
     </ThemeProvider>
   );
 };
