@@ -10,7 +10,7 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Typography>
-        <span data-cy='root'>Buddy App</span>
+        <span data-testid='root'>Buddy App</span>
       </Typography>
     </ThemeProvider>
   );
