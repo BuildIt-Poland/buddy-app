@@ -7,7 +7,7 @@ endpoint: ${env:PRISMA_ENDPOINT}
 datamodel: datamodel.prisma
 
 # Defines a secret to get the database access
-secret: ${env:SECRET}
+secret: ${env:PRISMA_SECRET}
 
 # Specifies the language and directory for the generated Prisma client.
 generate:

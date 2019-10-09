@@ -5,8 +5,7 @@
   "scripts": {
     "start": "npm run build:live --runInBand",
     "build:live": "tsnd --watch 'src/**/*.ts' --respawn --transpileOnly --inspect -- src/index.ts",
-    "prisma": "prisma",
-    "graphqlgen": "graphqlgen"
+    "prisma": "prisma"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

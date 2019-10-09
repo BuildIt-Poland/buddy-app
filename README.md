@@ -19,7 +19,7 @@ REACT_APP_AUTH_TOKEN=auth-token
 - And one more `.env` file in the `/server` folder(the values can be changed to your own):
 ```
 PRISMA_ENDPOINT=https://eu1.prisma.sh/anton-lunov/Buddy-app/test
-SECRET=buddy-app-graphql-prisma-secret
+PRISMA_SECRET=buddy-app-graphql-prisma-secret
 APP_SECRET=BUDDY-APP-GraphQL-1s-aw3some
 ```
 
