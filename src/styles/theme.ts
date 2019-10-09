@@ -26,11 +26,11 @@ let theme = createMuiTheme({
     type: 'light',
     primary: {
       main: tealWhite.groupB.accent,
-      // contrastText: tealWhite.groupA.neutral,
+      contrastText: tealWhite.groupA.neutral,
     },
     secondary: {
       main: tealWhite.groupB.neutral,
-      // contrastText: tealWhite.groupA.neutral,
+      contrastText: tealWhite.groupA.neutral,
     },
     background: {
       default: tealWhite.groupA.neutral,
