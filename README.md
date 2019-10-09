@@ -19,6 +19,7 @@ REACT_APP_AUTH_TOKEN=auth-token
 ```
 PRISMA_ENDPOINT=https://eu1.prisma.sh/anton-lunov/Buddy-app/test
 SECRET=buddy-app-graphql-prisma-secret
+APP_SECRET=BUDDY-APP-GraphQL-1s-aw3some
 ```
 
 ### Commands

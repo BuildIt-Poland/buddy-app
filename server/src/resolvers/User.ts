@@ -1,4 +1,6 @@
-function __resolveType(user, context, info) {
+import { UserResolvers } from '../generated/schema-types';
+
+const __resolveType: UserResolvers['__resolveType'] = user => {
   const newbieUniqueProps = [
     'buddy',
     'notes',
@@ -17,8 +19,10 @@ function __resolveType(user, context, info) {
   }
 
   return null;
-}
+};
 
-module.exports = {
+const userResolvers: UserResolvers = {
   __resolveType,
 };
+
+export default userResolvers;

@@ -1,8 +1,9 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { APP_SECRET, STATUS } = require('../utils');
+import * as bcrypt from 'bcryptjs';
+import * as jwt from 'jsonwebtoken';
+import { MutationResolvers } from '../generated/schema-types';
+import { changeTaskStatus } from '../utils';
 
-async function addBuddy(parent, args, context) {
+const addBuddy: MutationResolvers['addBuddy'] = async (parent, args, context) => {
   const password = await bcrypt.hash(args.input.password, 10);
 
   const userExist = await context.prisma.$exists.buddy({
@@ -15,9 +16,9 @@ async function addBuddy(parent, args, context) {
   const buddy = await context.prisma.createBuddy({ ...args.input, password });
 
   return buddy;
-}
+};
 
-async function addNewbie(parent, args, context) {
+const addNewbie: MutationResolvers['addNewbie'] = async (parent, args, context) => {
   const password = await bcrypt.hash(args.input.password, 10);
 
   const userExist = await context.prisma.$exists.newbie({
@@ -36,17 +37,21 @@ async function addNewbie(parent, args, context) {
   });
 
   return newbie;
-}
+};
 
-async function deleteNewbie(parent, args, context) {
-  return await context.prisma.deleteNewbie({ id: args.newbieId });
-}
+const deleteNewbie: MutationResolvers['deleteNewbie'] = async (
+  parent,
+  args,
+  context
+) => await context.prisma.deleteNewbie({ id: args.newbieId });
 
-async function deleteBuddy(parent, args, context) {
-  return await context.prisma.deleteBuddy({ id: args.buddyId });
-}
+const deleteBuddy: MutationResolvers['deleteBuddy'] = async (
+  parent,
+  args,
+  context
+) => await context.prisma.deleteBuddy({ id: args.buddyId });
 
-async function login(parent, args, context) {
+const login: MutationResolvers['login'] = async (parent, args, context) => {
   const buddy = await context.prisma.buddy({ email: args.email });
   const newbie = await context.prisma.newbie({ email: args.email });
 
@@ -61,31 +66,41 @@ async function login(parent, args, context) {
   }
 
   return {
-    token: jwt.sign({ userId: user.id }, APP_SECRET),
+    token: jwt.sign({ userId: user.id }, process.env.APP_SECRET),
     role: user.role,
     userId: user.id,
   };
-}
+};
 
-async function addNewbieTask(parent, args, context) {
-  return context.prisma.createNewbieTask({
+const addNewbieTask: MutationResolvers['addNewbieTask'] = async (
+  parent,
+  args,
+  context
+) =>
+  context.prisma.createNewbieTask({
     ...args.input,
     newbie: {
       connect: { id: args.newbieId },
     },
   });
-}
 
-async function addBuddyTask(parent, args, context) {
-  return context.prisma.createBuddyTask({
+const addBuddyTask: MutationResolvers['addBuddyTask'] = async (
+  parent,
+  args,
+  context
+) =>
+  context.prisma.createBuddyTask({
     ...args.input,
     newbie: {
       connect: { id: args.newbieId },
     },
   });
-}
 
-async function deleteTask(parent, args, context) {
+const deleteTask: MutationResolvers['deleteTask'] = async (
+  parent,
+  args,
+  context
+) => {
   try {
     const buddyTask = await context.prisma.deleteBuddyTask({
       id: args.taskId,
@@ -103,9 +118,13 @@ async function deleteTask(parent, args, context) {
   } catch (error) {}
 
   throw new Error('No such task found');
-}
+};
 
-async function updateTask(parent, args, context) {
+const updateTask: MutationResolvers['updateTask'] = async (
+  parent,
+  args,
+  context
+) => {
   try {
     const updatedBuddyTask = await context.prisma.updateBuddyTask({
       data: {
@@ -132,9 +151,13 @@ async function updateTask(parent, args, context) {
   } catch (error) {}
 
   throw new Error('No such task found');
-}
+};
 
-async function updateTaskStatus(parent, args, context) {
+const updateTaskStatus: MutationResolvers['updateTaskStatus'] = async (
+  parent,
+  args,
+  context
+) => {
   const buddyTask = await context.prisma.buddyTask({ id: args.taskId });
   const newbieTask = await context.prisma.newbieTask({
     id: args.taskId,
@@ -145,8 +168,7 @@ async function updateTaskStatus(parent, args, context) {
   try {
     const updatedBuddyTask = await context.prisma.updateBuddyTask({
       data: {
-        status:
-          task.status === STATUS.COMPLETED ? STATUS.UNCOMPLETED : STATUS.COMPLETED,
+        status: changeTaskStatus(task.status),
       },
       where: {
         id: args.taskId,
@@ -159,8 +181,7 @@ async function updateTaskStatus(parent, args, context) {
   try {
     const updatedNewbieTask = await context.prisma.updateNewbieTask({
       data: {
-        status:
-          task.status === STATUS.COMPLETED ? STATUS.UNCOMPLETED : STATUS.COMPLETED,
+        status: changeTaskStatus(task.status),
       },
       where: {
         id: args.taskId,
@@ -170,9 +191,9 @@ async function updateTaskStatus(parent, args, context) {
   } catch (error) {}
 
   throw new Error('No such task found');
-}
+};
 
-module.exports = {
+const mustations: MutationResolvers = {
   addBuddy,
   addNewbie,
   deleteNewbie,
@@ -184,3 +205,5 @@ module.exports = {
   updateTask,
   updateTaskStatus,
 };
+
+export default mustations;

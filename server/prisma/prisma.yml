@@ -11,8 +11,8 @@ secret: ${env:SECRET}
 
 # Specifies the language and directory for the generated Prisma client.
 generate:
-  - generator: javascript-client
-    output: ../src/generated/prisma-client
+  - generator: typescript-client
+    output: ../src/generated/prisma-client/
 
 # Ensures Prisma client is re-generated after a datamodel change.
 hooks:
