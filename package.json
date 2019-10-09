@@ -85,6 +85,7 @@
       "src/**/*.{tsx,ts}",
       "!src/styles/**/*",
       "!src/index.tsx",
+      "!src/utils/apollo-client.ts",
       "!src/serviceWorker.ts",
       "!<rootDir>/node_modules/"
     ]
