@@ -13,7 +13,11 @@ const Root: React.FC = () => {
   const classes = useStyles();
 
   return (
-    <Container data-testid={'root'} className={classes.container} component='main' maxWidth='md'>
+    <Container
+      data-testid={'root'}
+      className={classes.container}
+      component='main'
+      maxWidth='md'>
       <LoginPage />
     </Container>
   );
