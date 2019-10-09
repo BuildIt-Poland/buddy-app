@@ -7,6 +7,6 @@ exports[`Component - AppWrapper renders correctly 1`] = `
   data-testid="root"
   maxWidth="md"
 >
-  Buddy App
+  <LoginPage />
 </Container>
 `;
