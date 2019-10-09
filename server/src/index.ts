@@ -1,4 +1,3 @@
-//require('dotenv').config();
 import { config } from 'dotenv';
 import { GraphQLServer } from 'graphql-yoga';
 import { prisma } from './generated/prisma-client';

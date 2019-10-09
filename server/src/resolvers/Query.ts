@@ -4,7 +4,7 @@ const newbie: QueryResolvers['newbie'] = async (parent, args, context) =>
   await context.prisma.newbie({ id: args.newbieId });
 
 const buddy: QueryResolvers['buddy'] = async (parent, args, context) =>
-  await context.prisma.newbie({ id: args.buddyId });
+  await context.prisma.buddy({ id: args.buddyId });
 
 const task: QueryResolvers['task'] = async (parent, args, context) => {
   const buddyTask = await context.prisma.buddyTask({ id: args.taskId });

@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { MutationResolvers } from '../generated/schema-types';
-import { changeTaskStatus } from '../utils';
+import { changeTaskStatus, ERRORS } from '../utils';
 
 const addBuddy: MutationResolvers['addBuddy'] = async (parent, args, context) => {
   const password = await bcrypt.hash(args.input.password, 10);
@@ -10,7 +10,7 @@ const addBuddy: MutationResolvers['addBuddy'] = async (parent, args, context) =>
     email: args.input.email,
   });
   if (userExist) {
-    throw new Error(`Account already exist`);
+    throw new Error(ERRORS.exist);
   }
 
   const buddy = await context.prisma.createBuddy({ ...args.input, password });
@@ -25,7 +25,7 @@ const addNewbie: MutationResolvers['addNewbie'] = async (parent, args, context) 
     email: args.input.email,
   });
   if (userExist) {
-    throw new Error(`Account already exist`);
+    throw new Error(ERRORS.exist);
   }
 
   const newbie = await context.prisma.createNewbie({
@@ -58,11 +58,11 @@ const login: MutationResolvers['login'] = async (parent, args, context) => {
   const user = buddy || newbie;
 
   if (!user) {
-    throw new Error('No such user found');
+    throw new Error(ERRORS.userResult);
   }
 
   if (args.password !== user.password) {
-    throw new Error('Invalid password');
+    throw new Error(ERRORS.password);
   }
 
   return {
@@ -117,7 +117,7 @@ const deleteTask: MutationResolvers['deleteTask'] = async (
     return newbieTask;
   } catch (error) {}
 
-  throw new Error('No such task found');
+  throw new Error(ERRORS.taskResult);
 };
 
 const updateTask: MutationResolvers['updateTask'] = async (
@@ -150,7 +150,7 @@ const updateTask: MutationResolvers['updateTask'] = async (
     return updatedNewbieTask;
   } catch (error) {}
 
-  throw new Error('No such task found');
+  throw new Error(ERRORS.taskResult);
 };
 
 const updateTaskStatus: MutationResolvers['updateTaskStatus'] = async (
@@ -190,7 +190,7 @@ const updateTaskStatus: MutationResolvers['updateTaskStatus'] = async (
     return updatedNewbieTask;
   } catch (error) {}
 
-  throw new Error('No such task found');
+  throw new Error(ERRORS.taskResult);
 };
 
 const mustations: MutationResolvers = {

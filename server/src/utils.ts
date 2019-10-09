@@ -3,6 +3,15 @@ import * as jwt from 'jsonwebtoken';
 import { GraphQLResolveInfo } from 'graphql';
 import { ResolverFn, Context, TaskStatus } from './generated/schema-types';
 
+export const ERRORS = {
+  access: 'Access denied',
+  auth: 'Not authenticated',
+  exist: 'Account already exist',
+  password: 'Invalid password',
+  taskResult: 'No such task found',
+  userResult: 'No such user found',
+};
+
 export const changeTaskStatus = (status: TaskStatus): TaskStatus =>
   status === TaskStatus.Completed ? TaskStatus.Uncompleted : TaskStatus.Completed;
 
@@ -14,7 +23,7 @@ const auth = (context: Context): string => {
     return userId;
   }
 
-  throw new Error('Not authenticated');
+  throw new Error(ERRORS.auth);
 };
 
 const isBuddyAuth = async (context: Context): Promise<boolean> => {
@@ -22,7 +31,7 @@ const isBuddyAuth = async (context: Context): Promise<boolean> => {
   const isBuddy = await context.prisma.$exists.buddy({ id: userId });
 
   if (!isBuddy) {
-    throw new Error(`Access denied`);
+    throw new Error(ERRORS.access);
   }
   return isBuddy;
 };
