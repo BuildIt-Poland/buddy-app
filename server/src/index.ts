@@ -1,4 +1,3 @@
-import { config } from 'dotenv';
 import { GraphQLServer } from 'graphql-yoga';
 import { prisma } from './generated/prisma-client';
 import { Resolvers } from './generated/schema-types';
@@ -11,7 +10,7 @@ import NewbieTask from './resolvers/NewbieTask';
 import User from './resolvers/User';
 import Task from './resolvers/Task';
 import { authMiddleware } from './utils';
-config();
+require('dotenv').config();
 
 const resolvers: Resolvers = {
   Query,
