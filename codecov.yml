@@ -32,3 +32,6 @@ parsers:
       macro: no
 
 comment: false
+
+ignore:
+  - "./server"
