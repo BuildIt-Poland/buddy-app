@@ -13,6 +13,7 @@ import NewbieTask from './resolvers/NewbieTask';
 import User from './resolvers/User';
 import Task from './resolvers/Task';
 import { authMiddleware } from './utils';
+/* eslint-enable */
 
 const resolvers: Resolvers = {
   Query,
@@ -35,5 +36,5 @@ const server = new GraphQLServer({
   middlewares: [authMiddleware],
 });
 
+/* eslint-disable no-console */
 server.start(() => console.log(`Server is running on http://localhost:4000`));
-/* eslint-enable */
