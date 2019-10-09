@@ -35,3 +35,4 @@ comment: false
 
 ignore:
   - "./server"
+  - "./src/utils/apollo-client.ts"
