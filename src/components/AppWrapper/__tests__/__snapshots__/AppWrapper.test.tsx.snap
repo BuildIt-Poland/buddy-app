@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - AppWrapper renders correctly 1`] = `
+<Container
+  className="makeStyles-container-1"
+  component="main"
+  data-testid="root"
+  maxWidth="md"
+>
+  <LoginPage />
+</Container>
+`;

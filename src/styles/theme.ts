@@ -4,16 +4,32 @@ import { colorSchemes } from '@buildit/gravity-particles';
 const { tealWhite } = colorSchemes;
 
 let theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 320,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
   typography: {
     htmlFontSize: 10, //62,5%
+    button: {
+      textTransform: 'none',
+    },
+    h1: {
+      fontWeight: 550,
+    },
   },
   palette: {
+    type: 'light',
     primary: {
-      main: tealWhite.groupB.neutral,
+      main: tealWhite.groupB.accent,
       contrastText: tealWhite.groupA.neutral,
     },
     secondary: {
-      main: tealWhite.groupB.accent,
+      main: tealWhite.groupB.neutral,
       contrastText: tealWhite.groupA.neutral,
     },
     background: {
