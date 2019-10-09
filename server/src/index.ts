@@ -1,3 +1,6 @@
+/* eslint-disable */
+import { config } from 'dotenv';
+config();
 import { GraphQLServer } from 'graphql-yoga';
 import { prisma } from './generated/prisma-client';
 import { Resolvers } from './generated/schema-types';
@@ -10,7 +13,6 @@ import NewbieTask from './resolvers/NewbieTask';
 import User from './resolvers/User';
 import Task from './resolvers/Task';
 import { authMiddleware } from './utils';
-require('dotenv').config();
 
 const resolvers: Resolvers = {
   Query,
@@ -32,5 +34,6 @@ const server = new GraphQLServer({
   }),
   middlewares: [authMiddleware],
 });
-/* eslint-disable no-console */
+
 server.start(() => console.log(`Server is running on http://localhost:4000`));
+/* eslint-enable */
