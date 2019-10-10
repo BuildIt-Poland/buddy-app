@@ -102,6 +102,7 @@ interface Task {
   title: String!
   description: String!
   createdAt: DateTime!
+  executionDate: DateTime
   status: TaskStatus!
   newbie: Newbie!
 }
@@ -110,6 +111,7 @@ input TaskInput {
   title: String
   description: String
   status: TaskStatus
+  executionDate: DateTime
   notes: String
 }
 
@@ -120,6 +122,7 @@ type NewbieTask implements Task {
   createdAt: DateTime!
   status: TaskStatus!
   newbie: Newbie!
+  executionDate: DateTime
   notes: String
 }
 
@@ -130,6 +133,7 @@ type BuddyTask implements Task {
   createdAt: DateTime!
   status: TaskStatus!
   newbie: Newbie!
+  executionDate: DateTime
 }
 
 type AuthPayload {
