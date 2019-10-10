@@ -1,0 +1,62 @@
+@font-face {
+  font-family: 'Wipro Akkurat TT';
+  font-style: normal;
+  font-weight: 300;
+  src: local("WiproAkkuratTT-Light"),
+    url(./fonts/WiproAkkuratWeb-Light.woff2) format("woff2"),
+    url(./fonts/WiproAkkuratWeb-Light.woff) format("woff")
+}
+
+@font-face {
+  font-family: 'Wipro Akkurat TT';
+  font-style: italic;
+  font-weight: 300;
+  src: local("WiproAkkuratTT-LightItalic"),
+    url(./fonts/WiproAkkuratWeb-Italic.woff2) format("woff2"),
+    url(./fonts/WiproAkkuratWeb-Italic.woff) format("woff")
+}
+
+@font-face {
+  font-family: 'Wipro Akkurat TT';
+  font-style: normal;
+  font-weight: 400;
+  src: local("WiproAkkuratTT-Regular"),
+    url(./fonts/WiproAkkuratWeb-Regular.woff2) format("woff2"),
+    url(./fonts/WiproAkkuratWeb-Regular.woff) format("woff")
+}
+
+@font-face {
+  font-family: 'Wipro Akkurat TT';
+  font-style: italic;
+  font-weight: 400;
+  src: local("WiproAkkuratTT-Italic"),
+    url(./fonts/WiproAkkuratWeb-Italic.woff2) format("woff2"),
+    url(./fonts/WiproAkkuratWeb-Italic.woff) format("woff")
+}
+
+@font-face {
+  font-family: 'Wipro Akkurat TT';
+  font-style: normal;
+  font-weight: 700;
+  src: local("WiproAkkuratTT-Bold"),
+    url(./fonts/WiproAkkuratWeb-Bold.woff2) format("woff2"),
+    url(./fonts/WiproAkkuratWeb-Bold.woff) format("woff")
+}
+
+@font-face {
+  font-family: 'Wipro Akkurat TT';
+  font-style: italic;
+  font-weight: 700;
+  src: local("WiproAkkuratTT-BoldItalic"),
+    url(./fonts/WiproAkkuratWeb-BoldItalic.woff2) format("woff2"),
+    url(./fonts/WiproAkkuratWeb-BoldItalic.woff) format("woff")
+}
+
+@font-face {
+  font-family: 'Wipro Akkurat Mono TT';
+  font-style: normal;
+  font-weight: 400;
+  src: local("WiproAkkuratMonoTT-Regular"),
+    url(./fonts/WiproAkkuratMonoWeb-Regular.woff2) format("woff2"),
+    url(./fonts/WiproAkkuratMonoWeb-Regular.woff) format("woff")
+}
