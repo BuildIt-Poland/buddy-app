@@ -1,0 +1,60 @@
+enum TaskStatus {
+  COMPLETED
+  UNCOMPLETED
+}
+
+enum UserRole {
+  NEWBIE
+  BUDDY
+}
+
+type NewbieTask {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  description: String! @default(value: "")
+  title: String! @default(value: "")
+  status: TaskStatus! @default(value: UNCOMPLETED)
+  newbie: Newbie!
+  notes: String
+}
+
+type BuddyTask {
+  id: ID! @id
+  createdAt: DateTime! @createdAt
+  description: String! @default(value: "")
+  title: String! @default(value: "")
+  status: TaskStatus! @default(value: UNCOMPLETED)
+  newbie: Newbie!
+}
+
+type Buddy {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  role: UserRole! @default(value: BUDDY)
+  password: String!
+  position: String
+  photo: String
+  phoneNumber: String
+  startDate: DateTime
+  allowPushedNotifications: Boolean! @default(value: false)
+  newbies: [Newbie]!
+}
+
+type Newbie {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  role: UserRole! @default(value: NEWBIE)
+  password: String!
+  position: String
+  photo: String
+  phoneNumber: String
+  startDate: DateTime
+  allowPushedNotifications: Boolean! @default(value: false)
+  buddy: Buddy!
+  notes: String! @default(value: "")
+  newbieTasks: [NewbieTask]!
+  buddyTasks: [BuddyTask]!
+}
+
