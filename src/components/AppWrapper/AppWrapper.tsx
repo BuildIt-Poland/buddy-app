@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { Route, BrowserRouter } from 'react-router-dom';
-import { ROUTES } from '../../shared/routes/routes';
+import { ROUTES } from '../../shared/routes';
 import TaskDetails from '../TaskDetails';
 import Login from '../Login';
 import TasksList from '../TasksList';
@@ -31,6 +31,7 @@ const Root: React.FC = () => {
         <Route path={ROUTES.BUDDY_TASKS_LIST} exact component={TasksList} />
         <Route path={ROUTES.BUDDY_TASK_DETAILS} exact component={TaskDetails} />
         <Route path={ROUTES.BUDDY_NEWBIE_DETAILS} exact component={ContactDetails} />
+        <Route path={ROUTES.NEWBIE_BUDDY_DETAILS} exact component={ContactDetails} />
         <Route path={ROUTES.BUDDY_ADD_TASK} exact component={AddTask} />
         <Route path={ROUTES.NEWBIE_TASKS_LIST} exact component={TasksList} />
         <Route path={ROUTES.NEWBIE_TASK_DETAILS} exact component={TaskDetails} />

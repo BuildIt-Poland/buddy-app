@@ -3,7 +3,7 @@ import { create } from 'react-test-renderer';
 
 import { MemoryRouter } from 'react-router-dom';
 import ContactDetails from '../ContactDetails';
-import { ROUTES } from '../../../shared/routes/routes';
+import { ROUTES } from '../../../shared/routes';
 
 describe('Component - ContactDetails', () => {
   test('renders correctly', () => {

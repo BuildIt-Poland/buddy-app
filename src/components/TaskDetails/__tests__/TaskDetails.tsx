@@ -3,7 +3,7 @@ import { create } from 'react-test-renderer';
 
 import { MemoryRouter } from 'react-router';
 import TaskDetails from '../TaskDetails';
-import { ROUTES } from '../../../shared/routes/routes';
+import { ROUTES } from '../../../shared/routes';
 
 describe('Component - TaskDetails', () => {
   test('renders correctly', () => {
