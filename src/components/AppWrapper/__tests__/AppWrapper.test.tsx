@@ -4,7 +4,7 @@ import { create } from 'react-test-renderer';
 import AppWrapper from '../AppWrapper';
 
 jest.mock('@material-ui/core/Container', () => 'Container');
-jest.mock('../../LoginPage', () => 'LoginPage');
+jest.mock('../../Login', () => 'Login');
 
 describe('Component - AppWrapper', () => {
   test('renders correctly', () => {
