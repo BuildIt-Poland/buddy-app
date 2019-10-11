@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - Login renders correctly 1`] = `
+Array [
+  <Typography
+    align="center"
+    component="h3"
+    variant="h3"
+  >
+    Buddy App
+  </Typography>,
+  <RoundedButton
+    color="primary"
+    fullWidth={true}
+    variant="contained"
+  >
+    Login
+  </RoundedButton>,
+]
+`;
