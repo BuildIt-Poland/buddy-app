@@ -23,12 +23,13 @@ let theme = createMuiTheme({
     },
   },
   palette: {
+    type: 'light',
     primary: {
-      main: tealWhite.groupB.neutral,
+      main: tealWhite.groupB.accent,
       contrastText: tealWhite.groupA.neutral,
     },
     secondary: {
-      main: tealWhite.groupB.accent,
+      main: tealWhite.groupB.neutral,
       contrastText: tealWhite.groupA.neutral,
     },
     background: {

@@ -20,24 +20,41 @@ const useStyles = makeStyles(theme => ({
 
 const Root: React.FC = () => {
   const classes = useStyles();
+
   return (
-    <BrowserRouter basename={ROUTES.BASE}>
-      <Container data-testid={'root'} className={classes.container} component='main' maxWidth='md'>
-        Buddy App
-        <Route path={ROUTES.ERROR} exact component={ErrorPage} />
-        <Route path={ROUTES.LOGIN} exact component={Login} />
-        <Route path={ROUTES.BUDDY_ADD_NEWBIE} exact component={AddNewbie} />
-        <Route path={ROUTES.BUDDY_SELECT_NEWBIE} exact component={NewbieSelect} />
-        <Route path={ROUTES.BUDDY_TASKS_LIST} exact component={TasksList} />
-        <Route path={ROUTES.BUDDY_TASK_DETAILS} exact component={TaskDetails} />
-        <Route path={ROUTES.BUDDY_NEWBIE_DETAILS} exact component={ContactDetails} />
-        <Route path={ROUTES.NEWBIE_BUDDY_DETAILS} exact component={ContactDetails} />
-        <Route path={ROUTES.BUDDY_ADD_TASK} exact component={AddTask} />
-        <Route path={ROUTES.NEWBIE_TASKS_LIST} exact component={TasksList} />
-        <Route path={ROUTES.NEWBIE_TASK_DETAILS} exact component={TaskDetails} />
-      </Container>
-    </BrowserRouter>
+    <Container
+      data-testid={'root'}
+      className={classes.container}
+      component='main'
+      maxWidth='md'>
+      <BrowserRouter basename={ROUTES.BASE}>
+        <Container
+          data-testid={'root'}
+          className={classes.container}
+          component='main'
+          maxWidth='md'>
+          <Route path={ROUTES.ERROR} exact component={ErrorPage} />
+          <Route path={ROUTES.LOGIN} exact component={Login} />
+          <Route path={ROUTES.BUDDY_ADD_NEWBIE} exact component={AddNewbie} />
+          <Route path={ROUTES.BUDDY_SELECT_NEWBIE} exact component={NewbieSelect} />
+          <Route path={ROUTES.BUDDY_TASKS_LIST} exact component={TasksList} />
+          <Route path={ROUTES.BUDDY_TASK_DETAILS} exact component={TaskDetails} />
+          <Route
+            path={ROUTES.BUDDY_NEWBIE_DETAILS}
+            exact
+            component={ContactDetails}
+          />
+          <Route
+            path={ROUTES.NEWBIE_BUDDY_DETAILS}
+            exact
+            component={ContactDetails}
+          />
+          <Route path={ROUTES.BUDDY_ADD_TASK} exact component={AddTask} />
+          <Route path={ROUTES.NEWBIE_TASKS_LIST} exact component={TasksList} />
+          <Route path={ROUTES.NEWBIE_TASK_DETAILS} exact component={TaskDetails} />
+        </Container>
+      </BrowserRouter>
+    </Container>
   );
 };
-
 export default Root;

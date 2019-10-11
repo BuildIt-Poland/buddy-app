@@ -1,9 +1,12 @@
 import React from 'react';
+import RoundedButton from '../RoundedButton';
 
 const Login: React.FC = () => {
   return (
     <>
-      <h1>Login</h1>
+      <RoundedButton fullWidth variant={'contained'} color={'primary'}>
+        Login
+      </RoundedButton>
     </>
   );
 };

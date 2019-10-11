@@ -5,6 +5,8 @@
   "private": true,
   "scripts": {
     "start": "react-scripts start",
+    "server": "npm start --prefix server",
+    "postinstall": "npm install --prefix server",
     "lint": "eslint ./src/**/*.{ts,tsx}",
     "lint:fix": "eslint ./src/**/*.{ts,tsx} --fix",
     "build": "react-scripts build",
@@ -18,13 +20,17 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.1",
+    "@apollo/react-testing": "^3.1.1",
     "@buildit/gravity-particles": "^0.3.0",
     "@material-ui/core": "^4.5.0",
     "@types/jest": "24.0.18",
     "@types/node": "12.7.8",
-    "@types/react": "16.9.3",
+    "@types/react": "^16.9.4",
     "@types/react-dom": "16.9.1",
     "@types/react-router-dom": "5.1.0",
+    "apollo-boost": "^0.4.4",
+    "graphql": "^14.5.8",
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "react-router-dom": "5.1.2",
@@ -81,6 +87,7 @@
       "src/**/*.{tsx,ts}",
       "!src/styles/**/*",
       "!src/index.tsx",
+      "!src/utils/apollo-client.ts",
       "!src/serviceWorker.ts",
       "!<rootDir>/node_modules/"
     ]
