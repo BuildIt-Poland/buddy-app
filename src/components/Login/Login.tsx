@@ -1,7 +1,7 @@
 import React from 'react';
 import RoundedButton from '../RoundedButton';
 
-const Root: React.FC = () => {
+const Login: React.FC = () => {
   return (
     <>
       <RoundedButton fullWidth variant={'contained'} color={'primary'}>
@@ -11,4 +11,4 @@ const Root: React.FC = () => {
   );
 };
 
-export default Root;
+export default Login;
