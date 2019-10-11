@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core';
 
 import RoundedButton from '../RoundedButton';
 
-const Root: React.FC = () => {
+const Login: React.FC = () => {
   return (
     <>
       <Typography align={'center'} variant='h3' component={'h3'}>
@@ -17,4 +17,4 @@ const Root: React.FC = () => {
   );
 };
 
-export default Root;
+export default Login;

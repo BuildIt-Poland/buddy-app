@@ -7,6 +7,11 @@ exports[`Component - AppWrapper renders correctly 1`] = `
   data-testid="root"
   maxWidth="md"
 >
-  <LoginPage />
+  <Container
+    className="makeStyles-container-1"
+    component="main"
+    data-testid="root"
+    maxWidth="md"
+  />
 </Container>
 `;
