@@ -7,10 +7,10 @@ Array [
   >
     <Toolbar>
       <IconButton
-        aria-label="menu"
         className="makeStyles-menuButton-2"
         color="inherit"
         edge="start"
+        onClick={[Function]}
       >
         <svg
           aria-hidden="true"
