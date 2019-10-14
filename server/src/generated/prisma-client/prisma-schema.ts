@@ -149,6 +149,7 @@ export const typeDefs = /* GraphQL */ `
     title: String!
     status: TaskStatus!
     newbie: Newbie!
+    implementationDate: DateTime
   }
 
   type BuddyTaskConnection {
@@ -163,6 +164,7 @@ export const typeDefs = /* GraphQL */ `
     title: String
     status: TaskStatus
     newbie: NewbieCreateOneWithoutBuddyTasksInput!
+    implementationDate: DateTime
   }
 
   input BuddyTaskCreateManyWithoutNewbieInput {
@@ -175,6 +177,7 @@ export const typeDefs = /* GraphQL */ `
     description: String
     title: String
     status: TaskStatus
+    implementationDate: DateTime
   }
 
   type BuddyTaskEdge {
@@ -193,6 +196,8 @@ export const typeDefs = /* GraphQL */ `
     title_DESC
     status_ASC
     status_DESC
+    implementationDate_ASC
+    implementationDate_DESC
   }
 
   type BuddyTaskPreviousValues {
@@ -201,6 +206,7 @@ export const typeDefs = /* GraphQL */ `
     description: String!
     title: String!
     status: TaskStatus!
+    implementationDate: DateTime
   }
 
   input BuddyTaskScalarWhereInput {
@@ -258,6 +264,14 @@ export const typeDefs = /* GraphQL */ `
     status_not: TaskStatus
     status_in: [TaskStatus!]
     status_not_in: [TaskStatus!]
+    implementationDate: DateTime
+    implementationDate_not: DateTime
+    implementationDate_in: [DateTime!]
+    implementationDate_not_in: [DateTime!]
+    implementationDate_lt: DateTime
+    implementationDate_lte: DateTime
+    implementationDate_gt: DateTime
+    implementationDate_gte: DateTime
     AND: [BuddyTaskScalarWhereInput!]
     OR: [BuddyTaskScalarWhereInput!]
     NOT: [BuddyTaskScalarWhereInput!]
@@ -286,18 +300,21 @@ export const typeDefs = /* GraphQL */ `
     title: String
     status: TaskStatus
     newbie: NewbieUpdateOneRequiredWithoutBuddyTasksInput
+    implementationDate: DateTime
   }
 
   input BuddyTaskUpdateManyDataInput {
     description: String
     title: String
     status: TaskStatus
+    implementationDate: DateTime
   }
 
   input BuddyTaskUpdateManyMutationInput {
     description: String
     title: String
     status: TaskStatus
+    implementationDate: DateTime
   }
 
   input BuddyTaskUpdateManyWithoutNewbieInput {
@@ -321,6 +338,7 @@ export const typeDefs = /* GraphQL */ `
     description: String
     title: String
     status: TaskStatus
+    implementationDate: DateTime
   }
 
   input BuddyTaskUpdateWithWhereUniqueWithoutNewbieInput {
@@ -390,6 +408,14 @@ export const typeDefs = /* GraphQL */ `
     status_in: [TaskStatus!]
     status_not_in: [TaskStatus!]
     newbie: NewbieWhereInput
+    implementationDate: DateTime
+    implementationDate_not: DateTime
+    implementationDate_in: [DateTime!]
+    implementationDate_not_in: [DateTime!]
+    implementationDate_lt: DateTime
+    implementationDate_lte: DateTime
+    implementationDate_gt: DateTime
+    implementationDate_gte: DateTime
     AND: [BuddyTaskWhereInput!]
     OR: [BuddyTaskWhereInput!]
     NOT: [BuddyTaskWhereInput!]
@@ -965,6 +991,7 @@ export const typeDefs = /* GraphQL */ `
     title: String!
     status: TaskStatus!
     newbie: Newbie!
+    implementationDate: DateTime
     notes: String
   }
 
@@ -980,6 +1007,7 @@ export const typeDefs = /* GraphQL */ `
     title: String
     status: TaskStatus
     newbie: NewbieCreateOneWithoutNewbieTasksInput!
+    implementationDate: DateTime
     notes: String
   }
 
@@ -993,6 +1021,7 @@ export const typeDefs = /* GraphQL */ `
     description: String
     title: String
     status: TaskStatus
+    implementationDate: DateTime
     notes: String
   }
 
@@ -1012,6 +1041,8 @@ export const typeDefs = /* GraphQL */ `
     title_DESC
     status_ASC
     status_DESC
+    implementationDate_ASC
+    implementationDate_DESC
     notes_ASC
     notes_DESC
   }
@@ -1022,6 +1053,7 @@ export const typeDefs = /* GraphQL */ `
     description: String!
     title: String!
     status: TaskStatus!
+    implementationDate: DateTime
     notes: String
   }
 
@@ -1080,6 +1112,14 @@ export const typeDefs = /* GraphQL */ `
     status_not: TaskStatus
     status_in: [TaskStatus!]
     status_not_in: [TaskStatus!]
+    implementationDate: DateTime
+    implementationDate_not: DateTime
+    implementationDate_in: [DateTime!]
+    implementationDate_not_in: [DateTime!]
+    implementationDate_lt: DateTime
+    implementationDate_lte: DateTime
+    implementationDate_gt: DateTime
+    implementationDate_gte: DateTime
     notes: String
     notes_not: String
     notes_in: [String!]
@@ -1122,6 +1162,7 @@ export const typeDefs = /* GraphQL */ `
     title: String
     status: TaskStatus
     newbie: NewbieUpdateOneRequiredWithoutNewbieTasksInput
+    implementationDate: DateTime
     notes: String
   }
 
@@ -1129,6 +1170,7 @@ export const typeDefs = /* GraphQL */ `
     description: String
     title: String
     status: TaskStatus
+    implementationDate: DateTime
     notes: String
   }
 
@@ -1136,6 +1178,7 @@ export const typeDefs = /* GraphQL */ `
     description: String
     title: String
     status: TaskStatus
+    implementationDate: DateTime
     notes: String
   }
 
@@ -1160,6 +1203,7 @@ export const typeDefs = /* GraphQL */ `
     description: String
     title: String
     status: TaskStatus
+    implementationDate: DateTime
     notes: String
   }
 
@@ -1230,6 +1274,14 @@ export const typeDefs = /* GraphQL */ `
     status_in: [TaskStatus!]
     status_not_in: [TaskStatus!]
     newbie: NewbieWhereInput
+    implementationDate: DateTime
+    implementationDate_not: DateTime
+    implementationDate_in: [DateTime!]
+    implementationDate_not_in: [DateTime!]
+    implementationDate_lt: DateTime
+    implementationDate_lte: DateTime
+    implementationDate_gt: DateTime
+    implementationDate_gte: DateTime
     notes: String
     notes_not: String
     notes_in: [String!]
