@@ -51,7 +51,7 @@ export type BuddyTask = Task & {
   createdAt: Scalars['DateTime'];
   status: TaskStatus;
   newbie: Newbie;
-  executionDate?: Maybe<Scalars['DateTime']>;
+  implementationDate?: Maybe<Scalars['DateTime']>;
 };
 
 export type Mutation = {
@@ -139,7 +139,7 @@ export type NewbieTask = Task & {
   createdAt: Scalars['DateTime'];
   status: TaskStatus;
   newbie: Newbie;
-  executionDate?: Maybe<Scalars['DateTime']>;
+  implementationDate?: Maybe<Scalars['DateTime']>;
   notes?: Maybe<Scalars['String']>;
 };
 
@@ -187,7 +187,7 @@ export type Task = {
   title: Scalars['String'];
   description: Scalars['String'];
   createdAt: Scalars['DateTime'];
-  executionDate?: Maybe<Scalars['DateTime']>;
+  implementationDate?: Maybe<Scalars['DateTime']>;
   status: TaskStatus;
   newbie: Newbie;
 };
@@ -196,7 +196,7 @@ export type TaskInput = {
   title?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['String']>;
   status?: Maybe<TaskStatus>;
-  executionDate?: Maybe<Scalars['DateTime']>;
+  implementationDate?: Maybe<Scalars['DateTime']>;
   notes?: Maybe<Scalars['String']>;
 };
 
@@ -443,7 +443,7 @@ export type BuddyTaskResolvers<
   createdAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   status?: Resolver<ResolversTypes['TaskStatus'], ParentType, ContextType>;
   newbie?: Resolver<ResolversTypes['Newbie'], ParentType, ContextType>;
-  executionDate?: Resolver<
+  implementationDate?: Resolver<
     Maybe<ResolversTypes['DateTime']>,
     ParentType,
     ContextType
@@ -572,7 +572,7 @@ export type NewbieTaskResolvers<
   createdAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
   status?: Resolver<ResolversTypes['TaskStatus'], ParentType, ContextType>;
   newbie?: Resolver<ResolversTypes['Newbie'], ParentType, ContextType>;
-  executionDate?: Resolver<
+  implementationDate?: Resolver<
     Maybe<ResolversTypes['DateTime']>,
     ParentType,
     ContextType
@@ -636,7 +636,7 @@ export type TaskResolvers<
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   description?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['DateTime'], ParentType, ContextType>;
-  executionDate?: Resolver<
+  implementationDate?: Resolver<
     Maybe<ResolversTypes['DateTime']>,
     ParentType,
     ContextType
