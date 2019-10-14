@@ -18,6 +18,8 @@ let theme = createMuiTheme({
     button: {
       textTransform: 'none',
     },
+    fontFamily:
+      'Wipro Akkurat TT, Wipro Akkurat Mono TT, Roboto, Helvetica, Arial, sans-serif',
     h1: {
       fontWeight: 550,
     },
