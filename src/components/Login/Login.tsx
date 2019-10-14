@@ -4,9 +4,11 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import useForm from 'react-hook-form';
 
 import RoundedButton from '../RoundedButton';
 import { ReactComponent as SpaceMan } from '../../svg/spaceman.svg';
+import DICTIONARY from './login.dictionary';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -23,48 +25,68 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+interface FormData {
+  email: String;
+  password: String;
+}
+
 export default function SignIn() {
   const classes = useStyles();
+  const { register, errors, handleSubmit } = useForm<FormData>();
+
+  const onSubmit = ({ email, password }: FormData) => {
+    //call service
+  };
 
   return (
-    <>
-      <section className={classes.paper}>
-        <Typography component='h1' variant='h1'>
-          Buddy
-        </Typography>
-        <SpaceMan className={classes.spaceMan} />
-        <form noValidate>
-          <TextField
-            id='email'
-            margin='normal'
-            fullWidth
-            label='Email Address'
-            name='email'
-            autoComplete='email'
-            autoFocus
-          />
-          <TextField
-            id='password'
-            margin='normal'
-            fullWidth
-            name='password'
-            label='Password'
-            type='password'
-            autoComplete='current-password'
-          />
-          <RoundedButton
-            type='submit'
-            fullWidth
-            variant='contained'
-            color='primary'
-            className={classes.submit}>
-            Sign In
-          </RoundedButton>
-          <Grid container justify='flex-end'>
-            <Link href='#'>Forgot password?</Link>
-          </Grid>
-        </form>
-      </section>
-    </>
+    <section className={classes.paper}>
+      <Typography component='h1' variant='h1'>
+        {DICTIONARY.TITLE}
+      </Typography>
+      <SpaceMan className={classes.spaceMan} />
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <TextField
+          inputRef={register({
+            required: DICTIONARY.EMAIL.REQUIRED,
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              message: DICTIONARY.EMAIL.INVALID,
+            },
+          })}
+          margin={'dense'}
+          fullWidth
+          label={DICTIONARY.EMAIL.LABEL}
+          name='email'
+          autoComplete='email'
+          autoFocus
+          error={!!errors.email}
+          helperText={(errors.email && errors.email.message) || ' '}
+        />
+        <TextField
+          inputRef={register({
+            required: DICTIONARY.PASSWORD.REQUIRED,
+          })}
+          margin={'dense'}
+          fullWidth
+          name='password'
+          label={DICTIONARY.PASSWORD.LABEL}
+          type='password'
+          autoComplete='current-password'
+          error={!!errors.password}
+          helperText={(errors.password && errors.password.message) || ' '}
+        />
+        <RoundedButton
+          type='submit'
+          fullWidth
+          variant='contained'
+          color='primary'
+          className={classes.submit}>
+          {DICTIONARY.SIGN_IN}
+        </RoundedButton>
+        <Grid container justify='flex-end'>
+          <Link href='#'>{DICTIONARY.FORGOT_PASSWORD}</Link>
+        </Grid>
+      </form>
+    </section>
   );
 }
