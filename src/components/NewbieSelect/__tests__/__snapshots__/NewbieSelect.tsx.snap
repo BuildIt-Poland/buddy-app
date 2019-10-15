@@ -1,7 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - NewbieSelect renders correctly 1`] = `
-<h1>
-  Newbie Select
-</h1>
+Array [
+  <h1>
+    Newbie Select
+  </h1>,
+  <button
+    className="MuiButtonBase-root MuiFab-root MuiFab-sizeMedium MuiFab-primary"
+    disabled={false}
+    onBlur={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className="MuiFab-label"
+    >
+      +
+    </span>
+  </button>,
+]
 `;
