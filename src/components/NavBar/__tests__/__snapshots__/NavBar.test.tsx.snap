@@ -6,7 +6,7 @@ exports[`Component - NavBar renders correctly with "back" type 1`] = `
 >
   <Toolbar>
     <IconButton
-      className="makeStyles-menuButton-2"
+      className="makeStyles-menuButton-1"
       color="inherit"
       edge="start"
       onClick={[MockFunction]}
@@ -33,7 +33,7 @@ exports[`Component - NavBar renders correctly with "menu" type 1`] = `
 >
   <Toolbar>
     <IconButton
-      className="makeStyles-menuButton-2"
+      className="makeStyles-menuButton-1"
       color="inherit"
       edge="start"
       onClick={[MockFunction]}
