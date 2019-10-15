@@ -2,6 +2,7 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { Route, BrowserRouter, Redirect } from 'react-router-dom';
+
 import { ROUTES } from '../../shared/routes';
 import TaskDetails from '../TaskDetails';
 import Login from '../Login';

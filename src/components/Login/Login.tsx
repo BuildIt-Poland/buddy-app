@@ -5,19 +5,24 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import useForm from 'react-hook-form';
+import { useMutation } from '@apollo/react-hooks';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import RoundedButton from '../RoundedButton';
+import AlertDialog from '../AlertDialog';
+
 import { ReactComponent as SpaceMan } from '../../svg/spaceman.svg';
+import LOGIN_MUTATION from '../../graphql/login.graphql';
+import { auth } from '../../utils';
 import DICTIONARY from './login.dictionary';
 
 const useStyles = makeStyles(theme => ({
-  paper: {
+  title: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
   },
   spaceMan: {
+    display: 'block',
+    margin: '0 auto',
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -33,14 +38,30 @@ interface FormData {
 export default function SignIn() {
   const classes = useStyles();
   const { register, errors, handleSubmit } = useForm<FormData>();
+  const [loginMutation, { loading, error }] = useMutation(LOGIN_MUTATION, {
+    onCompleted: ({ login }) => {
+      auth.setToken(login.token);
+    },
+  });
 
-  const onSubmit = ({ email, password }: FormData) => {
-    //call service
+  const onSubmit = async ({ email, password }: FormData) => {
+    await loginMutation({
+      variables: {
+        email,
+        password,
+      },
+    });
   };
 
+  const readableErrors = error && error.graphQLErrors.map(({ message }) => message);
+
   return (
-    <section className={classes.paper}>
-      <Typography component='h1' variant='h1'>
+    <>
+      <Typography
+        className={classes.title}
+        component='h1'
+        variant='h1'
+        align={'center'}>
         {DICTIONARY.TITLE}
       </Typography>
       <SpaceMan className={classes.spaceMan} />
@@ -80,13 +101,24 @@ export default function SignIn() {
           fullWidth
           variant='contained'
           color='primary'
+          disabled={loading}
           className={classes.submit}>
-          {DICTIONARY.SIGN_IN}
+          {loading ? (
+            <CircularProgress variant={'indeterminate'} size={32} />
+          ) : (
+            DICTIONARY.SIGN_IN
+          )}
         </RoundedButton>
         <Grid container justify='flex-end'>
           <Link href='#'>{DICTIONARY.FORGOT_PASSWORD}</Link>
         </Grid>
+        {error && (
+          <AlertDialog
+            message={
+              readableErrors ? readableErrors[0] : 'Something went wrong'
+            }></AlertDialog>
+        )}
       </form>
-    </section>
+    </>
   );
 }
