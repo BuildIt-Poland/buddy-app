@@ -1,5 +1,10 @@
 import React from 'react';
-import { Grid, Avatar as AvatarMaterialUI, makeStyles } from '@material-ui/core';
+import {
+  Grid,
+  Avatar as AvatarMaterialUI,
+  makeStyles,
+  CircularProgress,
+} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
@@ -7,6 +12,14 @@ const useStyles = makeStyles({
     margin: 10,
     width: 80,
     height: 80,
+  },
+  name: {
+    fontSize: 20,
+    fontWeight: 700,
+    lineHeight: 1.2,
+  },
+  role: {
+    fontSize: 13,
   },
 });
 
@@ -28,13 +41,14 @@ const Avatar: React.FC<AvatarProps> = props => {
           src='/images/avatar-placeholder.jpg'
           className={classes.avatar}
         />
-        <p>Progress: {progress}</p>
-        <Typography component='h3' variant='h3'>
+        <Typography component='h3' variant='caption' className={classes.name}>
           {name}
         </Typography>
-        <Typography component='h3' variant='h3'>
+        <Typography component='h4' variant='subtitle1' className={classes.role}>
           {role}
         </Typography>
+        {`${progress}%`}
+        <CircularProgress variant='static' value={progress} />
       </Grid>
     </>
   );

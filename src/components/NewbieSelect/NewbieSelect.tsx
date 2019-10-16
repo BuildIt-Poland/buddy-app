@@ -9,7 +9,7 @@ const NewbieSelect: React.FC = () => {
   return (
     <>
       <NavBar type='menu' onClick={handleNavBarClick} />
-      <Typography component='h2' variant='h2'>
+      <Typography component='h3' variant='h3'>
         Your New Joiners
       </Typography>
       <Avatar name='Tom Hanks' role='Front End Engineer' progress={50} />
