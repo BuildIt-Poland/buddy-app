@@ -6,49 +6,126 @@ import {
   CircularProgress,
 } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import { AvatarProps } from './types';
 
-const useStyles = makeStyles({
+const useRegularTypeStyles = makeStyles({
   avatar: {
     margin: 10,
-    width: 80,
-    height: 80,
+    width: 60,
+    height: 60,
+    marginBottom: 20,
   },
   name: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 700,
     lineHeight: 1.2,
   },
-  role: {
-    fontSize: 13,
+  subtitle: {
+    fontSize: 12,
+  },
+  progress: {
+    position: 'absolute',
+    top: -5,
+  },
+  grid: {
+    position: 'relative',
   },
 });
 
-export interface AvatarProps {
-  name: string;
-  progress: number;
-  role: string;
-}
+const useSmallTypeStyles = makeStyles({
+  avatar: {
+    margin: 10,
+    width: 40,
+    height: 40,
+    marginBottom: 20,
+  },
+  name: {
+    fontSize: 14,
+    fontWeight: 700,
+    lineHeight: 1.2,
+  },
+  subtitle: {
+    fontSize: 10,
+  },
+  progress: {
+    position: 'absolute',
+    top: 0,
+  },
+  grid: {
+    position: 'relative',
+  },
+});
 
 const Avatar: React.FC<AvatarProps> = props => {
-  const classes = useStyles();
+  const DEFAULT_TYPE = 'regular';
+  const DEFAULT_IMG_SRC = '/images/avatar-placeholder.jpg';
+  const {
+    name,
+    role,
+    progress,
+    type = DEFAULT_TYPE,
+    imgSrc = DEFAULT_IMG_SRC,
+  } = props;
 
-  const { name, role, progress } = props;
+  const classes = {
+    regular: useRegularTypeStyles(),
+    small: useSmallTypeStyles(),
+  };
+
+  const progressBarProps = {
+    regular: {
+      size: 90,
+      thickness: 2,
+    },
+    small: {
+      size: 60,
+      thickness: 1,
+    },
+  };
+
   return (
     <>
       <Grid container justify='center' alignItems='center' direction='column'>
-        <AvatarMaterialUI
-          alt='Avatar'
-          src='/images/avatar-placeholder.jpg'
-          className={classes.avatar}
-        />
-        <Typography component='h3' variant='caption' className={classes.name}>
-          {name}
-        </Typography>
-        <Typography component='h4' variant='subtitle1' className={classes.role}>
-          {role}
-        </Typography>
-        {`${progress}%`}
-        <CircularProgress variant='static' value={progress} />
+        <Grid
+          container
+          justify='center'
+          alignItems='center'
+          direction='column'
+          className={classes[type].grid}>
+          <AvatarMaterialUI
+            alt='Avatar'
+            src={imgSrc}
+            className={classes[type].avatar}
+          />
+          <CircularProgress
+            variant='static'
+            value={progress}
+            className={classes[type].progress}
+            {...progressBarProps[type]}
+          />
+          <Typography
+            component='h4'
+            variant='subtitle1'
+            className={classes[type].subtitle}>
+            {progress && `${progress}%`}
+          </Typography>
+        </Grid>
+        {name && (
+          <Typography
+            component='h3'
+            variant='caption'
+            className={classes[type].name}>
+            {name}
+          </Typography>
+        )}
+        {role && (
+          <Typography
+            component='h4'
+            variant='subtitle2'
+            className={classes[type].subtitle}>
+            {role}
+          </Typography>
+        )}
       </Grid>
     </>
   );

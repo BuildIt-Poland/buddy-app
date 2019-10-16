@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import NavBar from '../NavBar/NavBar';
+import NavBar from '../NavBar';
 import Avatar from '../Avatar';
 
 const NewbieSelect: React.FC = () => {
@@ -12,7 +12,12 @@ const NewbieSelect: React.FC = () => {
       <Typography component='h3' variant='h3'>
         Your New Joiners
       </Typography>
-      <Avatar name='Tom Hanks' role='Front End Engineer' progress={50} />
+      <Avatar
+        name='Tom Hanks'
+        role='Front End Engineer'
+        progress={75}
+        type='regular'
+      />
     </>
   );
 };

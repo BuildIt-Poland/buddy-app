@@ -2,10 +2,9 @@ import React from 'react';
 import { create } from 'react-test-renderer';
 import NewbieSelect from '../NewbieSelect';
 
-jest.mock('@material-ui/core/AppBar', () => 'AppBar');
-jest.mock('@material-ui/core/Toolbar', () => 'Toolbar');
-jest.mock('@material-ui/core/IconButton', () => 'IconButton');
-jest.mock('../../NavBar');
+jest.mock('@material-ui/core/Typography', () => 'Typography');
+jest.mock('../../NavBar', () => 'Navbar');
+jest.mock('../../Avatar', () => 'Avatar');
 
 describe('Component - NewbieSelect', () => {
   test('renders correctly', () => {
