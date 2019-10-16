@@ -15,6 +15,7 @@ import ErrorPage from '../ErrorPage';
 const useStyles = makeStyles(theme => ({
   container: {
     minWidth: theme.breakpoints.values['xs'],
+    marginTop: theme.spacing(9),
   },
 }));
 
