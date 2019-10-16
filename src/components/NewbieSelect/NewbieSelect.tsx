@@ -1,5 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import PlusButton from '../PlusButton';
 import NavBar from '../NavBar/NavBar';
 
 const NewbieSelect: React.FC = () => {
@@ -7,10 +8,13 @@ const NewbieSelect: React.FC = () => {
 
   return (
     <>
+      <h1>Newbie Select</h1>
+      <PlusButton />
       <NavBar type='menu' onClick={handleNavBarClick} />
       <Typography component='h2' variant='h2'>
         Your New Joiners
       </Typography>
+      <PlusButton />
     </>
   );
 };

@@ -2,12 +2,49 @@
 
 exports[`Component - NewbieSelect renders correctly 1`] = `
 Array [
+  <h1>
+    Newbie Select
+  </h1>,
+  <button
+    aria-label="add"
+    className="MuiButtonBase-root MuiFab-root MuiFab-sizeMedium MuiFab-primary"
+    disabled={false}
+    onBlur={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className="MuiFab-label"
+    >
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+        />
+      </svg>
+    </span>
+  </button>,
   <AppBar
     position="fixed"
   >
     <Toolbar>
       <IconButton
-        className="makeStyles-menuButton-1"
+        className="makeStyles-menuButton-23"
         color="inherit"
         edge="start"
         onClick={[Function]}
@@ -31,5 +68,39 @@ Array [
   >
     Your New Joiners
   </h2>,
+  <button
+    aria-label="add"
+    className="MuiButtonBase-root MuiFab-root MuiFab-sizeMedium MuiFab-primary"
+    disabled={false}
+    onBlur={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className="MuiFab-label"
+    >
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+        />
+      </svg>
+    </span>
+  </button>,
 ]
 `;

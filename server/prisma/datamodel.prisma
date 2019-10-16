@@ -15,6 +15,7 @@ type NewbieTask {
   title: String! @default(value: "")
   status: TaskStatus! @default(value: UNCOMPLETED)
   newbie: Newbie!
+  implementationDate: DateTime
   notes: String
 }
 
@@ -25,6 +26,7 @@ type BuddyTask {
   title: String! @default(value: "")
   status: TaskStatus! @default(value: UNCOMPLETED)
   newbie: Newbie!
+  implementationDate: DateTime
 }
 
 type Buddy {
