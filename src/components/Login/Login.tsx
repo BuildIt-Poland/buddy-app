@@ -71,10 +71,17 @@ const LoginPage = () => {
         },
       });
     } catch (error) {
-      setErrorDialog({
-        isOpen: true,
-        message: (DICTIONARY as any)[error.graphQLErrors[0].message],
-      });
+      if (error.networkError) {
+        setErrorDialog({
+          isOpen: true,
+          message: DICTIONARY.ERRORS.NO_NETWORK,
+        });
+      } else {
+        setErrorDialog({
+          isOpen: true,
+          message: DICTIONARY.ERRORS.NO_USER_FOUND,
+        });
+      }
     }
   };
 
