@@ -2,6 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import NavBar from '../NavBar';
 import Avatar from '../Avatar';
+import PlusButton from '../PlusButton';
 
 const NewbieSelect: React.FC = () => {
   const handleNavBarClick = () => {};
@@ -18,6 +19,7 @@ const NewbieSelect: React.FC = () => {
         progress={75}
         type='regular'
       />
+      <PlusButton />
     </>
   );
 };

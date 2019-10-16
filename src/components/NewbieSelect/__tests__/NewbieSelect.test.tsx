@@ -5,6 +5,7 @@ import NewbieSelect from '../NewbieSelect';
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('../../NavBar', () => 'Navbar');
 jest.mock('../../Avatar', () => 'Avatar');
+jest.mock('../../PlusButton/', () => 'PlusButton');
 
 describe('Component - NewbieSelect', () => {
   test('renders correctly', () => {
