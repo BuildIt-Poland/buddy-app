@@ -23,7 +23,7 @@ const AlertDialog = ({ title, message }: AlertDialogProps) => {
       {title && <DialogTitle>{title}</DialogTitle>}
       <DialogContent>
         {message && (
-          <DialogContentText style={{ whiteSpace: 'pre-line' }}>
+          <DialogContentText variant={'body2'} style={{ whiteSpace: 'pre-line' }}>
             {message}
           </DialogContentText>
         )}

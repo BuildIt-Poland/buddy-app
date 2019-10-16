@@ -29,7 +29,6 @@ const Root: React.FC = () => {
       component='main'
       maxWidth='md'>
       <BrowserRouter basename={ROUTES.BASE}>
-        <Redirect exact from={ROUTES.BASE} to={ROUTES.LOGIN} />
         <Route path={ROUTES.ERROR} exact component={ErrorPage} />
         <Route path={ROUTES.LOGIN} exact component={Login} />
         <Route path={ROUTES.BUDDY_ADD_NEWBIE} exact component={AddNewbie} />

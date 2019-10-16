@@ -6,46 +6,5 @@ exports[`Component - AppWrapper renders correctly 1`] = `
   component="main"
   data-testid="root"
   maxWidth="md"
->
-  <Login
-    history={
-      Object {
-        "action": "REPLACE",
-        "block": [Function],
-        "createHref": [Function],
-        "go": [Function],
-        "goBack": [Function],
-        "goForward": [Function],
-        "length": 1,
-        "listen": [Function],
-        "location": Object {
-          "hash": "",
-          "key": "sh2lp7",
-          "pathname": "/login",
-          "search": "",
-          "state": undefined,
-        },
-        "push": [Function],
-        "replace": [Function],
-      }
-    }
-    location={
-      Object {
-        "hash": "",
-        "key": "sh2lp7",
-        "pathname": "/login",
-        "search": "",
-        "state": undefined,
-      }
-    }
-    match={
-      Object {
-        "isExact": true,
-        "params": Object {},
-        "path": "/login",
-        "url": "/login",
-      }
-    }
-  />
-</Container>
+/>
 `;
