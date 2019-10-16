@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -7,10 +7,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import useForm from 'react-hook-form';
 import { useMutation } from '@apollo/react-hooks';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { useHistory } from 'react-router-dom';
 
 import RoundedButton from '../RoundedButton';
 import AlertDialog from '../AlertDialog';
-
+import { ROUTES } from '../../shared/routes';
 import { ReactComponent as SpaceMan } from '../../svg/spaceman.svg';
 import LOGIN_MUTATION from '../../graphql/login.graphql';
 import { auth } from '../../utils';
@@ -31,29 +32,51 @@ const useStyles = makeStyles(theme => ({
 }));
 
 interface FormData {
-  email: String;
-  password: String;
+  email: string;
+  password: string;
 }
 
-export default function SignIn() {
+interface ErrorDialog {
+  isOpen: Boolean;
+  message: string;
+}
+
+const LoginPage = () => {
   const classes = useStyles();
+  const history = useHistory();
+  const [errorDialog, setErrorDialog] = useState<ErrorDialog>({
+    isOpen: false,
+    message: '',
+  });
+
   const { register, errors, handleSubmit } = useForm<FormData>();
-  const [loginMutation, { loading, error }] = useMutation(LOGIN_MUTATION, {
+  const [loginMutation, { loading }] = useMutation(LOGIN_MUTATION, {
     onCompleted: ({ login }) => {
       auth.setToken(login.token);
+      history.push(ROUTES.BUDDY_SELECT_NEWBIE);
     },
   });
 
   const onSubmit = async ({ email, password }: FormData) => {
-    await loginMutation({
-      variables: {
-        email,
-        password,
-      },
+    setErrorDialog({
+      isOpen: false,
+      message: '',
     });
-  };
 
-  const readableErrors = error && error.graphQLErrors.map(({ message }) => message);
+    try {
+      await loginMutation({
+        variables: {
+          email,
+          password,
+        },
+      });
+    } catch (error) {
+      setErrorDialog({
+        isOpen: true,
+        message: (DICTIONARY as any)[error.graphQLErrors[0].message],
+      });
+    }
+  };
 
   return (
     <>
@@ -112,13 +135,12 @@ export default function SignIn() {
         <Grid container justify='flex-end'>
           <Link href='#'>{DICTIONARY.FORGOT_PASSWORD}</Link>
         </Grid>
-        {error && (
-          <AlertDialog
-            message={
-              readableErrors ? readableErrors[0] : 'Something went wrong'
-            }></AlertDialog>
+        {errorDialog.isOpen && (
+          <AlertDialog message={errorDialog.message}></AlertDialog>
         )}
       </form>
     </>
   );
-}
+};
+
+export default LoginPage;

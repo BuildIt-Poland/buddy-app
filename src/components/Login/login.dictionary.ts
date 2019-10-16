@@ -11,7 +11,9 @@ interface LOGIN_DICTIONARY {
     REQUIRED: string;
     LABEL: string;
   };
-  SERVICE_ERROR: string;
+  'No such user found': string;
+  SERVICE_ERROR?: string;
+  NO_NETWORK: string;
 }
 
 const DICTIONARY: LOGIN_DICTIONARY = {
@@ -27,8 +29,9 @@ const DICTIONARY: LOGIN_DICTIONARY = {
     LABEL: 'Password',
     REQUIRED: 'Password is required',
   },
-  SERVICE_ERROR:
-    'The email and password you entered did not match our records. Please double-check and try again.',
+  'No such user found':
+    'The email and password you entered did not match our records. \n Please double-check and try again.',
+  NO_NETWORK: 'Please verify your internet connection',
 };
 
 export default DICTIONARY;

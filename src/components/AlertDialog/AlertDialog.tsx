@@ -22,7 +22,11 @@ const AlertDialog = ({ title, message }: AlertDialogProps) => {
     <Dialog open={open} onClose={handleClose}>
       {title && <DialogTitle>{title}</DialogTitle>}
       <DialogContent>
-        {message && <DialogContentText>{message}</DialogContentText>}
+        {message && (
+          <DialogContentText style={{ whiteSpace: 'pre-line' }}>
+            {message}
+          </DialogContentText>
+        )}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color='primary'>
