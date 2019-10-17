@@ -58,7 +58,7 @@ const useSmallTypeStyles = makeStyles({
 
 const Avatar: React.FC<AvatarProps> = props => {
   const DEFAULT_TYPE = 'regular';
-  const DEFAULT_IMG_SRC = '/images/avatar-placeholder.jpg';
+  const DEFAULT_IMG_SRC = '/images/avatar-placeholder.svg';
   const {
     name,
     role,
