@@ -10,7 +10,7 @@ const addBuddy: MutationResolvers['addBuddy'] = async (parent, args, context) =>
     email: args.input.email,
   });
   if (userExist) {
-    throw new Error(ERRORS.exist);
+    throw new Error(ERRORS.EXIST);
   }
 
   const buddy = await context.prisma.createBuddy({ ...args.input, password });
@@ -25,7 +25,7 @@ const addNewbie: MutationResolvers['addNewbie'] = async (parent, args, context) 
     email: args.input.email,
   });
   if (userExist) {
-    throw new Error(ERRORS.exist);
+    throw new Error(ERRORS.EXIST);
   }
 
   const newbie = await context.prisma.createNewbie({
@@ -58,11 +58,11 @@ const login: MutationResolvers['login'] = async (parent, args, context) => {
   const user = buddy || newbie;
 
   if (!user) {
-    throw new Error(ERRORS.userResult);
+    throw new Error(ERRORS.USER_RESULT);
   }
 
   if (args.password !== user.password) {
-    throw new Error(ERRORS.password);
+    throw new Error(ERRORS.PASSWORD);
   }
 
   return {
@@ -117,7 +117,7 @@ const deleteTask: MutationResolvers['deleteTask'] = async (
     return newbieTask;
   } catch (error) {}
 
-  throw new Error(ERRORS.taskResult);
+  throw new Error(ERRORS.TASK_RESULT);
 };
 
 const updateTask: MutationResolvers['updateTask'] = async (
@@ -150,7 +150,7 @@ const updateTask: MutationResolvers['updateTask'] = async (
     return updatedNewbieTask;
   } catch (error) {}
 
-  throw new Error(ERRORS.taskResult);
+  throw new Error(ERRORS.TASK_RESULT);
 };
 
 const updateTaskStatus: MutationResolvers['updateTaskStatus'] = async (
@@ -190,7 +190,7 @@ const updateTaskStatus: MutationResolvers['updateTaskStatus'] = async (
     return updatedNewbieTask;
   } catch (error) {}
 
-  throw new Error(ERRORS.taskResult);
+  throw new Error(ERRORS.TASK_RESULT);
 };
 
 const mustations: MutationResolvers = {

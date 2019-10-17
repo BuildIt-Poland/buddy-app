@@ -1,15 +1,22 @@
 //const jwt = require('jsonwebtoken');
 import * as jwt from 'jsonwebtoken';
 import { GraphQLResolveInfo } from 'graphql';
+import { createError } from 'apollo-errors';
 import { ResolverFn, Context, TaskStatus } from './generated/schema-types';
 
+export const FooError = createError('FooError', {
+  message: 'A foo error has occurred',
+});
+
 export const ERRORS = {
-  access: 'Access denied',
-  auth: 'Not authenticated',
-  exist: 'Account already exist',
-  password: 'Invalid password',
-  taskResult: 'No such task found',
-  userResult: 'No such user found',
+  ACCESS: 'Access denied',
+  AUTH: 'Not authenticated',
+  AUTH_SUB: 'Not authenticated',
+  EXIST: 'Account already exist',
+  PASSWORD: 'Invalid password',
+  TASK_RESULT: 'No such task found',
+  USER_RESULT: 'No such user found',
+  INTERNAL: 'Internal server error',
 };
 
 export const changeTaskStatus = (status: TaskStatus): TaskStatus =>
@@ -23,7 +30,7 @@ const auth = (context: Context): string => {
     return userId;
   }
 
-  throw new Error(ERRORS.auth);
+  throw new Error(ERRORS.AUTH);
 };
 
 const isBuddyAuth = async (context: Context): Promise<boolean> => {
@@ -31,7 +38,12 @@ const isBuddyAuth = async (context: Context): Promise<boolean> => {
   const isBuddy = await context.prisma.$exists.buddy({ id: userId });
 
   if (!isBuddy) {
-    throw new Error(ERRORS.access);
+    // throw new FooError({
+    //   data: {
+    //     statusCode: 400,
+    //   },
+    // });
+    throw new Error(ERRORS.ACCESS);
   }
   return isBuddy;
 };

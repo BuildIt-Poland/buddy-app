@@ -1,7 +1,7 @@
 /* eslint-disable */
-import { config } from 'dotenv';
-config();
-import { GraphQLServer } from 'graphql-yoga';
+require('dotenv').config();
+import { formatError } from 'apollo-errors';
+import { GraphQLServer, Options } from 'graphql-yoga';
 import { prisma } from './generated/prisma-client';
 import { Resolvers } from './generated/schema-types';
 import Query from './resolvers/Query';
@@ -12,7 +12,7 @@ import BuddyTask from './resolvers/BuddyTask';
 import NewbieTask from './resolvers/NewbieTask';
 import User from './resolvers/User';
 import Task from './resolvers/Task';
-import { authMiddleware } from './utils';
+import { authMiddleware, ERRORS } from './utils';
 /* eslint-enable */
 
 const resolvers: Resolvers = {
@@ -26,6 +26,15 @@ const resolvers: Resolvers = {
   Task,
 };
 
+const options: Options = {
+  formatError: (err: any) => {
+    if (err.message.startsWith('Database')) {
+      return new Error(ERRORS.INTERNAL);
+    }
+    return formatError(err);
+  },
+};
+
 const server = new GraphQLServer({
   typeDefs: './src/schema.graphql',
   resolvers,
@@ -37,4 +46,6 @@ const server = new GraphQLServer({
 });
 
 /* eslint-disable no-console */
-server.start(() => console.log(`Server is running on http://localhost:4000`));
+server.start(options, () =>
+  console.log(`GraphQL API is running on http://localhost:4000`)
+);
