@@ -16,12 +16,12 @@ const useRegularTypeStyles = makeStyles({
     marginBottom: 20,
   },
   name: {
-    fontSize: 16,
+    fontSize: '1rem',
     fontWeight: 700,
     lineHeight: 1.2,
   },
   subtitle: {
-    fontSize: 12,
+    fontSize: '0.75rem',
   },
   progress: {
     position: 'absolute',
@@ -40,12 +40,12 @@ const useSmallTypeStyles = makeStyles({
     marginBottom: 20,
   },
   name: {
-    fontSize: 14,
+    fontSize: '0.875rem',
     fontWeight: 700,
     lineHeight: 1.2,
   },
   subtitle: {
-    fontSize: 10,
+    fontSize: '0.625rem',
   },
   progress: {
     position: 'absolute',
