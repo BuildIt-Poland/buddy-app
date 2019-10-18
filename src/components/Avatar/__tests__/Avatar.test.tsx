@@ -6,6 +6,7 @@ jest.mock('@material-ui/core/Grid', () => 'Grid');
 jest.mock('@material-ui/core/Avatar', () => 'AvatarMaterialUI');
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
+jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('../../NavBar');
 
 describe('Component - Avatar', () => {

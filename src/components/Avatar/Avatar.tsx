@@ -6,7 +6,9 @@ import {
   CircularProgress,
 } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-import { AvatarProps } from './types';
+import Box from '@material-ui/core/Box';
+import theme from '../../styles/theme';
+import { AvatarProps, AvatarType } from './types';
 
 const useRegularTypeStyles = makeStyles({
   avatar: {
@@ -14,14 +16,6 @@ const useRegularTypeStyles = makeStyles({
     width: 60,
     height: 60,
     marginBottom: 20,
-  },
-  name: {
-    fontSize: '1rem',
-    fontWeight: 700,
-    lineHeight: 1.2,
-  },
-  subtitle: {
-    fontSize: '0.75rem',
   },
   progress: {
     position: 'absolute',
@@ -39,14 +33,6 @@ const useSmallTypeStyles = makeStyles({
     height: 40,
     marginBottom: 20,
   },
-  name: {
-    fontSize: '0.875rem',
-    fontWeight: 700,
-    lineHeight: 1.2,
-  },
-  subtitle: {
-    fontSize: '0.625rem',
-  },
   progress: {
     position: 'absolute',
     top: 0,
@@ -57,13 +43,12 @@ const useSmallTypeStyles = makeStyles({
 });
 
 const Avatar: React.FC<AvatarProps> = props => {
-  const DEFAULT_TYPE = 'regular';
   const DEFAULT_IMG_SRC = '/images/avatar-placeholder.svg';
   const {
     name,
     role,
     progress,
-    type = DEFAULT_TYPE,
+    type = AvatarType.REGULAR,
     imgSrc = DEFAULT_IMG_SRC,
   } = props;
 
@@ -105,24 +90,21 @@ const Avatar: React.FC<AvatarProps> = props => {
           />
           <Typography
             component='h4'
-            variant='subtitle1'
-            className={classes[type].subtitle}>
+            variant={type === AvatarType.REGULAR ? 'subtitle1' : 'subtitle2'}>
             {progress && `${progress}%`}
           </Typography>
         </Grid>
         {name && (
-          <Typography
-            component='h3'
-            variant='caption'
-            className={classes[type].name}>
-            {name}
+          <Typography variant={type === AvatarType.REGULAR ? 'h4' : 'h5'}>
+            <Box fontWeight={theme.typography.fontWeightBold} lineHeight='1.2'>
+              {name}
+            </Box>
           </Typography>
         )}
         {role && (
           <Typography
             component='h4'
-            variant='subtitle2'
-            className={classes[type].subtitle}>
+            variant={type === AvatarType.REGULAR ? 'subtitle1' : 'subtitle2'}>
             {role}
           </Typography>
         )}
