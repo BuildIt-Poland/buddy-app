@@ -97,6 +97,7 @@ const LoginPage = () => {
       <SpaceMan className={classes.spaceMan} />
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
         <TextField
+          inputProps={{ 'data-testid': 'email' }}
           inputRef={register({
             required: DICTIONARY.EMAIL.REQUIRED,
             pattern: {
@@ -114,6 +115,7 @@ const LoginPage = () => {
           helperText={(errors.email && errors.email.message) || ' '}
         />
         <TextField
+          inputProps={{ 'data-testid': 'password' }}
           inputRef={register({
             required: DICTIONARY.PASSWORD.REQUIRED,
           })}
@@ -127,6 +129,7 @@ const LoginPage = () => {
           helperText={(errors.password && errors.password.message) || ' '}
         />
         <RoundedButton
+          data-testid='submit-button'
           type='submit'
           fullWidth
           variant='contained'
@@ -134,7 +137,11 @@ const LoginPage = () => {
           disabled={loading}
           className={classes.submit}>
           {loading ? (
-            <CircularProgress variant={'indeterminate'} size={32} />
+            <CircularProgress
+              data-testid='login-progress'
+              variant={'indeterminate'}
+              size={32}
+            />
           ) : (
             DICTIONARY.SIGN_IN
           )}

@@ -1,7 +1,5 @@
 {
-  "operation": "LoginMutation",
-  "response": {
-    "data": "error",
+    "data": null,
     "errors": [
       {
         "message": "No such user found",
@@ -9,5 +7,4 @@
         "path":["login"]
       }
     ]
-  }
 }

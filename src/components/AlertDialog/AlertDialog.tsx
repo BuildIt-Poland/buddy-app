@@ -19,7 +19,7 @@ const AlertDialog = ({ title, message }: AlertDialogProps) => {
   };
 
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={handleClose} data-testid='alert-dialog'>
       {title && <DialogTitle>{title}</DialogTitle>}
       <DialogContent>
         {message && (
@@ -29,7 +29,10 @@ const AlertDialog = ({ title, message }: AlertDialogProps) => {
         )}
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color='primary'>
+        <Button
+          onClick={handleClose}
+          color='primary'
+          data-testid='alert-dialog-close'>
           Close
         </Button>
       </DialogActions>
