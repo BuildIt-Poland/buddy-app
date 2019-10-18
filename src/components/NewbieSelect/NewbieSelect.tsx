@@ -20,9 +20,6 @@ const NewbieSelect: React.FC = () => {
         role='Front End Engineer'
         progress={75}
         type={'regular'}
-        imgSrc={
-          'https://pbs.twimg.com/profile_images/280455139/l_ecdf8f7aa81d5163129fee54d83a5e63_400x400.jpg'
-        }
       />
       <PlusButton />
     </>
