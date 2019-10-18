@@ -1,0 +1,13 @@
+{
+  "operation": "LoginMutation",
+  "response": {
+    "data": "error",
+    "errors": [
+      {
+        "message": "No such user found",
+        "locations":[{"line":2,"column":3}],
+        "path":["login"]
+      }
+    ]
+  }
+}

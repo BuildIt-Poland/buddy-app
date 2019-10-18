@@ -1,0 +1,10 @@
+{
+  "operation": "LoginMutation",
+  "response": {
+    "data": {
+      "login": {
+        "token": "dummy-token"
+      }
+    }
+  }
+}
