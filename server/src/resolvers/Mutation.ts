@@ -1,7 +1,8 @@
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
 import { MutationResolvers } from '../generated/schema-types';
-import { changeTaskStatus, ERRORS } from '../utils';
+import { changeTaskStatus } from '../utils';
+import ERRORS from '../errors';
 
 const addBuddy: MutationResolvers['addBuddy'] = async (parent, args, context) => {
   const password = await bcrypt.hash(args.input.password, 10);
@@ -10,7 +11,7 @@ const addBuddy: MutationResolvers['addBuddy'] = async (parent, args, context) =>
     email: args.input.email,
   });
   if (userExist) {
-    throw new Error(ERRORS.EXIST);
+    throw new ERRORS.ACCOUNT_EXIST();
   }
 
   const buddy = await context.prisma.createBuddy({ ...args.input, password });
@@ -25,7 +26,7 @@ const addNewbie: MutationResolvers['addNewbie'] = async (parent, args, context) 
     email: args.input.email,
   });
   if (userExist) {
-    throw new Error(ERRORS.EXIST);
+    throw new ERRORS.ACCOUNT_EXIST();
   }
 
   const newbie = await context.prisma.createNewbie({
@@ -43,13 +44,25 @@ const deleteNewbie: MutationResolvers['deleteNewbie'] = async (
   parent,
   args,
   context
-) => await context.prisma.deleteNewbie({ id: args.newbieId });
+) => {
+  const newbie = await context.prisma.newbie({ id: args.newbieId });
+  if (!newbie) {
+    throw new ERRORS.NO_USER_FOUND();
+  }
+  return await context.prisma.deleteNewbie({ id: args.newbieId });
+};
 
 const deleteBuddy: MutationResolvers['deleteBuddy'] = async (
   parent,
   args,
   context
-) => await context.prisma.deleteBuddy({ id: args.buddyId });
+) => {
+  const buddy = await context.prisma.buddy({ id: args.buddyId });
+  if (!buddy) {
+    throw new ERRORS.NO_USER_FOUND();
+  }
+  return await context.prisma.deleteBuddy({ id: args.buddyId });
+};
 
 const login: MutationResolvers['login'] = async (parent, args, context) => {
   const buddy = await context.prisma.buddy({ email: args.email });
@@ -58,11 +71,11 @@ const login: MutationResolvers['login'] = async (parent, args, context) => {
   const user = buddy || newbie;
 
   if (!user) {
-    throw new Error(ERRORS.USER_RESULT);
+    throw new ERRORS.NO_USER_FOUND();
   }
 
   if (args.password !== user.password) {
-    throw new Error(ERRORS.PASSWORD);
+    throw new ERRORS.INVALID_PASSWORD();
   }
 
   return {
@@ -117,7 +130,7 @@ const deleteTask: MutationResolvers['deleteTask'] = async (
     return newbieTask;
   } catch (error) {}
 
-  throw new Error(ERRORS.TASK_RESULT);
+  throw new ERRORS.NO_TASK_FOUND();
 };
 
 const updateTask: MutationResolvers['updateTask'] = async (
@@ -150,7 +163,7 @@ const updateTask: MutationResolvers['updateTask'] = async (
     return updatedNewbieTask;
   } catch (error) {}
 
-  throw new Error(ERRORS.TASK_RESULT);
+  throw new ERRORS.NO_TASK_FOUND();
 };
 
 const updateTaskStatus: MutationResolvers['updateTaskStatus'] = async (
@@ -190,7 +203,7 @@ const updateTaskStatus: MutationResolvers['updateTaskStatus'] = async (
     return updatedNewbieTask;
   } catch (error) {}
 
-  throw new Error(ERRORS.TASK_RESULT);
+  throw new ERRORS.NO_TASK_FOUND();
 };
 
 const mustations: MutationResolvers = {

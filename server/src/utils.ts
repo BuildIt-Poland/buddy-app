@@ -1,23 +1,13 @@
 //const jwt = require('jsonwebtoken');
 import * as jwt from 'jsonwebtoken';
 import { GraphQLResolveInfo } from 'graphql';
-import { createError } from 'apollo-errors';
 import { ResolverFn, Context, TaskStatus } from './generated/schema-types';
+import ERRORS from './errors';
 
-export const FooError = createError('FooError', {
-  message: 'A foo error has occurred',
-});
+const MAX_PASSWORD_LENGTH = 24;
 
-export const ERRORS = {
-  ACCESS: 'Access denied',
-  AUTH: 'Not authenticated',
-  AUTH_SUB: 'Not authenticated',
-  EXIST: 'Account already exist',
-  PASSWORD: 'Invalid password',
-  TASK_RESULT: 'No such task found',
-  USER_RESULT: 'No such user found',
-  INTERNAL: 'Internal server error',
-};
+const emailValidator = (email: string): boolean =>
+  /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
 
 export const changeTaskStatus = (status: TaskStatus): TaskStatus =>
   status === TaskStatus.Completed ? TaskStatus.Uncompleted : TaskStatus.Completed;
@@ -30,7 +20,7 @@ const auth = (context: Context): string => {
     return userId;
   }
 
-  throw new Error(ERRORS.AUTH);
+  throw new ERRORS.UNAUTHENTICATED();
 };
 
 const isBuddyAuth = async (context: Context): Promise<boolean> => {
@@ -38,12 +28,7 @@ const isBuddyAuth = async (context: Context): Promise<boolean> => {
   const isBuddy = await context.prisma.$exists.buddy({ id: userId });
 
   if (!isBuddy) {
-    // throw new FooError({
-    //   data: {
-    //     statusCode: 400,
-    //   },
-    // });
-    throw new Error(ERRORS.ACCESS);
+    throw new ERRORS.ACCESS_DENIED();
   }
   return isBuddy;
 };
@@ -60,6 +45,29 @@ export const authMiddleware = async (
       await isBuddyAuth(context);
     } else {
       auth(context);
+    }
+  }
+
+  return await resolve(root, args, context, info);
+};
+
+export const credentialsMiddleware = async (
+  resolve: ResolverFn<any, any, Context, any>,
+  root: any,
+  args: any,
+  context: Context,
+  info: GraphQLResolveInfo
+): Promise<any> => {
+  if (/addBuddy|addNewbie|login/.test(info.fieldName)) {
+    const input = args.input || args;
+    const password = input.password || '';
+    const email = input.email || '';
+
+    if (!email || !emailValidator(email)) {
+      throw new ERRORS.INVALID_EMAIL();
+    }
+    if (!password || password.length > MAX_PASSWORD_LENGTH) {
+      throw new ERRORS.INVALID_PASSWORD();
     }
   }
 

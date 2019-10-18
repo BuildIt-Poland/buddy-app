@@ -12,7 +12,8 @@ import BuddyTask from './resolvers/BuddyTask';
 import NewbieTask from './resolvers/NewbieTask';
 import User from './resolvers/User';
 import Task from './resolvers/Task';
-import { authMiddleware, ERRORS } from './utils';
+import ERRORS from './errors';
+import { authMiddleware, credentialsMiddleware } from './utils';
 /* eslint-enable */
 
 const resolvers: Resolvers = {
@@ -28,10 +29,16 @@ const resolvers: Resolvers = {
 
 const options: Options = {
   formatError: (err: any) => {
-    if (err.message.startsWith('Database')) {
-      return new Error(ERRORS.INTERNAL);
-    }
-    return formatError(err);
+    const message = err.message.toLowerCase();
+    const error =
+      message.includes('database') || message.includes('field')
+        ? new ERRORS.INTERNAL()
+        : message.includes('token')
+        ? new ERRORS.INVALID_TOKEN()
+        : err;
+    /* eslint-disable no-console */
+    console.error(err);
+    return formatError(error);
   },
 };
 
@@ -42,7 +49,7 @@ const server = new GraphQLServer({
     ...request,
     prisma,
   }),
-  middlewares: [authMiddleware],
+  middlewares: [credentialsMiddleware, authMiddleware],
 });
 
 /* eslint-disable no-console */
