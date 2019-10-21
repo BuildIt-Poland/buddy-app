@@ -6,11 +6,11 @@ enum AUTH {
 
 class Auth {
   getToken() {
-    return Cookies.get(AUTH.TOKEN);
+    return Cookies.get(process.env.REACT_APP_AUTH_TOKEN || AUTH.TOKEN);
   }
 
   setToken(newToken: string) {
-    return Cookies.set(AUTH.TOKEN, newToken);
+    return Cookies.set(process.env.REACT_APP_AUTH_TOKEN || AUTH.TOKEN, newToken);
   }
 }
 

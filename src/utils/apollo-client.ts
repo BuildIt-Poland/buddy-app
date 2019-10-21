@@ -1,9 +1,10 @@
 import { ApolloClient, ApolloLink, InMemoryCache, HttpLink } from 'apollo-boost';
+import auth from './auth';
 
 const httpLink = new HttpLink({ uri: process.env.REACT_APP_SERVER_URL });
 
 const authLink = new ApolloLink((operation, forward) => {
-  const token = localStorage.getItem(process.env.REACT_APP_AUTH_TOKEN || '');
+  const token = auth.getToken();
 
   operation.setContext({
     headers: {

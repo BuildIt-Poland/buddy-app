@@ -11,7 +11,7 @@ interface AlertDialogProps {
   title?: string;
 }
 
-const AlertDialog = ({ title, message }: AlertDialogProps) => {
+const AlertDialog: React.FC<AlertDialogProps> = ({ title, message }) => {
   const [open, setOpen] = React.useState(true);
 
   const handleClose = () => {
