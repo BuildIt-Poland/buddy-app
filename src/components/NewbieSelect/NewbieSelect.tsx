@@ -1,7 +1,10 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import theme from '../../styles/theme';
+import NavBar from '../NavBar';
+import Avatar from '../Avatar';
 import PlusButton from '../PlusButton';
-import NavBar from '../NavBar/NavBar';
 
 const NewbieSelect: React.FC = () => {
   const handleNavBarClick = () => {};
@@ -10,8 +13,14 @@ const NewbieSelect: React.FC = () => {
     <>
       <NavBar type='menu' onClick={handleNavBarClick} />
       <Typography component='h2' variant='h2'>
-        Your New Joiners
+        <Box fontWeight={theme.typography.fontWeightBold}>Your New Joiners</Box>
       </Typography>
+      <Avatar
+        name='Tom Hanks'
+        role='Front End Engineer'
+        progress={75}
+        type={'regular'}
+      />
       <PlusButton />
     </>
   );
