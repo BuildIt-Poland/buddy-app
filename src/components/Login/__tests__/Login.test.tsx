@@ -1,25 +1,19 @@
 import React from 'react';
 import { act, Simulate } from 'react-dom/test-utils';
 import { render, unmountComponentAtNode } from 'react-dom';
+import { MemoryRouter, Route } from 'react-router-dom';
+import { MockedProvider } from '@apollo/react-testing';
 
-import { MemoryRouter } from 'react-router-dom';
-import { MockedProvider, wait } from '@apollo/react-testing';
+import { GraphQLError } from 'graphql';
 import { LOGIN_MUTATION } from '../../../graphql/login.graphql';
 
 import Login from '../Login';
 import auth from '../../../utils/auth';
-// jest.mock('@material-ui/core/Typography', () => 'Typography');
-// jest.mock('@material-ui/core/Grid', () => 'Grid');
-// jest.mock('@material-ui/core/Link', () => 'Link');
-// // jest.mock('@material-ui/core/TextField', () => 'TextField');
 
-jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
-// jest.mock('../../RoundedButton/', () => 'RoundedButton');
-// jest.mock('../../AlertDialog/', () => 'AlertDialog');
 jest.mock('../../../utils/auth.ts');
 
 describe('Component - Login', () => {
-  let container: HTMLDivElement | Element | null = null;
+  let container: HTMLDivElement | Element | null;
 
   beforeEach(() => {
     // setup a DOM element as a render target
@@ -37,79 +31,66 @@ describe('Component - Login', () => {
     container = null;
   });
 
-  // test('renders correctly', () => {
-  //   const component = create(
-  //     <MockedProvider mocks={mocks} addTypename={false}>
-  //       <MemoryRouter initialEntries={[mockLocation]}>
-  //         <Login />
-  //       </MemoryRouter>
-  //     </MockedProvider>
-  //   );
+  describe('when submitting form', () => {
+    describe('when response is success', () => {
+      it('should redirect user to user and store auth token', async () => {
+        const mockLocation = {
+          key: 'utwyk7',
+          pathname: '/login',
+        };
 
-  //   expect(container.toJSON()).toMatchSnapshot();
-  // });
-
-  describe('when submitting valid form', () => {
-    it('should render loading state', async () => {
-      const mockLocation = {
-        key: 'utwyk7',
-        pathname: '/login',
-      };
-
-      const mocks = [
-        {
-          request: {
-            query: LOGIN_MUTATION,
-            variables: {
-              email: 'aa@aa.pt',
-              password: '12345',
-            },
-          },
-          result: {
-            data: {
-              login: {
-                token: 'dummy-token',
+        const mocks = [
+          {
+            request: {
+              query: LOGIN_MUTATION,
+              variables: {
+                email: 'aa@aa.pt',
+                password: '12345',
               },
             },
+            result: {
+              data: {
+                login: {
+                  token: 'dummy-token',
+                },
+              },
+            },
+            // error: [new GraphQLError('Error!')],
           },
-        },
-      ];
+        ];
 
-      act(() => {
         render(
           <MockedProvider mocks={mocks} addTypename={false}>
             <MemoryRouter initialEntries={[mockLocation]}>
-              <Login />
+              <Route path='/login'>
+                <Login />
+              </Route>
+              <Route path='/buddy/newbies'>Dummy route</Route>
             </MemoryRouter>
           </MockedProvider>,
           container
         );
+
+        container.querySelector('input[name="email"').value = 'aa@aa.pt';
+
+        Simulate.change(container.querySelector('input[name="email"'));
+
+        container.querySelector('input[name="password"').value = '12345';
+
+        Simulate.change(container.querySelector('input[name="password"'));
+
+        await act(async () => {
+          Simulate.submit(container.querySelector('form'));
+        });
+
+        expect(auth.setToken).toHaveBeenCalledWith('dummy-token');
+        expect(container.textContent).toBe('Dummy route');
       });
-
-      // container.querySelector('input[name="email"').value = 'aa@aa.pt';
-      Simulate.change(container.querySelector('input[name="email"'), {
-        target: { value: 'aa@aa.pt' },
-      });
-
-      Simulate.change(container.querySelector('input[name="password"'), {
-        target: { value: '12345' },
-      });
-
-      Simulate.click(container.querySelector('button'));
-
-      expect(container.querySelector('CircularProgress')).toBeDefined();
-      // expect(container.querySelector('input[name="email"')).not.toBeDefined();
-
-      await wait(0);
     });
 
-    describe('when response is sucess', () => {
-      it('should redirect user to user and store auth token', () => {});
+    describe('when server throws an error', () => {
+      describe('when is a server error', () => {});
     });
-  });
-
-  describe('when submitting a invalid form', () => {
-    it('should render error dialog', () => {});
   });
 
   describe('when submitting a form without internet', () => {

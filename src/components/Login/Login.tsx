@@ -62,7 +62,6 @@ const LoginPage = () => {
       isOpen: false,
       message: '',
     });
-
     try {
       await loginMutation({
         variables: {
@@ -84,7 +83,6 @@ const LoginPage = () => {
       }
     }
   };
-
   return (
     <>
       <Typography
