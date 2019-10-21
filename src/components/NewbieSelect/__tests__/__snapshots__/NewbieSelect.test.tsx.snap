@@ -2,35 +2,26 @@
 
 exports[`Component - NewbieSelect renders correctly 1`] = `
 Array [
-  <AppBar
-    position="fixed"
+  <Navbar
+    onClick={[Function]}
+    type="menu"
+  />,
+  <Typography
+    component="h2"
+    variant="h2"
   >
-    <Toolbar>
-      <IconButton
-        className="makeStyles-menuButton-1"
-        color="inherit"
-        edge="start"
-        onClick={[Function]}
-      >
-        <svg
-          aria-hidden="true"
-          className="MuiSvgIcon-root"
-          focusable="false"
-          role="presentation"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
-          />
-        </svg>
-      </IconButton>
-    </Toolbar>
-  </AppBar>,
-  <h2
-    className="MuiTypography-root MuiTypography-h2"
-  >
-    Your New Joiners
-  </h2>,
+    <Box
+      fontWeight={700}
+    >
+      Your New Joiners
+    </Box>
+  </Typography>,
+  <Avatar
+    name="Tom Hanks"
+    progress={75}
+    role="Front End Engineer"
+    type="regular"
+  />,
   <PlusButton />,
 ]
 `;
