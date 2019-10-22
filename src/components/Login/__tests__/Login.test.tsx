@@ -1,11 +1,10 @@
 import React from 'react';
-import { render, fireEvent, wait } from '@testing-library/react';
-
+import { render, fireEvent, wait, cleanup } from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import { MockedProvider } from '@apollo/react-testing';
 import { GraphQLError } from 'graphql';
-import { LOGIN_MUTATION } from '../../../graphql/login.graphql';
 
+import { LOGIN_MUTATION } from '../../../graphql/login.graphql';
 import Login from '../Login';
 import auth from '../../../utils/auth';
 
@@ -17,9 +16,7 @@ describe('Component - Login', () => {
     pathname: '/login',
   };
 
-  beforeEach(() => {});
-
-  afterEach(() => {});
+  afterEach(() => cleanup);
 
   describe('when submitting form', () => {
     describe('when response is success', () => {
@@ -111,7 +108,7 @@ describe('Component - Login', () => {
         fireEvent.submit(getByTestId('form'));
 
         await wait(() => {
-          expect(getByTestId('alert-dialog').innerHTML).toContain(
+          expect(getByTestId('alert-dialog')).toHaveTextContent(
             'The email and password you entered did not match our records.'
           );
           expect(getByTestId('alert-dialog')).toBeInTheDocument();
@@ -159,7 +156,7 @@ describe('Component - Login', () => {
       fireEvent.submit(getByTestId('form'));
 
       await wait(() => {
-        expect(getByTestId('alert-dialog').innerHTML).toContain(
+        expect(getByTestId('alert-dialog')).toHaveTextContent(
           'Could not connect to the server'
         );
         expect(getByTestId('alert-dialog')).toBeInTheDocument();
