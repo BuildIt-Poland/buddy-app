@@ -33,7 +33,7 @@ describe('Login Page', () => {
     });
   });
 
-  describe('When submitting a valid', () => {
+  describe('When submitting a valid form', () => {
     it('should login successfully', () => {
       cy.dataTest('email').type('las12041991@gmail.com');
       cy.dataTest('password').type('12345');

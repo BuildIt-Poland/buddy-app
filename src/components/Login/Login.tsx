@@ -93,7 +93,7 @@ const LoginPage = () => {
         {DICTIONARY.TITLE}
       </Typography>
       <SpaceMan className={classes.spaceMan} />
-      <form noValidate onSubmit={handleSubmit(onSubmit)}>
+      <form data-testid='form' noValidate onSubmit={handleSubmit(onSubmit)}>
         <TextField
           inputProps={{ 'data-testid': 'email' }}
           inputRef={register({

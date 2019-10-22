@@ -1,9 +1,8 @@
 import React from 'react';
-import { act, Simulate } from 'react-dom/test-utils';
-import { render, unmountComponentAtNode } from 'react-dom';
+import { render, fireEvent, wait } from '@testing-library/react';
+
 import { MemoryRouter, Route } from 'react-router-dom';
 import { MockedProvider } from '@apollo/react-testing';
-
 import { GraphQLError } from 'graphql';
 import { LOGIN_MUTATION } from '../../../graphql/login.graphql';
 
@@ -13,87 +12,158 @@ import auth from '../../../utils/auth';
 jest.mock('../../../utils/auth.ts');
 
 describe('Component - Login', () => {
-  let container: HTMLDivElement | Element | null;
+  const mockLocation = {
+    key: 'utwyk7',
+    pathname: '/login',
+  };
 
-  beforeEach(() => {
-    // setup a DOM element as a render target
-    container = document.createElement('div');
-    document.body.appendChild(container);
-  });
+  beforeEach(() => {});
 
-  afterEach(() => {
-    if (container) {
-      // cleanup on exiting
-
-      unmountComponentAtNode(container);
-      container.remove();
-    }
-    container = null;
-  });
+  afterEach(() => {});
 
   describe('when submitting form', () => {
     describe('when response is success', () => {
-      it('should redirect user to user and store auth token', async () => {
-        const mockLocation = {
-          key: 'utwyk7',
-          pathname: '/login',
-        };
-
-        const mocks = [
-          {
-            request: {
-              query: LOGIN_MUTATION,
-              variables: {
-                email: 'aa@aa.pt',
-                password: '12345',
-              },
+      const LoginSuccessMock = [
+        {
+          request: {
+            query: LOGIN_MUTATION,
+            variables: {
+              email: 'aa@aa.pt',
+              password: '12345',
             },
-            result: {
-              data: {
-                login: {
-                  token: 'dummy-token',
-                },
-              },
-            },
-            // error: [new GraphQLError('Error!')],
           },
-        ];
-
-        render(
-          <MockedProvider mocks={mocks} addTypename={false}>
+          result: {
+            data: {
+              login: {
+                token: 'dummy-token',
+              },
+            },
+          },
+        },
+      ];
+      it('should redirect user to user and store auth token', async () => {
+        const { getByText, getByTestId } = render(
+          <MockedProvider mocks={LoginSuccessMock} addTypename={false}>
             <MemoryRouter initialEntries={[mockLocation]}>
               <Route path='/login'>
                 <Login />
               </Route>
               <Route path='/buddy/newbies'>Dummy route</Route>
             </MemoryRouter>
-          </MockedProvider>,
-          container
+          </MockedProvider>
         );
 
-        container.querySelector('input[name="email"').value = 'aa@aa.pt';
+        const emailInput = getByTestId('email');
+        const passwordInput = getByTestId('password');
 
-        Simulate.change(container.querySelector('input[name="email"'));
-
-        container.querySelector('input[name="password"').value = '12345';
-
-        Simulate.change(container.querySelector('input[name="password"'));
-
-        await act(async () => {
-          Simulate.submit(container.querySelector('form'));
+        fireEvent.change(emailInput, {
+          target: { value: 'aa@aa.pt' },
+        });
+        fireEvent.change(passwordInput, {
+          target: { value: '12345' },
         });
 
-        expect(auth.setToken).toHaveBeenCalledWith('dummy-token');
-        expect(container.textContent).toBe('Dummy route');
+        fireEvent.submit(getByTestId('form'));
+
+        await wait(() => {
+          expect(auth.setToken).toHaveBeenCalledWith('dummy-token');
+          expect(getByText('Dummy route')).toBeInTheDocument();
+        });
       });
     });
 
-    describe('when server throws an error', () => {
-      describe('when is a server error', () => {});
+    describe('when the server throws an error', () => {
+      const LoginFailedMock = [
+        {
+          request: {
+            query: LOGIN_MUTATION,
+            variables: {
+              email: 'aa@aa.pt',
+              password: '12345',
+            },
+          },
+
+          errors: [new GraphQLError('No such user found')],
+        },
+      ];
+      it('should show AlertDialog with error message', async () => {
+        const { getByTestId } = render(
+          <MockedProvider mocks={LoginFailedMock} addTypename={false}>
+            <MemoryRouter initialEntries={[mockLocation]}>
+              <Route path='/login'>
+                <Login />
+              </Route>
+              <Route path='/buddy/newbies'>Dummy route</Route>
+            </MemoryRouter>
+          </MockedProvider>
+        );
+
+        const emailInput = getByTestId('email');
+        const passwordInput = getByTestId('password');
+
+        fireEvent.change(emailInput, {
+          target: { value: 'aa@aa.pt' },
+        });
+        fireEvent.change(passwordInput, {
+          target: { value: '12345' },
+        });
+
+        fireEvent.submit(getByTestId('form'));
+
+        await wait(() => {
+          expect(getByTestId('alert-dialog').innerHTML).toContain(
+            'The email and password you entered did not match our records.'
+          );
+          expect(getByTestId('alert-dialog')).toBeInTheDocument();
+        });
+      });
     });
   });
 
   describe('when submitting a form without internet', () => {
-    it('should render error dialog', () => {});
+    const noNetworkMock = [
+      {
+        request: {
+          query: LOGIN_MUTATION,
+          variables: {
+            email: 'aa@aa.pt',
+            password: '12345',
+          },
+        },
+        error: new Error(),
+      },
+    ];
+
+    it('should render error dialog', async () => {
+      const { getByTestId } = render(
+        <MockedProvider mocks={noNetworkMock} addTypename={false}>
+          <MemoryRouter initialEntries={[mockLocation]}>
+            <Route path='/login'>
+              <Login />
+            </Route>
+            <Route path='/buddy/newbies'>Dummy route</Route>
+          </MemoryRouter>
+        </MockedProvider>
+      );
+
+      const emailInput = getByTestId('email');
+      const passwordInput = getByTestId('password');
+
+      fireEvent.change(emailInput, {
+        target: { value: 'aa@aa.pt' },
+      });
+      fireEvent.change(passwordInput, {
+        target: { value: '12345' },
+      });
+
+      fireEvent.submit(getByTestId('form'));
+
+      await wait(() => {
+        expect(getByTestId('alert-dialog').innerHTML).toContain(
+          'Could not connect to the server'
+        );
+        expect(getByTestId('alert-dialog')).toBeInTheDocument();
+      });
+    });
   });
 });

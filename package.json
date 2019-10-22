@@ -39,6 +39,8 @@
   },
   "devDependencies": {
     "@bahmutov/add-typescript-to-cypress": "^2.1.2",
+    "@testing-library/jest-dom": "^4.1.2",
+    "@testing-library/react": "^9.3.0",
     "@types/js-cookie": "^2.2.3",
     "@types/react-test-renderer": "^16.9.0",
     "cypress": "^3.4.1",
