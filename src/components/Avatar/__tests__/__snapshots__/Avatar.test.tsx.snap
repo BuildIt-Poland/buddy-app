@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - Avatar renders correctly with name and role 1`] = `
+<Grid
+  alignItems="center"
+  container={true}
+  direction="column"
+  justify="center"
+>
+  <Grid
+    alignItems="center"
+    className="makeStyles-grid-3"
+    container={true}
+    direction="column"
+    justify="center"
+  >
+    <AvatarMaterialUI
+      alt="Avatar"
+      className="makeStyles-avatar-1"
+      src="/images/avatar-placeholder.svg"
+    />
+    <CircularProgress
+      className="makeStyles-progress-2"
+      size={90}
+      thickness={2}
+      variant="static"
+    />
+    <Typography
+      component="h4"
+      variant="subtitle1"
+    />
+  </Grid>
+  <Typography
+    variant="h4"
+  >
+    <Box
+      fontWeight={700}
+      lineHeight="1.2"
+    >
+      Tom Hanks
+    </Box>
+  </Typography>
+  <Typography
+    component="h4"
+    variant="subtitle1"
+  >
+    Front End Engineer
+  </Typography>
+</Grid>
+`;
+
+exports[`Component - Avatar renders correctly with progress bar 1`] = `
+<Grid
+  alignItems="center"
+  container={true}
+  direction="column"
+  justify="center"
+>
+  <Grid
+    alignItems="center"
+    className="makeStyles-grid-3"
+    container={true}
+    direction="column"
+    justify="center"
+  >
+    <AvatarMaterialUI
+      alt="Avatar"
+      className="makeStyles-avatar-1"
+      src="/images/avatar-placeholder.svg"
+    />
+    <CircularProgress
+      className="makeStyles-progress-2"
+      size={90}
+      thickness={2}
+      value={45}
+      variant="static"
+    />
+    <Typography
+      component="h4"
+      variant="subtitle1"
+    >
+      45%
+    </Typography>
+  </Grid>
+</Grid>
+`;
+
+exports[`Component - Avatar renders correctly with type "small" 1`] = `
+<Grid
+  alignItems="center"
+  container={true}
+  direction="column"
+  justify="center"
+>
+  <Grid
+    alignItems="center"
+    className="makeStyles-grid-6"
+    container={true}
+    direction="column"
+    justify="center"
+  >
+    <AvatarMaterialUI
+      alt="Avatar"
+      className="makeStyles-avatar-4"
+      src="/images/avatar-placeholder.svg"
+    />
+    <CircularProgress
+      className="makeStyles-progress-5"
+      size={60}
+      thickness={1}
+      variant="static"
+    />
+    <Typography
+      component="h4"
+      variant="subtitle2"
+    />
+  </Grid>
+</Grid>
+`;
+
+exports[`Component - Avatar renders correctly without props 1`] = `
+<Grid
+  alignItems="center"
+  container={true}
+  direction="column"
+  justify="center"
+>
+  <Grid
+    alignItems="center"
+    className="makeStyles-grid-3"
+    container={true}
+    direction="column"
+    justify="center"
+  >
+    <AvatarMaterialUI
+      alt="Avatar"
+      className="makeStyles-avatar-1"
+      src="/images/avatar-placeholder.svg"
+    />
+    <CircularProgress
+      className="makeStyles-progress-2"
+      size={90}
+      thickness={2}
+      variant="static"
+    />
+    <Typography
+      component="h4"
+      variant="subtitle1"
+    />
+  </Grid>
+</Grid>
+`;

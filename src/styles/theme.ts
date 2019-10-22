@@ -12,7 +12,25 @@ let theme = createMuiTheme({
     fontFamily:
       'Wipro Akkurat TT, Wipro Akkurat Mono TT, Roboto, Helvetica, Arial, sans-serif',
     h1: {
-      fontWeight: 550,
+      fontSize: '3rem',
+    },
+    h2: {
+      fontSize: '2.4rem',
+    },
+    h3: {
+      fontSize: '2rem',
+    },
+    h4: {
+      fontSize: '1.8rem',
+    },
+    h5: {
+      fontSize: '1.6rem',
+    },
+    subtitle1: {
+      fontSize: '1.4rem',
+    },
+    subtitle2: {
+      fontSize: '1.2rem',
     },
   },
   palette: {

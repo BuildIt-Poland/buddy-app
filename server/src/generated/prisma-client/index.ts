@@ -251,6 +251,8 @@ export type NewbieTaskOrderByInput =
   | 'title_DESC'
   | 'status_ASC'
   | 'status_DESC'
+  | 'implementationDate_ASC'
+  | 'implementationDate_DESC'
   | 'notes_ASC'
   | 'notes_DESC';
 
@@ -264,7 +266,9 @@ export type BuddyTaskOrderByInput =
   | 'title_ASC'
   | 'title_DESC'
   | 'status_ASC'
-  | 'status_DESC';
+  | 'status_DESC'
+  | 'implementationDate_ASC'
+  | 'implementationDate_DESC';
 
 export type UserRole = 'NEWBIE' | 'BUDDY';
 
@@ -306,6 +310,7 @@ export interface BuddyTaskUpdateWithoutNewbieDataInput {
   description?: Maybe<String>;
   title?: Maybe<String>;
   status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
 }
 
 export interface NewbieTaskWhereInput {
@@ -364,6 +369,14 @@ export interface NewbieTaskWhereInput {
   status_in?: Maybe<TaskStatus[] | TaskStatus>;
   status_not_in?: Maybe<TaskStatus[] | TaskStatus>;
   newbie?: Maybe<NewbieWhereInput>;
+  implementationDate?: Maybe<DateTimeInput>;
+  implementationDate_not?: Maybe<DateTimeInput>;
+  implementationDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_lt?: Maybe<DateTimeInput>;
+  implementationDate_lte?: Maybe<DateTimeInput>;
+  implementationDate_gt?: Maybe<DateTimeInput>;
+  implementationDate_gte?: Maybe<DateTimeInput>;
   notes?: Maybe<String>;
   notes_not?: Maybe<String>;
   notes_in?: Maybe<String[] | String>;
@@ -445,6 +458,14 @@ export interface BuddyTaskWhereInput {
   status_in?: Maybe<TaskStatus[] | TaskStatus>;
   status_not_in?: Maybe<TaskStatus[] | TaskStatus>;
   newbie?: Maybe<NewbieWhereInput>;
+  implementationDate?: Maybe<DateTimeInput>;
+  implementationDate_not?: Maybe<DateTimeInput>;
+  implementationDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_lt?: Maybe<DateTimeInput>;
+  implementationDate_lte?: Maybe<DateTimeInput>;
+  implementationDate_gt?: Maybe<DateTimeInput>;
+  implementationDate_gte?: Maybe<DateTimeInput>;
   AND?: Maybe<BuddyTaskWhereInput[] | BuddyTaskWhereInput>;
   OR?: Maybe<BuddyTaskWhereInput[] | BuddyTaskWhereInput>;
   NOT?: Maybe<BuddyTaskWhereInput[] | BuddyTaskWhereInput>;
@@ -468,6 +489,7 @@ export interface BuddyTaskUpdateInput {
   title?: Maybe<String>;
   status?: Maybe<TaskStatus>;
   newbie?: Maybe<NewbieUpdateOneRequiredWithoutBuddyTasksInput>;
+  implementationDate?: Maybe<DateTimeInput>;
 }
 
 export interface NewbieUpdateManyWithoutBuddyInput {
@@ -545,6 +567,14 @@ export interface BuddyTaskScalarWhereInput {
   status_not?: Maybe<TaskStatus>;
   status_in?: Maybe<TaskStatus[] | TaskStatus>;
   status_not_in?: Maybe<TaskStatus[] | TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
+  implementationDate_not?: Maybe<DateTimeInput>;
+  implementationDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_lt?: Maybe<DateTimeInput>;
+  implementationDate_lte?: Maybe<DateTimeInput>;
+  implementationDate_gt?: Maybe<DateTimeInput>;
+  implementationDate_gte?: Maybe<DateTimeInput>;
   AND?: Maybe<BuddyTaskScalarWhereInput[] | BuddyTaskScalarWhereInput>;
   OR?: Maybe<BuddyTaskScalarWhereInput[] | BuddyTaskScalarWhereInput>;
   NOT?: Maybe<BuddyTaskScalarWhereInput[] | BuddyTaskScalarWhereInput>;
@@ -636,6 +666,7 @@ export interface NewbieTaskUpdateWithoutNewbieDataInput {
   description?: Maybe<String>;
   title?: Maybe<String>;
   status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
   notes?: Maybe<String>;
 }
 
@@ -709,6 +740,14 @@ export interface NewbieTaskScalarWhereInput {
   status_not?: Maybe<TaskStatus>;
   status_in?: Maybe<TaskStatus[] | TaskStatus>;
   status_not_in?: Maybe<TaskStatus[] | TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
+  implementationDate_not?: Maybe<DateTimeInput>;
+  implementationDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_lt?: Maybe<DateTimeInput>;
+  implementationDate_lte?: Maybe<DateTimeInput>;
+  implementationDate_gt?: Maybe<DateTimeInput>;
+  implementationDate_gte?: Maybe<DateTimeInput>;
   notes?: Maybe<String>;
   notes_not?: Maybe<String>;
   notes_in?: Maybe<String[] | String>;
@@ -765,6 +804,7 @@ export interface NewbieTaskUpdateManyDataInput {
   description?: Maybe<String>;
   title?: Maybe<String>;
   status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
   notes?: Maybe<String>;
 }
 
@@ -1111,6 +1151,7 @@ export interface NewbieTaskUpdateManyMutationInput {
   description?: Maybe<String>;
   title?: Maybe<String>;
   status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
   notes?: Maybe<String>;
 }
 
@@ -1118,6 +1159,7 @@ export interface BuddyTaskUpdateManyDataInput {
   description?: Maybe<String>;
   title?: Maybe<String>;
   status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
 }
 
 export interface NewbieTaskUpdateInput {
@@ -1125,6 +1167,7 @@ export interface NewbieTaskUpdateInput {
   title?: Maybe<String>;
   status?: Maybe<TaskStatus>;
   newbie?: Maybe<NewbieUpdateOneRequiredWithoutNewbieTasksInput>;
+  implementationDate?: Maybe<DateTimeInput>;
   notes?: Maybe<String>;
 }
 
@@ -1140,6 +1183,7 @@ export interface NewbieTaskCreateInput {
   title?: Maybe<String>;
   status?: Maybe<TaskStatus>;
   newbie: NewbieCreateOneWithoutNewbieTasksInput;
+  implementationDate?: Maybe<DateTimeInput>;
   notes?: Maybe<String>;
 }
 
@@ -1348,6 +1392,7 @@ export interface BuddyTaskCreateWithoutNewbieInput {
   description?: Maybe<String>;
   title?: Maybe<String>;
   status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
 }
 
 export interface NewbieUpdateWithoutBuddyTasksDataInput {
@@ -1406,6 +1451,7 @@ export interface BuddyTaskCreateInput {
   title?: Maybe<String>;
   status?: Maybe<TaskStatus>;
   newbie: NewbieCreateOneWithoutBuddyTasksInput;
+  implementationDate?: Maybe<DateTimeInput>;
 }
 
 export interface BuddyCreateInput {
@@ -1466,6 +1512,7 @@ export interface NewbieTaskCreateWithoutNewbieInput {
   description?: Maybe<String>;
   title?: Maybe<String>;
   status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
   notes?: Maybe<String>;
 }
 
@@ -1473,6 +1520,7 @@ export interface BuddyTaskUpdateManyMutationInput {
   description?: Maybe<String>;
   title?: Maybe<String>;
   status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
 }
 
 export interface NewbieCreateWithoutNewbieTasksInput {
@@ -1512,6 +1560,7 @@ export interface NewbieTaskPreviousValues {
   description: String;
   title: String;
   status: TaskStatus;
+  implementationDate?: DateTimeOutput;
   notes?: String;
 }
 
@@ -1523,6 +1572,7 @@ export interface NewbieTaskPreviousValuesPromise
   description: () => Promise<String>;
   title: () => Promise<String>;
   status: () => Promise<TaskStatus>;
+  implementationDate: () => Promise<DateTimeOutput>;
   notes: () => Promise<String>;
 }
 
@@ -1534,6 +1584,7 @@ export interface NewbieTaskPreviousValuesSubscription
   description: () => Promise<AsyncIterator<String>>;
   title: () => Promise<AsyncIterator<String>>;
   status: () => Promise<AsyncIterator<TaskStatus>>;
+  implementationDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   notes: () => Promise<AsyncIterator<String>>;
 }
 
@@ -1559,6 +1610,7 @@ export interface NewbieTask {
   description: String;
   title: String;
   status: TaskStatus;
+  implementationDate?: DateTimeOutput;
   notes?: String;
 }
 
@@ -1569,6 +1621,7 @@ export interface NewbieTaskPromise extends Promise<NewbieTask>, Fragmentable {
   title: () => Promise<String>;
   status: () => Promise<TaskStatus>;
   newbie: <T = NewbiePromise>() => T;
+  implementationDate: () => Promise<DateTimeOutput>;
   notes: () => Promise<String>;
 }
 
@@ -1581,6 +1634,7 @@ export interface NewbieTaskSubscription
   title: () => Promise<AsyncIterator<String>>;
   status: () => Promise<AsyncIterator<TaskStatus>>;
   newbie: <T = NewbieSubscription>() => T;
+  implementationDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   notes: () => Promise<AsyncIterator<String>>;
 }
 
@@ -1593,6 +1647,7 @@ export interface NewbieTaskNullablePromise
   title: () => Promise<String>;
   status: () => Promise<TaskStatus>;
   newbie: <T = NewbiePromise>() => T;
+  implementationDate: () => Promise<DateTimeOutput>;
   notes: () => Promise<String>;
 }
 
@@ -1818,6 +1873,7 @@ export interface BuddyTask {
   description: String;
   title: String;
   status: TaskStatus;
+  implementationDate?: DateTimeOutput;
 }
 
 export interface BuddyTaskPromise extends Promise<BuddyTask>, Fragmentable {
@@ -1827,6 +1883,7 @@ export interface BuddyTaskPromise extends Promise<BuddyTask>, Fragmentable {
   title: () => Promise<String>;
   status: () => Promise<TaskStatus>;
   newbie: <T = NewbiePromise>() => T;
+  implementationDate: () => Promise<DateTimeOutput>;
 }
 
 export interface BuddyTaskSubscription
@@ -1838,6 +1895,7 @@ export interface BuddyTaskSubscription
   title: () => Promise<AsyncIterator<String>>;
   status: () => Promise<AsyncIterator<TaskStatus>>;
   newbie: <T = NewbieSubscription>() => T;
+  implementationDate: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface BuddyTaskNullablePromise
@@ -1849,6 +1907,7 @@ export interface BuddyTaskNullablePromise
   title: () => Promise<String>;
   status: () => Promise<TaskStatus>;
   newbie: <T = NewbiePromise>() => T;
+  implementationDate: () => Promise<DateTimeOutput>;
 }
 
 export interface NewbieConnection {
@@ -2102,6 +2161,7 @@ export interface BuddyTaskPreviousValues {
   description: String;
   title: String;
   status: TaskStatus;
+  implementationDate?: DateTimeOutput;
 }
 
 export interface BuddyTaskPreviousValuesPromise
@@ -2112,6 +2172,7 @@ export interface BuddyTaskPreviousValuesPromise
   description: () => Promise<String>;
   title: () => Promise<String>;
   status: () => Promise<TaskStatus>;
+  implementationDate: () => Promise<DateTimeOutput>;
 }
 
 export interface BuddyTaskPreviousValuesSubscription
@@ -2122,6 +2183,7 @@ export interface BuddyTaskPreviousValuesSubscription
   description: () => Promise<AsyncIterator<String>>;
   title: () => Promise<AsyncIterator<String>>;
   status: () => Promise<AsyncIterator<TaskStatus>>;
+  implementationDate: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface BuddyTaskSubscriptionPayload {

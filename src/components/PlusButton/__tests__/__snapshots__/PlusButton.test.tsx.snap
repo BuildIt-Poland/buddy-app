@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - PlusButton renders correctly 1`] = `
+<Fab
+  aria-label="add"
+  color="primary"
+  size="medium"
+>
+  <AddIcon />
+</Fab>
+`;
