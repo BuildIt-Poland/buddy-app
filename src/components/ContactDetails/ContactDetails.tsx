@@ -111,7 +111,6 @@ const ContactDetails: React.FC<any> = () => {
 
   return (
     <>
-      {/*// TODO: Handle back button*/}
       <NavBar type='back' onClick={() => null} />
       <Typography component='h2' variant='h2'>
         Contact Details

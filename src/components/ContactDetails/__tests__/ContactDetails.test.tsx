@@ -6,7 +6,6 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
-import { ROUTES } from '../../../shared/routes';
 import ContactDetails from '../ContactDetails';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
@@ -14,6 +13,7 @@ jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/TextareaAutosize', () => 'TextareaAutosize');
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
 jest.mock('../../Avatar', () => 'Avatar');
+jest.mock('../../NavBar', () => 'NavBar');
 
 describe('Component - ContactDetails', () => {
   const client = new ApolloClient({
@@ -23,12 +23,11 @@ describe('Component - ContactDetails', () => {
   test('renders correctly', () => {
     const component = create(
       <ApolloProvider client={client}>
-        <MemoryRouter initialEntries={[ROUTES.BASE]}>
-          act(() => <ContactDetails />)
+        <MemoryRouter initialEntries={['/buddy/newbies/1234/details']}>
+          <ContactDetails />
         </MemoryRouter>
       </ApolloProvider>
     );
-
     expect(component.toJSON()).toMatchSnapshot();
   });
 });

@@ -2,11 +2,16 @@
 
 exports[`Component - ContactDetails renders correctly 1`] = `
 Array [
-  <h1>
+  <NavBar
+    onClick={[Function]}
+    type="back"
+  />,
+  <Typography
+    component="h2"
+    variant="h2"
+  >
     Contact Details
-  </h1>,
-  <p>
-    ID: 
-  </p>,
+  </Typography>,
+  <CircularProgress />,
 ]
 `;
