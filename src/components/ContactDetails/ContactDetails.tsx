@@ -12,7 +12,8 @@ import { useQuery } from '@apollo/react-hooks';
 import NavBar from '../NavBar';
 import Avatar from '../Avatar';
 import { ReactComponent as EllipseShape } from '../../svg/ellipse-shape-gray.svg';
-import { ContactDetailsParams, NewbieData } from './types';
+import { ROUTES } from '../../shared/routes';
+import { ContactDetailsParams, ContactDetailsProps, NewbieData } from './types';
 
 const useStyles = makeStyles(theme => ({
   bold: {
@@ -53,7 +54,7 @@ const CONTACT_INFO = gql`
   }
 `;
 
-const ContactDetails: React.FC<any> = () => {
+const ContactDetails: React.FC<ContactDetailsProps> = props => {
   const { newbieId } = useParams<ContactDetailsParams>();
   const classes = useStyles();
   const { loading, data } = useQuery<NewbieData, ContactDetailsParams>(
@@ -111,7 +112,10 @@ const ContactDetails: React.FC<any> = () => {
 
   return (
     <>
-      <NavBar type='back' onClick={() => null} />
+      <NavBar
+        type='back'
+        onClick={() => props.history.push(ROUTES.BUDDY_TASKS_LIST)}
+      />
       <Typography component='h2' variant='h2'>
         Contact Details
       </Typography>

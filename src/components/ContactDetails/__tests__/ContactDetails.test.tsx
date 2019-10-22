@@ -1,6 +1,5 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-
 import { MemoryRouter } from 'react-router-dom';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { ApolloClient } from 'apollo-client';
@@ -20,11 +19,14 @@ describe('Component - ContactDetails', () => {
     link: new ApolloLink(),
     cache: new InMemoryCache(),
   });
+
+  const mockHistory: any = { push: jest.fn() };
+
   test('renders correctly', () => {
     const component = create(
       <ApolloProvider client={client}>
         <MemoryRouter initialEntries={['/buddy/newbies/1234/details']}>
-          <ContactDetails />
+          <ContactDetails history={mockHistory} />
         </MemoryRouter>
       </ApolloProvider>
     );
