@@ -41,7 +41,7 @@ interface ErrorDialog {
   message: string;
 }
 
-const LoginPage = () => {
+const Login = () => {
   const classes = useStyles();
   const history = useHistory();
   const [errorDialog, setErrorDialog] = useState<ErrorDialog>({
@@ -155,4 +155,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
