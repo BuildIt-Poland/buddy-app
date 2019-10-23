@@ -1,6 +1,6 @@
 import { ROUTES } from '../../src/shared/routes';
 
-describe('Login Page', () => {
+describe.skip('Login Page', () => {
   beforeEach(() => {
     cy.visit(ROUTES.LOGIN);
   });
