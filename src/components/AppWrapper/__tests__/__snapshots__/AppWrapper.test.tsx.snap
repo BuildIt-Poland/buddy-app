@@ -6,12 +6,5 @@ exports[`Component - AppWrapper renders correctly 1`] = `
   component="main"
   data-testid="root"
   maxWidth="md"
->
-  <Container
-    className="makeStyles-container-1"
-    component="main"
-    data-testid="root"
-    maxWidth="md"
-  />
-</Container>
+/>
 `;

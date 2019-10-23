@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import useForm from 'react-hook-form';
+import { useMutation } from '@apollo/react-hooks';
+import { useHistory } from 'react-router-dom';
 
 import RoundedButton from '../RoundedButton';
+import AlertDialog from '../AlertDialog';
+import { ROUTES } from '../../shared/routes';
 import { ReactComponent as SpaceMan } from '../../svg/spaceman.svg';
+import LOGIN_MUTATION from '../../graphql/login.graphql';
+import { auth } from '../../utils';
+import DICTIONARY from './login.dictionary';
+import { ErrorDialog, AuthData, FormData } from './types';
 
 const useStyles = makeStyles(theme => ({
-  paper: {
+  title: {
     marginTop: theme.spacing(8),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
   },
   spaceMan: {
+    display: 'block',
+    margin: '0 auto',
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -23,48 +32,118 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignIn() {
+const Login = () => {
   const classes = useStyles();
+  const history = useHistory();
+  const [errorDialog, setErrorDialog] = useState<ErrorDialog>({
+    isOpen: false,
+    message: '',
+  });
 
+  const { register, errors, handleSubmit } = useForm<FormData>();
+  const [loginMutation, { loading }] = useMutation<AuthData>(LOGIN_MUTATION, {
+    onCompleted: ({ login }) => {
+      auth.setToken(login.token);
+      history.push(ROUTES.BUDDY_SELECT_NEWBIE);
+    },
+  });
+
+  const onSubmit = async ({ email, password }: FormData) => {
+    setErrorDialog({
+      isOpen: false,
+      message: '',
+    });
+    try {
+      await loginMutation({
+        variables: {
+          email,
+          password,
+        },
+      });
+    } catch (error) {
+      if (error.networkError) {
+        setErrorDialog({
+          isOpen: true,
+          message: DICTIONARY.ERRORS.NO_NETWORK,
+        });
+      } else {
+        setErrorDialog({
+          isOpen: true,
+          message: DICTIONARY.ERRORS.NO_USER_FOUND,
+        });
+      }
+    }
+  };
   return (
     <>
-      <section className={classes.paper}>
-        <Typography component='h1' variant='h1'>
-          Buddy
-        </Typography>
-        <SpaceMan className={classes.spaceMan} />
-        <form noValidate>
-          <TextField
-            id='email'
-            margin='normal'
-            fullWidth
-            label='Email Address'
-            name='email'
-            autoComplete='email'
-            autoFocus
-          />
-          <TextField
-            id='password'
-            margin='normal'
-            fullWidth
-            name='password'
-            label='Password'
-            type='password'
-            autoComplete='current-password'
-          />
-          <RoundedButton
-            type='submit'
-            fullWidth
-            variant='contained'
-            color='primary'
-            className={classes.submit}>
-            Sign In
-          </RoundedButton>
-          <Grid container justify='flex-end'>
-            <Link href='#'>Forgot password?</Link>
-          </Grid>
-        </form>
-      </section>
+      <Typography
+        className={classes.title}
+        component='h1'
+        variant='h1'
+        align={'center'}>
+        {DICTIONARY.TITLE}
+      </Typography>
+      <SpaceMan className={classes.spaceMan} />
+      <form data-testid='form' noValidate onSubmit={handleSubmit(onSubmit)}>
+        <TextField
+          inputProps={{ 'data-testid': 'email' }}
+          inputRef={register({
+            required: DICTIONARY.EMAIL.REQUIRED,
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              message: DICTIONARY.EMAIL.INVALID,
+            },
+          })}
+          margin={'dense'}
+          fullWidth
+          label={DICTIONARY.EMAIL.LABEL}
+          name='email'
+          autoComplete='email'
+          autoFocus
+          error={!!errors.email}
+          helperText={(errors.email && errors.email.message) || ' '}
+        />
+        <TextField
+          inputProps={{ 'data-testid': 'password' }}
+          inputRef={register({
+            required: DICTIONARY.PASSWORD.REQUIRED,
+          })}
+          margin={'dense'}
+          fullWidth
+          name='password'
+          label={DICTIONARY.PASSWORD.LABEL}
+          type='password'
+          autoComplete='current-password'
+          error={!!errors.password}
+          helperText={(errors.password && errors.password.message) || ' '}
+        />
+        <RoundedButton
+          data-testid='submit-button'
+          type='submit'
+          fullWidth
+          variant='contained'
+          color='primary'
+          disabled={loading}
+          className={classes.submit}>
+          {loading ? (
+            <CircularProgress
+              data-testid='login-progress'
+              variant={'indeterminate'}
+              size={32}
+            />
+          ) : (
+            DICTIONARY.SIGN_IN
+          )}
+        </RoundedButton>
+        <Grid container justify='flex-end'>
+          <Link href='#'>{DICTIONARY.FORGOT_PASSWORD}</Link>
+        </Grid>
+        {errorDialog.isOpen && (
+          <AlertDialog message={errorDialog.message}></AlertDialog>
+        )}
+      </form>
     </>
   );
-}
+};
+
+export default Login;
