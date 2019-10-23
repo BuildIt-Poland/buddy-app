@@ -1,4 +1,4 @@
-interface LOGIN_DICTIONARY {
+interface LoginDictionary {
   TITLE: string;
   FORGOT_PASSWORD: string;
   SIGN_IN: string;
@@ -17,7 +17,7 @@ interface LOGIN_DICTIONARY {
   };
 }
 
-const DICTIONARY: LOGIN_DICTIONARY = {
+const DICTIONARY: LoginDictionary = {
   TITLE: 'Buddy',
   FORGOT_PASSWORD: 'Forgot password?',
   SIGN_IN: 'Sign In',

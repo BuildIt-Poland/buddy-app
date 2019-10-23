@@ -16,6 +16,7 @@ import { ReactComponent as SpaceMan } from '../../svg/spaceman.svg';
 import LOGIN_MUTATION from '../../graphql/login.graphql';
 import { auth } from '../../utils';
 import DICTIONARY from './login.dictionary';
+import { ErrorDialog, AuthData, FormData } from './types';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -31,16 +32,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-interface FormData {
-  email: string;
-  password: string;
-}
-
-interface ErrorDialog {
-  isOpen: Boolean;
-  message: string;
-}
-
 const Login = () => {
   const classes = useStyles();
   const history = useHistory();
@@ -50,7 +41,7 @@ const Login = () => {
   });
 
   const { register, errors, handleSubmit } = useForm<FormData>();
-  const [loginMutation, { loading }] = useMutation(LOGIN_MUTATION, {
+  const [loginMutation, { loading }] = useMutation<AuthData>(LOGIN_MUTATION, {
     onCompleted: ({ login }) => {
       auth.setToken(login.token);
       history.push(ROUTES.BUDDY_SELECT_NEWBIE);
