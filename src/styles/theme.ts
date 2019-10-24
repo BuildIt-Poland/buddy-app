@@ -50,6 +50,7 @@ let theme = createMuiTheme({
       primary: tealWhite.groupB.neutral,
     },
   },
+  spacing: factor => `${factor}rem`,
 });
 
 theme = responsiveFontSizes(theme);

@@ -7,52 +7,29 @@ import {
   CircularProgress,
   Box,
 } from '@material-ui/core';
-import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 import NavBar from '../NavBar';
 import Avatar from '../Avatar';
-import { ReactComponent as EllipseShape } from '../../svg/ellipse-shape-gray.svg';
+import { CONTACT_INFO } from '../../graphql/contact-details.graphql';
 import { ROUTES } from '../../shared/routes';
 import { ContactDetailsParams, ContactDetailsProps, NewbieData } from './types';
 
 const useStyles = makeStyles(theme => ({
-  bold: {
-    fontWeight: 700,
-  },
   notesTextarea: {
     width: 150,
     minHeight: 100,
     borderWidth: '1px',
     borderColor: theme.palette.primary.dark,
   },
-  ellipse: {
-    position: 'fixed',
-    bottom: '-285px',
-    left: '-56px',
-  },
   wrapper: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: '2rem',
+    marginTop: theme.spacing(2),
   },
   avatar: {
     width: '10rem',
   },
 }));
-
-const CONTACT_INFO = gql`
-  query getContactDetails($newbieId: ID!) {
-    newbie(newbieId: $newbieId) {
-      name
-      position
-      startDate
-      email
-      phoneNumber
-      photo
-      notes
-    }
-  }
-`;
 
 const ContactDetails: React.FC<ContactDetailsProps> = props => {
   const { newbieId } = useParams<ContactDetailsParams>();
@@ -71,33 +48,46 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
           <Avatar imgSrc={data && data.newbie.photo} />
         </Box>
         <Box>
-          <Typography component='p' variant='subtitle1' className={classes.bold}>
-            Name
+          <Typography component='p'>
+            <Box component='strong' fontWeight={'fontWeightBold'}>
+              Name
+            </Box>
           </Typography>
+
           <Typography component='p'>{data && data.newbie.name}</Typography>
 
-          <Typography component='p' className={classes.bold}>
-            What I do
+          <Typography component='p'>
+            <Box component='strong' fontWeight={'fontWeightBold'}>
+              What I do
+            </Box>
           </Typography>
           <Typography component='p'>{data && data.newbie.position}</Typography>
 
-          <Typography component='p' className={classes.bold}>
-            Start date
+          <Typography component='p'>
+            <Box component='strong' fontWeight={'fontWeightBold'}>
+              Start date
+            </Box>
           </Typography>
           <Typography component='p'>{data && data.newbie.startDate}</Typography>
 
-          <Typography component='p' className={classes.bold}>
-            E-mail
+          <Typography component='p'>
+            <Box component='strong' fontWeight={'fontWeightBold'}>
+              E-mail
+            </Box>
           </Typography>
           <Typography component='p'>{data && data.newbie.email}</Typography>
 
-          <Typography component='p' className={classes.bold}>
-            Phone
+          <Typography component='p'>
+            <Box component='strong' fontWeight={'fontWeightBold'}>
+              Phone
+            </Box>
           </Typography>
           <Typography component='p'>{data && data.newbie.phoneNumber}</Typography>
 
-          <Typography component='p' className={classes.bold}>
-            Notes
+          <Typography component='p'>
+            <Box component='strong' fontWeight={'fontWeightBold'}>
+              Notes
+            </Box>
           </Typography>
           <TextareaAutosize
             className={classes.notesTextarea}
@@ -105,8 +95,6 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
           />
         </Box>
       </Box>
-
-      <EllipseShape className={classes.ellipse} />
     </>
   );
 
