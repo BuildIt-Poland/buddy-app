@@ -55,7 +55,8 @@
     "prettier": "^1.18.2",
     "react-hook-form": "^3.24.0",
     "react-test-renderer": "^16.10.1",
-    "start-server-and-test": "^1.10.4"
+    "start-server-and-test": "^1.10.4",
+    "wait-for-expect": "^3.0.0"
   },
   "lint-staged": {
     "*.{tsx,ts, js}": [

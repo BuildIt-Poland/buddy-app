@@ -1,35 +1,65 @@
 import React from 'react';
-import { create } from 'react-test-renderer';
-import { MemoryRouter } from 'react-router-dom';
-import { ApolloProvider } from '@apollo/react-hooks';
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloLink } from 'apollo-link';
+import { render } from '@testing-library/react';
+import { MemoryRouter, Route } from 'react-router-dom';
+import { MockedProvider } from '@apollo/react-testing';
+import { act, create, ReactTestRenderer } from 'react-test-renderer';
+import waitForExpect from 'wait-for-expect';
 import ContactDetails from '../ContactDetails';
+import CONTACT_DETAILS from '../../../graphql/contact-details.graphql';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/TextareaAutosize', () => 'TextareaAutosize');
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
+jest.mock('../../NavBar', () => 'Navbar');
 jest.mock('../../Avatar', () => 'Avatar');
-jest.mock('../../NavBar', () => 'NavBar');
 
 describe('Component - ContactDetails', () => {
-  const client = new ApolloClient({
-    link: new ApolloLink(),
-    cache: new InMemoryCache(),
-  });
+  const path = '/buddy/newbies/1234/details';
+  const mockHistory: any = {
+    push: jest.fn(),
+  };
+  const NewbieContactDetailsResponse = [
+    {
+      request: {
+        query: CONTACT_DETAILS,
+        variables: {
+          newbieId: '1234',
+        },
+      },
+      result: {
+        data: {
+          newbie: {
+            name: 'Tom Hanks',
+            position: 'front-end',
+            startDate: '12-12-2009',
+            email: 'dummy@wipro.com',
+            phoneNumber: '123467890',
+            photo: 'some-url',
+            notes: 'some notes',
+          },
+        },
+      },
+    },
+  ];
 
-  const mockHistory: any = { push: jest.fn() };
-
-  test('renders correctly', () => {
-    const component = create(
-      <ApolloProvider client={client}>
-        <MemoryRouter initialEntries={['/buddy/newbies/1234/details']}>
-          <ContactDetails history={mockHistory} />
+  it('renders correctly', async () => {
+    let component: ReactTestRenderer;
+    component = create(
+      <MockedProvider mocks={NewbieContactDetailsResponse} addTypename={false}>
+        <MemoryRouter initialEntries={[path]}>
+          <Route path={'/buddy/newbies/:newbieId/details'}>
+            <ContactDetails history={mockHistory} />
+          </Route>
         </MemoryRouter>
-      </ApolloProvider>
+      </MockedProvider>
     );
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
+
+    await act(async () => {
+      await waitForExpect(() => {
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

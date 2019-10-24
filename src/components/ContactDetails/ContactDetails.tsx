@@ -10,7 +10,7 @@ import {
 import { useQuery } from '@apollo/react-hooks';
 import NavBar from '../NavBar';
 import Avatar from '../Avatar';
-import { CONTACT_INFO } from '../../graphql/contact-details.graphql';
+import CONTACT_DETAILS from '../../graphql/contact-details.graphql';
 import { ROUTES } from '../../shared/routes';
 import { ContactDetailsParams, ContactDetailsProps, NewbieData } from './types';
 
@@ -35,7 +35,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
   const { newbieId } = useParams<ContactDetailsParams>();
   const classes = useStyles();
   const { loading, data } = useQuery<NewbieData, ContactDetailsParams>(
-    CONTACT_INFO,
+    CONTACT_DETAILS,
     {
       variables: { newbieId },
     }
