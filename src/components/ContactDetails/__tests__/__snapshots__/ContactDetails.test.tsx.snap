@@ -52,6 +52,7 @@ Array [
       </Typography>
       <Typography
         component="p"
+        data-testid="contact-name"
       >
         Tom Hanks
       </Typography>
