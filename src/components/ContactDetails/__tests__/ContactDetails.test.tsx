@@ -1,18 +1,65 @@
 import React from 'react';
-import { create } from 'react-test-renderer';
-
-import { MemoryRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
+import { MemoryRouter, Route } from 'react-router-dom';
+import { MockedProvider } from '@apollo/react-testing';
+import { act, create, ReactTestRenderer } from 'react-test-renderer';
+import waitForExpect from 'wait-for-expect';
 import ContactDetails from '../ContactDetails';
-import { ROUTES } from '../../../shared/routes';
+import CONTACT_DETAILS from '../../../graphql/contact-details.graphql';
+
+jest.mock('@material-ui/core/Typography', () => 'Typography');
+jest.mock('@material-ui/core/Box', () => 'Box');
+jest.mock('@material-ui/core/TextareaAutosize', () => 'TextareaAutosize');
+jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
+jest.mock('../../NavBar', () => 'Navbar');
+jest.mock('../../Avatar', () => 'Avatar');
 
 describe('Component - ContactDetails', () => {
-  test('renders correctly', () => {
-    const component = create(
-      <MemoryRouter initialEntries={[ROUTES.BASE]}>
-        <ContactDetails />
-      </MemoryRouter>
-    );
+  const path = '/buddy/newbies/1234/details';
+  const mockHistory: any = {
+    push: jest.fn(),
+  };
+  const NewbieContactDetailsResponse = [
+    {
+      request: {
+        query: CONTACT_DETAILS,
+        variables: {
+          newbieId: '1234',
+        },
+      },
+      result: {
+        data: {
+          newbie: {
+            name: 'Tom Hanks',
+            position: 'front-end',
+            startDate: '12-12-2009',
+            email: 'dummy@wipro.com',
+            phoneNumber: '123467890',
+            photo: 'some-url',
+            notes: 'some notes',
+          },
+        },
+      },
+    },
+  ];
 
-    expect(component.toJSON()).toMatchSnapshot();
+  it('renders correctly', async () => {
+    let component: ReactTestRenderer;
+    component = create(
+      <MockedProvider mocks={NewbieContactDetailsResponse} addTypename={false}>
+        <MemoryRouter initialEntries={[path]}>
+          <Route path={'/buddy/newbies/:newbieId/details'}>
+            <ContactDetails history={mockHistory} />
+          </Route>
+        </MemoryRouter>
+      </MockedProvider>
+    );
+    expect(component).toMatchSnapshot();
+
+    await act(async () => {
+      await waitForExpect(() => {
+        expect(component).toMatchSnapshot();
+      });
+    });
   });
 });

@@ -2,11 +2,133 @@
 
 exports[`Component - ContactDetails renders correctly 1`] = `
 Array [
-  <h1>
+  <Navbar
+    onClick={[Function]}
+    type="back"
+  />,
+  <Typography
+    component="h2"
+    variant="h2"
+  >
     Contact Details
-  </h1>,
-  <p>
-    ID: 
-  </p>,
+  </Typography>,
+  <CircularProgress />,
+]
+`;
+
+exports[`Component - ContactDetails renders correctly 2`] = `
+Array [
+  <Navbar
+    onClick={[Function]}
+    type="back"
+  />,
+  <Typography
+    component="h2"
+    variant="h2"
+  >
+    Contact Details
+  </Typography>,
+  <Box
+    className="makeStyles-wrapper-2"
+  >
+    <Box
+      className="makeStyles-avatar-3"
+    >
+      <Avatar
+        imgSrc="some-url"
+      />
+    </Box>
+    <Box>
+      <Typography
+        component="p"
+      >
+        <Box
+          component="strong"
+          fontWeight="fontWeightBold"
+        >
+          Name
+        </Box>
+      </Typography>
+      <Typography
+        component="p"
+      >
+        Tom Hanks
+      </Typography>
+      <Typography
+        component="p"
+      >
+        <Box
+          component="strong"
+          fontWeight="fontWeightBold"
+        >
+          What I do
+        </Box>
+      </Typography>
+      <Typography
+        component="p"
+      >
+        front-end
+      </Typography>
+      <Typography
+        component="p"
+      >
+        <Box
+          component="strong"
+          fontWeight="fontWeightBold"
+        >
+          Start date
+        </Box>
+      </Typography>
+      <Typography
+        component="p"
+      >
+        12-12-2009
+      </Typography>
+      <Typography
+        component="p"
+      >
+        <Box
+          component="strong"
+          fontWeight="fontWeightBold"
+        >
+          E-mail
+        </Box>
+      </Typography>
+      <Typography
+        component="p"
+      >
+        dummy@wipro.com
+      </Typography>
+      <Typography
+        component="p"
+      >
+        <Box
+          component="strong"
+          fontWeight="fontWeightBold"
+        >
+          Phone
+        </Box>
+      </Typography>
+      <Typography
+        component="p"
+      >
+        123467890
+      </Typography>
+      <Typography
+        component="p"
+      >
+        <Box
+          component="strong"
+          fontWeight="fontWeightBold"
+        >
+          Notes
+        </Box>
+      </Typography>
+      <TextareaAutosize
+        className="makeStyles-notesTextarea-1"
+        value="some notes"
+      />
+    </Box>
+  </Box>,
 ]
 `;
