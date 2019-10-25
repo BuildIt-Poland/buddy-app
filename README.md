@@ -13,7 +13,7 @@
 
 - To make it work, please create `.env` file in the `root` folder:
 ```
-REACT_APP_SERVER_URL=http://localhost:4000
+REACT_APP_SERVER_URL=http://localhost:4000/graphql
 REACT_APP_AUTH_TOKEN=auth-token
 ```
 - And one more `.env` file in the `/server` folder(the values can be changed to your own):
@@ -21,6 +21,7 @@ REACT_APP_AUTH_TOKEN=auth-token
 PRISMA_ENDPOINT=https://eu1.prisma.sh/anton-lunov/Buddy-app/test
 PRISMA_SECRET=buddy-app-graphql-prisma-secret
 APP_SECRET=BUDDY-APP-GraphQL-1s-aw3some
+PORT=4000
 ```
 
 ### Commands
