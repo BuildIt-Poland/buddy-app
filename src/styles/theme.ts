@@ -1,6 +1,12 @@
 import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
 import { colorSchemes } from '@buildit/gravity-particles';
 
+declare module '@material-ui/core/styles/zIndex' {
+  interface ZIndex {
+    backgroundShape: number;
+  }
+}
+
 const { tealWhite } = colorSchemes;
 
 let theme = createMuiTheme({
@@ -45,10 +51,14 @@ let theme = createMuiTheme({
     },
     background: {
       default: tealWhite.groupA.neutral,
+      paper: tealWhite.groupA.neutralAlt,
     },
     text: {
       primary: tealWhite.groupB.neutral,
     },
+  },
+  zIndex: {
+    backgroundShape: -10,
   },
 });
 
