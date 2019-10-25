@@ -1,10 +1,10 @@
-declare namespace Cypress {
-  interface Chainable {
-    /**
-     * Custom command to select DOM element by data-testid attribute.
-     * @example cy.dataTest('greeting')
-     */
-    dataTest(value: string): Chainable<Element>;
+import 'cypress-graphql-mock';
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      dataTest: (value: string) => Chainable<Element>;
+    }
   }
 }
 
