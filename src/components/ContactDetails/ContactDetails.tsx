@@ -12,6 +12,7 @@ import NavBar from '../NavBar';
 import Avatar from '../Avatar';
 import CONTACT_DETAILS from '../../graphql/contact-details.graphql';
 import { ROUTES } from '../../shared/routes';
+import BackgroundShape from '../BackgroundShape/';
 import { ContactDetailsParams, ContactDetailsProps, NewbieData } from './types';
 
 const useStyles = makeStyles(theme => ({
@@ -109,6 +110,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
       </Typography>
       {loading && <CircularProgress />}
       {data && renderContactDetails()}
+      <BackgroundShape></BackgroundShape>
     </>
   );
 };

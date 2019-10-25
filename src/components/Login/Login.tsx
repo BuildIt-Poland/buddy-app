@@ -15,6 +15,7 @@ import { ROUTES } from '../../shared/routes';
 import { ReactComponent as SpaceMan } from '../../svg/spaceman.svg';
 import LOGIN_MUTATION from '../../graphql/login.graphql';
 import { auth } from '../../utils';
+import BackgroundShape from '../BackgroundShape/';
 import DICTIONARY from './login.dictionary';
 import { ErrorDialog, AuthData, FormData } from './types';
 
@@ -142,6 +143,7 @@ const Login = () => {
           <AlertDialog message={errorDialog.message}></AlertDialog>
         )}
       </form>
+      <BackgroundShape></BackgroundShape>
     </>
   );
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import { MockedProvider } from '@apollo/react-testing';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
@@ -13,6 +12,7 @@ jest.mock('@material-ui/core/TextareaAutosize', () => 'TextareaAutosize');
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
 jest.mock('../../NavBar', () => 'Navbar');
 jest.mock('../../Avatar', () => 'Avatar');
+jest.mock('../../BackgroundShape', () => 'BackgroundShape');
 
 describe('Component - ContactDetails', () => {
   const path = '/buddy/newbies/1234/details';
