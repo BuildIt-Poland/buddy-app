@@ -60,6 +60,7 @@ let theme = createMuiTheme({
   zIndex: {
     backgroundShape: -10,
   },
+  spacing: factor => `${factor}rem`,
 });
 
 theme = responsiveFontSizes(theme);
