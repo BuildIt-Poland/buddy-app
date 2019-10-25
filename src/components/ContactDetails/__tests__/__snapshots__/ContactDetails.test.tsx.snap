@@ -13,6 +13,7 @@ Array [
     Contact Details
   </Typography>,
   <CircularProgress />,
+  <BackgroundShape />,
 ]
 `;
 
@@ -130,5 +131,6 @@ Array [
       />
     </Box>
   </Box>,
+  <BackgroundShape />,
 ]
 `;
