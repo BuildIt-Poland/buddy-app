@@ -1,7 +1,10 @@
+import schema from '../../server/src/schema.graphql';
 import { ROUTES } from '../../src/shared/routes';
 
-describe.skip('Login Page', () => {
+describe('Login Page', () => {
   beforeEach(() => {
+    cy.server();
+    cy.mockGraphql({ schema });
     cy.visit(ROUTES.LOGIN);
   });
   it('shows root component', function() {
