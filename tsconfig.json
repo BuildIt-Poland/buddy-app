@@ -20,7 +20,7 @@
     "noEmit": true,
     "jsx": "react",
     "sourceMap": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true
   },
