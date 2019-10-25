@@ -7,9 +7,8 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     bottom: 0,
     left: 0,
-    right: 0,
-    zIndex: theme.zIndex.backgroundShape,
     height: '20em',
+    zIndex: theme.zIndex.backgroundShape,
     fill: theme.palette.background.paper,
   },
 }));
