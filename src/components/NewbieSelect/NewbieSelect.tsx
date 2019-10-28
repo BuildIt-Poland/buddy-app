@@ -7,11 +7,9 @@ import Avatar from '../Avatar';
 import PlusButton from '../PlusButton';
 
 const NewbieSelect: React.FC = () => {
-  const handleNavBarClick = () => {};
-
   return (
     <>
-      <NavBar type='menu' onClick={handleNavBarClick} />
+      <NavBar type='menu' />
       <Typography component='h2' variant='h2'>
         <Box fontWeight={theme.typography.fontWeightBold}>Your New Joiners</Box>
       </Typography>
