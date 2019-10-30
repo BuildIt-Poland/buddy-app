@@ -8,6 +8,7 @@ import Avatar from '../Avatar';
 import { BUDDY_BASIC_DETAILS } from '../../graphql/contact-details.graphql';
 import NewbiesMenuSection from '../NewbiesMenuSection/NewbiesMenuSection';
 import UserMenuDetails from '../UserMenuDetails/UserMenuDetails';
+import UserMenuSettings from '../UserMenuSettings/UserMenuSettings';
 
 const useStyles = makeStyles({
   list: {
@@ -34,11 +35,7 @@ export default function SlideMenu(props: any) {
           <Divider />
           <NewbiesMenuSection newbies={data && data.buddy.newbies} />
           <Divider />
-          <Typography component='p' variant='h4'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              Settings
-            </Box>
-          </Typography>
+          <UserMenuSettings />
         </div>
       </Drawer>
     </div>

@@ -4,6 +4,7 @@ import SlideMenu from '../SlideMenu';
 
 jest.mock('../../UserMenuDetails/UserMenuDetails', () => 'UserMenuDetails');
 jest.mock('../../NewbiesMenuSection/NewbiesMenuSection', () => 'NewbiesMenuSection');
+jest.mock('../../UserMenuSettings/UserMenuSettings', () => 'UserMenuSettings');
 
 // TODO: FIXME - make tests pass
 xdescribe('SlideMenu component', () => {

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - UserMenuSettings renders correctly 1`] = `
+<Typography
+  component="p"
+  variant="h4"
+>
+  <Box
+    component="strong"
+    fontWeight="fontWeightBold"
+  >
+    Settings
+  </Box>
+</Typography>
+`;
