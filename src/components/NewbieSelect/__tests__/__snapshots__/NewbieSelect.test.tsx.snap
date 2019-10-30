@@ -3,7 +3,6 @@
 exports[`Component - NewbieSelect renders correctly 1`] = `
 Array [
   <Navbar
-    onClick={[Function]}
     type="menu"
   />,
   <Typography

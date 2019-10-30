@@ -4,7 +4,7 @@ import { MockedProvider } from '@apollo/react-testing';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
 import waitForExpect from 'wait-for-expect';
 import ContactDetails from '../ContactDetails';
-import CONTACT_DETAILS from '../../../graphql/contact-details.graphql';
+import { CONTACT_DETAILS } from '../../../graphql/contact-details.graphql';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');

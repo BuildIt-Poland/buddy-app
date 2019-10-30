@@ -14,4 +14,26 @@ const CONTACT_DETAILS = gql`
   }
 `;
 
-export default CONTACT_DETAILS;
+const BUDDY_BASIC_DETAILS = gql`
+  query getBuddyBasicDetails($buddyId: ID!) {
+    buddy(buddyId: $buddyId) {
+      name
+      email
+      newbies {
+        name
+        photo
+      }
+    }
+  }
+`;
+
+const NEWBIE_BASIC_DETAILS = gql`
+  query getNewbieBasicDetails($newbieId: ID!) {
+    newbie(newbieId: $newbieId) {
+      name
+      email
+    }
+  }
+`;
+
+export { CONTACT_DETAILS, NEWBIE_BASIC_DETAILS, BUDDY_BASIC_DETAILS };

@@ -4,7 +4,10 @@ import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import { Box, Typography } from '@material-ui/core';
+import { useQuery } from '@apollo/react-hooks';
 import Avatar from '../Avatar';
+import { BUDDY_BASIC_DETAILS } from '../../graphql/contact-details.graphql';
+import NewbiesList from '../NewbiesList/NewbiesList';
 
 const useStyles = makeStyles({
   list: {
@@ -17,9 +20,11 @@ const useStyles = makeStyles({
 
 export default function SlideMenu(props: any) {
   const classes = useStyles();
-
   const { isMenuVisible, onClose } = props;
-
+  const buddyId = 'ck1vxu2lgbonb09937srm6qph';
+  const { data } = useQuery<any, any>(BUDDY_BASIC_DETAILS, {
+    variables: { buddyId },
+  });
   return (
     <div>
       <Drawer open={isMenuVisible} onClose={onClose}>
@@ -28,34 +33,14 @@ export default function SlideMenu(props: any) {
           <Avatar type={'small'} />
           <Typography component='p' variant='h4'>
             <Box component='strong' fontWeight={'fontWeightBold'}>
-              Joe Doe
+              {data && data.buddy.name}
             </Box>
           </Typography>
           <Typography component='p' variant='h4'>
-            joe.doe@wipro.com
+            {data && data.buddy.email}
           </Typography>
           <Divider />
-          <Typography component='p' variant='h4'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              Newbies
-            </Box>
-          </Typography>
-
-          <ListItem button>
-            <Typography component='p' variant='h4'>
-              Newbie #1
-            </Typography>
-
-            <Avatar type={'small'} />
-          </ListItem>
-
-          <ListItem button>
-            <Typography component='p' variant='h4'>
-              Newbie #2
-            </Typography>
-            <Avatar type={'small'} />
-          </ListItem>
-
+          <NewbiesList newbies={data && data.buddy.newbies} />
           <Divider />
           <Typography component='p' variant='h4'>
             <Box component='strong' fontWeight={'fontWeightBold'}>

@@ -10,7 +10,7 @@ import {
 import { useQuery } from '@apollo/react-hooks';
 import NavBar from '../NavBar';
 import Avatar from '../Avatar';
-import CONTACT_DETAILS from '../../graphql/contact-details.graphql';
+import { CONTACT_DETAILS } from '../../graphql/contact-details.graphql';
 import { ROUTES } from '../../shared/routes';
 import BackgroundShape from '../BackgroundShape/';
 import { ContactDetailsParams, ContactDetailsProps, NewbieData } from './types';
