@@ -4,7 +4,7 @@ import { Box, Typography } from '@material-ui/core';
 import Avatar from '../Avatar';
 import { NewbiesListProps } from './types';
 
-const NewbiesList: FunctionComponent<NewbiesListProps> = props => {
+const NewbiesMenuSection: FunctionComponent<NewbiesListProps> = props => {
   const { newbies } = props;
   return (
     <>
@@ -28,4 +28,4 @@ const NewbiesList: FunctionComponent<NewbiesListProps> = props => {
   );
 };
 
-export default NewbiesList;
+export default NewbiesMenuSection;

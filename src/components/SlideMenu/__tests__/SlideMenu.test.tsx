@@ -2,6 +2,9 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import SlideMenu from '../SlideMenu';
 
+jest.mock('../../UserMenuDetails/UserMenuDetails', () => 'UserMenuDetails');
+jest.mock('../../NewbiesMenuSection/NewbiesMenuSection', () => 'NewbiesMenuSection');
+
 // TODO: FIXME - make tests pass
 xdescribe('SlideMenu component', () => {
   it('renders correctly', () => {

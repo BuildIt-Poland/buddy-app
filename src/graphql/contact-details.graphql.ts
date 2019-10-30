@@ -19,6 +19,7 @@ const BUDDY_BASIC_DETAILS = gql`
     buddy(buddyId: $buddyId) {
       name
       email
+      photo
       newbies {
         name
         photo

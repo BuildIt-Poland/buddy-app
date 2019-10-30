@@ -2,12 +2,12 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
 import { Box, Typography } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
 import Avatar from '../Avatar';
 import { BUDDY_BASIC_DETAILS } from '../../graphql/contact-details.graphql';
-import NewbiesList from '../NewbiesList/NewbiesList';
+import NewbiesMenuSection from '../NewbiesMenuSection/NewbiesMenuSection';
+import UserMenuDetails from '../UserMenuDetails/UserMenuDetails';
 
 const useStyles = makeStyles({
   list: {
@@ -30,17 +30,9 @@ export default function SlideMenu(props: any) {
       <Drawer open={isMenuVisible} onClose={onClose}>
         <div className={classes.list} role='presentation'>
           <div onClick={onClose}>X</div>
-          <Avatar type={'small'} />
-          <Typography component='p' variant='h4'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              {data && data.buddy.name}
-            </Box>
-          </Typography>
-          <Typography component='p' variant='h4'>
-            {data && data.buddy.email}
-          </Typography>
+          <UserMenuDetails user={data && data.buddy} />
           <Divider />
-          <NewbiesList newbies={data && data.buddy.newbies} />
+          <NewbiesMenuSection newbies={data && data.buddy.newbies} />
           <Divider />
           <Typography component='p' variant='h4'>
             <Box component='strong' fontWeight={'fontWeightBold'}>
