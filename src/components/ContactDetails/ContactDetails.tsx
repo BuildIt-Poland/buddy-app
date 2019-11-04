@@ -55,7 +55,9 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
             </Box>
           </Typography>
 
-          <Typography component='p'>{data && data.newbie.name}</Typography>
+          <Typography component='p' data-testid='contact-name'>
+            {data && data.newbie.name}
+          </Typography>
 
           <Typography component='p'>
             <Box component='strong' fontWeight={'fontWeightBold'}>
