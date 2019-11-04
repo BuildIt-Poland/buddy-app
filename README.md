@@ -30,7 +30,6 @@ The following commands are intended to be launched from the project root directo
 - ```$ npm start``` - Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
-<<<<<<< HEAD
 - ```$ npm run server``` - Runs graphQL server.<br>
 Open [http://localhost:4000](http://localhost:4000) to view GraphQL playground it in the browser.
 - ```$ npm run cy:open``` - Runs the Cypress app, then you can navigate and choose a test to run
