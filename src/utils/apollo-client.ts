@@ -1,5 +1,5 @@
 import { ApolloClient, ApolloLink, InMemoryCache, HttpLink } from 'apollo-boost';
-import cookieService from './cookie.service';
+import cookieService from './cookie-service';
 
 const httpLink = new HttpLink({ uri: process.env.REACT_APP_SERVER_URL });
 

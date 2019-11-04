@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import cookieService from '../cookie.service';
+import cookieService from '../cookie-service';
 
 jest.mock('js-cookie');
 

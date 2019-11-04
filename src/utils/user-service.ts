@@ -1,13 +1,13 @@
-import cookieService from './cookie.service';
+import cookieService from './cookie-service';
 
 class UserService {
-  get isAuthenticated() {
+  isAuthenticated = () => {
     return (
       !!cookieService.getToken() &&
       !!cookieService.getUser().id &&
       !!cookieService.getUser().role
     );
-  }
+  };
 
   getUser = () => cookieService.getUser();
 
@@ -18,7 +18,5 @@ class UserService {
 }
 
 const userService = new UserService();
-
-Object.freeze(userService);
 
 export default userService;

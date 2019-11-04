@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import userService from '../../utils/user.service';
+import userService from '../../utils/user-service';
 import { ROUTES } from '../../shared/routes';
 
 const ProtectedRoute: React.FC<any> = ({ component: Component, ...rest }) => {
@@ -8,7 +8,7 @@ const ProtectedRoute: React.FC<any> = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        userService.isAuthenticated ? (
+        userService.isAuthenticated() ? (
           <Component {...props} />
         ) : (
           <Redirect

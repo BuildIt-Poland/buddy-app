@@ -6,9 +6,9 @@ import { GraphQLError } from 'graphql';
 
 import { LOGIN_MUTATION } from '../../../graphql/login.graphql';
 import Login from '../Login';
-import auth from '../../../utils/cookie.service';
+import auth from '../../../utils/cookie-service';
 
-jest.mock('../../../utils/cookie.service.ts');
+jest.mock('../../../utils/cookie-service.ts');
 
 describe('Component - Login', () => {
   const mockLocation = {
