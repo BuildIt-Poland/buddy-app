@@ -27,7 +27,7 @@ describe('Test Newbie details page with mocked GraphQL', () => {
     });
   });
 
-  it('shows proper name', function() {
+  xit('shows proper name', function() {
     cy.visit(ROUTES.BUDDY_NEWBIE_DETAILS.replace(':newbieId', '1'));
     cy.dataTest('contact-name').contains(name);
   });
