@@ -1,4 +1,4 @@
-import { createMuiTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { colorSchemes } from '@buildit/gravity-particles';
 
 declare module '@material-ui/core/styles/zIndex' {
@@ -18,24 +18,20 @@ let theme = createMuiTheme({
     fontFamily:
       'Wipro Akkurat TT, Wipro Akkurat Mono TT, Roboto, Helvetica, Arial, sans-serif',
     h1: {
-      fontSize: '3rem',
+      fontSize: '8rem',
+      fontWeight: 'bold',
     },
     h2: {
       fontSize: '2.4rem',
+      fontWeight: 'bold',
     },
-    h3: {
-      fontSize: '2rem',
-    },
-    h4: {
-      fontSize: '1.8rem',
-    },
-    h5: {
+    body1: {
       fontSize: '1.6rem',
     },
-    subtitle1: {
+    body2: {
       fontSize: '1.4rem',
     },
-    subtitle2: {
+    subtitle1: {
       fontSize: '1.2rem',
     },
   },
@@ -62,7 +58,5 @@ let theme = createMuiTheme({
   },
   spacing: factor => `${factor}rem`,
 });
-
-theme = responsiveFontSizes(theme);
 
 export default theme;
