@@ -34,6 +34,7 @@ const Root: React.FC = () => {
         <Route path={ROUTES.BASE} exact component={RouteRedirect} />
         <Route path={ROUTES.ERROR} exact component={ErrorPage} />
         <Route path={ROUTES.LOGIN} exact component={Login} />
+        <Route path={ROUTES.LOGOUT} exact component={Logout} />
         <ProtectedRoute path={ROUTES.BUDDY_ADD_NEWBIE} exact component={AddNewbie} />
         <ProtectedRoute
           path={ROUTES.BUDDY_SELECT_NEWBIE}
@@ -67,7 +68,7 @@ const Root: React.FC = () => {
           exact
           component={TaskDetails}
         />
-        <Route path={ROUTES.LOGOUT} exact component={Logout} />
+        <Route component={RouteRedirect} />
       </BrowserRouter>
     </Container>
   );

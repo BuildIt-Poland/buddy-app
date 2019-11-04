@@ -39,7 +39,7 @@ describe.skip('Login Page', () => {
       cy.dataTest('password').type('12345');
       cy.dataTest('submit-button').click();
       cy.dataTest('login-progress');
-      cy.url().should('includes', ROUTES.BUDDY_SELECT_NEWBIE);
+      cy.url().should('includes', ROUTES.BASE);
     });
   });
 });

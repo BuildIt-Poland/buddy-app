@@ -4,7 +4,7 @@ import { ROUTES } from '../../shared/routes';
 import userService from '../../utils/user-service';
 import { isBuddy, isNewbie } from '../../utils/user-helper';
 
-const RouteRedirect: React.FC<any> = () => {
+const RouteRedirect: React.FC = () => {
   if (!userService.isAuthenticated()) {
     return (
       <Redirect
