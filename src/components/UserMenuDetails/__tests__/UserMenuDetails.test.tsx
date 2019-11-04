@@ -10,7 +10,7 @@ describe('Component - PlusButton', () => {
   test('renders correctly', () => {
     const component = create(
       <UserMenuDetails
-        user={{ name: 'tom', email: 'hanks@wipro.com', photo: 'url', newbies: [] }}
+        user={{ name: 'tom', email: 'hanks@wipro.com', photo: 'url' }}
       />
     );
 

@@ -6,5 +6,89 @@ exports[`Component - AppWrapper renders correctly 1`] = `
   component="main"
   data-testid="root"
   maxWidth="md"
-/>
+>
+  <RouteRedirect
+    history={
+      Object {
+        "action": "POP",
+        "block": [Function],
+        "createHref": [Function],
+        "go": [Function],
+        "goBack": [Function],
+        "goForward": [Function],
+        "length": 1,
+        "listen": [Function],
+        "location": Object {
+          "hash": "",
+          "pathname": "/",
+          "search": "",
+          "state": undefined,
+        },
+        "push": [Function],
+        "replace": [Function],
+      }
+    }
+    location={
+      Object {
+        "hash": "",
+        "pathname": "/",
+        "search": "",
+        "state": undefined,
+      }
+    }
+    match={
+      Object {
+        "isExact": true,
+        "params": Object {},
+        "path": "/",
+        "url": "/",
+      }
+    }
+  />
+  <ProtectedRoute
+    component={[Function]}
+    exact={true}
+    path="/buddy/add-newbie"
+  />
+  <ProtectedRoute
+    component={[Function]}
+    exact={true}
+    path="/buddy/newbies"
+  />
+  <ProtectedRoute
+    component={[Function]}
+    exact={true}
+    path="/buddy/newbies/:newbieId/tasks"
+  />
+  <ProtectedRoute
+    component={[Function]}
+    exact={true}
+    path="/buddy/newbies/:newbieId/tasks/:taskId"
+  />
+  <ProtectedRoute
+    component={[Function]}
+    exact={true}
+    path="/buddy/newbies/:newbieId/details"
+  />
+  <ProtectedRoute
+    component={[Function]}
+    exact={true}
+    path="/newbie/buddy"
+  />
+  <ProtectedRoute
+    component={[Function]}
+    exact={true}
+    path="/buddy/newbies/:newbieId/add-task"
+  />
+  <ProtectedRoute
+    component={[Function]}
+    exact={true}
+    path="/newbie/tasks"
+  />
+  <ProtectedRoute
+    component={[Function]}
+    exact={true}
+    path="/newbie/tasks/:taskId"
+  />
+</Container>
 `;

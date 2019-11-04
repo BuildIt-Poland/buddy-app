@@ -1,10 +1,10 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import { Box, Typography } from '@material-ui/core';
 import Avatar from '../Avatar';
 import { NewbiesListProps } from './types';
 
-const NewbiesMenuSection: FunctionComponent<NewbiesListProps> = props => {
+const NewbiesMenuSection: React.FC<NewbiesListProps> = props => {
   const { newbies } = props;
   return (
     <>

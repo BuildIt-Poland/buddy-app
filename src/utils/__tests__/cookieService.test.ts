@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import Auth from '../auth';
+import cookieService from '../cookie.service';
 
 jest.mock('js-cookie');
 
@@ -21,11 +21,11 @@ describe('Utils - auth', () => {
   it('auth.get should get the cookie', () => {
     mockedCookies.get.mockReturnValueOnce('DUMMY');
 
-    expect(Auth.getToken()).toBe('DUMMY');
+    expect(cookieService.getToken()).toBe('DUMMY');
   });
 
   it('auth.set should set the cookie', () => {
-    Auth.setToken('sample');
+    cookieService.setToken('sample');
 
     expect(mockedCookies.set).toHaveBeenCalledWith('_t', 'sample');
   });

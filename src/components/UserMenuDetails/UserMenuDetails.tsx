@@ -1,14 +1,9 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { Box, Typography } from '@material-ui/core';
 import Avatar from '../Avatar';
+import { UserMenuDetailsProps } from './types';
 
-interface OwnProps {
-  user: any;
-}
-
-type Props = OwnProps;
-
-const UserMenuDetails: FunctionComponent<Props> = props => {
+const UserMenuDetails: React.FC<UserMenuDetailsProps> = props => {
   const { user } = props;
 
   return (

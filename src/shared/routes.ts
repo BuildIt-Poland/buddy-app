@@ -1,6 +1,7 @@
 enum ROUTES {
   BASE = '/',
   LOGIN = '/login',
+  LOGOUT = '/logout',
   ERROR = '/404',
   BUDDY_ADD_TASK = '/buddy/newbies/:newbieId/add-task',
   BUDDY_TASK_DETAILS = '/buddy/newbies/:newbieId/tasks/:taskId',

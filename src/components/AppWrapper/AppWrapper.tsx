@@ -2,7 +2,6 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { Route, BrowserRouter } from 'react-router-dom';
-
 import { ROUTES } from '../../shared/routes';
 import TaskDetails from '../TaskDetails';
 import Login from '../Login';
@@ -12,6 +11,9 @@ import NewbieSelect from '../NewbieSelect';
 import ContactDetails from '../ContactDetails';
 import AddTask from '../AddTask';
 import ErrorPage from '../ErrorPage';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import Logout from '../Logout/Logout';
+import RouteRedirect from '../RouteRedirect/RouteRedirect';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -22,7 +24,6 @@ const useStyles = makeStyles(theme => ({
 
 const Root: React.FC = () => {
   const classes = useStyles();
-
   return (
     <Container
       data-testid={'root'}
@@ -30,17 +31,43 @@ const Root: React.FC = () => {
       component='main'
       maxWidth='md'>
       <BrowserRouter basename={ROUTES.BASE}>
+        <Route path={ROUTES.BASE} exact component={RouteRedirect} />
         <Route path={ROUTES.ERROR} exact component={ErrorPage} />
         <Route path={ROUTES.LOGIN} exact component={Login} />
-        <Route path={ROUTES.BUDDY_ADD_NEWBIE} exact component={AddNewbie} />
-        <Route path={ROUTES.BUDDY_SELECT_NEWBIE} exact component={NewbieSelect} />
-        <Route path={ROUTES.BUDDY_TASKS_LIST} exact component={TasksList} />
-        <Route path={ROUTES.BUDDY_TASK_DETAILS} exact component={TaskDetails} />
-        <Route path={ROUTES.BUDDY_NEWBIE_DETAILS} exact component={ContactDetails} />
-        <Route path={ROUTES.NEWBIE_BUDDY_DETAILS} exact component={ContactDetails} />
-        <Route path={ROUTES.BUDDY_ADD_TASK} exact component={AddTask} />
-        <Route path={ROUTES.NEWBIE_TASKS_LIST} exact component={TasksList} />
-        <Route path={ROUTES.NEWBIE_TASK_DETAILS} exact component={TaskDetails} />
+        <ProtectedRoute path={ROUTES.BUDDY_ADD_NEWBIE} exact component={AddNewbie} />
+        <ProtectedRoute
+          path={ROUTES.BUDDY_SELECT_NEWBIE}
+          exact
+          component={NewbieSelect}
+        />
+        <ProtectedRoute path={ROUTES.BUDDY_TASKS_LIST} exact component={TasksList} />
+        <ProtectedRoute
+          path={ROUTES.BUDDY_TASK_DETAILS}
+          exact
+          component={TaskDetails}
+        />
+        <ProtectedRoute
+          path={ROUTES.BUDDY_NEWBIE_DETAILS}
+          exact
+          component={ContactDetails}
+        />
+        <ProtectedRoute
+          path={ROUTES.NEWBIE_BUDDY_DETAILS}
+          exact
+          component={ContactDetails}
+        />
+        <ProtectedRoute path={ROUTES.BUDDY_ADD_TASK} exact component={AddTask} />
+        <ProtectedRoute
+          path={ROUTES.NEWBIE_TASKS_LIST}
+          exact
+          component={TasksList}
+        />
+        <ProtectedRoute
+          path={ROUTES.NEWBIE_TASK_DETAILS}
+          exact
+          component={TaskDetails}
+        />
+        <Route path={ROUTES.LOGOUT} exact component={Logout} />
       </BrowserRouter>
     </Container>
   );

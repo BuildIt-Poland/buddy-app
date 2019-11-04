@@ -45,7 +45,8 @@ const Login = () => {
   const [loginMutation, { loading }] = useMutation<AuthData>(LOGIN_MUTATION, {
     onCompleted: ({ login }) => {
       auth.setToken(login.token);
-      history.push(ROUTES.BUDDY_SELECT_NEWBIE);
+      auth.setUser({ id: login.userId, role: login.role });
+      history.push(ROUTES.BASE);
     },
   });
 

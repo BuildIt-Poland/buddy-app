@@ -1,11 +1,13 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { Box, Typography } from '@material-ui/core';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
+import { UserMenuSettingsProps } from './types';
 
-interface OwnProps {}
+const UserMenuSettings: React.FC<UserMenuSettingsProps> = props => {
+  const PUSH_NOTIFICATIONS_LABEL = 'Allow push notifications';
+  const { allowPushedNotifications, updatePushNotificationsSettings } = props;
 
-type Props = OwnProps;
-
-const UserMenuSettings: FunctionComponent<Props> = props => {
   return (
     <>
       <Typography component='p' variant='h4'>
@@ -13,6 +15,15 @@ const UserMenuSettings: FunctionComponent<Props> = props => {
           Settings
         </Box>
       </Typography>
+      <FormControlLabel
+        control={
+          <Switch
+            checked={allowPushedNotifications}
+            onChange={updatePushNotificationsSettings}
+          />
+        }
+        label={PUSH_NOTIFICATIONS_LABEL}
+      />
     </>
   );
 };

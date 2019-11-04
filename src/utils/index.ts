@@ -1,4 +1,4 @@
 import apolloClient from './apollo-client';
-import auth from './auth';
+import auth from './cookie.service';
 
 export { apolloClient, auth };

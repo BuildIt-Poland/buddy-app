@@ -19,6 +19,7 @@ const BUDDY_BASIC_DETAILS = gql`
     buddy(buddyId: $buddyId) {
       name
       email
+      allowPushedNotifications
       photo
       newbies {
         name
@@ -33,6 +34,12 @@ const NEWBIE_BASIC_DETAILS = gql`
     newbie(newbieId: $newbieId) {
       name
       email
+      allowPushedNotifications
+      photo
+      buddy {
+        name
+        photo
+      }
     }
   }
 `;
