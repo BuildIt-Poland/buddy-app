@@ -7,6 +7,7 @@ import {
 } from 'graphql-tools';
 import introspectionSchema from '../../server/src/schema.graphql';
 import commonMocks from '../fixtures/graphql-mocks';
+import { ERROR } from '../../server/src/errors';
 
 interface MockGraphQLOptions<AllOperations extends Record<string, any>> {
   schema: object | string | string[];
@@ -28,6 +29,12 @@ interface GQLRequestPayload<AllOperations extends Record<string, any>> {
   variables: any;
 }
 
+interface GraphqlRequest {
+  operationName: string;
+  variables?: any;
+  query: string;
+}
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -38,6 +45,7 @@ declare global {
         options?: SetOperationsOpts<AllOperations>
       ): Cypress.Chainable;
       dataTest: (value: string) => Chainable<Element>;
+      errorRequest: (body: GraphqlRequest) => void;
     }
   }
 }
@@ -147,3 +155,16 @@ Cypress.Commands.add(
     );
   }
 );
+
+Cypress.Commands.add('errorRequest', (body: GraphqlRequest) => {
+  cy.request('POST', Cypress.env('serverUrl'), body).as('errorRequest');
+
+  cy.get('@errorRequest').should(response => {
+    const respBody = response.body;
+    if (respBody.errors) {
+      const error = respBody.errors[0];
+      expect(respBody).to.have.property('errors');
+      expect(error.message).equals(ERROR[error.name]);
+    }
+  });
+});
