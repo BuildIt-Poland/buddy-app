@@ -5,7 +5,7 @@ jest.mock('js-cookie');
 
 const mockedCookies = Cookies as jest.Mocked<typeof Cookies>;
 
-describe('Utils - auth', () => {
+describe('Utils - cookieService', () => {
   const OLD_ENV = process.env;
 
   beforeEach(() => {
