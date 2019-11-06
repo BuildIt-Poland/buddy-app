@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - Carrousel renders correctly Should render correctly Carrousel 1`] = `
+<Grid
+  className="makeStyles-carrousel-2"
+  container={true}
+  spacing={2}
+  wrap="wrap"
+>
+  <Grid
+    item={true}
+  >
+    <a
+      className="makeStyles-link-3"
+      href="/buddy/newbies/ck17svulh9k2k0b17j31ansfk/tasks"
+      onClick={[Function]}
+    >
+      <Paper
+        className="makeStyles-carrouselElement-1"
+      >
+        <Avatar
+          name="Test 2"
+          progress={50}
+        />
+      </Paper>
+    </a>
+  </Grid>
+  <Grid
+    item={true}
+  >
+    <a
+      className="makeStyles-link-3"
+      href="/buddy/newbies/ck17swp2m9kcv0b17we0ibrdn/tasks"
+      onClick={[Function]}
+    >
+      <Paper
+        className="makeStyles-carrouselElement-1"
+      >
+        <Avatar
+          name="Test 1"
+          progress={60}
+          role="Front End"
+        />
+        <Box
+          m={2}
+        >
+          <Typography
+            align="center"
+            component="p"
+            variant="body2"
+          >
+            <Box
+              component="span"
+              fontWeight="bold"
+            >
+              Start Date
+            </Box>
+          </Typography>
+          <Typography
+            align="center"
+            component="p"
+            variant="body2"
+          >
+            2019-01-01
+          </Typography>
+        </Box>
+      </Paper>
+    </a>
+  </Grid>
+</Grid>
+`;

@@ -6,22 +6,97 @@ Array [
     onClick={[Function]}
     type="menu"
   />,
-  <Typography
-    component="h2"
-    variant="h2"
+  <article
+    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-5 MuiGrid-direction-xs-column"
   >
-    <Box
-      fontWeight={700}
+    <div
+      className="MuiGrid-root MuiGrid-item"
     >
-      Your New Joiners
-    </Box>
-  </Typography>,
-  <Avatar
-    name="Tom Hanks"
-    progress={75}
-    role="Front End Engineer"
-    type="regular"
+      <Typography
+        component="h2"
+        variant="h2"
+      >
+        Your New Joiners
+      </Typography>
+      <Typography
+        className="makeStyles-subTitle-2"
+        component="p"
+        variant="body2"
+      >
+        Don’t forget to complete all tasks
+      </Typography>
+    </div>
+    <div
+      className="MuiGrid-root MuiGrid-item"
+    >
+      <CircularProgress />
+    </div>
+  </article>,
+  <PlusButton
+    className="makeStyles-fab-5"
   />,
-  <PlusButton />,
+  <BackgroundShape />,
+]
+`;
+
+exports[`Component - NewbieSelect renders correctly 2`] = `
+Array [
+  <Navbar
+    onClick={[Function]}
+    type="menu"
+  />,
+  <article
+    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-5 MuiGrid-direction-xs-column"
+  >
+    <div
+      className="MuiGrid-root MuiGrid-item"
+    >
+      <Typography
+        component="h2"
+        variant="h2"
+      >
+        Your New Joiners
+      </Typography>
+      <Typography
+        className="makeStyles-subTitle-2"
+        component="p"
+        variant="body2"
+      >
+        Don’t forget to complete all tasks
+      </Typography>
+    </div>
+    <div
+      className="MuiGrid-root makeStyles-carrouselContainer-3 MuiGrid-item"
+    >
+      <Carrousel
+        newbies={
+          Array [
+            Object {
+              "id": "ck17svulh9k2k0b17j31ansfk",
+              "name": "Test 2",
+              "photo": null,
+              "startDate": null,
+              "tasksInfo": Object {
+                "buddyProgress": 0.5,
+              },
+            },
+            Object {
+              "id": "ck17swp2m9kcv0b17we0ibrdn",
+              "name": "Test 1",
+              "photo": null,
+              "startDate": null,
+              "tasksInfo": Object {
+                "buddyProgress": 0.6,
+              },
+            },
+          ]
+        }
+      />
+    </div>
+  </article>,
+  <PlusButton
+    className="makeStyles-fab-5"
+  />,
+  <BackgroundShape />,
 ]
 `;

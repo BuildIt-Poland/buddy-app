@@ -28,9 +28,12 @@ exports[`Component - Avatar renders correctly with name and role 1`] = `
     <Typography
       component="h4"
       variant="subtitle1"
-    />
+    >
+      undefined %
+    </Typography>
   </Grid>
   <Typography
+    align="center"
     variant="h4"
   >
     <Box
@@ -79,7 +82,7 @@ exports[`Component - Avatar renders correctly with progress bar 1`] = `
       component="h4"
       variant="subtitle1"
     >
-      45%
+      45 %
     </Typography>
   </Grid>
 </Grid>
@@ -113,7 +116,9 @@ exports[`Component - Avatar renders correctly with type "small" 1`] = `
     <Typography
       component="h4"
       variant="subtitle2"
-    />
+    >
+      undefined %
+    </Typography>
   </Grid>
 </Grid>
 `;
@@ -146,7 +151,9 @@ exports[`Component - Avatar renders correctly without props 1`] = `
     <Typography
       component="h4"
       variant="subtitle1"
-    />
+    >
+      undefined %
+    </Typography>
   </Grid>
 </Grid>
 `;
