@@ -1,4 +1,4 @@
-import { graphql } from 'graphql';
+import { graphql, GraphQLError } from 'graphql';
 import { buildClientSchema, printSchema } from 'graphql';
 import {
   makeExecutableSchema,
@@ -7,7 +7,6 @@ import {
 } from 'graphql-tools';
 import introspectionSchema from '../../server/src/schema.graphql';
 import commonMocks from '../fixtures/graphql-mocks';
-import { ERROR } from '../../server/src/errors';
 
 interface MockGraphQLOptions<AllOperations extends Record<string, any>> {
   schema: object | string | string[];
@@ -15,12 +14,14 @@ interface MockGraphQLOptions<AllOperations extends Record<string, any>> {
   mocks?: IMocks;
   endpoint?: string;
   operations?: Partial<AllOperations>;
+  delay?: number;
 }
 
 interface SetOperationsOpts<AllOperations> {
   name?: string;
   endpoint?: string;
   operations?: Partial<AllOperations>;
+  delay?: number;
 }
 
 interface GQLRequestPayload<AllOperations extends Record<string, any>> {
@@ -49,6 +50,8 @@ declare global {
     }
   }
 }
+
+export const REQUEST_DELAY = 100;
 
 const dataTest = (value: string): Cypress.Chainable<JQuery> => {
   return cy.get(`[data-testid=${value}]`);
@@ -83,6 +86,9 @@ const getRootValue = <AllOperations>(
   return op;
 };
 
+const wait = (timeout: number) => <T>(response?: T) =>
+  new Promise<T>(resolve => setTimeout(() => resolve(response), timeout));
+
 Cypress.Commands.add('dataTest', dataTest);
 
 Cypress.Commands.add(
@@ -90,7 +96,12 @@ Cypress.Commands.add(
   <AllOperations extends Record<string, any>>(
     options: MockGraphQLOptions<AllOperations>
   ) => {
-    const { endpoint = '/graphql', operations = {}, mocks = {} } = options;
+    const {
+      endpoint = '/graphql',
+      delay = 0,
+      operations = {},
+      mocks = {},
+    } = options;
 
     const schema = makeExecutableSchema({
       typeDefs: schemaAsSDL(options.schema),
@@ -101,43 +112,67 @@ Cypress.Commands.add(
       mocks: { ...commonMocks, ...mocks },
     });
 
+    let currentDelay = delay;
     let currentOps = operations;
 
     cy.on('window:before:load', win => {
       const originalFetch = win.fetch;
-      const fetch = (input: RequestInfo, init?: RequestInit) => {
+      function fetch(input: RequestInfo, init?: RequestInit) {
         if (typeof input !== 'string') {
           throw new Error(
             'Currently only support fetch(url, options), saw fetch(Request)'
           );
         }
-        if (input.includes(endpoint) && init && init.method === 'POST') {
+        if (input.indexOf(endpoint) !== -1 && init && init.method === 'POST') {
           const payload: GQLRequestPayload<AllOperations> = JSON.parse(
             init.body as string
           );
           const { operationName, query, variables } = payload;
+          const rootValue = getRootValue<AllOperations>(
+            currentOps,
+            operationName,
+            variables
+          );
+
+          if (
+            rootValue instanceof GraphQLError ||
+            rootValue.constructor === GraphQLError ||
+            rootValue.constructor.name === 'GraphQLError'
+          ) {
+            return Promise.resolve()
+              .then(wait(currentDelay))
+              .then(
+                () =>
+                  new Response(
+                    JSON.stringify({
+                      data: {},
+                      errors: [rootValue],
+                    })
+                  )
+              );
+          }
+
           return graphql({
             schema,
             source: query,
             variableValues: variables,
             operationName,
-            rootValue: getRootValue<AllOperations>(
-              currentOps,
-              operationName,
-              variables
-            ),
-          }).then((data: any) => new Response(JSON.stringify(data)));
+            rootValue,
+          })
+            .then(wait(currentDelay))
+            .then((data: any) => new Response(JSON.stringify(data)));
         }
         return originalFetch(input, init);
-      };
+      }
       cy.stub(win, 'fetch', fetch).as('fetchStub');
     });
-
+    //
     cy.wrap({
-      setOperations: (newOperations: Partial<AllOperations>) => {
+      setOperations: (options: SetOperationsOpts<AllOperations>) => {
+        currentDelay = options.delay || 0;
         currentOps = {
-          ...(operations as object),
-          ...(newOperations as object),
+          ...currentOps,
+          ...options.operations,
         };
       },
     }).as(getAlias(options));
@@ -149,22 +184,6 @@ Cypress.Commands.add(
   <AllOperations extends Record<string, any>>(
     options: SetOperationsOpts<AllOperations>
   ) => {
-    cy.get(`@${getAlias(options)}`).invoke(
-      'setOperations' as any,
-      options.operations || {}
-    );
+    cy.get(`@${getAlias(options)}`).invoke('setOperations' as any, options);
   }
 );
-
-Cypress.Commands.add('errorRequest', (body: GraphqlRequest) => {
-  cy.request('POST', Cypress.env('serverUrl'), body).as('errorRequest');
-
-  cy.get('@errorRequest').should(response => {
-    const respBody = response.body;
-    if (respBody.errors) {
-      const error = respBody.errors[0];
-      expect(respBody).to.have.property('errors');
-      expect(error.message).equals(ERROR[error.name]);
-    }
-  });
-});
