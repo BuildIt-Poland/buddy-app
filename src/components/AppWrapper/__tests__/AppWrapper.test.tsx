@@ -5,8 +5,8 @@ import AppWrapper from '../AppWrapper';
 
 jest.mock('@material-ui/core/Container', () => 'Container');
 jest.mock('../../Login', () => 'Login');
-jest.mock('../../ProtectedRoute/ProtectedRoute', () => 'ProtectedRoute');
-jest.mock('../../RouteRedirect/RouteRedirect', () => 'RouteRedirect');
+jest.mock('../../ProtectedRoute', () => 'ProtectedRoute');
+jest.mock('../../RouteRedirect', () => 'RouteRedirect');
 
 describe('Component - AppWrapper', () => {
   test('renders correctly', () => {

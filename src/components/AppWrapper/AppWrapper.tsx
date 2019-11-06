@@ -11,9 +11,9 @@ import NewbieSelect from '../NewbieSelect';
 import ContactDetails from '../ContactDetails';
 import AddTask from '../AddTask';
 import ErrorPage from '../ErrorPage';
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from '../ProtectedRoute';
 import Logout from '../Logout/Logout';
-import RouteRedirect from '../RouteRedirect/RouteRedirect';
+import RouteRedirect from '../RouteRedirect';
 
 const useStyles = makeStyles(theme => ({
   container: {
