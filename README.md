@@ -38,6 +38,18 @@ Open [http://localhost:4000](http://localhost:4000) to view GraphQL playground i
 - ```$ npm test``` - Launches the test runner in the interactive watch mode.
 - ```$ npm run eject``` - Removes the single build dependency from your project.
 
+### App login
+The App allows to login as **buddy** or **new joiner**.
+
+A valid registered email and password are needed for a successful login. These data can be found inside the DB in use. If you have setup the server .env file with the data above, then you need to access the same [Prisma admin panel](https://eu1.prisma.sh/anton-lunov/Buddy-app/test/_admin). Please note that this is a development setup and this db will be removed as part of future development.
+
+Trying to visit the above Prisma admin panel will return an error of invalid token. Please enter the settings and add the following token:
+```
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJCdWRkeS1hcHBAdGVzdCIsInJvbGVzIjpbImFkbWluIl19LCJpYXQiOjE1NzI4NTg0OTEsImV4cCI6MTU3MzQ2MzI5MX0.pYcTHKkYwbwI08zYkyGC52e-z4hVsIwFYvstjtdIYx0
+```
+
+This will allow you admin access to the temporary database in use for development.
+
 ## Production
 
 The following command is intended to be launched from the project root directory.
