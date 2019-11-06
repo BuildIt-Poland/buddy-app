@@ -30,12 +30,6 @@ interface GQLRequestPayload<AllOperations extends Record<string, any>> {
   variables: any;
 }
 
-interface GraphqlRequest {
-  operationName: string;
-  variables?: any;
-  query: string;
-}
-
 declare global {
   namespace Cypress {
     interface Chainable {

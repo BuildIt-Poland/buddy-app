@@ -3,6 +3,6 @@
   "viewportWidth": 1600,
   "viewportHeight": 900,
   "chromeWebSecurity": false,
-  "supportFile": "cypress/support/index.ts",
+  "supportFile": "cypress/support/index.ts"
 }
 
