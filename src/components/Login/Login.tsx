@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -6,18 +6,15 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useForm from 'react-hook-form';
-import { useMutation } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
-
+import { ReactComponent as SpaceManLogo } from 'assets/svg/spaceman.svg';
+import { AuthContext, AuthContextData } from '../../context/AuthStore';
 import RoundedButton from '../RoundedButton';
 import AlertDialog from '../AlertDialog';
 import { ROUTES } from '../../shared/routes';
-import { ReactComponent as SpaceMan } from '../../svg/spaceman.svg';
-import LOGIN_MUTATION from '../../graphql/login.graphql';
-import { auth } from '../../utils';
 import BackgroundShape from '../BackgroundShape/';
 import DICTIONARY from './login.dictionary';
-import { ErrorDialog, AuthData, FormData } from './types';
+import { ErrorDialog, FormData } from './types';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -40,14 +37,8 @@ const Login = () => {
     isOpen: false,
     message: '',
   });
-
   const { register, errors, handleSubmit } = useForm<FormData>();
-  const [loginMutation, { loading }] = useMutation<AuthData>(LOGIN_MUTATION, {
-    onCompleted: ({ login }) => {
-      auth.setToken(login.token);
-      history.push(ROUTES.BUDDY_SELECT_NEWBIE);
-    },
-  });
+  const { login, loading } = useContext<AuthContextData>(AuthContext);
 
   const onSubmit = async ({ email, password }: FormData) => {
     setErrorDialog({
@@ -55,12 +46,8 @@ const Login = () => {
       message: '',
     });
     try {
-      await loginMutation({
-        variables: {
-          email,
-          password,
-        },
-      });
+      await login(email, password);
+      history.push(ROUTES.BUDDY_SELECT_NEWBIE);
     } catch (error) {
       if (error.networkError) {
         setErrorDialog({
@@ -84,7 +71,7 @@ const Login = () => {
         align={'center'}>
         {DICTIONARY.TITLE}
       </Typography>
-      <SpaceMan className={classes.spaceMan} />
+      <SpaceManLogo className={classes.spaceMan} />
       <form data-testid='form' noValidate onSubmit={handleSubmit(onSubmit)}>
         <TextField
           inputProps={{ 'data-testid': 'email' }}
