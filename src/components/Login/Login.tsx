@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -6,10 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useForm from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
 import { ReactComponent as SpaceManLogo } from 'assets/svg/spaceman.svg';
 import { AuthContext, AuthContextData } from 'context/AuthStore';
-import { ROUTES } from 'shared/routes';
 import RoundedButton from '../RoundedButton';
 import AlertDialog from '../AlertDialog';
 import BackgroundShape from '../BackgroundShape/';
@@ -32,23 +30,23 @@ const useStyles = makeStyles(theme => ({
 
 const Login = () => {
   const classes = useStyles();
-  const history = useHistory();
   const [errorDialog, setErrorDialog] = useState<ErrorDialog>({
     isOpen: false,
     message: '',
   });
   const { register, errors, handleSubmit } = useForm<FormData>();
-  const { login, loading } = useContext<AuthContextData>(AuthContext);
+  const { login, loading, error } = useContext<AuthContextData>(AuthContext);
 
   const onSubmit = async ({ email, password }: FormData) => {
+    login(email, password);
     setErrorDialog({
       isOpen: false,
       message: '',
     });
-    try {
-      await login(email, password);
-      history.push(ROUTES.BUDDY_SELECT_NEWBIE);
-    } catch (error) {
+  };
+
+  useEffect(() => {
+    if (error) {
       if (error.networkError) {
         setErrorDialog({
           isOpen: true,
@@ -61,7 +59,8 @@ const Login = () => {
         });
       }
     }
-  };
+  }, [error, setErrorDialog]);
+
   return (
     <>
       <Typography

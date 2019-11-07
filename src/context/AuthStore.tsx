@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { AuthPayload, Mutation } from 'types';
 import { useMutation } from '@apollo/react-hooks';
 import { auth } from 'utils';
@@ -15,6 +15,7 @@ interface State {
   loading: boolean;
   error: any;
   data: AuthPayload;
+  isAuthenticated: boolean;
 }
 
 interface Action {
@@ -24,17 +25,20 @@ interface Action {
 
 export interface AuthContextData extends State {
   login: (email: string, password: string) => Promise<any>;
+  logout: () => void;
 }
 
 const defaultState: State = {
   loading: false,
   error: {},
   data: {} as AuthPayload,
+  isAuthenticated: false,
 };
 
 const defaultContext: AuthContextData = {
   ...defaultState,
   login: () => new Promise(() => null),
+  logout: () => null,
 };
 
 export const AuthContext = React.createContext(defaultContext);
@@ -51,14 +55,20 @@ const authReducer = (state: State, action: Action) => {
       return {
         ...state,
         loading: false,
-        error: {},
         data: { ...action.payload },
+        isAuthenticated: true,
       };
     case ActionTypes.AUTH_ERROR:
       return {
         ...state,
         loading: false,
         error: { ...action.payload },
+      };
+    case ActionTypes.AUTH_LOGOUT:
+      return {
+        ...state,
+        data: {},
+        isAuthenticated: false,
       };
     default:
       throw new Error();
@@ -69,7 +79,7 @@ const AuthStore = (props: any): JSX.Element => {
   const [state, dispatch] = useReducer(authReducer, defaultState);
   const [loginMutation] = useMutation<Mutation>(LOGIN_MUTATION, {
     onCompleted: ({ login }) => {
-      auth.setToken(login.token);
+      auth.setUser(login);
     },
   });
 
@@ -77,17 +87,17 @@ const AuthStore = (props: any): JSX.Element => {
     dispatch({ type: ActionTypes.AUTH_INIT });
 
     try {
-      const result = await loginMutation({
+      const { data } = await loginMutation({
         variables: {
           email,
           password,
         },
       });
 
-      if (typeof result.data === 'object') {
+      if (typeof data === 'object') {
         dispatch({
           type: ActionTypes.AUTH_SUCCESS,
-          payload: result.data.login,
+          payload: data.login,
         });
       }
     } catch (error) {
@@ -95,11 +105,27 @@ const AuthStore = (props: any): JSX.Element => {
     }
   };
 
+  const logout = () => {
+    dispatch({ type: ActionTypes.AUTH_LOGOUT });
+    auth.removeUser();
+  };
+
+  useEffect(() => {
+    const user = auth.getUser();
+    if (user) {
+      dispatch({
+        type: ActionTypes.AUTH_SUCCESS,
+        payload: user,
+      });
+    }
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
         ...state,
         login,
+        logout,
       }}>
       {props.children}
     </AuthContext.Provider>

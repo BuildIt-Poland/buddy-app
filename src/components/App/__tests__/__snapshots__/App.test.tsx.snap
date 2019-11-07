@@ -3,6 +3,6 @@
 exports[`Component - App renders correctly 1`] = `
 <ThemeProvider>
   <CssBaseline />
-  <AppWrapper />
+  <AppRouter />
 </ThemeProvider>
 `;

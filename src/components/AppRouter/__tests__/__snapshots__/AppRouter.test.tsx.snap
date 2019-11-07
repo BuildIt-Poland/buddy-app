@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - AppRouter renders correctly 1`] = `
+<Container
+  className="makeStyles-container-1"
+  component="main"
+  data-testid="root"
+  maxWidth="md"
+>
+  <h1
+    className="MuiTypography-root makeStyles-title-2 MuiTypography-h1 MuiTypography-alignCenter"
+  >
+    Buddy
+  </h1>
+  <svg
+    className="makeStyles-spaceMan-3"
+  >
+    spaceman.svg
+  </svg>
+  <form
+    data-testid="form"
+    noValidate={true}
+    onSubmit={[Function]}
+  >
+    <div
+      className="MuiFormControl-root MuiTextField-root MuiFormControl-marginDense MuiFormControl-fullWidth"
+    >
+      <label
+        className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense"
+        data-shrink={false}
+      >
+        Email Address
+      </label>
+      <div
+        className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl MuiInputBase-marginDense"
+        onClick={[Function]}
+      >
+        <input
+          aria-invalid={false}
+          autoComplete="email"
+          autoFocus={true}
+          className="MuiInputBase-input MuiInput-input MuiInputBase-inputMarginDense MuiInput-inputMarginDense"
+          data-testid="email"
+          disabled={false}
+          name="email"
+          onAnimationStart={[Function]}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          required={false}
+          type="text"
+        />
+      </div>
+      <p
+        className="MuiFormHelperText-root MuiFormHelperText-marginDense"
+      >
+         
+      </p>
+    </div>
+    <div
+      className="MuiFormControl-root MuiTextField-root MuiFormControl-marginDense MuiFormControl-fullWidth"
+    >
+      <label
+        className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-marginDense"
+        data-shrink={false}
+      >
+        Password
+      </label>
+      <div
+        className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-fullWidth MuiInput-fullWidth MuiInputBase-formControl MuiInput-formControl MuiInputBase-marginDense"
+        onClick={[Function]}
+      >
+        <input
+          aria-invalid={false}
+          autoComplete="current-password"
+          className="MuiInputBase-input MuiInput-input MuiInputBase-inputMarginDense MuiInput-inputMarginDense"
+          data-testid="password"
+          disabled={false}
+          name="password"
+          onAnimationStart={[Function]}
+          onBlur={[Function]}
+          onChange={[Function]}
+          onFocus={[Function]}
+          required={false}
+          type="password"
+        />
+      </div>
+      <p
+        className="MuiFormHelperText-root MuiFormHelperText-marginDense"
+      >
+         
+      </p>
+    </div>
+    <button
+      className="MuiButtonBase-root MuiButton-root WithStyles(ForwardRef(Button))-root-99 MuiButton-contained MuiButton-containedPrimary makeStyles-submit-4 MuiButton-fullWidth"
+      data-testid="submit-button"
+      disabled={false}
+      onBlur={[Function]}
+      onDragLeave={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchEnd={[Function]}
+      onTouchMove={[Function]}
+      onTouchStart={[Function]}
+      tabIndex={0}
+      type="submit"
+    >
+      <span
+        className="MuiButton-label"
+      >
+        Sign In
+      </span>
+    </button>
+    <div
+      className="MuiGrid-root MuiGrid-container MuiGrid-justify-xs-flex-end"
+    >
+      <a
+        className="MuiTypography-root MuiLink-root MuiLink-underlineHover MuiTypography-colorPrimary"
+        href="#"
+        onBlur={[Function]}
+        onFocus={[Function]}
+      >
+        Forgot password?
+      </a>
+    </div>
+  </form>
+  <svg
+    className="makeStyles-background-240"
+  >
+    <ellipse
+      cx="70%"
+      cy="300"
+      rx="75%"
+      ry="227"
+    />
+  </svg>
+</Container>
+`;

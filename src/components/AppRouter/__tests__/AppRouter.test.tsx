@@ -1,14 +1,13 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 
-import AppWrapper from '../AppWrapper';
+import AppRouter from '../AppRouter';
 
 jest.mock('@material-ui/core/Container', () => 'Container');
-jest.mock('components/Login', () => 'Login');
 
-describe('Component - AppWrapper', () => {
+describe('Component - AppRouter', () => {
   test('renders correctly', () => {
-    const component = create(<AppWrapper></AppWrapper>);
+    const component = create(<AppRouter></AppRouter>);
 
     expect(component.toJSON()).toMatchSnapshot();
   });

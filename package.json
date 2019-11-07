@@ -96,6 +96,10 @@
     "collectCoverageFrom": [
       "src/**/*.{tsx,ts}",
       "!src/styles/**/*",
+      "!src/types/**/*",
+      "!src/shared/**/*",
+      "!src/graphql/**/*",
+      "!src/context/**/*",
       "!src/index.tsx",
       "!src/utils/apollo-client.ts",
       "!src/serviceWorker.ts",

@@ -3,7 +3,7 @@ import { render, fireEvent, wait, cleanup } from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import { MockedProvider } from '@apollo/react-testing';
 import { GraphQLError } from 'graphql';
-
+import AuthStore from 'context/AuthStore';
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
 import auth from 'utils/auth';
 import Login from '../Login';
@@ -15,6 +15,19 @@ describe('Component - Login', () => {
     key: 'utwyk7',
     pathname: '/login',
   };
+
+  const renderLoginRoute = (mocks: any) =>
+    render(
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <MemoryRouter initialEntries={[mockLocation]}>
+          <AuthStore>
+            <Route path='/login'>
+              <Login />
+            </Route>
+          </AuthStore>
+        </MemoryRouter>
+      </MockedProvider>
+    );
 
   afterEach(() => cleanup);
 
@@ -31,24 +44,13 @@ describe('Component - Login', () => {
           },
           result: {
             data: {
-              login: {
-                token: 'dummy-token',
-              },
+              login: { role: 'BUDDY', token: 'dummy-token', userId: '1' },
             },
           },
         },
       ];
-      it('should redirect user to user and store auth token', async () => {
-        const { getByText, getByTestId } = render(
-          <MockedProvider mocks={LoginSuccessMock} addTypename={false}>
-            <MemoryRouter initialEntries={[mockLocation]}>
-              <Route path='/login'>
-                <Login />
-              </Route>
-              <Route path='/buddy/newbies'>Dummy route</Route>
-            </MemoryRouter>
-          </MockedProvider>
-        );
+      it('should store auth payload', async () => {
+        const { getByTestId } = renderLoginRoute(LoginSuccessMock);
 
         const emailInput = getByTestId('email');
         const passwordInput = getByTestId('password');
@@ -63,8 +65,9 @@ describe('Component - Login', () => {
         fireEvent.submit(getByTestId('form'));
 
         await wait(() => {
-          expect(auth.setToken).toHaveBeenCalledWith('dummy-token');
-          expect(getByText('Dummy route')).toBeInTheDocument();
+          expect(auth.setUser).toHaveBeenCalledWith(
+            LoginSuccessMock[0].result.data.login
+          );
         });
       });
     });
@@ -84,16 +87,7 @@ describe('Component - Login', () => {
         },
       ];
       it('should show AlertDialog with error message', async () => {
-        const { getByTestId } = render(
-          <MockedProvider mocks={LoginFailedMock} addTypename={false}>
-            <MemoryRouter initialEntries={[mockLocation]}>
-              <Route path='/login'>
-                <Login />
-              </Route>
-              <Route path='/buddy/newbies'>Dummy route</Route>
-            </MemoryRouter>
-          </MockedProvider>
-        );
+        const { getByTestId } = renderLoginRoute(LoginFailedMock);
 
         const emailInput = getByTestId('email');
         const passwordInput = getByTestId('password');
@@ -132,16 +126,7 @@ describe('Component - Login', () => {
     ];
 
     it('should render error dialog', async () => {
-      const { getByTestId } = render(
-        <MockedProvider mocks={noNetworkMock} addTypename={false}>
-          <MemoryRouter initialEntries={[mockLocation]}>
-            <Route path='/login'>
-              <Login />
-            </Route>
-            <Route path='/buddy/newbies'>Dummy route</Route>
-          </MemoryRouter>
-        </MockedProvider>
-      );
+      const { getByTestId } = renderLoginRoute(noNetworkMock);
 
       const emailInput = getByTestId('email');
       const passwordInput = getByTestId('password');
