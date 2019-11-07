@@ -29,7 +29,7 @@ exports[`Component - Avatar renders correctly with name and role 1`] = `
       component="h4"
       variant="subtitle1"
     >
-      undefined %
+      0 %
     </Typography>
   </Grid>
   <Typography
@@ -117,7 +117,7 @@ exports[`Component - Avatar renders correctly with type "small" 1`] = `
       component="h4"
       variant="subtitle2"
     >
-      undefined %
+      0 %
     </Typography>
   </Grid>
 </Grid>
@@ -152,7 +152,7 @@ exports[`Component - Avatar renders correctly without props 1`] = `
       component="h4"
       variant="subtitle1"
     >
-      undefined %
+      0 %
     </Typography>
   </Grid>
 </Grid>
