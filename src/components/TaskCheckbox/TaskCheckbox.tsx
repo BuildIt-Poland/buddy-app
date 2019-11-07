@@ -18,9 +18,9 @@ const useStyles = makeStyles({
   line: {
     width: '100%',
     position: 'absolute',
-    height: '1px',
+    height: '0.1rem',
     backgroundColor: 'rgba(0, 0, 0, 0.28)',
-    top: '12px',
+    top: '1.2rem',
   },
 });
 
