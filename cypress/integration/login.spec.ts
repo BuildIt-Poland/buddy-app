@@ -1,9 +1,15 @@
+import { GraphQLError } from 'graphql';
+import schema from '../../server/src/schema.graphql';
 import { ROUTES } from '../../src/shared/routes';
+import { REQUEST_DELAY } from '../support/commands';
 
-describe.skip('Login Page', () => {
+describe('Login Page', () => {
   beforeEach(() => {
+    cy.server();
+    cy.mockGraphql({ schema });
     cy.visit(ROUTES.LOGIN);
   });
+
   it('shows root component', function() {
     cy.contains('h1', 'Buddy');
   });
@@ -19,26 +25,32 @@ describe.skip('Login Page', () => {
     cy.get('form').contains('Please enter a valid email');
   });
 
-  describe('When submitting a invalid email/password', () => {
-    it('should navigate to home screen', () => {
+  describe('When submitting an invalid email/password', () => {
+    it('should show progress and alert-dialog', () => {
+      cy.mockGraphqlOps({
+        delay: REQUEST_DELAY,
+        operations: {
+          LoginMutation: new GraphQLError(''),
+        },
+      });
       cy.dataTest('email').type('aa@aa.pt');
       cy.dataTest('password').type('12345');
       cy.dataTest('submit-button').click();
-      cy.dataTest('login-progress');
-      cy.dataTest('alert-dialog');
-      cy.dataTest('alert-dialog').contains(
-        'The email and password you entered did not match our records.'
-      );
+      cy.dataTest('login-progress').should('be.visible');
+      cy.dataTest('alert-dialog').should('be.visible');
       cy.dataTest('alert-dialog-close').click();
     });
   });
 
   describe('When submitting a valid form', () => {
     it('should login successfully', () => {
+      cy.mockGraphqlOps({
+        delay: REQUEST_DELAY,
+      });
       cy.dataTest('email').type('las12041991@gmail.com');
       cy.dataTest('password').type('12345');
       cy.dataTest('submit-button').click();
-      cy.dataTest('login-progress');
+      cy.dataTest('login-progress').should('be.visible');
       cy.url().should('includes', ROUTES.BUDDY_SELECT_NEWBIE);
     });
   });

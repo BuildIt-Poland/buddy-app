@@ -1,4 +1,4 @@
-import { graphql } from 'graphql';
+import { graphql, GraphQLError } from 'graphql';
 import { buildClientSchema, printSchema } from 'graphql';
 import {
   makeExecutableSchema,
@@ -14,12 +14,14 @@ interface MockGraphQLOptions<AllOperations extends Record<string, any>> {
   mocks?: IMocks;
   endpoint?: string;
   operations?: Partial<AllOperations>;
+  delay?: number;
 }
 
 interface SetOperationsOpts<AllOperations> {
   name?: string;
   endpoint?: string;
   operations?: Partial<AllOperations>;
+  delay?: number;
 }
 
 interface GQLRequestPayload<AllOperations extends Record<string, any>> {
@@ -38,9 +40,12 @@ declare global {
         options?: SetOperationsOpts<AllOperations>
       ): Cypress.Chainable;
       dataTest: (value: string) => Chainable<Element>;
+      errorRequest: (body: GraphqlRequest) => void;
     }
   }
 }
+
+export const REQUEST_DELAY = 100;
 
 const dataTest = (value: string): Cypress.Chainable<JQuery> => {
   return cy.get(`[data-testid=${value}]`);
@@ -75,6 +80,9 @@ const getRootValue = <AllOperations>(
   return op;
 };
 
+const wait = (timeout: number) => <T>(response?: T) =>
+  new Promise<T>(resolve => setTimeout(() => resolve(response), timeout));
+
 Cypress.Commands.add('dataTest', dataTest);
 
 Cypress.Commands.add(
@@ -82,7 +90,12 @@ Cypress.Commands.add(
   <AllOperations extends Record<string, any>>(
     options: MockGraphQLOptions<AllOperations>
   ) => {
-    const { endpoint = '/graphql', operations = {}, mocks = {} } = options;
+    const {
+      endpoint = '/graphql',
+      delay = 0,
+      operations = {},
+      mocks = {},
+    } = options;
 
     const schema = makeExecutableSchema({
       typeDefs: schemaAsSDL(options.schema),
@@ -93,6 +106,7 @@ Cypress.Commands.add(
       mocks: { ...commonMocks, ...mocks },
     });
 
+    let currentDelay = delay;
     let currentOps = operations;
 
     cy.on('window:before:load', win => {
@@ -108,17 +122,39 @@ Cypress.Commands.add(
             init.body as string
           );
           const { operationName, query, variables } = payload;
+          const rootValue = getRootValue<AllOperations>(
+            currentOps,
+            operationName,
+            variables
+          );
+
+          if (
+            rootValue instanceof GraphQLError ||
+            rootValue.constructor === GraphQLError ||
+            rootValue.constructor.name === 'GraphQLError'
+          ) {
+            return Promise.resolve()
+              .then(wait(currentDelay))
+              .then(
+                () =>
+                  new Response(
+                    JSON.stringify({
+                      data: {},
+                      errors: [rootValue],
+                    })
+                  )
+              );
+          }
+
           return graphql({
             schema,
             source: query,
             variableValues: variables,
             operationName,
-            rootValue: getRootValue<AllOperations>(
-              currentOps,
-              operationName,
-              variables
-            ),
-          }).then((data: any) => new Response(JSON.stringify(data)));
+            rootValue,
+          })
+            .then(wait(currentDelay))
+            .then((data: any) => new Response(JSON.stringify(data)));
         }
         return originalFetch(input, init);
       };
@@ -126,10 +162,11 @@ Cypress.Commands.add(
     });
 
     cy.wrap({
-      setOperations: (newOperations: Partial<AllOperations>) => {
+      setOperations: (options: SetOperationsOpts<AllOperations>) => {
+        currentDelay = options.delay || 0;
         currentOps = {
-          ...(operations as object),
-          ...(newOperations as object),
+          ...currentOps,
+          ...options.operations,
         };
       },
     }).as(getAlias(options));
@@ -141,9 +178,6 @@ Cypress.Commands.add(
   <AllOperations extends Record<string, any>>(
     options: SetOperationsOpts<AllOperations>
   ) => {
-    cy.get(`@${getAlias(options)}`).invoke(
-      'setOperations' as any,
-      options.operations || {}
-    );
+    cy.get(`@${getAlias(options)}`).invoke('setOperations' as any, options);
   }
 );
