@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import theme from '../../styles/theme';
+import theme from 'styles/theme';
 import { AvatarProps, AvatarType } from './types';
 
 const useRegularTypeStyles = makeStyles({

@@ -4,9 +4,9 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+import theme from 'styles/theme';
+import { apolloClient } from 'utils';
 import AppWrapper from '../AppWrapper';
-import theme from '../../styles/theme';
-import { apolloClient } from '../../utils';
 
 const App: React.FC = () => {
   return (

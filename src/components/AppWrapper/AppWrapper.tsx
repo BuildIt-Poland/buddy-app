@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { Route, BrowserRouter } from 'react-router-dom';
 
-import { ROUTES } from '../../shared/routes';
+import { ROUTES } from 'shared/routes';
 import TaskDetails from '../TaskDetails';
 import Login from '../Login';
 import TasksList from '../TasksList';

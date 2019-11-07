@@ -4,11 +4,11 @@ import { MemoryRouter, Route } from 'react-router-dom';
 import { MockedProvider } from '@apollo/react-testing';
 import { GraphQLError } from 'graphql';
 
-import { LOGIN_MUTATION } from '../../../graphql/login.graphql';
+import { LOGIN_MUTATION } from 'graphql/login.graphql';
+import auth from 'utils/auth';
 import Login from '../Login';
-import auth from '../../../utils/auth';
 
-jest.mock('../../../utils/auth.ts');
+jest.mock('utils/auth.ts');
 
 describe('Component - Login', () => {
   const mockLocation = {

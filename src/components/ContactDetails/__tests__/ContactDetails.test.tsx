@@ -3,16 +3,16 @@ import { MemoryRouter, Route } from 'react-router-dom';
 import { MockedProvider } from '@apollo/react-testing';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
 import waitForExpect from 'wait-for-expect';
+import CONTACT_DETAILS from 'graphql/contact-details.graphql';
 import ContactDetails from '../ContactDetails';
-import CONTACT_DETAILS from '../../../graphql/contact-details.graphql';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/TextareaAutosize', () => 'TextareaAutosize');
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
-jest.mock('../../NavBar', () => 'Navbar');
-jest.mock('../../Avatar', () => 'Avatar');
-jest.mock('../../BackgroundShape', () => 'BackgroundShape');
+jest.mock('components/NavBar', () => 'Navbar');
+jest.mock('components/Avatar', () => 'Avatar');
+jest.mock('components/BackgroundShape', () => 'BackgroundShape');
 
 describe('Component - ContactDetails', () => {
   const path = '/buddy/newbies/1234/details';
