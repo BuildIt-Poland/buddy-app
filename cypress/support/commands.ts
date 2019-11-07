@@ -111,13 +111,13 @@ Cypress.Commands.add(
 
     cy.on('window:before:load', win => {
       const originalFetch = win.fetch;
-      function fetch(input: RequestInfo, init?: RequestInit) {
+      const fetch = (input: RequestInfo, init?: RequestInit) => {
         if (typeof input !== 'string') {
           throw new Error(
             'Currently only support fetch(url, options), saw fetch(Request)'
           );
         }
-        if (input.indexOf(endpoint) !== -1 && init && init.method === 'POST') {
+        if (input.includes(endpoint) && init && init.method === 'POST') {
           const payload: GQLRequestPayload<AllOperations> = JSON.parse(
             init.body as string
           );
@@ -157,10 +157,10 @@ Cypress.Commands.add(
             .then((data: any) => new Response(JSON.stringify(data)));
         }
         return originalFetch(input, init);
-      }
+      };
       cy.stub(win, 'fetch', fetch).as('fetchStub');
     });
-    //
+
     cy.wrap({
       setOperations: (options: SetOperationsOpts<AllOperations>) => {
         currentDelay = options.delay || 0;
