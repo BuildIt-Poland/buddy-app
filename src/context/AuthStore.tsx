@@ -112,7 +112,7 @@ const AuthStore = (props: any): JSX.Element => {
 
   useEffect(() => {
     const user = auth.getUser();
-    if (user.token) {
+    if (user && user.token) {
       dispatch({
         type: ActionTypes.AUTH_SUCCESS,
         payload: user,
