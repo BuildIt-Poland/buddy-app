@@ -41,7 +41,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
   });
 
   const renderContactDetails = () => (
-    <>
+    <div data-testid='contact-details-page'>
       <Box className={classes.wrapper}>
         <Box className={classes.avatar}>
           <Avatar imgSrc={data && data.newbie.photo} />
@@ -96,7 +96,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
           />
         </Box>
       </Box>
-    </>
+    </div>
   );
 
   return (

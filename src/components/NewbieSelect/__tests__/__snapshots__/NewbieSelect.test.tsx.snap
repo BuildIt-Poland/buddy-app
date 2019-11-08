@@ -1,11 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - NewbieSelect renders correctly 1`] = `
-Array [
+<div
+  data-testid="newbie-select-page"
+>
   <Navbar
     onClick={[Function]}
     type="menu"
-  />,
+  />
   <Typography
     component="h2"
     variant="h2"
@@ -15,13 +17,13 @@ Array [
     >
       Your New Joiners
     </Box>
-  </Typography>,
+  </Typography>
   <Avatar
     name="Tom Hanks"
     progress={75}
     role="Front End Engineer"
     type="regular"
-  />,
-  <PlusButton />,
-]
+  />
+  <PlusButton />
+</div>
 `;

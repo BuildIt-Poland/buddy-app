@@ -30,7 +30,7 @@ export interface AuthContextData extends State {
 
 const defaultState: State = {
   loading: false,
-  error: {},
+  error: null,
   data: {} as AuthPayload,
   isAuthenticated: false,
 };
@@ -49,7 +49,7 @@ const authReducer = (state: State, action: Action) => {
       return {
         ...state,
         loading: true,
-        error: {},
+        error: null,
       };
     case ActionTypes.AUTH_SUCCESS:
       return {

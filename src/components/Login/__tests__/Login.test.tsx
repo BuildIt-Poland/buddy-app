@@ -2,104 +2,66 @@ import React from 'react';
 import { render, fireEvent, wait, cleanup } from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
 import { MockedProvider } from '@apollo/react-testing';
-import { GraphQLError } from 'graphql';
+import {
+  mockLocation,
+  loginSuccessMock,
+  loginFailedMock,
+  loginNoNetworkMock,
+  authContext,
+} from '__mocks__';
+import { ROUTES } from 'shared/routes';
 import AuthStore from 'context/AuthStore';
-import { LOGIN_MUTATION } from 'graphql/login.graphql';
 import auth from 'utils/auth';
 import Login from '../Login';
 
-jest.mock('utils/auth.ts');
+jest.mock('utils/auth');
 
 describe('Component - Login', () => {
-  const mockLocation = {
-    key: 'utwyk7',
-    pathname: '/login',
-  };
-
-  const renderLoginRoute = (mocks: any) =>
-    render(
-      <MockedProvider mocks={mocks} addTypename={false}>
-        <MemoryRouter initialEntries={[mockLocation]}>
+  const triggerLogin = (mocks: any) => {
+    const loginRoute = render(
+      <MockedProvider mocks={[mocks]} addTypename={false}>
+        <MemoryRouter initialEntries={[mockLocation(ROUTES.LOGIN)]}>
           <AuthStore>
-            <Route path='/login'>
+            <Route path={ROUTES.LOGIN}>
               <Login />
             </Route>
           </AuthStore>
         </MemoryRouter>
       </MockedProvider>
     );
+    const { getByTestId } = loginRoute;
+
+    const emailInput = getByTestId('email');
+    const passwordInput = getByTestId('password');
+
+    fireEvent.change(emailInput, {
+      target: { value: 'aa@aa.pt' },
+    });
+    fireEvent.change(passwordInput, {
+      target: { value: '12345' },
+    });
+
+    fireEvent.submit(getByTestId('form'));
+
+    return loginRoute;
+  };
 
   afterEach(() => cleanup);
 
   describe('when submitting form', () => {
     describe('when response is success', () => {
-      const LoginSuccessMock = [
-        {
-          request: {
-            query: LOGIN_MUTATION,
-            variables: {
-              email: 'aa@aa.pt',
-              password: '12345',
-            },
-          },
-          result: {
-            data: {
-              login: { role: 'BUDDY', token: 'dummy-token', userId: '1' },
-            },
-          },
-        },
-      ];
       it('should store auth payload', async () => {
-        const { getByTestId } = renderLoginRoute(LoginSuccessMock);
-
-        const emailInput = getByTestId('email');
-        const passwordInput = getByTestId('password');
-
-        fireEvent.change(emailInput, {
-          target: { value: 'aa@aa.pt' },
-        });
-        fireEvent.change(passwordInput, {
-          target: { value: '12345' },
-        });
-
-        fireEvent.submit(getByTestId('form'));
+        triggerLogin(loginSuccessMock());
 
         await wait(() => {
-          expect(auth.setUser).toHaveBeenCalledWith(
-            LoginSuccessMock[0].result.data.login
-          );
+          expect(auth.setUser).toHaveBeenCalledWith(authContext().data);
         });
       });
     });
 
     describe('when the server throws an error', () => {
-      const LoginFailedMock = [
-        {
-          request: {
-            query: LOGIN_MUTATION,
-            variables: {
-              email: 'aa@aa.pt',
-              password: '12345',
-            },
-          },
-
-          errors: [new GraphQLError('No such user found')],
-        },
-      ];
       it('should show AlertDialog with error message', async () => {
-        const { getByTestId } = renderLoginRoute(LoginFailedMock);
-
-        const emailInput = getByTestId('email');
-        const passwordInput = getByTestId('password');
-
-        fireEvent.change(emailInput, {
-          target: { value: 'aa@aa.pt' },
-        });
-        fireEvent.change(passwordInput, {
-          target: { value: '12345' },
-        });
-
-        fireEvent.submit(getByTestId('form'));
+        const { getByTestId } = triggerLogin(loginFailedMock());
 
         await wait(() => {
           expect(getByTestId('alert-dialog')).toHaveTextContent(
@@ -112,33 +74,8 @@ describe('Component - Login', () => {
   });
 
   describe('when submitting a form without internet', () => {
-    const noNetworkMock = [
-      {
-        request: {
-          query: LOGIN_MUTATION,
-          variables: {
-            email: 'aa@aa.pt',
-            password: '12345',
-          },
-        },
-        error: new Error(),
-      },
-    ];
-
     it('should render error dialog', async () => {
-      const { getByTestId } = renderLoginRoute(noNetworkMock);
-
-      const emailInput = getByTestId('email');
-      const passwordInput = getByTestId('password');
-
-      fireEvent.change(emailInput, {
-        target: { value: 'aa@aa.pt' },
-      });
-      fireEvent.change(passwordInput, {
-        target: { value: '12345' },
-      });
-
-      fireEvent.submit(getByTestId('form'));
+      const { getByTestId } = triggerLogin(loginNoNetworkMock());
 
       await wait(() => {
         expect(getByTestId('alert-dialog')).toHaveTextContent(

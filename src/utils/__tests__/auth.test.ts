@@ -20,18 +20,31 @@ describe('Utils - auth', () => {
     process.env = OLD_ENV;
   });
 
-  it('auth.get should get the cookie', () => {
+  it('auth.getToken should return the token', () => {
     mockedCookies.get.mockReturnValueOnce(JSON.stringify(authPayload));
 
     expect(Auth.getToken()).toBe(authPayload.token);
   });
 
-  it('auth.set should set the cookie', () => {
+  it('auth.getUser should return the User data', () => {
+    mockedCookies.get.mockReturnValueOnce(JSON.stringify(authPayload));
+
+    expect(Auth.getUser()).toHaveProperty('role');
+  });
+
+  it('auth.setUser should set the cookie', () => {
     Auth.setUser(authPayload);
 
     expect(mockedCookies.set).toHaveBeenCalledWith(
       'auth/user',
       JSON.stringify(authPayload)
     );
+  });
+
+  it('auth.removeUser should remove the cookie', () => {
+    Auth.setUser(authPayload);
+    Auth.removeUser();
+
+    expect(Auth.getToken()).toBe(undefined);
   });
 });

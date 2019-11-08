@@ -10,7 +10,7 @@ const NewbieSelect: React.FC = () => {
   const handleNavBarClick = () => {};
 
   return (
-    <>
+    <div data-testid='newbie-select-page'>
       <NavBar type='menu' onClick={handleNavBarClick} />
       <Typography component='h2' variant='h2'>
         <Box fontWeight={theme.typography.fontWeightBold}>Your New Joiners</Box>
@@ -22,7 +22,7 @@ const NewbieSelect: React.FC = () => {
         type={'regular'}
       />
       <PlusButton />
-    </>
+    </div>
   );
 };
 

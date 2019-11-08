@@ -71,7 +71,7 @@ const Root: React.FC = () => {
     data: { role },
   } = useContext<AuthContextData>(AuthContext);
   const isNewbieRole = isNewbie(role);
-  const hasAuthRecord = auth.getUser();
+  const hasAuthRecord = !!auth.getUser();
   const routes = isNewbieRole ? newbieRoutes : buddyRoutes;
   const redirectPath = !isAuthenticated
     ? ROUTES.LOGIN

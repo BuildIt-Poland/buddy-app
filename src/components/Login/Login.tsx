@@ -62,7 +62,7 @@ const Login = () => {
   }, [error, setErrorDialog]);
 
   return (
-    <>
+    <div data-testid='login-page'>
       <Typography
         className={classes.title}
         component='h1'
@@ -130,7 +130,7 @@ const Login = () => {
         )}
       </form>
       <BackgroundShape></BackgroundShape>
-    </>
+    </div>
   );
 };
 
