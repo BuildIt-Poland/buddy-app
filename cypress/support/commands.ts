@@ -5,6 +5,7 @@ import {
   addMockFunctionsToSchema,
   IMocks,
 } from 'graphql-tools';
+import { UserRole } from '../../server/src/generated/schema-types';
 import introspectionSchema from '../../server/src/schema.graphql';
 import commonMocks from '../fixtures/graphql-mocks';
 
@@ -40,7 +41,7 @@ declare global {
         options?: SetOperationsOpts<AllOperations>
       ): Cypress.Chainable;
       dataTest: (value: string) => Chainable<Element>;
-      errorRequest: (body: GraphqlRequest) => void;
+      login: (role: UserRole) => void;
     }
   }
 }
@@ -49,6 +50,23 @@ export const REQUEST_DELAY = 100;
 
 const dataTest = (value: string): Cypress.Chainable<JQuery> => {
   return cy.get(`[data-testid=${value}]`);
+};
+
+const login = (role: UserRole): void => {
+  cy.mockGraphqlOps({
+    delay: REQUEST_DELAY,
+    operations: {
+      LoginMutation: {
+        login: {
+          role,
+        },
+      },
+    },
+  });
+  cy.dataTest('email').type('test@test.com');
+  cy.dataTest('password').type('12345');
+  cy.dataTest('submit-button').click();
+  cy.wait(REQUEST_DELAY);
 };
 
 const getAlias = ({ name, endpoint }: { name?: string; endpoint?: string }) => {
@@ -84,6 +102,8 @@ const wait = (timeout: number) => <T>(response?: T) =>
   new Promise<T>(resolve => setTimeout(() => resolve(response), timeout));
 
 Cypress.Commands.add('dataTest', dataTest);
+
+Cypress.Commands.add('login', login);
 
 Cypress.Commands.add(
   'mockGraphql',

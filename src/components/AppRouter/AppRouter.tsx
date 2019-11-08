@@ -70,11 +70,15 @@ const Root: React.FC = () => {
     isAuthenticated,
     data: { role },
   } = useContext<AuthContextData>(AuthContext);
+
+  const hasError = false;
   const isNewbieRole = isNewbie(role);
-  const hasAuthRecord = !!auth.getUser();
+  const hasToken = !!auth.getToken();
   const routes = isNewbieRole ? newbieRoutes : buddyRoutes;
   const redirectPath = !isAuthenticated
     ? ROUTES.LOGIN
+    : hasError
+    ? ROUTES.ERROR
     : isNewbieRole
     ? ROUTES.NEWBIE_TASKS_LIST
     : ROUTES.BUDDY_SELECT_NEWBIE;
@@ -94,8 +98,8 @@ const Root: React.FC = () => {
           ) : (
             <Route path={ROUTES.LOGIN} exact component={Login} />
           )}
-          <Route path={ROUTES.ERROR} exact component={ErrorPage} />
-          {(!hasAuthRecord || isAuthenticated) && (
+          {hasError && <Route path={ROUTES.ERROR} exact component={ErrorPage} />}
+          {(!hasToken || isAuthenticated) && (
             <Redirect to={{ pathname: redirectPath }} />
           )}
         </Switch>
