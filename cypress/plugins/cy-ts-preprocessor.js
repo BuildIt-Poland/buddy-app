@@ -2,7 +2,7 @@ const wp = require('@cypress/webpack-preprocessor');
 
 const webpackOptions = {
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.mjs', '.js', '.json', '.graphql'],
   },
   module: {
     rules: [
@@ -12,9 +12,13 @@ const webpackOptions = {
         use: [
           {
             loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+            },
           },
         ],
       },
+      { test: /\.graphql?$/, loader: 'webpack-graphql-loader' },
     ],
   },
 };
