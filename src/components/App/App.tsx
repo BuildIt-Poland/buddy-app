@@ -6,7 +6,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import theme from 'styles/theme';
 import { apolloClient } from 'utils';
-import AuthStore from 'context/AuthStore';
+import AuthStore from 'reducers/AuthStore';
 import AppRouter from '../AppRouter';
 
 const App: React.FC = () => {

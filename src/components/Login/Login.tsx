@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useForm from 'react-hook-form';
 import { ReactComponent as SpaceManLogo } from 'assets/svg/spaceman.svg';
-import { AuthContext, AuthContextData } from 'context/AuthStore';
+import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import RoundedButton from '../RoundedButton';
 import AlertDialog from '../AlertDialog';
 import BackgroundShape from '../BackgroundShape/';
@@ -38,11 +38,11 @@ const Login = () => {
   const { login, loading, error } = useContext<AuthContextData>(AuthContext);
 
   const onSubmit = async ({ email, password }: FormData) => {
-    login(email, password);
     setErrorDialog({
       isOpen: false,
       message: '',
     });
+    await login(email, password);
   };
 
   useEffect(() => {

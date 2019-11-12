@@ -1,6 +1,6 @@
 import schema from '../../server/src/schema.graphql';
 import { ROUTES } from '../../src/shared/routes';
-import { UserRole } from '../../server/src/generated/schema-types';
+import { UserRole } from '../../src/types/schema-types';
 
 describe('Router Tests', () => {
   beforeEach(() => {

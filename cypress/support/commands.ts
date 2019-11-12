@@ -5,7 +5,7 @@ import {
   addMockFunctionsToSchema,
   IMocks,
 } from 'graphql-tools';
-import { UserRole } from '../../server/src/generated/schema-types';
+import { UserRole } from '../../src/types/schema-types';
 import introspectionSchema from '../../server/src/schema.graphql';
 import commonMocks from '../fixtures/graphql-mocks';
 

@@ -1,7 +1,8 @@
 import React, { useReducer, useEffect } from 'react';
-import { AuthPayload, Mutation } from 'types';
+import { Mutation } from 'types';
 import { useMutation } from '@apollo/react-hooks';
 import { auth } from 'utils';
+import AuthContext, { State, defaultState } from 'contexts/AuthContext';
 import LOGIN_MUTATION from 'graphql/login.graphql';
 
 enum ActionTypes {
@@ -11,37 +12,14 @@ enum ActionTypes {
   AUTH_LOGOUT = 'auth/logout',
 }
 
-interface State {
-  loading: boolean;
-  error: any;
-  data: AuthPayload;
-  isAuthenticated: boolean;
-}
-
 interface Action {
   type: string;
   payload?: any;
 }
 
-export interface AuthContextData extends State {
-  login: (email: string, password: string) => Promise<any>;
-  logout: () => void;
+interface AuthStoreProps {
+  children: React.ReactNode;
 }
-
-const defaultState: State = {
-  loading: false,
-  error: null,
-  data: {} as AuthPayload,
-  isAuthenticated: false,
-};
-
-const defaultContext: AuthContextData = {
-  ...defaultState,
-  login: () => new Promise(() => null),
-  logout: () => null,
-};
-
-export const AuthContext = React.createContext(defaultContext);
 
 const authReducer = (state: State, action: Action) => {
   switch (action.type) {
@@ -75,7 +53,7 @@ const authReducer = (state: State, action: Action) => {
   }
 };
 
-const AuthStore = (props: any): JSX.Element => {
+const AuthStore = (props: AuthStoreProps): JSX.Element => {
   const [state, dispatch] = useReducer(authReducer, defaultState);
   const [loginMutation] = useMutation<Mutation>(LOGIN_MUTATION, {
     onCompleted: ({ login }) => {

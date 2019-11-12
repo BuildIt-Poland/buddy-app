@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import { ROUTES } from 'shared/routes';
 import { isNewbie } from 'utils';
-import { AuthContext, AuthContextData } from 'context/AuthStore';
+import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import { auth } from 'utils';
 import TaskDetails from '../TaskDetails';
 import Login from '../Login';
