@@ -2,8 +2,8 @@ import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Box, Typography } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import { Task } from '../../../server/src/generated/schema-types';
-import { TaskCheckBoxOwnProps, TaskStatus } from './types';
+import { TaskStatus, Task } from 'types';
+import { TaskCheckBoxOwnProps } from './types';
 
 const useStyles = makeStyles({
   wrapper: {

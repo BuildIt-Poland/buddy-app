@@ -8,12 +8,13 @@ import {
   Box,
 } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
+import CONTACT_DETAILS from 'graphql/contact-details.graphql';
+import { ROUTES } from 'shared/routes';
+import { Query, QueryNewbieArgs } from 'types';
 import NavBar from '../NavBar';
 import Avatar from '../Avatar';
-import CONTACT_DETAILS from '../../graphql/contact-details.graphql';
-import { ROUTES } from '../../shared/routes';
 import BackgroundShape from '../BackgroundShape/';
-import { ContactDetailsParams, ContactDetailsProps, NewbieData } from './types';
+import { ContactDetailsProps } from './types';
 
 const useStyles = makeStyles(theme => ({
   notesTextarea: {
@@ -33,17 +34,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ContactDetails: React.FC<ContactDetailsProps> = props => {
-  const { newbieId } = useParams<ContactDetailsParams>();
+  const { newbieId } = useParams<QueryNewbieArgs>();
   const classes = useStyles();
-  const { loading, data } = useQuery<NewbieData, ContactDetailsParams>(
-    CONTACT_DETAILS,
-    {
-      variables: { newbieId },
-    }
-  );
+  const { loading, data } = useQuery<Query, QueryNewbieArgs>(CONTACT_DETAILS, {
+    variables: { newbieId },
+  });
 
   const renderContactDetails = () => (
-    <>
+    <div data-testid='contact-details-page'>
       <Box className={classes.wrapper}>
         <Box className={classes.avatar}>
           <Avatar imgSrc={data && data.newbie.photo} />
@@ -98,7 +96,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
           />
         </Box>
       </Box>
-    </>
+    </div>
   );
 
   return (

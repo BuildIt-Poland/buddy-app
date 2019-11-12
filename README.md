@@ -14,7 +14,7 @@
 - To make it work, please create `.env` file in the `root` folder:
 ```
 REACT_APP_SERVER_URL=http://localhost:4000/graphql
-REACT_APP_AUTH_TOKEN=auth-token
+REACT_APP_AUTH_USER=auth-user
 ```
 - And one more `.env` file in the `/server` folder(the values can be changed to your own):
 ```

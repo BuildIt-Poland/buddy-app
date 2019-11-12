@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - AddNewbie renders correctly 1`] = `
-<h1>
-  Add a Newbie
-</h1>
+<div
+  data-testid="add-newbie-page"
+>
+  <h1>
+    Add a Newbie
+  </h1>
+</div>
 `;
