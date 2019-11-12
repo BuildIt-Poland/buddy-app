@@ -1,8 +1,8 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 
+import { TaskStatus } from 'types';
 import TaskCheckbox from '../TaskCheckbox';
-import { TaskStatus } from '../types';
 
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
