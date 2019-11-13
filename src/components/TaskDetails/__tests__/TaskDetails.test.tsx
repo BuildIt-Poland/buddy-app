@@ -2,8 +2,8 @@ import React from 'react';
 import { create } from 'react-test-renderer';
 
 import { MemoryRouter } from 'react-router';
+import { ROUTES } from 'shared/routes';
 import TaskDetails from '../TaskDetails';
-import { ROUTES } from '../../../shared/routes';
 
 describe('Component - TaskDetails', () => {
   test('renders correctly', () => {

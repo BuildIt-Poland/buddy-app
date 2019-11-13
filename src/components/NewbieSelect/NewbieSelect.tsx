@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { useQuery } from '@apollo/react-hooks';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 
 import NavBar from '../NavBar';
 import PlusButton from '../PlusButton';
@@ -14,7 +15,6 @@ import {
   Newbie,
 } from '../../../server/src/generated/schema-types';
 import Carrousel from '../Carrousel';
-import BackgroundShape from '../BackgroundShape/';
 import NewbieSelectDictionary from './newbieSelect.dictionary';
 
 const useStyles = makeStyles(theme => ({
@@ -43,14 +43,13 @@ const useStyles = makeStyles(theme => ({
 const NewbieSelect: React.FC = () => {
   const handleNavBarClick = () => {};
   const classes = useStyles();
-  const buddyId = 'ck17sl83c9gya0b17dcvttzm4';
-
+  const { data: AuthData } = useContext<AuthContextData>(AuthContext);
   const { loading, data } = useQuery<Query, QueryBuddyArgs>(NEWBIE_SELECT, {
-    variables: { buddyId },
+    variables: { buddyId: AuthData.userId },
   });
 
   return (
-    <>
+    <div data-testid='newbie-select-page'>
       <NavBar type='menu' onClick={handleNavBarClick} />
       <Grid component={'article'} container direction='column' spacing={5}>
         <Grid item>
@@ -73,8 +72,7 @@ const NewbieSelect: React.FC = () => {
         )}
       </Grid>
       <PlusButton className={classes.fab} />
-      <BackgroundShape />
-    </>
+    </div>
   );
 };
 

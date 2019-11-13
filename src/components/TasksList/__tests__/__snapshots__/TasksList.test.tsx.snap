@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - TasksList renders correctly 1`] = `
-<h1>
-  Tasks List
-</h1>
+<div
+  data-testid="task-list-page"
+>
+  <h1>
+    Tasks List
+  </h1>
+</div>
 `;

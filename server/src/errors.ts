@@ -1,6 +1,6 @@
 import { createError } from 'apollo-errors';
 
-enum ERROR {
+export enum ERROR {
   ACCESS_DENIED = 'Access denied',
   ACCOUNT_EXIST = 'Account already exist',
   INTERNAL = 'Internal server error',

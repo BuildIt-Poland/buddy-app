@@ -1,7 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - ErrorPage renders correctly 1`] = `
-<h1>
-  Error
-</h1>
+<div
+  data-testid="error-page"
+>
+  <h1>
+    Error
+  </h1>
+</div>
 `;

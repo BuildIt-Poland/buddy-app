@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] = `
+<Box
+  className="makeStyles-wrapper-1"
+>
+  <Checkbox
+    checked={true}
+    color="primary"
+    inputProps={
+      Object {
+        "aria-label": "primary checkbox",
+      }
+    }
+    onChange={[Function]}
+    value="1"
+  />
+  <Box
+    className="makeStyles-titleWrapper-2"
+  >
+    <Typography
+      component="h4"
+      variant="body1"
+    >
+      <Box
+        fontWeight="fontWeightRegular"
+      >
+        Change you line manager
+      </Box>
+      <div
+        className="makeStyles-line-3"
+      />
+    </Typography>
+  </Box>
+</Box>
+`;
+
+exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`] = `
+<Box
+  className="makeStyles-wrapper-1"
+>
+  <Checkbox
+    checked={false}
+    color="primary"
+    inputProps={
+      Object {
+        "aria-label": "primary checkbox",
+      }
+    }
+    onChange={[Function]}
+    value="1"
+  />
+  <Box
+    className="makeStyles-titleWrapper-2"
+  >
+    <Typography
+      component="h4"
+      variant="body1"
+    >
+      <Box
+        fontWeight="fontWeightBold"
+      >
+        Change you line manager
+      </Box>
+    </Typography>
+  </Box>
+</Box>
+`;

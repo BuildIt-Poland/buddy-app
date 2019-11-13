@@ -6,8 +6,8 @@ import NewbieSelect from '../NewbieSelect';
 import NEWBIE_SELECT from '../../../graphql/newbieSelect.graphql';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
-jest.mock('../../NavBar', () => 'Navbar');
-jest.mock('../../Avatar', () => 'Avatar');
+jest.mock('components/NavBar', () => 'Navbar');
+jest.mock('components/Avatar', () => 'Avatar');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('../../PlusButton/', () => 'PlusButton');
 jest.mock('../../Carrousel/', () => 'Carrousel');

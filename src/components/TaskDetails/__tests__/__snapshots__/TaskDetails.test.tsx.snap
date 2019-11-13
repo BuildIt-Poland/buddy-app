@@ -1,12 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - TaskDetails renders correctly 1`] = `
-Array [
+<div
+  data-testid="task-details-page"
+>
   <h1>
     Task Details
-  </h1>,
+  </h1>
   <p>
     ID: 
-  </p>,
-]
+  </p>
+</div>
 `;

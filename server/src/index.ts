@@ -40,6 +40,8 @@ const options: Options = {
     console.error(err);
     return formatError(error);
   },
+  port: process.env.PORT || 4000,
+  endpoint: '/graphql',
 };
 
 const server = new GraphQLServer({
@@ -53,6 +55,6 @@ const server = new GraphQLServer({
 });
 
 /* eslint-disable no-console */
-server.start(options, () =>
-  console.log(`GraphQL API is running on http://localhost:4000`)
+server.start(options, ({ port }) =>
+  console.log(`GraphQL playground is running on http://localhost:${port}`)
 );

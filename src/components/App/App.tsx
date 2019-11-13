@@ -4,16 +4,19 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-import AppWrapper from '../AppWrapper';
-import theme from '../../styles/theme';
-import { apolloClient } from '../../utils';
+import theme from 'styles/theme';
+import { apolloClient } from 'utils';
+import AuthStore from 'reducers/AuthStore';
+import AppRouter from '../AppRouter';
 
 const App: React.FC = () => {
   return (
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <AppWrapper />
+        <AuthStore>
+          <CssBaseline />
+          <AppRouter />
+        </AuthStore>
       </ThemeProvider>
     </ApolloProvider>
   );

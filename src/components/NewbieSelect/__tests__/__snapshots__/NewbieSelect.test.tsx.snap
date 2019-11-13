@@ -1,17 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - NewbieSelect renders correctly 1`] = `
-Array [
+<div
+  data-testid="newbie-select-page"
+>
   <Navbar
     onClick={[Function]}
     type="menu"
+<<<<<<< HEAD
   />,
   <article
     className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-5 MuiGrid-direction-xs-column"
+=======
+  />
+  <Typography
+    component="h2"
+    variant="h2"
+>>>>>>> master
   >
     <div
       className="MuiGrid-root MuiGrid-item"
     >
+<<<<<<< HEAD
       <Typography
         component="h2"
         variant="h2"
@@ -99,4 +109,17 @@ Array [
   />,
   <BackgroundShape />,
 ]
+=======
+      Your New Joiners
+    </Box>
+  </Typography>
+  <Avatar
+    name="Tom Hanks"
+    progress={75}
+    role="Front End Engineer"
+    type="regular"
+  />
+  <PlusButton />
+</div>
+>>>>>>> master
 `;

@@ -1,16 +1,36 @@
 import Cookies from 'js-cookie';
+import { AuthPayload } from 'types';
 
 enum AUTH {
-  TOKEN = '_t',
+  USER = 'auth/user',
 }
 
+const key: string = process.env.REACT_APP_AUTH || AUTH.USER;
+
 class Auth {
+  _getData = (key: string) => {
+    const value = Cookies.get(key) || '';
+    try {
+      return JSON.parse(value);
+    } catch (e) {
+      return value || {};
+    }
+  };
+
   getToken() {
-    return Cookies.get(process.env.REACT_APP_AUTH_TOKEN || AUTH.TOKEN);
+    return this._getData(key).token;
   }
 
-  setToken(newToken: string) {
-    return Cookies.set(process.env.REACT_APP_AUTH_TOKEN || AUTH.TOKEN, newToken);
+  getUser() {
+    return this._getData(key);
+  }
+
+  setUser(auth: AuthPayload) {
+    return Cookies.set(key, JSON.stringify(auth));
+  }
+
+  removeUser() {
+    return Cookies.remove(key);
   }
 }
 
