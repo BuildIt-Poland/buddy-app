@@ -7,7 +7,6 @@ const TasksList: React.FC = () => {
     <div data-testid='task-list-page'>
       <NavBar type={'menu'} onClick={() => null} />
       <AvatarHeader />
-      <h1>Tasks List</h1>
     </div>
   );
 };

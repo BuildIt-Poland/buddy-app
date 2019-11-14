@@ -32,7 +32,7 @@ const AvatarHeader: React.FC = () => {
   });
 
   return (
-    <Box className={background}>
+    <Box className={background} data-testid='avatar-header'>
       {data && (
         <Avatar
           name={data.newbie.name}

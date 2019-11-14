@@ -5,13 +5,13 @@ exports[`Component - TasksList renders correctly 1`] = `
   data-testid="task-list-page"
 >
   <header
-    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed makeStyles-appBar-3 MuiAppBar-colorPrimary mui-fixed"
+    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed makeStyles-AppBar-2 mui-fixed"
   >
     <div
-      className="MuiToolbar-root MuiToolbar-regular makeStyles-toolbar-2 MuiToolbar-gutters"
+      className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
     >
       <button
-        className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-1 MuiIconButton-colorSecondary MuiIconButton-edgeStart"
+        className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-1 MuiIconButton-colorInherit MuiIconButton-edgeStart"
         disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
@@ -47,8 +47,5 @@ exports[`Component - TasksList renders correctly 1`] = `
     </div>
   </header>
   <AvatarHeader />
-  <h1>
-    Tasks List
-  </h1>
 </div>
 `;
