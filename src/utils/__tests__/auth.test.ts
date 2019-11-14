@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { UserRole } from 'types';
+import { UserRole } from 'buddy-app-schema';
 import Auth from '../auth';
 
 jest.mock('js-cookie');

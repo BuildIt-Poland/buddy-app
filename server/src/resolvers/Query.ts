@@ -1,4 +1,4 @@
-import { QueryResolvers } from '../generated/schema-types';
+import { QueryResolvers } from 'buddy-app-schema';
 
 const newbie: QueryResolvers['newbie'] = async (parent, args, context) =>
   await context.prisma.newbie({ id: args.newbieId });

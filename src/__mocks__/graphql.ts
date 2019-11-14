@@ -1,5 +1,5 @@
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
-import { MutationLoginArgs, AuthPayload } from 'types';
+import { MutationLoginArgs, AuthPayload } from 'buddy-app-schema';
 import { GraphQLError } from 'graphql';
 import { authContext } from './context';
 

@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { MockedProvider } from '@apollo/react-testing';
 import { ROUTES } from 'shared/routes';
 import AuthContext from 'contexts/AuthContext';
-import { UserRole } from 'types';
+import { UserRole } from 'buddy-app-schema';
 import auth from 'utils/auth';
 import AppRouter from '../AppRouter';
 

@@ -1,5 +1,5 @@
 import { isNewbie } from 'utils';
-import { UserRole } from 'types';
+import { UserRole } from 'buddy-app-schema';
 
 describe('Utils - helpers', () => {
   it('helpers - isNewbie should return true', () => {

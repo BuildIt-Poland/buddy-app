@@ -1,7 +1,7 @@
 //const jwt = require('jsonwebtoken');
 import * as jwt from 'jsonwebtoken';
 import { GraphQLResolveInfo } from 'graphql';
-import { ResolverFn, Context, TaskStatus } from './generated/schema-types';
+import { ResolverFn, Context, TaskStatus } from 'buddy-app-schema';
 import ERRORS from './errors';
 
 const MAX_PASSWORD_LENGTH = 24;

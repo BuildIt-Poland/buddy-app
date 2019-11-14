@@ -1,7 +1,7 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 
-import { TaskStatus } from 'types';
+import { TaskStatus } from 'buddy-app-schema';
 import TaskCheckbox from '../TaskCheckbox';
 
 jest.mock('@material-ui/core/Box', () => 'Box');
