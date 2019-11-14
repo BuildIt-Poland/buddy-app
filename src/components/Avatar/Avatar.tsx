@@ -16,6 +16,8 @@ const useRegularTypeStyles = makeStyles({
     width: 60,
     height: 60,
     marginBottom: 20,
+    position: 'relative',
+    zIndex: theme.zIndex.base,
   },
   progress: {
     position: 'absolute',
@@ -23,6 +25,9 @@ const useRegularTypeStyles = makeStyles({
   },
   grid: {
     position: 'relative',
+  },
+  cursor: {
+    cursor: 'pointer',
   },
 });
 
@@ -32,6 +37,8 @@ const useSmallTypeStyles = makeStyles({
     width: 40,
     height: 40,
     marginBottom: 20,
+    position: 'relative',
+    zIndex: theme.zIndex.base,
   },
   progress: {
     position: 'absolute',
@@ -50,6 +57,7 @@ const Avatar: React.FC<AvatarProps> = props => {
     progress,
     type = AvatarType.REGULAR,
     imgSrc = DEFAULT_IMG_SRC,
+    onClick,
   } = props;
 
   const classes = {
@@ -80,6 +88,8 @@ const Avatar: React.FC<AvatarProps> = props => {
           alt='Avatar'
           src={imgSrc}
           className={classes[type].avatar}
+          onClick={onClick}
+          style={onClick ? { cursor: 'pointer' } : {}}
         />
         <CircularProgress
           variant='static'
@@ -90,7 +100,7 @@ const Avatar: React.FC<AvatarProps> = props => {
         <Typography
           component='h4'
           variant={type === AvatarType.REGULAR ? 'subtitle1' : 'subtitle2'}>
-          {`${progress ? progress : 0} %`}
+          {progress && `${progress}%`}
         </Typography>
       </Grid>
       {name && (

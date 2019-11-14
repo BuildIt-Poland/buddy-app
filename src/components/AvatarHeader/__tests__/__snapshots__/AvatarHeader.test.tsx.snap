@@ -17,6 +17,7 @@ exports[`Component - AvatarHeader renders correctly 2`] = `
   <Avatar
     imgSrc="some-url"
     name="Tom Hanks"
+    onClick={[Function]}
     progress={54}
     role="front-end"
   />
