@@ -39,32 +39,35 @@ const Carrousel: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
       spacing={2}
       wrap={breakpointSm ? 'nowrap' : 'wrap'}
       className={classes.carrousel}>
-      {newbies.map(newbie => (
-        <Grid key={newbie.id} item>
-          <Link
-            className={classes.link}
-            to={ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbie.id)}>
-            <Paper className={classes.carrouselElement}>
-              <Avatar
-                progress={newbie.tasksInfo.buddyProgress * 100}
-                name={newbie.name}
-                role={newbie.position || undefined}></Avatar>
-              {newbie.startDate && (
-                <Box m={2}>
-                  <Typography align={'center'} component='p' variant='body2'>
-                    <Box component='span' fontWeight={'bold'}>
-                      Start Date
-                    </Box>
-                  </Typography>
-                  <Typography align={'center'} component='p' variant='body2'>
-                    {newbie.startDate}
-                  </Typography>
-                </Box>
-              )}
-            </Paper>
-          </Link>
-        </Grid>
-      ))}
+      {newbies.map(newbie => {
+        const startDate = new Date(newbie.startDate);
+        return (
+          <Grid key={newbie.id} item>
+            <Link
+              className={classes.link}
+              to={ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbie.id)}>
+              <Paper className={classes.carrouselElement}>
+                <Avatar
+                  progress={newbie.tasksInfo.buddyProgress * 100}
+                  name={newbie.name}
+                  position={newbie.position || undefined}></Avatar>
+                {newbie.startDate && (
+                  <Box m={2}>
+                    <Typography align={'center'} component='p' variant='body2'>
+                      <Box component='span' fontWeight={'bold'}>
+                        Start Date
+                      </Box>
+                    </Typography>
+                    <Typography align={'center'} component='p' variant='body2'>
+                      {`${startDate.getDate()}-${startDate.getMonth()}-${startDate.getFullYear()}`}
+                    </Typography>
+                  </Box>
+                )}
+              </Paper>
+            </Link>
+          </Grid>
+        );
+      })}
     </Grid>
   );
 };
