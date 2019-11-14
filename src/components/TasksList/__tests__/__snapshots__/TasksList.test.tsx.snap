@@ -4,9 +4,6 @@ exports[`Component - TasksList renders correctly 1`] = `
 <div
   data-testid="task-list-page"
 >
-  <h1>
-    Tasks List
-  </h1>
   <AppBar
     color="default"
     component="section"
