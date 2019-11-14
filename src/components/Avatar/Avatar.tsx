@@ -90,11 +90,13 @@ const Avatar: React.FC<AvatarProps> = props => {
         <Typography
           component='h4'
           variant={type === AvatarType.REGULAR ? 'subtitle1' : 'subtitle2'}>
-          {progress && `${progress}%`}
+          {`${progress ? progress : 0} %`}
         </Typography>
       </Grid>
       {name && (
-        <Typography variant={type === AvatarType.REGULAR ? 'h4' : 'h5'}>
+        <Typography
+          align='center'
+          variant={type === AvatarType.REGULAR ? 'h4' : 'h5'}>
           <Box fontWeight={theme.typography.fontWeightBold} lineHeight='1.2'>
             {name}
           </Box>

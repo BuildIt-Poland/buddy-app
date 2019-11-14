@@ -110,7 +110,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
       </Typography>
       {loading && <CircularProgress />}
       {data && renderContactDetails()}
-      <BackgroundShape></BackgroundShape>
+      <BackgroundShape />
     </>
   );
 };
