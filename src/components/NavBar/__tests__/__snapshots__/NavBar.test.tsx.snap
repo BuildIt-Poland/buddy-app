@@ -2,6 +2,8 @@
 
 exports[`Component - NavBar renders correctly with "back" type 1`] = `
 <AppBar
+  className="makeStyles-AppBar-2"
+  color="inherit"
   position="fixed"
 >
   <Toolbar>
@@ -29,6 +31,8 @@ exports[`Component - NavBar renders correctly with "back" type 1`] = `
 
 exports[`Component - NavBar renders correctly with "menu" type 1`] = `
 <AppBar
+  className="makeStyles-AppBar-2"
+  color="inherit"
   position="fixed"
 >
   <Toolbar>
