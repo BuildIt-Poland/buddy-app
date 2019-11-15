@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/react-hooks';
 import Avatar from 'components/Avatar';
 import AVATAR_HEADER from 'graphql/avatar-header.graphql';
 
-import { Query, QueryNewbieArgs } from 'types';
+import { Query, QueryNewbieArgs } from 'buddy-app-schema';
 import { getProgressInPercentages } from 'utils';
 import { ROUTES } from 'shared/routes';
 

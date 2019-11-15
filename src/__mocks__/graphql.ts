@@ -1,6 +1,6 @@
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
 import AVATAR_HEADER from 'graphql/avatar-header.graphql';
-import { MutationLoginArgs, AuthPayload, QueryNewbieArgs } from 'types';
+import { MutationLoginArgs, AuthPayload, QueryNewbieArgs } from 'buddy-app-schema';
 import { GraphQLError } from 'graphql';
 import { authContext } from './context';
 
