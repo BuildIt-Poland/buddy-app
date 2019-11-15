@@ -2,12 +2,12 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import TabPanel from './TabPanel';
+import TabPanel from '../TabPanel';
 
 const TasksList: React.FC = () => {
   const [value, setValue] = React.useState(0);
 
-  const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
 
@@ -16,7 +16,7 @@ const TasksList: React.FC = () => {
       <AppBar component='section' position='static' color='default'>
         <Tabs
           value={value}
-          onChange={handleChange}
+          onChange={handleTabChange}
           indicatorColor='primary'
           textColor='primary'
           variant='fullWidth'>

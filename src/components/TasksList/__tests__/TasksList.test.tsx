@@ -6,7 +6,7 @@ import TasksList from '../TasksList';
 jest.mock('@material-ui/core/AppBar', () => 'AppBar');
 jest.mock('@material-ui/core/Tabs', () => 'Tabs');
 jest.mock('@material-ui/core/Tab', () => 'Tab');
-jest.mock('../TabPanel', () => 'TabPanel');
+jest.mock('../../TabPanel', () => 'TabPanel');
 
 describe('Component - TasksList', () => {
   test('renders correctly', () => {
