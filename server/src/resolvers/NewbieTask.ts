@@ -4,7 +4,7 @@ import {
   Context,
   ResolverFn,
   NewbieTask,
-} from '../generated/schema-types';
+} from 'buddy-app-schema';
 
 const newbie: ResolverFn<
   NewbieTask['newbie'],

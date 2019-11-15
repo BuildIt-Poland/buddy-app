@@ -14,6 +14,7 @@ import AuthStore from 'reducers/AuthStore';
 import auth from 'utils/auth';
 import Login from '../Login';
 
+jest.mock('buddy-app-schema', () => {});
 jest.mock('utils/auth');
 
 describe('Component - Login', () => {

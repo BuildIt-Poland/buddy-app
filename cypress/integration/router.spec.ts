@@ -1,6 +1,5 @@
-import schema from '../../server/src/schema.graphql';
+import schema, { UserRole } from 'buddy-app-schema';
 import { ROUTES } from '../../src/shared/routes';
-import { UserRole } from '../../src/types/schema-types';
 
 describe('Router Tests', () => {
   beforeEach(() => {

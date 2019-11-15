@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthPayload } from 'types';
+import { AuthPayload } from 'buddy-app-schema';
 
 export interface State {
   loading: boolean;
