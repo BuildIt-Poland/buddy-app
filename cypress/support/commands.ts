@@ -5,8 +5,7 @@ import {
   addMockFunctionsToSchema,
   IMocks,
 } from 'graphql-tools';
-import { UserRole } from '../../src/types/schema-types';
-import introspectionSchema from '../../server/src/schema.graphql';
+import introspectionSchema, { UserRole } from 'buddy-app-schema';
 import commonMocks from '../fixtures/graphql-mocks';
 
 interface MockGraphQLOptions<AllOperations extends Record<string, any>> {

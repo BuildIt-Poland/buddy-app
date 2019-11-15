@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
-import { MutationResolvers } from '../generated/schema-types';
+import { MutationResolvers } from 'buddy-app-schema';
 import { changeTaskStatus } from '../utils';
 import ERRORS from '../errors';
 

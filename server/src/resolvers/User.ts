@@ -1,4 +1,4 @@
-import { UserResolvers } from '../generated/schema-types';
+import { UserResolvers } from 'buddy-app-schema';
 
 const __resolveType: UserResolvers['__resolveType'] = user => {
   const newbieUniqueProps = [

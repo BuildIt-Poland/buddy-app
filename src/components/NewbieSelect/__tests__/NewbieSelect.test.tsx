@@ -2,16 +2,17 @@ import React from 'react';
 import { create, act } from 'react-test-renderer';
 import { MockedProvider } from '@apollo/react-testing';
 import waitForExpect from 'wait-for-expect';
+import NEWBIE_SELECT from 'graphql/newbieSelect.graphql';
 import NewbieSelect from '../NewbieSelect';
-import NEWBIE_SELECT from '../../../graphql/newbieSelect.graphql';
 
+jest.mock('buddy-app-schema', () => {});
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('components/NavBar', () => 'Navbar');
 jest.mock('components/Avatar', () => 'Avatar');
 jest.mock('@material-ui/core/Box', () => 'Box');
-jest.mock('../../PlusButton/', () => 'PlusButton');
-jest.mock('../../Carrousel/', () => 'Carrousel');
-jest.mock('../../BackgroundShape/', () => 'BackgroundShape');
+jest.mock('components/PlusButton/', () => 'PlusButton');
+jest.mock('components/Carrousel/', () => 'Carrousel');
+jest.mock('components/BackgroundShape/', () => 'BackgroundShape');
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
 
 describe('Component - NewbieSelect', () => {

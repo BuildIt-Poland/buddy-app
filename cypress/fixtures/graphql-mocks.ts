@@ -1,4 +1,4 @@
-import { UserRole, TaskStatus } from '../../src/types/schema-types';
+import { UserRole, TaskStatus } from 'buddy-app-schema';
 
 const commonMocks = {
   Buddy: () => ({

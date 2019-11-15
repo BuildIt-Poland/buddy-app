@@ -7,10 +7,10 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 
-import { Newbie } from '../../../server/src/generated/schema-types';
-import Avatar from '../Avatar';
-import { ROUTES } from '../../shared/routes';
-import { getProgressInPercentages } from '../../utils';
+import { Newbie } from 'buddy-app-schema';
+import { ROUTES } from 'shared/routes';
+import Avatar from 'components/Avatar';
+import { getProgressInPercentages } from 'utils';
 
 const useStyles = makeStyles(theme => ({
   carrouselElement: {

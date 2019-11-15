@@ -2,15 +2,15 @@ import React from 'react';
 import { create } from 'react-test-renderer';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import { MemoryRouter } from 'react-router';
+import theme from 'styles/theme';
 import Carrousel from '../Carrousel';
-import theme from '../../../styles/theme';
-import { Newbie } from '../../../../server/src/generated/schema-types';
 
+jest.mock('buddy-app-schema', () => {});
 jest.mock('@material-ui/core/Grid', () => 'Grid');
 jest.mock('@material-ui/core/Paper', () => 'Paper');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
-jest.mock('../../Avatar', () => 'Avatar');
+jest.mock('components/Avatar', () => 'Avatar');
 
 describe('Component - Carrousel', () => {
   describe('renders correctly', () => {
@@ -36,7 +36,7 @@ describe('Component - Carrousel', () => {
       const component = create(
         <MemoryRouter>
           <ThemeProvider theme={theme}>
-            <Carrousel newbies={newbies as Newbie[]} />
+            <Carrousel newbies={newbies} />
           </ThemeProvider>
         </MemoryRouter>
       );

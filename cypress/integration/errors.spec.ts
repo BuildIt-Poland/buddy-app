@@ -1,5 +1,5 @@
 import { GraphQLError } from 'graphql';
-import schema from '../../server/src/schema.graphql';
+import schema from 'buddy-app-schema';
 import { ERROR } from '../../server/src/errors';
 import { ROUTES } from '../../src/shared/routes';
 import { REQUEST_DELAY } from '../support/commands';
