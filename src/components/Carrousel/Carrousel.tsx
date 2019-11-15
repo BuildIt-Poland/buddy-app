@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { Newbie } from '../../../server/src/generated/schema-types';
 import Avatar from '../Avatar';
 import { ROUTES } from '../../shared/routes';
+import { getProgressInPercentages } from '../../utils';
 
 const useStyles = makeStyles(theme => ({
   carrouselElement: {
@@ -46,9 +47,11 @@ const Carrousel: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
             to={ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbie.id)}>
             <Paper className={classes.carrouselElement}>
               <Avatar
-                progress={newbie.tasksInfo.buddyProgress * 100}
+                progress={getProgressInPercentages(newbie.tasksInfo.buddyProgress)}
                 name={newbie.name}
-                role={newbie.position || undefined}></Avatar>
+                role={newbie.position || undefined}
+                imgSrc={newbie.photo}
+              />
               {newbie.startDate && (
                 <Box m={2}>
                   <Typography align={'center'} component='p' variant='body2'>

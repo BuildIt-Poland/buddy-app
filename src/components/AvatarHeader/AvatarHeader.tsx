@@ -5,11 +5,11 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useQuery } from '@apollo/react-hooks';
 import Avatar from 'components/Avatar';
-import AVATAR_HEADER from '../../graphql/avatar-header.graphql';
+import AVATAR_HEADER from 'graphql/avatar-header.graphql';
 
-import { Query, QueryNewbieArgs } from '../../types';
-import { getProgressInPercentages } from '../../utils';
-import { ROUTES } from '../../shared/routes';
+import { Query, QueryNewbieArgs } from 'types';
+import { getProgressInPercentages } from 'utils';
+import { ROUTES } from 'shared/routes';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,6 +33,10 @@ const AvatarHeader: React.FC = () => {
     variables: { newbieId },
   });
 
+  const handleClick = () => {
+    history.push(ROUTES.BUDDY_NEWBIE_DETAILS.replace(':newbieId', newbieId));
+  };
+
   return (
     <Box className={background} data-testid='avatar-header'>
       {data && (
@@ -41,9 +45,7 @@ const AvatarHeader: React.FC = () => {
           imgSrc={data.newbie.photo}
           role={data.newbie.position || ''}
           progress={getProgressInPercentages(data.newbie.tasksInfo.buddyProgress)}
-          onClick={() =>
-            history.push(ROUTES.BUDDY_NEWBIE_DETAILS.replace(':newbieId', newbieId))
-          }
+          onClick={handleClick}
         />
       )}
       {loading && <CircularProgress />}
