@@ -76,6 +76,8 @@ const Avatar: React.FC<AvatarProps> = props => {
     },
   };
 
+  const avatarCursorStyle = onClick ? { cursor: 'pointer' } : undefined;
+
   return (
     <Grid container justify='center' alignItems='center' direction='column'>
       <Grid
@@ -89,7 +91,7 @@ const Avatar: React.FC<AvatarProps> = props => {
           src={imgSrc}
           className={classes[type].avatar}
           onClick={onClick}
-          style={onClick ? { cursor: 'pointer' } : {}}
+          style={avatarCursorStyle}
         />
         <CircularProgress
           variant='static'
