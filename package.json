@@ -46,7 +46,7 @@
     "@types/js-cookie": "^2.2.3",
     "@types/react-test-renderer": "^16.9.0",
     "buddy-app-schema": "file:schema",
-    "cypress": "^3.6.1",
+    "cypress": "^3.4.1",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-cypress": "^2.7.0",
     "eslint-plugin-prettier": "^3.1.1",
