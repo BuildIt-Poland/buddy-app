@@ -6,14 +6,10 @@ import { useQuery } from '@apollo/react-hooks';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 
+import NEWBIE_SELECT from 'graphql/newbieSelect.graphql';
+import { QueryBuddyArgs, Query, Newbie } from 'buddy-app-schema';
 import NavBar from '../NavBar';
 import PlusButton from '../PlusButton';
-import NEWBIE_SELECT from '../../graphql/newbieSelect.graphql';
-import {
-  QueryBuddyArgs,
-  Query,
-  Newbie,
-} from '../../../server/src/generated/schema-types';
 import Carrousel from '../Carrousel';
 import NewbieSelectDictionary from './newbieSelect.dictionary';
 

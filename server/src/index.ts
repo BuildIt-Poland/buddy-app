@@ -3,7 +3,7 @@ require('dotenv').config();
 import { formatError } from 'apollo-errors';
 import { GraphQLServer, Options } from 'graphql-yoga';
 import { prisma } from './generated/prisma-client';
-import { Resolvers } from './generated/schema-types';
+import { Resolvers } from 'buddy-app-schema';
 import Query from './resolvers/Query';
 import Mutation from './resolvers/Mutation';
 import Buddy from './resolvers/Buddy';
@@ -14,6 +14,7 @@ import User from './resolvers/User';
 import Task from './resolvers/Task';
 import ERRORS from './errors';
 import { authMiddleware, credentialsMiddleware } from './utils';
+import schema from 'buddy-app-schema';
 /* eslint-enable */
 
 const resolvers: Resolvers = {
@@ -45,7 +46,7 @@ const options: Options = {
 };
 
 const server = new GraphQLServer({
-  typeDefs: './src/schema.graphql',
+  typeDefs: schema,
   resolvers,
   context: request => ({
     ...request,

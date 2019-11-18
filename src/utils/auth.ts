@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { AuthPayload } from 'types';
+import { AuthPayload } from 'buddy-app-schema';
 
 enum AUTH {
   USER = 'auth/user',

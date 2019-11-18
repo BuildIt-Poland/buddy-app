@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
-import { Mutation } from 'types';
+import { Mutation } from 'buddy-app-schema';
 import { useMutation } from '@apollo/react-hooks';
 import { auth } from 'utils';
 import AuthContext, { State, defaultState } from 'contexts/AuthContext';
