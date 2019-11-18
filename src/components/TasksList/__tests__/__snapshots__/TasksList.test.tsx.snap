@@ -4,8 +4,37 @@ exports[`Component - TasksList renders correctly 1`] = `
 <div
   data-testid="task-list-page"
 >
-  <h1>
-    Tasks List
-  </h1>
+  <AppBar
+    color="default"
+    component="section"
+    position="static"
+  >
+    <Tabs
+      indicatorColor="primary"
+      onChange={[Function]}
+      textColor="primary"
+      value={0}
+      variant="fullWidth"
+    >
+      <Tab
+        label="Newbie Tasks"
+      />
+      <Tab
+        label="My tasks"
+      />
+    </Tabs>
+  </AppBar>
+  <TabPanel
+    index={0}
+    value={0}
+  >
+    Newbie Tasks Component
+  </TabPanel>
+  <TabPanel
+    index={1}
+    value={0}
+  >
+    My Tasks Component
+  </TabPanel>
 </div>
 `;
