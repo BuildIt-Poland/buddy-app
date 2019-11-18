@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 
 export interface NavBarProps {
   type: 'menu' | 'back';
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export interface NavBarButton {

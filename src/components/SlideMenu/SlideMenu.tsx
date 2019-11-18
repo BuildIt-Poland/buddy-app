@@ -39,7 +39,7 @@ const SlideMenu: React.FC<SlideMenuProps> = props => {
   const { isMenuVisible, onClose } = props;
 
   // FIXME: Get role from graphql
-  const id = '';
+  const id = 'ck17szatu9kyn0b17fo5xvo9p';
   const role = UserRole.Newbie;
 
   const getQueryByRole = (role: UserRole, id: string) => {

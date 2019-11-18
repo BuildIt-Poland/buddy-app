@@ -46,7 +46,7 @@ const NewbieSelect: React.FC = () => {
 
   return (
     <div data-testid='newbie-select-page'>
-      <NavBar type='menu' onClick={handleNavBarClick} />
+      <NavBar type='menu' />
       <Grid component={'article'} container direction='column' spacing={5}>
         <Grid item>
           <Typography component='h2' variant='h2'>

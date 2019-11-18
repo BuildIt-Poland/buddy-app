@@ -5,7 +5,6 @@ exports[`Component - NewbieSelect renders correctly 1`] = `
   data-testid="newbie-select-page"
 >
   <Navbar
-    onClick={[Function]}
     type="menu"
   />
   <article
@@ -45,7 +44,6 @@ exports[`Component - NewbieSelect renders correctly 2`] = `
   data-testid="newbie-select-page"
 >
   <Navbar
-    onClick={[Function]}
     type="menu"
   />
   <article
