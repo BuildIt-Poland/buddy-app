@@ -102,7 +102,7 @@ const Avatar: React.FC<AvatarProps> = props => {
         <Typography
           component='h4'
           variant={type === AvatarType.REGULAR ? 'subtitle1' : 'subtitle2'}>
-          {progress && `${progress}%`}
+          {progress !== undefined && progress !== null && `${progress}%`}
         </Typography>
       </Grid>
       {name && (
