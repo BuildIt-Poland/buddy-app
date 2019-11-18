@@ -11,7 +11,7 @@ exports[`Component - NavBar renders correctly with "back" type 1`] = `
       className="makeStyles-menuButton-1"
       color="inherit"
       edge="start"
-      onClick={[MockFunction]}
+      onClick={[Function]}
     >
       <svg
         aria-hidden="true"
@@ -40,7 +40,7 @@ exports[`Component - NavBar renders correctly with "menu" type 1`] = `
       className="makeStyles-menuButton-1"
       color="inherit"
       edge="start"
-      onClick={[MockFunction]}
+      onClick={[Function]}
     >
       <svg
         aria-hidden="true"

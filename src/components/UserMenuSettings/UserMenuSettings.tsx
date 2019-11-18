@@ -27,6 +27,7 @@ const UserMenuSettings: React.FC<UserMenuSettingsProps> = props => {
           <Switch
             checked={allowPushedNotifications}
             onChange={updatePushNotificationsSettings}
+            disabled
           />
         }
         label={PUSH_NOTIFICATIONS_LABEL}

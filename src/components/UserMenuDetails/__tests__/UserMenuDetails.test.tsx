@@ -1,10 +1,10 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import UserMenuDetails from '../UserMenuDetails';
+import UserMenuDetails from 'components/UserMenuDetails';
 
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
-jest.mock('../../Avatar', () => 'Avatar');
+jest.mock('components/Avatar', () => 'Avatar');
 
 describe('Component - PlusButton', () => {
   test('renders correctly', () => {

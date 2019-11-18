@@ -28,8 +28,12 @@ const NavBar: React.FC<NavBarProps> = props => {
   };
   const { type, onClick } = props;
 
-  const onPressDefaultAction = () => {
+  const showSlideMenu = () => {
     updateMenuVisibility(!isMenuVisible);
+  };
+
+  const handleOnClick = () => {
+    onClick ? onClick() : showSlideMenu();
   };
 
   const handleOnClose = () => {
@@ -44,12 +48,14 @@ const NavBar: React.FC<NavBarProps> = props => {
             edge='start'
             className={classes.menuButton}
             color='inherit'
-            onClick={onClick || onPressDefaultAction}>
+            onClick={handleOnClick}>
             {button[type]()}
           </IconButton>
         </Toolbar>
       </AppBar>
-      <SlideMenu isMenuVisible={isMenuVisible} onClose={handleOnClose} />
+      {!onClick && (
+        <SlideMenu isMenuVisible={isMenuVisible} onClose={handleOnClose} />
+      )}
     </>
   );
 };

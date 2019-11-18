@@ -19,6 +19,7 @@ exports[`Component - UserMenuSettings renders correctly 1`] = `
     control={
       <Switch
         checked={true}
+        disabled={true}
         onChange={[Function]}
       />
     }

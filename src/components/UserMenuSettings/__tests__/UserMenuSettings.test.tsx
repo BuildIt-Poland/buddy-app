@@ -1,7 +1,7 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 
-import UserMenuSettings from '../UserMenuSettings';
+import UserMenuSettings from 'components/UserMenuSettings';
 
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/Typography', () => 'Typography');

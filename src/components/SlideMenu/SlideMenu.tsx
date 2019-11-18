@@ -76,19 +76,16 @@ const SlideMenu: React.FC<SlideMenuProps> = props => {
         <Divider />
         {isBuddy(role) && (
           <NewbiesMenuSection
-            newbies={(user as Partial<Buddy>).newbies || []}
+            newbies={(user as Buddy).newbies}
             onSelect={selectNewbie}
           />
         )}
         {isNewbie(role) && (
-          <BuddyMenuSection
-            buddy={(user as Partial<Newbie>).buddy || {}}
-            onSelect={selectBuddy}
-          />
+          <BuddyMenuSection buddy={(user as Newbie).buddy} onSelect={selectBuddy} />
         )}
         <Divider />
         <UserMenuSettings
-          allowPushedNotifications={user.allowPushedNotifications || true}
+          allowPushedNotifications={!!user.allowPushedNotifications}
           updatePushNotificationsSettings={() => {}}
         />
       </Box>
