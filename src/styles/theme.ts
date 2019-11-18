@@ -12,6 +12,7 @@ const { tealWhite } = colorSchemes;
 let theme = createMuiTheme({
   typography: {
     htmlFontSize: 10, //62,5%
+    fontSize: 16,
     button: {
       textTransform: 'none',
     },
@@ -58,5 +59,20 @@ let theme = createMuiTheme({
   },
   spacing: factor => `${factor}rem`,
 });
+
+theme = {
+  ...theme,
+  overrides: {
+    MuiTab: {
+      root: {
+        fontWeight: theme.typography.fontWeightBold,
+        fontSize: theme.typography.body1.fontSize,
+        [theme.breakpoints.up('sm')]: {
+          fontSize: theme.typography.body1.fontSize,
+        },
+      },
+    },
+  },
+};
 
 export default theme;
