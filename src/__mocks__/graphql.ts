@@ -1,5 +1,6 @@
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
-import { MutationLoginArgs, AuthPayload } from 'buddy-app-schema';
+import { BUDDY_USER_MENU_DETAILS } from 'graphql/user-menu.graphql';
+import { MutationLoginArgs, AuthPayload, QueryBuddyArgs } from 'buddy-app-schema';
 import { GraphQLError } from 'graphql';
 import { authContext } from './context';
 
@@ -49,4 +50,35 @@ export const loginNoNetworkMock = (variables?: Partial<MutationLoginArgs>) => ({
     },
   },
   error: new Error('Network error'),
+});
+
+export const buddyUserMenuDetails = (variables?: Partial<QueryBuddyArgs>) => ({
+  request: {
+    query: BUDDY_USER_MENU_DETAILS,
+    variables,
+  },
+  result: {
+    data: {
+      buddy: {
+        id: 'id',
+        name: 'Tom Hanks',
+        email: 'tom@wipro.com',
+        role: 'BUDDY',
+        photo: 'buddy-photo-url',
+        allowPushedNotifications: true,
+        newbies: [
+          {
+            id: 'id',
+            photo: 'newbie-photo-url',
+            name: 'Sandra Bullock',
+            email: 'sandra@wipro.com',
+            allowPushedNotifications: true,
+            tasksInfo: {
+              buddyProgress: 0.3,
+            },
+          },
+        ],
+      },
+    },
+  },
 });
