@@ -103,7 +103,9 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
     <>
       <NavBar
         type='back'
-        onClick={() => props.history.push(ROUTES.BUDDY_TASKS_LIST)}
+        onClick={() =>
+          props.history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId))
+        }
       />
       <Typography component='h2' variant='h2'>
         Contact Details

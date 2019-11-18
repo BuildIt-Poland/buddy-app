@@ -19,6 +19,7 @@ exports[`Component - Carrousel renders correctly Should render correctly Carrous
         className="makeStyles-carrouselElement-1"
       >
         <Avatar
+          imgSrc={null}
           name="Test 2"
           progress={50}
         />
@@ -37,6 +38,7 @@ exports[`Component - Carrousel renders correctly Should render correctly Carrous
         className="makeStyles-carrouselElement-1"
       >
         <Avatar
+          imgSrc={null}
           name="Test 1"
           progress={60}
           role="Front End"

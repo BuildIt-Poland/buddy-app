@@ -2,7 +2,9 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import TabPanel from '../TabPanel';
+import TabPanel from 'components/TabPanel';
+import AvatarHeader from 'components/AvatarHeader';
+import NavBar from 'components/NavBar';
 
 const TasksList: React.FC = () => {
   const [value, setValue] = React.useState(0);
@@ -10,9 +12,10 @@ const TasksList: React.FC = () => {
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
     setValue(newValue);
   };
-
   return (
     <div data-testid='task-list-page'>
+      <NavBar type={'menu'} onClick={() => null} />
+      <AvatarHeader />
       <AppBar component='section' position='static' color='default'>
         <Tabs
           value={value}

@@ -4,6 +4,7 @@ import { colorSchemes } from '@buildit/gravity-particles';
 declare module '@material-ui/core/styles/zIndex' {
   interface ZIndex {
     backgroundShape: number;
+    base: number;
   }
 }
 
@@ -56,6 +57,7 @@ let theme = createMuiTheme({
   },
   zIndex: {
     backgroundShape: -10,
+    base: 1,
   },
   spacing: factor => `${factor}rem`,
 });

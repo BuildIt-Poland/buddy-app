@@ -1,7 +1,7 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 
-import TabPanel from '../TabPanel';
+import TabPanel from 'components/TabPanel';
 jest.mock('@material-ui/core/Box', () => 'Box');
 
 describe('Component - TabPanel', () => {
