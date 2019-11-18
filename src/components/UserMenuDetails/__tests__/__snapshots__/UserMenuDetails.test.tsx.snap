@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - PlusButton renders correctly 1`] = `
+<Box
+  className="makeStyles-wrapper-1"
+>
+  <Box
+    className="makeStyles-avatar-2"
+  >
+    <Avatar
+      imgSrc="url"
+    />
+  </Box>
+  <Typography
+    component="p"
+    variant="body1"
+  >
+    <Box
+      component="strong"
+      fontWeight="fontWeightBold"
+    >
+      tom
+    </Box>
+  </Typography>
+  <Typography
+    component="p"
+    variant="body2"
+  >
+    hanks@wipro.com
+  </Typography>
+</Box>
+`;

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - BuddyMenuSection renders correctly 1`] = `
+<Box
+  className="makeStyles-wrapper-1"
+>
+  <Typography
+    className="makeStyles-title-2"
+    component="h3"
+    variant="body1"
+  >
+    <Box
+      component="strong"
+      fontWeight="fontWeightBold"
+    >
+      Buddy
+    </Box>
+  </Typography>
+  <UserMenuListItem
+    onItemClick={[Function]}
+    user={
+      Object {
+        "id": "id",
+        "name": "Tom",
+        "photo": "photo",
+      }
+    }
+  />
+</Box>
+`;

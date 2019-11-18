@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - UserMenuSettings renders correctly 1`] = `
+<Box
+  className="makeStyles-wrapper-1"
+>
+  <Typography
+    component="h3"
+    variant="body1"
+  >
+    <Box
+      component="strong"
+      fontWeight="fontWeightBold"
+    >
+      Settings
+    </Box>
+  </Typography>
+  <FormControlLabel
+    control={
+      <Switch
+        checked={true}
+        onChange={[Function]}
+      />
+    }
+    label="Allow push notifications"
+  />
+</Box>
+`;
