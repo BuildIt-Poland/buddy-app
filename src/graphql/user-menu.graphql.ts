@@ -1,7 +1,7 @@
 import { gql } from 'apollo-boost';
 
-export const BUDDY_USER_MENU_DETAILS = gql`
-  query getBuddyUserMenuDetails($buddyId: ID!) {
+export const BUDDY_MENU_DETAILS = gql`
+  query getBuddyMenuDetails($buddyId: ID!) {
     buddy(buddyId: $buddyId) {
       name
       email
@@ -16,8 +16,8 @@ export const BUDDY_USER_MENU_DETAILS = gql`
   }
 `;
 
-export const NEWBIE_USER_MENU_DETAILS = gql`
-  query getNewbieUserMenuDetails($newbieId: ID!) {
+export const NEWBIE_MENU_DETAILS = gql`
+  query getNewbieMenuDetails($newbieId: ID!) {
     newbie(newbieId: $newbieId) {
       name
       email

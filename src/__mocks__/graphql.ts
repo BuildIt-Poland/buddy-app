@@ -1,5 +1,5 @@
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
-import { BUDDY_USER_MENU_DETAILS } from 'graphql/user-menu.graphql';
+import { BUDDY_MENU_DETAILS, NEWBIE_MENU_DETAILS } from 'graphql/user-menu.graphql';
 import {
   MutationLoginArgs,
   AuthPayload,
@@ -77,33 +77,52 @@ export const NewbieAvatarDetails = (variables?: QueryNewbieArgs) => ({
   },
 });
 
-export const buddyUserMenuDetails = (variables?: Partial<QueryBuddyArgs>) => ({
-  request: {
-    query: BUDDY_USER_MENU_DETAILS,
-    variables,
-  },
-  result: {
-    data: {
-      buddy: {
-        id: 'id',
-        name: 'Tom Hanks',
-        email: 'tom@wipro.com',
-        role: 'BUDDY',
-        photo: 'buddy-photo-url',
-        allowPushedNotifications: true,
-        newbies: [
-          {
-            id: 'id',
-            photo: 'newbie-photo-url',
-            name: 'Sandra Bullock',
-            email: 'sandra@wipro.com',
-            allowPushedNotifications: true,
-            tasksInfo: {
-              buddyProgress: 0.3,
+export const buddyMenuDetails = (variables?: Partial<QueryBuddyArgs>) => [
+  {
+    request: {
+      query: BUDDY_MENU_DETAILS,
+      variables,
+    },
+    result: {
+      data: {
+        buddy: {
+          name: 'Tom Hanks',
+          email: 'tom@wipro.com',
+          allowPushedNotifications: true,
+          photo: 'buddy-photo-url',
+          newbies: [
+            {
+              id: 'id',
+              name: 'Sandra Bullock',
+              photo: 'newbie-photo-url',
             },
-          },
-        ],
+          ],
+        },
       },
     },
   },
-});
+];
+
+export const newbieMenuDetails = (variables?: Partial<QueryNewbieArgs>) => [
+  {
+    request: {
+      query: NEWBIE_MENU_DETAILS,
+      variables,
+    },
+    result: {
+      data: {
+        newbie: {
+          name: 'Sandra Bullock',
+          email: 'doejoe@wipro.com',
+          allowPushedNotifications: true,
+          photo: 'newbie-photo-url',
+          buddy: {
+            id: 'id',
+            name: 'Tom Hanks',
+            photo: 'newbie-photo-url',
+          },
+        },
+      },
+    },
+  },
+];

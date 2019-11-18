@@ -5,12 +5,10 @@ import Divider from '@material-ui/core/Divider';
 import CloseIcon from '@material-ui/icons/Close';
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { useQuery } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
-import {
-  BUDDY_USER_MENU_DETAILS,
-  NEWBIE_USER_MENU_DETAILS,
-} from 'graphql/user-menu.graphql';
+import { BUDDY_MENU_DETAILS, NEWBIE_MENU_DETAILS } from 'graphql/user-menu.graphql';
 import NewbiesMenuSection from 'components/NewbiesMenuSection';
 import UserMenuDetails from 'components/UserMenuDetails';
 import UserMenuSettings from 'components/UserMenuSettings';
@@ -32,20 +30,27 @@ const useStyles = makeStyles({
     alignSelf: 'flex-end',
     zIndex: theme.zIndex.base,
   },
+  loader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100vh',
+    width: '100%',
+  },
 });
 
 const SlideMenu: React.FC<SlideMenuProps> = props => {
   const history = useHistory();
-  const { list, closeBtn } = useStyles();
+  const { list, closeBtn, loader } = useStyles();
   const { isMenuVisible, onClose } = props;
   const { data: AuthData } = useContext<AuthContextData>(AuthContext);
   const { userId, role } = AuthData;
 
   const getQueryByRole = (role: UserRole, id: string) => {
     if (isBuddy(role)) {
-      return { query: BUDDY_USER_MENU_DETAILS, variables: { buddyId: id } };
+      return { query: BUDDY_MENU_DETAILS, variables: { buddyId: id } };
     } else if (isNewbie(role)) {
-      return { query: NEWBIE_USER_MENU_DETAILS, variables: { newbieId: id } };
+      return { query: NEWBIE_MENU_DETAILS, variables: { newbieId: id } };
     }
   };
 
@@ -60,38 +65,50 @@ const SlideMenu: React.FC<SlideMenuProps> = props => {
   };
 
   const { query, variables } = getQueryByRole(role, userId) || {};
-  const { data } = useQuery<UserBasicDetails, BasicDetailsParams>(query, {
+  const { data, loading } = useQuery<UserBasicDetails, BasicDetailsParams>(query, {
     variables,
   });
   const user = data && data[role.toLowerCase()];
   return (
-    <Drawer open={isMenuVisible} onClose={onClose}>
-      {user && (
-        <Box className={list} role='presentation'>
-          <IconButton className={closeBtn} onClick={onClose}>
-            <CloseIcon />
-          </IconButton>
-          <UserMenuDetails user={user} />
-          <Divider />
-          {isBuddy(role) && (
-            <NewbiesMenuSection
-              newbies={(user as Buddy).newbies}
-              onSelect={selectNewbie}
+    <Drawer open={isMenuVisible} onClose={onClose} data-testid='slide-menu'>
+      <Box className={list}>
+        {user && (
+          <Box data-testid='slide-menu-body'>
+            <Box display='flex' justifyContent='flex-end'>
+              <IconButton
+                className={closeBtn}
+                onClick={onClose}
+                data-testid='slide-menu-close-btn'>
+                <CloseIcon />
+              </IconButton>
+            </Box>
+            <UserMenuDetails user={user} />
+            <Divider />
+            {isBuddy(role) && (
+              <NewbiesMenuSection
+                newbies={(user as Buddy).newbies}
+                onSelect={selectNewbie}
+              />
+            )}
+            {isNewbie(role) && (
+              <BuddyMenuSection
+                buddy={(user as Newbie).buddy}
+                onSelect={selectBuddy}
+              />
+            )}
+            <Divider />
+            <UserMenuSettings
+              allowPushedNotifications={!!user.allowPushedNotifications}
+              updatePushNotificationsSettings={() => {}}
             />
-          )}
-          {isNewbie(role) && (
-            <BuddyMenuSection
-              buddy={(user as Newbie).buddy}
-              onSelect={selectBuddy}
-            />
-          )}
-          <Divider />
-          <UserMenuSettings
-            allowPushedNotifications={!!user.allowPushedNotifications}
-            updatePushNotificationsSettings={() => {}}
-          />
-        </Box>
-      )}
+          </Box>
+        )}
+        {loading && (
+          <Box className={loader}>
+            <CircularProgress data-testid='slide-menu-loader' />
+          </Box>
+        )}
+      </Box>
     </Drawer>
   );
 };
