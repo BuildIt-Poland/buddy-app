@@ -1,20 +1,21 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 
-import NewbiesMenuSection from '../NewbiesMenuSection';
+import UserMenuBuddy from '../UserMenuBuddy';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('../../UserMenuListItem', () => 'UserMenuListItem');
 
-describe('Component - NewbiesMenuSection', () => {
+describe('Component - UserMenuBuddy', () => {
   test('renders correctly', () => {
     const component = create(
-      <NewbiesMenuSection
-        newbies={[{ name: ' foo', photo: 'url' }]}
+      <UserMenuBuddy
+        buddy={{ id: 'id', name: 'Tom', photo: 'photo' }}
         onSelect={() => null}
       />
     );
+
     expect(component.toJSON()).toMatchSnapshot();
   });
 });

@@ -3,7 +3,7 @@ import { Box, makeStyles, Typography } from '@material-ui/core';
 import { Buddy } from 'buddy-app-schema';
 import UserMenuListItem from 'components/UserMenuListItem';
 import theme from 'styles/theme';
-import { BuddyMenuSectionProps } from './types';
+import { UserMenuBuddyProps } from './types';
 
 const useStyles = makeStyles({
   wrapper: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   },
 });
 
-const BuddyMenuSection: React.FC<BuddyMenuSectionProps> = props => {
+const UserMenuBuddy: React.FC<UserMenuBuddyProps> = props => {
   const { wrapper, title } = useStyles();
   const { buddy, onSelect } = props;
 
@@ -31,4 +31,4 @@ const BuddyMenuSection: React.FC<BuddyMenuSectionProps> = props => {
   );
 };
 
-export default BuddyMenuSection;
+export default UserMenuBuddy;

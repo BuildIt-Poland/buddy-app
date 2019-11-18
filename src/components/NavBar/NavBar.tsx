@@ -5,7 +5,7 @@ import { AppBar, Theme } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import SlideMenu from 'components/SlideMenu';
+import UserMenu from 'components/UserMenu';
 import { NavBarButton, NavBarProps } from './types';
 
 const useStyles = makeStyles<Theme>(theme => ({
@@ -54,7 +54,7 @@ const NavBar: React.FC<NavBarProps> = props => {
         </Toolbar>
       </AppBar>
       {!onClick && (
-        <SlideMenu isMenuVisible={isMenuVisible} onClose={handleOnClose} />
+        <UserMenu isMenuVisible={isMenuVisible} onClose={handleOnClose} />
       )}
     </>
   );

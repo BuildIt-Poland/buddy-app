@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, makeStyles, Typography } from '@material-ui/core';
 import theme from 'styles/theme';
 import UserMenuListItem from 'components/UserMenuListItem';
-import { NewbiesListProps } from './types';
+import { UserMenuNewbiesProps } from './types';
 
 const useStyles = makeStyles({
   title: {
@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   },
 });
 
-const NewbiesMenuSection: React.FC<NewbiesListProps> = props => {
+const UserMenuNewbies: React.FC<UserMenuNewbiesProps> = props => {
   const { title, wrapper } = useStyles();
   const { newbies, onSelect } = props;
 
@@ -35,4 +35,4 @@ const NewbiesMenuSection: React.FC<NewbiesListProps> = props => {
   ) : null;
 };
 
-export default NewbiesMenuSection;
+export default UserMenuNewbies;

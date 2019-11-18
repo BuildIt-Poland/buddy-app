@@ -9,16 +9,16 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { useQuery } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 import { BUDDY_MENU_DETAILS, NEWBIE_MENU_DETAILS } from 'graphql/user-menu.graphql';
-import NewbiesMenuSection from 'components/NewbiesMenuSection';
+import NewbiesMenuSection from 'components/UserMenuNewbies';
 import UserMenuDetails from 'components/UserMenuDetails';
 import UserMenuSettings from 'components/UserMenuSettings';
-import BuddyMenuSection from 'components/BuddyMenuSection';
+import BuddyMenuSection from 'components/UserMenuBuddy';
 import { isBuddy, isNewbie } from 'utils';
 import theme from 'styles/theme';
 import { ROUTES } from 'shared/routes';
 import { Buddy, Newbie, UserRole } from 'buddy-app-schema';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
-import { BasicDetailsParams, SlideMenuProps, UserBasicDetails } from './types';
+import { BasicDetailsParams, UserMenuProps, UserBasicDetails } from './types';
 
 const useStyles = makeStyles({
   list: {
@@ -39,7 +39,7 @@ const useStyles = makeStyles({
   },
 });
 
-const SlideMenu: React.FC<SlideMenuProps> = props => {
+const UserMenu: React.FC<UserMenuProps> = props => {
   const history = useHistory();
   const { list, closeBtn, loader } = useStyles();
   const { isMenuVisible, onClose } = props;
@@ -113,4 +113,4 @@ const SlideMenu: React.FC<SlideMenuProps> = props => {
   );
 };
 
-export default SlideMenu;
+export default UserMenu;

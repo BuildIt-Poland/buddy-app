@@ -1,13 +1,8 @@
 import React from 'react';
 import { act } from 'react-test-renderer';
-import SlideMenu from 'components/SlideMenu';
+import UserMenu from 'components/UserMenu';
 import { MemoryRouter, Route } from 'react-router';
-import {
-  authContext,
-  buddyMenuDetails,
-  mockSchemaTypes,
-  newbieMenuDetails,
-} from '__mocks__';
+import { buddyMenuDetails, mockSchemaTypes, newbieMenuDetails } from '__mocks__';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import waitForExpect from 'wait-for-expect';
 import { render, fireEvent } from '@testing-library/react';
@@ -19,11 +14,8 @@ jest.mock('@material-ui/core/Drawer', () => 'Drawer');
 jest.mock('@material-ui/core/Divider', () => 'Divider');
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
 jest.mock('components/UserMenuDetails/UserMenuDetails', () => 'UserMenuDetails');
-jest.mock('components/BuddyMenuSection/BuddyMenuSection', () => 'BuddyMenuSection');
-jest.mock(
-  'components/NewbiesMenuSection/NewbiesMenuSection',
-  () => 'NewbiesMenuSection'
-);
+jest.mock('components/UserMenuBuddy/UserMenuBuddy', () => 'UserMenuBuddy');
+jest.mock('components/UserMenuNewbies/UserMenuNewbies', () => 'UserMenuNewbies');
 jest.mock('components/UserMenuSettings/UserMenuSettings', () => 'UserMenuSettings');
 jest.mock('components/UserMenuSettings/UserMenuSettings', () => 'UserMenuSettings');
 jest.mock('buddy-app-schema', () => ({
@@ -33,7 +25,7 @@ jest.mock('buddy-app-schema', () => ({
   },
 }));
 
-describe('SlideMenu component', () => {
+describe('UserMenu component', () => {
   describe('when logged in as buddy', () => {
     let getByTestId: any;
     const onCloseMock = jest.fn();
@@ -53,7 +45,7 @@ describe('SlideMenu component', () => {
               mocks={buddyMenuDetails({ buddyId: '1234' })}
               addTypename={false}>
               <Route path={path}>
-                <SlideMenu isMenuVisible={true} onClose={onCloseMock} />
+                <UserMenu isMenuVisible={true} onClose={onCloseMock} />
               </Route>
             </MockedProvider>
           </AuthContext.Provider>
@@ -100,7 +92,7 @@ describe('SlideMenu component', () => {
               mocks={newbieMenuDetails({ newbieId: '1234' })}
               addTypename={false}>
               <Route path={path}>
-                <SlideMenu isMenuVisible={true} onClose={onCloseMock} />
+                <UserMenu isMenuVisible={true} onClose={onCloseMock} />
               </Route>
             </MockedProvider>
           </AuthContext.Provider>

@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - BuddyMenuSection renders correctly 1`] = `
+exports[`Component - UserMenuNewbies renders correctly 1`] = `
 <Box
-  className="makeStyles-wrapper-1"
+  className="makeStyles-wrapper-2"
 >
   <Typography
-    className="makeStyles-title-2"
+    className="makeStyles-title-1"
     component="h3"
     variant="body1"
   >
@@ -13,16 +13,15 @@ exports[`Component - BuddyMenuSection renders correctly 1`] = `
       component="strong"
       fontWeight="fontWeightBold"
     >
-      Buddy
+      Newbies
     </Box>
   </Typography>
   <UserMenuListItem
     onItemClick={[Function]}
     user={
       Object {
-        "id": "id",
-        "name": "Tom",
-        "photo": "photo",
+        "name": "newbie",
+        "photo": "url",
       }
     }
   />

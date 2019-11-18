@@ -1,21 +1,20 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-
-import BuddyMenuSection from '../BuddyMenuSection';
+import { Newbie } from 'buddy-app-schema';
+import UserMenuNewbies from 'components/UserMenuNewbies';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');
-jest.mock('../../UserMenuListItem', () => 'UserMenuListItem');
+jest.mock('components/UserMenuListItem', () => 'UserMenuListItem');
 
-describe('Component - BuddyMenuSection', () => {
+describe('Component - UserMenuNewbies', () => {
   test('renders correctly', () => {
     const component = create(
-      <BuddyMenuSection
-        buddy={{ id: 'id', name: 'Tom', photo: 'photo' }}
+      <UserMenuNewbies
+        newbies={[{ name: 'newbie', photo: 'url' }] as Newbie[]}
         onSelect={() => null}
       />
     );
-
     expect(component.toJSON()).toMatchSnapshot();
   });
 });

@@ -1,6 +1,6 @@
 import { Maybe, Newbie } from 'buddy-app-schema';
 
-export type NewbiesListProps = {
+export type UserMenuNewbiesProps = {
   newbies: Maybe<Newbie>[];
   onSelect: (id: string) => void;
 };

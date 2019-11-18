@@ -5,7 +5,7 @@ import {
   Newbie,
 } from 'buddy-app-schema';
 
-export type SlideMenuProps = {
+export type UserMenuProps = {
   isMenuVisible: boolean;
   onClose: () => void;
 };
