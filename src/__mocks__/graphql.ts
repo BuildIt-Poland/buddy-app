@@ -1,6 +1,12 @@
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
 import { BUDDY_USER_MENU_DETAILS } from 'graphql/user-menu.graphql';
-import { MutationLoginArgs, AuthPayload, QueryBuddyArgs } from 'buddy-app-schema';
+import {
+  MutationLoginArgs,
+  AuthPayload,
+  QueryBuddyArgs,
+  QueryNewbieArgs,
+} from 'buddy-app-schema';
+import AVATAR_HEADER from 'graphql/avatar-header.graphql';
 import { GraphQLError } from 'graphql';
 import { authContext } from './context';
 
@@ -50,6 +56,25 @@ export const loginNoNetworkMock = (variables?: Partial<MutationLoginArgs>) => ({
     },
   },
   error: new Error('Network error'),
+});
+
+export const NewbieAvatarDetails = (variables?: QueryNewbieArgs) => ({
+  request: {
+    query: AVATAR_HEADER,
+    variables,
+  },
+  result: {
+    data: {
+      newbie: {
+        name: 'Tom Hanks',
+        position: 'front-end',
+        photo: 'some-url',
+        tasksInfo: {
+          buddyProgress: 0.54,
+        },
+      },
+    },
+  },
 });
 
 export const buddyUserMenuDetails = (variables?: Partial<QueryBuddyArgs>) => ({

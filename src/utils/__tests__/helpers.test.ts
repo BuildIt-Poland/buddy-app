@@ -1,4 +1,4 @@
-import { isNewbie } from 'utils';
+import { getProgressInPercentages, isNewbie } from 'utils';
 import { mockSchemaTypes } from '__mocks__';
 
 jest.mock('buddy-app-schema', () => ({
@@ -19,5 +19,10 @@ describe('Utils - helpers', () => {
   it('helpers - isNewbie should return false', () => {
     const result = isNewbie(userRole.Buddy);
     expect(result).toBe(false);
+  });
+
+  it('helpers - getProgressInPercentages should return progress as percentage', () => {
+    const result = getProgressInPercentages(0.5666666);
+    expect(result).toEqual(57);
   });
 });
