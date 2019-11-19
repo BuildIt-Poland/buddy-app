@@ -20,7 +20,7 @@ const useStyles = makeStyles<Theme>(theme => ({
 
 const NavBar: React.FC<NavBarProps> = props => {
   const classes = useStyles();
-  const [isMenuVisible, updateMenuVisibility] = useState(true);
+  const [isMenuVisible, updateMenuVisibility] = useState(false);
 
   const button: NavBarButton = {
     menu: () => <MenuIcon />,
