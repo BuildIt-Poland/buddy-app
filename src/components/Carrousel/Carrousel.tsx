@@ -6,7 +6,6 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-
 import { Newbie } from '../../../server/src/generated/schema-types';
 import Avatar from '../Avatar';
 import { ROUTES } from '../../shared/routes';
@@ -16,11 +15,11 @@ const useStyles = makeStyles(theme => ({
     height: '30rem',
     width: '20rem',
     padding: theme.spacing(2),
-    borderRadius: '2rem',
+    borderRadius: '10%',
     textDecoration: 'none',
   },
   carrousel: {
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       overflowX: 'auto',
     },
   },
@@ -31,7 +30,7 @@ const useStyles = makeStyles(theme => ({
 
 const Carrousel: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
   const classes = useStyles();
-  const breakpointSm = useMediaQuery<Theme>(theme => theme.breakpoints.down('sm'));
+  const breakpointSm = useMediaQuery<Theme>(theme => theme.breakpoints.down('xs'));
 
   return (
     <Grid
