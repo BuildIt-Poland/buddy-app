@@ -9,10 +9,10 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { useQuery } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
 import { BUDDY_MENU_DETAILS, NEWBIE_MENU_DETAILS } from 'graphql/user-menu.graphql';
-import NewbiesMenuSection from 'components/UserMenuNewbies';
+import UserMenuNewbies from 'components/UserMenuNewbies';
 import UserMenuDetails from 'components/UserMenuDetails';
 import UserMenuSettings from 'components/UserMenuSettings';
-import BuddyMenuSection from 'components/UserMenuBuddy';
+import UserMenuBuddy from 'components/UserMenuBuddy';
 import { isBuddy, isNewbie } from 'utils';
 import theme from 'styles/theme';
 import { ROUTES } from 'shared/routes';
@@ -85,16 +85,13 @@ const UserMenu: React.FC<UserMenuProps> = props => {
             <UserMenuDetails user={user} />
             <Divider />
             {isBuddy(role) && (
-              <NewbiesMenuSection
+              <UserMenuNewbies
                 newbies={(user as Buddy).newbies}
                 onSelect={selectNewbie}
               />
             )}
             {isNewbie(role) && (
-              <BuddyMenuSection
-                buddy={(user as Newbie).buddy}
-                onSelect={selectBuddy}
-              />
+              <UserMenuBuddy buddy={(user as Newbie).buddy} onSelect={selectBuddy} />
             )}
             <Divider />
             <UserMenuSettings
