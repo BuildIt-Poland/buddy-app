@@ -9,10 +9,10 @@ jest.mock('buddy-app-schema', () => {});
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('components/NavBar', () => 'Navbar');
 jest.mock('@material-ui/core/Box', () => 'Box');
-jest.mock('../../PlusButton/', () => 'PlusButton');
-jest.mock('../../Carrousel/', () => 'Carrousel');
-jest.mock('../../BackgroundShape/', () => 'BackgroundShape');
-jest.mock('../../AppWrapper', () => 'AppWrapper');
+jest.mock('components/PlusButton/', () => 'PlusButton');
+jest.mock('components/Carrousel/', () => 'Carrousel');
+jest.mock('components/BackgroundShape/', () => 'BackgroundShape');
+jest.mock('components/AppWrapper', () => 'AppWrapper');
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
 
 describe('Component - NewbieSelect', () => {
