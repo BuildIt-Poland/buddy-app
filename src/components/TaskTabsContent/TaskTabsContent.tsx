@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { Box } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import { TaskStatus } from 'buddy-app-schema';
-import TasksStatusList, { TasksStatusListProps } from '../TasksStatusList';
+import TasksSubList, { TasksSubListProps } from '../TasksSubList';
 import { TaskTabsContentProps, TransformedTasks } from './types';
 import DICTIONARY from './tasksTabsContent.dictionary';
 
@@ -40,7 +40,7 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
   const { uncompletedTasks, completedTasks } = useMemo(() => transformTasks(tasks), [
     tasks,
   ]);
-  const tasksList: TasksStatusListProps[] = [
+  const tasksList: TasksSubListProps[] = [
     {
       title: DICTIONARY.TITLE_UNCOMPLETED,
       count: uncompletedCount,
@@ -57,7 +57,7 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
     <Box className={wrapper}>
       {tasksList.map((props, key) =>
         props.count ? (
-          <TasksStatusList key={key} onChange={onChange} {...props} />
+          <TasksSubList key={key} onChange={onChange} {...props} />
         ) : null
       )}
     </Box>
