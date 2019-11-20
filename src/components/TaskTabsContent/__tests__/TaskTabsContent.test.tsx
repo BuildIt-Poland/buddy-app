@@ -17,12 +17,12 @@ describe('Component - TaskTabsContent', () => {
       />
     );
     expect(component.toJSON()).toMatchSnapshot();
-
-    //component.root.findAllByType(TasksSubList).length;
+    expect(component.root.findAllByType(TasksSubList).length).toBe(2);
   });
 
   test(`renders correctly without tasks and counts`, () => {
     const component = create(<TaskTabsContent tasks={[]} />);
     expect(component.toJSON()).toMatchSnapshot();
+    expect(component.root.findAllByType(TasksSubList).length).toBe(0);
   });
 });

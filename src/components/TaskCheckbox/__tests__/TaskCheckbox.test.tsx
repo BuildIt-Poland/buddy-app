@@ -1,6 +1,7 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 import { TaskStatus } from '__mocks__';
+import { MemoryRouter } from 'react-router';
 import TaskCheckbox from '../TaskCheckbox';
 
 jest.mock('@material-ui/core/Box', () => 'Box');
@@ -12,23 +13,27 @@ describe('Component - TaskCheckbox', () => {
 
   test(`renders correctly when task is ${Uncompleted}`, () => {
     const component = create(
-      <TaskCheckbox
-        title={'Change you line manager'}
-        status={Uncompleted}
-        id={'1'}
-        onChange={() => null}
-      />
+      <MemoryRouter>
+        <TaskCheckbox
+          title={'Change you line manager'}
+          status={Uncompleted}
+          id={'1'}
+          onChange={() => null}
+        />
+      </MemoryRouter>
     );
     expect(component.toJSON()).toMatchSnapshot();
   });
   test(`renders correctly when task is ${Completed}`, () => {
     const component = create(
-      <TaskCheckbox
-        title={'Change you line manager'}
-        status={Completed}
-        id={'1'}
-        onChange={() => null}
-      />
+      <MemoryRouter>
+        <TaskCheckbox
+          title={'Change you line manager'}
+          status={Completed}
+          id={'1'}
+          onChange={() => null}
+        />
+      </MemoryRouter>
     );
     expect(component.toJSON()).toMatchSnapshot();
   });
