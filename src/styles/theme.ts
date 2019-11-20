@@ -9,6 +9,27 @@ declare module '@material-ui/core/styles/zIndex' {
 
 const { tealWhite } = colorSchemes;
 
+export const colors = {
+  primary: {
+    main: tealWhite.groupB.accent,
+    contrastText: tealWhite.groupA.neutral,
+  },
+  secondary: {
+    main: tealWhite.groupB.neutral,
+    contrastText: tealWhite.groupA.neutral,
+  },
+  background: {
+    default: tealWhite.groupA.neutral,
+    paper: tealWhite.groupA.neutralAlt,
+  },
+  text: {
+    primary: tealWhite.groupB.neutral,
+  },
+  custom: {
+    lightText: 'rgb(0, 0, 0, 0.5)',
+  },
+};
+
 let theme = createMuiTheme({
   typography: {
     htmlFontSize: 10, //62,5%
@@ -26,6 +47,10 @@ let theme = createMuiTheme({
       fontSize: '2.4rem',
       fontWeight: 'bold',
     },
+    h4: {
+      fontSize: '1.6rem',
+      fontWeight: 'bold',
+    },
     body1: {
       fontSize: '1.6rem',
     },
@@ -38,21 +63,7 @@ let theme = createMuiTheme({
   },
   palette: {
     type: 'light',
-    primary: {
-      main: tealWhite.groupB.accent,
-      contrastText: tealWhite.groupA.neutral,
-    },
-    secondary: {
-      main: tealWhite.groupB.neutral,
-      contrastText: tealWhite.groupA.neutral,
-    },
-    background: {
-      default: tealWhite.groupA.neutral,
-      paper: tealWhite.groupA.neutralAlt,
-    },
-    text: {
-      primary: tealWhite.groupB.neutral,
-    },
+    ...colors,
   },
   zIndex: {
     backgroundShape: -10,

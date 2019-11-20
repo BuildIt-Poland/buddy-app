@@ -1,9 +1,14 @@
 import React from 'react';
+import { Link, useParams } from 'react-router-dom';
 import Checkbox from '@material-ui/core/Checkbox';
 import { Box, Typography } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
-import { TaskStatus, Task } from 'buddy-app-schema';
-import { TaskCheckBoxOwnProps } from './types';
+import { TaskStatus, QueryNewbieArgs } from 'buddy-app-schema';
+import { colors } from 'styles/theme';
+import { ROUTES } from 'shared/routes';
+import { TaskCheckboxProps } from './types';
+
+const LINE_THROUGH_HEIGHT = 0.1;
 
 const useStyles = makeStyles({
   wrapper: {
@@ -18,44 +23,53 @@ const useStyles = makeStyles({
   line: {
     width: '100%',
     position: 'absolute',
-    height: '0.1rem',
-    backgroundColor: 'rgba(0, 0, 0, 0.28)',
-    top: '1.2rem',
+    zIndex: -1,
+    height: `${LINE_THROUGH_HEIGHT}rem`,
+    backgroundColor: colors.custom.lightText,
+    top: `calc(50% - ${LINE_THROUGH_HEIGHT / 2}rem)`,
+  },
+  linkText: {
+    '&:hover': {
+      color: colors.primary.main,
+    },
   },
 });
 
-const TaskCheckbox: React.FC<Partial<Task> & TaskCheckBoxOwnProps> = ({
+const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
   id,
   title,
   status,
   onChange,
 }) => {
-  const { wrapper, line, titleWrapper } = useStyles();
+  const { wrapper, line, titleWrapper, linkText } = useStyles();
+  const { newbieId } = useParams<QueryNewbieArgs>();
 
-  const isChecked = (status: TaskStatus) => status === TaskStatus.Completed;
+  const isChecked = status === TaskStatus.Completed;
+  const fontWeight = isChecked ? 'fontWeightRegular' : 'fontWeightBold';
+  const path = ROUTES.BUDDY_TASK_DETAILS.replace(':newbieId', newbieId).replace(
+    ':taskId',
+    id
+  );
+
+  const onCheckboxChange = () => onChange && onChange(id);
 
   return (
     <Box className={wrapper}>
       <Checkbox
         color='primary'
-        checked={isChecked(status as TaskStatus)}
-        onChange={() => onChange(id as string)}
+        checked={isChecked}
+        onChange={onCheckboxChange}
         value={id}
-        inputProps={{
-          'aria-label': 'primary checkbox',
-        }}
+        aria-label='primary checkbox'
       />
       <Box className={titleWrapper}>
         <Typography component='h4' variant='body1'>
-          <Box
-            fontWeight={
-              isChecked(status as TaskStatus)
-                ? 'fontWeightRegular'
-                : 'fontWeightBold'
-            }>
-            {title}
-          </Box>
-          {isChecked(status as TaskStatus) && <div className={line} />}
+          <Link to={path}>
+            <Box className={linkText} fontWeight={fontWeight}>
+              {title}
+            </Box>
+          </Link>
+          {isChecked && <div className={line} />}
         </Typography>
       </Box>
     </Box>
