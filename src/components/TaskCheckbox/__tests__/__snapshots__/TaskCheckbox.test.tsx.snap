@@ -1,38 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] = `
-<Box
-  className="makeStyles-wrapper-1"
->
-  <Checkbox
-    checked={true}
-    color="primary"
-    inputProps={
-      Object {
-        "aria-label": "primary checkbox",
-      }
-    }
-    onChange={[Function]}
-    value="1"
-  />
+Array [
+  " ",
   <Box
-    className="makeStyles-titleWrapper-2"
+    className="makeStyles-wrapper-1"
   >
-    <Typography
-      component="h4"
-      variant="body1"
+    <Checkbox
+      aria-label="primary checkbox"
+      checked={true}
+      color="primary"
+      onChange={[Function]}
+      value="1"
+    />
+    <Box
+      className="makeStyles-titleWrapper-2"
     >
-      <Box
-        fontWeight="fontWeightRegular"
+      <Typography
+        component="h4"
+        variant="body1"
       >
-        Change you line manager
-      </Box>
-      <div
-        className="makeStyles-line-3"
-      />
-    </Typography>
-  </Box>
-</Box>
+        <a
+          href="/buddy/newbies/undefined/tasks/1"
+          onClick={[Function]}
+        >
+          <Box
+            className="makeStyles-linkText-4"
+            fontWeight="fontWeightRegular"
+          >
+            Change you line manager
+          </Box>
+        </a>
+        <div
+          className="makeStyles-line-3"
+        />
+      </Typography>
+    </Box>
+  </Box>,
+]
 `;
 
 exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`] = `
@@ -40,13 +45,9 @@ exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`]
   className="makeStyles-wrapper-1"
 >
   <Checkbox
+    aria-label="primary checkbox"
     checked={false}
     color="primary"
-    inputProps={
-      Object {
-        "aria-label": "primary checkbox",
-      }
-    }
     onChange={[Function]}
     value="1"
   />
@@ -57,11 +58,17 @@ exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`]
       component="h4"
       variant="body1"
     >
-      <Box
-        fontWeight="fontWeightBold"
+      <a
+        href="/buddy/newbies/undefined/tasks/1"
+        onClick={[Function]}
       >
-        Change you line manager
-      </Box>
+        <Box
+          className="makeStyles-linkText-4"
+          fontWeight="fontWeightBold"
+        >
+          Change you line manager
+        </Box>
+      </a>
     </Typography>
   </Box>
 </Box>

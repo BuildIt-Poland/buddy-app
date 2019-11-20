@@ -1,5 +1,10 @@
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
-import { MutationLoginArgs, AuthPayload } from 'buddy-app-schema';
+import {
+  MutationLoginArgs,
+  AuthPayload,
+  TaskStatus,
+  Newbie,
+} from 'buddy-app-schema';
 import { GraphQLError } from 'graphql';
 import { authContext } from './context';
 
@@ -50,3 +55,35 @@ export const loginNoNetworkMock = (variables?: Partial<MutationLoginArgs>) => ({
   },
   error: new Error('Network error'),
 });
+
+export const tasksResponse = (filter?: string) => {
+  const tasks = [
+    {
+      id: '1',
+      title: 'Call you head manager',
+      description: '',
+      createdAt: '',
+      implementationDate: '',
+      status: TaskStatus.Uncompleted,
+      newbie: {} as Newbie,
+    },
+    {
+      id: '2',
+      title: 'Write you main manager',
+      description: '',
+      createdAt: '',
+      implementationDate: '',
+      status: TaskStatus.Completed,
+      newbie: {} as Newbie,
+    },
+  ];
+
+  switch (filter) {
+    case 'completed':
+      return [tasks[0]];
+    case 'uncompleted':
+      return [tasks[1]];
+    default:
+      return tasks;
+  }
+};

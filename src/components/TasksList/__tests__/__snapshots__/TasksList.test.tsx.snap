@@ -4,6 +4,11 @@ exports[`Component - TasksList renders correctly 1`] = `
 <div
   data-testid="task-list-page"
 >
+  <NavBar
+    onClick={[Function]}
+    type="menu"
+  />
+  <AvatarHeader />
   <AppBar
     color="default"
     component="section"

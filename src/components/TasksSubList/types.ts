@@ -3,6 +3,6 @@ import { CheckboxProps } from '../TaskCheckbox';
 
 export interface TasksSubListProps extends CheckboxProps {
   tasks: Task[];
-  title: string;
-  count: number;
+  title?: string;
+  count?: number;
 }

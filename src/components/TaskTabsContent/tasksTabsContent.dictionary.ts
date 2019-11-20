@@ -4,7 +4,7 @@ interface TaskTabsContent {
 }
 
 const DICTIONARY: TaskTabsContent = {
-  TITLE_UNCOMPLETED: 'Remaining Tasks',
+  TITLE_UNCOMPLETED: 'Todo',
   TITLE_COMPLETED: 'Done',
 };
 
