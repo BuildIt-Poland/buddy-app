@@ -1,8 +1,7 @@
 import { GraphQLError } from 'graphql';
-import schema from '../../server/src/schema.graphql';
+import schema, { UserRole } from 'buddy-app-schema';
 import { ROUTES } from '../../src/shared/routes';
 import { REQUEST_DELAY } from '../support/commands';
-import { UserRole } from '../../src/types/schema-types';
 
 describe('Login Page', () => {
   beforeEach(() => {

@@ -9,4 +9,5 @@ export type AvatarProps = {
   position?: string;
   type?: 'regular' | 'small';
   imgSrc?: string;
+  onClick?: () => void;
 };

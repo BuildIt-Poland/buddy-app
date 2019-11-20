@@ -2,9 +2,10 @@ import React from 'react';
 import { create, act } from 'react-test-renderer';
 import { MockedProvider } from '@apollo/react-testing';
 import waitForExpect from 'wait-for-expect';
+import NEWBIE_SELECT from 'graphql/newbieSelect.graphql';
 import NewbieSelect from '../NewbieSelect';
-import NEWBIE_SELECT from '../../../graphql/newbieSelect.graphql';
 
+jest.mock('buddy-app-schema', () => {});
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('components/NavBar', () => 'Navbar');
 jest.mock('@material-ui/core/Box', () => 'Box');

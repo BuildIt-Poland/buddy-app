@@ -10,6 +10,7 @@
   "dependencies": {
     "apollo-errors": "^1.9.0",
     "bcryptjs": "^2.4.3",
+    "buddy-app-schema": "file:../schema",
     "dotenv": "^8.1.0",
     "graphql-yoga": "^1.7.0",
     "jsonwebtoken": "^8.2.0",

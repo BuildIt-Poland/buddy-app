@@ -1,14 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import { Newbie } from '../../../server/src/generated/schema-types';
-import Avatar from '../Avatar';
-import { ROUTES } from '../../shared/routes';
+import { Newbie } from 'buddy-app-schema';
+import { ROUTES } from 'shared/routes';
+import Avatar from 'components/Avatar';
+import { getProgressInPercentages } from 'utils';
 
 const useStyles = makeStyles(theme => ({
   carrouselElement: {
@@ -47,7 +48,7 @@ const Carrousel: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
               to={ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbie.id)}>
               <Paper className={classes.carrouselElement}>
                 <Avatar
-                  progress={newbie.tasksInfo.buddyProgress * 100}
+                  progress={getProgressInPercentages(newbie.tasksInfo.buddyProgress)}
                   name={newbie.name}
                   position={newbie.position || undefined}></Avatar>
                 {newbie.startDate && (

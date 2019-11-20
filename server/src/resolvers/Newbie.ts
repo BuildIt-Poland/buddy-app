@@ -6,7 +6,7 @@ import {
   Newbie,
   TasksInfo,
   TaskStatus,
-} from '../generated/schema-types';
+} from 'buddy-app-schema';
 
 const buddy: ResolverFn<
   Newbie['buddy'],

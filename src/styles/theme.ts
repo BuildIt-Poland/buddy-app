@@ -4,6 +4,7 @@ import { colorSchemes } from '@buildit/gravity-particles';
 declare module '@material-ui/core/styles/zIndex' {
   interface ZIndex {
     backgroundShape: number;
+    base: number;
   }
 }
 
@@ -12,6 +13,7 @@ const { tealWhite } = colorSchemes;
 let theme = createMuiTheme({
   typography: {
     htmlFontSize: 10, //62,5%
+    fontSize: 16,
     button: {
       textTransform: 'none',
     },
@@ -55,8 +57,24 @@ let theme = createMuiTheme({
   },
   zIndex: {
     backgroundShape: -10,
+    base: 1,
   },
   spacing: factor => `${factor}rem`,
 });
+
+theme = {
+  ...theme,
+  overrides: {
+    MuiTab: {
+      root: {
+        fontWeight: theme.typography.fontWeightBold,
+        fontSize: theme.typography.body1.fontSize,
+        [theme.breakpoints.up('sm')]: {
+          fontSize: theme.typography.body1.fontSize,
+        },
+      },
+    },
+  },
+};
 
 export default theme;

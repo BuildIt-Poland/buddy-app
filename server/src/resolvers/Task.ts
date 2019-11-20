@@ -1,4 +1,4 @@
-import { TaskResolvers } from '../generated/schema-types';
+import { TaskResolvers } from 'buddy-app-schema';
 
 const __resolveType: TaskResolvers['__resolveType'] = user => {
   const newbieUniqueProps = ['notes'];

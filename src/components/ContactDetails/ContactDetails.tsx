@@ -10,7 +10,7 @@ import {
 import { useQuery } from '@apollo/react-hooks';
 import CONTACT_DETAILS from 'graphql/contact-details.graphql';
 import { ROUTES } from 'shared/routes';
-import { Query, QueryNewbieArgs } from 'types';
+import { Query, QueryNewbieArgs } from 'buddy-app-schema';
 import NavBar from '../NavBar';
 import Avatar from '../Avatar';
 import BackgroundShape from '../BackgroundShape/';
@@ -103,7 +103,9 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
     <>
       <NavBar
         type='back'
-        onClick={() => props.history.push(ROUTES.BUDDY_TASKS_LIST)}
+        onClick={() =>
+          props.history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId))
+        }
       />
       <Typography component='h2' variant='h2'>
         Contact Details

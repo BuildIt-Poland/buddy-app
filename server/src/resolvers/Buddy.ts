@@ -4,7 +4,7 @@ import {
   Context,
   ResolverFn,
   Buddy,
-} from '../generated/schema-types';
+} from 'buddy-app-schema';
 
 const newbies: ResolverFn<
   Buddy['newbies'],

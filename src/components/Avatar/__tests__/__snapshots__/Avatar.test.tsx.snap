@@ -28,9 +28,7 @@ exports[`Component - Avatar renders correctly with name and role 1`] = `
     <Typography
       component="h4"
       variant="subtitle1"
-    >
-      0 %
-    </Typography>
+    />
   </Grid>
   <Typography
     align="center"
@@ -76,7 +74,7 @@ exports[`Component - Avatar renders correctly with progress bar 1`] = `
       component="h4"
       variant="subtitle1"
     >
-      45 %
+      45%
     </Typography>
   </Grid>
 </Grid>
@@ -91,18 +89,18 @@ exports[`Component - Avatar renders correctly with type "small" 1`] = `
 >
   <Grid
     alignItems="center"
-    className="makeStyles-grid-7"
+    className="makeStyles-grid-8"
     container={true}
     direction="column"
     justify="center"
   >
     <AvatarMaterialUI
       alt="Avatar"
-      className="makeStyles-avatar-5"
+      className="makeStyles-avatar-6"
       src="/images/avatar-placeholder.svg"
     />
     <CircularProgress
-      className="makeStyles-progress-6"
+      className="makeStyles-progress-7"
       size={60}
       thickness={1}
       variant="static"
@@ -110,9 +108,7 @@ exports[`Component - Avatar renders correctly with type "small" 1`] = `
     <Typography
       component="h4"
       variant="subtitle2"
-    >
-      0 %
-    </Typography>
+    />
   </Grid>
 </Grid>
 `;
@@ -145,9 +141,7 @@ exports[`Component - Avatar renders correctly without props 1`] = `
     <Typography
       component="h4"
       variant="subtitle1"
-    >
-      0 %
-    </Typography>
+    />
   </Grid>
 </Grid>
 `;
