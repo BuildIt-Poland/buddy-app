@@ -12,7 +12,6 @@ const useStyles = makeStyles({
     display: 'flex',
     flexDirection: 'column',
     position: 'relative',
-    marginTop: '-3.5rem',
   },
   avatar: {
     width: '9rem',
