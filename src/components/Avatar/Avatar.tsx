@@ -112,7 +112,10 @@ const Avatar: React.FC<AvatarProps> = props => {
         </Typography>
       </Grid>
       {name && (
-        <Typography align='center' component={'h3'} variant='body1'>
+        <Typography
+          align='center'
+          component={'h4'}
+          variant={type === AvatarType.REGULAR ? 'body1' : 'h5'}>
           <Box fontWeight={theme.typography.fontWeightBold}>{name}</Box>
         </Typography>
       )}
