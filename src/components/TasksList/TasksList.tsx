@@ -14,7 +14,7 @@ const TasksList: React.FC = () => {
   };
   return (
     <div data-testid='task-list-page'>
-      <NavBar type={'menu'} onClick={() => null} />
+      <NavBar type={'menu'} />
       <AvatarHeader />
       <AppBar component='section' position='static' color='default'>
         <Tabs

@@ -27,7 +27,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const NewbieSelect: React.FC = () => {
-  const handleNavBarClick = () => {};
   const classes = useStyles();
   const { data: AuthData } = useContext<AuthContextData>(AuthContext);
   const { loading, data } = useQuery<Query, QueryBuddyArgs>(NEWBIE_SELECT, {
@@ -36,7 +35,7 @@ const NewbieSelect: React.FC = () => {
 
   return (
     <AppWrapper data-testid='newbie-select-page'>
-      <NavBar type='menu' onClick={handleNavBarClick} />
+      <NavBar type='menu' />
       <Box marginBottom={5} component='section'>
         <Typography component='h2' variant='h2'>
           {NewbieSelectDictionary.TITLE}

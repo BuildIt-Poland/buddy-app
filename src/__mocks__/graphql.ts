@@ -1,13 +1,15 @@
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
+import { BUDDY_MENU_DETAILS, NEWBIE_MENU_DETAILS } from 'graphql/user-menu.graphql';
 import AVATAR_HEADER from 'graphql/avatar-header.graphql';
+import { GraphQLError } from 'graphql';
 import {
   MutationLoginArgs,
   AuthPayload,
   TaskStatus,
   Newbie,
   QueryNewbieArgs,
+  QueryBuddyArgs,
 } from 'buddy-app-schema';
-import { GraphQLError } from 'graphql';
 import { authContext } from './context';
 
 export const loginSuccessMock = (
@@ -108,3 +110,53 @@ export const tasksResponse = (filter?: TaskStatus) => {
       return tasks;
   }
 };
+
+export const buddyMenuDetails = (variables?: Partial<QueryBuddyArgs>) => [
+  {
+    request: {
+      query: BUDDY_MENU_DETAILS,
+      variables,
+    },
+    result: {
+      data: {
+        buddy: {
+          name: 'Tom Hanks',
+          email: 'tom@wipro.com',
+          allowPushedNotifications: true,
+          photo: 'buddy-photo-url',
+          newbies: [
+            {
+              id: 'id',
+              name: 'Sandra Bullock',
+              photo: 'newbie-photo-url',
+            },
+          ],
+        },
+      },
+    },
+  },
+];
+
+export const newbieMenuDetails = (variables?: Partial<QueryNewbieArgs>) => [
+  {
+    request: {
+      query: NEWBIE_MENU_DETAILS,
+      variables,
+    },
+    result: {
+      data: {
+        newbie: {
+          name: 'Sandra Bullock',
+          email: 'doejoe@wipro.com',
+          allowPushedNotifications: true,
+          photo: 'newbie-photo-url',
+          buddy: {
+            id: 'id',
+            name: 'Tom Hanks',
+            photo: 'newbie-photo-url',
+          },
+        },
+      },
+    },
+  },
+];

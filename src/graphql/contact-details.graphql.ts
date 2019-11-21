@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const CONTACT_DETAILS = gql`
+export const CONTACT_DETAILS = gql`
   query getContactDetails($newbieId: ID!) {
     newbie(newbieId: $newbieId) {
       name

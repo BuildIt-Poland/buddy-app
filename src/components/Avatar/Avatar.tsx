@@ -62,7 +62,7 @@ const Avatar: React.FC<AvatarProps> = props => {
     position,
     progress,
     type = AvatarType.REGULAR,
-    imgSrc = DEFAULT_IMG_SRC,
+    imgSrc,
     onClick,
   } = props;
 
@@ -83,6 +83,7 @@ const Avatar: React.FC<AvatarProps> = props => {
   };
 
   const avatarCursorStyle = onClick ? { cursor: 'pointer' } : undefined;
+  const avatarImg = imgSrc || DEFAULT_IMG_SRC;
 
   return (
     <Grid container justify='center' alignItems='center' direction='column'>
@@ -94,7 +95,7 @@ const Avatar: React.FC<AvatarProps> = props => {
         className={classes[type].grid}>
         <AvatarMaterialUI
           alt='Avatar'
-          src={imgSrc}
+          src={avatarImg}
           className={classes[type].avatar}
           onClick={onClick}
           style={avatarCursorStyle}
