@@ -8,6 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import useForm from 'react-hook-form';
 import { ReactComponent as SpaceManLogo } from 'assets/svg/spaceman.svg';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
+import Container from '@material-ui/core/Container';
 import RoundedButton from '../RoundedButton';
 import AlertDialog from '../AlertDialog';
 import BackgroundShape from '../BackgroundShape/';
@@ -25,6 +26,9 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
+  },
+  container: {
+    marginTop: theme.spacing(9),
   },
 }));
 
@@ -62,7 +66,12 @@ const Login = () => {
   }, [error, setErrorDialog]);
 
   return (
-    <div data-testid='login-page'>
+    <Container
+      fixed
+      data-testid='login-page'
+      className={classes.container}
+      component='main'
+      maxWidth='md'>
       <Typography
         className={classes.title}
         component='h1'
@@ -130,7 +139,7 @@ const Login = () => {
         )}
       </form>
       <BackgroundShape></BackgroundShape>
-    </div>
+    </Container>
   );
 };
 

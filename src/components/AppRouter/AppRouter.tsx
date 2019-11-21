@@ -1,6 +1,4 @@
 import React, { useContext } from 'react';
-import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
 import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
 import { ROUTES } from 'shared/routes';
 import { isNewbie } from 'utils';
@@ -14,13 +12,6 @@ import NewbieSelect from '../NewbieSelect';
 import ContactDetails from '../ContactDetails';
 import AddTask from '../AddTask';
 import ErrorPage from '../ErrorPage';
-
-const useStyles = makeStyles(theme => ({
-  container: {
-    minWidth: theme.breakpoints.values['xs'],
-    marginTop: theme.spacing(9),
-  },
-}));
 
 const newbieRoutes = [
   {
@@ -65,7 +56,6 @@ const buddyRoutes = [
 ];
 
 const Root: React.FC = () => {
-  const classes = useStyles();
   const {
     isAuthenticated,
     data: { role },
@@ -84,27 +74,21 @@ const Root: React.FC = () => {
     : ROUTES.BUDDY_SELECT_NEWBIE;
 
   return (
-    <Container
-      data-testid={'root'}
-      className={classes.container}
-      component='main'
-      maxWidth='md'>
-      <BrowserRouter basename={ROUTES.BASE}>
-        <Switch>
-          {isAuthenticated ? (
-            routes.map(({ path, component }, key) => (
-              <Route key={key} path={path} exact component={component} />
-            ))
-          ) : (
-            <Route path={ROUTES.LOGIN} exact component={Login} />
-          )}
-          {hasError && <Route path={ROUTES.ERROR} exact component={ErrorPage} />}
-          {(!hasToken || isAuthenticated) && (
-            <Redirect to={{ pathname: redirectPath }} />
-          )}
-        </Switch>
-      </BrowserRouter>
-    </Container>
+    <BrowserRouter basename={ROUTES.BASE} data-testid={'root'}>
+      <Switch>
+        {isAuthenticated ? (
+          routes.map(({ path, component }, key) => (
+            <Route key={key} path={path} exact component={component} />
+          ))
+        ) : (
+          <Route path={ROUTES.LOGIN} exact component={Login} />
+        )}
+        {hasError && <Route path={ROUTES.ERROR} exact component={ErrorPage} />}
+        {(!hasToken || isAuthenticated) && (
+          <Redirect to={{ pathname: redirectPath }} />
+        )}
+      </Switch>
+    </BrowserRouter>
   );
 };
 export default Root;

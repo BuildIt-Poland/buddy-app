@@ -32,20 +32,14 @@ exports[`Component - Avatar renders correctly with name and role 1`] = `
   </Grid>
   <Typography
     align="center"
-    variant="h4"
+    component="h4"
+    variant="body1"
   >
     <Box
       fontWeight={700}
-      lineHeight="1.2"
     >
       Tom Hanks
     </Box>
-  </Typography>
-  <Typography
-    component="h4"
-    variant="subtitle1"
-  >
-    Front End Engineer
   </Typography>
 </Grid>
 `;
@@ -95,18 +89,18 @@ exports[`Component - Avatar renders correctly with type "small" 1`] = `
 >
   <Grid
     alignItems="center"
-    className="makeStyles-grid-7"
+    className="makeStyles-grid-8"
     container={true}
     direction="column"
     justify="center"
   >
     <AvatarMaterialUI
       alt="Avatar"
-      className="makeStyles-avatar-5"
+      className="makeStyles-avatar-6"
       src="/images/avatar-placeholder.svg"
     />
     <CircularProgress
-      className="makeStyles-progress-6"
+      className="makeStyles-progress-7"
       size={60}
       thickness={1}
       variant="static"
