@@ -1,74 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - NewbieSelect renders correctly 1`] = `
-<div
+<AppWrapper
   data-testid="newbie-select-page"
 >
   <Navbar
     type="menu"
   />
-  <article
-    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-5 MuiGrid-direction-xs-column"
+  <Box
+    component="section"
+    marginBottom={5}
   >
-    <div
-      className="MuiGrid-root MuiGrid-item"
+    <Typography
+      component="h2"
+      variant="h2"
     >
-      <Typography
-        component="h2"
-        variant="h2"
-      >
-        Your New Joiners
-      </Typography>
-      <Typography
-        className="makeStyles-subTitle-2"
-        component="p"
-        variant="body2"
-      >
-        Don’t forget to complete all tasks
-      </Typography>
-    </div>
-    <div
-      className="MuiGrid-root MuiGrid-item"
+      Your New Joiners
+    </Typography>
+    <Typography
+      className="makeStyles-subTitle-1"
+      component="p"
+      variant="body2"
     >
-      <CircularProgress />
-    </div>
-  </article>
+      Don’t forget to complete all tasks
+    </Typography>
+  </Box>
+  <Box
+    component="section"
+    marginBottom={2}
+  >
+    <CircularProgress />
+  </Box>
   <PlusButton
-    className="makeStyles-fab-5"
+    className="makeStyles-fabButton-2"
+    disabled={true}
   />
-</div>
+</AppWrapper>
 `;
 
 exports[`Component - NewbieSelect renders correctly 2`] = `
-<div
+<AppWrapper
   data-testid="newbie-select-page"
 >
   <Navbar
     type="menu"
   />
-  <article
-    className="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-5 MuiGrid-direction-xs-column"
+  <Box
+    component="section"
+    marginBottom={5}
   >
-    <div
-      className="MuiGrid-root MuiGrid-item"
+    <Typography
+      component="h2"
+      variant="h2"
     >
-      <Typography
-        component="h2"
-        variant="h2"
-      >
-        Your New Joiners
-      </Typography>
-      <Typography
-        className="makeStyles-subTitle-2"
-        component="p"
-        variant="body2"
-      >
-        Don’t forget to complete all tasks
-      </Typography>
-    </div>
-  </article>
+      Your New Joiners
+    </Typography>
+    <Typography
+      className="makeStyles-subTitle-1"
+      component="p"
+      variant="body2"
+    >
+      Don’t forget to complete all tasks
+    </Typography>
+  </Box>
   <PlusButton
-    className="makeStyles-fab-5"
+    className="makeStyles-fabButton-2"
+    disabled={true}
   />
-</div>
+</AppWrapper>
 `;

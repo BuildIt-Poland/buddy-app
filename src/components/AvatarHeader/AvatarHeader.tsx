@@ -43,7 +43,7 @@ const AvatarHeader: React.FC = () => {
         <Avatar
           name={data.newbie.name}
           imgSrc={data.newbie.photo}
-          role={data.newbie.position || ''}
+          position={data.newbie.position || ''}
           progress={getProgressInPercentages(data.newbie.tasksInfo.buddyProgress)}
           onClick={handleClick}
         />

@@ -7,11 +7,11 @@ import NewbieSelect from '../NewbieSelect';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('components/NavBar', () => 'Navbar');
-jest.mock('components/Avatar', () => 'Avatar');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('components/PlusButton/', () => 'PlusButton');
 jest.mock('components/Carrousel/', () => 'Carrousel');
 jest.mock('components/BackgroundShape/', () => 'BackgroundShape');
+jest.mock('components/AppWrapper', () => 'AppWrapper');
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
 
 describe('Component - NewbieSelect', () => {

@@ -12,6 +12,7 @@ const NEWBIE_SELECT = gql`
         photo
         name
         startDate
+        position
         tasksInfo {
           buddyProgress
         }

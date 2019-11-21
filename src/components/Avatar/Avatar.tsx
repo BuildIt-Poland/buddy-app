@@ -26,6 +26,9 @@ const useRegularTypeStyles = makeStyles({
   grid: {
     position: 'relative',
   },
+  position: {
+    color: theme.palette.text.secondary,
+  },
   cursor: {
     cursor: 'pointer',
   },
@@ -47,11 +50,21 @@ const useSmallTypeStyles = makeStyles({
   grid: {
     position: 'relative',
   },
+  position: {
+    color: theme.palette.text.secondary,
+  },
 });
 
 const Avatar: React.FC<AvatarProps> = props => {
   const DEFAULT_IMG_SRC = '/images/avatar-placeholder.svg';
-  const { name, role, progress, type = AvatarType.REGULAR, imgSrc, onClick } = props;
+  const {
+    name,
+    position,
+    progress,
+    type = AvatarType.REGULAR,
+    imgSrc,
+    onClick,
+  } = props;
 
   const classes = {
     regular: useRegularTypeStyles(),
@@ -102,17 +115,17 @@ const Avatar: React.FC<AvatarProps> = props => {
       {name && (
         <Typography
           align='center'
-          variant={type === AvatarType.REGULAR ? 'h4' : 'h5'}>
-          <Box fontWeight={theme.typography.fontWeightBold} lineHeight='1.2'>
-            {name}
-          </Box>
+          component={'h4'}
+          variant={type === AvatarType.REGULAR ? 'body1' : 'h5'}>
+          <Box fontWeight={theme.typography.fontWeightBold}>{name}</Box>
         </Typography>
       )}
-      {role && (
+      {position && (
         <Typography
+          className={classes[type].position}
           component='h4'
           variant={type === AvatarType.REGULAR ? 'subtitle1' : 'subtitle2'}>
-          {role}
+          {position}
         </Typography>
       )}
     </Grid>

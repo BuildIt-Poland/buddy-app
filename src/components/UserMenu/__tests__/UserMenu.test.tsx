@@ -2,7 +2,7 @@ import React from 'react';
 import { act } from 'react-test-renderer';
 import UserMenu from 'components/UserMenu';
 import { MemoryRouter, Route } from 'react-router';
-import { buddyMenuDetails, mockSchemaTypes, newbieMenuDetails } from '__mocks__';
+import { buddyMenuDetails, newbieMenuDetails, UserRole } from '__mocks__';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import waitForExpect from 'wait-for-expect';
 import { render, fireEvent } from '@testing-library/react';
@@ -18,12 +18,6 @@ jest.mock('components/UserMenuBuddy/UserMenuBuddy', () => 'UserMenuBuddy');
 jest.mock('components/UserMenuNewbies/UserMenuNewbies', () => 'UserMenuNewbies');
 jest.mock('components/UserMenuSettings/UserMenuSettings', () => 'UserMenuSettings');
 jest.mock('components/UserMenuSettings/UserMenuSettings', () => 'UserMenuSettings');
-jest.mock('buddy-app-schema', () => ({
-  UserRole: {
-    Newbie: 'NEWBIE',
-    Buddy: 'BUDDY',
-  },
-}));
 
 describe('UserMenu component', () => {
   describe('when logged in as buddy', () => {
@@ -31,7 +25,7 @@ describe('UserMenu component', () => {
     const onCloseMock = jest.fn();
     const mockedBuddyContext = {
       data: {
-        role: mockSchemaTypes().UserRole.Buddy,
+        role: UserRole.Buddy,
         token: 'token',
         userId: '1234',
       },
@@ -78,7 +72,7 @@ describe('UserMenu component', () => {
     const onCloseMock = jest.fn();
     const mockedNewbieContext = {
       data: {
-        role: mockSchemaTypes().UserRole.Newbie,
+        role: UserRole.Newbie,
         token: 'token',
         userId: '1234',
       },

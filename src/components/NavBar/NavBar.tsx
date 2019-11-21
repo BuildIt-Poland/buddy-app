@@ -13,7 +13,7 @@ const useStyles = makeStyles<Theme>(theme => ({
     marginRight: theme.spacing(2),
   },
   AppBar: {
-    backgroundColor: 'transparent',
+    backgroundColor: 'inherit',
     boxShadow: 'none',
   },
 }));

@@ -6,7 +6,7 @@ export enum AvatarType {
 export type AvatarProps = {
   name?: string;
   progress?: number;
-  role?: string;
+  position?: string;
   type?: 'regular' | 'small';
   imgSrc?: string;
   onClick?: () => void;
