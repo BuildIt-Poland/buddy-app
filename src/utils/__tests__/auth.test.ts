@@ -1,19 +1,14 @@
 import Cookies from 'js-cookie';
-import { mockSchemaTypes } from '__mocks__';
+import { authContext } from '__mocks__';
 import Auth from '../auth';
 
-jest.mock('buddy-app-schema', () => mockSchemaTypes());
 jest.mock('js-cookie');
 
 const mockedCookies = Cookies as jest.Mocked<typeof Cookies>;
 
 describe('Utils - auth', () => {
   const OLD_ENV = process.env;
-  const authPayload = {
-    token: 'sample',
-    role: mockSchemaTypes().UserRole.Buddy,
-    userId: '1',
-  };
+  const authPayload = authContext().data;
 
   beforeEach(() => {
     jest.resetModules();

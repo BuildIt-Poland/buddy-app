@@ -5,7 +5,6 @@ import { MemoryRouter } from 'react-router';
 import theme from 'styles/theme';
 import Carrousel from '../Carrousel';
 
-jest.mock('buddy-app-schema', () => {});
 jest.mock('@material-ui/core/Grid', () => 'Grid');
 jest.mock('@material-ui/core/Paper', () => 'Paper');
 jest.mock('@material-ui/core/Box', () => 'Box');

@@ -1,6 +1,12 @@
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
 import AVATAR_HEADER from 'graphql/avatar-header.graphql';
-import { MutationLoginArgs, AuthPayload, QueryNewbieArgs } from 'buddy-app-schema';
+import {
+  MutationLoginArgs,
+  AuthPayload,
+  TaskStatus,
+  Newbie,
+  QueryNewbieArgs,
+} from 'buddy-app-schema';
 import { GraphQLError } from 'graphql';
 import { authContext } from './context';
 
@@ -70,3 +76,35 @@ export const NewbieAvatarDetails = (variables?: QueryNewbieArgs) => ({
     },
   },
 });
+
+export const tasksResponse = (filter?: TaskStatus) => {
+  const tasks = [
+    {
+      id: '1',
+      title: 'Call you head manager',
+      description: '',
+      createdAt: '',
+      implementationDate: '',
+      status: TaskStatus.Uncompleted,
+      newbie: {} as Newbie,
+    },
+    {
+      id: '2',
+      title: 'Write you main manager',
+      description: '',
+      createdAt: '',
+      implementationDate: '',
+      status: TaskStatus.Completed,
+      newbie: {} as Newbie,
+    },
+  ];
+
+  switch (filter) {
+    case TaskStatus.Completed:
+      return [tasks[0]];
+    case TaskStatus.Uncompleted:
+      return [tasks[1]];
+    default:
+      return tasks;
+  }
+};
