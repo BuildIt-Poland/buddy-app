@@ -1,11 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import {
-  mockLocation,
-  mockSchemaTypes,
-  loginSuccessMock,
-  authContext,
-} from '__mocks__';
+import { mockLocation, loginSuccessMock, authContext } from '__mocks__';
 import { MemoryRouter } from 'react-router-dom';
 import { MockedProvider } from '@apollo/react-testing';
 import { ROUTES } from 'shared/routes';
@@ -14,7 +9,6 @@ import { UserRole } from 'buddy-app-schema';
 import auth from 'utils/auth';
 import AppRouter from '../AppRouter';
 
-jest.mock('buddy-app-schema', () => mockSchemaTypes());
 jest.mock('utils/auth');
 
 describe('Component - AppRouter', () => {

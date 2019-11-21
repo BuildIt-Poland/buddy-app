@@ -5,13 +5,9 @@ exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] =
   className="makeStyles-wrapper-1"
 >
   <Checkbox
+    aria-label="primary checkbox"
     checked={true}
     color="primary"
-    inputProps={
-      Object {
-        "aria-label": "primary checkbox",
-      }
-    }
     onChange={[Function]}
     value="1"
   />
@@ -22,11 +18,17 @@ exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] =
       component="h4"
       variant="body1"
     >
-      <Box
-        fontWeight="fontWeightRegular"
+      <a
+        href="/buddy/newbies/undefined/tasks/1"
+        onClick={[Function]}
       >
-        Change you line manager
-      </Box>
+        <Box
+          className="makeStyles-linkText-4"
+          fontWeight="fontWeightRegular"
+        >
+          Change you line manager
+        </Box>
+      </a>
       <div
         className="makeStyles-line-3"
       />
@@ -40,13 +42,9 @@ exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`]
   className="makeStyles-wrapper-1"
 >
   <Checkbox
+    aria-label="primary checkbox"
     checked={false}
     color="primary"
-    inputProps={
-      Object {
-        "aria-label": "primary checkbox",
-      }
-    }
     onChange={[Function]}
     value="1"
   />
@@ -57,11 +55,17 @@ exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`]
       component="h4"
       variant="body1"
     >
-      <Box
-        fontWeight="fontWeightBold"
+      <a
+        href="/buddy/newbies/undefined/tasks/1"
+        onClick={[Function]}
       >
-        Change you line manager
-      </Box>
+        <Box
+          className="makeStyles-linkText-4"
+          fontWeight="fontWeightBold"
+        >
+          Change you line manager
+        </Box>
+      </a>
     </Typography>
   </Box>
 </Box>

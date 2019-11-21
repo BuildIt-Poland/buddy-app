@@ -1,23 +1,16 @@
 import { getProgressInPercentages, isNewbie } from 'utils';
-import { mockSchemaTypes } from '__mocks__';
-
-jest.mock('buddy-app-schema', () => ({
-  UserRole: {
-    Newbie: 'NEWBIE',
-    Buddy: 'BUDDY',
-  },
-}));
+import { UserRole } from '__mocks__';
 
 describe('Utils - helpers', () => {
-  const userRole = mockSchemaTypes().UserRole;
+  const { Newbie, Buddy } = UserRole;
 
   it('helpers - isNewbie should return true', () => {
-    const result = isNewbie(userRole.Newbie);
+    const result = isNewbie(Newbie);
     expect(result).toBe(true);
   });
 
   it('helpers - isNewbie should return false', () => {
-    const result = isNewbie(userRole.Buddy);
+    const result = isNewbie(Buddy);
     expect(result).toBe(false);
   });
 
