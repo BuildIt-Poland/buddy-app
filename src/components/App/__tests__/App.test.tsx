@@ -3,7 +3,6 @@ import { create } from 'react-test-renderer';
 
 import App from '../App';
 
-jest.mock('buddy-app-schema', () => {});
 jest.mock('@material-ui/core/CssBaseline', () => 'CssBaseline');
 jest.mock('@material-ui/styles/ThemeProvider', () => 'ThemeProvider');
 jest.mock('styles/theme.ts', () => {});

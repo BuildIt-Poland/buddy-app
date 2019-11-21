@@ -105,6 +105,9 @@
       "!src/utils/apollo-client.ts",
       "!src/serviceWorker.ts",
       "!<rootDir>/node_modules/"
-    ]
+    ],
+    "moduleNameMapper": {
+      "buddy-app-schema": "<rootDir>/src/__mocks__/schema.ts"
+    }
   }
 }

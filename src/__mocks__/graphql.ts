@@ -1,13 +1,15 @@
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
 import { BUDDY_MENU_DETAILS, NEWBIE_MENU_DETAILS } from 'graphql/user-menu.graphql';
+import AVATAR_HEADER from 'graphql/avatar-header.graphql';
+import { GraphQLError } from 'graphql';
 import {
   MutationLoginArgs,
   AuthPayload,
-  QueryBuddyArgs,
+  TaskStatus,
+  Newbie,
   QueryNewbieArgs,
+  QueryBuddyArgs,
 } from 'buddy-app-schema';
-import AVATAR_HEADER from 'graphql/avatar-header.graphql';
-import { GraphQLError } from 'graphql';
 import { authContext } from './context';
 
 export const loginSuccessMock = (
@@ -76,6 +78,38 @@ export const NewbieAvatarDetails = (variables?: QueryNewbieArgs) => ({
     },
   },
 });
+
+export const tasksResponse = (filter?: TaskStatus) => {
+  const tasks = [
+    {
+      id: '1',
+      title: 'Call you head manager',
+      description: '',
+      createdAt: '',
+      implementationDate: '',
+      status: TaskStatus.Uncompleted,
+      newbie: {} as Newbie,
+    },
+    {
+      id: '2',
+      title: 'Write you main manager',
+      description: '',
+      createdAt: '',
+      implementationDate: '',
+      status: TaskStatus.Completed,
+      newbie: {} as Newbie,
+    },
+  ];
+
+  switch (filter) {
+    case TaskStatus.Completed:
+      return [tasks[0]];
+    case TaskStatus.Uncompleted:
+      return [tasks[1]];
+    default:
+      return tasks;
+  }
+};
 
 export const buddyMenuDetails = (variables?: Partial<QueryBuddyArgs>) => [
   {

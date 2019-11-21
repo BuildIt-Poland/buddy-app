@@ -5,7 +5,6 @@ import waitForExpect from 'wait-for-expect';
 import NEWBIE_SELECT from 'graphql/newbieSelect.graphql';
 import NewbieSelect from '../NewbieSelect';
 
-jest.mock('buddy-app-schema', () => {});
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('components/NavBar', () => 'Navbar');
 jest.mock('components/Avatar', () => 'Avatar');

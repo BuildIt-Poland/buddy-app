@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - TaskTabsContent renders correctly 1`] = `
+<Box
+  className="makeStyles-wrapper-1"
+>
+  <TasksSubList
+    count={1}
+    tasks={
+      Array [
+        Object {
+          "createdAt": "",
+          "description": "",
+          "id": "1",
+          "implementationDate": "",
+          "newbie": Object {},
+          "status": "UNCOMPLETED",
+          "title": "Call you head manager",
+        },
+      ]
+    }
+    title="Todo"
+  />
+  <TasksSubList
+    count={1}
+    tasks={
+      Array [
+        Object {
+          "createdAt": "",
+          "description": "",
+          "id": "2",
+          "implementationDate": "",
+          "newbie": Object {},
+          "status": "COMPLETED",
+          "title": "Write you main manager",
+        },
+      ]
+    }
+    title="Done"
+  />
+</Box>
+`;
+
+exports[`Component - TaskTabsContent renders correctly without tasks and counts 1`] = `
+<Box
+  className="makeStyles-wrapper-1"
+/>
+`;
