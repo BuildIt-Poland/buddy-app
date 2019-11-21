@@ -11,6 +11,7 @@ import { useQuery } from '@apollo/react-hooks';
 import CONTACT_DETAILS from 'graphql/contact-details.graphql';
 import { ROUTES } from 'shared/routes';
 import { Query, QueryNewbieArgs } from 'buddy-app-schema';
+import AppWrapper from 'components/AppWrapper';
 import NavBar from '../NavBar';
 import Avatar from '../Avatar';
 import BackgroundShape from '../BackgroundShape/';
@@ -100,7 +101,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
   );
 
   return (
-    <>
+    <AppWrapper>
       <NavBar
         type='back'
         onClick={() =>
@@ -113,7 +114,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
       {loading && <CircularProgress />}
       {data && renderContactDetails()}
       <BackgroundShape />
-    </>
+    </AppWrapper>
   );
 };
 

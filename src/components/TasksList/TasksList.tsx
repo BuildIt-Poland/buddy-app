@@ -5,20 +5,33 @@ import Tab from '@material-ui/core/Tab';
 import TabPanel from 'components/TabPanel';
 import AvatarHeader from 'components/AvatarHeader';
 import NavBar from 'components/NavBar';
+import { useQuery } from '@apollo/react-hooks';
+import { QueryNewbieArgs, Query, Task } from 'buddy-app-schema';
+import TASK_LIST from 'graphql/taskList.graphql';
+import { useParams } from 'react-router-dom';
+import Box from '@material-ui/core/Box';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import TaskTabsContent from 'components/TaskTabsContent';
 
 const TasksList: React.FC = () => {
-  const [value, setValue] = React.useState(0);
+  const [tabIndex, setTabIndex] = React.useState(0);
+  const { newbieId } = useParams<QueryNewbieArgs>();
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-    setValue(newValue);
+    setTabIndex(newValue);
   };
+
+  const { loading, data } = useQuery<Query, QueryNewbieArgs>(TASK_LIST, {
+    variables: { newbieId },
+  });
+
   return (
     <div data-testid='task-list-page'>
       <NavBar type={'menu'} />
-      <AvatarHeader />
-      <AppBar component='section' position='static' color='default'>
+      <AppBar component='section' position='static' color='inherit'>
+        <AvatarHeader />
         <Tabs
-          value={value}
+          value={tabIndex}
           onChange={handleTabChange}
           indicatorColor='primary'
           textColor='primary'
@@ -27,12 +40,29 @@ const TasksList: React.FC = () => {
           <Tab label='My tasks' />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        Newbie Tasks Component
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        My Tasks Component
-      </TabPanel>
+      {loading && (
+        <Box margin={2} textAlign={'center'} component={'section'}>
+          <CircularProgress />
+        </Box>
+      )}
+      {data && (
+        <>
+          <TabPanel value={tabIndex} index={0}>
+            <TaskTabsContent
+              tasks={data.newbie.newbieTasks as Task[]}
+              completedCount={data.newbie.tasksInfo.newbieCompleted}
+              uncompletedCount={data.newbie.tasksInfo.newbieUncompleted}
+            />
+          </TabPanel>
+          <TabPanel value={tabIndex} index={1}>
+            <TaskTabsContent
+              tasks={data.newbie.buddyTasks as Task[]}
+              completedCount={data.newbie.tasksInfo.buddyCompleted}
+              uncompletedCount={data.newbie.tasksInfo.buddyUncompleted}
+            />
+          </TabPanel>
+        </>
+      )}
     </div>
   );
 };

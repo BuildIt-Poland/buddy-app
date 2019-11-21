@@ -1,17 +1,9 @@
 import React, { useMemo } from 'react';
 import { Box } from '@material-ui/core';
-import makeStyles from '@material-ui/core/styles/makeStyles';
 import { TaskStatus } from 'buddy-app-schema';
 import TasksSubList, { TasksSubListProps } from '../TasksSubList';
 import { TaskTabsContentProps, TransformedTasks } from './types';
 import DICTIONARY from './tasksTabsContent.dictionary';
-
-const useStyles = makeStyles({
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-});
 
 const transformTasks = (tasks: TaskTabsContentProps['tasks']): TransformedTasks =>
   tasks.reduce(
@@ -35,8 +27,6 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
   completedCount,
   onChange,
 }) => {
-  const { wrapper } = useStyles();
-
   const { uncompletedTasks, completedTasks } = useMemo(() => transformTasks(tasks), [
     tasks,
   ]);
@@ -54,7 +44,7 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
   ];
 
   return (
-    <Box className={wrapper}>
+    <Box display={'flex'} flexDirection={'column'}>
       {tasksList.map((props, key) =>
         props.count ? (
           <TasksSubList key={key} onChange={onChange} {...props} />

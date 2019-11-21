@@ -1,34 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - ContactDetails renders correctly 1`] = `
-Array [
+<main
+  className="MuiContainer-root makeStyles-root-4 MuiContainer-maxWidthMd"
+>
   <Navbar
     onClick={[Function]}
     type="back"
-  />,
+  />
   <Typography
     component="h2"
     variant="h2"
   >
     Contact Details
-  </Typography>,
-  <CircularProgress />,
-  <BackgroundShape />,
-]
+  </Typography>
+  <CircularProgress />
+  <BackgroundShape />
+</main>
 `;
 
 exports[`Component - ContactDetails renders correctly 2`] = `
-Array [
+<main
+  className="MuiContainer-root makeStyles-root-4 MuiContainer-maxWidthMd"
+>
   <Navbar
     onClick={[Function]}
     type="back"
-  />,
+  />
   <Typography
     component="h2"
     variant="h2"
   >
     Contact Details
-  </Typography>,
+  </Typography>
   <div
     data-testid="contact-details-page"
   >
@@ -135,7 +139,7 @@ Array [
         />
       </Box>
     </Box>
-  </div>,
-  <BackgroundShape />,
-]
+  </div>
+  <BackgroundShape />
+</main>
 `;

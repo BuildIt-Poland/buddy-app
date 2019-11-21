@@ -9,7 +9,7 @@ exports[`Component - TasksList renders correctly 1`] = `
   />
   <AvatarHeader />
   <AppBar
-    color="default"
+    color="inherit"
     component="section"
     position="static"
   >
