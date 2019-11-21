@@ -120,7 +120,7 @@ const Avatar: React.FC<AvatarProps> = props => {
         <Typography
           className={classes[type].position}
           component='h4'
-          variant={'subtitle2'}>
+          variant={type === AvatarType.REGULAR ? 'subtitle1' : 'subtitle2'}>
           {position}
         </Typography>
       )}
