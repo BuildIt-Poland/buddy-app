@@ -77,7 +77,7 @@ export const NewbieAvatarDetails = (variables?: QueryNewbieArgs) => ({
   },
 });
 
-export const tasksResponse = (filter?: string) => {
+export const tasksResponse = (filter?: TaskStatus) => {
   const tasks = [
     {
       id: '1',
@@ -100,9 +100,9 @@ export const tasksResponse = (filter?: string) => {
   ];
 
   switch (filter) {
-    case 'completed':
+    case TaskStatus.Completed:
       return [tasks[0]];
-    case 'uncompleted':
+    case TaskStatus.Uncompleted:
       return [tasks[1]];
     default:
       return tasks;
