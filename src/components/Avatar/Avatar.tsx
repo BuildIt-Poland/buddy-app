@@ -51,14 +51,7 @@ const useSmallTypeStyles = makeStyles({
 
 const Avatar: React.FC<AvatarProps> = props => {
   const DEFAULT_IMG_SRC = '/images/avatar-placeholder.svg';
-  const {
-    name,
-    role,
-    progress,
-    type = AvatarType.REGULAR,
-    imgSrc = DEFAULT_IMG_SRC,
-    onClick,
-  } = props;
+  const { name, role, progress, type = AvatarType.REGULAR, imgSrc, onClick } = props;
 
   const classes = {
     regular: useRegularTypeStyles(),
@@ -77,6 +70,7 @@ const Avatar: React.FC<AvatarProps> = props => {
   };
 
   const avatarCursorStyle = onClick ? { cursor: 'pointer' } : undefined;
+  const avatarImg = imgSrc || DEFAULT_IMG_SRC;
 
   return (
     <Grid container justify='center' alignItems='center' direction='column'>
@@ -88,7 +82,7 @@ const Avatar: React.FC<AvatarProps> = props => {
         className={classes[type].grid}>
         <AvatarMaterialUI
           alt='Avatar'
-          src={imgSrc}
+          src={avatarImg}
           className={classes[type].avatar}
           onClick={onClick}
           style={avatarCursorStyle}
