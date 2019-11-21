@@ -10,7 +10,7 @@ import { TaskCheckboxProps } from './types';
 
 const LINE_THROUGH_HEIGHT = 0.1;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'row',
@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   line: {
     width: '100%',
     position: 'absolute',
-    zIndex: -1,
+    zIndex: theme.zIndex.backgroundShape,
     height: `${LINE_THROUGH_HEIGHT}rem`,
     backgroundColor: colors.custom.lightText,
     top: `calc(50% - ${LINE_THROUGH_HEIGHT / 2}rem)`,
@@ -33,7 +33,7 @@ const useStyles = makeStyles({
       color: colors.primary.main,
     },
   },
-});
+}));
 
 const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
   id,

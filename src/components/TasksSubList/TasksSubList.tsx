@@ -5,12 +5,12 @@ import { colors } from 'styles/theme';
 import TaskCheckbox from '../TaskCheckbox';
 import { TasksSubListProps } from './types';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   header: {
-    margin: '1rem 0',
+    margin: theme.spacing(1, 0),
     color: colors.custom.lightText,
   },
-});
+}));
 
 const TasksSubList: React.FC<TasksSubListProps> = ({
   tasks,
