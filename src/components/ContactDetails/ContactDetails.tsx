@@ -1,103 +1,46 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  makeStyles,
-  TextareaAutosize,
-  Typography,
-  CircularProgress,
-  Box,
-} from '@material-ui/core';
+import { Typography, CircularProgress } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
-import CONTACT_DETAILS from 'graphql/contact-details.graphql';
+import NEWBIE_CONTACT_DETAILS, {
+  BUDDY_CONTACT_DETAILS,
+} from 'graphql/contact-details.graphql';
 import { ROUTES } from 'shared/routes';
-import { Query, QueryNewbieArgs } from 'buddy-app-schema';
-import NavBar from '../NavBar';
-import Avatar from '../Avatar';
-import BackgroundShape from '../BackgroundShape/';
+import { QueryBuddyArgs, QueryNewbieArgs, UserRole } from 'buddy-app-schema';
+import NavBar from 'components/NavBar';
+import BackgroundShape from 'components/BackgroundShape/';
+import { isBuddy, isNewbie } from 'utils';
+import AuthContext, { AuthContextData } from 'contexts/AuthContext';
+import UserDetails from 'components/UserDetails';
+import { UserBasicDetails } from 'components/UserMenu/types';
 import { ContactDetailsProps } from './types';
-
-const useStyles = makeStyles(theme => ({
-  notesTextarea: {
-    width: 150,
-    minHeight: 100,
-    borderWidth: '1px',
-    borderColor: theme.palette.primary.dark,
-  },
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'row',
-    marginTop: theme.spacing(2),
-  },
-  avatar: {
-    width: '10rem',
-  },
-}));
 
 const ContactDetails: React.FC<ContactDetailsProps> = props => {
   const { newbieId } = useParams<QueryNewbieArgs>();
-  const classes = useStyles();
-  const { loading, data } = useQuery<Query, QueryNewbieArgs>(CONTACT_DETAILS, {
-    variables: { newbieId },
+  const { buddyId } = useParams<QueryBuddyArgs>();
+  const { data: AuthData } = useContext<AuthContextData>(AuthContext);
+  const { role } = AuthData;
+  const getQueryByRole = (role: UserRole) => {
+    if (isBuddy(role)) {
+      return {
+        query: NEWBIE_CONTACT_DETAILS,
+        variables: { newbieId },
+        userRole: UserRole.Newbie.toLowerCase(),
+      };
+    } else if (isNewbie(role)) {
+      return {
+        query: BUDDY_CONTACT_DETAILS,
+        variables: { buddyId },
+        userRole: UserRole.Buddy.toLowerCase(),
+      };
+    }
+  };
+  const { query, variables, userRole } = getQueryByRole(role) || {};
+  debugger;
+  const { data, loading } = useQuery<any, any>(query, {
+    variables,
   });
-
-  const renderContactDetails = () => (
-    <div data-testid='contact-details-page'>
-      <Box className={classes.wrapper}>
-        <Box className={classes.avatar}>
-          <Avatar imgSrc={data && data.newbie.photo} />
-        </Box>
-        <Box>
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              Name
-            </Box>
-          </Typography>
-
-          <Typography component='p' data-testid='contact-name'>
-            {data && data.newbie.name}
-          </Typography>
-
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              What I do
-            </Box>
-          </Typography>
-          <Typography component='p'>{data && data.newbie.position}</Typography>
-
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              Start date
-            </Box>
-          </Typography>
-          <Typography component='p'>{data && data.newbie.startDate}</Typography>
-
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              E-mail
-            </Box>
-          </Typography>
-          <Typography component='p'>{data && data.newbie.email}</Typography>
-
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              Phone
-            </Box>
-          </Typography>
-          <Typography component='p'>{data && data.newbie.phoneNumber}</Typography>
-
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              Notes
-            </Box>
-          </Typography>
-          <TextareaAutosize
-            className={classes.notesTextarea}
-            value={(data && data.newbie.notes) || ''}
-          />
-        </Box>
-      </Box>
-    </div>
-  );
+  const userData: UserBasicDetails = data && data[userRole as string];
 
   return (
     <>
@@ -111,7 +54,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
         Contact Details
       </Typography>
       {loading && <CircularProgress />}
-      {data && renderContactDetails()}
+      {userData && <UserDetails details={userData} />}
       <BackgroundShape />
     </>
   );

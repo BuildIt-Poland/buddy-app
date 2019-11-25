@@ -14,4 +14,5 @@ export type BasicDetailsParams = MutationDeleteNewbieArgs | MutationDeleteBuddyA
 
 export type UserBasicDetails = {
   [key: string]: Partial<Newbie> | Partial<Buddy>;
+  notes: any;
 };

@@ -10,7 +10,7 @@ enum ROUTES {
   BUDDY_NEWBIE_DETAILS = '/buddy/newbies/:newbieId/details',
   NEWBIE_TASK_DETAILS = '/newbie/tasks/:taskId',
   NEWBIE_TASKS_LIST = '/newbie/tasks',
-  NEWBIE_BUDDY_DETAILS = '/newbie/buddy',
+  NEWBIE_BUDDY_DETAILS = '/newbie/buddy/:buddyId/details',
 }
 
 export { ROUTES };

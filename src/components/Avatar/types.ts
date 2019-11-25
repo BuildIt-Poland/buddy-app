@@ -1,3 +1,5 @@
+import { Maybe, Scalars } from 'buddy-app-schema/build/src/generated/types';
+
 export enum AvatarType {
   REGULAR = 'regular',
   SMALL = 'small',
@@ -8,6 +10,6 @@ export type AvatarProps = {
   progress?: number;
   position?: string;
   type?: 'regular' | 'small';
-  imgSrc?: string;
+  imgSrc?: Maybe<Scalars['URL']>;
   onClick?: () => void;
 };

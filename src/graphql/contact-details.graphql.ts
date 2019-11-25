@@ -1,17 +1,23 @@
 import gql from 'graphql-tag';
+import { FRAGMENTS } from './fragments';
 
-export const CONTACT_DETAILS = gql`
+export const NEWBIE_CONTACT_DETAILS = gql`
   query getContactDetails($newbieId: ID!) {
     newbie(newbieId: $newbieId) {
-      name
-      position
-      startDate
-      email
-      phoneNumber
-      photo
+      ...DetailsFragment
       notes
     }
   }
+  ${FRAGMENTS.DetailsFragment}
 `;
 
-export default CONTACT_DETAILS;
+export const BUDDY_CONTACT_DETAILS = gql`
+  query getContactDetails($buddyId: ID!) {
+    buddy(buddyId: $buddyId) {
+      ...DetailsFragment
+    }
+  }
+  ${FRAGMENTS.DetailsFragment}
+`;
+
+export default NEWBIE_CONTACT_DETAILS;
