@@ -1,5 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { colors } from 'styles/theme';
+import { BackgroundShapeProps } from './types';
+
+export const BACKGROUND_SHAPE_HEGHT = 20;
 
 const useStyles = makeStyles(theme => ({
   background: {
@@ -7,18 +11,18 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     bottom: 0,
     left: 0,
-    height: '20em',
+    height: `${BACKGROUND_SHAPE_HEGHT}rem`,
     zIndex: theme.zIndex.backgroundShape,
-    fill: theme.palette.background.paper,
   },
 }));
 
-const BackgroundShape: React.FC = () => {
+const BackgroundShape: React.FC<BackgroundShapeProps> = props => {
   const classes = useStyles();
+  const { fill = colors.background.paper } = props;
 
   return (
-    <svg className={classes.background}>
-      <ellipse cx='70%' cy='300' rx='75%' ry='227' />
+    <svg className={classes.background} fill={fill}>
+      <ellipse cx='70%' cy='130%' rx='75%' ry='110%' />
     </svg>
   );
 };

@@ -28,6 +28,8 @@ export const colors = {
   },
   custom: {
     lightText: 'rgb(0, 0, 0, 0.5)',
+    completed: tealWhite.groupB.accent,
+    uncompleted: tealWhite.groupA.accentDanger,
   },
 };
 
