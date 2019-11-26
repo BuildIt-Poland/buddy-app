@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Box } from '@material-ui/core';
+import List from '@material-ui/core/List';
 import { TaskStatus } from 'buddy-app-schema';
 import TasksSubList, { TasksSubListProps } from '../TasksSubList';
 import { TaskTabsContentProps, TransformedTasks } from './types';
@@ -21,36 +21,29 @@ const transformTasks = (tasks: TaskTabsContentProps['tasks']): TransformedTasks 
     } as TransformedTasks
   );
 
-const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
-  tasks,
-  uncompletedCount,
-  completedCount,
-  onChange,
-}) => {
+const TaskTabsContent: React.FC<TaskTabsContentProps> = ({ tasks, onChange }) => {
   const { uncompletedTasks, completedTasks } = useMemo(() => transformTasks(tasks), [
     tasks,
   ]);
   const tasksList: TasksSubListProps[] = [
     {
       title: DICTIONARY.TITLE_UNCOMPLETED,
-      count: uncompletedCount || 0,
+      count: uncompletedTasks.length,
       tasks: uncompletedTasks,
     },
     {
       title: DICTIONARY.TITLE_COMPLETED,
-      count: completedCount || 0,
+      count: completedTasks.length,
       tasks: completedTasks,
     },
   ];
 
   return (
-    <Box display={'flex'} flexDirection={'column'}>
-      {tasksList.map((props, key) =>
-        props.count ? (
-          <TasksSubList key={key} onChange={onChange} {...props} />
-        ) : null
-      )}
-    </Box>
+    <List>
+      {tasksList.map((props, key) => (
+        <TasksSubList key={key} onChange={onChange} {...props} />
+      ))}
+    </List>
   );
 };
 

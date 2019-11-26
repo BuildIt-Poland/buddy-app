@@ -3,6 +3,5 @@
 exports[`Component - TabPanel renders correctly 1`] = `
 <Box
   hidden={false}
-  p={3}
 />
 `;

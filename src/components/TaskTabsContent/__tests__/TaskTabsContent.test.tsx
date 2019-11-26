@@ -4,25 +4,13 @@ import { tasksResponse } from '__mocks__';
 import TasksSubList from 'components/TasksSubList';
 import TaskTabsContent from '../';
 
-jest.mock('@material-ui/core/Box', () => 'Box');
+jest.mock('@material-ui/core/List', () => 'List');
 jest.mock('components/TasksSubList', () => 'TasksSubList');
 
 describe('Component - TaskTabsContent', () => {
   test(`renders correctly`, () => {
-    const component = create(
-      <TaskTabsContent
-        tasks={tasksResponse()}
-        uncompletedCount={1}
-        completedCount={1}
-      />
-    );
+    const component = create(<TaskTabsContent tasks={tasksResponse()} />);
     expect(component.toJSON()).toMatchSnapshot();
     expect(component.root.findAllByType(TasksSubList).length).toBe(2);
-  });
-
-  test(`renders correctly without tasks and counts`, () => {
-    const component = create(<TaskTabsContent tasks={[]} />);
-    expect(component.toJSON()).toMatchSnapshot();
-    expect(component.root.findAllByType(TasksSubList).length).toBe(0);
   });
 });

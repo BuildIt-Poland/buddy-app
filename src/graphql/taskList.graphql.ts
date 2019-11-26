@@ -15,12 +15,6 @@ const TASK_LIST = gql`
         description
         status
       }
-      tasksInfo {
-        newbieCompleted
-        newbieUncompleted
-        buddyCompleted
-        buddyUncompleted
-      }
     }
   }
 `;

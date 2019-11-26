@@ -1,61 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - TasksSubList renders correctly Done section 1`] = `
-<Box>
-  <Typography
-    className="makeStyles-header-1"
-    component="h4"
-    variant="h4"
-  >
-    Done
-     (
-    1
-    )
-  </Typography>
-  <Box>
-    <TaskCheckbox
-      id="1"
-      status="UNCOMPLETED"
-      title="Call you head manager"
-    />
-  </Box>
-</Box>
+Array [
+  <ListSubheader>
+    <strong>
+      Done
+       (
+      1
+      )
+    </strong>
+  </ListSubheader>,
+  <TaskCheckbox
+    id="1"
+    status="UNCOMPLETED"
+    title="Call you head manager"
+  />,
+]
 `;
 
 exports[`Component - TasksSubList renders correctly Todo section 1`] = `
-<Box>
-  <Typography
-    className="makeStyles-header-1"
-    component="h4"
-    variant="h4"
-  >
-    Todo
-     (
-    1
-    )
-  </Typography>
-  <Box>
-    <TaskCheckbox
-      id="2"
-      status="COMPLETED"
-      title="Write you main manager"
-    />
-  </Box>
-</Box>
+Array [
+  <ListSubheader>
+    <strong>
+      Todo
+       (
+      1
+      )
+    </strong>
+  </ListSubheader>,
+  <TaskCheckbox
+    id="2"
+    status="COMPLETED"
+    title="Write you main manager"
+  />,
+]
 `;
 
 exports[`Component - TasksSubList renders correctly without tasks and count 1`] = `
-<Box>
-  <Typography
-    className="makeStyles-header-1"
-    component="h4"
-    variant="h4"
-  >
+<ListSubheader>
+  <strong>
     Todo
      (
-    0
     )
-  </Typography>
-  <Box />
-</Box>
+  </strong>
+</ListSubheader>
 `;

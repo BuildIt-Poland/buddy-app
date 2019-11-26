@@ -3,8 +3,7 @@ import { create } from 'react-test-renderer';
 import { tasksResponse, TaskStatus } from '__mocks__';
 import TasksSubList from '../';
 
-jest.mock('@material-ui/core/Box', () => 'Box');
-jest.mock('@material-ui/core/Typography', () => 'Typography');
+jest.mock('@material-ui/core/ListSubheader', () => 'ListSubheader');
 jest.mock('components/TaskCheckbox', () => 'TaskCheckbox');
 
 describe('Component - TasksSubList', () => {
