@@ -5,8 +5,8 @@ import { mockBasicUserDetails } from '__mocks__';
 
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
-jest.mock('components/UserDetails', () => 'UserDetails');
-jest.mock('components/AppWrapper', () => 'AppWrapper');
+jest.mock('@material-ui/core/TextareaAutosize', () => 'TextareaAutosize');
+jest.mock('components/Avatar', () => 'Avatar');
 
 describe('Component - UserDetails', () => {
   test('renders correctly', () => {

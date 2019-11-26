@@ -1,3 +1,90 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - UserDetails renders correctly 1`] = `null`;
+exports[`Component - UserDetails renders correctly 1`] = `
+<div
+  data-testid="contact-details-page"
+>
+  <Box
+    className="makeStyles-wrapper-2"
+  >
+    <Box
+      className="makeStyles-avatar-3"
+    >
+      <Avatar />
+    </Box>
+    <Box>
+      <Typography
+        className="makeStyles-label-4"
+        component="p"
+      >
+        Name
+      </Typography>
+      <Typography
+        className="makeStyles-detailText-5"
+        component="p"
+        data-testid="contact-name"
+      >
+        Tom Hanks
+      </Typography>
+      <Typography
+        className="makeStyles-label-4"
+        component="p"
+      >
+        What I do
+      </Typography>
+      <Typography
+        className="makeStyles-detailText-5"
+        component="p"
+      >
+        Dev Ops
+      </Typography>
+      <Typography
+        className="makeStyles-label-4"
+        component="p"
+      >
+        Start date
+      </Typography>
+      <Typography
+        className="makeStyles-detailText-5"
+        component="p"
+      >
+        2010-01-01
+      </Typography>
+      <Typography
+        className="makeStyles-label-4"
+        component="p"
+      >
+        E-mail
+      </Typography>
+      <Typography
+        className="makeStyles-detailText-5"
+        component="p"
+      >
+        tom@wipro.com
+      </Typography>
+      <Typography
+        className="makeStyles-label-4"
+        component="p"
+      >
+        Phone
+      </Typography>
+      <Typography
+        className="makeStyles-detailText-5"
+        component="p"
+      >
+        1234567
+      </Typography>
+      <Typography
+        className="makeStyles-label-4"
+        component="p"
+      >
+        Notes
+      </Typography>
+      <TextareaAutosize
+        className="makeStyles-notesTextarea-1"
+        value="Nice guy"
+      />
+    </Box>
+  </Box>
+</div>
+`;
