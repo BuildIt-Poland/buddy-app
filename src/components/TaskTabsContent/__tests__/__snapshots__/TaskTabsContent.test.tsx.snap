@@ -3,7 +3,6 @@
 exports[`Component - TaskTabsContent renders correctly 1`] = `
 <List>
   <TasksSubList
-    count={1}
     tasks={
       Array [
         Object {
@@ -20,7 +19,6 @@ exports[`Component - TaskTabsContent renders correctly 1`] = `
     title="Todo"
   />
   <TasksSubList
-    count={1}
     tasks={
       Array [
         Object {

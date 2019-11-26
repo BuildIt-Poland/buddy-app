@@ -28,12 +28,10 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({ tasks, onChange }) =>
   const tasksList: TasksSubListProps[] = [
     {
       title: DICTIONARY.TITLE_UNCOMPLETED,
-      count: uncompletedTasks.length,
       tasks: uncompletedTasks,
     },
     {
       title: DICTIONARY.TITLE_COMPLETED,
-      count: completedTasks.length,
       tasks: completedTasks,
     },
   ];

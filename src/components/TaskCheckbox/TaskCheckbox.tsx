@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Checkbox from '@material-ui/core/Checkbox';
-import { TaskStatus, QueryNewbieArgs } from 'buddy-app-schema';
+import { TaskStatus } from 'buddy-app-schema';
 import { ROUTES } from 'shared/routes';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -14,10 +14,8 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
   status,
   onChange,
 }) => {
-  const { newbieId } = useParams<QueryNewbieArgs>();
-
   const isChecked = status === TaskStatus.Completed;
-  const path = ROUTES.BUDDY_TASK_DETAILS.replace(':newbieId', newbieId).replace(
+  const path = ROUTES.BUDDY_TASK_DETAILS.replace(':newbieId', id).replace(
     ':taskId',
     id
   );

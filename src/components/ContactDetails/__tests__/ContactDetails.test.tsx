@@ -13,6 +13,7 @@ jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
 jest.mock('components/NavBar', () => 'Navbar');
 jest.mock('components/Avatar', () => 'Avatar');
 jest.mock('components/BackgroundShape', () => 'BackgroundShape');
+jest.mock('components/AppWrapper', () => 'AppWrapper');
 
 describe('Component - ContactDetails', () => {
   const path = '/buddy/newbies/1234/details';

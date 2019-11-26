@@ -9,22 +9,14 @@ jest.mock('components/TaskCheckbox', () => 'TaskCheckbox');
 describe('Component - TasksSubList', () => {
   test(`renders correctly Todo section`, () => {
     const component = create(
-      <TasksSubList
-        title='Todo'
-        tasks={tasksResponse(TaskStatus.Uncompleted)}
-        count={1}
-      />
+      <TasksSubList title='Todo' tasks={tasksResponse(TaskStatus.Uncompleted)} />
     );
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   test(`renders correctly Done section`, () => {
     const component = create(
-      <TasksSubList
-        title='Done'
-        tasks={tasksResponse(TaskStatus.Completed)}
-        count={1}
-      />
+      <TasksSubList title='Done' tasks={tasksResponse(TaskStatus.Completed)} />
     );
     expect(component.toJSON()).toMatchSnapshot();
   });

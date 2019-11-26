@@ -41,6 +41,7 @@ exports[`Component - TasksSubList renders correctly without tasks and count 1`] 
   <strong>
     Todo
      (
+    0
     )
   </strong>
 </ListSubheader>

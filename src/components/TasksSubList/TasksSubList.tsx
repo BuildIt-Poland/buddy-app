@@ -3,17 +3,12 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import TaskCheckbox from '../TaskCheckbox';
 import { TasksSubListProps } from './types';
 
-const TasksSubList: React.FC<TasksSubListProps> = ({
-  tasks,
-  count,
-  title,
-  onChange,
-}) => {
+const TasksSubList: React.FC<TasksSubListProps> = ({ tasks, title, onChange }) => {
   return (
     <>
       <ListSubheader>
         <strong>
-          {title} ({count})
+          {title} ({tasks.length})
         </strong>
       </ListSubheader>
       {tasks.map(({ id, title, status }) => (

@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - ContactDetails renders correctly 1`] = `
-<main
-  className="MuiContainer-root makeStyles-root-4 MuiContainer-maxWidthMd"
->
+<AppWrapper>
   <Navbar
     onClick={[Function]}
     type="back"
@@ -16,13 +14,11 @@ exports[`Component - ContactDetails renders correctly 1`] = `
   </Typography>
   <CircularProgress />
   <BackgroundShape />
-</main>
+</AppWrapper>
 `;
 
 exports[`Component - ContactDetails renders correctly 2`] = `
-<main
-  className="MuiContainer-root makeStyles-root-4 MuiContainer-maxWidthMd"
->
+<AppWrapper>
   <Navbar
     onClick={[Function]}
     type="back"
@@ -141,5 +137,5 @@ exports[`Component - ContactDetails renders correctly 2`] = `
     </Box>
   </div>
   <BackgroundShape />
-</main>
+</AppWrapper>
 `;
