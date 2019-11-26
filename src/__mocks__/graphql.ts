@@ -1,6 +1,8 @@
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
 import { BUDDY_MENU_DETAILS, NEWBIE_MENU_DETAILS } from 'graphql/user-menu.graphql';
 import AVATAR_HEADER from 'graphql/avatar-header.graphql';
+import NEWBIE_SELECT from 'graphql/newbie-select.graphql';
+import TASK_DETAILS from 'graphql/task-details.graphql';
 import { GraphQLError } from 'graphql';
 import {
   MutationLoginArgs,
@@ -155,6 +157,63 @@ export const newbieMenuDetails = (variables?: Partial<QueryNewbieArgs>) => [
             name: 'Tom Hanks',
             photo: 'newbie-photo-url',
           },
+        },
+      },
+    },
+  },
+];
+
+export const newbieSelectMock = [
+  {
+    request: {
+      query: NEWBIE_SELECT,
+      variables: {
+        buddyId: 'ck17sl83c9gya0b17dcvttzm4',
+      },
+    },
+    result: {
+      data: {
+        buddy: {
+          id: 'ck17sl83c9gya0b17dcvttzm4',
+          name: 'Dummy',
+          role: 'BUDDY',
+          photo: null,
+          newbies: [
+            {
+              id: 'ck17svulh9k2k0b17j31ansfk',
+              photo: null,
+              name: 'Test 2',
+              startDate: null,
+              tasksInfo: { buddyProgress: 0.5 },
+            },
+            {
+              id: 'ck17swp2m9kcv0b17we0ibrdn',
+              photo: null,
+              name: 'Test 1',
+              startDate: null,
+              tasksInfo: { buddyProgress: 0.6 },
+            },
+          ],
+        },
+      },
+    },
+  },
+];
+
+export const taskDetailsMock = [
+  {
+    request: {
+      query: TASK_DETAILS,
+      variables: {
+        taskId: '1',
+      },
+    },
+    result: {
+      data: {
+        task: {
+          title: 'New task',
+          description: 'New task',
+          status: TaskStatus.Uncompleted,
         },
       },
     },

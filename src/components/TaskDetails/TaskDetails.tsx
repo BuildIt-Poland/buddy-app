@@ -1,5 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import htmlParser from 'react-html-parser';
+import xss from 'dompurify';
 import { makeStyles, Typography, CircularProgress, Box } from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { useQuery, useMutation } from '@apollo/react-hooks';
@@ -42,7 +44,6 @@ const useStyles = makeStyles(theme => ({
     },
   },
   description: {
-    display: 'flex',
     marginTop: theme.spacing(3.5),
     overflow: 'auto',
   },
@@ -120,7 +121,7 @@ const TaskDetails: React.FC<TaskDetailsProps> = props => {
         <strong>{task.status}</strong>
         {updateTaskLoading && <LinearProgress color='secondary' />}
       </Box>
-      <Box className={description}>{task.description}</Box>
+      <Box className={description}>{htmlParser(xss.sanitize(task.description))}</Box>
     </Box>
   );
 
