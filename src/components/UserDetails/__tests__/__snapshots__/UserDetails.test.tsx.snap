@@ -60,7 +60,12 @@ exports[`Component - UserDetails renders correctly 1`] = `
         className="makeStyles-detailText-5"
         component="p"
       >
-        tom@wipro.com
+        <Link
+          component="a"
+          href="mailto:tom@wipro.com"
+        >
+          tom@wipro.com
+        </Link>
       </Typography>
       <Typography
         className="makeStyles-label-4"
