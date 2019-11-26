@@ -1,6 +1,8 @@
 import React from 'react';
 import { Box, makeStyles, TextareaAutosize, Typography } from '@material-ui/core';
 import Avatar from 'components/Avatar';
+import { isNewbie } from 'utils';
+import { UserRole } from 'buddy-app-schema';
 import { UserDetailsProps } from './types';
 
 const useStyles = makeStyles(theme => ({
@@ -18,10 +20,17 @@ const useStyles = makeStyles(theme => ({
   avatar: {
     width: '10rem',
   },
+  label: {
+    fontWeight: theme.typography.fontWeightBold,
+    marginTop: theme.spacing(0.5),
+  },
+  detailText: {
+    minHeight: '1.8rem',
+  },
 }));
 
 const UserDetails: React.FC<UserDetailsProps> = props => {
-  const { wrapper, avatar, notesTextarea } = useStyles();
+  const { wrapper, avatar, notesTextarea, label, detailText } = useStyles();
   const {
     photo,
     name,
@@ -30,7 +39,11 @@ const UserDetails: React.FC<UserDetailsProps> = props => {
     email,
     phoneNumber,
     notes,
+    role,
   } = props.details;
+
+  const isNotesVisible = (role: UserRole) => isNewbie(role);
+
   return (
     <div data-testid='contact-details-page'>
       <Box className={wrapper}>
@@ -38,52 +51,53 @@ const UserDetails: React.FC<UserDetailsProps> = props => {
           <Avatar imgSrc={photo} />
         </Box>
         <Box>
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              Name
-            </Box>
+          <Typography component='p' className={label}>
+            Name
           </Typography>
 
-          <Typography component='p' data-testid='contact-name'>
+          <Typography
+            component='p'
+            data-testid='contact-name'
+            className={detailText}>
             {name}
           </Typography>
 
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              What I do
-            </Box>
+          <Typography component='p' className={label}>
+            What I do
           </Typography>
-          <Typography component='p'>{position}</Typography>
 
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              Start date
-            </Box>
+          <Typography component='p' className={detailText}>
+            {position}
           </Typography>
-          <Typography component='p'>{startDate}</Typography>
 
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              E-mail
-            </Box>
+          <Typography component='p' className={label}>
+            Start date
           </Typography>
-          <Typography component='p'>{email}</Typography>
 
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              Phone
-            </Box>
+          <Typography component='p' className={detailText}>
+            {startDate}
           </Typography>
-          <Typography component='p'>{phoneNumber}</Typography>
-          {notes && (
+
+          <Typography component='p' className={label}>
+            E-mail
+          </Typography>
+          <Typography component='p' className={detailText}>
+            {email}
+          </Typography>
+
+          <Typography component='p' className={label}>
+            Phone
+          </Typography>
+
+          <Typography component='p' className={detailText}>
+            {phoneNumber}
+          </Typography>
+          {isNotesVisible(role as UserRole) && (
             <>
-              <Typography component='p'>
-                <Box component='strong' fontWeight={'fontWeightBold'}>
-                  Notes
-                </Box>
+              <Typography component='p' className={label}>
+                Notes
               </Typography>
-
-              <TextareaAutosize className={notesTextarea} value={notes} />
+              <TextareaAutosize className={notesTextarea} value={notes || ''} />
             </>
           )}
         </Box>

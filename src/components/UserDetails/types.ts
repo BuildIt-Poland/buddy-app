@@ -1,5 +1,5 @@
-import { UserBasicDetails } from 'components/UserMenu/types';
+import { Buddy, Newbie } from 'buddy-app-schema';
 
 export type UserDetailsProps = {
-  details: UserBasicDetails;
+  details: Partial<Newbie> | Partial<Buddy> & { notes?: string };
 };

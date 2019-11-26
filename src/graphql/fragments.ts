@@ -9,6 +9,7 @@ export const FRAGMENTS = {
       email
       phoneNumber
       photo
+      role
     }
   `,
 };

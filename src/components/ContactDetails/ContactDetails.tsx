@@ -12,7 +12,9 @@ import BackgroundShape from 'components/BackgroundShape/';
 import { isBuddy, isNewbie } from 'utils';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import UserDetails from 'components/UserDetails';
-import { UserBasicDetails } from 'components/UserMenu/types';
+import { BasicDetailsParams, UserBasicDetails } from 'components/UserMenu/types';
+import Box from '@material-ui/core/Box';
+import AppWrapper from 'components/AppWrapper';
 import { ContactDetailsProps } from './types';
 
 const ContactDetails: React.FC<ContactDetailsProps> = props => {
@@ -36,27 +38,28 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
     }
   };
   const { query, variables, userRole } = getQueryByRole(role) || {};
-  debugger;
-  const { data, loading } = useQuery<any, any>(query, {
+  const { data, loading } = useQuery<UserBasicDetails, BasicDetailsParams>(query, {
     variables,
   });
-  const userData: UserBasicDetails = data && data[userRole as string];
+  const userBasicDetails = data && data[userRole as string];
 
   return (
-    <>
+    <AppWrapper>
       <NavBar
         type='back'
         onClick={() =>
           props.history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId))
         }
       />
-      <Typography component='h2' variant='h2'>
-        Contact Details
-      </Typography>
-      {loading && <CircularProgress />}
-      {userData && <UserDetails details={userData} />}
+      <Box>
+        <Typography component='h2' variant='h2'>
+          Contact Details
+        </Typography>
+        {loading && <CircularProgress />}
+        {userBasicDetails && <UserDetails details={userBasicDetails} />}
+      </Box>
       <BackgroundShape />
-    </>
+    </AppWrapper>
   );
 };
 
