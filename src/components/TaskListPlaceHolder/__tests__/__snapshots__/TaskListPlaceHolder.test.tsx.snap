@@ -2,29 +2,37 @@
 
 exports[`Component - TaskListPlaceHolder renders correctly 1`] = `
 Array [
-  <div
-    className="makeStyles-subHeader-2"
+  <Skeleton
+    className="makeStyles-subHeader-1"
+    variant="text"
   />,
-  <div
-    className="makeStyles-listItem-3"
+  <Skeleton
+    className="makeStyles-listItem-2"
+    variant="rect"
   />,
-  <div
-    className="makeStyles-listItem-3"
+  <Skeleton
+    className="makeStyles-listItem-2"
+    variant="rect"
   />,
-  <div
-    className="makeStyles-listItem-3"
+  <Skeleton
+    className="makeStyles-listItem-2"
+    variant="rect"
   />,
-  <div
-    className="makeStyles-subHeader-2"
+  <Skeleton
+    className="makeStyles-subHeader-1"
+    variant="text"
   />,
-  <div
-    className="makeStyles-listItem-3"
+  <Skeleton
+    className="makeStyles-listItem-2"
+    variant="rect"
   />,
-  <div
-    className="makeStyles-listItem-3"
+  <Skeleton
+    className="makeStyles-listItem-2"
+    variant="rect"
   />,
-  <div
-    className="makeStyles-listItem-3"
+  <Skeleton
+    className="makeStyles-listItem-2"
+    variant="rect"
   />,
 ]
 `;

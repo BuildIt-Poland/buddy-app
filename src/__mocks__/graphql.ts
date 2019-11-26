@@ -10,6 +10,7 @@ import {
   QueryNewbieArgs,
   QueryBuddyArgs,
 } from 'buddy-app-schema';
+import TASK_LIST from 'graphql/taskList.graphql';
 import { authContext } from './context';
 
 export const loginSuccessMock = (

@@ -6,7 +6,7 @@ const TabPanel = (props: TabPanelProps) => {
   const { children, value, index, ...other } = props;
 
   return (
-    <Box hidden={value !== index} {...other}>
+    <Box padding={2} hidden={value !== index} {...other}>
       {children}
     </Box>
   );

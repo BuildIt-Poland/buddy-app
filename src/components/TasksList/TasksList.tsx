@@ -9,28 +9,24 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
 import TASK_LIST from 'graphql/taskList.graphql';
 import UPDATE_TASK_STATUS from 'graphql/updateTaskStatus.graphql';
-import CloseIcon from '@material-ui/icons/Close';
 import { useParams } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import TaskTabsContent from 'components/TaskTabsContent';
-import Snackbar from '@material-ui/core/Snackbar';
-import IconButton from '@material-ui/core/IconButton';
+import SnackBar from 'components/SnackBar';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
-import PlaceHolderTaskList from 'components/TaskListPlaceHolder';
+import TaskListPlaceHolder from 'components/TaskListPlaceHolder';
 
 const TasksList: React.FC = () => {
+  const { newbieId } = useParams<QueryNewbieArgs>();
   const [tabIndex, setTabIndex] = React.useState(0);
   const [snackbar, setSnackbar] = React.useState({
     isOpen: false,
     message: '',
   });
 
-  const { newbieId } = useParams<QueryNewbieArgs>();
-
-  const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) =>
     setTabIndex(newValue);
-  };
 
   const { loading, data } = useQuery<Query, QueryNewbieArgs>(TASK_LIST, {
     variables: { newbieId },
@@ -40,7 +36,7 @@ const TasksList: React.FC = () => {
     updateTaskStatus,
     { loading: updateTaskLoading, error: updateTaskError },
   ] = useMutation<Mutation>(UPDATE_TASK_STATUS, {
-    onCompleted: () => setSnackbar({ isOpen: true, message: 'Task Updated' }),
+    onCompleted: () => setSnackbar({ isOpen: true, message: 'Task status updated' }),
   });
 
   const onTaskChange = (taskId: string) => {
@@ -65,11 +61,10 @@ const TasksList: React.FC = () => {
     if (reason === 'clickaway') {
       return;
     }
-
     setSnackbar({ ...snackbar, isOpen: false });
   };
 
-  const EmptyTaskList = () => (
+  const EmptyStateTaskList = () => (
     <Box textAlign={'center'}>
       <Typography variant={'h2'} component={'h2'}>
         No Tasks Found
@@ -96,10 +91,10 @@ const TasksList: React.FC = () => {
 
       {updateTaskLoading && <LinearProgress />}
 
-      <TabPanel p={2} value={tabIndex} index={0}>
-        {loading && <PlaceHolderTaskList />}
+      <TabPanel value={tabIndex} index={0}>
+        {loading && <TaskListPlaceHolder />}
         {!loading && data && data.newbie.newbieTasks.length === 0 && (
-          <EmptyTaskList />
+          <EmptyStateTaskList />
         )}
         {!loading && data && data.newbie.newbieTasks.length > 0 && (
           <TaskTabsContent
@@ -108,10 +103,10 @@ const TasksList: React.FC = () => {
           />
         )}
       </TabPanel>
-      <TabPanel p={2} value={tabIndex} index={1}>
-        {loading && <PlaceHolderTaskList />}
+      <TabPanel value={tabIndex} index={1}>
+        {loading && <TaskListPlaceHolder />}
         {!loading && data && data.newbie.buddyTasks.length === 0 && (
-          <EmptyTaskList />
+          <EmptyStateTaskList />
         )}
         {!loading && data && data.newbie.buddyTasks.length > 0 && (
           <TaskTabsContent
@@ -120,24 +115,10 @@ const TasksList: React.FC = () => {
           />
         )}
       </TabPanel>
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={snackbar.isOpen}
-        autoHideDuration={3000}
-        onClose={handleSnackBarClose}
-        message={<span>{snackbar.message}</span>}
-        action={[
-          <IconButton
-            key='close'
-            aria-label='close'
-            color='inherit'
-            onClick={handleSnackBarClose}>
-            <CloseIcon />
-          </IconButton>,
-        ]}
+      <SnackBar
+        message={snackbar.message}
+        isOpen={snackbar.isOpen}
+        onClickCloseButton={handleSnackBarClose}
       />
     </Box>
   );

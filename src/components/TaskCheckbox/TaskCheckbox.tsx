@@ -22,6 +22,11 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
 
   const onCheckboxChange = () => onChange && onChange(id);
 
+  const text = {
+    [TaskStatus.Completed]: <del>{title}</del>,
+    [TaskStatus.Uncompleted]: <strong>{title}</strong>,
+  };
+
   return (
     <Link to={path}>
       <ListItem button>
@@ -34,11 +39,7 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
             onClick={e => e.stopPropagation()}
           />
         </ListItemIcon>
-        {isChecked ? (
-          <ListItemText primary={<del>{title}</del>} />
-        ) : (
-          <ListItemText primary={<strong>{title}</strong>} />
-        )}
+        <ListItemText primary={text[status as TaskStatus]} />
       </ListItem>
     </Link>
   );

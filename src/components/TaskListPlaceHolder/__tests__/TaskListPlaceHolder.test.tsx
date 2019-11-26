@@ -3,7 +3,7 @@ import { create } from 'react-test-renderer';
 
 import TaskListPlaceHolder from '../TaskListPlaceHolder';
 
-jest.mock('@material-ui/core/Paper', () => 'Paper');
+jest.mock('@material-ui/lab/Skeleton', () => 'Skeleton');
 
 describe('Component - TaskListPlaceHolder', () => {
   test('renders correctly', () => {
