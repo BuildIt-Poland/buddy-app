@@ -1,5 +1,11 @@
 import React from 'react';
-import { Box, makeStyles, TextareaAutosize, Typography } from '@material-ui/core';
+import {
+  Box,
+  Link,
+  makeStyles,
+  TextareaAutosize,
+  Typography,
+} from '@material-ui/core';
 import Avatar from 'components/Avatar';
 import { isNewbie } from 'utils';
 import { UserRole } from 'buddy-app-schema';
@@ -82,7 +88,9 @@ const UserDetails: React.FC<UserDetailsProps> = props => {
             E-mail
           </Typography>
           <Typography component='p' className={detailText}>
-            {email}
+            <Link href={`mailto:${email}`} component={'a'}>
+              {email}
+            </Link>
           </Typography>
 
           <Typography component='p' className={label}>

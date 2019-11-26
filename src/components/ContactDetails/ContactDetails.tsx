@@ -22,6 +22,11 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
   const { buddyId } = useParams<QueryBuddyArgs>();
   const { data: AuthData } = useContext<AuthContextData>(AuthContext);
   const { role } = AuthData;
+
+  const handleBackClick = () => {
+    props.history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId));
+  };
+
   const getQueryByRole = (role: UserRole) => {
     if (isBuddy(role)) {
       return {
@@ -45,12 +50,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
 
   return (
     <AppWrapper>
-      <NavBar
-        type='back'
-        onClick={() =>
-          props.history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId))
-        }
-      />
+      <NavBar type='back' onClick={handleBackClick} />
       <Box>
         <Typography component='h2' variant='h2'>
           Contact Details
