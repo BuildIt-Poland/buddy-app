@@ -6,12 +6,13 @@ export const mockLocation = (path: string = ROUTES.BASE) => ({
   pathname: path,
 });
 
-export const mockBasicUserDetails = {
+export const getBasicUserDetailsMock = (role: UserRole = UserRole.Buddy) => ({
   name: 'Tom Hanks',
   position: 'Dev Ops',
   startDate: '2010-01-01',
   email: 'tom@wipro.com',
   phoneNumber: '1234567',
+  photo: 'some-url',
   notes: 'Nice guy',
-  role: UserRole.Newbie,
-};
+  role,
+});

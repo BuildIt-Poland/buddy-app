@@ -13,8 +13,8 @@ import { UserDetailsProps } from './types';
 
 const useStyles = makeStyles(theme => ({
   notesTextarea: {
-    width: 150,
-    minHeight: 100,
+    width: '15rem',
+    minHeight: '10rem',
     borderWidth: '1px',
     borderColor: theme.palette.primary.dark,
   },

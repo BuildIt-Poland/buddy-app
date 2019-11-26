@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { Typography, CircularProgress } from '@material-ui/core';
+import { Typography, CircularProgress, makeStyles } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
 import NEWBIE_CONTACT_DETAILS, {
   BUDDY_CONTACT_DETAILS,
@@ -8,7 +8,7 @@ import NEWBIE_CONTACT_DETAILS, {
 import { ROUTES } from 'shared/routes';
 import { QueryBuddyArgs, QueryNewbieArgs, UserRole } from 'buddy-app-schema';
 import NavBar from 'components/NavBar';
-import BackgroundShape from 'components/BackgroundShape/';
+import BackgroundShape from 'components/BackgroundShape';
 import { isBuddy, isNewbie } from 'utils';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import UserDetails from 'components/UserDetails';
@@ -16,6 +16,17 @@ import { BasicDetailsParams, UserBasicDetails } from 'components/UserMenu/types'
 import Box from '@material-ui/core/Box';
 import AppWrapper from 'components/AppWrapper';
 import { ContactDetailsProps } from './types';
+
+const useStyles = makeStyles(theme => ({
+  loader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100vh',
+    width: '100%',
+    marginTop: theme.spacing(-7),
+  },
+}));
 
 const ContactDetails: React.FC<ContactDetailsProps> = props => {
   const { newbieId } = useParams<QueryNewbieArgs>();
@@ -46,17 +57,22 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
   const { data, loading } = useQuery<UserBasicDetails, BasicDetailsParams>(query, {
     variables,
   });
-  const userBasicDetails = data && data[userRole as string];
+  const userDetails = data && data[userRole as string];
+  const { loader } = useStyles();
 
   return (
     <AppWrapper>
       <NavBar type='back' onClick={handleBackClick} />
+      {loading && (
+        <Box className={loader}>
+          <CircularProgress data-testid='slide-menu-loader' />
+        </Box>
+      )}
       <Box>
         <Typography component='h2' variant='h2'>
           Contact Details
         </Typography>
-        {loading && <CircularProgress />}
-        {userBasicDetails && <UserDetails details={userBasicDetails} />}
+        {userDetails && <UserDetails details={userDetails} />}
       </Box>
       <BackgroundShape />
     </AppWrapper>
