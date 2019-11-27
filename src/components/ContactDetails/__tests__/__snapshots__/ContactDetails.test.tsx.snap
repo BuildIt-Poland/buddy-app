@@ -2,10 +2,17 @@
 
 exports[`Component - ContactDetails when logged in as buddy renders correctly 1`] = `
 <AppWrapper>
-  <Navbar
+  <NavBar
     onClick={[Function]}
     type="back"
   />
+  <Box
+    className="makeStyles-loader-1"
+  >
+    <CircularProgress
+      data-testid="slide-menu-loader"
+    />
+  </Box>
   <Box>
     <Typography
       component="h2"
@@ -13,7 +20,6 @@ exports[`Component - ContactDetails when logged in as buddy renders correctly 1`
     >
       Contact Details
     </Typography>
-    <CircularProgress />
   </Box>
   <BackgroundShape />
 </AppWrapper>
@@ -21,7 +27,7 @@ exports[`Component - ContactDetails when logged in as buddy renders correctly 1`
 
 exports[`Component - ContactDetails when logged in as buddy renders correctly 2`] = `
 <AppWrapper>
-  <Navbar
+  <NavBar
     onClick={[Function]}
     type="back"
   />
@@ -53,7 +59,7 @@ exports[`Component - ContactDetails when logged in as buddy renders correctly 2`
 
 exports[`Component - ContactDetails when logged in as newbie renders correctly 1`] = `
 <AppWrapper>
-  <Navbar
+  <NavBar
     onClick={[Function]}
     type="back"
   />
@@ -84,7 +90,7 @@ exports[`Component - ContactDetails when logged in as newbie renders correctly 1
 
 exports[`Component - ContactDetails when logged in as newbie renders correctly 2`] = `
 <AppWrapper>
-  <Navbar
+  <NavBar
     onClick={[Function]}
     type="back"
   />
