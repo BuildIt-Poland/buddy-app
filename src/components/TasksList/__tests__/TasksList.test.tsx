@@ -4,7 +4,6 @@ import waitForExpect from 'wait-for-expect';
 
 import { MemoryRouter, Route } from 'react-router';
 import { MockedProvider } from '@apollo/react-testing';
-import { taskListResponseWithTasks } from '__mocks__';
 import TASK_LIST from 'graphql/taskList.graphql';
 import TasksList from '../TasksList';
 

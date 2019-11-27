@@ -16,6 +16,7 @@ import SnackBar from 'components/SnackBar';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
 import TaskListPlaceHolder from 'components/TaskListPlaceHolder';
+import TASKLIST_DICTIONARY from './taskList.dictionary';
 
 const TasksList: React.FC = () => {
   const { newbieId } = useParams<QueryNewbieArgs>();
@@ -36,7 +37,11 @@ const TasksList: React.FC = () => {
     updateTaskStatus,
     { loading: updateTaskLoading, error: updateTaskError },
   ] = useMutation<Mutation>(UPDATE_TASK_STATUS, {
-    onCompleted: () => setSnackbar({ isOpen: true, message: 'Task status updated' }),
+    onCompleted: () =>
+      setSnackbar({
+        isOpen: true,
+        message: TASKLIST_DICTIONARY.TASK_STATUS_UPDATED,
+      }),
   });
 
   const onTaskChange = (taskId: string) => {
@@ -49,7 +54,7 @@ const TasksList: React.FC = () => {
     if (updateTaskError) {
       setSnackbar({
         isOpen: true,
-        message: 'An error ocurred updating task.',
+        message: TASKLIST_DICTIONARY.TASK_UPDATE_SERVER_ERROR,
       });
     }
   }, [updateTaskError]);
@@ -67,9 +72,9 @@ const TasksList: React.FC = () => {
   const EmptyStateTaskList = () => (
     <Box textAlign={'center'}>
       <Typography variant={'h2'} component={'h2'}>
-        No Tasks Found
+        {TASKLIST_DICTIONARY.NO_TASKS_TITLE}
       </Typography>
-      <Typography>You can always add a new task</Typography>
+      <Typography>{TASKLIST_DICTIONARY.NO_TASKS_SUBTITLE}</Typography>
     </Box>
   );
 
