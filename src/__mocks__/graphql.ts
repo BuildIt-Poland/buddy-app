@@ -9,8 +9,9 @@ import {
   Newbie,
   QueryNewbieArgs,
   QueryBuddyArgs,
+  Query,
 } from 'buddy-app-schema';
-import TASK_LIST from 'graphql/taskList.graphql';
+import TASK_LIST from 'graphql/task-list.graphql';
 import { authContext } from './context';
 
 export const loginSuccessMock = (
@@ -157,6 +158,23 @@ export const newbieMenuDetails = (variables?: Partial<QueryNewbieArgs>) => [
             photo: 'newbie-photo-url',
           },
         },
+      },
+    },
+  },
+];
+
+export const taskListResponse = (
+  variables: Partial<QueryNewbieArgs>,
+  newbie: Partial<Newbie>
+) => [
+  {
+    request: {
+      query: TASK_LIST,
+      variables,
+    },
+    result: {
+      data: {
+        newbie,
       },
     },
   },
