@@ -8,7 +8,7 @@ import {
   Box,
 } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
-import CONTACT_DETAILS from 'graphql/contact-details.graphql';
+import { CONTACT_DETAILS } from 'graphql/contact-details.graphql';
 import { ROUTES } from 'shared/routes';
 import { Query, QueryNewbieArgs } from 'buddy-app-schema';
 import NavBar from '../NavBar';

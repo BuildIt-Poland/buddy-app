@@ -3,7 +3,7 @@ import { MemoryRouter, Route } from 'react-router-dom';
 import { MockedProvider } from '@apollo/react-testing';
 import { act, create, ReactTestRenderer } from 'react-test-renderer';
 import waitForExpect from 'wait-for-expect';
-import CONTACT_DETAILS from 'graphql/contact-details.graphql';
+import { CONTACT_DETAILS } from 'graphql/contact-details.graphql';
 import ContactDetails from '../ContactDetails';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');

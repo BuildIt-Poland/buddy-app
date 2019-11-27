@@ -1,72 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] = `
-<Box
-  className="makeStyles-wrapper-1"
+<a
+  href="/buddy/newbies/1/tasks/1"
+  onClick={[Function]}
 >
-  <Checkbox
-    aria-label="primary checkbox"
-    checked={true}
-    color="primary"
-    onChange={[Function]}
-    value="1"
-  />
-  <Box
-    className="makeStyles-titleWrapper-2"
+  <ListItem
+    button={true}
   >
-    <Typography
-      component="h4"
-      variant="body1"
-    >
-      <a
-        href="/buddy/newbies/undefined/tasks/1"
+    <ListItemIcon>
+      <Checkbox
+        checked={true}
+        color="primary"
+        disableRipple={true}
+        onChange={[Function]}
         onClick={[Function]}
-      >
-        <Box
-          className="makeStyles-linkText-4"
-          fontWeight="fontWeightRegular"
-        >
-          Change you line manager
-        </Box>
-      </a>
-      <div
-        className="makeStyles-line-3"
       />
-    </Typography>
-  </Box>
-</Box>
+    </ListItemIcon>
+    <ListItemText
+      primary={
+        <del>
+          Change you line manager
+        </del>
+      }
+    />
+  </ListItem>
+</a>
 `;
 
 exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`] = `
-<Box
-  className="makeStyles-wrapper-1"
+<a
+  href="/buddy/newbies/1/tasks/1"
+  onClick={[Function]}
 >
-  <Checkbox
-    aria-label="primary checkbox"
-    checked={false}
-    color="primary"
-    onChange={[Function]}
-    value="1"
-  />
-  <Box
-    className="makeStyles-titleWrapper-2"
+  <ListItem
+    button={true}
   >
-    <Typography
-      component="h4"
-      variant="body1"
-    >
-      <a
-        href="/buddy/newbies/undefined/tasks/1"
+    <ListItemIcon>
+      <Checkbox
+        checked={false}
+        color="primary"
+        disableRipple={true}
+        onChange={[Function]}
         onClick={[Function]}
-      >
-        <Box
-          className="makeStyles-linkText-4"
-          fontWeight="fontWeightBold"
-        >
+      />
+    </ListItemIcon>
+    <ListItemText
+      primary={
+        <strong>
           Change you line manager
-        </Box>
-      </a>
-    </Typography>
-  </Box>
-</Box>
+        </strong>
+      }
+    />
+  </ListItem>
+</a>
 `;

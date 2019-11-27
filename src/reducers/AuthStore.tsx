@@ -3,7 +3,7 @@ import { Mutation } from 'buddy-app-schema';
 import { useMutation } from '@apollo/react-hooks';
 import { auth } from 'utils';
 import AuthContext, { State, defaultState } from 'contexts/AuthContext';
-import LOGIN_MUTATION from 'graphql/login.graphql';
+import { LOGIN_MUTATION } from 'graphql/login.graphql';
 
 enum ActionTypes {
   AUTH_INIT = 'auth/init',

@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { QueryBuddyArgs, Query, Newbie } from 'buddy-app-schema';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
-import NEWBIE_SELECT from 'graphql/newbie-select.graphql';
+import { NEWBIE_SELECT } from 'graphql/newbie-select.graphql';
 import AppWrapper from 'components/AppWrapper';
 import NavBar from '../NavBar';
 import PlusButton from '../PlusButton';

@@ -6,6 +6,9 @@ import { ROUTES } from 'shared/routes';
 import { taskDetailsMock } from '__mocks__';
 import TaskDetails from '../TaskDetails';
 
+jest.mock('components/AppWrapper', () => 'AppWrapper');
+jest.mock('decorators/withSnackBar', () => (component: React.FC<any>) => component);
+
 describe('Component - TaskDetails', () => {
   test('renders correctly', () => {
     const component = create(

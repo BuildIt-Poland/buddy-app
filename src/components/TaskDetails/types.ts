@@ -1,3 +1,4 @@
 import { RouteComponentProps } from 'react-router-dom';
+import { SnackBarProps } from 'decorators/withSnackBar';
 
-export type TaskDetailsProps = Pick<RouteComponentProps, 'history'>;
+export interface TaskDetailsProps extends RouteComponentProps, SnackBarProps {}

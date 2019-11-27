@@ -1,18 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - TaskDetails renders correctly 1`] = `
-<main
-  className="MuiContainer-root makeStyles-root-5 MuiContainer-maxWidthMd"
+<AppWrapper
   data-testid="task-details-page"
 >
   <header
-    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed makeStyles-AppBar-14 mui-fixed"
+    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionFixed makeStyles-AppBar-6 mui-fixed"
   >
     <div
       className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
     >
       <button
-        className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-13 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+        className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-5 MuiIconButton-colorInherit MuiIconButton-edgeStart"
         disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
@@ -73,7 +72,7 @@ exports[`Component - TaskDetails renders correctly 1`] = `
     </svg>
   </div>
   <svg
-    className="makeStyles-background-88"
+    className="makeStyles-background-80"
     fill="#f1f1f1"
   >
     <ellipse
@@ -83,5 +82,5 @@ exports[`Component - TaskDetails renders correctly 1`] = `
       ry="110%"
     />
   </svg>
-</main>
+</AppWrapper>
 `;

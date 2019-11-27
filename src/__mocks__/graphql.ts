@@ -1,8 +1,8 @@
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
 import { BUDDY_MENU_DETAILS, NEWBIE_MENU_DETAILS } from 'graphql/user-menu.graphql';
-import AVATAR_HEADER from 'graphql/avatar-header.graphql';
-import NEWBIE_SELECT from 'graphql/newbie-select.graphql';
-import TASK_DETAILS from 'graphql/task-details.graphql';
+import { AVATAR_HEADER } from 'graphql/avatar-header.graphql';
+import { NEWBIE_SELECT } from 'graphql/newbie-select.graphql';
+import { TASK_DETAILS } from 'graphql/task-details.graphql';
 import { GraphQLError } from 'graphql';
 import {
   MutationLoginArgs,

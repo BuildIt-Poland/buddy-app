@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const NEWBIE_SELECT = gql`
+export const NEWBIE_SELECT = gql`
   query buddy($buddyId: ID!) {
     buddy(buddyId: $buddyId) {
       id
@@ -20,5 +20,3 @@ const NEWBIE_SELECT = gql`
     }
   }
 `;
-
-export default NEWBIE_SELECT;

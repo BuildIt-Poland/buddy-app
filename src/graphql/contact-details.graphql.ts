@@ -13,5 +13,3 @@ export const CONTACT_DETAILS = gql`
     }
   }
 `;
-
-export default CONTACT_DETAILS;

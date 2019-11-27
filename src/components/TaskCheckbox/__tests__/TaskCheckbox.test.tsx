@@ -4,8 +4,9 @@ import { TaskStatus } from '__mocks__';
 import { MemoryRouter } from 'react-router';
 import TaskCheckbox from '../TaskCheckbox';
 
-jest.mock('@material-ui/core/Box', () => 'Box');
-jest.mock('@material-ui/core/Typography', () => 'Typography');
+jest.mock('@material-ui/core/ListItem', () => 'ListItem');
+jest.mock('@material-ui/core/ListItemIcon', () => 'ListItemIcon');
+jest.mock('@material-ui/core/ListItemText', () => 'ListItemText');
 jest.mock('@material-ui/core/Checkbox', () => 'Checkbox');
 
 describe('Component - TaskCheckbox', () => {

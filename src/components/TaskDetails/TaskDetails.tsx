@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import htmlParser from 'react-html-parser';
 import xss from 'dompurify';
 import { makeStyles, Typography, CircularProgress, Box } from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import TASK_DETAILS from 'graphql/task-details.graphql';
+import { TASK_DETAILS } from 'graphql/task-details.graphql';
+import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
 import { ROUTES } from 'shared/routes';
 import { colors } from 'styles/theme';
 import {
@@ -15,12 +16,13 @@ import {
   QueryNewbieArgs,
   Mutation,
 } from 'buddy-app-schema';
-import UPDATE_TASK_STATUS_MUTATION from 'graphql/update-task-status.graphql';
+import withSnackBar from 'decorators/withSnackBar';
 import NavBar from '../NavBar';
 import BackgroundShape, { BACKGROUND_SHAPE_HEGHT } from '../BackgroundShape';
 import AppWrapper from '../AppWrapper';
 import TaskCheckbox from '../TaskCheckbox';
 import { TaskDetailsProps } from './types';
+import DICTIONARY from './taskDetails.dictionary';
 
 const useStyles = makeStyles(theme => ({
   wrapper: {
@@ -59,34 +61,20 @@ const TEXT_COLORS = {
   [TaskStatus.Uncompleted]: colors.secondary.main,
 };
 
-const TaskDetails: React.FC<TaskDetailsProps> = props => {
+const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
   const { taskId, newbieId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
   const { wrapper, header, status, description } = useStyles();
+
   const { loading, data } = useQuery<Query, QueryTaskArgs>(TASK_DETAILS, {
     variables: { taskId },
   });
-  const [updateTaskStatus, { loading: updateTaskLoading }] = useMutation<Mutation>(
-    UPDATE_TASK_STATUS_MUTATION,
-    {
-      update(store, { data: response }) {
-        const cachedResponse: Query | null = store.readQuery({
-          query: TASK_DETAILS,
-          variables: { taskId },
-        });
+  const [
+    updateTaskStatus,
+    { loading: updateTaskLoading, error: updateTaskError },
+  ] = useMutation<Mutation>(UPDATE_TASK_STATUS, {
+    onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
+  });
 
-        response &&
-          cachedResponse &&
-          store.writeQuery({
-            query: TASK_DETAILS,
-            variables: { taskId },
-            data: {
-              ...cachedResponse,
-              task: { ...cachedResponse.task, ...response.updateTaskStatus },
-            },
-          });
-      },
-    }
-  );
   const backgroundColor = data && BACKGROUND_COLORS[data.task.status];
   const textColor = data && TEXT_COLORS[data.task.status];
   const stausLabelStyles = {
@@ -95,7 +83,7 @@ const TaskDetails: React.FC<TaskDetailsProps> = props => {
   };
 
   const onBackClick = () =>
-    props.history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId));
+    history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId));
 
   const onTaskCheckboxChange = (taskId: string) =>
     !updateTaskLoading &&
@@ -104,6 +92,12 @@ const TaskDetails: React.FC<TaskDetailsProps> = props => {
         taskId,
       },
     });
+
+  useEffect(() => {
+    if (updateTaskError) {
+      showSnackbar(DICTIONARY.ERROR_MESSAGE);
+    }
+  }, [updateTaskError, showSnackbar]);
 
   const renderTaskDetails = ({ task }: Query) => (
     <Box className={wrapper} data-testid='task-details-page'>
@@ -135,4 +129,4 @@ const TaskDetails: React.FC<TaskDetailsProps> = props => {
   );
 };
 
-export default TaskDetails;
+export default withSnackBar(TaskDetails);
