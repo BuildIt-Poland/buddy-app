@@ -51,66 +51,61 @@ const UserDetails: React.FC<UserDetailsProps> = props => {
   const isNotesVisible = (role: UserRole) => isNewbie(role);
 
   return (
-    <div data-testid='contact-details-page'>
-      <Box className={wrapper}>
-        <Box className={avatar}>
-          <Avatar imgSrc={photo} />
-        </Box>
-        <Box>
-          <Typography component='p' className={label}>
-            Name
-          </Typography>
-
-          <Typography
-            component='p'
-            data-testid='contact-name'
-            className={detailText}>
-            {name}
-          </Typography>
-
-          <Typography component='p' className={label}>
-            What I do
-          </Typography>
-
-          <Typography component='p' className={detailText}>
-            {position}
-          </Typography>
-
-          <Typography component='p' className={label}>
-            Start date
-          </Typography>
-
-          <Typography component='p' className={detailText}>
-            {startDate}
-          </Typography>
-
-          <Typography component='p' className={label}>
-            E-mail
-          </Typography>
-          <Typography component='p' className={detailText}>
-            <Link href={`mailto:${email}`} component={'a'}>
-              {email}
-            </Link>
-          </Typography>
-
-          <Typography component='p' className={label}>
-            Phone
-          </Typography>
-
-          <Typography component='p' className={detailText}>
-            {phoneNumber}
-          </Typography>
-          {isNotesVisible(role as UserRole) && (
-            <>
-              <Typography component='p' className={label}>
-                Notes
-              </Typography>
-              <TextareaAutosize className={notesTextarea} value={notes || ''} />
-            </>
-          )}
-        </Box>
+    <Box className={wrapper} data-testid='contact-details-page'>
+      <Box className={avatar}>
+        <Avatar imgSrc={photo} />
       </Box>
-    </div>
+      <Box>
+        <Typography component='p' className={label}>
+          Name
+        </Typography>
+
+        <Typography component='p' data-testid='contact-name' className={detailText}>
+          {name}
+        </Typography>
+
+        <Typography component='p' className={label}>
+          What I do
+        </Typography>
+
+        <Typography component='p' className={detailText}>
+          {position}
+        </Typography>
+
+        <Typography component='p' className={label}>
+          Start date
+        </Typography>
+
+        <Typography component='p' className={detailText}>
+          {startDate}
+        </Typography>
+
+        <Typography component='p' className={label}>
+          E-mail
+        </Typography>
+        <Typography component='p' className={detailText}>
+          <Link href={`mailto:${email}`} component={'a'}>
+            {email}
+          </Link>
+        </Typography>
+
+        <Typography component='p' className={label}>
+          Phone
+        </Typography>
+
+        <Typography component='p' className={detailText}>
+          {phoneNumber}
+        </Typography>
+        {isNotesVisible(role as UserRole) && (
+          <>
+            <Typography component='p' className={label}>
+              Notes
+            </Typography>
+            <TextareaAutosize className={notesTextarea} value={notes || ''} />
+          </>
+        )}
+      </Box>
+    </Box>
   );
 };
 

@@ -1,183 +1,177 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - UserDetails when logged in as buddy renders correctly 1`] = `
-<div
+<Box
+  className="makeStyles-wrapper-2"
   data-testid="contact-details-page"
 >
   <Box
-    className="makeStyles-wrapper-2"
+    className="makeStyles-avatar-3"
   >
-    <Box
-      className="makeStyles-avatar-3"
-    >
-      <Avatar
-        imgSrc="some-url"
-      />
-    </Box>
-    <Box>
-      <Typography
-        className="makeStyles-label-4"
-        component="p"
-      >
-        Name
-      </Typography>
-      <Typography
-        className="makeStyles-detailText-5"
-        component="p"
-        data-testid="contact-name"
-      >
-        Tom Hanks
-      </Typography>
-      <Typography
-        className="makeStyles-label-4"
-        component="p"
-      >
-        What I do
-      </Typography>
-      <Typography
-        className="makeStyles-detailText-5"
-        component="p"
-      >
-        Dev Ops
-      </Typography>
-      <Typography
-        className="makeStyles-label-4"
-        component="p"
-      >
-        Start date
-      </Typography>
-      <Typography
-        className="makeStyles-detailText-5"
-        component="p"
-      >
-        2010-01-01
-      </Typography>
-      <Typography
-        className="makeStyles-label-4"
-        component="p"
-      >
-        E-mail
-      </Typography>
-      <Typography
-        className="makeStyles-detailText-5"
-        component="p"
-      >
-        <Link
-          component="a"
-          href="mailto:tom@wipro.com"
-        >
-          tom@wipro.com
-        </Link>
-      </Typography>
-      <Typography
-        className="makeStyles-label-4"
-        component="p"
-      >
-        Phone
-      </Typography>
-      <Typography
-        className="makeStyles-detailText-5"
-        component="p"
-      >
-        1234567
-      </Typography>
-      <Typography
-        className="makeStyles-label-4"
-        component="p"
-      >
-        Notes
-      </Typography>
-      <TextareaAutosize
-        className="makeStyles-notesTextarea-1"
-        value="Nice guy"
-      />
-    </Box>
+    <Avatar
+      imgSrc="some-url"
+    />
   </Box>
-</div>
+  <Box>
+    <Typography
+      className="makeStyles-label-4"
+      component="p"
+    >
+      Name
+    </Typography>
+    <Typography
+      className="makeStyles-detailText-5"
+      component="p"
+      data-testid="contact-name"
+    >
+      Tom Hanks
+    </Typography>
+    <Typography
+      className="makeStyles-label-4"
+      component="p"
+    >
+      What I do
+    </Typography>
+    <Typography
+      className="makeStyles-detailText-5"
+      component="p"
+    >
+      Dev Ops
+    </Typography>
+    <Typography
+      className="makeStyles-label-4"
+      component="p"
+    >
+      Start date
+    </Typography>
+    <Typography
+      className="makeStyles-detailText-5"
+      component="p"
+    >
+      2010-01-01
+    </Typography>
+    <Typography
+      className="makeStyles-label-4"
+      component="p"
+    >
+      E-mail
+    </Typography>
+    <Typography
+      className="makeStyles-detailText-5"
+      component="p"
+    >
+      <Link
+        component="a"
+        href="mailto:tom@wipro.com"
+      >
+        tom@wipro.com
+      </Link>
+    </Typography>
+    <Typography
+      className="makeStyles-label-4"
+      component="p"
+    >
+      Phone
+    </Typography>
+    <Typography
+      className="makeStyles-detailText-5"
+      component="p"
+    >
+      1234567
+    </Typography>
+    <Typography
+      className="makeStyles-label-4"
+      component="p"
+    >
+      Notes
+    </Typography>
+    <TextareaAutosize
+      className="makeStyles-notesTextarea-1"
+      value="Nice guy"
+    />
+  </Box>
+</Box>
 `;
 
 exports[`Component - UserDetails when logged in as newbie renders correctly 1`] = `
-<div
+<Box
+  className="makeStyles-wrapper-2"
   data-testid="contact-details-page"
 >
   <Box
-    className="makeStyles-wrapper-2"
+    className="makeStyles-avatar-3"
   >
-    <Box
-      className="makeStyles-avatar-3"
-    >
-      <Avatar
-        imgSrc="some-url"
-      />
-    </Box>
-    <Box>
-      <Typography
-        className="makeStyles-label-4"
-        component="p"
-      >
-        Name
-      </Typography>
-      <Typography
-        className="makeStyles-detailText-5"
-        component="p"
-        data-testid="contact-name"
-      >
-        Tom Hanks
-      </Typography>
-      <Typography
-        className="makeStyles-label-4"
-        component="p"
-      >
-        What I do
-      </Typography>
-      <Typography
-        className="makeStyles-detailText-5"
-        component="p"
-      >
-        Dev Ops
-      </Typography>
-      <Typography
-        className="makeStyles-label-4"
-        component="p"
-      >
-        Start date
-      </Typography>
-      <Typography
-        className="makeStyles-detailText-5"
-        component="p"
-      >
-        2010-01-01
-      </Typography>
-      <Typography
-        className="makeStyles-label-4"
-        component="p"
-      >
-        E-mail
-      </Typography>
-      <Typography
-        className="makeStyles-detailText-5"
-        component="p"
-      >
-        <Link
-          component="a"
-          href="mailto:tom@wipro.com"
-        >
-          tom@wipro.com
-        </Link>
-      </Typography>
-      <Typography
-        className="makeStyles-label-4"
-        component="p"
-      >
-        Phone
-      </Typography>
-      <Typography
-        className="makeStyles-detailText-5"
-        component="p"
-      >
-        1234567
-      </Typography>
-    </Box>
+    <Avatar
+      imgSrc="some-url"
+    />
   </Box>
-</div>
+  <Box>
+    <Typography
+      className="makeStyles-label-4"
+      component="p"
+    >
+      Name
+    </Typography>
+    <Typography
+      className="makeStyles-detailText-5"
+      component="p"
+      data-testid="contact-name"
+    >
+      Tom Hanks
+    </Typography>
+    <Typography
+      className="makeStyles-label-4"
+      component="p"
+    >
+      What I do
+    </Typography>
+    <Typography
+      className="makeStyles-detailText-5"
+      component="p"
+    >
+      Dev Ops
+    </Typography>
+    <Typography
+      className="makeStyles-label-4"
+      component="p"
+    >
+      Start date
+    </Typography>
+    <Typography
+      className="makeStyles-detailText-5"
+      component="p"
+    >
+      2010-01-01
+    </Typography>
+    <Typography
+      className="makeStyles-label-4"
+      component="p"
+    >
+      E-mail
+    </Typography>
+    <Typography
+      className="makeStyles-detailText-5"
+      component="p"
+    >
+      <Link
+        component="a"
+        href="mailto:tom@wipro.com"
+      >
+        tom@wipro.com
+      </Link>
+    </Typography>
+    <Typography
+      className="makeStyles-label-4"
+      component="p"
+    >
+      Phone
+    </Typography>
+    <Typography
+      className="makeStyles-detailText-5"
+      component="p"
+    >
+      1234567
+    </Typography>
+  </Box>
+</Box>
 `;
