@@ -9,7 +9,6 @@ import { ROUTES } from 'shared/routes';
 import { QueryBuddyArgs, QueryNewbieArgs, UserRole } from 'buddy-app-schema';
 import NavBar from 'components/NavBar';
 import BackgroundShape from 'components/BackgroundShape';
-import { isBuddy, isNewbie } from 'utils';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import UserDetails from 'components/UserDetails';
 import { BasicDetailsParams, UserBasicDetails } from 'components/UserMenu/types';
@@ -38,22 +37,19 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
     props.history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId));
   };
 
-  const getQueryByRole = (role: UserRole) => {
-    if (isBuddy(role)) {
-      return {
-        query: NEWBIE_CONTACT_DETAILS,
-        variables: { newbieId },
-        userRole: UserRole.Newbie.toLowerCase(),
-      };
-    } else if (isNewbie(role)) {
-      return {
-        query: BUDDY_CONTACT_DETAILS,
-        variables: { buddyId },
-        userRole: UserRole.Buddy.toLowerCase(),
-      };
-    }
+  const queryByRole = {
+    [UserRole.Newbie]: {
+      query: BUDDY_CONTACT_DETAILS,
+      variables: { buddyId },
+      userRole: UserRole.Buddy.toLowerCase(),
+    },
+    [UserRole.Buddy]: {
+      query: NEWBIE_CONTACT_DETAILS,
+      variables: { newbieId },
+      userRole: UserRole.Newbie.toLowerCase(),
+    },
   };
-  const { query, variables, userRole } = getQueryByRole(role) || {};
+  const { query, variables, userRole } = queryByRole[role];
   const { data, loading } = useQuery<UserBasicDetails, BasicDetailsParams>(query, {
     variables,
   });
