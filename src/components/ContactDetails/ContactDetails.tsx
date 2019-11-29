@@ -1,119 +1,77 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  makeStyles,
-  TextareaAutosize,
-  Typography,
-  CircularProgress,
-  Box,
-} from '@material-ui/core';
+import { Typography, CircularProgress, makeStyles } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
-import CONTACT_DETAILS from 'graphql/contact-details.graphql';
+import NEWBIE_CONTACT_DETAILS, {
+  BUDDY_CONTACT_DETAILS,
+} from 'graphql/contact-details.graphql';
 import { ROUTES } from 'shared/routes';
-import { Query, QueryNewbieArgs } from 'buddy-app-schema';
-import NavBar from '../NavBar';
-import Avatar from '../Avatar';
-import BackgroundShape from '../BackgroundShape/';
+import { QueryBuddyArgs, QueryNewbieArgs, UserRole } from 'buddy-app-schema';
+import NavBar from 'components/NavBar';
+import BackgroundShape from 'components/BackgroundShape';
+import AuthContext, { AuthContextData } from 'contexts/AuthContext';
+import UserDetails from 'components/UserDetails';
+import { BasicDetailsParams, UserBasicDetails } from 'components/UserMenu/types';
+import Box from '@material-ui/core/Box';
+import AppWrapper from 'components/AppWrapper';
 import { ContactDetailsProps } from './types';
 
 const useStyles = makeStyles(theme => ({
-  notesTextarea: {
-    width: 150,
-    minHeight: 100,
-    borderWidth: '1px',
-    borderColor: theme.palette.primary.dark,
-  },
-  wrapper: {
+  loader: {
     display: 'flex',
-    flexDirection: 'row',
-    marginTop: theme.spacing(2),
-  },
-  avatar: {
-    width: '10rem',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '100vh',
+    width: '100%',
+    marginTop: theme.spacing(-7),
   },
 }));
 
 const ContactDetails: React.FC<ContactDetailsProps> = props => {
   const { newbieId } = useParams<QueryNewbieArgs>();
-  const classes = useStyles();
-  const { loading, data } = useQuery<Query, QueryNewbieArgs>(CONTACT_DETAILS, {
-    variables: { newbieId },
+  const { buddyId } = useParams<QueryBuddyArgs>();
+  const { data: AuthData } = useContext<AuthContextData>(AuthContext);
+  const { role } = AuthData;
+
+  const handleBackClick = () => {
+    props.history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId));
+  };
+
+  const queryByRole = {
+    [UserRole.Newbie]: {
+      query: BUDDY_CONTACT_DETAILS,
+      variables: { buddyId },
+      userRole: UserRole.Buddy.toLowerCase(),
+    },
+    [UserRole.Buddy]: {
+      query: NEWBIE_CONTACT_DETAILS,
+      variables: { newbieId },
+      userRole: UserRole.Newbie.toLowerCase(),
+    },
+  };
+  const { query, variables, userRole } = queryByRole[role];
+  const { data, loading } = useQuery<UserBasicDetails, BasicDetailsParams>(query, {
+    variables,
   });
-
-  const renderContactDetails = () => (
-    <div data-testid='contact-details-page'>
-      <Box className={classes.wrapper}>
-        <Box className={classes.avatar}>
-          <Avatar imgSrc={data && data.newbie.photo} />
-        </Box>
-        <Box>
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              Name
-            </Box>
-          </Typography>
-
-          <Typography component='p' data-testid='contact-name'>
-            {data && data.newbie.name}
-          </Typography>
-
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              What I do
-            </Box>
-          </Typography>
-          <Typography component='p'>{data && data.newbie.position}</Typography>
-
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              Start date
-            </Box>
-          </Typography>
-          <Typography component='p'>{data && data.newbie.startDate}</Typography>
-
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              E-mail
-            </Box>
-          </Typography>
-          <Typography component='p'>{data && data.newbie.email}</Typography>
-
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              Phone
-            </Box>
-          </Typography>
-          <Typography component='p'>{data && data.newbie.phoneNumber}</Typography>
-
-          <Typography component='p'>
-            <Box component='strong' fontWeight={'fontWeightBold'}>
-              Notes
-            </Box>
-          </Typography>
-          <TextareaAutosize
-            className={classes.notesTextarea}
-            value={(data && data.newbie.notes) || ''}
-          />
-        </Box>
-      </Box>
-    </div>
-  );
+  const userDetails = data && data[userRole as string];
+  const { loader } = useStyles();
 
   return (
-    <>
-      <NavBar
-        type='back'
-        onClick={() =>
-          props.history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId))
-        }
-      />
-      <Typography component='h2' variant='h2'>
-        Contact Details
-      </Typography>
-      {loading && <CircularProgress />}
-      {data && renderContactDetails()}
+    <AppWrapper>
+      <NavBar type='back' onClick={handleBackClick} />
+      {loading && (
+        <Box className={loader}>
+          <CircularProgress data-testid='slide-menu-loader' />
+        </Box>
+      )}
+      <Box>
+        <Typography component='h2' variant='h2'>
+          Contact Details
+        </Typography>
+        {userDetails && <UserDetails details={userDetails} />}
+      </Box>
       <BackgroundShape />
-    </>
+    </AppWrapper>
   );
 };
 
