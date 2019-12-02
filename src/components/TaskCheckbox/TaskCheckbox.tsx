@@ -10,6 +10,7 @@ import { TaskCheckboxProps } from './types';
 
 const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
   id,
+  className,
   title,
   status,
   onChange,
@@ -27,21 +28,26 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
     [TaskStatus.Uncompleted]: <strong>{title}</strong>,
   };
 
-  return (
+  const renderCheckbox = () => (
+    <Checkbox
+      className={className}
+      color={'primary'}
+      checked={isChecked}
+      onChange={onCheckboxChange}
+      disableRipple
+      onClick={e => e.stopPropagation()}
+    />
+  );
+
+  return title ? (
     <Link to={path}>
       <ListItem button>
-        <ListItemIcon>
-          <Checkbox
-            color={'primary'}
-            checked={isChecked}
-            onChange={onCheckboxChange}
-            disableRipple
-            onClick={e => e.stopPropagation()}
-          />
-        </ListItemIcon>
-        <ListItemText primary={text[status as TaskStatus]} />
+        <ListItemIcon>{renderCheckbox()}</ListItemIcon>
+        <ListItemText primary={text[status]} />
       </ListItem>
     </Link>
+  ) : (
+    renderCheckbox()
   );
 };
 

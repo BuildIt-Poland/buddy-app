@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Typography, CircularProgress, makeStyles } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
-import NEWBIE_CONTACT_DETAILS, {
+import {
+  NEWBIE_CONTACT_DETAILS,
   BUDDY_CONTACT_DETAILS,
 } from 'graphql/contact-details.graphql';
 import { ROUTES } from 'shared/routes';

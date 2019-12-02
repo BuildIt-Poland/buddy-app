@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - SnackBar renders correctly 1`] = `
+Array [
+  <div>
+    Test
+  </div>,
+  <Snackbar
+    action={
+      Array [
+        <IconButton
+          aria-label="close"
+          color="inherit"
+          onClick={[Function]}
+        >
+          <CloseIcon />
+        </IconButton>,
+      ]
+    }
+    anchorOrigin={
+      Object {
+        "horizontal": "left",
+        "vertical": "bottom",
+      }
+    }
+    autoHideDuration={3000}
+    message={
+      <span>
+        
+      </span>
+    }
+    onClose={[Function]}
+    open={false}
+  />,
+]
+`;

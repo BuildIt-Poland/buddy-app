@@ -5,7 +5,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useQuery } from '@apollo/react-hooks';
 import Avatar from 'components/Avatar';
-import AVATAR_HEADER from 'graphql/avatar-header.graphql';
+import { AVATAR_HEADER } from 'graphql/avatar-header.graphql';
 
 import { Query, QueryNewbieArgs } from 'buddy-app-schema';
 import { getProgressInPercentages } from 'utils';

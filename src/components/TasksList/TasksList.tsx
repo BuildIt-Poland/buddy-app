@@ -7,22 +7,19 @@ import AvatarHeader from 'components/AvatarHeader';
 import NavBar from 'components/NavBar';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
-import TASK_LIST from 'graphql/task-list.graphql';
-import UPDATE_TASK_STATUS from 'graphql/update-task-status.graphql';
+import { TASK_LIST } from 'graphql/task-list.graphql';
+import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
 import { useParams } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import TaskTabsContent from 'components/TaskTabsContent';
-import SnackBar from 'components/SnackBar';
+import withSnackBar from 'decorators/withSnackBar';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import TASKLIST_DICTIONARY from './taskList.dictionary';
+import DICTIONARY from './taskList.dictionary';
+import { TaskListProps } from './types';
 
-const TasksList: React.FC = () => {
+const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
   const { newbieId } = useParams<QueryNewbieArgs>();
   const [tabIndex, setTabIndex] = React.useState(0);
-  const [snackbar, setSnackbar] = React.useState({
-    isOpen: false,
-    message: '',
-  });
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) =>
     setTabIndex(newValue);
@@ -35,11 +32,7 @@ const TasksList: React.FC = () => {
     updateTaskStatus,
     { loading: updateTaskLoading, error: updateTaskError },
   ] = useMutation<Mutation>(UPDATE_TASK_STATUS, {
-    onCompleted: () =>
-      setSnackbar({
-        isOpen: true,
-        message: TASKLIST_DICTIONARY.TASK_STATUS_UPDATED,
-      }),
+    onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
   });
 
   const onTaskChange = (taskId: string) => {
@@ -50,22 +43,9 @@ const TasksList: React.FC = () => {
 
   useEffect(() => {
     if (updateTaskError) {
-      setSnackbar({
-        isOpen: true,
-        message: TASKLIST_DICTIONARY.TASK_UPDATE_SERVER_ERROR,
-      });
+      showSnackbar(DICTIONARY.ERROR_MESSAGE);
     }
-  }, [updateTaskError]);
-
-  const handleSnackBarClose = (
-    event: React.SyntheticEvent | React.MouseEvent,
-    reason?: string
-  ) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setSnackbar({ ...snackbar, isOpen: false });
-  };
+  }, [updateTaskError, showSnackbar]);
 
   const newbieTasks = data && data.newbie.newbieTasks;
   const buddyTasks = data && data.newbie.buddyTasks;
@@ -81,8 +61,8 @@ const TasksList: React.FC = () => {
           indicatorColor='primary'
           textColor='primary'
           variant='fullWidth'>
-          <Tab label='Newbie Tasks' />
-          <Tab label='My tasks' />
+          <Tab label={DICTIONARY.NEWBIE_TAB_TITLE} />
+          <Tab label={DICTIONARY.BUDDY_TAB_TITLE} />
         </Tabs>
       </AppBar>
 
@@ -102,12 +82,7 @@ const TasksList: React.FC = () => {
           tasks={buddyTasks as Task[]}
         />
       </TabPanel>
-      <SnackBar
-        message={snackbar.message}
-        isOpen={snackbar.isOpen}
-        onClickCloseButton={handleSnackBarClose}
-      />
     </Box>
   );
 };
-export default TasksList;
+export default withSnackBar(TasksList);

@@ -5,7 +5,6 @@ import NavBar from 'components/NavBar';
 jest.mock('@material-ui/core/AppBar', () => 'AppBar');
 jest.mock('@material-ui/core/Toolbar', () => 'Toolbar');
 jest.mock('@material-ui/core/IconButton', () => 'IconButton');
-jest.mock('buddy-app-schema', () => {});
 
 describe('Component - NavBar', () => {
   const onClickSpy = jest.fn();

@@ -47,11 +47,6 @@ exports[`Component - TasksList When there are tasks renders correctly 1`] = `
       onChange={[Function]}
     />
   </TabPanel>
-  <SnackBar
-    isOpen={false}
-    message=""
-    onClickCloseButton={[Function]}
-  />
 </main>
 `;
 
@@ -134,11 +129,6 @@ exports[`Component - TasksList When there are tasks renders correctly 2`] = `
       }
     />
   </TabPanel>
-  <SnackBar
-    isOpen={false}
-    message=""
-    onClickCloseButton={[Function]}
-  />
 </main>
 `;
 
@@ -191,10 +181,5 @@ exports[`Component - TasksList when there are not tasks should render empty stat
       tasks={Array []}
     />
   </TabPanel>
-  <SnackBar
-    isOpen={false}
-    message=""
-    onClickCloseButton={[Function]}
-  />
 </main>
 `;

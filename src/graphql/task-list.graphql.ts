@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const TASK_LIST = gql`
+export const TASK_LIST = gql`
   query newbie($newbieId: ID!) {
     newbie(newbieId: $newbieId) {
       newbieTasks {
@@ -18,5 +18,3 @@ const TASK_LIST = gql`
     }
   }
 `;
-
-export default TASK_LIST;

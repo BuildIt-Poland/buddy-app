@@ -9,5 +9,3 @@ export const LOGIN_MUTATION = gql`
     }
   }
 `;
-
-export default LOGIN_MUTATION;

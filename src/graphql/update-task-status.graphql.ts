@@ -8,5 +8,3 @@ export const UPDATE_TASK_STATUS = gql`
     }
   }
 `;
-
-export default UPDATE_TASK_STATUS;

@@ -45,7 +45,7 @@ A valid registered email and password are needed for a successful login. These d
 
 Trying to visit the above Prisma admin panel will return an error of invalid token. Please enter the settings and add the following token:
 ```
-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJCdWRkeS1hcHBAdGVzdCIsInJvbGVzIjpbImFkbWluIl19LCJpYXQiOjE1NzQ2NzU0NzIsImV4cCI6MTU3NTI4MDI3Mn0.6eVf9CT5JuoiaPoc9vVmDHi738pQrdw2WPvB81ZTAuE
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJCdWRkeS1hcHBAdGVzdCIsInJvbGVzIjpbImFkbWluIl19LCJpYXQiOjE1NzUyOTUzMDUsImV4cCI6MTU3NTkwMDEwNX0.2NSd2e7pzDi6h4De4RyJehsxGSyIW9KMXH678XSwjs4
 ```
 
 This will allow you admin access to the temporary database in use for development.

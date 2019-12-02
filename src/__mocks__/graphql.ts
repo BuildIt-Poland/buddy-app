@@ -1,6 +1,8 @@
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
 import { BUDDY_MENU_DETAILS, NEWBIE_MENU_DETAILS } from 'graphql/user-menu.graphql';
-import AVATAR_HEADER from 'graphql/avatar-header.graphql';
+import { AVATAR_HEADER } from 'graphql/avatar-header.graphql';
+import { NEWBIE_SELECT } from 'graphql/newbie-select.graphql';
+import { TASK_DETAILS } from 'graphql/task-details.graphql';
 import { GraphQLError } from 'graphql';
 import {
   MutationLoginArgs,
@@ -11,10 +13,11 @@ import {
   QueryBuddyArgs,
   UserRole,
 } from 'buddy-app-schema';
-import NEWBIE_CONTACT_DETAILS, {
+import {
+  NEWBIE_CONTACT_DETAILS,
   BUDDY_CONTACT_DETAILS,
 } from 'graphql/contact-details.graphql';
-import TASK_LIST from 'graphql/task-list.graphql';
+import { TASK_LIST } from 'graphql/task-list.graphql';
 import { getBasicUserDetailsMock } from './general';
 import { authContext } from './context';
 
@@ -207,6 +210,63 @@ export const buddyContactDetails = (variables?: Partial<QueryBuddyArgs>) => [
     result: {
       data: {
         buddy: getBasicUserDetailsMock(UserRole.Buddy),
+      },
+    },
+  },
+];
+
+export const newbieSelectMock = [
+  {
+    request: {
+      query: NEWBIE_SELECT,
+      variables: {
+        buddyId: 'ck17sl83c9gya0b17dcvttzm4',
+      },
+    },
+    result: {
+      data: {
+        buddy: {
+          id: 'ck17sl83c9gya0b17dcvttzm4',
+          name: 'Dummy',
+          role: 'BUDDY',
+          photo: null,
+          newbies: [
+            {
+              id: 'ck17svulh9k2k0b17j31ansfk',
+              photo: null,
+              name: 'Test 2',
+              startDate: null,
+              tasksInfo: { buddyProgress: 0.5 },
+            },
+            {
+              id: 'ck17swp2m9kcv0b17we0ibrdn',
+              photo: null,
+              name: 'Test 1',
+              startDate: null,
+              tasksInfo: { buddyProgress: 0.6 },
+            },
+          ],
+        },
+      },
+    },
+  },
+];
+
+export const taskDetailsMock = [
+  {
+    request: {
+      query: TASK_DETAILS,
+      variables: {
+        taskId: '1',
+      },
+    },
+    result: {
+      data: {
+        task: {
+          title: 'New task',
+          description: 'New task',
+          status: TaskStatus.Uncompleted,
+        },
       },
     },
   },

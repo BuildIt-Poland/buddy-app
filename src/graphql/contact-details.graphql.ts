@@ -28,5 +28,3 @@ export const BUDDY_CONTACT_DETAILS = gql`
     }
   }
 `;
-
-export default NEWBIE_CONTACT_DETAILS;

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-const AVATAR_HEADER = gql`
+export const AVATAR_HEADER = gql`
   query getAvatarDetails($newbieId: ID!) {
     newbie(newbieId: $newbieId) {
       name
@@ -12,5 +12,3 @@ const AVATAR_HEADER = gql`
     }
   }
 `;
-
-export default AVATAR_HEADER;
