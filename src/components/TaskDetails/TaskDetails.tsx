@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import htmlParser from 'react-html-parser';
 import xss from 'dompurify';
-import { makeStyles, Typography, CircularProgress, Box } from '@material-ui/core';
+import { makeStyles, Typography, Box, Chip } from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { TASK_DETAILS } from 'graphql/task-details.graphql';
@@ -18,7 +18,7 @@ import {
 } from 'buddy-app-schema';
 import withSnackBar from 'decorators/withSnackBar';
 import NavBar from '../NavBar';
-import BackgroundShape, { BACKGROUND_SHAPE_HEGHT } from '../BackgroundShape';
+import BackgroundShape from '../BackgroundShape';
 import AppWrapper from '../AppWrapper';
 import TaskCheckbox from '../TaskCheckbox';
 import { TaskDetailsProps } from './types';
@@ -28,26 +28,28 @@ const useStyles = makeStyles(theme => ({
   wrapper: {
     display: 'flex',
     flexDirection: 'column',
-    height: `calc(100% - ${BACKGROUND_SHAPE_HEGHT}rem)`,
   },
   header: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  checkbox: {
+    '& svg': {
+      fontSize: theme.spacing(3),
+    },
+  },
+  progress: {
+    position: 'absolute',
+    width: '100%',
+  },
   status: {
     marginTop: theme.spacing(1),
     alignSelf: 'baseline',
-    padding: theme.spacing(0.5, 1),
-    borderRadius: theme.spacing(0.5),
-    textTransform: 'lowercase',
-    '&:first-letter': {
-      textTransform: 'uppercase',
-    },
+    fontWeight: 'bold',
   },
   description: {
     marginTop: theme.spacing(3.5),
-    overflow: 'auto',
   },
 }));
 
@@ -61,9 +63,14 @@ const TEXT_COLORS = {
   [TaskStatus.Uncompleted]: colors.secondary.main,
 };
 
+const STATUS_TEXT = {
+  [TaskStatus.Completed]: DICTIONARY.COMPLETED,
+  [TaskStatus.Uncompleted]: DICTIONARY.UNCOMPLETED,
+};
+
 const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
   const { taskId, newbieId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
-  const { wrapper, header, status, description } = useStyles();
+  const { wrapper, header, checkbox, progress, status, description } = useStyles();
 
   const { loading, data } = useQuery<Query, QueryTaskArgs>(TASK_DETAILS, {
     variables: { taskId },
@@ -107,25 +114,32 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
         </Typography>
         <TaskCheckbox
           id={taskId}
+          className={checkbox}
           status={task.status}
           onChange={onTaskCheckboxChange}
         />
       </Box>
-      <Box className={status} style={stausLabelStyles}>
-        <strong>{task.status}</strong>
-        {updateTaskLoading && <LinearProgress color='secondary' />}
-      </Box>
+      <Chip
+        className={status}
+        size={'small'}
+        label={STATUS_TEXT[task.status]}
+        style={stausLabelStyles}
+      />
       <Box className={description}>{htmlParser(xss.sanitize(task.description))}</Box>
     </Box>
   );
 
   return (
-    <AppWrapper data-testid='task-details-page'>
+    <>
       <NavBar type='back' onClick={onBackClick} />
-      {loading && <CircularProgress />}
-      {data && renderTaskDetails(data)}
-      <BackgroundShape fill={backgroundColor} />
-    </AppWrapper>
+      {(loading || updateTaskLoading) && (
+        <LinearProgress className={progress} color='secondary' />
+      )}
+      <AppWrapper data-testid='task-details-page'>
+        {data && renderTaskDetails(data)}
+        <BackgroundShape />
+      </AppWrapper>
+    </>
   );
 };
 

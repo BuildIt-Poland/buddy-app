@@ -10,6 +10,7 @@ import { TaskCheckboxProps } from './types';
 
 const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
   id,
+  className,
   title,
   status,
   onChange,
@@ -29,6 +30,7 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
 
   const renderCheckbox = () => (
     <Checkbox
+      className={className}
       color={'primary'}
       checked={isChecked}
       onChange={onCheckboxChange}
