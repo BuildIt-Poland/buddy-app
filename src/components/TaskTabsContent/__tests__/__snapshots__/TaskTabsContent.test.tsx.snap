@@ -1,11 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - TaskTabsContent renders correctly 1`] = `
-<Box
-  className="makeStyles-wrapper-1"
+exports[`Component - TaskTabsContent when is loading renders correctly 1`] = `<TaskListPlaceHolder />`;
+
+exports[`Component - TaskTabsContent when is not loading when there are not tasks renders correctly 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-2"
 >
+  <h2
+    className="MuiTypography-root MuiTypography-h2"
+  >
+    No Tasks Found
+  </h2>
+  <p
+    className="MuiTypography-root MuiTypography-body1"
+  >
+    You can always add a new task
+  </p>
+</div>
+`;
+
+exports[`Component - TaskTabsContent when is not loading when there are tasks renders correctly 1`] = `
+<List>
   <TasksSubList
-    count={1}
     tasks={
       Array [
         Object {
@@ -22,7 +38,6 @@ exports[`Component - TaskTabsContent renders correctly 1`] = `
     title="Todo"
   />
   <TasksSubList
-    count={1}
     tasks={
       Array [
         Object {
@@ -38,11 +53,5 @@ exports[`Component - TaskTabsContent renders correctly 1`] = `
     }
     title="Done"
   />
-</Box>
-`;
-
-exports[`Component - TaskTabsContent renders correctly without tasks and counts 1`] = `
-<Box
-  className="makeStyles-wrapper-1"
-/>
+</List>
 `;

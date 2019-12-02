@@ -14,6 +14,7 @@ import {
 import NEWBIE_CONTACT_DETAILS, {
   BUDDY_CONTACT_DETAILS,
 } from 'graphql/contact-details.graphql';
+import TASK_LIST from 'graphql/task-list.graphql';
 import { getBasicUserDetailsMock } from './general';
 import { authContext } from './context';
 
@@ -161,6 +162,23 @@ export const newbieMenuDetails = (variables?: Partial<QueryNewbieArgs>) => [
             photo: 'newbie-photo-url',
           },
         },
+      },
+    },
+  },
+];
+
+export const taskListResponse = (
+  variables: Partial<QueryNewbieArgs>,
+  newbie: Partial<Newbie>
+) => [
+  {
+    request: {
+      query: TASK_LIST,
+      variables,
+    },
+    result: {
+      data: {
+        newbie,
       },
     },
   },

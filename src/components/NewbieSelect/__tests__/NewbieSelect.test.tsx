@@ -2,7 +2,7 @@ import React from 'react';
 import { create, act } from 'react-test-renderer';
 import { MockedProvider } from '@apollo/react-testing';
 import waitForExpect from 'wait-for-expect';
-import NEWBIE_SELECT from 'graphql/newbieSelect.graphql';
+import NEWBIE_SELECT from 'graphql/newbie-select.graphql';
 import NewbieSelect from '../NewbieSelect';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');

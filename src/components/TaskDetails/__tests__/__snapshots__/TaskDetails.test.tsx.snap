@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - TaskDetails renders correctly 1`] = `
-<div
+<AppWrapper
   data-testid="task-details-page"
 >
   <h1>
@@ -10,5 +10,5 @@ exports[`Component - TaskDetails renders correctly 1`] = `
   <p>
     ID: 
   </p>
-</div>
+</AppWrapper>
 `;

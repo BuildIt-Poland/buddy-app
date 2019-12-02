@@ -2,9 +2,8 @@ import { Task } from 'buddy-app-schema';
 import { CheckboxProps } from '../TaskCheckbox';
 
 export interface TaskTabsContentProps extends CheckboxProps {
-  tasks: Task[];
-  uncompletedCount?: number;
-  completedCount?: number;
+  tasks: Task[] | undefined;
+  loading: Boolean;
 }
 
 export interface TransformedTasks {
