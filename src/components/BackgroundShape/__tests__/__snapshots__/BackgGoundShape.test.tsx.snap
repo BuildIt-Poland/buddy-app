@@ -3,13 +3,12 @@
 exports[`Component - BackGroundShape renders correctly 1`] = `
 <svg
   className="makeStyles-background-1"
-  fill="#f1f1f1"
 >
   <ellipse
     cx="70%"
-    cy="130%"
+    cy="300"
     rx="75%"
-    ry="110%"
+    ry="227"
   />
 </svg>
 `;

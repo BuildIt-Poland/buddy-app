@@ -40,7 +40,9 @@ const useStyles = makeStyles(theme => ({
     },
   },
   progress: {
-    position: 'absolute',
+    position: 'fixed',
+    top: 0,
+    left: 0,
     width: '100%',
   },
   status: {
@@ -130,16 +132,14 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
   );
 
   return (
-    <>
-      <NavBar type='back' onClick={onBackClick} />
+    <AppWrapper data-testid='task-details-page'>
       {(loading || updateTaskLoading) && (
         <LinearProgress className={progress} color='secondary' />
       )}
-      <AppWrapper data-testid='task-details-page'>
-        {data && renderTaskDetails(data)}
-        <BackgroundShape />
-      </AppWrapper>
-    </>
+      <NavBar type='back' onClick={onBackClick} />
+      {data && renderTaskDetails(data)}
+      <BackgroundShape />
+    </AppWrapper>
   );
 };
 

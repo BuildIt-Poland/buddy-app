@@ -4,20 +4,31 @@ exports[`Component - TaskDetails renders correctly 1`] = `
 <AppWrapper
   data-testid="task-details-page"
 >
+  <div
+    className="MuiLinearProgress-root MuiLinearProgress-colorSecondary makeStyles-progress-4 MuiLinearProgress-indeterminate"
+    role="progressbar"
+  >
+    <div
+      className="MuiLinearProgress-bar MuiLinearProgress-barColorSecondary MuiLinearProgress-bar1Indeterminate"
+      style={Object {}}
+    />
+    <div
+      className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorSecondary"
+      style={Object {}}
+    />
+  </div>
   <NavBar
     onClick={[Function]}
     type="back"
   />
-  <CircularProgress />
   <svg
-    className="makeStyles-background-5"
-    fill="#f1f1f1"
+    className="makeStyles-background-28"
   >
     <ellipse
       cx="70%"
-      cy="130%"
+      cy="300"
       rx="75%"
-      ry="110%"
+      ry="227"
     />
   </svg>
 </AppWrapper>

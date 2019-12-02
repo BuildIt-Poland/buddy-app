@@ -1,18 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - TasksList renders correctly 1`] = `
-<div
+exports[`Component - TasksList When there are tasks renders correctly 1`] = `
+<main
+  className="MuiBox-root MuiBox-root-2"
   data-testid="task-list-page"
 >
   <NavBar
     type="menu"
   />
-  <AvatarHeader />
   <AppBar
-    color="default"
+    color="inherit"
     component="section"
     position="static"
   >
+    <AvatarHeader />
     <Tabs
       indicatorColor="primary"
       onChange={[Function]}
@@ -32,13 +33,153 @@ exports[`Component - TasksList renders correctly 1`] = `
     index={0}
     value={0}
   >
-    Newbie Tasks Component
+    <TaskTabsContent
+      loading={true}
+      onChange={[Function]}
+    />
   </TabPanel>
   <TabPanel
     index={1}
     value={0}
   >
-    My Tasks Component
+    <TaskTabsContent
+      loading={true}
+      onChange={[Function]}
+    />
   </TabPanel>
-</div>
+</main>
+`;
+
+exports[`Component - TasksList When there are tasks renders correctly 2`] = `
+<main
+  className="MuiBox-root MuiBox-root-2"
+  data-testid="task-list-page"
+>
+  <NavBar
+    type="menu"
+  />
+  <AppBar
+    color="inherit"
+    component="section"
+    position="static"
+  >
+    <AvatarHeader />
+    <Tabs
+      indicatorColor="primary"
+      onChange={[Function]}
+      textColor="primary"
+      value={0}
+      variant="fullWidth"
+    >
+      <Tab
+        label="Newbie Tasks"
+      />
+      <Tab
+        label="My tasks"
+      />
+    </Tabs>
+  </AppBar>
+  <TabPanel
+    index={0}
+    value={0}
+  >
+    <TaskTabsContent
+      loading={false}
+      onChange={[Function]}
+      tasks={
+        Array [
+          Object {
+            "description": "New task description",
+            "id": "3",
+            "status": "COMPLETED",
+            "title": "New task title ",
+          },
+          Object {
+            "description": "New task description 2",
+            "id": "4",
+            "status": "COMPLETED",
+            "title": "New task title 2",
+          },
+        ]
+      }
+    />
+  </TabPanel>
+  <TabPanel
+    index={1}
+    value={0}
+  >
+    <TaskTabsContent
+      loading={false}
+      onChange={[Function]}
+      tasks={
+        Array [
+          Object {
+            "description": "New task description",
+            "id": "1",
+            "status": "UNCOMPLETED",
+            "title": "New task title ",
+          },
+          Object {
+            "description": "New task description 2",
+            "id": "2",
+            "status": "COMPLETED",
+            "title": "New task title 2",
+          },
+        ]
+      }
+    />
+  </TabPanel>
+</main>
+`;
+
+exports[`Component - TasksList when there are not tasks should render empty state 1`] = `
+<main
+  className="MuiBox-root MuiBox-root-3"
+  data-testid="task-list-page"
+>
+  <NavBar
+    type="menu"
+  />
+  <AppBar
+    color="inherit"
+    component="section"
+    position="static"
+  >
+    <AvatarHeader />
+    <Tabs
+      indicatorColor="primary"
+      onChange={[Function]}
+      textColor="primary"
+      value={0}
+      variant="fullWidth"
+    >
+      <Tab
+        label="Newbie Tasks"
+      />
+      <Tab
+        label="My tasks"
+      />
+    </Tabs>
+  </AppBar>
+  <TabPanel
+    index={0}
+    value={0}
+  >
+    <TaskTabsContent
+      loading={false}
+      onChange={[Function]}
+      tasks={Array []}
+    />
+  </TabPanel>
+  <TabPanel
+    index={1}
+    value={0}
+  >
+    <TaskTabsContent
+      loading={false}
+      onChange={[Function]}
+      tasks={Array []}
+    />
+  </TabPanel>
+</main>
 `;

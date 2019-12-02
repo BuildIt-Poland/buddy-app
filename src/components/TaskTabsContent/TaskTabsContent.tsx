@@ -1,66 +1,75 @@
 import React, { useMemo } from 'react';
-import { Box } from '@material-ui/core';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import List from '@material-ui/core/List';
 import { TaskStatus } from 'buddy-app-schema';
+import TaskListPlaceHolder from 'components/TaskListPlaceHolder';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import TasksSubList, { TasksSubListProps } from '../TasksSubList';
 import { TaskTabsContentProps, TransformedTasks } from './types';
 import DICTIONARY from './tasksTabsContent.dictionary';
+import TASK_TABS_CONTENT_DICTIONARY from './taskTabsContent.dictionary';
 
-const useStyles = makeStyles({
-  wrapper: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-});
+const transformTasks = (tasks: TaskTabsContentProps['tasks']): TransformedTasks => {
+  const emptyTransformedTasks = {
+    uncompletedTasks: [],
+    completedTasks: [],
+  } as TransformedTasks;
 
-const transformTasks = (tasks: TaskTabsContentProps['tasks']): TransformedTasks =>
-  tasks.reduce(
-    (result, task) => {
+  if (tasks) {
+    return tasks.reduce((result, task) => {
       if (task.status === TaskStatus.Completed) {
         result.completedTasks.push(task);
       } else {
         result.uncompletedTasks.push(task);
       }
       return result;
-    },
-    {
-      uncompletedTasks: [],
-      completedTasks: [],
-    } as TransformedTasks
-  );
+    }, emptyTransformedTasks);
+  } else {
+    return emptyTransformedTasks;
+  }
+};
 
 const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
   tasks,
-  uncompletedCount,
-  completedCount,
   onChange,
+  loading,
 }) => {
-  const { wrapper } = useStyles();
-
   const { uncompletedTasks, completedTasks } = useMemo(() => transformTasks(tasks), [
     tasks,
   ]);
   const tasksList: TasksSubListProps[] = [
     {
       title: DICTIONARY.TITLE_UNCOMPLETED,
-      count: uncompletedCount || 0,
       tasks: uncompletedTasks,
     },
     {
       title: DICTIONARY.TITLE_COMPLETED,
-      count: completedCount || 0,
       tasks: completedTasks,
     },
   ];
+  const isEmptyList = uncompletedTasks.length === 0 && completedTasks.length === 0;
+
+  const EmptyStateTaskList = () => (
+    <Box textAlign={'center'}>
+      <Typography variant={'h2'} component={'h2'}>
+        {TASK_TABS_CONTENT_DICTIONARY.NO_TASKS_TITLE}
+      </Typography>
+      <Typography>{TASK_TABS_CONTENT_DICTIONARY.NO_TASKS_SUBTITLE}</Typography>
+    </Box>
+  );
 
   return (
-    <Box className={wrapper}>
-      {tasksList.map((props, key) =>
-        props.count ? (
-          <TasksSubList key={key} onChange={onChange} {...props} />
-        ) : null
+    <>
+      {loading && <TaskListPlaceHolder />}
+      {!loading && isEmptyList && <EmptyStateTaskList />}
+      {!loading && !isEmptyList && (
+        <List>
+          {tasksList.map((props, key) => (
+            <TasksSubList key={key} onChange={onChange} {...props} />
+          ))}
+        </List>
       )}
-    </Box>
+    </>
   );
 };
 
