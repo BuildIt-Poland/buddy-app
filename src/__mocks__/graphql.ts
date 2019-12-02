@@ -9,9 +9,13 @@ import {
   Newbie,
   QueryNewbieArgs,
   QueryBuddyArgs,
-  Query,
+  UserRole,
 } from 'buddy-app-schema';
+import NEWBIE_CONTACT_DETAILS, {
+  BUDDY_CONTACT_DETAILS,
+} from 'graphql/contact-details.graphql';
 import TASK_LIST from 'graphql/task-list.graphql';
+import { getBasicUserDetailsMock } from './general';
 import { authContext } from './context';
 
 export const loginSuccessMock = (
@@ -175,6 +179,34 @@ export const taskListResponse = (
     result: {
       data: {
         newbie,
+      },
+    },
+  },
+];
+
+export const newbieContactDetails = (variables?: Partial<QueryNewbieArgs>) => [
+  {
+    request: {
+      query: NEWBIE_CONTACT_DETAILS,
+      variables,
+    },
+    result: {
+      data: {
+        newbie: getBasicUserDetailsMock(UserRole.Newbie),
+      },
+    },
+  },
+];
+
+export const buddyContactDetails = (variables?: Partial<QueryBuddyArgs>) => [
+  {
+    request: {
+      query: BUDDY_CONTACT_DETAILS,
+      variables,
+    },
+    result: {
+      data: {
+        buddy: getBasicUserDetailsMock(UserRole.Buddy),
       },
     },
   },

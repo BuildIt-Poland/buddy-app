@@ -1,141 +1,120 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - ContactDetails renders correctly 1`] = `
+exports[`Component - ContactDetails when logged in as buddy renders correctly 1`] = `
 <AppWrapper>
-  <Navbar
+  <NavBar
     onClick={[Function]}
     type="back"
   />
-  <Typography
-    component="h2"
-    variant="h2"
+  <Box
+    className="makeStyles-loader-1"
   >
-    Contact Details
-  </Typography>
-  <CircularProgress />
+    <CircularProgress
+      data-testid="slide-menu-loader"
+    />
+  </Box>
+  <Box>
+    <Typography
+      component="h2"
+      variant="h2"
+    >
+      Contact Details
+    </Typography>
+  </Box>
   <BackgroundShape />
 </AppWrapper>
 `;
 
-exports[`Component - ContactDetails renders correctly 2`] = `
+exports[`Component - ContactDetails when logged in as buddy renders correctly 2`] = `
 <AppWrapper>
-  <Navbar
+  <NavBar
     onClick={[Function]}
     type="back"
   />
-  <Typography
-    component="h2"
-    variant="h2"
-  >
-    Contact Details
-  </Typography>
-  <div
-    data-testid="contact-details-page"
-  >
-    <Box
-      className="makeStyles-wrapper-2"
+  <Box>
+    <Typography
+      component="h2"
+      variant="h2"
     >
-      <Box
-        className="makeStyles-avatar-3"
-      >
-        <Avatar
-          imgSrc="some-url"
-        />
-      </Box>
-      <Box>
-        <Typography
-          component="p"
-        >
-          <Box
-            component="strong"
-            fontWeight="fontWeightBold"
-          >
-            Name
-          </Box>
-        </Typography>
-        <Typography
-          component="p"
-          data-testid="contact-name"
-        >
-          Tom Hanks
-        </Typography>
-        <Typography
-          component="p"
-        >
-          <Box
-            component="strong"
-            fontWeight="fontWeightBold"
-          >
-            What I do
-          </Box>
-        </Typography>
-        <Typography
-          component="p"
-        >
-          front-end
-        </Typography>
-        <Typography
-          component="p"
-        >
-          <Box
-            component="strong"
-            fontWeight="fontWeightBold"
-          >
-            Start date
-          </Box>
-        </Typography>
-        <Typography
-          component="p"
-        >
-          12-12-2009
-        </Typography>
-        <Typography
-          component="p"
-        >
-          <Box
-            component="strong"
-            fontWeight="fontWeightBold"
-          >
-            E-mail
-          </Box>
-        </Typography>
-        <Typography
-          component="p"
-        >
-          dummy@wipro.com
-        </Typography>
-        <Typography
-          component="p"
-        >
-          <Box
-            component="strong"
-            fontWeight="fontWeightBold"
-          >
-            Phone
-          </Box>
-        </Typography>
-        <Typography
-          component="p"
-        >
-          123467890
-        </Typography>
-        <Typography
-          component="p"
-        >
-          <Box
-            component="strong"
-            fontWeight="fontWeightBold"
-          >
-            Notes
-          </Box>
-        </Typography>
-        <TextareaAutosize
-          className="makeStyles-notesTextarea-1"
-          value="some notes"
-        />
-      </Box>
-    </Box>
-  </div>
+      Contact Details
+    </Typography>
+    <UserDetails
+      details={
+        Object {
+          "email": "tom@wipro.com",
+          "name": "Tom Hanks",
+          "notes": "Nice guy",
+          "phoneNumber": "1234567",
+          "photo": "some-url",
+          "position": "Dev Ops",
+          "role": "NEWBIE",
+          "startDate": "2010-01-01",
+        }
+      }
+    />
+  </Box>
+  <BackgroundShape />
+</AppWrapper>
+`;
+
+exports[`Component - ContactDetails when logged in as newbie renders correctly 1`] = `
+<AppWrapper>
+  <NavBar
+    onClick={[Function]}
+    type="back"
+  />
+  <Box>
+    <Typography
+      component="h2"
+      variant="h2"
+    >
+      Contact Details
+    </Typography>
+    <UserDetails
+      details={
+        Object {
+          "email": "tom@wipro.com",
+          "name": "Tom Hanks",
+          "phoneNumber": "1234567",
+          "photo": "some-url",
+          "position": "Dev Ops",
+          "role": "BUDDY",
+          "startDate": "2010-01-01",
+        }
+      }
+    />
+  </Box>
+  <BackgroundShape />
+</AppWrapper>
+`;
+
+exports[`Component - ContactDetails when logged in as newbie renders correctly 2`] = `
+<AppWrapper>
+  <NavBar
+    onClick={[Function]}
+    type="back"
+  />
+  <Box>
+    <Typography
+      component="h2"
+      variant="h2"
+    >
+      Contact Details
+    </Typography>
+    <UserDetails
+      details={
+        Object {
+          "email": "tom@wipro.com",
+          "name": "Tom Hanks",
+          "phoneNumber": "1234567",
+          "photo": "some-url",
+          "position": "Dev Ops",
+          "role": "BUDDY",
+          "startDate": "2010-01-01",
+        }
+      }
+    />
+  </Box>
   <BackgroundShape />
 </AppWrapper>
 `;

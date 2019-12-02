@@ -1,42 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - TaskTabsContent renders correctly 1`] = `
-<List>
-  <TasksSubList
-    tasks={
-      Array [
-        Object {
-          "createdAt": "",
-          "description": "",
-          "id": "1",
-          "implementationDate": "",
-          "newbie": Object {},
-          "status": "UNCOMPLETED",
-          "title": "Call you head manager",
-        },
-      ]
-    }
-    title="Todo"
-  />
-  <TasksSubList
-    tasks={
-      Array [
-        Object {
-          "createdAt": "",
-          "description": "",
-          "id": "2",
-          "implementationDate": "",
-          "newbie": Object {},
-          "status": "COMPLETED",
-          "title": "Write you main manager",
-        },
-      ]
-    }
-    title="Done"
-  />
-</List>
-`;
-
 exports[`Component - TaskTabsContent when is loading renders correctly 1`] = `<TaskListPlaceHolder />`;
 
 exports[`Component - TaskTabsContent when is not loading when there are not tasks renders correctly 1`] = `
