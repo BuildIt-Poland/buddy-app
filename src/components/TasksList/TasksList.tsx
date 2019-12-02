@@ -14,8 +14,6 @@ import Box from '@material-ui/core/Box';
 import TaskTabsContent from 'components/TaskTabsContent';
 import SnackBar from 'components/SnackBar';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import Typography from '@material-ui/core/Typography';
-import TaskListPlaceHolder from 'components/TaskListPlaceHolder';
 import TASKLIST_DICTIONARY from './taskList.dictionary';
 
 const TasksList: React.FC = () => {
@@ -69,14 +67,8 @@ const TasksList: React.FC = () => {
     setSnackbar({ ...snackbar, isOpen: false });
   };
 
-  const EmptyStateTaskList = () => (
-    <Box textAlign={'center'}>
-      <Typography variant={'h2'} component={'h2'}>
-        {TASKLIST_DICTIONARY.NO_TASKS_TITLE}
-      </Typography>
-      <Typography>{TASKLIST_DICTIONARY.NO_TASKS_SUBTITLE}</Typography>
-    </Box>
-  );
+  const newbieTasks = data && data.newbie.newbieTasks;
+  const buddyTasks = data && data.newbie.buddyTasks;
 
   return (
     <Box component='main' data-testid='task-list-page'>
@@ -97,28 +89,18 @@ const TasksList: React.FC = () => {
       {updateTaskLoading && <LinearProgress />}
 
       <TabPanel value={tabIndex} index={0}>
-        {loading && <TaskListPlaceHolder />}
-        {!loading && data && data.newbie.newbieTasks.length === 0 && (
-          <EmptyStateTaskList />
-        )}
-        {!loading && data && data.newbie.newbieTasks.length > 0 && (
-          <TaskTabsContent
-            onChange={onTaskChange}
-            tasks={data.newbie.newbieTasks as Task[]}
-          />
-        )}
+        <TaskTabsContent
+          loading={loading}
+          onChange={onTaskChange}
+          tasks={newbieTasks as Task[]}
+        />
       </TabPanel>
       <TabPanel value={tabIndex} index={1}>
-        {loading && <TaskListPlaceHolder />}
-        {!loading && data && data.newbie.buddyTasks.length === 0 && (
-          <EmptyStateTaskList />
-        )}
-        {!loading && data && data.newbie.buddyTasks.length > 0 && (
-          <TaskTabsContent
-            onChange={onTaskChange}
-            tasks={data.newbie.buddyTasks as Task[]}
-          />
-        )}
+        <TaskTabsContent
+          loading={loading}
+          onChange={onTaskChange}
+          tasks={buddyTasks as Task[]}
+        />
       </TabPanel>
       <SnackBar
         message={snackbar.message}
