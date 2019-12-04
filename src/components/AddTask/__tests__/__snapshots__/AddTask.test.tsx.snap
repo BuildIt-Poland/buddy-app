@@ -62,7 +62,7 @@ exports[`Component - AddTask renders correctly 1`] = `
         />
       </Box>
       <RoundedButton
-        className="makeStyles-addButton-6"
+        className="makeStyles-addButton-5"
         color="primary"
         data-testid="add-task-button"
         disabled={false}
