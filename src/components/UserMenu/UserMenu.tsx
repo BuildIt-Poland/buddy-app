@@ -43,7 +43,7 @@ const UserMenu: React.FC<UserMenuProps> = props => {
   const history = useHistory();
   const { list, closeBtn, loader } = useStyles();
   const { isMenuVisible, onClose } = props;
-  const { data: AuthData } = useContext<AuthContextData>(AuthContext);
+  const { data: AuthData, logout } = useContext<AuthContextData>(AuthContext);
   const { userId, role } = AuthData;
 
   const getQueryByRole = (role: UserRole, id: string) => {
@@ -69,6 +69,7 @@ const UserMenu: React.FC<UserMenuProps> = props => {
     variables,
   });
   const user = data && data[role.toLowerCase()];
+
   return (
     <Drawer open={isMenuVisible} onClose={onClose} data-testid='slide-menu'>
       <Box className={list}>
@@ -97,6 +98,7 @@ const UserMenu: React.FC<UserMenuProps> = props => {
             <UserMenuSettings
               allowPushedNotifications={!!user.allowPushedNotifications}
               updatePushNotificationsSettings={() => {}}
+              onLogoutClick={() => logout()}
             />
           </Box>
         )}
