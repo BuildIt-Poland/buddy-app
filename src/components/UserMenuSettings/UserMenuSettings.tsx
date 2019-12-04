@@ -1,38 +1,55 @@
 import React from 'react';
-import { Box, makeStyles, Typography } from '@material-ui/core';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
-import theme from 'styles/theme';
-import { UserMenuSettingsProps } from './types';
+import {
+  List,
+  ListSubheader,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListItemSecondaryAction,
+  Switch,
+} from '@material-ui/core';
 
-const useStyles = makeStyles({
-  wrapper: {
-    padding: theme.spacing(2),
-  },
-});
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import { UserMenuSettingsProps } from './types';
+import USER_MENU_SETTINGS_DICTIONARY from './userMenuSettings.dictionary';
 
 const UserMenuSettings: React.FC<UserMenuSettingsProps> = props => {
-  const PUSH_NOTIFICATIONS_LABEL = 'Allow push notifications';
-  const { allowPushedNotifications, updatePushNotificationsSettings } = props;
-  const { wrapper } = useStyles();
+  const {
+    allowPushedNotifications,
+    updatePushNotificationsSettings,
+    onLogoutClick,
+  } = props;
+
   return (
-    <Box className={wrapper}>
-      <Typography component='h3' variant='body1'>
-        <Box component='strong' fontWeight={'fontWeightBold'}>
-          Settings
-        </Box>
-      </Typography>
-      <FormControlLabel
-        control={
+    <List
+      subheader={
+        <ListSubheader>
+          <strong>{USER_MENU_SETTINGS_DICTIONARY.SETTINGS}</strong>
+        </ListSubheader>
+      }>
+      <ListItem>
+        <ListItemIcon>
+          <NotificationsIcon />
+        </ListItemIcon>
+        <ListItemText
+          primary={USER_MENU_SETTINGS_DICTIONARY.PUSH_NOTIFICATIONS_LABEL}
+        />
+        <ListItemSecondaryAction>
           <Switch
             checked={allowPushedNotifications}
             onChange={updatePushNotificationsSettings}
             disabled
           />
-        }
-        label={PUSH_NOTIFICATIONS_LABEL}
-      />
-    </Box>
+        </ListItemSecondaryAction>
+      </ListItem>
+      <ListItem button onClick={onLogoutClick}>
+        <ListItemIcon>
+          <ExitToAppIcon />
+        </ListItemIcon>
+        <ListItemText primary={USER_MENU_SETTINGS_DICTIONARY.LOGOUT} />
+      </ListItem>
+    </List>
   );
 };
 
