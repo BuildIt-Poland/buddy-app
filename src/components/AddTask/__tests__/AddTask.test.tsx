@@ -7,7 +7,6 @@ import { taskDetailsMock } from '__mocks__';
 import AddTask from '../AddTask';
 
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
-jest.mock('@material-ui/core/LinearProgress', () => 'LinearProgress');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/TextField', () => 'TextField');
 jest.mock('@material-ui/core/Typography', () => 'Typography');

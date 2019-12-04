@@ -8,7 +8,6 @@ import {
   Typography,
   Box,
   CircularProgress,
-  LinearProgress,
   TextField,
 } from '@material-ui/core';
 import xss from 'dompurify';
@@ -42,12 +41,6 @@ const useStyles = makeStyles(theme => ({
   inputWrapper: {
     flex: 1,
   },
-  progress: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
-  },
   addButton: {
     margin: theme.spacing(5, 0, 3),
     fontWeight: 'bold',
@@ -55,12 +48,15 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
-  const { wrapper, header, progress, addButton, inputWrapper, form } = useStyles();
+  const { wrapper, header, addButton, inputWrapper, form } = useStyles();
   const { newbieId } = useParams<QueryNewbieArgs>();
-  const { register, errors, handleSubmit } = useForm<TaskInput>();
+  const { register, errors, handleSubmit, reset } = useForm<TaskInput>();
   const { state } = useLocation();
 
-  const onCompleted = () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE);
+  const onCompleted = () => {
+    showSnackbar(DICTIONARY.SUCCESS_MESSAGE);
+    reset();
+  };
 
   const [
     addBuddyTask,
@@ -163,7 +159,6 @@ const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
 
   return (
     <AppWrapper data-testid='add-task-page'>
-      {loading && <LinearProgress className={progress} color='secondary' />}
       <NavBar type='back' onClick={onBackClick} />
       {renderAddTask()}
       <BackgroundShape />
