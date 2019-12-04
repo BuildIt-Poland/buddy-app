@@ -17,17 +17,10 @@ const useStyles = makeStyles(theme => ({
   subTitle: {
     color: theme.palette.text.secondary,
   },
-  fabButton: {
-    position: 'fixed',
-    top: 'auto',
-    left: 'auto',
-    right: theme.spacing(3),
-    bottom: theme.spacing(3),
-  },
 }));
 
 const NewbieSelect: React.FC = () => {
-  const classes = useStyles();
+  const { subTitle } = useStyles();
   const { data: AuthData } = useContext<AuthContextData>(AuthContext);
   const { loading, data } = useQuery<Query, QueryBuddyArgs>(NEWBIE_SELECT, {
     variables: { buddyId: AuthData.userId },
@@ -40,7 +33,7 @@ const NewbieSelect: React.FC = () => {
         <Typography component='h2' variant='h2'>
           {NewbieSelectDictionary.TITLE}
         </Typography>
-        <Typography className={classes.subTitle} component='p' variant='body2'>
+        <Typography className={subTitle} component='p' variant='body2'>
           {NewbieSelectDictionary.SUBTITLE}
         </Typography>
       </Box>
@@ -54,7 +47,7 @@ const NewbieSelect: React.FC = () => {
           <Carrousel newbies={data.buddy.newbies as Newbie[]} />
         </Box>
       )}
-      <PlusButton disabled className={classes.fabButton} />
+      <PlusButton disabled />
     </AppWrapper>
   );
 };

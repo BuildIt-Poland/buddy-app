@@ -23,6 +23,7 @@
     "@apollo/react-hooks": "^3.1.1",
     "@apollo/react-testing": "^3.1.1",
     "@buildit/gravity-particles": "^0.3.0",
+    "@ckeditor/ckeditor5-upload": "^16.0.0",
     "@material-ui/core": "^4.5.0",
     "@material-ui/icons": "^4.5.1",
     "@types/dompurify": "^2.0.0",

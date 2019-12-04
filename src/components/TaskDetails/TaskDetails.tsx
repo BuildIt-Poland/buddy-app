@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import htmlParser from 'react-html-parser';
-import xss from 'dompurify';
 import { makeStyles, Typography, Box, Chip } from '@material-ui/core';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { useQuery, useMutation } from '@apollo/react-hooks';
@@ -73,6 +72,7 @@ const STATUS_TEXT = {
 const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
   const { taskId, newbieId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
   const { wrapper, header, checkbox, progress, status, description } = useStyles();
+  const { state } = useLocation();
 
   const { loading, data } = useQuery<Query, QueryTaskArgs>(TASK_DETAILS, {
     variables: { taskId },
@@ -84,6 +84,8 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
     onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
   });
 
+  const defaultTabIndex = (state && state.tabIndex) || 0;
+  const taskListPath = ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId);
   const backgroundColor = data && BACKGROUND_COLORS[data.task.status];
   const textColor = data && TEXT_COLORS[data.task.status];
   const stausLabelStyles = {
@@ -92,7 +94,7 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
   };
 
   const onBackClick = () =>
-    history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId));
+    history.push({ pathname: taskListPath, state: { defaultTabIndex } });
 
   const onTaskCheckboxChange = (taskId: string) =>
     !updateTaskLoading &&
@@ -109,7 +111,7 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
   }, [updateTaskError, showSnackbar]);
 
   const renderTaskDetails = ({ task }: Query) => (
-    <Box className={wrapper} data-testid='task-details-page'>
+    <Box className={wrapper}>
       <Box className={header}>
         <Typography component='h2' variant='h2'>
           {task.title}
@@ -127,7 +129,7 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
         label={STATUS_TEXT[task.status]}
         style={stausLabelStyles}
       />
-      <Box className={description}>{htmlParser(xss.sanitize(task.description))}</Box>
+      <Box className={description}>{htmlParser(task.description)}</Box>
     </Box>
   );
 

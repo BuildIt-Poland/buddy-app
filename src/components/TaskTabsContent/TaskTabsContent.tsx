@@ -33,6 +33,7 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
   tasks,
   onChange,
   loading,
+  tabIndex,
 }) => {
   const { uncompletedTasks, completedTasks } = useMemo(() => transformTasks(tasks), [
     tasks,
@@ -41,10 +42,12 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
     {
       title: DICTIONARY.TITLE_UNCOMPLETED,
       tasks: uncompletedTasks,
+      tabIndex,
     },
     {
       title: DICTIONARY.TITLE_COMPLETED,
       tasks: completedTasks,
+      tabIndex,
     },
   ];
   const isEmptyList = uncompletedTasks.length === 0 && completedTasks.length === 0;

@@ -36,6 +36,7 @@ exports[`Component - TasksList When there are tasks renders correctly 1`] = `
     <TaskTabsContent
       loading={true}
       onChange={[Function]}
+      tabIndex={0}
     />
   </TabPanel>
   <TabPanel
@@ -45,8 +46,46 @@ exports[`Component - TasksList When there are tasks renders correctly 1`] = `
     <TaskTabsContent
       loading={true}
       onChange={[Function]}
+      tabIndex={0}
     />
   </TabPanel>
+  <a
+    aria-disabled={false}
+    aria-label="add"
+    className="MuiButtonBase-root MuiFab-root makeStyles-button-3 MuiFab-sizeMedium MuiFab-primary"
+    href="/buddy/newbies/1234/add-task"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    tabIndex={0}
+    title="Add new task"
+  >
+    <span
+      className="MuiFab-label"
+    >
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+        />
+      </svg>
+    </span>
+  </a>
 </main>
 `;
 
@@ -86,6 +125,7 @@ exports[`Component - TasksList When there are tasks renders correctly 2`] = `
     <TaskTabsContent
       loading={false}
       onChange={[Function]}
+      tabIndex={0}
       tasks={
         Array [
           Object {
@@ -111,6 +151,7 @@ exports[`Component - TasksList When there are tasks renders correctly 2`] = `
     <TaskTabsContent
       loading={false}
       onChange={[Function]}
+      tabIndex={0}
       tasks={
         Array [
           Object {
@@ -129,12 +170,52 @@ exports[`Component - TasksList When there are tasks renders correctly 2`] = `
       }
     />
   </TabPanel>
+  <a
+    aria-disabled={false}
+    aria-label="add"
+    className="MuiButtonBase-root MuiFab-root makeStyles-button-3 MuiFab-sizeMedium MuiFab-primary"
+    href="/buddy/newbies/1234/add-task"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    tabIndex={0}
+    title="Add new task"
+  >
+    <span
+      className="MuiFab-label"
+    >
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+        />
+      </svg>
+    </span>
+    <span
+      className="MuiTouchRipple-root"
+    />
+  </a>
 </main>
 `;
 
 exports[`Component - TasksList when there are not tasks should render empty state 1`] = `
 <main
-  className="MuiBox-root MuiBox-root-3"
+  className="MuiBox-root MuiBox-root-36"
   data-testid="task-list-page"
 >
   <NavBar
@@ -168,6 +249,7 @@ exports[`Component - TasksList when there are not tasks should render empty stat
     <TaskTabsContent
       loading={false}
       onChange={[Function]}
+      tabIndex={0}
       tasks={Array []}
     />
   </TabPanel>
@@ -178,8 +260,49 @@ exports[`Component - TasksList when there are not tasks should render empty stat
     <TaskTabsContent
       loading={false}
       onChange={[Function]}
+      tabIndex={0}
       tasks={Array []}
     />
   </TabPanel>
+  <a
+    aria-disabled={false}
+    aria-label="add"
+    className="MuiButtonBase-root MuiFab-root makeStyles-button-3 MuiFab-sizeMedium MuiFab-primary"
+    href="/buddy/newbies/1234/add-task"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragLeave={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    tabIndex={0}
+    title="Add new task"
+  >
+    <span
+      className="MuiFab-label"
+    >
+      <svg
+        aria-hidden="true"
+        className="MuiSvgIcon-root"
+        focusable="false"
+        role="presentation"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
+        />
+      </svg>
+    </span>
+    <span
+      className="MuiTouchRipple-root"
+    />
+  </a>
 </main>
 `;

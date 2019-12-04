@@ -1,11 +1,79 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - AddTask renders correctly 1`] = `
-<div
+<AppWrapper
   data-testid="add-task-page"
 >
-  <h1>
-    Add a new task
-  </h1>
-</div>
+  <NavBar
+    onClick={[Function]}
+    type="back"
+  />
+  <Box
+    className="makeStyles-wrapper-1"
+    data-testid="task-details-page"
+  >
+    <Box
+      className="makeStyles-header-2"
+    >
+      <Typography
+        component="h2"
+        variant="h2"
+      >
+        New Task
+      </Typography>
+    </Box>
+    <form
+      className="makeStyles-form-3"
+      data-testid="form"
+      noValidate={true}
+      onSubmit={[Function]}
+    >
+      <Box
+        className="makeStyles-inputWrapper-4"
+      >
+        <TextField
+          autoFocus={true}
+          error={false}
+          fullWidth={true}
+          inputProps={
+            Object {
+              "data-testid": "title",
+            }
+          }
+          inputRef={[Function]}
+          label="Title"
+          margin="normal"
+          name="title"
+        />
+        <TextField
+          autoComplete="current-password"
+          error={false}
+          fullWidth={true}
+          inputProps={
+            Object {
+              "data-testid": "description",
+            }
+          }
+          inputRef={[Function]}
+          label="Description (HTML syntax is accepted)"
+          margin="normal"
+          multiline={true}
+          name="description"
+        />
+      </Box>
+      <RoundedButton
+        className="makeStyles-addButton-6"
+        color="primary"
+        data-testid="add-task-button"
+        disabled={false}
+        fullWidth={true}
+        type="submit"
+        variant="contained"
+      >
+        Add
+      </RoundedButton>
+    </form>
+  </Box>
+  <BackgroundShape />
+</AppWrapper>
 `;

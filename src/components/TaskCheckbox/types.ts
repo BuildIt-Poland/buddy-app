@@ -5,6 +5,7 @@ export interface CheckboxProps {
 }
 export interface TaskCheckboxProps extends CheckboxProps {
   id: string;
+  newbieId?: string;
   className?: string;
   title?: string;
   status: TaskStatus;
