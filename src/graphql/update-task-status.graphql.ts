@@ -5,6 +5,12 @@ export const UPDATE_TASK_STATUS = gql`
     updateTaskStatus(taskId: $taskId) {
       id
       status
+      newbie {
+        id
+        tasksInfo {
+          buddyProgress
+        }
+      }
     }
   }
 `;

@@ -4,7 +4,7 @@ import waitForExpect from 'wait-for-expect';
 
 import { MemoryRouter, Route } from 'react-router';
 import { MockedProvider } from '@apollo/react-testing';
-import { taskListResponse } from '__mocks__';
+import { taskListResponse, newbieTasksListMock } from '__mocks__';
 import TasksList from '../TasksList';
 
 jest.mock('@material-ui/core/AppBar', () => 'AppBar');
@@ -26,41 +26,10 @@ describe('Component - TasksList', () => {
       newbieId: '1234',
     };
 
-    const newbieMockData = {
-      buddyTasks: [
-        {
-          id: '1',
-          description: 'New task description',
-          status: 'UNCOMPLETED',
-          title: 'New task title ',
-        },
-        {
-          id: '2',
-          description: 'New task description 2',
-          status: 'COMPLETED',
-          title: 'New task title 2',
-        },
-      ],
-      newbieTasks: [
-        {
-          id: '3',
-          description: 'New task description',
-          status: 'COMPLETED',
-          title: 'New task title ',
-        },
-        {
-          id: '4',
-          description: 'New task description 2',
-          status: 'COMPLETED',
-          title: 'New task title 2',
-        },
-      ],
-    };
-
     test('renders correctly', async () => {
       const component = create(
         <MockedProvider
-          mocks={taskListResponse(variables, newbieMockData)}
+          mocks={taskListResponse(variables, newbieTasksListMock)}
           addTypename={false}>
           <MemoryRouter initialEntries={[path]}>
             <Route path={'/buddy/newbies/:newbieId/tasks'}>

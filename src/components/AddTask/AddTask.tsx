@@ -12,7 +12,6 @@ import {
 } from '@material-ui/core';
 import xss from 'dompurify';
 import { ADD_BUDDY_TASK, ADD_NEWBIE_TASK } from 'graphql/add-task.graphql';
-import { ROUTES } from 'shared/routes';
 import withSnackBar from 'decorators/withSnackBar';
 import NavBar from '../NavBar';
 import BackgroundShape from '../BackgroundShape';
@@ -51,7 +50,7 @@ const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
   const { wrapper, header, addButton, inputWrapper, form } = useStyles();
   const { newbieId } = useParams<QueryNewbieArgs>();
   const { register, errors, handleSubmit, reset } = useForm<TaskInput>();
-  const { state } = useLocation();
+  const { pathname, state } = useLocation();
 
   const onCompleted = () => {
     showSnackbar(DICTIONARY.SUCCESS_MESSAGE);
@@ -71,7 +70,7 @@ const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
   const addTaskHandlers = [addNewbieTask, addBuddyTask];
   const defaultTabIndex = (state && state.tabIndex) || 0;
   const loading = addBuddyTaskLoading || addNewbieTaskLoading;
-  const taskListPath = ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId);
+  const taskListPath = pathname.replace('add-task', 'tasks');
 
   const onSubmit = (input: TaskInput) => {
     addTaskHandlers[defaultTabIndex]({
@@ -132,7 +131,10 @@ const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
             multiline
             autoComplete='current-password'
             error={!!errors.description}
-            helperText={errors.description && errors.description.message}
+            helperText={
+              (errors.description && errors.description.message) ||
+              DICTIONARY.DESCRIPTION.HELPER_TEXT
+            }
           />
         </Box>
         <RoundedButton

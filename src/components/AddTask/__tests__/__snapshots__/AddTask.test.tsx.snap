@@ -49,13 +49,14 @@ exports[`Component - AddTask renders correctly 1`] = `
           autoComplete="current-password"
           error={false}
           fullWidth={true}
+          helperText="HTML syntax is accepted"
           inputProps={
             Object {
               "data-testid": "description",
             }
           }
           inputRef={[Function]}
-          label="Description (HTML syntax is accepted)"
+          label="Description"
           margin="normal"
           multiline={true}
           name="description"

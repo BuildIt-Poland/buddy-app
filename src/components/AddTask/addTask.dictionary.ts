@@ -10,6 +10,7 @@ interface AddTask {
   };
   DESCRIPTION: {
     LABEL: string;
+    HELPER_TEXT: string;
     REQUIRED: string;
   };
 }
@@ -25,7 +26,8 @@ const DICTIONARY: AddTask = {
     REQUIRED: 'Title is required',
   },
   DESCRIPTION: {
-    LABEL: 'Description (HTML syntax is accepted)',
+    LABEL: 'Description',
+    HELPER_TEXT: 'HTML syntax is accepted',
     REQUIRED: 'Description is required',
   },
 };

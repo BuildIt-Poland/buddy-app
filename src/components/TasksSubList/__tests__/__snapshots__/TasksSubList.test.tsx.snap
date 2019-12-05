@@ -13,7 +13,7 @@ Array [
     </strong>
   </ListSubheader>,
   <a
-    href="/buddy/newbies/undefined/tasks/1"
+    href="//1"
     onClick={[Function]}
   >
     <TaskCheckbox
@@ -38,7 +38,7 @@ Array [
     </strong>
   </ListSubheader>,
   <a
-    href="/buddy/newbies/undefined/tasks/2"
+    href="//2"
     onClick={[Function]}
   >
     <TaskCheckbox

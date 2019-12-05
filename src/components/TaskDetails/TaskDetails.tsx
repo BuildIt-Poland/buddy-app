@@ -6,7 +6,6 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { TASK_DETAILS } from 'graphql/task-details.graphql';
 import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
-import { ROUTES } from 'shared/routes';
 import { colors } from 'styles/theme';
 import {
   TaskStatus,
@@ -70,9 +69,9 @@ const STATUS_TEXT = {
 };
 
 const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
-  const { taskId, newbieId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
+  const { taskId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
   const { wrapper, header, checkbox, progress, status, description } = useStyles();
-  const { state } = useLocation();
+  const { pathname, state } = useLocation();
 
   const { loading, data } = useQuery<Query, QueryTaskArgs>(TASK_DETAILS, {
     variables: { taskId },
@@ -85,7 +84,7 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
   });
 
   const defaultTabIndex = (state && state.tabIndex) || 0;
-  const taskListPath = ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId);
+  const taskListPath = pathname.replace(/tasks.+/, 'tasks');
   const backgroundColor = data && BACKGROUND_COLORS[data.task.status];
   const textColor = data && TEXT_COLORS[data.task.status];
   const stausLabelStyles = {
