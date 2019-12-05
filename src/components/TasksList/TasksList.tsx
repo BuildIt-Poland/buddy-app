@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -33,24 +33,19 @@ const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
     variables: { newbieId },
   });
 
-  const [
-    updateTaskStatus,
-    { loading: updateTaskLoading, error: updateTaskError },
-  ] = useMutation<Mutation>(UPDATE_TASK_STATUS, {
-    onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
-  });
+  const [updateTaskStatus, { loading: updateTaskLoading }] = useMutation<Mutation>(
+    UPDATE_TASK_STATUS,
+    {
+      onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
+      onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
+    }
+  );
 
   const onTaskChange = (taskId: string) => {
     if (!updateTaskLoading) {
       updateTaskStatus({ variables: { taskId } });
     }
   };
-
-  useEffect(() => {
-    if (updateTaskError) {
-      showSnackbar(DICTIONARY.ERROR_MESSAGE);
-    }
-  }, [updateTaskError, showSnackbar]);
 
   const newbieTasks = data && data.newbie.newbieTasks;
   const buddyTasks = data && data.newbie.buddyTasks;

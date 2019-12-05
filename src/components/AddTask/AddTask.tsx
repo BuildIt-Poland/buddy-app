@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import useForm from 'react-hook-form';
@@ -41,8 +41,7 @@ const useStyles = makeStyles(theme => ({
     flex: 1,
   },
   addButton: {
-    margin: theme.spacing(5, 0, 3),
-    fontWeight: 'bold',
+    margin: theme.spacing(5, 0, 4),
   },
 }));
 
@@ -57,15 +56,17 @@ const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
     reset();
   };
 
-  const [
-    addBuddyTask,
-    { loading: addBuddyTaskLoading, error: addBuddyTaskError },
-  ] = useMutation<Mutation>(ADD_BUDDY_TASK, { onCompleted });
+  const onError = () => showSnackbar(DICTIONARY.ERROR_MESSAGE);
 
-  const [
-    addNewbieTask,
-    { loading: addNewbieTaskLoading, error: addNewbieTaskError },
-  ] = useMutation<Mutation>(ADD_NEWBIE_TASK, { onCompleted });
+  const [addBuddyTask, { loading: addBuddyTaskLoading }] = useMutation<Mutation>(
+    ADD_BUDDY_TASK,
+    { onCompleted, onError }
+  );
+
+  const [addNewbieTask, { loading: addNewbieTaskLoading }] = useMutation<Mutation>(
+    ADD_NEWBIE_TASK,
+    { onCompleted, onError }
+  );
 
   const addTaskHandlers = [addNewbieTask, addBuddyTask];
   const defaultTabIndex = (state && state.tabIndex) || 0;
@@ -86,12 +87,6 @@ const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
 
   const onBackClick = () =>
     history.push({ pathname: taskListPath, state: { defaultTabIndex } });
-
-  useEffect(() => {
-    if (addBuddyTaskError || addNewbieTaskError) {
-      showSnackbar(DICTIONARY.ERROR_MESSAGE);
-    }
-  }, [addBuddyTaskError, addNewbieTaskError, showSnackbar]);
 
   const renderAddTask = () => (
     <Box className={wrapper} data-testid='task-details-page'>
@@ -152,7 +147,7 @@ const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
               size={32}
             />
           ) : (
-            DICTIONARY.BUTTON_TEXT
+            <strong>{DICTIONARY.BUTTON_TEXT}</strong>
           )}
         </RoundedButton>
       </form>
