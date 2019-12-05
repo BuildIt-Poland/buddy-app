@@ -19,11 +19,7 @@ describe('Component - TasksSubList', () => {
   test(`renders correctly Todo section`, () => {
     const component = create(
       render(
-        <TasksSubList
-          title='Todo'
-          tasks={tasksResponse(TaskStatus.Uncompleted)}
-          tabIndex={0}
-        />
+        <TasksSubList title='Todo' tasks={tasksResponse(TaskStatus.Uncompleted)} />
       )
     );
     expect(component.toJSON()).toMatchSnapshot();
@@ -32,20 +28,14 @@ describe('Component - TasksSubList', () => {
   test(`renders correctly Done section`, () => {
     const component = create(
       render(
-        <TasksSubList
-          title='Done'
-          tasks={tasksResponse(TaskStatus.Completed)}
-          tabIndex={0}
-        />
+        <TasksSubList title='Done' tasks={tasksResponse(TaskStatus.Completed)} />
       )
     );
     expect(component.toJSON()).toMatchSnapshot();
   });
 
   test(`renders correctly without tasks and count`, () => {
-    const component = create(
-      render(<TasksSubList title='Todo' tasks={[]} tabIndex={0} />)
-    );
+    const component = create(render(<TasksSubList title='Todo' tasks={[]} />));
     expect(component.toJSON()).toMatchSnapshot();
   });
 });
