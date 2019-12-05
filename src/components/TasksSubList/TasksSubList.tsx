@@ -9,7 +9,7 @@ import { TasksSubListProps } from './types';
 const TasksSubList: React.FC<TasksSubListProps> = ({
   tasks,
   title,
-  tabIndex,
+  tabIndex = 0,
   onChange,
 }) => {
   const { newbieId } = useParams<QueryNewbieArgs>();
