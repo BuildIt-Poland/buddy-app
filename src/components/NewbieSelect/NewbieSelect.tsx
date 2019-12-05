@@ -35,7 +35,7 @@ const NewbieSelect: React.FC = () => {
 
   return (
     <AppWrapper data-testid='newbie-select-page'>
-      <NavBar type='menu' />
+      {/* <NavBar type='menu' /> */}
       <Box marginBottom={5} component='section'>
         <Typography component='h2' variant='h2'>
           {NewbieSelectDictionary.TITLE}
