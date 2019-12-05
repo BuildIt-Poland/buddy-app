@@ -12,6 +12,7 @@ jest.mock('@material-ui/core/Tabs', () => 'Tabs');
 jest.mock('@material-ui/core/Tab', () => 'Tab');
 jest.mock('components/TabPanel', () => 'TabPanel');
 jest.mock('components/AvatarHeader', () => 'AvatarHeader');
+jest.mock('components/PlusButton', () => 'PlusButton');
 jest.mock('components/NavBar', () => 'NavBar');
 jest.mock('components/TaskListPlaceHolder', () => 'TaskListPlaceHolder');
 jest.mock('decorators/withSnackBar', () => (component: React.FC<any>) => component);

@@ -49,43 +49,31 @@ exports[`Component - TasksList When there are tasks renders correctly 1`] = `
       tabIndex={0}
     />
   </TabPanel>
-  <a
-    aria-disabled={false}
-    aria-label="add"
-    className="MuiButtonBase-root MuiFab-root makeStyles-button-3 MuiFab-sizeMedium MuiFab-primary"
-    href="/buddy/newbies/1234/add-task"
-    onBlur={[Function]}
-    onClick={[Function]}
-    onDragLeave={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchEnd={[Function]}
-    onTouchMove={[Function]}
-    onTouchStart={[Function]}
-    role="button"
-    tabIndex={0}
+  <PlusButton
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "Link",
+        "propTypes": Object {
+          "innerRef": [Function],
+          "onClick": [Function],
+          "replace": [Function],
+          "target": [Function],
+          "to": [Function],
+        },
+        "render": [Function],
+      }
+    }
     title="Add new task"
-  >
-    <span
-      className="MuiFab-label"
-    >
-      <svg
-        aria-hidden="true"
-        className="MuiSvgIcon-root"
-        focusable="false"
-        role="presentation"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
-        />
-      </svg>
-    </span>
-  </a>
+    to={
+      Object {
+        "pathname": "/buddy/newbies/1234/add-task",
+        "state": Object {
+          "tabIndex": 0,
+        },
+      }
+    }
+  />
 </main>
 `;
 
@@ -170,52 +158,37 @@ exports[`Component - TasksList When there are tasks renders correctly 2`] = `
       }
     />
   </TabPanel>
-  <a
-    aria-disabled={false}
-    aria-label="add"
-    className="MuiButtonBase-root MuiFab-root makeStyles-button-3 MuiFab-sizeMedium MuiFab-primary"
-    href="/buddy/newbies/1234/add-task"
-    onBlur={[Function]}
-    onClick={[Function]}
-    onDragLeave={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchEnd={[Function]}
-    onTouchMove={[Function]}
-    onTouchStart={[Function]}
-    role="button"
-    tabIndex={0}
+  <PlusButton
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "Link",
+        "propTypes": Object {
+          "innerRef": [Function],
+          "onClick": [Function],
+          "replace": [Function],
+          "target": [Function],
+          "to": [Function],
+        },
+        "render": [Function],
+      }
+    }
     title="Add new task"
-  >
-    <span
-      className="MuiFab-label"
-    >
-      <svg
-        aria-hidden="true"
-        className="MuiSvgIcon-root"
-        focusable="false"
-        role="presentation"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
-        />
-      </svg>
-    </span>
-    <span
-      className="MuiTouchRipple-root"
-    />
-  </a>
+    to={
+      Object {
+        "pathname": "/buddy/newbies/1234/add-task",
+        "state": Object {
+          "tabIndex": 0,
+        },
+      }
+    }
+  />
 </main>
 `;
 
 exports[`Component - TasksList when there are not tasks should render empty state 1`] = `
 <main
-  className="MuiBox-root MuiBox-root-36"
+  className="MuiBox-root MuiBox-root-3"
   data-testid="task-list-page"
 >
   <NavBar
@@ -264,45 +237,30 @@ exports[`Component - TasksList when there are not tasks should render empty stat
       tasks={Array []}
     />
   </TabPanel>
-  <a
-    aria-disabled={false}
-    aria-label="add"
-    className="MuiButtonBase-root MuiFab-root makeStyles-button-3 MuiFab-sizeMedium MuiFab-primary"
-    href="/buddy/newbies/1234/add-task"
-    onBlur={[Function]}
-    onClick={[Function]}
-    onDragLeave={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchEnd={[Function]}
-    onTouchMove={[Function]}
-    onTouchStart={[Function]}
-    role="button"
-    tabIndex={0}
+  <PlusButton
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "Link",
+        "propTypes": Object {
+          "innerRef": [Function],
+          "onClick": [Function],
+          "replace": [Function],
+          "target": [Function],
+          "to": [Function],
+        },
+        "render": [Function],
+      }
+    }
     title="Add new task"
-  >
-    <span
-      className="MuiFab-label"
-    >
-      <svg
-        aria-hidden="true"
-        className="MuiSvgIcon-root"
-        focusable="false"
-        role="presentation"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"
-        />
-      </svg>
-    </span>
-    <span
-      className="MuiTouchRipple-root"
-    />
-  </a>
+    to={
+      Object {
+        "pathname": "/buddy/newbies/1234/add-task",
+        "state": Object {
+          "tabIndex": 0,
+        },
+      }
+    }
+  />
 </main>
 `;
