@@ -3,6 +3,7 @@
 exports[`Component - PlusButton renders correctly 1`] = `
 <Fab
   aria-label="add"
+  className="makeStyles-button-1"
   color="primary"
   size="medium"
 >

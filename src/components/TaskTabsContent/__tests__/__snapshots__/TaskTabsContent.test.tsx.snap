@@ -22,6 +22,7 @@ exports[`Component - TaskTabsContent when is not loading when there are not task
 exports[`Component - TaskTabsContent when is not loading when there are tasks renders correctly 1`] = `
 <List>
   <TasksSubList
+    tabIndex={0}
     tasks={
       Array [
         Object {
@@ -38,6 +39,7 @@ exports[`Component - TaskTabsContent when is not loading when there are tasks re
     title="Todo"
   />
   <TasksSubList
+    tabIndex={0}
     tasks={
       Array [
         Object {

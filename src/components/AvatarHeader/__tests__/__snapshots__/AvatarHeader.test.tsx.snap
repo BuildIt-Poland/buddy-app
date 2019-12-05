@@ -13,13 +13,5 @@ exports[`Component - AvatarHeader renders correctly 2`] = `
 <Box
   className="makeStyles-background-1"
   data-testid="avatar-header"
->
-  <Avatar
-    imgSrc="some-url"
-    name="Tom Hanks"
-    onClick={[Function]}
-    position="front-end"
-    progress={54}
-  />
-</Box>
+/>
 `;

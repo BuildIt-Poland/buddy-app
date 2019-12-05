@@ -3,6 +3,7 @@ interface TaskListDictionary {
   NEWBIE_TAB_TITLE: string;
   SUCCESS_MESSAGE: string;
   ERROR_MESSAGE: string;
+  PLUS_BUTTON_TITLE: string;
 }
 
 const TASK_LIST_DICTIONARY: TaskListDictionary = {
@@ -10,6 +11,7 @@ const TASK_LIST_DICTIONARY: TaskListDictionary = {
   NEWBIE_TAB_TITLE: 'Newbie Tasks',
   SUCCESS_MESSAGE: 'Task status updated',
   ERROR_MESSAGE: 'An error ocurred updating task.',
+  PLUS_BUTTON_TITLE: 'Add new task',
 };
 
 export default TASK_LIST_DICTIONARY;

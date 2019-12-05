@@ -2,7 +2,9 @@
 
 exports[`Component - TasksSubList renders correctly Done section 1`] = `
 Array [
-  <ListSubheader>
+  <ListSubheader
+    disableSticky={true}
+  >
     <strong>
       Done
        (
@@ -10,17 +12,24 @@ Array [
       )
     </strong>
   </ListSubheader>,
-  <TaskCheckbox
-    id="1"
-    status="UNCOMPLETED"
-    title="Call you head manager"
-  />,
+  <a
+    href="//1"
+    onClick={[Function]}
+  >
+    <TaskCheckbox
+      id="1"
+      status="UNCOMPLETED"
+      title="Call you head manager"
+    />
+  </a>,
 ]
 `;
 
 exports[`Component - TasksSubList renders correctly Todo section 1`] = `
 Array [
-  <ListSubheader>
+  <ListSubheader
+    disableSticky={true}
+  >
     <strong>
       Todo
        (
@@ -28,16 +37,23 @@ Array [
       )
     </strong>
   </ListSubheader>,
-  <TaskCheckbox
-    id="2"
-    status="COMPLETED"
-    title="Write you main manager"
-  />,
+  <a
+    href="//2"
+    onClick={[Function]}
+  >
+    <TaskCheckbox
+      id="2"
+      status="COMPLETED"
+      title="Write you main manager"
+    />
+  </a>,
 ]
 `;
 
 exports[`Component - TasksSubList renders correctly without tasks and count 1`] = `
-<ListSubheader>
+<ListSubheader
+  disableSticky={true}
+>
   <strong>
     Todo
      (

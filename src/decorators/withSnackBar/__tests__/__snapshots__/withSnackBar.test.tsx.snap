@@ -24,6 +24,7 @@ Array [
       }
     }
     autoHideDuration={3000}
+    data-testid="snack-bar"
     message={
       <span>
         

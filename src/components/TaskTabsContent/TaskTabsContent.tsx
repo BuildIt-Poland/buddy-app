@@ -6,8 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TasksSubList, { TasksSubListProps } from '../TasksSubList';
 import { TaskTabsContentProps, TransformedTasks } from './types';
-import DICTIONARY from './tasksTabsContent.dictionary';
-import TASK_TABS_CONTENT_DICTIONARY from './taskTabsContent.dictionary';
+import DICTIONARY from './taskTabsContent.dictionary';
 
 const transformTasks = (tasks: TaskTabsContentProps['tasks']): TransformedTasks => {
   const emptyTransformedTasks = {
@@ -33,6 +32,7 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
   tasks,
   onChange,
   loading,
+  tabIndex = 0,
 }) => {
   const { uncompletedTasks, completedTasks } = useMemo(() => transformTasks(tasks), [
     tasks,
@@ -52,9 +52,9 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
   const EmptyStateTaskList = () => (
     <Box textAlign={'center'}>
       <Typography variant={'h2'} component={'h2'}>
-        {TASK_TABS_CONTENT_DICTIONARY.NO_TASKS_TITLE}
+        {DICTIONARY.NO_TASKS_TITLE}
       </Typography>
-      <Typography>{TASK_TABS_CONTENT_DICTIONARY.NO_TASKS_SUBTITLE}</Typography>
+      <Typography>{DICTIONARY.NO_TASKS_SUBTITLE}</Typography>
     </Box>
   );
 
@@ -65,7 +65,12 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
       {!loading && !isEmptyList && (
         <List>
           {tasksList.map((props, key) => (
-            <TasksSubList key={key} onChange={onChange} {...props} />
+            <TasksSubList
+              key={key}
+              onChange={onChange}
+              tabIndex={tabIndex}
+              {...props}
+            />
           ))}
         </List>
       )}
