@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import clsx from 'clsx';
+import BackgroundShape from 'components/BackgroundShape';
 import { PageContainerProps } from './types';
 
 const useStyles = makeStyles(theme => ({
@@ -21,8 +22,7 @@ const useStyles = makeStyles(theme => ({
 
 const PageContainer: React.FC<PageContainerProps> = props => {
   const classes = useStyles();
-  const { loading = false, children } = props;
-
+  const { loading = false, children, backGroundShape, ...args } = props;
   return (
     <>
       <LinearProgress
@@ -30,8 +30,9 @@ const PageContainer: React.FC<PageContainerProps> = props => {
         variant={'indeterminate'}
         color={'primary'}
       />
-      <Container className={classes.container} maxWidth={'md'} {...props}>
+      <Container className={classes.container} maxWidth={'md'} {...args}>
         {children}
+        {backGroundShape && <BackgroundShape />}
       </Container>
     </>
   );

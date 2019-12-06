@@ -19,14 +19,13 @@ const NewbieSelect: React.FC = () => {
   return (
     <PageContainer loading={loading} data-testid='newbie-select-page'>
       <Box marginBottom={5} component='section'>
-        <Typography component='h2' variant='h2'>
+        <Typography component='h1' variant='h2'>
           {NewbieSelectDictionary.TITLE}
         </Typography>
         <Typography color='textSecondary' component='p' variant='body2'>
           {NewbieSelectDictionary.SUBTITLE}
         </Typography>
       </Box>
-
       {data && data.buddy.newbies && (
         <Box marginBottom={2} component={'section'}>
           <Carrousel newbies={data.buddy.newbies as Newbie[]} />

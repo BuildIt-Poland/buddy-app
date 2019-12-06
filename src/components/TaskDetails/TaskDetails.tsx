@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import htmlParser from 'react-html-parser';
 import { makeStyles, Typography, Box, Chip } from '@material-ui/core';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { TASK_DETAILS } from 'graphql/task-details.graphql';
 import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
@@ -16,7 +15,6 @@ import {
 } from 'buddy-app-schema';
 import withSnackBar from 'decorators/withSnackBar';
 import PageContainer from 'components/PageContainer';
-import BackgroundShape from '../BackgroundShape';
 import TaskCheckbox from '../TaskCheckbox';
 import { TaskDetailsProps } from './types';
 import DICTIONARY from './taskDetails.dictionary';
@@ -134,10 +132,10 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
   return (
     <PageContainer
       loading={loading || updateTaskLoading}
-      data-testid='task-details-page'>
+      data-testid='task-details-page'
+      backGroundShape>
       {/* <NavBar type='back' onClick={onBackClick} /> */}
       {data && renderTaskDetails(data)}
-      <BackgroundShape />
     </PageContainer>
   );
 };

@@ -13,9 +13,7 @@ import {
 import xss from 'dompurify';
 import { ADD_BUDDY_TASK, ADD_NEWBIE_TASK } from 'graphql/add-task.graphql';
 import withSnackBar from 'decorators/withSnackBar';
-import NavBar from '../NavBar';
-import BackgroundShape from '../BackgroundShape';
-import AppWrapper from '../AppWrapper';
+import PageContainer from 'components/PageContainer/PageContainer';
 import RoundedButton from '../RoundedButton';
 import { AddTaskProps } from './types';
 import DICTIONARY from './addTask.dictionary';
@@ -89,7 +87,7 @@ const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
     history.push({ pathname: taskListPath, state: { defaultTabIndex } });
 
   const renderAddTask = () => (
-    <Box className={wrapper} data-testid='task-details-page'>
+    <Box className={wrapper}>
       <Box className={header}>
         <Typography component='h2' variant='h2'>
           {DICTIONARY.ADD_TASK_TITLE}
@@ -155,11 +153,10 @@ const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
   );
 
   return (
-    <AppWrapper data-testid='add-task-page'>
-      <NavBar type='back' onClick={onBackClick} />
+    <PageContainer backGroundShape data-testid='add-task-page'>
+      {/* <NavBar type='back' onClick={onBackClick} /> */}
       {renderAddTask()}
-      <BackgroundShape />
-    </AppWrapper>
+    </PageContainer>
   );
 };
 

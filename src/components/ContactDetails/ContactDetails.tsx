@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { Typography, CircularProgress, makeStyles } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
 import {
   NEWBIE_CONTACT_DETAILS,
@@ -9,7 +9,6 @@ import {
 import { ROUTES } from 'shared/routes';
 import { QueryBuddyArgs, QueryNewbieArgs, UserRole } from 'buddy-app-schema';
 // import NavBar from 'components/NavBar';
-import BackgroundShape from 'components/BackgroundShape';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import UserDetails from 'components/UserDetails';
 import { BasicDetailsParams, UserBasicDetails } from 'components/UserMenu/types';
@@ -46,14 +45,13 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
   const userDetails = data && data[userRole as string];
 
   return (
-    <PageContainer loading={loading}>
+    <PageContainer loading={loading} backGroundShape>
       <Box>
         <Typography component='h2' variant='h2'>
           Contact Details
         </Typography>
         {userDetails && <UserDetails details={userDetails} />}
       </Box>
-      <BackgroundShape />
     </PageContainer>
   );
 };
