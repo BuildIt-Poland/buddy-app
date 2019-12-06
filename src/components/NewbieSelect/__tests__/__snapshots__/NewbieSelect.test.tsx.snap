@@ -18,7 +18,7 @@ exports[`Component - NewbieSelect renders correctly 1`] = `
       Your New Joiners
     </Typography>
     <Typography
-      className="makeStyles-subTitle-1"
+      color="textSecondary"
       component="p"
       variant="body2"
     >
@@ -32,7 +32,6 @@ exports[`Component - NewbieSelect renders correctly 1`] = `
     <CircularProgress />
   </Box>
   <PlusButton
-    className="makeStyles-fabButton-2"
     disabled={true}
   />
 </AppWrapper>
@@ -56,7 +55,7 @@ exports[`Component - NewbieSelect renders correctly 2`] = `
       Your New Joiners
     </Typography>
     <Typography
-      className="makeStyles-subTitle-1"
+      color="textSecondary"
       component="p"
       variant="body2"
     >
@@ -64,7 +63,6 @@ exports[`Component - NewbieSelect renders correctly 2`] = `
     </Typography>
   </Box>
   <PlusButton
-    className="makeStyles-fabButton-2"
     disabled={true}
   />
 </AppWrapper>

@@ -36,6 +36,7 @@ exports[`Component - TasksList When there are tasks renders correctly 1`] = `
     <TaskTabsContent
       loading={true}
       onChange={[Function]}
+      tabIndex={0}
     />
   </TabPanel>
   <TabPanel
@@ -45,8 +46,34 @@ exports[`Component - TasksList When there are tasks renders correctly 1`] = `
     <TaskTabsContent
       loading={true}
       onChange={[Function]}
+      tabIndex={0}
     />
   </TabPanel>
+  <PlusButton
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "Link",
+        "propTypes": Object {
+          "innerRef": [Function],
+          "onClick": [Function],
+          "replace": [Function],
+          "target": [Function],
+          "to": [Function],
+        },
+        "render": [Function],
+      }
+    }
+    title="Add new task"
+    to={
+      Object {
+        "pathname": "/buddy/newbies/1234/add-task",
+        "state": Object {
+          "tabIndex": 0,
+        },
+      }
+    }
+  />
 </main>
 `;
 
@@ -86,6 +113,7 @@ exports[`Component - TasksList When there are tasks renders correctly 2`] = `
     <TaskTabsContent
       loading={false}
       onChange={[Function]}
+      tabIndex={0}
       tasks={
         Array [
           Object {
@@ -111,6 +139,7 @@ exports[`Component - TasksList When there are tasks renders correctly 2`] = `
     <TaskTabsContent
       loading={false}
       onChange={[Function]}
+      tabIndex={0}
       tasks={
         Array [
           Object {
@@ -129,6 +158,31 @@ exports[`Component - TasksList When there are tasks renders correctly 2`] = `
       }
     />
   </TabPanel>
+  <PlusButton
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "Link",
+        "propTypes": Object {
+          "innerRef": [Function],
+          "onClick": [Function],
+          "replace": [Function],
+          "target": [Function],
+          "to": [Function],
+        },
+        "render": [Function],
+      }
+    }
+    title="Add new task"
+    to={
+      Object {
+        "pathname": "/buddy/newbies/1234/add-task",
+        "state": Object {
+          "tabIndex": 0,
+        },
+      }
+    }
+  />
 </main>
 `;
 
@@ -168,6 +222,7 @@ exports[`Component - TasksList when there are not tasks should render empty stat
     <TaskTabsContent
       loading={false}
       onChange={[Function]}
+      tabIndex={0}
       tasks={Array []}
     />
   </TabPanel>
@@ -178,8 +233,34 @@ exports[`Component - TasksList when there are not tasks should render empty stat
     <TaskTabsContent
       loading={false}
       onChange={[Function]}
+      tabIndex={0}
       tasks={Array []}
     />
   </TabPanel>
+  <PlusButton
+    component={
+      Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "displayName": "Link",
+        "propTypes": Object {
+          "innerRef": [Function],
+          "onClick": [Function],
+          "replace": [Function],
+          "target": [Function],
+          "to": [Function],
+        },
+        "render": [Function],
+      }
+    }
+    title="Add new task"
+    to={
+      Object {
+        "pathname": "/buddy/newbies/1234/add-task",
+        "state": Object {
+          "tabIndex": 0,
+        },
+      }
+    }
+  />
 </main>
 `;

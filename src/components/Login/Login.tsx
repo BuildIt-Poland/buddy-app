@@ -138,7 +138,7 @@ const Login = () => {
           <AlertDialog message={errorDialog.message}></AlertDialog>
         )}
       </form>
-      <BackgroundShape></BackgroundShape>
+      <BackgroundShape />
     </Container>
   );
 };

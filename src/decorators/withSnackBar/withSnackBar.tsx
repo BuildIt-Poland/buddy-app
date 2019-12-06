@@ -28,6 +28,7 @@ const withSnackBar = (WrappedComponent: React.FC<SnackBarProps & any>) => {
       <>
         <WrappedComponent {...props} showSnackbar={showSnackbar} />
         <MuiSnackbar
+          data-testid='snack-bar'
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'left',

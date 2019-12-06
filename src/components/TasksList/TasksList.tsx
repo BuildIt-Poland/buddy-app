@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -9,17 +10,21 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
 import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import TaskTabsContent from 'components/TaskTabsContent';
+import PlusButton from 'components/PlusButton';
 import withSnackBar from 'decorators/withSnackBar';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import { ROUTES } from 'shared/routes';
 import DICTIONARY from './taskList.dictionary';
 import { TaskListProps } from './types';
 
 const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
   const { newbieId } = useParams<QueryNewbieArgs>();
-  const [tabIndex, setTabIndex] = React.useState(0);
+  const { state } = useLocation();
+  const defaultTabIndex = (state && state.defaultTabIndex) || 0;
+  const [tabIndex, setTabIndex] = React.useState(defaultTabIndex);
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) =>
     setTabIndex(newValue);
@@ -28,12 +33,13 @@ const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
     variables: { newbieId },
   });
 
-  const [
-    updateTaskStatus,
-    { loading: updateTaskLoading, error: updateTaskError },
-  ] = useMutation<Mutation>(UPDATE_TASK_STATUS, {
-    onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
-  });
+  const [updateTaskStatus, { loading: updateTaskLoading }] = useMutation<Mutation>(
+    UPDATE_TASK_STATUS,
+    {
+      onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
+      onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
+    }
+  );
 
   const onTaskChange = (taskId: string) => {
     if (!updateTaskLoading) {
@@ -41,14 +47,9 @@ const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
     }
   };
 
-  useEffect(() => {
-    if (updateTaskError) {
-      showSnackbar(DICTIONARY.ERROR_MESSAGE);
-    }
-  }, [updateTaskError, showSnackbar]);
-
   const newbieTasks = data && data.newbie.newbieTasks;
   const buddyTasks = data && data.newbie.buddyTasks;
+  const pathname = ROUTES.BUDDY_ADD_TASK.replace(':newbieId', newbieId);
 
   return (
     <Box data-testid='task-list-page'>
@@ -71,17 +72,24 @@ const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
       <TabPanel value={tabIndex} index={0}>
         <TaskTabsContent
           loading={loading}
+          tabIndex={tabIndex}
           onChange={onTaskChange}
           tasks={newbieTasks as Task[]}
         />
       </TabPanel>
       <TabPanel value={tabIndex} index={1}>
         <TaskTabsContent
+          tabIndex={tabIndex}
           loading={loading}
           onChange={onTaskChange}
           tasks={buddyTasks as Task[]}
         />
       </TabPanel>
+      <PlusButton
+        title={DICTIONARY.PLUS_BUTTON_TITLE}
+        component={Link}
+        to={{ pathname, state: { tabIndex } }}
+      />
     </Box>
   );
 };

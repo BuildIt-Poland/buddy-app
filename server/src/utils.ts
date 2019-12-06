@@ -58,7 +58,7 @@ export const credentialsMiddleware = async (
   context: Context,
   info: GraphQLResolveInfo
 ): Promise<any> => {
-  if (/addBuddy|addNewbie|login/.test(info.fieldName)) {
+  if (/addBuddy$|addNewbie$|login/.test(info.fieldName)) {
     const input = args.input || args;
     const password = input.password || '';
     const email = input.email || '';

@@ -1,57 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] = `
-<a
-  href="/buddy/newbies/1/tasks/1"
-  onClick={[Function]}
+<ListItem
+  button={true}
 >
-  <ListItem
-    button={true}
-  >
-    <ListItemIcon>
-      <Checkbox
-        checked={true}
-        color="primary"
-        disableRipple={true}
-        onChange={[Function]}
-        onClick={[Function]}
-      />
-    </ListItemIcon>
-    <ListItemText
-      primary={
-        <del>
-          Change you line manager
-        </del>
-      }
+  <ListItemIcon>
+    <Checkbox
+      checked={true}
+      color="primary"
+      disableRipple={true}
+      onChange={[Function]}
+      onClick={[Function]}
     />
-  </ListItem>
-</a>
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <del>
+        Change you line manager
+      </del>
+    }
+  />
+</ListItem>
 `;
 
 exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`] = `
-<a
-  href="/buddy/newbies/1/tasks/1"
-  onClick={[Function]}
+<ListItem
+  button={true}
 >
-  <ListItem
-    button={true}
-  >
-    <ListItemIcon>
-      <Checkbox
-        checked={false}
-        color="primary"
-        disableRipple={true}
-        onChange={[Function]}
-        onClick={[Function]}
-      />
-    </ListItemIcon>
-    <ListItemText
-      primary={
-        <strong>
-          Change you line manager
-        </strong>
-      }
+  <ListItemIcon>
+    <Checkbox
+      checked={false}
+      color="primary"
+      disableRipple={true}
+      onChange={[Function]}
+      onClick={[Function]}
     />
-  </ListItem>
-</a>
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <strong>
+        Change you line manager
+      </strong>
+    }
+  />
+</ListItem>
 `;
