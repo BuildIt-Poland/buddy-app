@@ -1,88 +1,34 @@
-// import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
-// import Container from '@material-ui/core/Container';
-
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     height: '100%',
-//     [theme.breakpoints.down('sm')]: {
-//       paddingTop: theme.spacing(7),
-//     },
-//     [theme.breakpoints.up('sm')]: {
-//       paddingTop: theme.spacing(8),
-//     },
-//   },
-// }));
-
-// const AppWrapper: React.FC = ({ children, ...props }) => {
-//   const classes = useStyles();
-
-//   return (
-//     <Container
-//       component={'main'}
-//       maxWidth={'md'}
-//       className={classes.root}
-//       {...props}>
-//       {children}
-//     </Container>
-//   );
-// };
-
-// export default AppWrapper;
-
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import IconButton from '@material-ui/core/IconButton';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from '@material-ui/icons/Menu';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import UserMenu from 'components/UserMenu';
+import Header from 'components/Header';
 
-const drawerWidth = 240;
+const drawerWidth = '28rem';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
-      maxWidth: '1024px',
-      margin: '0 auto',
+      // maxWidth: theme.breakpoints.values.lg,
     },
     drawer: {
-      [theme.breakpoints.up('sm')]: {
-        width: drawerWidth,
-        flexShrink: 0,
-      },
+      // [theme.breakpoints.up('sm')]: {
+      //   width: drawerWidth,
+      //   flexShrink: 0,
+      // },
     },
-    appBar: {
-      [theme.breakpoints.up('sm')]: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-      },
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-      [theme.breakpoints.up('sm')]: {
-        display: 'none',
-      },
-    },
-    toolbar: theme.mixins.toolbar,
     drawerPaper: {
       width: drawerWidth,
+      // backgroundColor: 'white',
     },
     content: {
       flexGrow: 1,
-      padding: theme.spacing(3),
+      width: '100%',
     },
+    drawerHeader: theme.mixins.toolbar,
   })
 );
 
@@ -92,85 +38,58 @@ const ResponsiveDrawer: React.FC = props => {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
-  const drawer = (
-    <div>
-      <div className={classes.toolbar} />
-
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
-
+  const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
   return (
     <div className={classes.root}>
-      {/* <AppBar position='fixed' className={classes.appBar}>
-        <Toolbar>
-          <IconButton
-            color='inherit'
-            aria-label='open drawer'
-            edge='start'
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}>
-            <MenuIcon />
-          </IconButton>
-          <Typography variant='h6' noWrap>
-            Responsive drawer
-          </Typography>
-        </Toolbar>
-      </AppBar> */}
-      <nav className={classes.drawer} aria-label='mailbox folders'>
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation='css'>
-          <Drawer
+      <Header
+        type={'menu'}
+        position={'fixed'}
+        onButtonClick={handleDrawerToggle}></Header>
+      <nav className={classes.drawer}>
+        <SwipeableDrawer
+          variant='temporary'
+          anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+          open={mobileOpen}
+          onOpen={handleDrawerToggle}
+          onClose={handleDrawerToggle}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+          ModalProps={{
+            keepMounted: true,
+          }}>
+          <UserMenu onCloseClick={handleDrawerToggle} />
+        </SwipeableDrawer>
+        {/* <Hidden smUp implementation='js'>
+          <SwipeableDrawer
             variant='temporary'
-            // anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+            anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={mobileOpen}
+            onOpen={handleDrawerToggle}
             onClose={handleDrawerToggle}
             classes={{
               paper: classes.drawerPaper,
             }}
             ModalProps={{
-              keepMounted: true, // Better open performance on mobile.
+              keepMounted: true,
             }}>
-            {drawer}
-          </Drawer>
-        </Hidden>
-        <Hidden xsDown implementation='css'>
+            <UserMenu onCloseClick={handleDrawerToggle} />
+          </SwipeableDrawer>
+        </Hidden> */}
+        {/* <Hidden xsDown implementation='js'>
           <Drawer
             classes={{
               paper: classes.drawerPaper,
             }}
-            variant='permanent'
+            variant={'permanent'}
             open>
-            {drawer}
+            <div className={classes.drawerHeader} />
+            <UserMenu />
           </Drawer>
-        </Hidden>
+        </Hidden> */}
       </nav>
       <main className={classes.content}>
-        <div className={classes.toolbar} />
+        <div className={classes.drawerHeader} />
         {children}
       </main>
     </div>

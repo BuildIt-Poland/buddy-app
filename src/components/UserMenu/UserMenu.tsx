@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import CloseIcon from '@material-ui/icons/Close';
 import Box from '@material-ui/core/Box';
@@ -14,15 +13,13 @@ import UserMenuDetails from 'components/UserMenuDetails';
 import UserMenuSettings from 'components/UserMenuSettings';
 import UserMenuBuddy from 'components/UserMenuBuddy';
 import { isBuddy, isNewbie } from 'utils';
-import theme from 'styles/theme';
 import { ROUTES } from 'shared/routes';
 import { Buddy, Newbie, UserRole } from 'buddy-app-schema';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import { BasicDetailsParams, UserMenuProps, UserBasicDetails } from './types';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   list: {
-    width: '35rem',
     display: 'flex',
     flexDirection: 'column',
   },
@@ -37,12 +34,11 @@ const useStyles = makeStyles({
     height: '100vh',
     width: '100%',
   },
-});
+}));
 
-const UserMenu: React.FC<UserMenuProps> = props => {
+const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
   const history = useHistory();
   const { list, closeBtn, loader } = useStyles();
-  const { isMenuVisible, onClose } = props;
   const { data: AuthData, logout } = useContext<AuthContextData>(AuthContext);
   const { userId, role } = AuthData;
 
@@ -56,12 +52,18 @@ const UserMenu: React.FC<UserMenuProps> = props => {
 
   const selectNewbie = (id: string) => {
     history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', id));
-    onClose();
+    fireOnCloseClickEvent();
   };
 
   const selectBuddy = (id: string) => {
     history.push(ROUTES.NEWBIE_BUDDY_DETAILS.replace(':buddyId', id));
-    onClose();
+    fireOnCloseClickEvent();
+  };
+
+  const fireOnCloseClickEvent = () => {
+    if (onCloseClick) {
+      onCloseClick();
+    }
   };
 
   const { query, variables } = getQueryByRole(role, userId) || {};
@@ -71,44 +73,44 @@ const UserMenu: React.FC<UserMenuProps> = props => {
   const user = data && data[role.toLowerCase()];
 
   return (
-    <Drawer open={isMenuVisible} onClose={onClose} data-testid='slide-menu'>
-      <Box className={list}>
-        {user && (
-          <Box data-testid='slide-menu-body'>
+    <Box className={list}>
+      {user && (
+        <Box data-testid='slide-menu-body'>
+          {onCloseClick && (
             <Box display='flex' justifyContent='flex-end'>
               <IconButton
+                onClick={fireOnCloseClickEvent}
                 className={closeBtn}
-                onClick={onClose}
                 data-testid='slide-menu-close-btn'>
                 <CloseIcon />
               </IconButton>
             </Box>
-            <UserMenuDetails user={user} />
-            <Divider />
-            {isBuddy(role) && (
-              <UserMenuNewbies
-                newbies={(user as Buddy).newbies}
-                onSelect={selectNewbie}
-              />
-            )}
-            {isNewbie(role) && (
-              <UserMenuBuddy buddy={(user as Newbie).buddy} onSelect={selectBuddy} />
-            )}
-            <Divider />
-            <UserMenuSettings
-              allowPushedNotifications={!!user.allowPushedNotifications}
-              updatePushNotificationsSettings={() => {}}
-              onLogoutClick={() => logout()}
+          )}
+          <UserMenuDetails user={user} />
+          <Divider />
+          {isBuddy(role) && (
+            <UserMenuNewbies
+              newbies={(user as Buddy).newbies}
+              onSelect={selectNewbie}
             />
-          </Box>
-        )}
-        {loading && (
-          <Box className={loader}>
-            <CircularProgress data-testid='slide-menu-loader' />
-          </Box>
-        )}
-      </Box>
-    </Drawer>
+          )}
+          {isNewbie(role) && (
+            <UserMenuBuddy buddy={(user as Newbie).buddy} onSelect={selectBuddy} />
+          )}
+          <Divider />
+          <UserMenuSettings
+            allowPushedNotifications={!!user.allowPushedNotifications}
+            updatePushNotificationsSettings={() => {}}
+            onLogoutClick={() => logout()}
+          />
+        </Box>
+      )}
+      {loading && (
+        <Box className={loader}>
+          <CircularProgress data-testid='slide-menu-loader' />
+        </Box>
+      )}
+    </Box>
   );
 };
 

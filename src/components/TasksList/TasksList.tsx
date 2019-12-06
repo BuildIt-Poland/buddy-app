@@ -4,7 +4,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TabPanel from 'components/TabPanel';
 import AvatarHeader from 'components/AvatarHeader';
-import NavBar from 'components/NavBar';
+// import NavBar from 'components/NavBar';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
@@ -51,8 +51,8 @@ const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
   const buddyTasks = data && data.newbie.buddyTasks;
 
   return (
-    <Box component='main' data-testid='task-list-page'>
-      <NavBar type={'menu'} />
+    <Box data-testid='task-list-page'>
+      {/* <NavBar type={'menu'} /> */}
       <AppBar component='section' position='static' color='inherit'>
         <AvatarHeader />
         <Tabs

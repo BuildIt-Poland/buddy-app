@@ -17,9 +17,8 @@ import {
   Mutation,
 } from 'buddy-app-schema';
 import withSnackBar from 'decorators/withSnackBar';
-import NavBar from '../NavBar';
+import PageContainer from 'components/PageContainer';
 import BackgroundShape from '../BackgroundShape';
-import AppWrapper from '../AppWrapper';
 import TaskCheckbox from '../TaskCheckbox';
 import { TaskDetailsProps } from './types';
 import DICTIONARY from './taskDetails.dictionary';
@@ -132,14 +131,13 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
   );
 
   return (
-    <AppWrapper data-testid='task-details-page'>
-      {(loading || updateTaskLoading) && (
-        <LinearProgress className={progress} color='secondary' />
-      )}
-      <NavBar type='back' onClick={onBackClick} />
+    <PageContainer
+      loading={loading || updateTaskLoading}
+      data-testid='task-details-page'>
+      {/* <NavBar type='back' onClick={onBackClick} /> */}
       {data && renderTaskDetails(data)}
       <BackgroundShape />
-    </AppWrapper>
+    </PageContainer>
   );
 };
 
