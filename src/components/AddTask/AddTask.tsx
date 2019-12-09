@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import useForm from 'react-hook-form';
+import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
 import { QueryNewbieArgs, Mutation, TaskInput } from 'buddy-app-schema';
 import {
   makeStyles,
@@ -12,7 +13,6 @@ import {
 } from '@material-ui/core';
 import xss from 'dompurify';
 import { ADD_BUDDY_TASK, ADD_NEWBIE_TASK } from 'graphql/add-task.graphql';
-import withSnackBar from 'decorators/withSnackBar';
 import NavBar from '../NavBar';
 import BackgroundShape from '../BackgroundShape';
 import AppWrapper from '../AppWrapper';
@@ -45,15 +45,19 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
+const AddTask: React.FC<AddTaskProps> = ({ history }) => {
   const { wrapper, header, addButton, inputWrapper, form } = useStyles();
   const { newbieId } = useParams<QueryNewbieArgs>();
-  const { register, errors, handleSubmit, reset } = useForm<TaskInput>();
+  const { register, errors, handleSubmit } = useForm<TaskInput>();
   const { pathname, state } = useLocation();
+  const { showSnackbar } = useContext<SnackbarContextData>(SnackbarContext);
+
+  const onBackClick = () =>
+    history.push({ pathname: taskListPath, state: { defaultTabIndex } });
 
   const onCompleted = () => {
     showSnackbar(DICTIONARY.SUCCESS_MESSAGE);
-    reset();
+    onBackClick();
   };
 
   const onError = () => showSnackbar(DICTIONARY.ERROR_MESSAGE);
@@ -84,9 +88,6 @@ const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
       },
     });
   };
-
-  const onBackClick = () =>
-    history.push({ pathname: taskListPath, state: { defaultTabIndex } });
 
   const renderAddTask = () => (
     <Box className={wrapper} data-testid='task-details-page'>
@@ -163,4 +164,4 @@ const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
   );
 };
 
-export default withSnackBar(AddTask);
+export default AddTask;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import htmlParser from 'react-html-parser';
 import { makeStyles, Typography, Box, Chip } from '@material-ui/core';
@@ -7,6 +7,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { TASK_DETAILS } from 'graphql/task-details.graphql';
 import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
 import { colors } from 'styles/theme';
+import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
 import {
   TaskStatus,
   Query,
@@ -14,7 +15,6 @@ import {
   QueryNewbieArgs,
   Mutation,
 } from 'buddy-app-schema';
-import withSnackBar from 'decorators/withSnackBar';
 import NavBar from '../NavBar';
 import BackgroundShape from '../BackgroundShape';
 import AppWrapper from '../AppWrapper';
@@ -68,20 +68,22 @@ const STATUS_TEXT = {
   [TaskStatus.Uncompleted]: DICTIONARY.UNCOMPLETED,
 };
 
-const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
+const TaskDetails: React.FC<TaskDetailsProps> = ({ history }) => {
   const { taskId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
   const { wrapper, header, checkbox, progress, status, description } = useStyles();
   const { pathname, state } = useLocation();
+  const { showSnackbar } = useContext<SnackbarContextData>(SnackbarContext);
 
   const { loading, data } = useQuery<Query, QueryTaskArgs>(TASK_DETAILS, {
     variables: { taskId },
   });
-  const [
-    updateTaskStatus,
-    { loading: updateTaskLoading, error: updateTaskError },
-  ] = useMutation<Mutation>(UPDATE_TASK_STATUS, {
-    onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
-  });
+  const [updateTaskStatus, { loading: updateTaskLoading }] = useMutation<Mutation>(
+    UPDATE_TASK_STATUS,
+    {
+      onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
+      onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
+    }
+  );
 
   const defaultTabIndex = (state && state.tabIndex) || 0;
   const taskListPath = pathname.replace(/tasks.+/, 'tasks');
@@ -102,12 +104,6 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
         taskId,
       },
     });
-
-  useEffect(() => {
-    if (updateTaskError) {
-      showSnackbar(DICTIONARY.ERROR_MESSAGE);
-    }
-  }, [updateTaskError, showSnackbar]);
 
   const renderTaskDetails = ({ task }: Query) => (
     <Box className={wrapper}>
@@ -144,4 +140,4 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
   );
 };
 
-export default withSnackBar(TaskDetails);
+export default TaskDetails;

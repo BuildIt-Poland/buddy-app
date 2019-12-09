@@ -7,15 +7,20 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from 'styles/theme';
 import { apolloClient } from 'utils';
 import AuthStore from 'reducers/AuthStore';
+import SnackbarStore from 'reducers/SnackbarStore';
 import AppRouter from '../AppRouter';
+import SnackBar from '../SnackBar';
 
 const App: React.FC = () => {
   return (
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={theme}>
         <AuthStore>
-          <CssBaseline />
-          <AppRouter />
+          <SnackbarStore>
+            <CssBaseline />
+            <AppRouter />
+            <SnackBar />
+          </SnackbarStore>
         </AuthStore>
       </ThemeProvider>
     </ApolloProvider>

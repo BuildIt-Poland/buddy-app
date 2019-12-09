@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
@@ -7,6 +7,7 @@ import TabPanel from 'components/TabPanel';
 import AvatarHeader from 'components/AvatarHeader';
 import NavBar from 'components/NavBar';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
 import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
 import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
@@ -14,17 +15,16 @@ import { useParams, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import TaskTabsContent from 'components/TaskTabsContent';
 import PlusButton from 'components/PlusButton';
-import withSnackBar from 'decorators/withSnackBar';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { ROUTES } from 'shared/routes';
 import DICTIONARY from './taskList.dictionary';
-import { TaskListProps } from './types';
 
-const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
+const TasksList: React.FC = () => {
   const { newbieId } = useParams<QueryNewbieArgs>();
   const { state } = useLocation();
   const defaultTabIndex = (state && state.defaultTabIndex) || 0;
   const [tabIndex, setTabIndex] = React.useState(defaultTabIndex);
+  const { showSnackbar } = useContext<SnackbarContextData>(SnackbarContext);
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) =>
     setTabIndex(newValue);
@@ -93,4 +93,4 @@ const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
     </Box>
   );
 };
-export default withSnackBar(TasksList);
+export default TasksList;

@@ -15,7 +15,6 @@ jest.mock('components/AvatarHeader', () => 'AvatarHeader');
 jest.mock('components/PlusButton', () => 'PlusButton');
 jest.mock('components/NavBar', () => 'NavBar');
 jest.mock('components/TaskListPlaceHolder', () => 'TaskListPlaceHolder');
-jest.mock('decorators/withSnackBar', () => (component: React.FC<any>) => component);
 jest.mock('components/TaskTabsContent', () => 'TaskTabsContent');
 
 describe('Component - TasksList', () => {
