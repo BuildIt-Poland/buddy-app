@@ -114,22 +114,6 @@ exports[`Component - TasksList When there are tasks renders correctly 2`] = `
       loading={false}
       onChange={[Function]}
       tabIndex={0}
-      tasks={
-        Array [
-          Object {
-            "description": "New task description",
-            "id": "3",
-            "status": "COMPLETED",
-            "title": "New task title ",
-          },
-          Object {
-            "description": "New task description 2",
-            "id": "4",
-            "status": "COMPLETED",
-            "title": "New task title 2",
-          },
-        ]
-      }
     />
   </TabPanel>
   <TabPanel
@@ -140,22 +124,6 @@ exports[`Component - TasksList When there are tasks renders correctly 2`] = `
       loading={false}
       onChange={[Function]}
       tabIndex={0}
-      tasks={
-        Array [
-          Object {
-            "description": "New task description",
-            "id": "1",
-            "status": "UNCOMPLETED",
-            "title": "New task title ",
-          },
-          Object {
-            "description": "New task description 2",
-            "id": "2",
-            "status": "COMPLETED",
-            "title": "New task title 2",
-          },
-        ]
-      }
     />
   </TabPanel>
   <PlusButton
@@ -223,7 +191,6 @@ exports[`Component - TasksList when there are not tasks should render empty stat
       loading={false}
       onChange={[Function]}
       tabIndex={0}
-      tasks={Array []}
     />
   </TabPanel>
   <TabPanel
@@ -234,7 +201,6 @@ exports[`Component - TasksList when there are not tasks should render empty stat
       loading={false}
       onChange={[Function]}
       tabIndex={0}
-      tasks={Array []}
     />
   </TabPanel>
   <PlusButton
