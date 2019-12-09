@@ -51,6 +51,7 @@ const AddTask: React.FC<AddTaskProps> = ({ history }) => {
   const { register, errors, handleSubmit } = useForm<TaskInput>();
   const { pathname, state } = useLocation();
   const { showSnackbar } = useContext<SnackbarContextData>(SnackbarContext);
+  const taskListPath = pathname.replace('add-task', 'tasks');
 
   const onBackClick = () =>
     history.push({ pathname: taskListPath, state: { defaultTabIndex } });
@@ -75,7 +76,6 @@ const AddTask: React.FC<AddTaskProps> = ({ history }) => {
   const addTaskHandlers = [addNewbieTask, addBuddyTask];
   const defaultTabIndex = (state && state.tabIndex) || 0;
   const loading = addBuddyTaskLoading || addNewbieTaskLoading;
-  const taskListPath = pathname.replace('add-task', 'tasks');
 
   const onSubmit = (input: TaskInput) => {
     addTaskHandlers[defaultTabIndex]({
