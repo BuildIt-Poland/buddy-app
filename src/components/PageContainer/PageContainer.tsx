@@ -18,6 +18,10 @@ const useStyles = makeStyles(theme => ({
   hideLoading: {
     visibility: 'hidden',
   },
+  linearProgress: {
+    height: '0.3rem',
+    boxShadow: theme.shadows[2],
+  },
 }));
 
 const PageContainer: React.FC<PageContainerProps> = props => {
@@ -26,7 +30,7 @@ const PageContainer: React.FC<PageContainerProps> = props => {
   return (
     <>
       <LinearProgress
-        className={clsx({ [classes.hideLoading]: !loading })}
+        className={clsx(classes.linearProgress, { [classes.hideLoading]: !loading })}
         variant={'indeterminate'}
         color={'primary'}
       />

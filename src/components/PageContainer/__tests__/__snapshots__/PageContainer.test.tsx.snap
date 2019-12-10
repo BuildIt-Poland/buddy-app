@@ -3,7 +3,7 @@
 exports[`Component - PageContainer when is loading renders correctly 1`] = `
 Array [
   <LinearProgress
-    className=""
+    className="makeStyles-linearProgress-3"
     color="primary"
     variant="indeterminate"
   />,
@@ -20,7 +20,7 @@ Array [
 exports[`Component - PageContainer when is not loading renders correctly 1`] = `
 Array [
   <LinearProgress
-    className="makeStyles-hideLoading-2"
+    className="makeStyles-linearProgress-3 makeStyles-hideLoading-2"
     color="primary"
     variant="indeterminate"
   />,
