@@ -80,7 +80,7 @@ const Root: React.FC = () => {
         <Route key={key} path={path} exact component={component} />
       ))}
       {hasError && <Route path={ROUTES.ERROR} exact component={ErrorPage} />}
-      {!hasToken && <Redirect to={{ pathname: redirectPath }} />}
+      <Redirect to={{ pathname: redirectPath }} />
     </Switch>
   );
 
