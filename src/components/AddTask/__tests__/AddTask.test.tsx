@@ -6,7 +6,7 @@ import { addTaskSuccessMock, addTaskFailedMock } from '__mocks__';
 import AddTask from '../AddTask';
 import DICTIONARY from '../addTask.dictionary';
 
-describe.skip('Component - AddTask', () => {
+describe('Component - AddTask', () => {
   const path = '/buddy/newbies/1234/add-task';
 
   const triggerAddTask = (mocks: any) => {

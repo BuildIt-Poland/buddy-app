@@ -52,7 +52,6 @@ const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
 
   const onCompleted = () => {
     showSnackbar(DICTIONARY.SUCCESS_MESSAGE);
-    onBackClick();
   };
 
   const onError = () => showSnackbar(DICTIONARY.ERROR_MESSAGE);

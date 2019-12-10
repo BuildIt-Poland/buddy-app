@@ -101,7 +101,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
           <UserMenuSettings
             allowPushedNotifications={!!user.allowPushedNotifications}
             updatePushNotificationsSettings={() => {}}
-            onLogoutClick={() => logout()}
+            onLogoutClick={logout}
           />
         </Box>
       )}
