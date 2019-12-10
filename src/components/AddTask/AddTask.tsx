@@ -14,6 +14,7 @@ import xss from 'dompurify';
 import { ADD_BUDDY_TASK, ADD_NEWBIE_TASK } from 'graphql/add-task.graphql';
 import withSnackBar from 'decorators/withSnackBar';
 import PageContainer from 'components/PageContainer/PageContainer';
+import Header from 'components/Header';
 import RoundedButton from '../RoundedButton';
 import { AddTaskProps } from './types';
 import DICTIONARY from './addTask.dictionary';
@@ -46,12 +47,12 @@ const useStyles = makeStyles(theme => ({
 const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
   const { wrapper, header, addButton, inputWrapper, form } = useStyles();
   const { newbieId } = useParams<QueryNewbieArgs>();
-  const { register, errors, handleSubmit, reset } = useForm<TaskInput>();
+  const { register, errors, handleSubmit } = useForm<TaskInput>();
   const { pathname, state } = useLocation();
 
   const onCompleted = () => {
     showSnackbar(DICTIONARY.SUCCESS_MESSAGE);
-    reset();
+    onBackClick();
   };
 
   const onError = () => showSnackbar(DICTIONARY.ERROR_MESSAGE);
@@ -153,10 +154,12 @@ const AddTask: React.FC<AddTaskProps> = ({ history, showSnackbar }) => {
   );
 
   return (
-    <PageContainer backGroundShape data-testid='add-task-page'>
-      {/* <NavBar type='back' onClick={onBackClick} /> */}
-      {renderAddTask()}
-    </PageContainer>
+    <>
+      <Header type={'back'} onButtonClick={onBackClick} />
+      <PageContainer backGroundShape data-testid='add-task-page'>
+        {renderAddTask()}
+      </PageContainer>
+    </>
   );
 };
 

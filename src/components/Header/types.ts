@@ -1,10 +1,10 @@
 import { ReactElement } from 'react';
-import { AppBarProps } from '@material-ui/core/AppBar';
 
-export interface HeaderProps extends AppBarProps {
+export interface HeaderProps {
   type: 'menu' | 'back';
   onButtonClick?: () => void;
-  children?: ReactElement;
+  children?: React.ReactNode;
+  color?: 'default' | 'paper';
 }
 
 export interface NavBarButton {

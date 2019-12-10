@@ -30,7 +30,11 @@ const PageContainer: React.FC<PageContainerProps> = props => {
         variant={'indeterminate'}
         color={'primary'}
       />
-      <Container className={classes.container} maxWidth={'md'} {...args}>
+      <Container
+        component={'main'}
+        className={classes.container}
+        maxWidth={'md'}
+        {...args}>
         {children}
         {backGroundShape && <BackgroundShape />}
       </Container>

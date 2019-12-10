@@ -1,69 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - NewbieSelect renders correctly 1`] = `
-<AppWrapper
-  data-testid="newbie-select-page"
->
-  <Navbar
+Array [
+  <Header
+    onButtonClick={[Function]}
     type="menu"
-  />
-  <Box
-    component="section"
-    marginBottom={5}
+  />,
+  <PageContainer
+    data-testid="newbie-select-page"
+    loading={true}
   >
-    <Typography
-      component="h2"
-      variant="h2"
+    <Box
+      component="section"
+      marginBottom={5}
     >
-      Your New Joiners
-    </Typography>
-    <Typography
-      color="textSecondary"
-      component="p"
-      variant="body2"
-    >
-      Don’t forget to complete all tasks
-    </Typography>
-  </Box>
-  <Box
-    component="section"
-    marginBottom={2}
-  >
-    <CircularProgress />
-  </Box>
-  <PlusButton
-    disabled={true}
-  />
-</AppWrapper>
+      <Typography
+        component="h1"
+        variant="h2"
+      >
+        Your New Joiners
+      </Typography>
+      <Typography
+        color="textSecondary"
+        component="p"
+        variant="body2"
+      >
+        Don’t forget to complete all tasks
+      </Typography>
+    </Box>
+    <PlusButton
+      disabled={true}
+    />
+  </PageContainer>,
+]
 `;
 
 exports[`Component - NewbieSelect renders correctly 2`] = `
-<AppWrapper
-  data-testid="newbie-select-page"
->
-  <Navbar
+Array [
+  <Header
+    onButtonClick={[Function]}
     type="menu"
-  />
-  <Box
-    component="section"
-    marginBottom={5}
+  />,
+  <PageContainer
+    data-testid="newbie-select-page"
+    loading={false}
   >
-    <Typography
-      component="h2"
-      variant="h2"
+    <Box
+      component="section"
+      marginBottom={5}
     >
-      Your New Joiners
-    </Typography>
-    <Typography
-      color="textSecondary"
-      component="p"
-      variant="body2"
-    >
-      Don’t forget to complete all tasks
-    </Typography>
-  </Box>
-  <PlusButton
-    disabled={true}
-  />
-</AppWrapper>
+      <Typography
+        component="h1"
+        variant="h2"
+      >
+        Your New Joiners
+      </Typography>
+      <Typography
+        color="textSecondary"
+        component="p"
+        variant="body2"
+      >
+        Don’t forget to complete all tasks
+      </Typography>
+    </Box>
+    <PlusButton
+      disabled={true}
+    />
+  </PageContainer>,
+]
 `;

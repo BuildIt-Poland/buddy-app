@@ -15,6 +15,7 @@ import {
 } from 'buddy-app-schema';
 import withSnackBar from 'decorators/withSnackBar';
 import PageContainer from 'components/PageContainer';
+import Header from 'components/Header';
 import TaskCheckbox from '../TaskCheckbox';
 import { TaskDetailsProps } from './types';
 import DICTIONARY from './taskDetails.dictionary';
@@ -33,12 +34,6 @@ const useStyles = makeStyles(theme => ({
     '& svg': {
       fontSize: theme.spacing(3),
     },
-  },
-  progress: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
   },
   status: {
     marginTop: theme.spacing(1),
@@ -67,7 +62,7 @@ const STATUS_TEXT = {
 
 const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
   const { taskId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
-  const { wrapper, header, checkbox, progress, status, description } = useStyles();
+  const { wrapper, header, checkbox, status, description } = useStyles();
   const { pathname, state } = useLocation();
 
   const { loading, data } = useQuery<Query, QueryTaskArgs>(TASK_DETAILS, {
@@ -130,13 +125,15 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history, showSnackbar }) => {
   );
 
   return (
-    <PageContainer
-      loading={loading || updateTaskLoading}
-      data-testid='task-details-page'
-      backGroundShape>
-      {/* <NavBar type='back' onClick={onBackClick} /> */}
-      {data && renderTaskDetails(data)}
-    </PageContainer>
+    <>
+      <Header type={'back'} onButtonClick={onBackClick} />
+      <PageContainer
+        loading={loading || updateTaskLoading}
+        data-testid='task-details-page'
+        backGroundShape>
+        {data && renderTaskDetails(data)}
+      </PageContainer>
+    </>
   );
 };
 

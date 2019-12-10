@@ -12,24 +12,26 @@ import { NavBarButton, HeaderProps } from './types';
 const useStyles = makeStyles<Theme>(theme => ({
   menuButton: {
     marginRight: theme.spacing(2),
-    // [theme.breakpoints.up('sm')]: {
-    //   display: 'none',
-    // },
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    backgroundColor: 'white',
   },
   withoutShadow: {
     boxShadow: 'none',
+  },
+  paperAppBarBackground: {
+    backgroundColor: theme.palette.background.paper,
+  },
+  defaultAppBarBackground: {
+    backgroundColor: theme.palette.background.default,
   },
 }));
 
 const Header: React.FC<HeaderProps> = ({
   type,
-  onClick,
+  color = 'default',
+  children,
   onButtonClick,
-  ...props
 }) => {
   const classes = useStyles();
   const scrollTrigger = useScrollTrigger({ threshold: 10 });
@@ -39,13 +41,23 @@ const Header: React.FC<HeaderProps> = ({
     back: () => <ArrowBackIcon />,
   };
 
+  const colorClassNames = {
+    default: classes.defaultAppBarBackground,
+    paper: classes.neutralAppBarBackground,
+  };
+
   return (
     <AppBar
-      className={clsx(classes.appBar, {
-        [classes.withoutShadow]: !scrollTrigger,
-      })}
-      color={'inherit'}
-      {...props}>
+      component={'header'}
+      className={clsx(
+        classes.appBar,
+        {
+          [classes.withoutShadow]: !scrollTrigger,
+        },
+        colorClassNames[color]
+      )}
+      position={'sticky'}
+      color={'inherit'}>
       <Toolbar>
         <IconButton
           edge='start'
@@ -55,6 +67,7 @@ const Header: React.FC<HeaderProps> = ({
           {button[type]()}
         </IconButton>
       </Toolbar>
+      {children}
     </AppBar>
   );
 };

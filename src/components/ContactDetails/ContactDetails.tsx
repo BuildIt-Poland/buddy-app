@@ -8,12 +8,12 @@ import {
 } from 'graphql/contact-details.graphql';
 import { ROUTES } from 'shared/routes';
 import { QueryBuddyArgs, QueryNewbieArgs, UserRole } from 'buddy-app-schema';
-// import NavBar from 'components/NavBar';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import UserDetails from 'components/UserDetails';
 import { BasicDetailsParams, UserBasicDetails } from 'components/UserMenu/types';
 import Box from '@material-ui/core/Box';
-import PageContainer from 'components/PageContainer/PageContainer';
+import PageContainer from 'components/PageContainer';
+import Header from 'components/Header';
 import { ContactDetailsProps } from './types';
 
 const ContactDetails: React.FC<ContactDetailsProps> = props => {
@@ -22,7 +22,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
   const { data: AuthData } = useContext<AuthContextData>(AuthContext);
   const { role } = AuthData;
 
-  const handleBackClick = () => {
+  const onBackClick = () => {
     props.history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId));
   };
 
@@ -45,14 +45,17 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
   const userDetails = data && data[userRole as string];
 
   return (
-    <PageContainer loading={loading} backGroundShape>
-      <Box>
-        <Typography component='h2' variant='h2'>
-          Contact Details
-        </Typography>
-        {userDetails && <UserDetails details={userDetails} />}
-      </Box>
-    </PageContainer>
+    <>
+      <Header type={'back'} onButtonClick={onBackClick} />
+      <PageContainer loading={loading} backGroundShape>
+        <Box>
+          <Typography component='h2' variant='h2'>
+            Contact Details
+          </Typography>
+          {userDetails && <UserDetails details={userDetails} />}
+        </Box>
+      </PageContainer>
+    </>
   );
 };
 

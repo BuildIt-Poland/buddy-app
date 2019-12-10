@@ -1,11 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
+import { Link, useHistory } from 'react-router-dom';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TabPanel from 'components/TabPanel';
 import AvatarHeader from 'components/AvatarHeader';
-// import NavBar from 'components/NavBar';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
@@ -17,6 +15,7 @@ import PlusButton from 'components/PlusButton';
 import withSnackBar from 'decorators/withSnackBar';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { ROUTES } from 'shared/routes';
+import Header from 'components/Header/Header';
 import DICTIONARY from './taskList.dictionary';
 import { TaskListProps } from './types';
 
@@ -46,17 +45,22 @@ const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
       updateTaskStatus({ variables: { taskId } });
     }
   };
+  const history = useHistory();
+
+  const handleOnBackClick = () => {
+    history.push(ROUTES.BUDDY_SELECT_NEWBIE);
+  };
 
   const newbieTasks = data && data.newbie.newbieTasks;
   const buddyTasks = data && data.newbie.buddyTasks;
   const pathname = ROUTES.BUDDY_ADD_TASK.replace(':newbieId', newbieId);
 
   return (
-    <Box data-testid='task-list-page'>
-      {/* <NavBar type={'menu'} /> */}
-      <AppBar component='section' position='static' color='inherit'>
+    <>
+      <Header type={'back'} color={'paper'} onButtonClick={handleOnBackClick}>
         <AvatarHeader />
         <Tabs
+          centered
           value={tabIndex}
           onChange={handleTabChange}
           indicatorColor='primary'
@@ -65,32 +69,32 @@ const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
           <Tab label={DICTIONARY.NEWBIE_TAB_TITLE} />
           <Tab label={DICTIONARY.BUDDY_TAB_TITLE} />
         </Tabs>
-      </AppBar>
-
-      {updateTaskLoading && <LinearProgress />}
-
-      <TabPanel value={tabIndex} index={0}>
-        <TaskTabsContent
-          loading={loading}
-          tabIndex={tabIndex}
-          onChange={onTaskChange}
-          tasks={newbieTasks as Task[]}
+      </Header>
+      <Box component={'main'} data-testid='task-list-page'>
+        {updateTaskLoading && <LinearProgress />}
+        <TabPanel value={tabIndex} index={0}>
+          <TaskTabsContent
+            loading={loading}
+            tabIndex={tabIndex}
+            onChange={onTaskChange}
+            tasks={newbieTasks as Task[]}
+          />
+        </TabPanel>
+        <TabPanel value={tabIndex} index={1}>
+          <TaskTabsContent
+            tabIndex={tabIndex}
+            loading={loading}
+            onChange={onTaskChange}
+            tasks={buddyTasks as Task[]}
+          />
+        </TabPanel>
+        <PlusButton
+          title={DICTIONARY.PLUS_BUTTON_TITLE}
+          component={Link}
+          to={{ pathname, state: { tabIndex } }}
         />
-      </TabPanel>
-      <TabPanel value={tabIndex} index={1}>
-        <TaskTabsContent
-          tabIndex={tabIndex}
-          loading={loading}
-          onChange={onTaskChange}
-          tasks={buddyTasks as Task[]}
-        />
-      </TabPanel>
-      <PlusButton
-        title={DICTIONARY.PLUS_BUTTON_TITLE}
-        component={Link}
-        to={{ pathname, state: { tabIndex } }}
-      />
-    </Box>
+      </Box>
+    </>
   );
 };
 export default withSnackBar(TasksList);
