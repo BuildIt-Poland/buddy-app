@@ -3,6 +3,7 @@ import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/sty
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import MenuContext from 'contexts/MenuContext';
 import UserMenu from 'components/UserMenu';
+import { convertDirectionToAnchor } from 'utils';
 
 const drawerWidth = '28rem';
 
@@ -33,7 +34,7 @@ const AppWrapper: React.FC = props => {
       <nav>
         <SwipeableDrawer
           variant='temporary'
-          anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+          anchor={convertDirectionToAnchor(theme.direction)}
           open={isOpen}
           onOpen={toggleMenu}
           onClose={toggleMenu}
