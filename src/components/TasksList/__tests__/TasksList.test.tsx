@@ -55,6 +55,7 @@ describe('Component - TasksList', () => {
     };
 
     const newbieMockData = {
+      id: '11111',
       buddyTasks: [],
       newbieTasks: [],
     };
