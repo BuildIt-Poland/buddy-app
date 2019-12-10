@@ -55,7 +55,7 @@ const TasksList: React.FC = () => {
     <Box component='main' data-testid='task-list-page'>
       <NavBar type={'menu'} />
       <AppBar component='section' position='static' color='inherit'>
-        <AvatarHeader />
+        <AvatarHeader newbieId={newbieId} />
         <Tabs
           value={tabIndex}
           onChange={handleTabChange}

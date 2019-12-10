@@ -41,7 +41,10 @@ export const authMiddleware = async (
   info: GraphQLResolveInfo
 ): Promise<any> => {
   if (info.fieldName !== 'login' && info.parentType.name !== 'AuthPayload') {
-    if (info.operation.operation === 'mutation') {
+    if (
+      info.operation.operation === 'mutation' &&
+      info.operation.name.value !== 'updateTaskStatus'
+    ) {
       await isBuddyAuth(context);
     } else {
       auth(context);

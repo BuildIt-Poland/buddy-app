@@ -1,6 +1,6 @@
 import React from 'react';
-import { useParams, useHistory } from 'react-router';
-import { Box, createStyles, Theme } from '@material-ui/core';
+import { useHistory } from 'react-router';
+import { Box, createStyles } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useQuery } from '@apollo/react-hooks';
@@ -10,11 +10,11 @@ import { AVATAR_HEADER } from 'graphql/avatar-header.graphql';
 import { Query, QueryNewbieArgs } from 'buddy-app-schema';
 import { getProgressInPercentages } from 'utils';
 import { ROUTES } from 'shared/routes';
+import { AvatarHeaderProps } from './types';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles(() =>
   createStyles({
     background: {
-      background: theme.palette.background.paper,
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
@@ -24,10 +24,9 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const AvatarHeader: React.FC = () => {
+const AvatarHeader: React.FC<AvatarHeaderProps> = ({ newbieId }) => {
   const history = useHistory();
   const { background } = useStyles();
-  const { newbieId } = useParams<QueryNewbieArgs>();
 
   const { loading, data } = useQuery<Query, QueryNewbieArgs>(AVATAR_HEADER, {
     variables: { newbieId },
