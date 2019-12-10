@@ -80,9 +80,7 @@ const Root: React.FC = () => {
         <Route key={key} path={path} exact component={component} />
       ))}
       {hasError && <Route path={ROUTES.ERROR} exact component={ErrorPage} />}
-      {(!hasToken || isAuthenticated) && (
-        <Redirect to={{ pathname: redirectPath }} />
-      )}
+      {!hasToken && <Redirect to={{ pathname: redirectPath }} />}
     </Switch>
   );
 
@@ -90,9 +88,7 @@ const Root: React.FC = () => {
     <Switch>
       <Route path={ROUTES.LOGIN} exact component={Login} />
       {hasError && <Route path={ROUTES.ERROR} exact component={ErrorPage} />}
-      {(!hasToken || isAuthenticated) && (
-        <Redirect to={{ pathname: redirectPath }} />
-      )}
+      {!hasToken && <Redirect to={{ pathname: redirectPath }} />}
     </Switch>
   );
 
