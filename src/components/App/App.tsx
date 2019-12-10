@@ -6,8 +6,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import theme from 'styles/theme';
 import { apolloClient } from 'utils';
-import AuthStore from 'reducers/AuthStore';
-import SnackbarStore from 'reducers/SnackbarStore';
+import AuthStore from 'stores/AuthStore';
+import SnackbarStore from 'stores/SnackbarStore';
 import AppRouter from '../AppRouter';
 import SnackBar from '../SnackBar';
 

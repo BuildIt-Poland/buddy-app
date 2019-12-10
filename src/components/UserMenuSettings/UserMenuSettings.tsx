@@ -12,7 +12,7 @@ import {
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { UserMenuSettingsProps } from './types';
-import USER_MENU_SETTINGS_DICTIONARY from './userMenuSettings.dictionary';
+import USER_MENU_SETTINGS_DICTIONARY from './dictionary';
 
 const UserMenuSettings: React.FC<UserMenuSettingsProps> = props => {
   const {

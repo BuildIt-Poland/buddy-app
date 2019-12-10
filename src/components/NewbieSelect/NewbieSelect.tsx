@@ -10,7 +10,7 @@ import AppWrapper from 'components/AppWrapper';
 import NavBar from '../NavBar';
 import PlusButton from '../PlusButton';
 import Carrousel from '../Carrousel';
-import NewbieSelectDictionary from './newbieSelect.dictionary';
+import NewbieSelectDictionary from './dictionary';
 
 const NewbieSelect: React.FC = () => {
   const { data: AuthData } = useContext<AuthContextData>(AuthContext);

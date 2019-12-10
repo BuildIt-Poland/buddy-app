@@ -10,7 +10,7 @@ import {
   authContext,
 } from '__mocks__';
 import { ROUTES } from 'shared/routes';
-import AuthStore from 'reducers/AuthStore';
+import AuthStore from 'stores/AuthStore';
 import auth from 'utils/auth';
 import Login from '../Login';
 

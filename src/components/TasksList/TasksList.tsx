@@ -17,7 +17,7 @@ import TaskTabsContent from 'components/TaskTabsContent';
 import PlusButton from 'components/PlusButton';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { ROUTES } from 'shared/routes';
-import DICTIONARY from './taskList.dictionary';
+import DICTIONARY from './dictionary';
 
 const TasksList: React.FC = () => {
   const { newbieId } = useParams<QueryNewbieArgs>();

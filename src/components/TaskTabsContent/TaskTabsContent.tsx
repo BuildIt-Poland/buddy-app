@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TasksSubList, { TasksSubListProps } from '../TasksSubList';
 import { TaskTabsContentProps, TransformedTasks } from './types';
-import DICTIONARY from './taskTabsContent.dictionary';
+import DICTIONARY from './dictionary';
 
 const transformTasks = (tasks: TaskTabsContentProps['tasks']): TransformedTasks => {
   const emptyTransformedTasks = {

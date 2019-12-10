@@ -3,10 +3,10 @@ import { render, fireEvent, wait, cleanup } from '@testing-library/react';
 import { MockedProvider } from '@apollo/react-testing';
 import { MemoryRouter, Route } from 'react-router';
 import { addTaskSuccessMock, addTaskFailedMock } from '__mocks__';
-import SnackbarStore from 'reducers/SnackbarStore';
+import SnackbarStore from 'stores/SnackbarStore';
 import SnackBar from 'components/SnackBar';
 import AddTask from '../AddTask';
-import DICTIONARY from '../addTask.dictionary';
+import DICTIONARY from '../dictionary';
 
 describe('Component - AddTask', () => {
   const path = '/buddy/newbies/1234/add-task';

@@ -20,7 +20,7 @@ import BackgroundShape from '../BackgroundShape';
 import AppWrapper from '../AppWrapper';
 import TaskCheckbox from '../TaskCheckbox';
 import { TaskDetailsProps } from './types';
-import DICTIONARY from './taskDetails.dictionary';
+import DICTIONARY from './dictionary';
 
 const useStyles = makeStyles(theme => ({
   wrapper: {

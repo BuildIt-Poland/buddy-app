@@ -18,7 +18,7 @@ import BackgroundShape from '../BackgroundShape';
 import AppWrapper from '../AppWrapper';
 import RoundedButton from '../RoundedButton';
 import { AddTaskProps } from './types';
-import DICTIONARY from './addTask.dictionary';
+import DICTIONARY from './dictionary';
 
 const useStyles = makeStyles(theme => ({
   wrapper: {

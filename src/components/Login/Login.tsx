@@ -12,7 +12,7 @@ import Container from '@material-ui/core/Container';
 import RoundedButton from '../RoundedButton';
 import AlertDialog from '../AlertDialog';
 import BackgroundShape from '../BackgroundShape/';
-import DICTIONARY from './login.dictionary';
+import DICTIONARY from './dictionary';
 import { ErrorDialog, FormData } from './types';
 
 const useStyles = makeStyles(theme => ({
