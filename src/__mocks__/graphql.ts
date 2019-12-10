@@ -79,6 +79,7 @@ export const NewbieAvatarDetails = (variables?: QueryNewbieArgs) => ({
   result: {
     data: {
       newbie: {
+        id: '1',
         name: 'Tom Hanks',
         position: 'front-end',
         photo: 'some-url',
@@ -294,6 +295,13 @@ export const addTaskSuccessMock = (
       addNewbieTask: {
         id: 'ck3sw1h1mqkd90964u4675qo2',
         title: 'Test task',
+        newbie: {
+          id: '1',
+          newbieTasks: [],
+          tasksInfo: {
+            buddyProgress: '0.5',
+          },
+        },
         ...data,
       },
     },

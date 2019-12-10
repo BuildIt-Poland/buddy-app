@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { useQuery } from '@apollo/react-hooks';
 import Box from '@material-ui/core/Box';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { QueryBuddyArgs, Query, Newbie } from 'buddy-app-schema';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import { NEWBIE_SELECT } from 'graphql/newbie-select.graphql';
-import AppWrapper from 'components/AppWrapper';
-import NavBar from '../NavBar';
-import PlusButton from '../PlusButton';
-import Carrousel from '../Carrousel';
+import PlusButton from 'components/PlusButton';
+import Carrousel from 'components/Carrousel';
+import PageContainer from 'components/PageContainer';
+import Header from 'components/Header';
+import MenuContext from 'contexts/MenuContext';
 import NewbieSelectDictionary from './newbieSelect.dictionary';
 
 const NewbieSelect: React.FC = () => {
@@ -17,30 +17,28 @@ const NewbieSelect: React.FC = () => {
   const { loading, data } = useQuery<Query, QueryBuddyArgs>(NEWBIE_SELECT, {
     variables: { buddyId: AuthData.userId },
   });
+  const { toggleMenu } = React.useContext(MenuContext);
 
   return (
-    <AppWrapper data-testid='newbie-select-page'>
-      <NavBar type='menu' />
-      <Box marginBottom={5} component='section'>
-        <Typography component='h2' variant='h2'>
-          {NewbieSelectDictionary.TITLE}
-        </Typography>
-        <Typography color='textSecondary' component='p' variant='body2'>
-          {NewbieSelectDictionary.SUBTITLE}
-        </Typography>
-      </Box>
-      {loading && (
-        <Box marginBottom={2} component={'section'}>
-          <CircularProgress />
+    <>
+      <Header type={'menu'} onButtonClick={toggleMenu} />
+      <PageContainer loading={loading} data-testid='newbie-select-page'>
+        <Box marginBottom={5} component='section'>
+          <Typography component='h1' variant='h2'>
+            {NewbieSelectDictionary.TITLE}
+          </Typography>
+          <Typography color='textSecondary' component='p' variant='body2'>
+            {NewbieSelectDictionary.SUBTITLE}
+          </Typography>
         </Box>
-      )}
-      {data && data.buddy.newbies && (
-        <Box marginBottom={2} component={'section'}>
-          <Carrousel newbies={data.buddy.newbies as Newbie[]} />
-        </Box>
-      )}
-      <PlusButton disabled />
-    </AppWrapper>
+        {data && data.buddy.newbies && (
+          <Box marginBottom={2} component={'section'}>
+            <Carrousel newbies={data.buddy.newbies as Newbie[]} />
+          </Box>
+        )}
+        <PlusButton disabled />
+      </PageContainer>
+    </>
   );
 };
 

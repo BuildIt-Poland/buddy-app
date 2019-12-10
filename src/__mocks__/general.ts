@@ -18,6 +18,7 @@ export const getBasicUserDetailsMock = (role: UserRole = UserRole.Buddy) => ({
 });
 
 export const newbieTasksListMock = {
+  id: '33',
   buddyTasks: [
     {
       id: '1',

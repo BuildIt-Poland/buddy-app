@@ -6,8 +6,7 @@ import {
 } from 'buddy-app-schema';
 
 export type UserMenuProps = {
-  isMenuVisible: boolean;
-  onClose: () => void;
+  onCloseClick?: Function;
 };
 
 export type BasicDetailsParams = MutationDeleteNewbieArgs | MutationDeleteBuddyArgs;

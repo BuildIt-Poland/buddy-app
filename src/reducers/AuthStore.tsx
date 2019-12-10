@@ -56,9 +56,7 @@ const authReducer = (state: State, action: Action) => {
 const AuthStore = (props: AuthStoreProps): JSX.Element => {
   const [state, dispatch] = useReducer(authReducer, defaultState);
   const [loginMutation] = useMutation<Mutation>(LOGIN_MUTATION, {
-    onCompleted: ({ login }) => {
-      auth.setUser(login);
-    },
+    onCompleted: ({ login }) => auth.setUser(login),
   });
 
   const login = async (email: string, password: string) => {
