@@ -4,6 +4,7 @@ exports[`Component - Carrousel renders correctly Should render correctly Carrous
 <Grid
   className="makeStyles-carrousel-2"
   container={true}
+  justify="center"
   spacing={2}
   wrap="wrap"
 >

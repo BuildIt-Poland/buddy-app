@@ -3,12 +3,12 @@
 exports[`Component - ContactDetails when logged in as buddy renders correctly 1`] = `
 Array [
   <Header
+    loading={true}
     onButtonClick={[Function]}
     type="back"
   />,
   <PageContainer
     backGroundShape={true}
-    loading={true}
   >
     <Box>
       <Typography
@@ -25,12 +25,12 @@ Array [
 exports[`Component - ContactDetails when logged in as buddy renders correctly 2`] = `
 Array [
   <Header
+    loading={false}
     onButtonClick={[Function]}
     type="back"
   />,
   <PageContainer
     backGroundShape={true}
-    loading={false}
   >
     <Box>
       <Typography
@@ -39,20 +39,6 @@ Array [
       >
         Contact Details
       </Typography>
-      <UserDetails
-        details={
-          Object {
-            "email": "tom@wipro.com",
-            "name": "Tom Hanks",
-            "notes": "Nice guy",
-            "phoneNumber": "1234567",
-            "photo": "some-url",
-            "position": "Dev Ops",
-            "role": "NEWBIE",
-            "startDate": "2010-01-01",
-          }
-        }
-      />
     </Box>
   </PageContainer>,
 ]
@@ -61,12 +47,12 @@ Array [
 exports[`Component - ContactDetails when logged in as newbie renders correctly 1`] = `
 Array [
   <Header
+    loading={false}
     onButtonClick={[Function]}
     type="back"
   />,
   <PageContainer
     backGroundShape={true}
-    loading={false}
   >
     <Box>
       <Typography
@@ -75,19 +61,6 @@ Array [
       >
         Contact Details
       </Typography>
-      <UserDetails
-        details={
-          Object {
-            "email": "tom@wipro.com",
-            "name": "Tom Hanks",
-            "phoneNumber": "1234567",
-            "photo": "some-url",
-            "position": "Dev Ops",
-            "role": "BUDDY",
-            "startDate": "2010-01-01",
-          }
-        }
-      />
     </Box>
   </PageContainer>,
 ]
@@ -96,12 +69,12 @@ Array [
 exports[`Component - ContactDetails when logged in as newbie renders correctly 2`] = `
 Array [
   <Header
+    loading={false}
     onButtonClick={[Function]}
     type="back"
   />,
   <PageContainer
     backGroundShape={true}
-    loading={false}
   >
     <Box>
       <Typography
@@ -110,19 +83,6 @@ Array [
       >
         Contact Details
       </Typography>
-      <UserDetails
-        details={
-          Object {
-            "email": "tom@wipro.com",
-            "name": "Tom Hanks",
-            "phoneNumber": "1234567",
-            "photo": "some-url",
-            "position": "Dev Ops",
-            "role": "BUDDY",
-            "startDate": "2010-01-01",
-          }
-        }
-      />
     </Box>
   </PageContainer>,
 ]

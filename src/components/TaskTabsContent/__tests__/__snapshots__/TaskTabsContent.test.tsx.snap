@@ -4,7 +4,7 @@ exports[`Component - TaskTabsContent when is loading renders correctly 1`] = `<T
 
 exports[`Component - TaskTabsContent when is not loading when there are not tasks renders correctly 1`] = `
 <div
-  className="MuiBox-root MuiBox-root-2"
+  className="MuiBox-root MuiBox-root-3 makeStyles-emptyContainer-1"
 >
   <h2
     className="MuiTypography-root MuiTypography-h2"
@@ -13,9 +13,7 @@ exports[`Component - TaskTabsContent when is not loading when there are not task
   </h2>
   <p
     className="MuiTypography-root MuiTypography-body1"
-  >
-    You can always add a new task
-  </p>
+  />
 </div>
 `;
 

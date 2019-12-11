@@ -7,6 +7,10 @@ exports[`Component - Header should render Header with color paper 1`] = `
   component="header"
   position="sticky"
 >
+  <LinearProgress
+    className="makeStyles-hideLoading-7"
+    variant="indeterminate"
+  />
   <Toolbar>
     <IconButton
       className="makeStyles-menuButton-1"
@@ -21,11 +25,15 @@ exports[`Component - Header should render Header with color paper 1`] = `
 
 exports[`Component - Header should render Header with type back 1`] = `
 <AppBar
-  className="makeStyles-appBar-2 makeStyles-withoutShadow-3 makeStyles-defaultAppBarBackground-5"
+  className="makeStyles-appBar-2 makeStyles-defaultAppBarBackground-5 makeStyles-withoutShadow-3"
   color="inherit"
   component="header"
   position="sticky"
 >
+  <LinearProgress
+    className="makeStyles-hideLoading-7"
+    variant="indeterminate"
+  />
   <Toolbar>
     <IconButton
       className="makeStyles-menuButton-1"
@@ -40,11 +48,15 @@ exports[`Component - Header should render Header with type back 1`] = `
 
 exports[`Component - Header should render Header with type menu 1`] = `
 <AppBar
-  className="makeStyles-appBar-2 makeStyles-withoutShadow-3 makeStyles-defaultAppBarBackground-5"
+  className="makeStyles-appBar-2 makeStyles-defaultAppBarBackground-5 makeStyles-withoutShadow-3"
   color="inherit"
   component="header"
   position="sticky"
 >
+  <LinearProgress
+    className="makeStyles-hideLoading-7"
+    variant="indeterminate"
+  />
   <Toolbar>
     <IconButton
       className="makeStyles-menuButton-1"

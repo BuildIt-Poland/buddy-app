@@ -123,7 +123,7 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history }) => {
   return (
     <>
       <Header
-        type={MenuTypes.BACK}
+        type={'back' as MenuTypes}
         loading={loading || updateTaskLoading}
         onButtonClick={onBackClick}
       />

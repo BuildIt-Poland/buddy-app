@@ -3,13 +3,13 @@
 exports[`Component - TaskDetails renders correctly 1`] = `
 Array [
   <Header
+    loading={true}
     onButtonClick={[Function]}
     type="back"
   />,
   <PageContainer
     backGroundShape={true}
     data-testid="task-details-page"
-    loading={true}
   />,
 ]
 `;
@@ -17,13 +17,13 @@ Array [
 exports[`Component - TaskDetails renders correctly 2`] = `
 Array [
   <Header
+    loading={false}
     onButtonClick={[Function]}
     type="back"
   />,
   <PageContainer
     backGroundShape={true}
     data-testid="task-details-page"
-    loading={false}
   />,
 ]
 `;

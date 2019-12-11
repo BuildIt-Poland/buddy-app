@@ -3,16 +3,16 @@
 exports[`Component - NewbieSelect renders correctly 1`] = `
 Array [
   <Header
+    loading={true}
     onButtonClick={[Function]}
     type="menu"
   />,
   <PageContainer
     data-testid="newbie-select-page"
-    loading={true}
   >
     <Box
+      className="makeStyles-title-1"
       component="section"
-      marginBottom={5}
     >
       <Typography
         component="h1"
@@ -38,16 +38,16 @@ Array [
 exports[`Component - NewbieSelect renders correctly 2`] = `
 Array [
   <Header
+    loading={false}
     onButtonClick={[Function]}
     type="menu"
   />,
   <PageContainer
     data-testid="newbie-select-page"
-    loading={false}
   >
     <Box
+      className="makeStyles-title-1"
       component="section"
-      marginBottom={5}
     >
       <Typography
         component="h1"

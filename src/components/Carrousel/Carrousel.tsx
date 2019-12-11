@@ -32,7 +32,12 @@ const Carrousel: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
   const classes = useStyles();
 
   return (
-    <Grid container spacing={2} wrap={'wrap'} className={classes.carrousel}>
+    <Grid
+      container
+      spacing={2}
+      wrap={'wrap'}
+      justify='center'
+      className={classes.carrousel}>
       {newbies.map(newbie => {
         const startDate = new Date(newbie.startDate);
         return (

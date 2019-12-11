@@ -4,10 +4,13 @@ exports[`Component - TasksList When there are tasks renders correctly 1`] = `
 Array [
   <Header
     color="paper"
+    loading={true}
     onButtonClick={[Function]}
     type="back"
   >
-    <AvatarHeader />
+    <AvatarHeader
+      newbieId="1234"
+    />
     <Tabs
       centered={true}
       indicatorColor="primary"
@@ -81,10 +84,13 @@ exports[`Component - TasksList When there are tasks renders correctly 2`] = `
 Array [
   <Header
     color="paper"
+    loading={false}
     onButtonClick={[Function]}
     type="back"
   >
-    <AvatarHeader />
+    <AvatarHeader
+      newbieId="1234"
+    />
     <Tabs
       centered={true}
       indicatorColor="primary"
@@ -190,10 +196,13 @@ exports[`Component - TasksList when there are not tasks should render empty stat
 Array [
   <Header
     color="paper"
+    loading={false}
     onButtonClick={[Function]}
     type="back"
   >
-    <AvatarHeader />
+    <AvatarHeader
+      newbieId="1234"
+    />
     <Tabs
       centered={true}
       indicatorColor="primary"

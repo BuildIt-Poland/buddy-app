@@ -16,19 +16,16 @@ import DICTIONARY from './dictionary';
 import { ErrorDialog, FormData } from './types';
 
 const useStyles = makeStyles(theme => ({
-  title: {
-    marginTop: theme.spacing(8),
-  },
   spaceMan: {
     display: 'block',
     margin: '0 auto',
     marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 4),
+    margin: theme.spacing(3, 0),
   },
   container: {
-    marginTop: theme.spacing(9),
+    paddingTop: theme.spacing(10),
   },
 }));
 
@@ -72,11 +69,7 @@ const Login = () => {
       className={classes.container}
       component='main'
       maxWidth='md'>
-      <Typography
-        className={classes.title}
-        component='h1'
-        variant='h1'
-        align={'center'}>
+      <Typography component='h1' variant='h1' align='center'>
         {DICTIONARY.TITLE}
       </Typography>
       <SpaceManLogo className={classes.spaceMan} />
