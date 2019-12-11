@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - Header should render Header with color paper 1`] = `
+<AppBar
+  className="makeStyles-appBar-2 makeStyles-withoutShadow-3"
+  color="inherit"
+  component="header"
+  position="sticky"
+>
+  <Toolbar>
+    <IconButton
+      className="makeStyles-menuButton-1"
+      color="inherit"
+      edge="start"
+    >
+      <MenuIcon />
+    </IconButton>
+  </Toolbar>
+</AppBar>
+`;
+
+exports[`Component - Header should render Header with type back 1`] = `
+<AppBar
+  className="makeStyles-appBar-2 makeStyles-withoutShadow-3 makeStyles-defaultAppBarBackground-5"
+  color="inherit"
+  component="header"
+  position="sticky"
+>
+  <Toolbar>
+    <IconButton
+      className="makeStyles-menuButton-1"
+      color="inherit"
+      edge="start"
+    >
+      <ArrowBackIcon />
+    </IconButton>
+  </Toolbar>
+</AppBar>
+`;
+
+exports[`Component - Header should render Header with type menu 1`] = `
+<AppBar
+  className="makeStyles-appBar-2 makeStyles-withoutShadow-3 makeStyles-defaultAppBarBackground-5"
+  color="inherit"
+  component="header"
+  position="sticky"
+>
+  <Toolbar>
+    <IconButton
+      className="makeStyles-menuButton-1"
+      color="inherit"
+      edge="start"
+    >
+      <MenuIcon />
+    </IconButton>
+  </Toolbar>
+</AppBar>
+`;

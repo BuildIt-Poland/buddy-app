@@ -13,9 +13,8 @@ import {
 } from '@material-ui/core';
 import xss from 'dompurify';
 import { ADD_BUDDY_TASK, ADD_NEWBIE_TASK } from 'graphql/add-task.graphql';
-import NavBar from '../NavBar';
-import BackgroundShape from '../BackgroundShape';
-import AppWrapper from '../AppWrapper';
+import PageContainer from 'components/PageContainer';
+import Header from 'components/Header';
 import RoundedButton from '../RoundedButton';
 import { AddTaskProps } from './types';
 import DICTIONARY from './dictionary';
@@ -90,7 +89,7 @@ const AddTask: React.FC<AddTaskProps> = ({ history }) => {
   };
 
   const renderAddTask = () => (
-    <Box className={wrapper} data-testid='task-details-page'>
+    <Box className={wrapper}>
       <Box className={header}>
         <Typography component='h2' variant='h2'>
           {DICTIONARY.ADD_TASK_TITLE}
@@ -156,11 +155,12 @@ const AddTask: React.FC<AddTaskProps> = ({ history }) => {
   );
 
   return (
-    <AppWrapper data-testid='add-task-page'>
-      <NavBar type='back' onClick={onBackClick} />
-      {renderAddTask()}
-      <BackgroundShape />
-    </AppWrapper>
+    <>
+      <Header type={'back'} onButtonClick={onBackClick} />
+      <PageContainer backGroundShape data-testid='add-task-page'>
+        {renderAddTask()}
+      </PageContainer>
+    </>
   );
 };
 

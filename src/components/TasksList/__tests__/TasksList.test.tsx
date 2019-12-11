@@ -13,7 +13,7 @@ jest.mock('@material-ui/core/Tab', () => 'Tab');
 jest.mock('components/TabPanel', () => 'TabPanel');
 jest.mock('components/AvatarHeader', () => 'AvatarHeader');
 jest.mock('components/PlusButton', () => 'PlusButton');
-jest.mock('components/NavBar', () => 'NavBar');
+jest.mock('components/Header', () => 'Header');
 jest.mock('components/TaskListPlaceHolder', () => 'TaskListPlaceHolder');
 jest.mock('components/TaskTabsContent', () => 'TaskTabsContent');
 
@@ -54,6 +54,7 @@ describe('Component - TasksList', () => {
     };
 
     const newbieMockData = {
+      id: '11111',
       buddyTasks: [],
       newbieTasks: [],
     };

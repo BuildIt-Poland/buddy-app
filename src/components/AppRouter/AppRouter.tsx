@@ -4,6 +4,7 @@ import { ROUTES } from 'shared/routes';
 import { isNewbie } from 'utils';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import { auth } from 'utils';
+import AppWrapper from 'components/AppWrapper';
 import TaskDetails from '../TaskDetails';
 import Login from '../Login';
 import TasksList from '../TasksList';
@@ -73,22 +74,35 @@ const Root: React.FC = () => {
     ? ROUTES.NEWBIE_TASKS_LIST
     : ROUTES.BUDDY_SELECT_NEWBIE;
 
+  const RouterSwitcherAuthenticated = () => (
+    <Switch>
+      {routes.map(({ path, component }, key) => (
+        <Route key={key} path={path} exact component={component} />
+      ))}
+      {hasError && <Route path={ROUTES.ERROR} exact component={ErrorPage} />}
+      <Redirect to={{ pathname: redirectPath }} />
+    </Switch>
+  );
+
+  const RouterSwitcherNotAuthenticated = () => (
+    <Switch>
+      <Route path={ROUTES.LOGIN} exact component={Login} />
+      {hasError && <Route path={ROUTES.ERROR} exact component={ErrorPage} />}
+      {!hasToken && <Redirect to={{ pathname: redirectPath }} />}
+    </Switch>
+  );
+
   return (
     <BrowserRouter basename={ROUTES.BASE} data-testid={'root'}>
-      <Switch>
-        {isAuthenticated ? (
-          routes.map(({ path, component }, key) => (
-            <Route key={key} path={path} exact component={component} />
-          ))
-        ) : (
-          <Route path={ROUTES.LOGIN} exact component={Login} />
-        )}
-        {hasError && <Route path={ROUTES.ERROR} exact component={ErrorPage} />}
-        {(!hasToken || isAuthenticated) && (
-          <Redirect to={{ pathname: redirectPath }} />
-        )}
-      </Switch>
+      {isAuthenticated ? (
+        <AppWrapper>
+          <RouterSwitcherAuthenticated />
+        </AppWrapper>
+      ) : (
+        <RouterSwitcherNotAuthenticated />
+      )}
     </BrowserRouter>
   );
 };
+
 export default Root;

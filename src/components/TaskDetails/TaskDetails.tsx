@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import htmlParser from 'react-html-parser';
 import { makeStyles, Typography, Box, Chip } from '@material-ui/core';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { TASK_DETAILS } from 'graphql/task-details.graphql';
 import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
@@ -15,9 +14,8 @@ import {
   QueryNewbieArgs,
   Mutation,
 } from 'buddy-app-schema';
-import NavBar from '../NavBar';
-import BackgroundShape from '../BackgroundShape';
-import AppWrapper from '../AppWrapper';
+import PageContainer from 'components/PageContainer';
+import Header from 'components/Header';
 import TaskCheckbox from '../TaskCheckbox';
 import { TaskDetailsProps } from './types';
 import DICTIONARY from './dictionary';
@@ -36,12 +34,6 @@ const useStyles = makeStyles(theme => ({
     '& svg': {
       fontSize: theme.spacing(3),
     },
-  },
-  progress: {
-    position: 'fixed',
-    top: 0,
-    left: 0,
-    width: '100%',
   },
   status: {
     marginTop: theme.spacing(1),
@@ -70,7 +62,7 @@ const STATUS_TEXT = {
 
 const TaskDetails: React.FC<TaskDetailsProps> = ({ history }) => {
   const { taskId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
-  const { wrapper, header, checkbox, progress, status, description } = useStyles();
+  const { wrapper, header, checkbox, status, description } = useStyles();
   const { pathname, state } = useLocation();
   const { showSnackbar } = useContext<SnackbarContextData>(SnackbarContext);
 
@@ -129,14 +121,15 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history }) => {
   );
 
   return (
-    <AppWrapper data-testid='task-details-page'>
-      {(loading || updateTaskLoading) && (
-        <LinearProgress className={progress} color='secondary' />
-      )}
-      <NavBar type='back' onClick={onBackClick} />
-      {data && renderTaskDetails(data)}
-      <BackgroundShape />
-    </AppWrapper>
+    <>
+      <Header type={'back'} onButtonClick={onBackClick} />
+      <PageContainer
+        loading={loading || updateTaskLoading}
+        data-testid='task-details-page'
+        backGroundShape>
+        {data && renderTaskDetails(data)}
+      </PageContainer>
+    </>
   );
 };
 

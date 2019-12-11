@@ -1,120 +1,129 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - ContactDetails when logged in as buddy renders correctly 1`] = `
-<AppWrapper>
-  <NavBar
-    onClick={[Function]}
+Array [
+  <Header
+    onButtonClick={[Function]}
     type="back"
-  />
-  <Box
-    className="makeStyles-loader-1"
+  />,
+  <PageContainer
+    backGroundShape={true}
+    loading={true}
   >
-    <CircularProgress
-      data-testid="slide-menu-loader"
-    />
-  </Box>
-  <Box>
-    <Typography
-      component="h2"
-      variant="h2"
-    >
-      Contact Details
-    </Typography>
-  </Box>
-  <BackgroundShape />
-</AppWrapper>
+    <Box>
+      <Typography
+        component="h2"
+        variant="h2"
+      >
+        Contact Details
+      </Typography>
+    </Box>
+  </PageContainer>,
+]
 `;
 
 exports[`Component - ContactDetails when logged in as buddy renders correctly 2`] = `
-<AppWrapper>
-  <NavBar
-    onClick={[Function]}
+Array [
+  <Header
+    onButtonClick={[Function]}
     type="back"
-  />
-  <Box>
-    <Typography
-      component="h2"
-      variant="h2"
-    >
-      Contact Details
-    </Typography>
-    <UserDetails
-      details={
-        Object {
-          "email": "tom@wipro.com",
-          "name": "Tom Hanks",
-          "notes": "Nice guy",
-          "phoneNumber": "1234567",
-          "photo": "some-url",
-          "position": "Dev Ops",
-          "role": "NEWBIE",
-          "startDate": "2010-01-01",
+  />,
+  <PageContainer
+    backGroundShape={true}
+    loading={false}
+  >
+    <Box>
+      <Typography
+        component="h2"
+        variant="h2"
+      >
+        Contact Details
+      </Typography>
+      <UserDetails
+        details={
+          Object {
+            "email": "tom@wipro.com",
+            "name": "Tom Hanks",
+            "notes": "Nice guy",
+            "phoneNumber": "1234567",
+            "photo": "some-url",
+            "position": "Dev Ops",
+            "role": "NEWBIE",
+            "startDate": "2010-01-01",
+          }
         }
-      }
-    />
-  </Box>
-  <BackgroundShape />
-</AppWrapper>
+      />
+    </Box>
+  </PageContainer>,
+]
 `;
 
 exports[`Component - ContactDetails when logged in as newbie renders correctly 1`] = `
-<AppWrapper>
-  <NavBar
-    onClick={[Function]}
+Array [
+  <Header
+    onButtonClick={[Function]}
     type="back"
-  />
-  <Box>
-    <Typography
-      component="h2"
-      variant="h2"
-    >
-      Contact Details
-    </Typography>
-    <UserDetails
-      details={
-        Object {
-          "email": "tom@wipro.com",
-          "name": "Tom Hanks",
-          "phoneNumber": "1234567",
-          "photo": "some-url",
-          "position": "Dev Ops",
-          "role": "BUDDY",
-          "startDate": "2010-01-01",
+  />,
+  <PageContainer
+    backGroundShape={true}
+    loading={false}
+  >
+    <Box>
+      <Typography
+        component="h2"
+        variant="h2"
+      >
+        Contact Details
+      </Typography>
+      <UserDetails
+        details={
+          Object {
+            "email": "tom@wipro.com",
+            "name": "Tom Hanks",
+            "phoneNumber": "1234567",
+            "photo": "some-url",
+            "position": "Dev Ops",
+            "role": "BUDDY",
+            "startDate": "2010-01-01",
+          }
         }
-      }
-    />
-  </Box>
-  <BackgroundShape />
-</AppWrapper>
+      />
+    </Box>
+  </PageContainer>,
+]
 `;
 
 exports[`Component - ContactDetails when logged in as newbie renders correctly 2`] = `
-<AppWrapper>
-  <NavBar
-    onClick={[Function]}
+Array [
+  <Header
+    onButtonClick={[Function]}
     type="back"
-  />
-  <Box>
-    <Typography
-      component="h2"
-      variant="h2"
-    >
-      Contact Details
-    </Typography>
-    <UserDetails
-      details={
-        Object {
-          "email": "tom@wipro.com",
-          "name": "Tom Hanks",
-          "phoneNumber": "1234567",
-          "photo": "some-url",
-          "position": "Dev Ops",
-          "role": "BUDDY",
-          "startDate": "2010-01-01",
+  />,
+  <PageContainer
+    backGroundShape={true}
+    loading={false}
+  >
+    <Box>
+      <Typography
+        component="h2"
+        variant="h2"
+      >
+        Contact Details
+      </Typography>
+      <UserDetails
+        details={
+          Object {
+            "email": "tom@wipro.com",
+            "name": "Tom Hanks",
+            "phoneNumber": "1234567",
+            "photo": "some-url",
+            "position": "Dev Ops",
+            "role": "BUDDY",
+            "startDate": "2010-01-01",
+          }
         }
-      }
-    />
-  </Box>
-  <BackgroundShape />
-</AppWrapper>
+      />
+    </Box>
+  </PageContainer>,
+]
 `;

@@ -1,8 +1,10 @@
 import { ReactElement } from 'react';
 
-export interface NavBarProps {
+export interface HeaderProps {
   type: 'menu' | 'back';
-  onClick?: () => void;
+  onButtonClick?: () => void;
+  children?: React.ReactNode;
+  color?: 'default' | 'paper';
 }
 
 export interface NavBarButton {

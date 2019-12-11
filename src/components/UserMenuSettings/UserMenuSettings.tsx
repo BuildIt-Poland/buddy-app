@@ -43,7 +43,7 @@ const UserMenuSettings: React.FC<UserMenuSettingsProps> = props => {
           />
         </ListItemSecondaryAction>
       </ListItem>
-      <ListItem button onClick={onLogoutClick}>
+      <ListItem data-testid='user-menu-logout-btn' button onClick={onLogoutClick}>
         <ListItemIcon>
           <ExitToAppIcon />
         </ListItemIcon>
