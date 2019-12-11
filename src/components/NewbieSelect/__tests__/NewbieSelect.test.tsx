@@ -6,13 +6,11 @@ import { newbieSelectMock } from '__mocks__';
 import NewbieSelect from '../NewbieSelect';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
-jest.mock('components/NavBar', () => 'Navbar');
+jest.mock('components/Header', () => 'Header');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('components/PlusButton/', () => 'PlusButton');
 jest.mock('components/Carrousel/', () => 'Carrousel');
-jest.mock('components/BackgroundShape/', () => 'BackgroundShape');
-jest.mock('components/AppWrapper', () => 'AppWrapper');
-jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
+jest.mock('components/PageContainer/', () => 'PageContainer');
 
 describe('Component - NewbieSelect', () => {
   it('renders correctly', async () => {

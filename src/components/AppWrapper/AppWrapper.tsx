@@ -1,30 +1,60 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import { makeStyles, useTheme, Theme, createStyles } from '@material-ui/core/styles';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import MenuContext from 'contexts/MenuContext';
+import UserMenu from 'components/UserMenu';
+import { convertDirectionToAnchor } from 'utils';
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    height: '100%',
-    [theme.breakpoints.down('sm')]: {
-      paddingTop: theme.spacing(7),
-    },
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(8),
-    },
-  },
-}));
+const drawerWidth = '28rem';
 
-const AppWrapper: React.FC = ({ children, ...props }) => {
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      display: 'flex',
+      height: '100%',
+    },
+    drawerPaper: {
+      width: drawerWidth,
+    },
+    content: {
+      flexGrow: 1,
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'column',
+      '& > main': {
+        flex: 1,
+      },
+    },
+    drawerHeader: theme.mixins.toolbar,
+  })
+);
+
+const AppWrapper: React.FC = props => {
+  const { children } = props;
   const classes = useStyles();
+  const theme = useTheme();
+  const { isOpen, toggleMenu } = React.useContext(MenuContext);
 
   return (
-    <Container
-      component={'main'}
-      maxWidth={'md'}
-      className={classes.root}
-      {...props}>
-      {children}
-    </Container>
+    <div className={classes.root}>
+      <nav>
+        <SwipeableDrawer
+          variant='temporary'
+          anchor={convertDirectionToAnchor(theme.direction)}
+          open={isOpen}
+          onOpen={toggleMenu}
+          onClose={toggleMenu}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+          ModalProps={{
+            keepMounted: true,
+          }}>
+          <UserMenu onCloseClick={toggleMenu} />
+        </SwipeableDrawer>
+      </nav>
+      <div className={classes.content}>{children}</div>
+    </div>
   );
 };
 

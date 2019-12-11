@@ -1,23 +1,20 @@
 import React from 'react';
-import { act } from 'react-test-renderer';
 import UserMenu from 'components/UserMenu';
 import { MemoryRouter, Route } from 'react-router';
 import { buddyMenuDetails, newbieMenuDetails, UserRole } from '__mocks__';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import waitForExpect from 'wait-for-expect';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import { MockedProvider } from '@apollo/react-testing';
-jest.mock('@material-ui/core/IconButton', () => 'IconButton');
-jest.mock('@material-ui/icons/Close', () => 'CloseIcon');
-jest.mock('@material-ui/core/Box', () => 'Box');
-jest.mock('@material-ui/core/Drawer', () => 'Drawer');
-jest.mock('@material-ui/core/Divider', () => 'Divider');
-jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
-jest.mock('components/UserMenuDetails/UserMenuDetails', () => 'UserMenuDetails');
-jest.mock('components/UserMenuBuddy/UserMenuBuddy', () => 'UserMenuBuddy');
-jest.mock('components/UserMenuNewbies/UserMenuNewbies', () => 'UserMenuNewbies');
-jest.mock('components/UserMenuSettings/UserMenuSettings', () => 'UserMenuSettings');
-jest.mock('components/UserMenuSettings/UserMenuSettings', () => 'UserMenuSettings');
+
+jest.mock('@material-ui/core/Box', () => 'mock-box');
+jest.mock('@material-ui/core/Drawer', () => 'mock-drawer');
+jest.mock('@material-ui/core/Divider', () => 'mock-divider');
+jest.mock('@material-ui/core/CircularProgress', () => 'mock-circular-progress');
+jest.mock('components/UserMenuDetails', () => 'mock-menu-details');
+jest.mock('components/UserMenuBuddy', () => 'mock-user-menu-buddy');
+jest.mock('components/UserMenuNewbies', () => 'mock-user-newbies');
+jest.mock('components/UserMenuSettings', () => 'mock-user-settings');
 
 describe('UserMenu component', () => {
   describe('when logged in as buddy', () => {
@@ -39,7 +36,7 @@ describe('UserMenu component', () => {
               mocks={buddyMenuDetails({ buddyId: '1234' })}
               addTypename={false}>
               <Route path={path}>
-                <UserMenu isMenuVisible={true} onClose={onCloseMock} />
+                <UserMenu isMenuVisible={true} onCloseClick={onCloseMock} />
               </Route>
             </MockedProvider>
           </AuthContext.Provider>
@@ -54,15 +51,6 @@ describe('UserMenu component', () => {
       await act(async () => {
         await waitForExpect(() => {
           expect(getByTestId('slide-menu-body')).toBeInTheDocument();
-        });
-      });
-    });
-    it('onClose method is called when close btn is clicked', async () => {
-      await act(async () => {
-        await waitForExpect(() => {
-          expect(getByTestId('slide-menu-close-btn')).toBeInTheDocument();
-          fireEvent.click(getByTestId('slide-menu-close-btn'));
-          expect(onCloseMock).toHaveBeenCalledTimes(1);
         });
       });
     });
@@ -86,7 +74,7 @@ describe('UserMenu component', () => {
               mocks={newbieMenuDetails({ newbieId: '1234' })}
               addTypename={false}>
               <Route path={path}>
-                <UserMenu isMenuVisible={true} onClose={onCloseMock} />
+                <UserMenu isMenuVisible={true} onCloseClick={onCloseMock} />
               </Route>
             </MockedProvider>
           </AuthContext.Provider>

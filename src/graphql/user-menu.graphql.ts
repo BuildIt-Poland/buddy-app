@@ -3,6 +3,7 @@ import { gql } from 'apollo-boost';
 export const BUDDY_MENU_DETAILS = gql`
   query getBuddyMenuDetails($buddyId: ID!) {
     buddy(buddyId: $buddyId) {
+      id
       name
       email
       allowPushedNotifications
@@ -19,6 +20,7 @@ export const BUDDY_MENU_DETAILS = gql`
 export const NEWBIE_MENU_DETAILS = gql`
   query getNewbieMenuDetails($newbieId: ID!) {
     newbie(newbieId: $newbieId) {
+      id
       name
       email
       allowPushedNotifications

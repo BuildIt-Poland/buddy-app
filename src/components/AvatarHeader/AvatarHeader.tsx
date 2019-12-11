@@ -1,6 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { Box, createStyles } from '@material-ui/core';
+import { Box, createStyles, Theme } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useQuery } from '@apollo/react-hooks';
@@ -12,14 +12,14 @@ import { getProgressInPercentages } from 'utils';
 import { ROUTES } from 'shared/routes';
 import { AvatarHeaderProps } from './types';
 
-const useStyles = makeStyles(() =>
+const useStyles = makeStyles<Theme>(theme =>
   createStyles({
     background: {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
       width: '100%',
-      minHeight: '30rem',
+      minHeight: theme.spacing(20),
     },
   })
 );
@@ -38,7 +38,7 @@ const AvatarHeader: React.FC<AvatarHeaderProps> = ({ newbieId }) => {
 
   return (
     <Box className={background} data-testid='avatar-header'>
-      {data && (
+      {data && !loading && (
         <Avatar
           name={data.newbie.name}
           imgSrc={data.newbie.photo}

@@ -1,35 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - TaskDetails renders correctly 1`] = `
-<AppWrapper
-  data-testid="task-details-page"
->
-  <div
-    className="MuiLinearProgress-root MuiLinearProgress-colorSecondary makeStyles-progress-4 MuiLinearProgress-indeterminate"
-    role="progressbar"
-  >
-    <div
-      className="MuiLinearProgress-bar MuiLinearProgress-barColorSecondary MuiLinearProgress-bar1Indeterminate"
-      style={Object {}}
-    />
-    <div
-      className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorSecondary"
-      style={Object {}}
-    />
-  </div>
-  <NavBar
-    onClick={[Function]}
+Array [
+  <Header
+    onButtonClick={[Function]}
     type="back"
-  />
-  <svg
-    className="makeStyles-background-28"
-  >
-    <ellipse
-      cx="70%"
-      cy="300"
-      rx="75%"
-      ry="227"
-    />
-  </svg>
-</AppWrapper>
+  />,
+  <PageContainer
+    backGroundShape={true}
+    data-testid="task-details-page"
+    loading={true}
+  />,
+]
+`;
+
+exports[`Component - TaskDetails renders correctly 2`] = `
+Array [
+  <Header
+    onButtonClick={[Function]}
+    type="back"
+  />,
+  <PageContainer
+    backGroundShape={true}
+    data-testid="task-details-page"
+    loading={false}
+  />,
+]
 `;

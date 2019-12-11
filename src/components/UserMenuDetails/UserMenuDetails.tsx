@@ -6,8 +6,7 @@ import { UserMenuDetailsProps } from './types';
 
 const useStyles = makeStyles({
   wrapper: {
-    paddingLeft: theme.spacing(2),
-    paddingBottom: theme.spacing(2),
+    padding: theme.spacing(2),
     alignItems: 'flex-start',
     display: 'flex',
     flexDirection: 'column',

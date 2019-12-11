@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - PageContainer when is loading renders correctly 1`] = `
+Array [
+  <LinearProgress
+    className="makeStyles-linearProgress-3"
+    color="primary"
+    variant="indeterminate"
+  />,
+  <Container
+    className="makeStyles-container-1"
+    component="main"
+    maxWidth="md"
+  >
+    hello world
+  </Container>,
+]
+`;
+
+exports[`Component - PageContainer when is not loading renders correctly 1`] = `
+Array [
+  <LinearProgress
+    className="makeStyles-linearProgress-3 makeStyles-hideLoading-2"
+    color="primary"
+    variant="indeterminate"
+  />,
+  <Container
+    className="makeStyles-container-1"
+    component="main"
+    maxWidth="md"
+  >
+    hello world
+  </Container>,
+]
+`;

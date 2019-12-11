@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -11,7 +10,7 @@ import { ROUTES } from 'shared/routes';
 import Avatar from 'components/Avatar';
 import { getProgressInPercentages } from 'utils';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles<Theme>(theme => ({
   carrouselElement: {
     height: '30rem',
     width: '20rem',
@@ -31,14 +30,9 @@ const useStyles = makeStyles(theme => ({
 
 const Carrousel: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
   const classes = useStyles();
-  const breakpointSm = useMediaQuery<Theme>(theme => theme.breakpoints.down('xs'));
 
   return (
-    <Grid
-      container
-      spacing={2}
-      wrap={breakpointSm ? 'nowrap' : 'wrap'}
-      className={classes.carrousel}>
+    <Grid container spacing={2} wrap={'wrap'} className={classes.carrousel}>
       {newbies.map(newbie => {
         const startDate = new Date(newbie.startDate);
         return (
