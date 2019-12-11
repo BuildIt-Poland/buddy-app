@@ -6,9 +6,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import theme from 'styles/theme';
 import { apolloClient } from 'utils';
-import AuthStore from 'reducers/AuthStore';
-import MenuStore from 'reducers/MenuStore';
+import AuthStore from 'stores/AuthStore';
+import MenuStore from 'stores/MenuStore';
+import SnackbarStore from 'stores/SnackbarStore';
 import AppRouter from '../AppRouter';
+import SnackBar from '../SnackBar';
 
 const App: React.FC = () => {
   return (
@@ -16,8 +18,11 @@ const App: React.FC = () => {
       <ThemeProvider theme={theme}>
         <AuthStore>
           <MenuStore>
-            <CssBaseline />
-            <AppRouter />
+            <SnackbarStore>
+              <CssBaseline />
+              <AppRouter />
+              <SnackBar />
+            </SnackbarStore>
           </MenuStore>
         </AuthStore>
       </ThemeProvider>

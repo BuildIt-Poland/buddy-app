@@ -10,7 +10,7 @@ import Carrousel from 'components/Carrousel';
 import PageContainer from 'components/PageContainer';
 import Header from 'components/Header';
 import MenuContext from 'contexts/MenuContext';
-import NewbieSelectDictionary from './newbieSelect.dictionary';
+import NewbieSelectDictionary from './dictionary';
 
 const NewbieSelect: React.FC = () => {
   const { data: AuthData } = useContext<AuthContextData>(AuthContext);

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TabPanel from 'components/TabPanel';
 import AvatarHeader from 'components/AvatarHeader';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
 import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
 import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
@@ -12,18 +13,18 @@ import { useParams, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import TaskTabsContent from 'components/TaskTabsContent';
 import PlusButton from 'components/PlusButton';
-import withSnackBar from 'decorators/withSnackBar';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { ROUTES } from 'shared/routes';
-import Header from 'components/Header/Header';
-import DICTIONARY from './taskList.dictionary';
-import { TaskListProps } from './types';
+import Header from 'components/Header';
+import DICTIONARY from './dictionary';
 
-const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
+const TasksList: React.FC = () => {
   const { newbieId } = useParams<QueryNewbieArgs>();
   const { state } = useLocation();
+  const history = useHistory();
   const defaultTabIndex = (state && state.defaultTabIndex) || 0;
   const [tabIndex, setTabIndex] = React.useState(defaultTabIndex);
+  const { showSnackbar } = useContext<SnackbarContextData>(SnackbarContext);
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) =>
     setTabIndex(newValue);
@@ -45,9 +46,8 @@ const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
       updateTaskStatus({ variables: { taskId } });
     }
   };
-  const history = useHistory();
 
-  const handleOnBackClick = () => {
+  const onBackClick = () => {
     history.push(ROUTES.BUDDY_SELECT_NEWBIE);
   };
 
@@ -57,7 +57,7 @@ const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
 
   return (
     <>
-      <Header type={'back'} color={'paper'} onButtonClick={handleOnBackClick}>
+      <Header type={'back'} color={'paper'} onButtonClick={onBackClick}>
         <AvatarHeader />
         <Tabs
           centered
@@ -97,4 +97,4 @@ const TasksList: React.FC<TaskListProps> = ({ showSnackbar }) => {
     </>
   );
 };
-export default withSnackBar(TasksList);
+export default TasksList;

@@ -7,8 +7,6 @@ import waitForExpect from 'wait-for-expect';
 import { render, fireEvent, act } from '@testing-library/react';
 import { MockedProvider } from '@apollo/react-testing';
 
-jest.mock('@material-ui/core/IconButton', () => 'mock-icon-button');
-jest.mock('@material-ui/icons/Close', () => 'mock-close-icon');
 jest.mock('@material-ui/core/Box', () => 'mock-box');
 jest.mock('@material-ui/core/Drawer', () => 'mock-drawer');
 jest.mock('@material-ui/core/Divider', () => 'mock-divider');
@@ -53,15 +51,6 @@ describe('UserMenu component', () => {
       await act(async () => {
         await waitForExpect(() => {
           expect(getByTestId('slide-menu-body')).toBeInTheDocument();
-        });
-      });
-    });
-    it('onClose method is called when close btn is clicked', async () => {
-      await act(async () => {
-        await waitForExpect(() => {
-          expect(getByTestId('slide-menu-close-btn')).toBeInTheDocument();
-          fireEvent.click(getByTestId('slide-menu-close-btn'));
-          expect(onCloseMock).toHaveBeenCalledTimes(1);
         });
       });
     });

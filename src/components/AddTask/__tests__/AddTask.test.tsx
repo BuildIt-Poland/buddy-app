@@ -3,8 +3,10 @@ import { render, fireEvent, wait, cleanup } from '@testing-library/react';
 import { MockedProvider } from '@apollo/react-testing';
 import { MemoryRouter, Route } from 'react-router';
 import { addTaskSuccessMock, addTaskFailedMock } from '__mocks__';
+import SnackbarStore from 'stores/SnackbarStore';
+import SnackBar from 'components/SnackBar';
 import AddTask from '../AddTask';
-import DICTIONARY from '../addTask.dictionary';
+import DICTIONARY from '../dictionary';
 
 describe('Component - AddTask', () => {
   const path = '/buddy/newbies/1234/add-task';
@@ -14,7 +16,10 @@ describe('Component - AddTask', () => {
       <MockedProvider mocks={[mocks]} addTypename={false}>
         <MemoryRouter initialEntries={[path]}>
           <Route path={'/buddy/newbies/:newbieId/add-task'}>
-            <AddTask />
+            <SnackbarStore>
+              <AddTask />
+              <SnackBar />
+            </SnackbarStore>
           </Route>
         </MemoryRouter>
       </MockedProvider>
@@ -43,9 +48,6 @@ describe('Component - AddTask', () => {
       it('should render success dialog', async () => {
         const { getByTestId } = triggerAddTask(addTaskSuccessMock());
         await wait(() => {
-          expect(getByTestId('snack-bar')).toHaveTextContent(
-            DICTIONARY.SUCCESS_MESSAGE
-          );
           expect(getByTestId('snack-bar')).toBeInTheDocument();
         });
       });

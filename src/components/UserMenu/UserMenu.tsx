@@ -1,9 +1,7 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
-import CloseIcon from '@material-ui/icons/Close';
 import Box from '@material-ui/core/Box';
-import IconButton from '@material-ui/core/IconButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useQuery } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
@@ -22,10 +20,7 @@ const useStyles = makeStyles(theme => ({
   list: {
     display: 'flex',
     flexDirection: 'column',
-  },
-  closeBtn: {
-    alignSelf: 'flex-end',
-    zIndex: theme.zIndex.base,
+    paddingBottom: theme.spacing(2),
   },
   loader: {
     display: 'flex',
@@ -38,7 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
   const history = useHistory();
-  const { list, closeBtn, loader } = useStyles();
+  const { list, loader } = useStyles();
   const { data: AuthData, logout } = useContext<AuthContextData>(AuthContext);
   const { userId, role } = AuthData;
 
@@ -52,18 +47,12 @@ const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
 
   const selectNewbie = (id: string) => {
     history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', id));
-    fireOnCloseClickEvent();
+    onCloseClick && onCloseClick();
   };
 
   const selectBuddy = (id: string) => {
     history.push(ROUTES.NEWBIE_BUDDY_DETAILS.replace(':buddyId', id));
-    fireOnCloseClickEvent();
-  };
-
-  const fireOnCloseClickEvent = () => {
-    if (onCloseClick) {
-      onCloseClick();
-    }
+    onCloseClick && onCloseClick();
   };
 
   const { query, variables } = getQueryByRole(role, userId) || {};
@@ -76,16 +65,6 @@ const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
     <Box className={list}>
       {user && (
         <Box data-testid='slide-menu-body'>
-          {onCloseClick && (
-            <Box display='flex' justifyContent='flex-end'>
-              <IconButton
-                onClick={fireOnCloseClickEvent}
-                className={closeBtn}
-                data-testid='slide-menu-close-btn'>
-                <CloseIcon />
-              </IconButton>
-            </Box>
-          )}
           <UserMenuDetails user={user} />
           <Divider />
           {isBuddy(role) && (
