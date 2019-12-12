@@ -6,7 +6,6 @@ import { newbieSelectMock } from '__mocks__';
 import NewbieSelect from '../NewbieSelect';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
-jest.mock('components/Header', () => 'Header');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('components/PlusButton/', () => 'PlusButton');
 jest.mock('components/Carrousel/', () => 'Carrousel');

@@ -7,7 +7,6 @@ import { taskListResponse, newbieTasksListMock } from '__mocks__';
 import TasksList from '../NewbieTasksList';
 
 jest.mock('components/AvatarHeader', () => 'AvatarHeader');
-jest.mock('components/Header', () => 'Header');
 jest.mock('components/TaskTabsContent', () => 'TaskTabsContent');
 
 describe('Component - TasksList', () => {

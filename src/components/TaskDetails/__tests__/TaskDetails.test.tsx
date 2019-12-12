@@ -8,7 +8,6 @@ import waitForExpect from 'wait-for-expect';
 import TaskDetails from '../TaskDetails';
 
 jest.mock('components/PageContainer', () => 'PageContainer');
-jest.mock('components/Header', () => 'Header');
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
 jest.mock('components/TaskCheckbox', () => 'TaskCheckbox');
 jest.mock('@material-ui/core/Box', () => 'Box');

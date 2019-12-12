@@ -41,9 +41,9 @@ const NewbieTasksList: React.FC = () => {
   return (
     <>
       <Header
-        type={'menu' as MenuTypes}
-        color={'paper' as MenuColors}
-        shape={'rounded' as MenuShapes}
+        type={MenuTypes.MENU}
+        color={MenuColors.PAPER}
+        shape={MenuShapes.ROUNDED}
         loading={loading || updateTaskLoading}
         onButtonClick={toggleMenu}>
         <AvatarHeader newbieId={newbieId} />

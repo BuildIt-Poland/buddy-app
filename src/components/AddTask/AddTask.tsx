@@ -156,7 +156,7 @@ const AddTask: React.FC<AddTaskProps> = ({ history }) => {
 
   return (
     <>
-      <Header type={'back' as MenuTypes} onButtonClick={onBackClick} />
+      <Header type={MenuTypes.BACK} onButtonClick={onBackClick} />
       <PageContainer backGroundShape data-testid='add-task-page'>
         {renderAddTask()}
       </PageContainer>
