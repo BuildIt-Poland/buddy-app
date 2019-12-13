@@ -3,13 +3,13 @@
 exports[`Component - NewbieSelect renders correctly 1`] = `
 Array [
   <header
-    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-4 makeStyles-defaultAppBarBackground-6 makeStyles-withoutShadow-5"
+    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-2 makeStyles-defaultAppBarBackground-4 makeStyles-withoutShadow-3"
   >
     <div
       className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
     >
       <button
-        className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-3 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+        className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-1 MuiIconButton-colorInherit MuiIconButton-edgeStart"
         disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
@@ -44,7 +44,7 @@ Array [
       </button>
     </div>
     <div
-      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-8 MuiLinearProgress-indeterminate"
+      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 MuiLinearProgress-indeterminate"
       role="progressbar"
     >
       <div
@@ -57,15 +57,15 @@ Array [
       />
     </div>
     <Box
-      className="makeStyles-paperAppBarBackground-7"
+      className="makeStyles-paperAppBarBackground-5"
     />
   </header>,
   <PageContainer
     data-testid="newbie-select-page"
   >
     <Box
-      className="makeStyles-title-1"
       component="section"
+      marginBottom={5}
     >
       <Typography
         component="h1"
@@ -91,13 +91,13 @@ Array [
 exports[`Component - NewbieSelect renders correctly 2`] = `
 Array [
   <header
-    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-4 makeStyles-defaultAppBarBackground-6 makeStyles-withoutShadow-5"
+    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-2 makeStyles-defaultAppBarBackground-4 makeStyles-withoutShadow-3"
   >
     <div
       className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
     >
       <button
-        className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-3 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+        className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-1 MuiIconButton-colorInherit MuiIconButton-edgeStart"
         disabled={false}
         onBlur={[Function]}
         onClick={[Function]}
@@ -135,15 +135,15 @@ Array [
       </button>
     </div>
     <Box
-      className="makeStyles-paperAppBarBackground-7"
+      className="makeStyles-paperAppBarBackground-5"
     />
   </header>,
   <PageContainer
     data-testid="newbie-select-page"
   >
     <Box
-      className="makeStyles-title-1"
       component="section"
+      marginBottom={5}
     >
       <Typography
         component="h1"
