@@ -8,6 +8,8 @@ jest.mock('@material-ui/core/ListItem', () => 'ListItem');
 jest.mock('@material-ui/core/ListItemIcon', () => 'ListItemIcon');
 jest.mock('@material-ui/core/ListItemText', () => 'ListItemText');
 jest.mock('@material-ui/core/Checkbox', () => 'Checkbox');
+jest.mock('@material-ui/core/CheckCircle', () => 'CheckCircle');
+jest.mock('@material-ui/core/RadioButtonUnchecked', () => 'RadioButtonUnchecked');
 
 describe('Component - TaskCheckbox', () => {
   const { Uncompleted, Completed } = TaskStatus;

@@ -25,7 +25,9 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(3, 0),
   },
   container: {
-    paddingTop: theme.spacing(10),
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
 }));
 
