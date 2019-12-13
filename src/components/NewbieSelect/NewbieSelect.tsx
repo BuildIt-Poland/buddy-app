@@ -34,7 +34,7 @@ const NewbieSelect: React.FC = () => {
   return (
     <>
       <Header type={MenuTypes.MENU} onButtonClick={toggleMenu} loading={loading} />
-      <PageContainer data-testid='newbie-select-page'>
+      <PageContainer data-testid='newbie-select-page' backGroundShape>
         <Box className={title} component='section'>
           <Typography component='h1' variant='h2'>
             {NewbieSelectDictionary.TITLE}

@@ -19,7 +19,11 @@ const PageContainer: React.FC<PageContainerProps> = props => {
   const classes = useStyles();
   const { children, backGroundShape, ...args } = props;
   return (
-    <Container component={'main'} className={classes.container} {...args}>
+    <Container
+      component={'main'}
+      maxWidth={false}
+      className={classes.container}
+      {...args}>
       {children}
       {backGroundShape && <BackgroundShape />}
     </Container>
