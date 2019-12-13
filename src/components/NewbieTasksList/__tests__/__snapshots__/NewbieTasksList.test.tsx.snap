@@ -2,64 +2,71 @@
 
 exports[`Component - TasksList When there are tasks renders correctly 1`] = `
 Array [
-  <header
-    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-2 makeStyles-roundedShape-6 makeStyles-withoutShadow-3"
+  <div
+    className="MuiBox-root MuiBox-root-13 makeStyles-roundedAppBarContainer-11"
   >
-    <div
-      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-indeterminate"
-      role="progressbar"
+    <header
+      className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-roundedAppBarBackground-9 makeStyles-roundedShape-8 makeStyles-withoutShadow-3"
     >
       <div
-        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
-        style={Object {}}
-      />
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
-        style={Object {}}
-      />
-    </div>
-    <div
-      className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
-    >
-      <button
-        className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-1 MuiIconButton-colorInherit MuiIconButton-edgeStart"
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onDragLeave={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex={0}
-        type="button"
+        className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
       >
-        <span
-          className="MuiIconButton-label"
+        <button
+          className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-1 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
         >
-          <svg
-            aria-hidden="true"
-            className="MuiSvgIcon-root"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
+          <span
+            className="MuiIconButton-label"
           >
-            <path
-              d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
-            />
-          </svg>
-        </span>
-      </button>
-    </div>
-    <AvatarHeader />
-  </header>,
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <AvatarHeader />
+      <div
+        className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 makeStyles-roundedShape-8 makeStyles-roundedLoader-10 makeStyles-backgroundLayer-7 MuiLinearProgress-indeterminate"
+        role="progressbar"
+      >
+        <div
+          className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
+          style={Object {}}
+        />
+        <div
+          className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
+          style={Object {}}
+        />
+      </div>
+      <div
+        className="MuiBox-root MuiBox-root-96 makeStyles-paperAppBarBackground-5 makeStyles-roundedShape-8 makeStyles-backgroundLayer-7"
+      />
+    </header>
+  </div>,
   <main
-    className="MuiBox-root MuiBox-root-91"
+    className="MuiBox-root MuiBox-root-97"
     data-testid="task-list-page"
   >
     <TaskTabsContent
@@ -72,67 +79,61 @@ Array [
 
 exports[`Component - TasksList When there are tasks renders correctly 2`] = `
 Array [
-  <header
-    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-2 makeStyles-roundedShape-6 makeStyles-withoutShadow-3"
+  <div
+    className="MuiBox-root MuiBox-root-13 makeStyles-roundedAppBarContainer-11"
   >
-    <div
-      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-hideLoading-7 MuiLinearProgress-indeterminate"
-      role="progressbar"
+    <header
+      className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-roundedAppBarBackground-9 makeStyles-roundedShape-8 makeStyles-withoutShadow-3"
     >
       <div
-        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
-        style={Object {}}
-      />
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
-        style={Object {}}
-      />
-    </div>
-    <div
-      className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
-    >
-      <button
-        className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-1 MuiIconButton-colorInherit MuiIconButton-edgeStart"
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onDragLeave={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex={0}
-        type="button"
+        className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
       >
-        <span
-          className="MuiIconButton-label"
+        <button
+          className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-1 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
         >
-          <svg
-            aria-hidden="true"
-            className="MuiSvgIcon-root"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
+          <span
+            className="MuiIconButton-label"
           >
-            <path
-              d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
-            />
-          </svg>
-        </span>
-        <span
-          className="MuiTouchRipple-root"
-        />
-      </button>
-    </div>
-    <AvatarHeader />
-  </header>,
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+              />
+            </svg>
+          </span>
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <AvatarHeader />
+      <div
+        className="MuiBox-root MuiBox-root-98 makeStyles-paperAppBarBackground-5 makeStyles-roundedShape-8 makeStyles-backgroundLayer-7"
+      />
+    </header>
+  </div>,
   <main
-    className="MuiBox-root MuiBox-root-91"
+    className="MuiBox-root MuiBox-root-97"
     data-testid="task-list-page"
   >
     <TaskTabsContent
@@ -145,67 +146,61 @@ Array [
 
 exports[`Component - TasksList when there are not tasks should render empty state 1`] = `
 Array [
-  <header
-    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-2 makeStyles-roundedShape-6 makeStyles-withoutShadow-3"
+  <div
+    className="MuiBox-root MuiBox-root-109 makeStyles-roundedAppBarContainer-11"
   >
-    <div
-      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-hideLoading-7 MuiLinearProgress-indeterminate"
-      role="progressbar"
+    <header
+      className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-roundedAppBarBackground-9 makeStyles-roundedShape-8 makeStyles-withoutShadow-3"
     >
       <div
-        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
-        style={Object {}}
-      />
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
-        style={Object {}}
-      />
-    </div>
-    <div
-      className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
-    >
-      <button
-        className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-1 MuiIconButton-colorInherit MuiIconButton-edgeStart"
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onDragLeave={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex={0}
-        type="button"
+        className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
       >
-        <span
-          className="MuiIconButton-label"
+        <button
+          className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-1 MuiIconButton-colorInherit MuiIconButton-edgeStart"
+          disabled={false}
+          onBlur={[Function]}
+          onClick={[Function]}
+          onDragLeave={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onKeyUp={[Function]}
+          onMouseDown={[Function]}
+          onMouseLeave={[Function]}
+          onMouseUp={[Function]}
+          onTouchEnd={[Function]}
+          onTouchMove={[Function]}
+          onTouchStart={[Function]}
+          tabIndex={0}
+          type="button"
         >
-          <svg
-            aria-hidden="true"
-            className="MuiSvgIcon-root"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
+          <span
+            className="MuiIconButton-label"
           >
-            <path
-              d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
-            />
-          </svg>
-        </span>
-        <span
-          className="MuiTouchRipple-root"
-        />
-      </button>
-    </div>
-    <AvatarHeader />
-  </header>,
+            <svg
+              aria-hidden="true"
+              className="MuiSvgIcon-root"
+              focusable="false"
+              role="presentation"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+              />
+            </svg>
+          </span>
+          <span
+            className="MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <AvatarHeader />
+      <div
+        className="MuiBox-root MuiBox-root-133 makeStyles-paperAppBarBackground-5 makeStyles-roundedShape-8 makeStyles-backgroundLayer-7"
+      />
+    </header>
+  </div>,
   <main
-    className="MuiBox-root MuiBox-root-102"
+    className="MuiBox-root MuiBox-root-132"
     data-testid="task-list-page"
   >
     <TaskTabsContent

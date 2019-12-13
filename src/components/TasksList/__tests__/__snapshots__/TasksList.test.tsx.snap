@@ -3,24 +3,11 @@
 exports[`Component - TasksList When there are tasks renders correctly 1`] = `
 Array [
   <AppBar
-    className="makeStyles-appBar-2 makeStyles-withoutShadow-3"
+    className="makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-withoutShadow-3"
     color="inherit"
     component="header"
     position="sticky"
   >
-    <div
-      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-indeterminate"
-      role="progressbar"
-    >
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
-        style={Object {}}
-      />
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
-        style={Object {}}
-      />
-    </div>
     <div
       className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
     >
@@ -77,9 +64,25 @@ Array [
         label="My tasks"
       />
     </Tabs>
+    <div
+      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 MuiLinearProgress-indeterminate"
+      role="progressbar"
+    >
+      <div
+        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
+        style={Object {}}
+      />
+      <div
+        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
+        style={Object {}}
+      />
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-59 makeStyles-paperAppBarBackground-5"
+    />
   </AppBar>,
   <main
-    className="MuiBox-root MuiBox-root-55"
+    className="MuiBox-root MuiBox-root-60"
     data-testid="task-list-page"
   >
     <TabPanel
@@ -134,24 +137,11 @@ Array [
 exports[`Component - TasksList When there are tasks renders correctly 2`] = `
 Array [
   <AppBar
-    className="makeStyles-appBar-2 makeStyles-withoutShadow-3"
+    className="makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-withoutShadow-3"
     color="inherit"
     component="header"
     position="sticky"
   >
-    <div
-      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-hideLoading-7 MuiLinearProgress-indeterminate"
-      role="progressbar"
-    >
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
-        style={Object {}}
-      />
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
-        style={Object {}}
-      />
-    </div>
     <div
       className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
     >
@@ -188,9 +178,6 @@ Array [
             />
           </svg>
         </span>
-        <span
-          className="MuiTouchRipple-root"
-        />
       </button>
     </div>
     <AvatarHeader
@@ -211,9 +198,12 @@ Array [
         label="My tasks"
       />
     </Tabs>
+    <div
+      className="MuiBox-root MuiBox-root-71 makeStyles-paperAppBarBackground-5"
+    />
   </AppBar>,
   <main
-    className="MuiBox-root MuiBox-root-55"
+    className="MuiBox-root MuiBox-root-60"
     data-testid="task-list-page"
   >
     <TabPanel
@@ -300,24 +290,11 @@ Array [
 exports[`Component - TasksList when there are not tasks should render empty state 1`] = `
 Array [
   <AppBar
-    className="makeStyles-appBar-2 makeStyles-withoutShadow-3"
+    className="makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-withoutShadow-3"
     color="inherit"
     component="header"
     position="sticky"
   >
-    <div
-      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-hideLoading-7 MuiLinearProgress-indeterminate"
-      role="progressbar"
-    >
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
-        style={Object {}}
-      />
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
-        style={Object {}}
-      />
-    </div>
     <div
       className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
     >
@@ -354,9 +331,6 @@ Array [
             />
           </svg>
         </span>
-        <span
-          className="MuiTouchRipple-root"
-        />
       </button>
     </div>
     <AvatarHeader
@@ -377,9 +351,12 @@ Array [
         label="My tasks"
       />
     </Tabs>
+    <div
+      className="MuiBox-root MuiBox-root-105 makeStyles-paperAppBarBackground-5"
+    />
   </AppBar>,
   <main
-    className="MuiBox-root MuiBox-root-66"
+    className="MuiBox-root MuiBox-root-104"
     data-testid="task-list-page"
   >
     <TabPanel

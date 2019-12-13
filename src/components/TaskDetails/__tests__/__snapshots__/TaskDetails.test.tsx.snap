@@ -3,21 +3,8 @@
 exports[`Component - TaskDetails renders correctly 1`] = `
 Array [
   <header
-    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-7 makeStyles-defaultAppBarBackground-10 makeStyles-withoutShadow-8"
+    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-7 makeStyles-defaultAppBarBackground-9 makeStyles-withoutShadow-8"
   >
-    <div
-      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-indeterminate"
-      role="progressbar"
-    >
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
-        style={Object {}}
-      />
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
-        style={Object {}}
-      />
-    </div>
     <div
       className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
     >
@@ -56,21 +43,8 @@ Array [
         </span>
       </button>
     </div>
-  </header>,
-  <PageContainer
-    backGroundShape={true}
-    data-testid="task-details-page"
-  />,
-]
-`;
-
-exports[`Component - TaskDetails renders correctly 2`] = `
-Array [
-  <header
-    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-7 makeStyles-defaultAppBarBackground-10 makeStyles-withoutShadow-8"
-  >
     <div
-      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-hideLoading-12 MuiLinearProgress-indeterminate"
+      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-11 MuiLinearProgress-indeterminate"
       role="progressbar"
     >
       <div
@@ -82,6 +56,22 @@ Array [
         style={Object {}}
       />
     </div>
+    <Box
+      className="makeStyles-paperAppBarBackground-10"
+    />
+  </header>,
+  <PageContainer
+    backGroundShape={true}
+    data-testid="task-details-page"
+  />,
+]
+`;
+
+exports[`Component - TaskDetails renders correctly 2`] = `
+Array [
+  <header
+    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-7 makeStyles-defaultAppBarBackground-9 makeStyles-withoutShadow-8"
+  >
     <div
       className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
     >
@@ -123,6 +113,9 @@ Array [
         />
       </button>
     </div>
+    <Box
+      className="makeStyles-paperAppBarBackground-10"
+    />
   </header>,
   <PageContainer
     backGroundShape={true}

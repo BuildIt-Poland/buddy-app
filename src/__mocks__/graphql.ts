@@ -271,6 +271,7 @@ export const taskDetailsMock = [
           title: 'New task',
           description: 'New task',
           status: TaskStatus.Uncompleted,
+          newbie: getBasicUserDetailsMock(),
         },
       },
     },

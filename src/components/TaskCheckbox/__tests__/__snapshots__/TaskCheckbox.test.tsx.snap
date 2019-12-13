@@ -7,8 +7,10 @@ exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] =
   <ListItemIcon>
     <Checkbox
       checked={true}
+      checkedIcon={<CheckCircle />}
       color="primary"
       disableRipple={true}
+      icon={<RadioButtonUnchecked />}
       onChange={[Function]}
       onClick={[Function]}
     />
@@ -30,8 +32,10 @@ exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`]
   <ListItemIcon>
     <Checkbox
       checked={false}
+      checkedIcon={<CheckCircle />}
       color="primary"
       disableRipple={true}
+      icon={<RadioButtonUnchecked />}
       onChange={[Function]}
       onClick={[Function]}
     />

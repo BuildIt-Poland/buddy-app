@@ -3,21 +3,8 @@
 exports[`Component - NewbieSelect renders correctly 1`] = `
 Array [
   <header
-    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-4 makeStyles-defaultAppBarBackground-7 makeStyles-withoutShadow-5"
+    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-4 makeStyles-defaultAppBarBackground-6 makeStyles-withoutShadow-5"
   >
-    <div
-      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary MuiLinearProgress-indeterminate"
-      role="progressbar"
-    >
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
-        style={Object {}}
-      />
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
-        style={Object {}}
-      />
-    </div>
     <div
       className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
     >
@@ -56,6 +43,22 @@ Array [
         </span>
       </button>
     </div>
+    <div
+      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-8 MuiLinearProgress-indeterminate"
+      role="progressbar"
+    >
+      <div
+        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
+        style={Object {}}
+      />
+      <div
+        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
+        style={Object {}}
+      />
+    </div>
+    <Box
+      className="makeStyles-paperAppBarBackground-7"
+    />
   </header>,
   <PageContainer
     data-testid="newbie-select-page"
@@ -88,21 +91,8 @@ Array [
 exports[`Component - NewbieSelect renders correctly 2`] = `
 Array [
   <header
-    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-4 makeStyles-defaultAppBarBackground-7 makeStyles-withoutShadow-5"
+    className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-4 makeStyles-defaultAppBarBackground-6 makeStyles-withoutShadow-5"
   >
-    <div
-      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-hideLoading-9 MuiLinearProgress-indeterminate"
-      role="progressbar"
-    >
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
-        style={Object {}}
-      />
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
-        style={Object {}}
-      />
-    </div>
     <div
       className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
     >
@@ -144,6 +134,9 @@ Array [
         />
       </button>
     </div>
+    <Box
+      className="makeStyles-paperAppBarBackground-7"
+    />
   </header>,
   <PageContainer
     data-testid="newbie-select-page"
