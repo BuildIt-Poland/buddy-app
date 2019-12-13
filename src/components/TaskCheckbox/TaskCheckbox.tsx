@@ -22,7 +22,7 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
   };
   const onCheckboxChange = () => onChange && onChange(id);
 
-  const renderCheckbox = () => (
+  const CircleCheckbox = () => (
     <Checkbox
       className={className}
       color={'primary'}
@@ -37,11 +37,13 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
 
   return title ? (
     <ListItem button>
-      <ListItemIcon>{renderCheckbox()}</ListItemIcon>
+      <ListItemIcon>
+        <CircleCheckbox />
+      </ListItemIcon>
       <ListItemText primary={text[status]} />
     </ListItem>
   ) : (
-    renderCheckbox()
+    <CircleCheckbox />
   );
 };
 

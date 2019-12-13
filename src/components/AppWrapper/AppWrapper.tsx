@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme: Theme) =>
       flex: 1,
       display: 'flex',
       flexDirection: 'column',
-      overflow: 'hidden',
     },
     drawerHeader: theme.mixins.toolbar,
   })

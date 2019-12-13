@@ -8,6 +8,7 @@ jest.mock('@material-ui/core/AppBar', () => 'AppBar');
 jest.mock('@material-ui/icons/Menu', () => 'MenuIcon');
 jest.mock('@material-ui/icons/ArrowBack', () => 'ArrowBackIcon');
 jest.mock('@material-ui/core/Toolbar', () => 'Toolbar');
+jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/LinearProgress', () => 'LinearProgress');
 
 describe('Component - Header', () => {
