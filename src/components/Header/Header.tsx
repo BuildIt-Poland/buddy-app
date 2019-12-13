@@ -32,7 +32,7 @@ const useStyles = makeStyles<Theme>(theme => ({
     background: fade(theme.palette.background.default, 0.95),
   },
   paperAppBarBackground: {
-    background: `linear-gradient(${theme.palette.background.default} , ${theme.palette.background.paper})`,
+    background: `linear-gradient(${theme.palette.background.default}, ${theme.palette.background.paper})`,
   },
   loaderShadow: {
     boxShadow: theme.shadows[2],

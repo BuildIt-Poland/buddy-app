@@ -17,11 +17,9 @@ const useStyles = makeStyles<Theme>(theme => ({
   title: {
     textAlign: 'center',
     marginBottom: theme.spacing(5),
-    paddingRight: theme.spacing(7),
   },
   carrouselWarpper: {
     marginBottom: theme.spacing(2),
-    paddingRight: theme.spacing(7),
   },
 }));
 
