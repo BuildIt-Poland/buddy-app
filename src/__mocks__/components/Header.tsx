@@ -1,7 +1,7 @@
 import React from 'react';
-import { MenuColors, MenuShapes, MenuTypes } from 'components/Header';
+import { MenuColors, MenuShapes, MenuTypes, HeaderProps } from 'components/Header';
 
-const Header = (props: any) => <header {...props} />;
+const Header = (props: HeaderProps) => <header {...props} />;
 
 export { MenuColors, MenuShapes, MenuTypes };
 export default Header;
