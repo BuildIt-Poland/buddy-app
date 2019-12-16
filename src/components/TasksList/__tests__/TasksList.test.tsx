@@ -17,7 +17,7 @@ jest.mock('components/TaskListPlaceHolder', () => 'TaskListPlaceHolder');
 jest.mock('components/TaskTabsContent', () => 'TaskTabsContent');
 jest.mock('components/Header', () => {
   const res = require.requireActual('components/Header');
-  res.default = () => 'Header';
+  res.default = (props: any) => <header {...props} />;
   return res;
 });
 
