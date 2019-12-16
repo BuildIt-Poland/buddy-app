@@ -8,7 +8,7 @@ import { NEWBIE_SELECT } from 'graphql/newbie-select.graphql';
 import PlusButton from 'components/PlusButton';
 import Carrousel from 'components/Carrousel';
 import PageContainer from 'components/PageContainer';
-import Header from 'components/Header';
+import Header, { MenuTypes } from 'components/Header';
 import MenuContext from 'contexts/MenuContext';
 import NewbieSelectDictionary from './dictionary';
 
@@ -21,8 +21,8 @@ const NewbieSelect: React.FC = () => {
 
   return (
     <>
-      <Header type={'menu'} onButtonClick={toggleMenu} />
-      <PageContainer loading={loading} data-testid='newbie-select-page'>
+      <Header type={MenuTypes.MENU} onButtonClick={toggleMenu} loading={loading} />
+      <PageContainer data-testid='newbie-select-page'>
         <Box marginBottom={5} component='section'>
           <Typography component='h1' variant='h2'>
             {NewbieSelectDictionary.TITLE}

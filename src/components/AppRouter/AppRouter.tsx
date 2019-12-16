@@ -8,6 +8,7 @@ import AppWrapper from 'components/AppWrapper';
 import TaskDetails from '../TaskDetails';
 import Login from '../Login';
 import TasksList from '../TasksList';
+import NewbieTasksList from '../NewbieTasksList';
 import AddNewbie from '../AddNewbie';
 import NewbieSelect from '../NewbieSelect';
 import ContactDetails from '../ContactDetails';
@@ -21,7 +22,7 @@ const newbieRoutes = [
   },
   {
     path: ROUTES.NEWBIE_TASKS_LIST,
-    component: TasksList,
+    component: NewbieTasksList,
   },
   {
     path: ROUTES.NEWBIE_TASK_DETAILS,

@@ -4,6 +4,8 @@ import { TaskStatus } from 'buddy-app-schema';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import UncheckedCircleIcon from '@material-ui/icons/RadioButtonUnchecked';
+import CheckedCircleIcon from '@material-ui/icons/CheckCircle';
 import { TaskCheckboxProps } from './types';
 
 const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
@@ -20,7 +22,7 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
   };
   const onCheckboxChange = () => onChange && onChange(id);
 
-  const renderCheckbox = () => (
+  const CircleCheckbox = () => (
     <Checkbox
       className={className}
       color={'primary'}
@@ -28,16 +30,20 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
       onChange={onCheckboxChange}
       disableRipple
       onClick={e => e.stopPropagation()}
+      icon={<UncheckedCircleIcon />}
+      checkedIcon={<CheckedCircleIcon />}
     />
   );
 
   return title ? (
     <ListItem button>
-      <ListItemIcon>{renderCheckbox()}</ListItemIcon>
+      <ListItemIcon>
+        <CircleCheckbox />
+      </ListItemIcon>
       <ListItemText primary={text[status]} />
     </ListItem>
   ) : (
-    renderCheckbox()
+    <CircleCheckbox />
   );
 };
 

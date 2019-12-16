@@ -50,6 +50,7 @@ const Carrousel: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
                 <Avatar
                   progress={getProgressInPercentages(newbie.tasksInfo.buddyProgress)}
                   name={newbie.name}
+                  imgSrc={newbie.photo}
                   position={newbie.position || undefined}></Avatar>
                 {newbie.startDate && (
                   <Box m={2}>

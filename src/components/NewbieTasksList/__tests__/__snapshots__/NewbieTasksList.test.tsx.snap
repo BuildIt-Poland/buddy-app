@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - TasksList When there are tasks renders correctly 1`] = `
+Array [
+  <header
+    color="paper"
+    loading={true}
+    onButtonClick={[Function]}
+    shape="rounded"
+    type="menu"
+  >
+    <AvatarHeader />
+  </header>,
+  <main
+    className="MuiBox-root MuiBox-root-2"
+    data-testid="task-list-page"
+  >
+    <TaskTabsContent
+      loading={true}
+      onChange={[Function]}
+    />
+  </main>,
+]
+`;
+
+exports[`Component - TasksList When there are tasks renders correctly 2`] = `
+Array [
+  <header
+    color="paper"
+    loading={false}
+    onButtonClick={[Function]}
+    shape="rounded"
+    type="menu"
+  >
+    <AvatarHeader />
+  </header>,
+  <main
+    className="MuiBox-root MuiBox-root-2"
+    data-testid="task-list-page"
+  >
+    <TaskTabsContent
+      loading={false}
+      onChange={[Function]}
+    />
+  </main>,
+]
+`;
+
+exports[`Component - TasksList when there are not tasks should render empty state 1`] = `
+Array [
+  <header
+    color="paper"
+    loading={false}
+    onButtonClick={[Function]}
+    shape="rounded"
+    type="menu"
+  >
+    <AvatarHeader />
+  </header>,
+  <main
+    className="MuiBox-root MuiBox-root-3"
+    data-testid="task-list-page"
+  >
+    <TaskTabsContent
+      loading={false}
+      onChange={[Function]}
+    />
+  </main>,
+]
+`;

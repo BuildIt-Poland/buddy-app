@@ -2,13 +2,13 @@
 
 exports[`Component - NewbieSelect renders correctly 1`] = `
 Array [
-  <Header
+  <header
+    loading={true}
     onButtonClick={[Function]}
     type="menu"
   />,
   <PageContainer
     data-testid="newbie-select-page"
-    loading={true}
   >
     <Box
       component="section"
@@ -37,13 +37,13 @@ Array [
 
 exports[`Component - NewbieSelect renders correctly 2`] = `
 Array [
-  <Header
+  <header
+    loading={false}
     onButtonClick={[Function]}
     type="menu"
   />,
   <PageContainer
     data-testid="newbie-select-page"
-    loading={false}
   >
     <Box
       component="section"

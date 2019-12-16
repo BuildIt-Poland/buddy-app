@@ -13,9 +13,8 @@ import { useParams, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import TaskTabsContent from 'components/TaskTabsContent';
 import PlusButton from 'components/PlusButton';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import { ROUTES } from 'shared/routes';
-import Header from 'components/Header';
+import Header, { MenuTypes, MenuColors } from 'components/Header';
 import DICTIONARY from './dictionary';
 
 const TasksList: React.FC = () => {
@@ -57,8 +56,12 @@ const TasksList: React.FC = () => {
 
   return (
     <>
-      <Header type={'back'} color={'paper'} onButtonClick={onBackClick}>
-        <AvatarHeader />
+      <Header
+        type={MenuTypes.BACK}
+        color={MenuColors.PAPER}
+        loading={loading || updateTaskLoading}
+        onButtonClick={onBackClick}>
+        <AvatarHeader newbieId={newbieId} />
         <Tabs
           centered
           value={tabIndex}
@@ -70,8 +73,7 @@ const TasksList: React.FC = () => {
           <Tab label={DICTIONARY.BUDDY_TAB_TITLE} />
         </Tabs>
       </Header>
-      <Box component={'main'} data-testid='task-list-page'>
-        {updateTaskLoading && <LinearProgress />}
+      <Box component={'main'} flex={1} data-testid='task-list-page'>
         <TabPanel value={tabIndex} index={0}>
           <TaskTabsContent
             loading={loading}

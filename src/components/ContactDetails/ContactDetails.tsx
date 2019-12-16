@@ -13,7 +13,7 @@ import UserDetails from 'components/UserDetails';
 import { BasicDetailsParams, UserBasicDetails } from 'components/UserMenu/types';
 import Box from '@material-ui/core/Box';
 import PageContainer from 'components/PageContainer';
-import Header from 'components/Header';
+import Header, { MenuTypes } from 'components/Header';
 import { ContactDetailsProps } from './types';
 
 const ContactDetails: React.FC<ContactDetailsProps> = props => {
@@ -46,8 +46,12 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
 
   return (
     <>
-      <Header type={'back'} onButtonClick={onBackClick} />
-      <PageContainer loading={loading} backGroundShape>
+      <Header
+        type={MenuTypes && MenuTypes.BACK}
+        loading={loading}
+        onButtonClick={onBackClick}
+      />
+      <PageContainer backGroundShape>
         <Box>
           <Typography component='h2' variant='h2'>
             Contact Details

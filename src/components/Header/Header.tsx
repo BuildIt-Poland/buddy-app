@@ -6,8 +6,17 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Box from '@material-ui/core/Box';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 import clsx from 'clsx';
-import { NavBarButton, HeaderProps } from './types';
+import {
+  NavBarButton,
+  HeaderProps,
+  MenuColors,
+  MenuShapes,
+  MenuTypes,
+} from './types';
 
 const useStyles = makeStyles<Theme>(theme => ({
   menuButton: {
@@ -19,56 +28,130 @@ const useStyles = makeStyles<Theme>(theme => ({
   withoutShadow: {
     boxShadow: 'none',
   },
-  paperAppBarBackground: {
-    backgroundColor: theme.palette.background.paper,
-  },
   defaultAppBarBackground: {
-    backgroundColor: theme.palette.background.default,
+    background: fade(theme.palette.background.default, 0.95),
+  },
+  paperAppBarBackground: {
+    background: `linear-gradient(${theme.palette.background.default}, ${theme.palette.background.paper})`,
+  },
+  loaderShadow: {
+    boxShadow: theme.shadows[2],
+  },
+  hideLoader: {
+    visibility: 'hidden',
+  },
+  backgroundLayer: {
+    width: '100%',
+    height: '100%',
+    left: 0,
+    top: 0,
+    position: 'absolute',
+    zIndex: theme.zIndex.backgroundShape,
+  },
+  roundedShape: {
+    borderRadius: '0 0 100% 100%',
+  },
+  roundedAppBarBackground: {
+    width: '110%',
+    padding: '0 5%',
+    marginLeft: '-5%',
+  },
+  roundedLoader: {
+    height: '101%',
+  },
+  roundedAppBarContainer: {
+    width: '100%',
+    position: 'sticky',
+    top: 0,
+    right: 0,
+    left: 'auto',
+    zIndex: theme.zIndex.appBar,
+    paddingBottom: '1%',
   },
 }));
 
 const Header: React.FC<HeaderProps> = ({
   type,
-  color = 'default',
+  color = MenuColors.DEFAULT,
+  shape = MenuShapes.DEFAULT,
   children,
+  loading,
   onButtonClick,
 }) => {
-  const classes = useStyles();
-  const scrollTrigger = useScrollTrigger({ threshold: 10 });
+  const {
+    menuButton,
+    appBar,
+    withoutShadow,
+    defaultAppBarBackground,
+    paperAppBarBackground,
+    loaderShadow,
+    hideLoader,
+    backgroundLayer,
+    roundedShape,
+    roundedAppBarBackground,
+    roundedLoader,
+    roundedAppBarContainer,
+  } = useStyles();
+
+  const scrollTrigger = useScrollTrigger({ disableHysteresis: true, threshold: 10 });
+  const isRoundedShape = shape === MenuShapes.ROUNDED;
 
   const button: NavBarButton = {
-    menu: () => <MenuIcon />,
-    back: () => <ArrowBackIcon />,
+    [MenuTypes.MENU]: () => <MenuIcon />,
+    [MenuTypes.BACK]: () => <ArrowBackIcon />,
   };
 
   const colorClassNames = {
-    default: classes.defaultAppBarBackground,
-    paper: classes.neutralAppBarBackground,
+    [MenuColors.DEFAULT]: defaultAppBarBackground,
+    [MenuColors.PAPER]: paperAppBarBackground,
   };
 
-  return (
+  const shapeClassNames = {
+    [MenuShapes.DEFAULT]: '',
+    [MenuShapes.ROUNDED]: [roundedAppBarBackground, roundedShape],
+  };
+
+  const HeaderBar = () => (
     <AppBar
       component={'header'}
-      className={clsx(
-        classes.appBar,
-        {
-          [classes.withoutShadow]: !scrollTrigger,
-        },
-        colorClassNames[color]
-      )}
+      className={clsx(appBar, colorClassNames[color], shapeClassNames[shape], {
+        [withoutShadow]: loading || !scrollTrigger,
+      })}
       position={'sticky'}
       color={'inherit'}>
       <Toolbar>
         <IconButton
           edge='start'
-          className={classes.menuButton}
+          className={menuButton}
           color='inherit'
           onClick={onButtonClick}>
           {button[type]()}
         </IconButton>
       </Toolbar>
       {children}
+      <LinearProgress
+        variant={'indeterminate'}
+        className={clsx(
+          loaderShadow,
+          isRoundedShape && [roundedShape, roundedLoader, backgroundLayer],
+          { [hideLoader]: !loading }
+        )}
+      />
+      <Box
+        className={clsx(
+          paperAppBarBackground,
+          isRoundedShape && [roundedShape, backgroundLayer]
+        )}
+      />
     </AppBar>
+  );
+
+  return isRoundedShape ? (
+    <Box className={roundedAppBarContainer}>
+      <HeaderBar />
+    </Box>
+  ) : (
+    <HeaderBar />
   );
 };
 

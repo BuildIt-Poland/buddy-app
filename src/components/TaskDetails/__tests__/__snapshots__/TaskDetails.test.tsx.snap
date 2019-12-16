@@ -2,28 +2,28 @@
 
 exports[`Component - TaskDetails renders correctly 1`] = `
 Array [
-  <Header
+  <header
+    loading={true}
     onButtonClick={[Function]}
     type="back"
   />,
   <PageContainer
     backGroundShape={true}
     data-testid="task-details-page"
-    loading={true}
   />,
 ]
 `;
 
 exports[`Component - TaskDetails renders correctly 2`] = `
 Array [
-  <Header
+  <header
+    loading={false}
     onButtonClick={[Function]}
     type="back"
   />,
   <PageContainer
     backGroundShape={true}
     data-testid="task-details-page"
-    loading={false}
   />,
 ]
 `;

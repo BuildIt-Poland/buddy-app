@@ -15,7 +15,7 @@ import {
   Mutation,
 } from 'buddy-app-schema';
 import PageContainer from 'components/PageContainer';
-import Header from 'components/Header';
+import Header, { MenuTypes } from 'components/Header';
 import TaskCheckbox from '../TaskCheckbox';
 import { TaskDetailsProps } from './types';
 import DICTIONARY from './dictionary';
@@ -122,11 +122,12 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history }) => {
 
   return (
     <>
-      <Header type={'back'} onButtonClick={onBackClick} />
-      <PageContainer
+      <Header
+        type={MenuTypes.BACK}
         loading={loading || updateTaskLoading}
-        data-testid='task-details-page'
-        backGroundShape>
+        onButtonClick={onBackClick}
+      />
+      <PageContainer data-testid='task-details-page' backGroundShape>
         {data && renderTaskDetails(data)}
       </PageContainer>
     </>

@@ -9,8 +9,8 @@ const useStyles = makeStyles(theme => ({
     position: 'fixed',
     top: 'auto',
     left: 'auto',
-    right: theme.spacing(3),
-    bottom: theme.spacing(3),
+    right: theme.spacing(2),
+    bottom: theme.spacing(2),
   },
 }));
 

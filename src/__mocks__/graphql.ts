@@ -132,6 +132,7 @@ export const buddyMenuDetails = (variables?: Partial<QueryBuddyArgs>) => [
     result: {
       data: {
         buddy: {
+          id: '1234',
           name: 'Tom Hanks',
           email: 'tom@wipro.com',
           allowPushedNotifications: true,
@@ -158,6 +159,7 @@ export const newbieMenuDetails = (variables?: Partial<QueryNewbieArgs>) => [
     result: {
       data: {
         newbie: {
+          id: '1234',
           name: 'Sandra Bullock',
           email: 'doejoe@wipro.com',
           allowPushedNotifications: true,
@@ -269,6 +271,7 @@ export const taskDetailsMock = [
           title: 'New task',
           description: 'New task',
           status: TaskStatus.Uncompleted,
+          newbie: getBasicUserDetailsMock(),
         },
       },
     },

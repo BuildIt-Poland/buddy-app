@@ -1,8 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import clsx from 'clsx';
 import BackgroundShape from 'components/BackgroundShape';
 import { PageContainerProps } from './types';
 
@@ -15,34 +13,20 @@ const useStyles = makeStyles(theme => ({
       paddingTop: theme.spacing(3),
     },
   },
-  hideLoading: {
-    visibility: 'hidden',
-  },
-  linearProgress: {
-    height: '0.3rem',
-    boxShadow: theme.shadows[2],
-  },
 }));
 
 const PageContainer: React.FC<PageContainerProps> = props => {
   const classes = useStyles();
-  const { loading = false, children, backGroundShape, ...args } = props;
+  const { children, backGroundShape, ...args } = props;
   return (
-    <>
-      <LinearProgress
-        className={clsx(classes.linearProgress, { [classes.hideLoading]: !loading })}
-        variant={'indeterminate'}
-        color={'primary'}
-      />
-      <Container
-        component={'main'}
-        className={classes.container}
-        maxWidth={'md'}
-        {...args}>
-        {children}
-        {backGroundShape && <BackgroundShape />}
-      </Container>
-    </>
+    <Container
+      component={'main'}
+      maxWidth={false}
+      className={classes.container}
+      {...args}>
+      {children}
+      {backGroundShape && <BackgroundShape />}
+    </Container>
   );
 };
 

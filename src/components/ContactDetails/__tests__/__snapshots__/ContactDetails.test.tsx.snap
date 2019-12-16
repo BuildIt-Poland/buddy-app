@@ -2,13 +2,9 @@
 
 exports[`Component - ContactDetails when logged in as buddy renders correctly 1`] = `
 Array [
-  <Header
-    onButtonClick={[Function]}
-    type="back"
-  />,
+  "Header",
   <PageContainer
     backGroundShape={true}
-    loading={true}
   >
     <Box>
       <Typography
@@ -24,13 +20,9 @@ Array [
 
 exports[`Component - ContactDetails when logged in as buddy renders correctly 2`] = `
 Array [
-  <Header
-    onButtonClick={[Function]}
-    type="back"
-  />,
+  "Header",
   <PageContainer
     backGroundShape={true}
-    loading={false}
   >
     <Box>
       <Typography
@@ -43,6 +35,7 @@ Array [
         details={
           Object {
             "email": "tom@wipro.com",
+            "id": "1234",
             "name": "Tom Hanks",
             "notes": "Nice guy",
             "phoneNumber": "1234567",
@@ -60,13 +53,9 @@ Array [
 
 exports[`Component - ContactDetails when logged in as newbie renders correctly 1`] = `
 Array [
-  <Header
-    onButtonClick={[Function]}
-    type="back"
-  />,
+  "Header",
   <PageContainer
     backGroundShape={true}
-    loading={false}
   >
     <Box>
       <Typography
@@ -79,6 +68,7 @@ Array [
         details={
           Object {
             "email": "tom@wipro.com",
+            "id": "1234",
             "name": "Tom Hanks",
             "phoneNumber": "1234567",
             "photo": "some-url",
@@ -95,13 +85,9 @@ Array [
 
 exports[`Component - ContactDetails when logged in as newbie renders correctly 2`] = `
 Array [
-  <Header
-    onButtonClick={[Function]}
-    type="back"
-  />,
+  "Header",
   <PageContainer
     backGroundShape={true}
-    loading={false}
   >
     <Box>
       <Typography
@@ -114,6 +100,7 @@ Array [
         details={
           Object {
             "email": "tom@wipro.com",
+            "id": "1234",
             "name": "Tom Hanks",
             "phoneNumber": "1234567",
             "photo": "some-url",

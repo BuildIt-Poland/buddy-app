@@ -3,7 +3,6 @@ import { create } from 'react-test-renderer';
 import PageContainer from '../PageContainer';
 
 jest.mock('@material-ui/core/Container', () => 'Container');
-jest.mock('@material-ui/core/LinearProgress', () => 'LinearProgress');
 jest.mock('components/BackgroundShape', () => 'BackgroundShape');
 
 describe('Component - PageContainer', () => {

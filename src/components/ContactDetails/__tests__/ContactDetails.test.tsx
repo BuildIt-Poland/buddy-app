@@ -9,9 +9,12 @@ import { buddyContactDetails, newbieContactDetails, UserRole } from '__mocks__';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');
-jest.mock('components/Header', () => 'Header');
 jest.mock('components/UserDetails', () => 'UserDetails');
 jest.mock('components/PageContainer', () => 'PageContainer');
+jest.mock(
+  'components/Header',
+  () => (require.requireActual('components/Header').default = () => 'Header')
+);
 
 describe('Component - ContactDetails', () => {
   const mockHistory: any = {

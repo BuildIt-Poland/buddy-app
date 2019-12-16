@@ -2,12 +2,15 @@
 
 exports[`Component - TasksList When there are tasks renders correctly 1`] = `
 Array [
-  <Header
+  <header
     color="paper"
+    loading={true}
     onButtonClick={[Function]}
     type="back"
   >
-    <AvatarHeader />
+    <AvatarHeader
+      newbieId="1234"
+    />
     <Tabs
       centered={true}
       indicatorColor="primary"
@@ -23,7 +26,7 @@ Array [
         label="My tasks"
       />
     </Tabs>
-  </Header>,
+  </header>,
   <main
     className="MuiBox-root MuiBox-root-2"
     data-testid="task-list-page"
@@ -79,12 +82,15 @@ Array [
 
 exports[`Component - TasksList When there are tasks renders correctly 2`] = `
 Array [
-  <Header
+  <header
     color="paper"
+    loading={false}
     onButtonClick={[Function]}
     type="back"
   >
-    <AvatarHeader />
+    <AvatarHeader
+      newbieId="1234"
+    />
     <Tabs
       centered={true}
       indicatorColor="primary"
@@ -100,7 +106,7 @@ Array [
         label="My tasks"
       />
     </Tabs>
-  </Header>,
+  </header>,
   <main
     className="MuiBox-root MuiBox-root-2"
     data-testid="task-list-page"
@@ -188,12 +194,15 @@ Array [
 
 exports[`Component - TasksList when there are not tasks should render empty state 1`] = `
 Array [
-  <Header
+  <header
     color="paper"
+    loading={false}
     onButtonClick={[Function]}
     type="back"
   >
-    <AvatarHeader />
+    <AvatarHeader
+      newbieId="1234"
+    />
     <Tabs
       centered={true}
       indicatorColor="primary"
@@ -209,7 +218,7 @@ Array [
         label="My tasks"
       />
     </Tabs>
-  </Header>,
+  </header>,
   <main
     className="MuiBox-root MuiBox-root-3"
     data-testid="task-list-page"

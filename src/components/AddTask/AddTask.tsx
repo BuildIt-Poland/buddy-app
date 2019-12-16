@@ -14,7 +14,7 @@ import {
 import xss from 'dompurify';
 import { ADD_BUDDY_TASK, ADD_NEWBIE_TASK } from 'graphql/add-task.graphql';
 import PageContainer from 'components/PageContainer';
-import Header from 'components/Header';
+import Header, { MenuTypes } from 'components/Header';
 import RoundedButton from '../RoundedButton';
 import { AddTaskProps } from './types';
 import DICTIONARY from './dictionary';
@@ -156,7 +156,7 @@ const AddTask: React.FC<AddTaskProps> = ({ history }) => {
 
   return (
     <>
-      <Header type={'back'} onButtonClick={onBackClick} />
+      <Header type={MenuTypes.BACK} onButtonClick={onBackClick} />
       <PageContainer backGroundShape data-testid='add-task-page'>
         {renderAddTask()}
       </PageContainer>

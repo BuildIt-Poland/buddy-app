@@ -14,6 +14,7 @@ import { isBuddy, isNewbie } from 'utils';
 import { ROUTES } from 'shared/routes';
 import { Buddy, Newbie, UserRole } from 'buddy-app-schema';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
+import MenuContext, { MenuContextData } from 'contexts/MenuContext';
 import { BasicDetailsParams, UserMenuProps, UserBasicDetails } from './types';
 
 const useStyles = makeStyles(theme => ({
@@ -35,7 +36,13 @@ const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
   const history = useHistory();
   const { list, loader } = useStyles();
   const { data: AuthData, logout } = useContext<AuthContextData>(AuthContext);
+  const { toggleMenu } = React.useContext<MenuContextData>(MenuContext);
   const { userId, role } = AuthData;
+
+  const onLogoutClick = () => {
+    logout();
+    toggleMenu();
+  };
 
   const getQueryByRole = (role: UserRole, id: string) => {
     if (isBuddy(role)) {
@@ -80,7 +87,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
           <UserMenuSettings
             allowPushedNotifications={!!user.allowPushedNotifications}
             updatePushNotificationsSettings={() => {}}
-            onLogoutClick={logout}
+            onLogoutClick={onLogoutClick}
           />
         </Box>
       )}
