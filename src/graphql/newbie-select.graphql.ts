@@ -11,7 +11,6 @@ export const NEWBIE_SELECT = gql`
         id
         photo
         name
-        startDate
         position
         tasksInfo {
           buddyProgress

@@ -17,7 +17,7 @@ exports[`Component - Header should render Header with color paper 1`] = `
     </IconButton>
   </Toolbar>
   <LinearProgress
-    className="makeStyles-loaderShadow-6 makeStyles-hideLoader-7"
+    className="makeStyles-loaderShadow-9 makeStyles-hideLoader-11"
     variant="indeterminate"
   />
   <Box
@@ -43,7 +43,7 @@ exports[`Component - Header should render Header with type back 1`] = `
     </IconButton>
   </Toolbar>
   <LinearProgress
-    className="makeStyles-loaderShadow-6 makeStyles-hideLoader-7"
+    className="makeStyles-loaderShadow-9 makeStyles-hideLoader-11"
     variant="indeterminate"
   />
   <Box
@@ -69,7 +69,7 @@ exports[`Component - Header should render Header with type menu 1`] = `
     </IconButton>
   </Toolbar>
   <LinearProgress
-    className="makeStyles-loaderShadow-6 makeStyles-hideLoader-7"
+    className="makeStyles-loaderShadow-9 makeStyles-hideLoader-11"
     variant="indeterminate"
   />
   <Box

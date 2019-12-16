@@ -8,11 +8,7 @@ import TasksList from '../NewbieTasksList';
 
 jest.mock('components/AvatarHeader', () => 'AvatarHeader');
 jest.mock('components/TaskTabsContent', () => 'TaskTabsContent');
-jest.mock('components/Header', () => {
-  const res = require.requireActual('components/Header');
-  res.default = (props: any) => <header {...props} />;
-  return res;
-});
+jest.doMock('components/Header');
 
 describe('Component - TasksList', () => {
   const path = '/newbie/tasks';

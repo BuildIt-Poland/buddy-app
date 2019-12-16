@@ -2,69 +2,57 @@
 
 exports[`Component - Carrousel renders correctly Should render correctly Carrousel 1`] = `
 <Grid
-  className="makeStyles-carrousel-2"
+  className="makeStyles-carrousel-4"
   container={true}
+  justify="center"
   spacing={2}
   wrap="wrap"
 >
   <Grid
+    className="makeStyles-carrouselItem-3"
     item={true}
   >
     <a
-      className="makeStyles-link-3"
+      className="makeStyles-link-5"
       href="/buddy/newbies/ck17svulh9k2k0b17j31ansfk/tasks"
       onClick={[Function]}
     >
       <Paper
         className="makeStyles-carrouselElement-1"
       >
-        <Avatar
-          imgSrc={null}
-          name="Test 2"
-          progress={50}
-        />
+        <Box
+          className="makeStyles-carrouselElementInfo-2"
+        >
+          <Avatar
+            imgSrc={null}
+            name="Test 2"
+            progress={50}
+          />
+        </Box>
       </Paper>
     </a>
   </Grid>
   <Grid
+    className="makeStyles-carrouselItem-3"
     item={true}
   >
     <a
-      className="makeStyles-link-3"
+      className="makeStyles-link-5"
       href="/buddy/newbies/ck17swp2m9kcv0b17we0ibrdn/tasks"
       onClick={[Function]}
     >
       <Paper
         className="makeStyles-carrouselElement-1"
       >
-        <Avatar
-          imgSrc={null}
-          name="Test 1"
-          position="Front End"
-          progress={60}
-        />
         <Box
-          m={2}
+          className="makeStyles-carrouselElementInfo-2"
         >
-          <Typography
-            align="center"
-            component="p"
-            variant="body2"
-          >
-            <Box
-              component="span"
-              fontWeight="bold"
-            >
-              Start Date
-            </Box>
-          </Typography>
-          <Typography
-            align="center"
-            component="p"
-            variant="body2"
-          >
-            1-0-2019
-          </Typography>
+          <Avatar
+            imgSrc={null}
+            name="Test 1"
+            position="Front End"
+            progress={60}
+          />
         </Box>
       </Paper>
     </a>

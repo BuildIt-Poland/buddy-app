@@ -10,11 +10,7 @@ jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('components/PlusButton/', () => 'PlusButton');
 jest.mock('components/Carrousel/', () => 'Carrousel');
 jest.mock('components/PageContainer/', () => 'PageContainer');
-jest.mock('components/Header', () => {
-  const res = require.requireActual('components/Header');
-  res.default = (props: any) => <header {...props} />;
-  return res;
-});
+jest.doMock('components/Header');
 
 describe('Component - NewbieSelect', () => {
   it('renders correctly', async () => {
