@@ -78,11 +78,11 @@ Array [
       />
     </div>
     <div
-      className="MuiBox-root MuiBox-root-59 makeStyles-paperAppBarBackground-5"
+      className="MuiBox-root MuiBox-root-60 makeStyles-paperAppBarBackground-5"
     />
   </AppBar>,
   <main
-    className="MuiBox-root MuiBox-root-60"
+    className="MuiBox-root MuiBox-root-61"
     data-testid="task-list-page"
   >
     <TabPanel
@@ -199,11 +199,24 @@ Array [
       />
     </Tabs>
     <div
-      className="MuiBox-root MuiBox-root-71 makeStyles-paperAppBarBackground-5"
+      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 makeStyles-hideLoader-7 MuiLinearProgress-indeterminate"
+      role="progressbar"
+    >
+      <div
+        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
+        style={Object {}}
+      />
+      <div
+        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
+        style={Object {}}
+      />
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-72 makeStyles-paperAppBarBackground-5"
     />
   </AppBar>,
   <main
-    className="MuiBox-root MuiBox-root-60"
+    className="MuiBox-root MuiBox-root-61"
     data-testid="task-list-page"
   >
     <TabPanel
@@ -352,11 +365,24 @@ Array [
       />
     </Tabs>
     <div
-      className="MuiBox-root MuiBox-root-105 makeStyles-paperAppBarBackground-5"
+      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 makeStyles-hideLoader-7 MuiLinearProgress-indeterminate"
+      role="progressbar"
+    >
+      <div
+        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
+        style={Object {}}
+      />
+      <div
+        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
+        style={Object {}}
+      />
+    </div>
+    <div
+      className="MuiBox-root MuiBox-root-85 makeStyles-paperAppBarBackground-5"
     />
   </AppBar>,
   <main
-    className="MuiBox-root MuiBox-root-104"
+    className="MuiBox-root MuiBox-root-84"
     data-testid="task-list-page"
   >
     <TabPanel

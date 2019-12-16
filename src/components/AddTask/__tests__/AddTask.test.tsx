@@ -5,8 +5,11 @@ import { MemoryRouter, Route } from 'react-router';
 import { addTaskSuccessMock, addTaskFailedMock } from '__mocks__';
 import SnackbarStore from 'stores/SnackbarStore';
 import SnackBar from 'components/SnackBar';
+import { MenuTypes } from 'components/Header';
 import AddTask from '../AddTask';
 import DICTIONARY from '../dictionary';
+
+jest.doMock('components/Header', () => ({ MenuTypes }));
 
 describe('Component - AddTask', () => {
   const path = '/buddy/newbies/1234/add-task';

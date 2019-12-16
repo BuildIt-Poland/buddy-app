@@ -3,10 +3,10 @@
 exports[`Component - TasksList When there are tasks renders correctly 1`] = `
 Array [
   <div
-    className="MuiBox-root MuiBox-root-13 makeStyles-roundedAppBarContainer-11"
+    className="MuiBox-root MuiBox-root-14 makeStyles-roundedAppBarContainer-12"
   >
     <header
-      className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-roundedAppBarBackground-9 makeStyles-roundedShape-8 makeStyles-withoutShadow-3"
+      className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-roundedAppBarBackground-10 makeStyles-roundedShape-9 makeStyles-withoutShadow-3"
     >
       <div
         className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
@@ -48,7 +48,7 @@ Array [
       </div>
       <AvatarHeader />
       <div
-        className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 makeStyles-roundedShape-8 makeStyles-roundedLoader-10 makeStyles-backgroundLayer-7 MuiLinearProgress-indeterminate"
+        className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 makeStyles-roundedShape-9 makeStyles-roundedLoader-11 makeStyles-backgroundLayer-8 MuiLinearProgress-indeterminate"
         role="progressbar"
       >
         <div
@@ -61,12 +61,12 @@ Array [
         />
       </div>
       <div
-        className="MuiBox-root MuiBox-root-96 makeStyles-paperAppBarBackground-5 makeStyles-roundedShape-8 makeStyles-backgroundLayer-7"
+        className="MuiBox-root MuiBox-root-97 makeStyles-paperAppBarBackground-5 makeStyles-roundedShape-9 makeStyles-backgroundLayer-8"
       />
     </header>
   </div>,
   <main
-    className="MuiBox-root MuiBox-root-97"
+    className="MuiBox-root MuiBox-root-98"
     data-testid="task-list-page"
   >
     <TaskTabsContent
@@ -80,10 +80,10 @@ Array [
 exports[`Component - TasksList When there are tasks renders correctly 2`] = `
 Array [
   <div
-    className="MuiBox-root MuiBox-root-13 makeStyles-roundedAppBarContainer-11"
+    className="MuiBox-root MuiBox-root-14 makeStyles-roundedAppBarContainer-12"
   >
     <header
-      className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-roundedAppBarBackground-9 makeStyles-roundedShape-8 makeStyles-withoutShadow-3"
+      className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-roundedAppBarBackground-10 makeStyles-roundedShape-9 makeStyles-withoutShadow-3"
     >
       <div
         className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
@@ -128,12 +128,25 @@ Array [
       </div>
       <AvatarHeader />
       <div
-        className="MuiBox-root MuiBox-root-98 makeStyles-paperAppBarBackground-5 makeStyles-roundedShape-8 makeStyles-backgroundLayer-7"
+        className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 makeStyles-roundedShape-9 makeStyles-roundedLoader-11 makeStyles-backgroundLayer-8 makeStyles-hideLoader-7 MuiLinearProgress-indeterminate"
+        role="progressbar"
+      >
+        <div
+          className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
+          style={Object {}}
+        />
+        <div
+          className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
+          style={Object {}}
+        />
+      </div>
+      <div
+        className="MuiBox-root MuiBox-root-99 makeStyles-paperAppBarBackground-5 makeStyles-roundedShape-9 makeStyles-backgroundLayer-8"
       />
     </header>
   </div>,
   <main
-    className="MuiBox-root MuiBox-root-97"
+    className="MuiBox-root MuiBox-root-98"
     data-testid="task-list-page"
   >
     <TaskTabsContent
@@ -147,10 +160,10 @@ Array [
 exports[`Component - TasksList when there are not tasks should render empty state 1`] = `
 Array [
   <div
-    className="MuiBox-root MuiBox-root-109 makeStyles-roundedAppBarContainer-11"
+    className="MuiBox-root MuiBox-root-110 makeStyles-roundedAppBarContainer-12"
   >
     <header
-      className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-roundedAppBarBackground-9 makeStyles-roundedShape-8 makeStyles-withoutShadow-3"
+      className="MuiPaper-root MuiPaper-elevation4 MuiAppBar-root MuiAppBar-positionSticky makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-roundedAppBarBackground-10 makeStyles-roundedShape-9 makeStyles-withoutShadow-3"
     >
       <div
         className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
@@ -195,12 +208,25 @@ Array [
       </div>
       <AvatarHeader />
       <div
-        className="MuiBox-root MuiBox-root-133 makeStyles-paperAppBarBackground-5 makeStyles-roundedShape-8 makeStyles-backgroundLayer-7"
+        className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 makeStyles-roundedShape-9 makeStyles-roundedLoader-11 makeStyles-backgroundLayer-8 makeStyles-hideLoader-7 MuiLinearProgress-indeterminate"
+        role="progressbar"
+      >
+        <div
+          className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
+          style={Object {}}
+        />
+        <div
+          className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
+          style={Object {}}
+        />
+      </div>
+      <div
+        className="MuiBox-root MuiBox-root-113 makeStyles-paperAppBarBackground-5 makeStyles-roundedShape-9 makeStyles-backgroundLayer-8"
       />
     </header>
   </div>,
   <main
-    className="MuiBox-root MuiBox-root-132"
+    className="MuiBox-root MuiBox-root-112"
     data-testid="task-list-page"
   >
     <TaskTabsContent

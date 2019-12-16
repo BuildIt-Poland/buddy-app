@@ -4,10 +4,12 @@ import waitForExpect from 'wait-for-expect';
 import { MemoryRouter, Route } from 'react-router';
 import { MockedProvider } from '@apollo/react-testing';
 import { taskListResponse, newbieTasksListMock } from '__mocks__';
+import { MenuTypes } from 'components/Header';
 import TasksList from '../NewbieTasksList';
 
 jest.mock('components/AvatarHeader', () => 'AvatarHeader');
 jest.mock('components/TaskTabsContent', () => 'TaskTabsContent');
+jest.doMock('components/Header', () => ({ MenuTypes }));
 
 describe('Component - TasksList', () => {
   const path = '/newbie/tasks';

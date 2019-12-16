@@ -37,6 +37,9 @@ const useStyles = makeStyles<Theme>(theme => ({
   loaderShadow: {
     boxShadow: theme.shadows[2],
   },
+  hideLoader: {
+    visibility: 'hidden',
+  },
   backgroundLayer: {
     width: '100%',
     height: '100%',
@@ -57,9 +60,7 @@ const useStyles = makeStyles<Theme>(theme => ({
     height: '101%',
   },
   roundedAppBarContainer: {
-    overflow: 'hidden',
     width: '100%',
-    height: '100%',
     position: 'sticky',
     top: 0,
     right: 0,
@@ -84,6 +85,7 @@ const Header: React.FC<HeaderProps> = ({
     defaultAppBarBackground,
     paperAppBarBackground,
     loaderShadow,
+    hideLoader,
     backgroundLayer,
     roundedShape,
     roundedAppBarBackground,
@@ -127,15 +129,14 @@ const Header: React.FC<HeaderProps> = ({
         </IconButton>
       </Toolbar>
       {children}
-      {loading && (
-        <LinearProgress
-          variant={'indeterminate'}
-          className={clsx(
-            loaderShadow,
-            isRoundedShape && [roundedShape, roundedLoader, backgroundLayer]
-          )}
-        />
-      )}
+      <LinearProgress
+        variant={'indeterminate'}
+        className={clsx(
+          loaderShadow,
+          isRoundedShape && [roundedShape, roundedLoader, backgroundLayer],
+          { [hideLoader]: !loading }
+        )}
+      />
       <Box
         className={clsx(
           paperAppBarBackground,

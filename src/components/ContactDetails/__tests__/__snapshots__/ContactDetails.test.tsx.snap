@@ -124,6 +124,19 @@ Array [
         />
       </button>
     </div>
+    <div
+      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 makeStyles-hideLoader-7 MuiLinearProgress-indeterminate"
+      role="progressbar"
+    >
+      <div
+        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
+        style={Object {}}
+      />
+      <div
+        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
+        style={Object {}}
+      />
+    </div>
     <Box
       className="makeStyles-paperAppBarBackground-5"
     />
@@ -204,6 +217,19 @@ Array [
         />
       </button>
     </div>
+    <div
+      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 makeStyles-hideLoader-7 MuiLinearProgress-indeterminate"
+      role="progressbar"
+    >
+      <div
+        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
+        style={Object {}}
+      />
+      <div
+        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
+        style={Object {}}
+      />
+    </div>
     <Box
       className="makeStyles-paperAppBarBackground-5"
     />
@@ -282,6 +308,19 @@ Array [
           className="MuiTouchRipple-root"
         />
       </button>
+    </div>
+    <div
+      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 makeStyles-hideLoader-7 MuiLinearProgress-indeterminate"
+      role="progressbar"
+    >
+      <div
+        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
+        style={Object {}}
+      />
+      <div
+        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
+        style={Object {}}
+      />
     </div>
     <Box
       className="makeStyles-paperAppBarBackground-5"
