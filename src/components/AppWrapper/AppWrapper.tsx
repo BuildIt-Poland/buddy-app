@@ -10,16 +10,16 @@ const drawerWidth = '28rem';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      display: 'flex',
+      height: '100%',
       minHeight: '100vh',
     },
     drawerPaper: {
       width: drawerWidth,
     },
     content: {
-      flex: 1,
       display: 'flex',
       flexDirection: 'column',
+      height: '100%',
     },
     drawerHeader: theme.mixins.toolbar,
   })

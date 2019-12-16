@@ -5,7 +5,6 @@ import waitForExpect from 'wait-for-expect';
 import { MemoryRouter, Route } from 'react-router';
 import { MockedProvider } from '@apollo/react-testing';
 import { taskListResponse, newbieTasksListMock } from '__mocks__';
-import { MenuTypes } from 'components/Header';
 import TasksList from '../TasksList';
 
 jest.mock('@material-ui/core/AppBar', () => 'AppBar');
@@ -16,7 +15,11 @@ jest.mock('components/AvatarHeader', () => 'AvatarHeader');
 jest.mock('components/PlusButton', () => 'PlusButton');
 jest.mock('components/TaskListPlaceHolder', () => 'TaskListPlaceHolder');
 jest.mock('components/TaskTabsContent', () => 'TaskTabsContent');
-jest.doMock('components/Header', () => ({ MenuTypes }));
+jest.mock('components/Header', () => {
+  const res = require.requireActual('components/Header');
+  res.default = () => 'Header';
+  return res;
+});
 
 describe('Component - TasksList', () => {
   const path = '/buddy/newbies/1234/tasks';

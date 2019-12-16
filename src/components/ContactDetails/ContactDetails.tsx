@@ -46,7 +46,11 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
 
   return (
     <>
-      <Header type={MenuTypes.BACK} loading={loading} onButtonClick={onBackClick} />
+      <Header
+        type={MenuTypes && MenuTypes.BACK}
+        loading={loading}
+        onButtonClick={onBackClick}
+      />
       <PageContainer backGroundShape>
         <Box>
           <Typography component='h2' variant='h2'>

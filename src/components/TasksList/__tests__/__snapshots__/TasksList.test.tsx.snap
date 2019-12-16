@@ -2,87 +2,9 @@
 
 exports[`Component - TasksList When there are tasks renders correctly 1`] = `
 Array [
-  <AppBar
-    className="makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-withoutShadow-3"
-    color="inherit"
-    component="header"
-    position="sticky"
-  >
-    <div
-      className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
-    >
-      <button
-        className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-1 MuiIconButton-colorInherit MuiIconButton-edgeStart"
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onDragLeave={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <span
-          className="MuiIconButton-label"
-        >
-          <svg
-            aria-hidden="true"
-            className="MuiSvgIcon-root"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-            />
-          </svg>
-        </span>
-      </button>
-    </div>
-    <AvatarHeader
-      newbieId="1234"
-    />
-    <Tabs
-      centered={true}
-      indicatorColor="primary"
-      onChange={[Function]}
-      textColor="primary"
-      value={0}
-      variant="fullWidth"
-    >
-      <Tab
-        label="Newbie Tasks"
-      />
-      <Tab
-        label="My tasks"
-      />
-    </Tabs>
-    <div
-      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 MuiLinearProgress-indeterminate"
-      role="progressbar"
-    >
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
-        style={Object {}}
-      />
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
-        style={Object {}}
-      />
-    </div>
-    <div
-      className="MuiBox-root MuiBox-root-60 makeStyles-paperAppBarBackground-5"
-    />
-  </AppBar>,
+  "Header",
   <main
-    className="MuiBox-root MuiBox-root-61"
+    className="MuiBox-root MuiBox-root-2"
     data-testid="task-list-page"
   >
     <TabPanel
@@ -136,87 +58,9 @@ Array [
 
 exports[`Component - TasksList When there are tasks renders correctly 2`] = `
 Array [
-  <AppBar
-    className="makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-withoutShadow-3"
-    color="inherit"
-    component="header"
-    position="sticky"
-  >
-    <div
-      className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
-    >
-      <button
-        className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-1 MuiIconButton-colorInherit MuiIconButton-edgeStart"
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onDragLeave={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <span
-          className="MuiIconButton-label"
-        >
-          <svg
-            aria-hidden="true"
-            className="MuiSvgIcon-root"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-            />
-          </svg>
-        </span>
-      </button>
-    </div>
-    <AvatarHeader
-      newbieId="1234"
-    />
-    <Tabs
-      centered={true}
-      indicatorColor="primary"
-      onChange={[Function]}
-      textColor="primary"
-      value={0}
-      variant="fullWidth"
-    >
-      <Tab
-        label="Newbie Tasks"
-      />
-      <Tab
-        label="My tasks"
-      />
-    </Tabs>
-    <div
-      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 makeStyles-hideLoader-7 MuiLinearProgress-indeterminate"
-      role="progressbar"
-    >
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
-        style={Object {}}
-      />
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
-        style={Object {}}
-      />
-    </div>
-    <div
-      className="MuiBox-root MuiBox-root-72 makeStyles-paperAppBarBackground-5"
-    />
-  </AppBar>,
+  "Header",
   <main
-    className="MuiBox-root MuiBox-root-61"
+    className="MuiBox-root MuiBox-root-2"
     data-testid="task-list-page"
   >
     <TabPanel
@@ -302,87 +146,9 @@ Array [
 
 exports[`Component - TasksList when there are not tasks should render empty state 1`] = `
 Array [
-  <AppBar
-    className="makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-withoutShadow-3"
-    color="inherit"
-    component="header"
-    position="sticky"
-  >
-    <div
-      className="MuiToolbar-root MuiToolbar-regular MuiToolbar-gutters"
-    >
-      <button
-        className="MuiButtonBase-root MuiIconButton-root makeStyles-menuButton-1 MuiIconButton-colorInherit MuiIconButton-edgeStart"
-        disabled={false}
-        onBlur={[Function]}
-        onClick={[Function]}
-        onDragLeave={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        onKeyUp={[Function]}
-        onMouseDown={[Function]}
-        onMouseLeave={[Function]}
-        onMouseUp={[Function]}
-        onTouchEnd={[Function]}
-        onTouchMove={[Function]}
-        onTouchStart={[Function]}
-        tabIndex={0}
-        type="button"
-      >
-        <span
-          className="MuiIconButton-label"
-        >
-          <svg
-            aria-hidden="true"
-            className="MuiSvgIcon-root"
-            focusable="false"
-            role="presentation"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
-            />
-          </svg>
-        </span>
-      </button>
-    </div>
-    <AvatarHeader
-      newbieId="1234"
-    />
-    <Tabs
-      centered={true}
-      indicatorColor="primary"
-      onChange={[Function]}
-      textColor="primary"
-      value={0}
-      variant="fullWidth"
-    >
-      <Tab
-        label="Newbie Tasks"
-      />
-      <Tab
-        label="My tasks"
-      />
-    </Tabs>
-    <div
-      className="MuiLinearProgress-root MuiLinearProgress-colorPrimary makeStyles-loaderShadow-6 makeStyles-hideLoader-7 MuiLinearProgress-indeterminate"
-      role="progressbar"
-    >
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-barColorPrimary MuiLinearProgress-bar1Indeterminate"
-        style={Object {}}
-      />
-      <div
-        className="MuiLinearProgress-bar MuiLinearProgress-bar2Indeterminate MuiLinearProgress-barColorPrimary"
-        style={Object {}}
-      />
-    </div>
-    <div
-      className="MuiBox-root MuiBox-root-85 makeStyles-paperAppBarBackground-5"
-    />
-  </AppBar>,
+  "Header",
   <main
-    className="MuiBox-root MuiBox-root-84"
+    className="MuiBox-root MuiBox-root-3"
     data-testid="task-list-page"
   >
     <TabPanel

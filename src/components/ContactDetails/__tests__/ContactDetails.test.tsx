@@ -5,14 +5,16 @@ import { act, create } from 'react-test-renderer';
 import waitForExpect from 'wait-for-expect';
 import ContactDetails from 'components/ContactDetails';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
-import { MenuTypes } from 'components/Header';
 import { buddyContactDetails, newbieContactDetails, UserRole } from '__mocks__';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('components/UserDetails', () => 'UserDetails');
 jest.mock('components/PageContainer', () => 'PageContainer');
-jest.doMock('components/Header', () => ({ MenuTypes }));
+jest.mock(
+  'components/Header',
+  () => (require.requireActual('components/Header').default = () => 'Header')
+);
 
 describe('Component - ContactDetails', () => {
   const mockHistory: any = {
