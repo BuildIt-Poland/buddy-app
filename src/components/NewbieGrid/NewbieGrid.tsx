@@ -1,18 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Newbie } from 'buddy-app-schema';
 import { ROUTES } from 'shared/routes';
 import Avatar from 'components/Avatar';
-import Box from '@material-ui/core/Box';
 import { getProgressInPercentages } from 'utils';
 
 const useStyles = makeStyles<Theme>(theme => ({
-  carrouselElement: {
-    height: theme.spacing(25),
-    width: theme.spacing(25),
+  card: {
+    height: '25rem',
+    width: '25rem',
     padding: theme.spacing(2),
     borderRadius: '15%',
     textDecoration: 'none',
@@ -36,17 +36,17 @@ const useStyles = makeStyles<Theme>(theme => ({
       },
     },
   },
-  carrouselElementInfo: {
+  cardInfo: {
     transform: 'scale(1.2)',
   },
-  carrouselItem: {
+  gridItem: {
     perspective: '900px',
     padding: theme.spacing(2),
     [theme.breakpoints.down('xs')]: {
       padding: theme.spacing(3),
     },
   },
-  carrousel: {
+  grid: {
     [theme.breakpoints.down('xs')]: {
       paddingTop: theme.spacing(1),
       overflowX: 'auto',
@@ -57,26 +57,26 @@ const useStyles = makeStyles<Theme>(theme => ({
   },
 }));
 
-const Carrousel: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
+const NewbieGrid: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
   const classes = useStyles();
 
   return (
-    <Grid container wrap={'wrap'} justify='center' className={classes.carrousel}>
+    <Grid container wrap={'wrap'} justify='center' className={classes.grid}>
       {newbies.map(newbie => (
-        <Grid key={newbie.id} item className={classes.carrouselItem}>
+        <Grid key={newbie.id} item className={classes.gridItem}>
           <Link
             className={classes.link}
             to={ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbie.id)}>
-            <Paper className={classes.carrouselElement}>
-              <Box className={classes.carrouselElementInfo}>
+            <Card className={classes.card}>
+              <CardContent className={classes.cardInfo}>
                 <Avatar
                   progress={getProgressInPercentages(newbie.tasksInfo.buddyProgress)}
                   name={newbie.name}
                   imgSrc={newbie.photo}
                   position={newbie.position || undefined}
                 />
-              </Box>
-            </Paper>
+              </CardContent>
+            </Card>
           </Link>
         </Grid>
       ))}
@@ -84,4 +84,4 @@ const Carrousel: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
   );
 };
 
-export default Carrousel;
+export default NewbieGrid;
