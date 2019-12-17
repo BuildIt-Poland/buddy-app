@@ -25,15 +25,9 @@ const useStyles = makeStyles<Theme>(theme => ({
     transition: '0.5s all ease',
     transform: 'rotateX(5deg) scale(0.9)',
     boxShadow: theme.shadows[5],
-    [theme.breakpoints.down('xs')]: {
-      transform: 'rotateX(5deg) scale(1)',
-    },
     '&:hover': {
       boxShadow: theme.shadows[7],
       transform: 'rotate(0deg) scale(1.1)',
-      [theme.breakpoints.down('xs')]: {
-        transform: 'rotate(0deg) scale(1.2)',
-      },
     },
   },
   cardInfo: {
@@ -42,9 +36,6 @@ const useStyles = makeStyles<Theme>(theme => ({
   gridItem: {
     perspective: '900px',
     padding: theme.spacing(2),
-    [theme.breakpoints.down('xs')]: {
-      padding: theme.spacing(3),
-    },
   },
   grid: {
     [theme.breakpoints.down('xs')]: {

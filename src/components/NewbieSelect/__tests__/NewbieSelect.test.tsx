@@ -8,7 +8,7 @@ import NewbieSelect from '../NewbieSelect';
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('components/PlusButton/', () => 'PlusButton');
-jest.mock('components/Carrousel/', () => 'Carrousel');
+jest.mock('components/NewbieGrid', () => 'NewbieGrid');
 jest.mock('components/PageContainer/', () => 'PageContainer');
 jest.doMock('components/Header');
 

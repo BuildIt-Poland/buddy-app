@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router';
 import theme from 'styles/theme';
 import NewbieGrid from '../NewbieGrid';
 
-jest.mock('@material-ui/core/NewbieGrid', () => 'NewbieGrid');
+jest.mock('@material-ui/core/Grid', () => 'Grid');
 jest.mock('@material-ui/core/Card', () => 'Card');
 jest.mock('@material-ui/core/CardContent', () => 'CardContent');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
