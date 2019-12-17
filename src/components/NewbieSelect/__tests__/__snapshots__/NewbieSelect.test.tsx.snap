@@ -12,8 +12,8 @@ Array [
     data-testid="newbie-select-page"
   >
     <Box
+      className="makeStyles-title-1"
       component="section"
-      m="0 0 5rem"
     >
       <Typography
         component="h1"
@@ -48,8 +48,8 @@ Array [
     data-testid="newbie-select-page"
   >
     <Box
+      className="makeStyles-title-1"
       component="section"
-      m="0 0 5rem"
     >
       <Typography
         component="h1"
