@@ -11,10 +11,10 @@ import { getProgressInPercentages } from 'utils';
 
 const useStyles = makeStyles<Theme>(theme => ({
   carrouselElement: {
-    height: '25rem',
-    width: '25rem',
+    height: theme.spacing(25),
+    width: theme.spacing(25),
     padding: theme.spacing(2),
-    borderRadius: '10%',
+    borderRadius: '15%',
     textDecoration: 'none',
     background: `linear-gradient(${theme.palette.background.default}, ${theme.palette.background.paper})`,
 
@@ -23,10 +23,17 @@ const useStyles = makeStyles<Theme>(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
     transition: '0.5s all ease',
-    transform: 'rotateX(15deg) scale(0.85)',
-    boxShadow: '0px 5px 10px #555',
+    transform: 'rotateX(5deg) scale(0.9)',
+    boxShadow: theme.shadows[5],
+    [theme.breakpoints.down('xs')]: {
+      transform: 'rotateX(5deg) scale(1)',
+    },
     '&:hover': {
-      transform: 'rotate(0deg) scale(1.1) translateY(10px)',
+      boxShadow: theme.shadows[7],
+      transform: 'rotate(0deg) scale(1.1)',
+      [theme.breakpoints.down('xs')]: {
+        transform: 'rotate(0deg) scale(1.2)',
+      },
     },
   },
   carrouselElementInfo: {
@@ -34,9 +41,14 @@ const useStyles = makeStyles<Theme>(theme => ({
   },
   carrouselItem: {
     perspective: '900px',
+    padding: theme.spacing(2),
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(3),
+    },
   },
   carrousel: {
     [theme.breakpoints.down('xs')]: {
+      paddingTop: theme.spacing(1),
       overflowX: 'auto',
     },
   },
@@ -49,12 +61,7 @@ const Carrousel: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
   const classes = useStyles();
 
   return (
-    <Grid
-      container
-      spacing={2}
-      wrap={'wrap'}
-      justify='center'
-      className={classes.carrousel}>
+    <Grid container wrap={'wrap'} justify='center' className={classes.carrousel}>
       {newbies.map(newbie => (
         <Grid key={newbie.id} item className={classes.carrouselItem}>
           <Link
@@ -66,7 +73,8 @@ const Carrousel: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
                   progress={getProgressInPercentages(newbie.tasksInfo.buddyProgress)}
                   name={newbie.name}
                   imgSrc={newbie.photo}
-                  position={newbie.position || undefined}></Avatar>
+                  position={newbie.position || undefined}
+                />
               </Box>
             </Paper>
           </Link>

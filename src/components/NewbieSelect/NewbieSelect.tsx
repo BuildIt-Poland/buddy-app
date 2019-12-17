@@ -15,7 +15,6 @@ import NewbieSelectDictionary from './dictionary';
 
 const useStyles = makeStyles<Theme>(theme => ({
   title: {
-    textAlign: 'center',
     marginBottom: theme.spacing(5),
   },
   carrouselWarpper: {
