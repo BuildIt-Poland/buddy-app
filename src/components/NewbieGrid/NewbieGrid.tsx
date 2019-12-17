@@ -35,11 +35,14 @@ const useStyles = makeStyles<Theme>(theme => ({
   },
   gridItem: {
     perspective: '900px',
-    padding: theme.spacing(2),
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(0.5),
+    },
   },
   grid: {
     [theme.breakpoints.down('xs')]: {
-      paddingTop: theme.spacing(1),
+      paddingTop: theme.spacing(2),
       overflowX: 'auto',
     },
   },
