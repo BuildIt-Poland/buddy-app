@@ -8,17 +8,19 @@ enum AUTH {
 const key: string = process.env.REACT_APP_AUTH || AUTH.USER;
 
 class Auth {
-  _getData = (key: string) => {
+  _getData = (key: string): AuthPayload | null => {
     const value = Cookies.get(key) || '';
     try {
       return JSON.parse(value);
     } catch (e) {
-      return value || {};
+      return null;
     }
   };
 
-  getToken() {
-    return this._getData(key).token;
+  getToken(): string | null {
+    const data = this._getData(key);
+
+    return data ? data.token : null;
   }
 
   getUser() {

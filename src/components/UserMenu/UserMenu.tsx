@@ -14,7 +14,6 @@ import { isBuddy, isNewbie } from 'utils';
 import { ROUTES } from 'shared/routes';
 import { Buddy, Newbie, UserRole } from 'buddy-app-schema';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
-import MenuContext, { MenuContextData } from 'contexts/MenuContext';
 import { BasicDetailsParams, UserMenuProps, UserBasicDetails } from './types';
 
 const useStyles = makeStyles(theme => ({
@@ -36,12 +35,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
   const history = useHistory();
   const { list, loader } = useStyles();
   const { data: AuthData, logout } = useContext<AuthContextData>(AuthContext);
-  const { toggleMenu } = React.useContext<MenuContextData>(MenuContext);
   const { userId, role } = AuthData;
 
   const onLogoutClick = () => {
     logout();
-    toggleMenu();
+    history.push(ROUTES.BASE);
   };
 
   const getQueryByRole = (role: UserRole, id: string) => {

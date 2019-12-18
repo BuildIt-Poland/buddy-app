@@ -8,10 +8,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import useForm from 'react-hook-form';
 import { ReactComponent as SpaceManLogo } from 'assets/svg/spaceman.svg';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
-import Container from '@material-ui/core/Container';
+import PageContainer from 'components/PageContainer/PageContainer';
 import RoundedButton from '../RoundedButton';
 import AlertDialog from '../AlertDialog';
-import BackgroundShape from '../BackgroundShape/';
 import DICTIONARY from './dictionary';
 import { ErrorDialog, FormData } from './types';
 
@@ -34,6 +33,7 @@ const useStyles = makeStyles(theme => ({
 
 const Login = () => {
   const classes = useStyles();
+
   const [errorDialog, setErrorDialog] = useState<ErrorDialog>({
     isOpen: false,
     message: '',
@@ -41,12 +41,12 @@ const Login = () => {
   const { register, errors, handleSubmit } = useForm<FormData>();
   const { login, loading, error } = useContext<AuthContextData>(AuthContext);
 
-  const onSubmit = async ({ email, password }: FormData) => {
+  const onSubmit = ({ email, password }: FormData) => {
     setErrorDialog({
       isOpen: false,
       message: '',
     });
-    await login(email, password);
+    login(email, password);
   };
 
   useEffect(() => {
@@ -66,12 +66,7 @@ const Login = () => {
   }, [error, setErrorDialog]);
 
   return (
-    <Container
-      fixed
-      data-testid='login-page'
-      className={classes.container}
-      component='main'
-      maxWidth='md'>
+    <PageContainer backGroundShape data-testid='login-page' maxWidth='md'>
       <Typography component='h1' variant='h1' align='center'>
         {DICTIONARY.TITLE}
       </Typography>
@@ -90,7 +85,8 @@ const Login = () => {
           fullWidth
           label={DICTIONARY.EMAIL.LABEL}
           name='email'
-          autoComplete='email'
+          autoComplete='em
+          ail'
           autoFocus
           error={!!errors.email}
           helperText={(errors.email && errors.email.message) || ' '}
@@ -134,8 +130,7 @@ const Login = () => {
           <AlertDialog message={errorDialog.message}></AlertDialog>
         )}
       </form>
-      <BackgroundShape />
-    </Container>
+    </PageContainer>
   );
 };
 

@@ -1,7 +1,7 @@
 enum ROUTES {
   BASE = '/',
   LOGIN = '/login',
-  ERROR = '/404',
+  ROUTE_404 = '/404',
   BUDDY_ADD_TASK = '/buddy/newbies/:newbieId/add-task',
   BUDDY_TASK_DETAILS = '/buddy/newbies/:newbieId/tasks/:taskId',
   BUDDY_TASKS_LIST = '/buddy/newbies/:newbieId/tasks',

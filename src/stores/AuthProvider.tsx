@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
-import { Mutation } from 'buddy-app-schema';
+import { Mutation, AuthPayload } from 'buddy-app-schema';
 import { useMutation } from '@apollo/react-hooks';
 import { auth } from 'utils';
 import AuthContext, { State, defaultState } from 'contexts/AuthContext';
@@ -10,18 +10,19 @@ enum ActionTypes {
   AUTH_ERROR = 'auth/error',
   AUTH_SUCCESS = 'auth/success',
   AUTH_LOGOUT = 'auth/logout',
+  AUTH_BOOTSTRAP = 'auth/bootstrap',
 }
 
 interface Action {
-  type: string;
-  payload?: any;
+  type: ActionTypes;
+  payload?: AuthPayload;
 }
 
-interface AuthStoreProps {
+interface AuthProviderProps {
   children: React.ReactNode;
 }
 
-const authReducer = (state: State, action: Action) => {
+const authReducer = (state: State, action: Action): State => {
   switch (action.type) {
     case ActionTypes.AUTH_INIT:
       return {
@@ -33,7 +34,7 @@ const authReducer = (state: State, action: Action) => {
       return {
         ...state,
         loading: false,
-        data: { ...action.payload },
+        data: { ...action.payload } as AuthPayload,
         isAuthenticated: true,
       };
     case ActionTypes.AUTH_ERROR:
@@ -45,19 +46,24 @@ const authReducer = (state: State, action: Action) => {
     case ActionTypes.AUTH_LOGOUT:
       return {
         ...state,
-        data: {},
+        data: {} as AuthPayload,
         isAuthenticated: false,
       };
+    case ActionTypes.AUTH_BOOTSTRAP:
+      return {
+        ...state,
+        data: { ...action.payload } as AuthPayload,
+        isAuthenticated: !!action.payload,
+        isAppBootstrapped: true,
+      };
     default:
-      throw new Error();
+      throw new Error('Not valid action');
   }
 };
 
-const AuthStore = (props: AuthStoreProps): JSX.Element => {
+const AuthProvider = (props: AuthProviderProps): JSX.Element => {
   const [state, dispatch] = useReducer(authReducer, defaultState);
-  const [loginMutation] = useMutation<Mutation>(LOGIN_MUTATION, {
-    onCompleted: ({ login }) => auth.setUser(login),
-  });
+  const [loginMutation] = useMutation<Mutation>(LOGIN_MUTATION);
 
   const login = async (email: string, password: string) => {
     dispatch({ type: ActionTypes.AUTH_INIT });
@@ -70,7 +76,8 @@ const AuthStore = (props: AuthStoreProps): JSX.Element => {
         },
       });
 
-      if (typeof data === 'object') {
+      if (data && data.login) {
+        auth.setUser(data.login);
         dispatch({
           type: ActionTypes.AUTH_SUCCESS,
           payload: data.login,
@@ -82,16 +89,23 @@ const AuthStore = (props: AuthStoreProps): JSX.Element => {
   };
 
   const logout = () => {
-    dispatch({ type: ActionTypes.AUTH_LOGOUT });
     auth.removeUser();
+    dispatch({ type: ActionTypes.AUTH_LOGOUT });
   };
 
+  /**
+   * Get user data on first load
+   */
   useEffect(() => {
     const user = auth.getUser();
-    if (user && user.token) {
+    if (user) {
       dispatch({
-        type: ActionTypes.AUTH_SUCCESS,
+        type: ActionTypes.AUTH_BOOTSTRAP,
         payload: user,
+      });
+    } else {
+      dispatch({
+        type: ActionTypes.AUTH_BOOTSTRAP,
       });
     }
   }, []);
@@ -108,4 +122,4 @@ const AuthStore = (props: AuthStoreProps): JSX.Element => {
   );
 };
 
-export default AuthStore;
+export default AuthProvider;

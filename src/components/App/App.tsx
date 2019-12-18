@@ -1,32 +1,25 @@
-import React from 'react';
-import { ApolloProvider } from '@apollo/react-hooks';
+import React, { useContext } from 'react';
 
-import ThemeProvider from '@material-ui/styles/ThemeProvider';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import AuthContext, { AuthContextData } from 'contexts/AuthContext';
+import PageContainer from 'components/PageContainer/PageContainer';
 
-import theme from 'styles/theme';
-import { apolloClient } from 'utils';
-import AuthStore from 'stores/AuthStore';
-import MenuStore from 'stores/MenuStore';
-import SnackbarStore from 'stores/SnackbarStore';
-import AppRouter from '../AppRouter';
-import SnackBar from '../SnackBar';
+const loadAuthenticatedApp = () => import('components/AuthenticatedApp');
+const AuthenticatedApp = React.lazy(loadAuthenticatedApp);
+const UnauthenticatedApp = React.lazy(() => import('components/UnauthenticatedApp'));
 
 const App: React.FC = () => {
+  const { isAuthenticated } = useContext<AuthContextData>(AuthContext);
+
+  React.useEffect(() => {
+    loadAuthenticatedApp();
+  }, []);
+
+  React.useEffect(() => {}, [isAuthenticated]);
+
   return (
-    <ApolloProvider client={apolloClient}>
-      <ThemeProvider theme={theme}>
-        <AuthStore>
-          <MenuStore>
-            <SnackbarStore>
-              <CssBaseline />
-              <AppRouter />
-              <SnackBar />
-            </SnackbarStore>
-          </MenuStore>
-        </AuthStore>
-      </ThemeProvider>
-    </ApolloProvider>
+    <React.Suspense fallback={<PageContainer backGroundShape />}>
+      {isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+    </React.Suspense>
   );
 };
 

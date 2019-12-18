@@ -59,7 +59,7 @@ const TasksList: React.FC = () => {
       <Header
         type={MenuTypes.BACK}
         color={MenuColors.PAPER}
-        loading={loading || updateTaskLoading}
+        loading={updateTaskLoading}
         onButtonClick={onBackClick}>
         <AvatarHeader newbieId={newbieId} />
         <Tabs
