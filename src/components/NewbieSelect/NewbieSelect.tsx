@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { useQuery } from '@apollo/react-hooks';
 import Box from '@material-ui/core/Box';
@@ -6,24 +7,37 @@ import { QueryBuddyArgs, Query, Newbie } from 'buddy-app-schema';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import { NEWBIE_SELECT } from 'graphql/newbie-select.graphql';
 import PlusButton from 'components/PlusButton';
-import Carrousel from 'components/Carrousel';
+import NewbieGrid from 'components/NewbieGrid';
 import PageContainer from 'components/PageContainer';
 import Header, { MenuTypes } from 'components/Header';
-import MenuContext from 'contexts/MenuContext';
+import MenuContext, { MenuContextData } from 'contexts/MenuContext';
 import NewbieSelectDictionary from './dictionary';
+
+const useStyles = makeStyles<Theme>(theme => ({
+  title: {
+    marginBottom: theme.spacing(3),
+    [theme.breakpoints.down('xs')]: {
+      marginBottom: theme.spacing(1),
+    },
+  },
+  carrouselWarpper: {
+    marginBottom: theme.spacing(2),
+  },
+}));
 
 const NewbieSelect: React.FC = () => {
   const { data: AuthData } = useContext<AuthContextData>(AuthContext);
   const { loading, data } = useQuery<Query, QueryBuddyArgs>(NEWBIE_SELECT, {
     variables: { buddyId: AuthData.userId },
   });
-  const { toggleMenu } = React.useContext(MenuContext);
+  const { toggleMenu } = React.useContext<MenuContextData>(MenuContext);
+  const { title, carrouselWarpper } = useStyles();
 
   return (
     <>
       <Header type={MenuTypes.MENU} onButtonClick={toggleMenu} loading={loading} />
-      <PageContainer data-testid='newbie-select-page'>
-        <Box marginBottom={5} component='section'>
+      <PageContainer data-testid='newbie-select-page' backGroundShape>
+        <Box className={title} component='section'>
           <Typography component='h1' variant='h2'>
             {NewbieSelectDictionary.TITLE}
           </Typography>
@@ -32,8 +46,8 @@ const NewbieSelect: React.FC = () => {
           </Typography>
         </Box>
         {data && data.buddy.newbies && (
-          <Box marginBottom={2} component={'section'}>
-            <Carrousel newbies={data.buddy.newbies as Newbie[]} />
+          <Box className={carrouselWarpper} component={'section'}>
+            <NewbieGrid newbies={data.buddy.newbies as Newbie[]} />
           </Box>
         )}
         <PlusButton disabled />

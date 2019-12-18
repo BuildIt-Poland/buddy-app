@@ -12,11 +12,7 @@ jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
 jest.mock('components/TaskCheckbox', () => 'TaskCheckbox');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
-jest.mock('components/Header', () => {
-  const res = require.requireActual('components/Header');
-  res.default = (props: any) => <header {...props} />;
-  return res;
-});
+jest.doMock('components/Header');
 
 describe('Component - TaskDetails', () => {
   test('renders correctly', async () => {

@@ -3,15 +3,15 @@ import { create } from 'react-test-renderer';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import { MemoryRouter } from 'react-router';
 import theme from 'styles/theme';
-import Carrousel from '../Carrousel';
+import NewbieGrid from '../NewbieGrid';
 
 jest.mock('@material-ui/core/Grid', () => 'Grid');
-jest.mock('@material-ui/core/Paper', () => 'Paper');
-jest.mock('@material-ui/core/Box', () => 'Box');
+jest.mock('@material-ui/core/Card', () => 'Card');
+jest.mock('@material-ui/core/CardContent', () => 'CardContent');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('components/Avatar', () => 'Avatar');
 
-describe('Component - Carrousel', () => {
+describe('Component - NewbieGrid', () => {
   describe('renders correctly', () => {
     const newbies = [
       {
@@ -31,11 +31,11 @@ describe('Component - Carrousel', () => {
       },
     ];
 
-    test('Should render correctly Carrousel', () => {
+    test('Should render correctly NewbieGrid', () => {
       const component = create(
         <MemoryRouter>
           <ThemeProvider theme={theme}>
-            <Carrousel newbies={newbies} />
+            <NewbieGrid newbies={newbies} />
           </ThemeProvider>
         </MemoryRouter>
       );

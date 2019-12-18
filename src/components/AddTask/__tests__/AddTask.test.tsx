@@ -8,11 +8,7 @@ import SnackBar from 'components/SnackBar';
 import AddTask from '../AddTask';
 import DICTIONARY from '../dictionary';
 
-jest.mock('components/Header', () => {
-  const res = require.requireActual('components/Header');
-  res.default = (props: any) => <header {...props} />;
-  return res;
-});
+jest.doMock('components/Header');
 
 describe('Component - AddTask', () => {
   const path = '/buddy/newbies/1234/add-task';

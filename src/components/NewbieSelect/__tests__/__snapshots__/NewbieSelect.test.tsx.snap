@@ -8,11 +8,12 @@ Array [
     type="menu"
   />,
   <PageContainer
+    backGroundShape={true}
     data-testid="newbie-select-page"
   >
     <Box
+      className="makeStyles-title-1"
       component="section"
-      marginBottom={5}
     >
       <Typography
         component="h1"
@@ -43,11 +44,12 @@ Array [
     type="menu"
   />,
   <PageContainer
+    backGroundShape={true}
     data-testid="newbie-select-page"
   >
     <Box
+      className="makeStyles-title-1"
       component="section"
-      marginBottom={5}
     >
       <Typography
         component="h1"

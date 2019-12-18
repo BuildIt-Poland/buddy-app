@@ -1,79 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - Header should render Header with color paper 1`] = `
-<AppBar
-  className="makeStyles-appBar-2 makeStyles-paperAppBarBackground-5 makeStyles-withoutShadow-3"
-  color="inherit"
-  component="header"
-  position="sticky"
->
-  <Toolbar>
-    <IconButton
-      className="makeStyles-menuButton-1"
-      color="inherit"
-      edge="start"
-    >
-      <MenuIcon />
-    </IconButton>
-  </Toolbar>
+Array [
+  <AppBar
+    className="makeStyles-appBar-2 makeStyles-paperBackground-5 makeStyles-withoutShadow-3"
+    color="inherit"
+    component="header"
+    position="sticky"
+  >
+    <Toolbar>
+      <IconButton
+        className="makeStyles-menuButton-1"
+        color="inherit"
+        edge="start"
+      >
+        <MenuIcon />
+      </IconButton>
+    </Toolbar>
+  </AppBar>,
   <LinearProgress
-    className="makeStyles-loaderShadow-6 makeStyles-hideLoader-7"
+    className="makeStyles-loaderShadow-8 makeStyles-hideLoader-10"
     variant="indeterminate"
-  />
-  <Box
-    className="makeStyles-paperAppBarBackground-5"
-  />
-</AppBar>
+  />,
+]
 `;
 
 exports[`Component - Header should render Header with type back 1`] = `
-<AppBar
-  className="makeStyles-appBar-2 makeStyles-defaultAppBarBackground-4 makeStyles-withoutShadow-3"
-  color="inherit"
-  component="header"
-  position="sticky"
->
-  <Toolbar>
-    <IconButton
-      className="makeStyles-menuButton-1"
-      color="inherit"
-      edge="start"
-    >
-      <ArrowBackIcon />
-    </IconButton>
-  </Toolbar>
+Array [
+  <AppBar
+    className="makeStyles-appBar-2 makeStyles-defaultBackground-4 makeStyles-withoutShadow-3"
+    color="inherit"
+    component="header"
+    position="sticky"
+  >
+    <Toolbar>
+      <IconButton
+        className="makeStyles-menuButton-1"
+        color="inherit"
+        edge="start"
+      >
+        <ArrowBackIcon />
+      </IconButton>
+    </Toolbar>
+  </AppBar>,
   <LinearProgress
-    className="makeStyles-loaderShadow-6 makeStyles-hideLoader-7"
+    className="makeStyles-loaderShadow-8 makeStyles-hideLoader-10"
     variant="indeterminate"
-  />
-  <Box
-    className="makeStyles-paperAppBarBackground-5"
-  />
-</AppBar>
+  />,
+]
 `;
 
 exports[`Component - Header should render Header with type menu 1`] = `
-<AppBar
-  className="makeStyles-appBar-2 makeStyles-defaultAppBarBackground-4 makeStyles-withoutShadow-3"
-  color="inherit"
-  component="header"
-  position="sticky"
->
-  <Toolbar>
-    <IconButton
-      className="makeStyles-menuButton-1"
-      color="inherit"
-      edge="start"
-    >
-      <MenuIcon />
-    </IconButton>
-  </Toolbar>
+Array [
+  <AppBar
+    className="makeStyles-appBar-2 makeStyles-defaultBackground-4 makeStyles-withoutShadow-3"
+    color="inherit"
+    component="header"
+    position="sticky"
+  >
+    <Toolbar>
+      <IconButton
+        className="makeStyles-menuButton-1"
+        color="inherit"
+        edge="start"
+      >
+        <MenuIcon />
+      </IconButton>
+    </Toolbar>
+  </AppBar>,
   <LinearProgress
-    className="makeStyles-loaderShadow-6 makeStyles-hideLoader-7"
+    className="makeStyles-loaderShadow-8 makeStyles-hideLoader-10"
     variant="indeterminate"
-  />
-  <Box
-    className="makeStyles-paperAppBarBackground-5"
-  />
-</AppBar>
+  />,
+]
 `;
