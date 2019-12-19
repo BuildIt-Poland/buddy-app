@@ -8,15 +8,15 @@ describe('Router Tests', () => {
     cy.visit(ROUTES.BASE);
   });
 
-  it('should redirect unauthorised user from any route to login', () => {
+  it('should redirect unauthorized user from not valid route to 404', () => {
     cy.visit('no/such/route');
-    cy.url().should('includes', ROUTES.LOGIN);
+    cy.url().should('includes', ROUTES.ROUTE_404);
 
     cy.visit(ROUTES.BUDDY_SELECT_NEWBIE);
-    cy.url().should('includes', ROUTES.LOGIN);
+    cy.url().should('includes', ROUTES.ROUTE_404);
 
     cy.visit(ROUTES.NEWBIE_TASKS_LIST);
-    cy.url().should('includes', ROUTES.LOGIN);
+    cy.url().should('includes', ROUTES.ROUTE_404);
   });
 
   describe('should redirect ', () => {
@@ -33,17 +33,17 @@ describe('Router Tests', () => {
     it(`buddy from any not existing route to ${ROUTES.BUDDY_SELECT_NEWBIE}`, () => {
       cy.login(UserRole.Buddy);
       cy.visit(ROUTES.NEWBIE_TASK_DETAILS);
-      cy.url().should('includes', ROUTES.BUDDY_SELECT_NEWBIE);
+      cy.url().should('includes', ROUTES.ROUTE_404);
       cy.visit('no/such/route');
-      cy.url().should('includes', ROUTES.BUDDY_SELECT_NEWBIE);
+      cy.url().should('includes', ROUTES.ROUTE_404);
     });
 
     it(`newbie from any not existing route to ${ROUTES.NEWBIE_TASKS_LIST}`, () => {
       cy.login(UserRole.Newbie);
       cy.visit(ROUTES.BUDDY_TASK_DETAILS);
-      cy.url().should('includes', ROUTES.NEWBIE_TASKS_LIST);
+      cy.url().should('includes', ROUTES.ROUTE_404);
       cy.visit('no/such/route');
-      cy.url().should('includes', ROUTES.NEWBIE_TASKS_LIST);
+      cy.url().should('includes', ROUTES.ROUTE_404);
     });
   });
 
