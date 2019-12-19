@@ -5,6 +5,11 @@ import { loginSuccessMock, authContext } from '__mocks__';
 import { MockedProvider } from '@apollo/react-testing';
 import App from '../App';
 
+jest.mock('components/AuthenticatedApp', () => () => <div data-testid='app-auth' />);
+jest.mock('components/UnauthenticatedApp', () => () => (
+  <div data-testid='app-not-auth' />
+));
+
 afterEach(cleanup);
 
 describe('Component - App', () => {
@@ -12,17 +17,17 @@ describe('Component - App', () => {
     const unauthorizedContext = {
       isAuthenticated: false,
     };
-    it('renders ', async () => {
+    it('renders correctly the login page', async () => {
       const { getByTestId } = render(
         <AuthContext.Provider value={authContext(unauthorizedContext)}>
           <App />
         </AuthContext.Provider>
       );
-      expect(getByTestId('fallback-loader')).toBeInTheDocument();
+      expect(getByTestId('loader')).toBeInTheDocument();
 
       await wait();
 
-      expect(getByTestId('login-page')).toBeInTheDocument();
+      expect(getByTestId('app-not-auth')).toBeInTheDocument();
     });
   });
 
@@ -30,7 +35,7 @@ describe('Component - App', () => {
     const authorizedContext = {
       isAuthenticated: true,
     };
-    it('renders ', async () => {
+    it('renders correctly home page', async () => {
       const { getByTestId } = render(
         <MockedProvider mocks={[loginSuccessMock()]} addTypename={false}>
           <AuthContext.Provider value={authContext(authorizedContext)}>
@@ -38,11 +43,11 @@ describe('Component - App', () => {
           </AuthContext.Provider>
         </MockedProvider>
       );
-      expect(getByTestId('fallback-loader')).toBeInTheDocument();
+      expect(getByTestId('loader')).toBeInTheDocument();
 
       await wait();
 
-      expect(getByTestId('app-wrapper')).toBeInTheDocument();
+      expect(getByTestId('app-auth')).toBeInTheDocument();
     });
   });
 });

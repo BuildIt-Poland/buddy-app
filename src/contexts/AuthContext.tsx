@@ -6,7 +6,6 @@ export interface State {
   error: any;
   data: AuthPayload;
   isAuthenticated: boolean;
-  isAppBootstrapped: boolean;
 }
 
 export interface AuthContextData extends State {
@@ -19,7 +18,6 @@ export const defaultState: State = {
   error: null,
   data: {} as AuthPayload,
   isAuthenticated: false,
-  isAppBootstrapped: false,
 };
 
 const defaultContext: AuthContextData = {

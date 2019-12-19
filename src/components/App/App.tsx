@@ -21,7 +21,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter basename={ROUTES.BASE}>
       <React.Suspense
-        fallback={<PageContainer data-testid='fallback-loader' backGroundShape />}>
+        fallback={<PageContainer data-testid='loader' backGroundShape />}>
         {isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />}
       </React.Suspense>
     </BrowserRouter>

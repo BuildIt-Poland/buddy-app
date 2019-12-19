@@ -10,7 +10,6 @@ enum ActionTypes {
   AUTH_ERROR = 'auth/error',
   AUTH_SUCCESS = 'auth/success',
   AUTH_LOGOUT = 'auth/logout',
-  AUTH_BOOTSTRAP = 'auth/bootstrap',
 }
 
 interface Action {
@@ -49,13 +48,6 @@ const authReducer = (state: State, action: Action): State => {
         data: {} as AuthPayload,
         isAuthenticated: false,
       };
-    case ActionTypes.AUTH_BOOTSTRAP:
-      return {
-        ...state,
-        data: { ...action.payload } as AuthPayload,
-        isAuthenticated: !!action.payload,
-        isAppBootstrapped: true,
-      };
     default:
       throw new Error('Not valid action');
   }
@@ -93,19 +85,12 @@ const AuthProvider = (props: AuthProviderProps): JSX.Element => {
     dispatch({ type: ActionTypes.AUTH_LOGOUT });
   };
 
-  /**
-   * Get user data on first load
-   */
   useEffect(() => {
     const user = auth.getUser();
     if (user) {
       dispatch({
-        type: ActionTypes.AUTH_BOOTSTRAP,
+        type: ActionTypes.AUTH_SUCCESS,
         payload: user,
-      });
-    } else {
-      dispatch({
-        type: ActionTypes.AUTH_BOOTSTRAP,
       });
     }
   }, []);
