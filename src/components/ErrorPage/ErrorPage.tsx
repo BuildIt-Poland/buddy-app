@@ -28,12 +28,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ErrorPage: React.FC<ErrorPageProps> = props => {
+const ErrorPage: React.FC<ErrorPageProps> = ({ title, message, ...props }) => {
   const classes = useStyles();
-  const { title, message } = props;
 
   return (
-    <Container component={'main'} className={classes.root} maxWidth={'md'}>
+    <Container
+      component={'main'}
+      className={classes.root}
+      maxWidth={'md'}
+      {...props}>
       <Grid
         spacing={1}
         container

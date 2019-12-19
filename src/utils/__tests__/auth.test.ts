@@ -45,6 +45,6 @@ describe('Utils - auth', () => {
     Auth.setUser(authPayload);
     Auth.removeUser();
 
-    expect(Auth.getToken()).toBe(undefined);
+    expect(Auth.getToken()).toBe(null);
   });
 });

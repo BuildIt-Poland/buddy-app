@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - ErrorPage renders correctly 1`] = `
-<div
+<main
   className="MuiContainer-root makeStyles-root-1 MuiContainer-maxWidthMd"
 >
   <Grid
@@ -54,5 +54,5 @@ exports[`Component - ErrorPage renders correctly 1`] = `
     </Grid>
     <BackgroundShape />
   </Grid>
-</div>
+</main>
 `;

@@ -3,6 +3,7 @@
 exports[`Component - AppWrapper renders correctly 1`] = `
 <div
   className="makeStyles-root-1"
+  data-testid="app-wrapper"
 >
   <nav>
     <SwipeableDrawer

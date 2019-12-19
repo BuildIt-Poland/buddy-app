@@ -34,7 +34,7 @@ const AppWrapper: React.FC = props => {
   const { isOpen, toggleMenu } = React.useContext(MenuContext);
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} data-testid='app-wrapper'>
       <nav>
         <SwipeableDrawer
           variant='temporary'

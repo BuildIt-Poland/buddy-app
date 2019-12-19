@@ -10,7 +10,7 @@ import {
   authContext,
 } from '__mocks__';
 import { ROUTES } from 'shared/routes';
-import AuthStore from 'stores/AuthStore';
+import AuhProvider from 'stores/AuthProvider';
 import auth from 'utils/auth';
 import Login from '../Login';
 
@@ -21,11 +21,11 @@ describe('Component - Login', () => {
     const loginRoute = render(
       <MockedProvider mocks={[mocks]} addTypename={false}>
         <MemoryRouter initialEntries={[mockLocation(ROUTES.LOGIN)]}>
-          <AuthStore>
+          <AuhProvider>
             <Route path={ROUTES.LOGIN}>
               <Login />
             </Route>
-          </AuthStore>
+          </AuhProvider>
         </MemoryRouter>
       </MockedProvider>
     );

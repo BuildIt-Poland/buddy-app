@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { ROUTES } from 'shared/routes';
 import AppWrapper from 'components/AppWrapper';
 import TaskDetails from 'components/TaskDetails';
@@ -67,19 +67,17 @@ const AuthenticatedApp: React.FC = () => {
     : ROUTES.BUDDY_SELECT_NEWBIE;
 
   return (
-    <BrowserRouter basename={ROUTES.BASE} data-testid={'root'}>
-      <AppWrapper>
-        <Switch>
-          {routes.map(({ path, component }, key) => (
-            <Route key={key} path={path} exact component={component} />
-          ))}
-          <Route path={ROUTES.ROUTE_404} exact component={Error404} />
-          <Redirect path={ROUTES.BASE} exact to={redirectPath} />
-          <Redirect path={ROUTES.LOGIN} exact to={redirectPath} />
-          <Redirect to={ROUTES.ROUTE_404} />
-        </Switch>
-      </AppWrapper>
-    </BrowserRouter>
+    <AppWrapper>
+      <Switch>
+        {routes.map(({ path, component }, key) => (
+          <Route key={key} path={path} exact component={component} />
+        ))}
+        <Route path={ROUTES.ROUTE_404} exact component={Error404} />
+        <Redirect path={ROUTES.BASE} exact to={redirectPath} />
+        <Redirect path={ROUTES.LOGIN} exact to={redirectPath} />
+        <Redirect to={ROUTES.ROUTE_404} />
+      </Switch>
+    </AppWrapper>
   );
 };
 
