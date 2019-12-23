@@ -18,12 +18,13 @@ import {
   MenuTypes,
 } from './types';
 
+const LOADER_SIZE = 0.25;
+
+const SHADOW_SIZE = 0.5;
+
 const useStyles = makeStyles<Theme>(theme => ({
   menuButton: {
     marginRight: theme.spacing(2),
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
   },
   withoutShadow: {
     boxShadow: 'none',
@@ -47,7 +48,7 @@ const useStyles = makeStyles<Theme>(theme => ({
   },
   loaderLayer: {
     width: '110%',
-    height: '100%',
+    height: `calc(100% - ${theme.spacing(SHADOW_SIZE)})`,
     left: '-5%',
     top: 0,
     position: 'absolute',
@@ -57,13 +58,14 @@ const useStyles = makeStyles<Theme>(theme => ({
     visibility: 'hidden',
   },
   appBarContainer: {
+    overflow: 'hidden',
     width: '100%',
     position: 'sticky',
     top: 0,
     right: 0,
     left: 'auto',
     zIndex: theme.zIndex.appBar,
-    paddingBottom: theme.spacing(0.5),
+    paddingBottom: theme.spacing(LOADER_SIZE + SHADOW_SIZE),
   },
 }));
 
@@ -77,7 +79,6 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
   const {
     menuButton,
-    appBar,
     withoutShadow,
     defaultBackground,
     paperBackground,
@@ -107,15 +108,14 @@ const Header: React.FC<HeaderProps> = ({
     [MenuShapes.ROUNDED]: [roundedBackground, roundedShape],
   };
 
-  const HeaderBar = () => (
-    <>
+  return (
+    <Box className={appBarContainer}>
       <AppBar
-        component={'header'}
-        className={clsx(appBar, colorClassNames[color], shapeClassNames[shape], {
+        className={clsx(colorClassNames[color], shapeClassNames[shape], {
           [withoutShadow]: loading || !scrollTrigger,
         })}
-        position={'sticky'}
-        color={'inherit'}>
+        position='static'
+        color='inherit'>
         <Toolbar>
           <IconButton
             edge='start'
@@ -135,15 +135,7 @@ const Header: React.FC<HeaderProps> = ({
           [loaderLayer]: children,
         })}
       />
-    </>
-  );
-
-  return children ? (
-    <Box className={appBarContainer}>
-      <HeaderBar />
     </Box>
-  ) : (
-    <HeaderBar />
   );
 };
 
