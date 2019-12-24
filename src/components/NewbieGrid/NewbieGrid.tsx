@@ -27,7 +27,7 @@ const useStyles = makeStyles<Theme>(theme => ({
     boxShadow: theme.shadows[5],
     '&:hover': {
       boxShadow: theme.shadows[7],
-      transform: 'rotate(0deg) scale(1.1)',
+      transform: 'rotate(0deg) scale(1.05)',
     },
   },
   cardInfo: {
