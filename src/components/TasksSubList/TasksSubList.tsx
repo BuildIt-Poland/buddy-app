@@ -3,8 +3,15 @@ import { Link, useLocation } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
+import { makeStyles } from '@material-ui/core';
 import TaskCheckbox from '../TaskCheckbox';
 import { TasksSubListProps } from './types';
+
+const useStyles = makeStyles(() => ({
+  fullWidth: {
+    width: '100%',
+  },
+}));
 
 const TasksSubList: React.FC<TasksSubListProps> = ({
   tasks,
@@ -13,6 +20,7 @@ const TasksSubList: React.FC<TasksSubListProps> = ({
   onChange,
 }) => {
   const { pathname } = useLocation();
+  const { fullWidth } = useStyles();
 
   const ListHeader = (
     <ListSubheader disableSticky>
@@ -24,10 +32,12 @@ const TasksSubList: React.FC<TasksSubListProps> = ({
 
   return (
     <ListItem disableGutters dense>
-      <List dense subheader={ListHeader}>
+      <List dense className={fullWidth} subheader={ListHeader}>
         {tasks.map(({ id, title, status }) => (
           <ListItem disableGutters key={id}>
-            <Link to={{ pathname: `${pathname}/${id}`, state: { tabIndex } }}>
+            <Link
+              className={fullWidth}
+              to={{ pathname: `${pathname}/${id}`, state: { tabIndex } }}>
               <TaskCheckbox
                 id={id}
                 title={title}
