@@ -7,7 +7,9 @@ import { taskDetailsMock } from '__mocks__';
 import { tasksResponse, TaskStatus } from '__mocks__';
 import TasksSubList from '../';
 
+jest.mock('@material-ui/core/List', () => 'List');
 jest.mock('@material-ui/core/ListSubheader', () => 'ListSubheader');
+jest.mock('@material-ui/core/ListItem', () => 'ListItem');
 jest.mock('components/TaskCheckbox', () => 'TaskCheckbox');
 
 describe('Component - TasksSubList', () => {
