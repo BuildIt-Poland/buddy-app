@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - TaskOptions renders correctly 1`] = `
+Array [
+  <IconButton
+    aria-controls="task-options"
+    aria-haspopup="true"
+    aria-label="more"
+    onClick={[Function]}
+  >
+    <MoreVertIcon />
+  </IconButton>,
+  <Menu
+    TransitionComponent="Fade"
+    anchorEl={null}
+    anchorOrigin={
+      Object {
+        "horizontal": "center",
+        "vertical": "center",
+      }
+    }
+    classes={
+      Object {
+        "paper": "Menu-paper-1",
+      }
+    }
+    getContentAnchorEl={null}
+    id="task-options"
+    keepMounted={true}
+    onClose={[Function]}
+    open={false}
+  >
+    <MenuItem
+      onClick={[Function]}
+    >
+      <ListItemIcon
+        classes={
+          Object {
+            "root": "ListItemIcon-root-2",
+          }
+        }
+      >
+        <EditIcon
+          fontSize="small"
+        />
+      </ListItemIcon>
+      <ListItemText
+        primary="Edit"
+      />
+    </MenuItem>
+    <MenuItem
+      onClick={[Function]}
+    >
+      <ListItemIcon
+        classes={
+          Object {
+            "root": "ListItemIcon-root-2",
+          }
+        }
+      >
+        <FileCopyIcon
+          fontSize="small"
+        />
+      </ListItemIcon>
+      <ListItemText
+        primary="Copy link"
+      />
+    </MenuItem>
+    <MenuItem
+      onClick={[Function]}
+    >
+      <ListItemIcon
+        classes={
+          Object {
+            "root": "ListItemIcon-root-2",
+          }
+        }
+      >
+        <DeleteIcon
+          fontSize="small"
+        />
+      </ListItemIcon>
+      <ListItemText
+        primary="Delete"
+      />
+    </MenuItem>
+  </Menu>,
+]
+`;

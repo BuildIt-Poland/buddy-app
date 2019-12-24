@@ -6,6 +6,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import UncheckedCircleIcon from '@material-ui/icons/RadioButtonUnchecked';
 import CheckedCircleIcon from '@material-ui/icons/CheckCircle';
+import TaskOptions from 'components/TaskOptions';
 import { TaskCheckboxProps } from './types';
 
 const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
@@ -21,6 +22,7 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
     [TaskStatus.Uncompleted]: <strong>{title}</strong>,
   };
   const onCheckboxChange = () => onChange && onChange(id);
+  const preventDefault = (e: React.MouseEvent) => e.preventDefault();
 
   const CircleCheckbox = () => (
     <Checkbox
@@ -29,7 +31,6 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
       checked={isChecked}
       onChange={onCheckboxChange}
       disableRipple
-      onClick={e => e.stopPropagation()}
       icon={<UncheckedCircleIcon />}
       checkedIcon={<CheckedCircleIcon />}
     />
@@ -37,10 +38,13 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
 
   return title ? (
     <ListItem button>
-      <ListItemIcon>
+      <ListItemIcon onClick={preventDefault}>
         <CircleCheckbox />
       </ListItemIcon>
       <ListItemText primary={text[status]} />
+      <ListItemIcon onClick={preventDefault}>
+        <TaskOptions />
+      </ListItemIcon>
     </ListItem>
   ) : (
     <CircleCheckbox />

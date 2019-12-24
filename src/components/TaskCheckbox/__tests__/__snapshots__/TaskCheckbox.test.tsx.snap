@@ -4,7 +4,9 @@ exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] =
 <ListItem
   button={true}
 >
-  <ListItemIcon>
+  <ListItemIcon
+    onClick={[Function]}
+  >
     <Checkbox
       checked={true}
       checkedIcon={<CheckCircle />}
@@ -12,7 +14,6 @@ exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] =
       disableRipple={true}
       icon={<RadioButtonUnchecked />}
       onChange={[Function]}
-      onClick={[Function]}
     />
   </ListItemIcon>
   <ListItemText
@@ -22,6 +23,11 @@ exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] =
       </del>
     }
   />
+  <ListItemIcon
+    onClick={[Function]}
+  >
+    <TaskOptions />
+  </ListItemIcon>
 </ListItem>
 `;
 
@@ -29,7 +35,9 @@ exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`]
 <ListItem
   button={true}
 >
-  <ListItemIcon>
+  <ListItemIcon
+    onClick={[Function]}
+  >
     <Checkbox
       checked={false}
       checkedIcon={<CheckCircle />}
@@ -37,7 +45,6 @@ exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`]
       disableRipple={true}
       icon={<RadioButtonUnchecked />}
       onChange={[Function]}
-      onClick={[Function]}
     />
   </ListItemIcon>
   <ListItemText
@@ -47,5 +54,10 @@ exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`]
       </strong>
     }
   />
+  <ListItemIcon
+    onClick={[Function]}
+  >
+    <TaskOptions />
+  </ListItemIcon>
 </ListItem>
 `;
