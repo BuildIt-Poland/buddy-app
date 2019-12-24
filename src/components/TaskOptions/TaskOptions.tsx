@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { UserRole } from 'buddy-app-schema';
+import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -30,6 +32,9 @@ const StyledListItemIcon = withStyles(theme => ({
 }))(ListItemIcon);
 
 const TaskOptions: React.FC = () => {
+  const {
+    data: { role },
+  } = useContext<AuthContextData>(AuthContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isOpened = Boolean(anchorEl);
 
@@ -43,16 +48,28 @@ const TaskOptions: React.FC = () => {
       text: DICTIONARY.EDIT,
       Icon: EditIcon,
       onClick: handleClose,
+      access: {
+        [UserRole.Newbie]: false,
+        [UserRole.Buddy]: true,
+      },
     },
     {
       text: DICTIONARY.COPY_LINK,
       Icon: FileCopyIcon,
       onClick: handleClose,
+      access: {
+        [UserRole.Newbie]: true,
+        [UserRole.Buddy]: true,
+      },
     },
     {
       text: DICTIONARY.DELETE,
       Icon: DeleteIcon,
       onClick: handleClose,
+      access: {
+        [UserRole.Newbie]: false,
+        [UserRole.Buddy]: true,
+      },
     },
   ];
 
@@ -77,14 +94,17 @@ const TaskOptions: React.FC = () => {
         keepMounted
         open={isOpened}
         onClose={handleClose}>
-        {options.map(({ Icon, text, onClick }) => (
-          <MenuItem key={text} onClick={onClick}>
-            <StyledListItemIcon>
-              <Icon fontSize='small' />
-            </StyledListItemIcon>
-            <ListItemText primary={text} />
-          </MenuItem>
-        ))}
+        {options.map(
+          ({ Icon, text, onClick, access }) =>
+            access[role] && (
+              <MenuItem key={text} onClick={onClick}>
+                <StyledListItemIcon>
+                  <Icon fontSize='small' />
+                </StyledListItemIcon>
+                <ListItemText primary={text} />
+              </MenuItem>
+            )
+        )}
       </StyledMenu>
     </>
   );

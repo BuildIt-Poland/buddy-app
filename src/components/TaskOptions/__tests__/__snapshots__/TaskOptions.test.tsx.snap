@@ -29,61 +29,6 @@ Array [
     keepMounted={true}
     onClose={[Function]}
     open={false}
-  >
-    <MenuItem
-      onClick={[Function]}
-    >
-      <ListItemIcon
-        classes={
-          Object {
-            "root": "ListItemIcon-root-2",
-          }
-        }
-      >
-        <EditIcon
-          fontSize="small"
-        />
-      </ListItemIcon>
-      <ListItemText
-        primary="Edit"
-      />
-    </MenuItem>
-    <MenuItem
-      onClick={[Function]}
-    >
-      <ListItemIcon
-        classes={
-          Object {
-            "root": "ListItemIcon-root-2",
-          }
-        }
-      >
-        <FileCopyIcon
-          fontSize="small"
-        />
-      </ListItemIcon>
-      <ListItemText
-        primary="Copy link"
-      />
-    </MenuItem>
-    <MenuItem
-      onClick={[Function]}
-    >
-      <ListItemIcon
-        classes={
-          Object {
-            "root": "ListItemIcon-root-2",
-          }
-        }
-      >
-        <DeleteIcon
-          fontSize="small"
-        />
-      </ListItemIcon>
-      <ListItemText
-        primary="Delete"
-      />
-    </MenuItem>
-  </Menu>,
+  />,
 ]
 `;

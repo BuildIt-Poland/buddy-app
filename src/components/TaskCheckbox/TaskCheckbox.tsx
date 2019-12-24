@@ -1,6 +1,7 @@
 import React from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
+import { withStyles } from '@material-ui/core/styles';
 import { TaskStatus } from 'buddy-app-schema';
+import Checkbox from '@material-ui/core/Checkbox';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -8,6 +9,12 @@ import UncheckedCircleIcon from '@material-ui/icons/RadioButtonUnchecked';
 import CheckedCircleIcon from '@material-ui/icons/CheckCircle';
 import TaskOptions from 'components/TaskOptions';
 import { TaskCheckboxProps } from './types';
+
+const StyledListItem = withStyles(theme => ({
+  root: {
+    paddingLeft: theme.spacing(2),
+  },
+}))(ListItem);
 
 const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
   id,
@@ -37,7 +44,7 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
   );
 
   return title ? (
-    <ListItem button>
+    <StyledListItem button disableGutters>
       <ListItemIcon onClick={preventDefault}>
         <CircleCheckbox />
       </ListItemIcon>
@@ -45,7 +52,7 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
       <ListItemIcon onClick={preventDefault}>
         <TaskOptions />
       </ListItemIcon>
-    </ListItem>
+    </StyledListItem>
   ) : (
     <CircleCheckbox />
   );
