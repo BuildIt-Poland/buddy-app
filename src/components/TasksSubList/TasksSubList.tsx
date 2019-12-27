@@ -4,7 +4,7 @@ import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
 import { makeStyles } from '@material-ui/core';
-import TaskCheckbox from '../TaskCheckbox';
+import TaskListItem from '../TaskListItem';
 import { TasksSubListProps } from './types';
 
 const useStyles = makeStyles(() => ({
@@ -18,6 +18,7 @@ const TasksSubList: React.FC<TasksSubListProps> = ({
   title,
   tabIndex = 0,
   onChange,
+  taskOptionHandlers,
 }) => {
   const { pathname } = useLocation();
   const { fullWidth } = useStyles();
@@ -38,11 +39,12 @@ const TasksSubList: React.FC<TasksSubListProps> = ({
             <Link
               className={fullWidth}
               to={{ pathname: `${pathname}/${id}`, state: { tabIndex } }}>
-              <TaskCheckbox
+              <TaskListItem
                 id={id}
                 title={title}
                 status={status}
                 onChange={onChange}
+                taskOptionHandlers={taskOptionHandlers}
               />
             </Link>
           </ListItem>

@@ -14,7 +14,7 @@ type NewbieTask {
   description: String! @default(value: "")
   title: String! @default(value: "")
   status: TaskStatus! @default(value: UNCOMPLETED)
-  newbie: Newbie!
+  newbie: Newbie! @relation(name: "NewbieTasksOwner", onDelete: SET_NULL)
   implementationDate: DateTime
   notes: String
 }
@@ -25,7 +25,7 @@ type BuddyTask {
   description: String! @default(value: "")
   title: String! @default(value: "")
   status: TaskStatus! @default(value: UNCOMPLETED)
-  newbie: Newbie!
+  newbie: Newbie! @relation(name: "BuddyTasksOwner", onDelete: SET_NULL)
   implementationDate: DateTime
 }
 
@@ -40,7 +40,7 @@ type Buddy {
   phoneNumber: String
   startDate: DateTime
   allowPushedNotifications: Boolean! @default(value: false)
-  newbies: [Newbie]!
+  newbies: [Newbie]! @relation(name: "NewbieOwner", onDelete: CASCADE)
 }
 
 type Newbie {
@@ -54,9 +54,9 @@ type Newbie {
   phoneNumber: String
   startDate: DateTime
   allowPushedNotifications: Boolean! @default(value: false)
-  buddy: Buddy!
+  buddy: Buddy! @relation(name: "NewbieOwner", onDelete: SET_NULL)
   notes: String! @default(value: "")
-  newbieTasks: [NewbieTask]!
-  buddyTasks: [BuddyTask]!
+  newbieTasks: [NewbieTask]! @relation(name: "NewbieTasksOwner", onDelete: CASCADE)
+  buddyTasks: [BuddyTask]! @relation(name: "BuddyTasksOwner", onDelete: CASCADE)
 }
 

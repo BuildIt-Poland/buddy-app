@@ -63,7 +63,7 @@ export type Mutation = {
   login: AuthPayload;
   addNewbieTask: Task;
   addBuddyTask: Task;
-  deleteTask: Task;
+  deleteTask: Newbie;
   updateTask: Task;
   updateTaskStatus: Task;
 };
@@ -102,6 +102,7 @@ export type MutationAddBuddyTaskArgs = {
 
 export type MutationDeleteTaskArgs = {
   taskId: Scalars['ID'];
+  newbieId: Scalars['ID'];
 };
 
 export type MutationUpdateTaskArgs = {
@@ -507,10 +508,10 @@ export type MutationResolvers<
     RequireFields<MutationAddBuddyTaskArgs, 'newbieId' | 'input'>
   >;
   deleteTask?: Resolver<
-    ResolversTypes['Task'],
+    ResolversTypes['Newbie'],
     ParentType,
     ContextType,
-    RequireFields<MutationDeleteTaskArgs, 'taskId'>
+    RequireFields<MutationDeleteTaskArgs, 'taskId' | 'newbieId'>
   >;
   updateTask?: Resolver<
     ResolversTypes['Task'],

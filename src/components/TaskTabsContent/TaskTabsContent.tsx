@@ -51,6 +51,7 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
   onChange,
   loading,
   tabIndex = 0,
+  taskOptionHandlers,
 }) => {
   const { emptyContainer } = useStyles();
   const {
@@ -91,6 +92,7 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
               key={key}
               onChange={onChange}
               tabIndex={tabIndex}
+              taskOptionHandlers={taskOptionHandlers}
               {...props}
             />
           ))}

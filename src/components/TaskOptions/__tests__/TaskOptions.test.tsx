@@ -15,7 +15,7 @@ jest.mock('@material-ui/icons/MoreVert', () => 'MoreVertIcon');
 
 describe('Component - TaskOptions', () => {
   test(`renders correctly`, () => {
-    const component = create(<TaskOptions />);
+    const component = create(<TaskOptions id='1' />);
     expect(component.toJSON()).toMatchSnapshot();
   });
 });

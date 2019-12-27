@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -8,12 +8,12 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import useForm from 'react-hook-form';
 import { ReactComponent as SpaceManLogo } from 'assets/svg/spaceman.svg';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
+import DialogContext, { DialogContextData } from 'contexts/DialogContext';
 import Container from '@material-ui/core/Container';
 import RoundedButton from '../RoundedButton';
-import AlertDialog from '../AlertDialog';
 import BackgroundShape from '../BackgroundShape/';
 import DICTIONARY from './dictionary';
-import { ErrorDialog, FormData } from './types';
+import { FormData } from './types';
 
 const useStyles = makeStyles(theme => ({
   spaceMan: {
@@ -34,36 +34,23 @@ const useStyles = makeStyles(theme => ({
 
 const Login = () => {
   const classes = useStyles();
-  const [errorDialog, setErrorDialog] = useState<ErrorDialog>({
-    isOpen: false,
-    message: '',
-  });
   const { register, errors, handleSubmit } = useForm<FormData>();
   const { login, loading, error } = useContext<AuthContextData>(AuthContext);
+  const {
+    current: { showDialog },
+  } = useRef(useContext<DialogContextData>(DialogContext));
 
-  const onSubmit = async ({ email, password }: FormData) => {
-    setErrorDialog({
-      isOpen: false,
-      message: '',
-    });
-    await login(email, password);
-  };
+  const onSubmit = ({ email, password }: FormData) => login(email, password);
 
   useEffect(() => {
     if (error) {
       if (error.networkError) {
-        setErrorDialog({
-          isOpen: true,
-          message: DICTIONARY.ERRORS.NO_NETWORK,
-        });
+        showDialog(DICTIONARY.ERRORS.NO_NETWORK);
       } else {
-        setErrorDialog({
-          isOpen: true,
-          message: DICTIONARY.ERRORS.NO_USER_FOUND,
-        });
+        showDialog(DICTIONARY.ERRORS.NO_USER_FOUND);
       }
     }
-  }, [error, setErrorDialog]);
+  }, [error, showDialog]);
 
   return (
     <Container
@@ -130,9 +117,6 @@ const Login = () => {
         <Grid container justify='flex-end'>
           <Link href='#'>{DICTIONARY.FORGOT_PASSWORD}</Link>
         </Grid>
-        {errorDialog.isOpen && (
-          <AlertDialog message={errorDialog.message}></AlertDialog>
-        )}
       </form>
       <BackgroundShape />
     </Container>

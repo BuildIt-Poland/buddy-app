@@ -8,6 +8,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
 import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
+import { DELETE_TASK } from 'graphql/delete-task';
 import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
 import { useParams, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
@@ -32,6 +33,9 @@ const TasksList: React.FC = () => {
     variables: { newbieId },
   });
 
+  const [deleteTask, { loading: deleteTaskLoading }] = useMutation<Mutation>(
+    DELETE_TASK
+  );
   const [updateTaskStatus, { loading: updateTaskLoading }] = useMutation<Mutation>(
     UPDATE_TASK_STATUS,
     {
@@ -53,13 +57,16 @@ const TasksList: React.FC = () => {
   const newbieTasks = data && data.newbie.newbieTasks;
   const buddyTasks = data && data.newbie.buddyTasks;
   const pathname = ROUTES.BUDDY_ADD_TASK.replace(':newbieId', newbieId);
+  const taskOptionHandlers = {
+    deleteTask,
+  };
 
   return (
     <>
       <Header
         type={MenuTypes.BACK}
         color={MenuColors.PAPER}
-        loading={loading || updateTaskLoading}
+        loading={loading || updateTaskLoading || deleteTaskLoading}
         onButtonClick={onBackClick}>
         <AvatarHeader newbieId={newbieId} />
         <Tabs
@@ -80,6 +87,7 @@ const TasksList: React.FC = () => {
             tabIndex={tabIndex}
             onChange={onTaskChange}
             tasks={newbieTasks as Task[]}
+            taskOptionHandlers={taskOptionHandlers}
           />
         </TabPanel>
         <TabPanel value={tabIndex} index={1}>
@@ -88,6 +96,7 @@ const TasksList: React.FC = () => {
             loading={loading}
             onChange={onTaskChange}
             tasks={buddyTasks as Task[]}
+            taskOptionHandlers={taskOptionHandlers}
           />
         </TabPanel>
         <PlusButton

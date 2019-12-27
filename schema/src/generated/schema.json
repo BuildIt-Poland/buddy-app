@@ -1745,14 +1745,28 @@
                   }
                 },
                 "defaultValue": null
+              },
+              {
+                "name": "newbieId",
+                "description": "",
+                "type": {
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "ID",
+                    "ofType": null
+                  }
+                },
+                "defaultValue": null
               }
             ],
             "type": {
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "INTERFACE",
-                "name": "Task",
+                "kind": "OBJECT",
+                "name": "Newbie",
                 "ofType": null
               }
             },

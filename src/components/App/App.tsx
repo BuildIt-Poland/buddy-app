@@ -9,8 +9,10 @@ import { apolloClient } from 'utils';
 import AuthStore from 'stores/AuthStore';
 import MenuStore from 'stores/MenuStore';
 import SnackbarStore from 'stores/SnackbarStore';
+import DialogStore from 'stores/DialogStore';
 import AppRouter from '../AppRouter';
 import SnackBar from '../SnackBar';
+import AlertDialog from '../AlertDialog';
 
 const App: React.FC = () => {
   return (
@@ -19,9 +21,12 @@ const App: React.FC = () => {
         <AuthStore>
           <MenuStore>
             <SnackbarStore>
-              <CssBaseline />
-              <AppRouter />
-              <SnackBar />
+              <DialogStore>
+                <CssBaseline />
+                <AppRouter />
+                <SnackBar />
+                <AlertDialog />
+              </DialogStore>
             </SnackbarStore>
           </MenuStore>
         </AuthStore>

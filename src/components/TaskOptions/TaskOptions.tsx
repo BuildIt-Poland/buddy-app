@@ -1,7 +1,10 @@
 import React, { useState, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { UserRole } from 'buddy-app-schema';
+import { UserRole, QueryNewbieArgs } from 'buddy-app-schema';
 import AuthContext, { AuthContextData } from 'contexts/AuthContext';
+import DialogContext, { DialogContextData } from 'contexts/DialogContext';
+import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -13,6 +16,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DICTIONARY from './dictionary';
+import { TaskOptionsProps } from './types';
 
 const StyledMenu = withStyles(theme => ({
   paper: {
@@ -31,10 +35,17 @@ const StyledListItemIcon = withStyles(theme => ({
   },
 }))(ListItemIcon);
 
-const TaskOptions: React.FC = () => {
+const TaskOptions: React.FC<TaskOptionsProps> = ({
+  id: taskId,
+  taskOptionHandlers = {},
+}) => {
+  const { deleteTask } = taskOptionHandlers;
   const {
     data: { role },
   } = useContext<AuthContextData>(AuthContext);
+  const { showDialog, hideDialog } = useContext<DialogContextData>(DialogContext);
+  const { showSnackbar } = useContext<SnackbarContextData>(SnackbarContext);
+  const { newbieId } = useParams<QueryNewbieArgs>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isOpened = Boolean(anchorEl);
 
@@ -43,9 +54,26 @@ const TaskOptions: React.FC = () => {
 
   const handleClose = () => setAnchorEl(null);
 
+  const handleDelete = () =>
+    showDialog(
+      DICTIONARY.DELETE_DIALOG.MESSAGE,
+      DICTIONARY.DELETE_DIALOG.TITLE,
+      async () => {
+        handleClose();
+        hideDialog();
+
+        try {
+          deleteTask && (await deleteTask({ variables: { taskId, newbieId } }));
+          showSnackbar(DICTIONARY.DELETE_SNACKBAR.SUCCESS);
+        } catch (err) {
+          showSnackbar(DICTIONARY.DELETE_SNACKBAR.ERROR);
+        }
+      }
+    );
+
   const options = [
     {
-      text: DICTIONARY.EDIT,
+      text: DICTIONARY.OPTIONS.EDIT,
       Icon: EditIcon,
       onClick: handleClose,
       access: {
@@ -54,7 +82,7 @@ const TaskOptions: React.FC = () => {
       },
     },
     {
-      text: DICTIONARY.COPY_LINK,
+      text: DICTIONARY.OPTIONS.COPY_LINK,
       Icon: FileCopyIcon,
       onClick: handleClose,
       access: {
@@ -63,9 +91,9 @@ const TaskOptions: React.FC = () => {
       },
     },
     {
-      text: DICTIONARY.DELETE,
+      text: DICTIONARY.OPTIONS.DELETE,
       Icon: DeleteIcon,
-      onClick: handleClose,
+      onClick: handleDelete,
       access: {
         [UserRole.Newbie]: false,
         [UserRole.Buddy]: true,
@@ -97,11 +125,11 @@ const TaskOptions: React.FC = () => {
         {options.map(
           ({ Icon, text, onClick, access }) =>
             access[role] && (
-              <MenuItem key={text} onClick={onClick}>
+              <MenuItem key={text} onClick={onClick} dense>
                 <StyledListItemIcon>
                   <Icon fontSize='small' />
                 </StyledListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText secondary={<strong>{text}</strong>} />
               </MenuItem>
             )
         )}

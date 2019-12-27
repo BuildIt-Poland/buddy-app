@@ -114,20 +114,22 @@ const deleteTask: MutationResolvers['deleteTask'] = async (
   args,
   context
 ) => {
+  const newbie = await context.prisma.newbie({ id: args.newbieId });
+
   try {
-    const buddyTask = await context.prisma.deleteBuddyTask({
+    await context.prisma.deleteBuddyTask({
       id: args.taskId,
     });
 
-    return buddyTask;
+    return newbie;
   } catch (error) {}
 
   try {
-    const newbieTask = await context.prisma.deleteNewbieTask({
+    await context.prisma.deleteNewbieTask({
       id: args.taskId,
     });
 
-    return newbieTask;
+    return newbie;
   } catch (error) {}
 
   throw new ERRORS.NO_TASK_FOUND();
