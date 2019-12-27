@@ -11,7 +11,7 @@ import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import DialogContext, { DialogContextData } from 'contexts/DialogContext';
 import Container from '@material-ui/core/Container';
 import RoundedButton from '../RoundedButton';
-import BackgroundShape from '../BackgroundShape/';
+import BackgroundShape from '../BackgroundShape';
 import DICTIONARY from './dictionary';
 import { FormData } from './types';
 

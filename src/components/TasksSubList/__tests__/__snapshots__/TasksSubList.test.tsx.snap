@@ -29,7 +29,7 @@ exports[`Component - TasksSubList renders correctly Done section 1`] = `
         href="//1"
         onClick={[Function]}
       >
-        <TaskCheckbox
+        <TaskListItem
           id="1"
           status="UNCOMPLETED"
           title="Call you head manager"
@@ -69,7 +69,7 @@ exports[`Component - TasksSubList renders correctly Todo section 1`] = `
         href="//2"
         onClick={[Function]}
       >
-        <TaskCheckbox
+        <TaskListItem
           id="2"
           status="COMPLETED"
           title="Write you main manager"

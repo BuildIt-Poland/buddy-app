@@ -1,75 +1,39 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] = `
-<ListItem
-  button={true}
-  classes={
-    Object {
-      "root": "ListItem-root-1",
-    }
-  }
-  disableGutters={true}
->
-  <ListItemIcon
-    onClick={[Function]}
-  >
-    <Checkbox
-      checked={true}
-      checkedIcon={<CheckCircle />}
-      color="primary"
-      disableRipple={true}
-      icon={<RadioButtonUnchecked />}
-      onChange={[Function]}
+<Checkbox
+  checked={true}
+  checkedIcon={
+    <CheckCircle
+      fontSize="default"
     />
-  </ListItemIcon>
-  <ListItemText
-    primary={
-      <del>
-        Change you line manager
-      </del>
-    }
-  />
-  <ListItemIcon
-    onClick={[Function]}
-  >
-    <TaskOptions />
-  </ListItemIcon>
-</ListItem>
+  }
+  color="primary"
+  disableRipple={true}
+  icon={
+    <RadioButtonUnchecked
+      fontSize="default"
+    />
+  }
+  onChange={[Function]}
+/>
 `;
 
 exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`] = `
-<ListItem
-  button={true}
-  classes={
-    Object {
-      "root": "ListItem-root-1",
-    }
-  }
-  disableGutters={true}
->
-  <ListItemIcon
-    onClick={[Function]}
-  >
-    <Checkbox
-      checked={false}
-      checkedIcon={<CheckCircle />}
-      color="primary"
-      disableRipple={true}
-      icon={<RadioButtonUnchecked />}
-      onChange={[Function]}
+<Checkbox
+  checked={false}
+  checkedIcon={
+    <CheckCircle
+      fontSize="default"
     />
-  </ListItemIcon>
-  <ListItemText
-    primary={
-      <strong>
-        Change you line manager
-      </strong>
-    }
-  />
-  <ListItemIcon
-    onClick={[Function]}
-  >
-    <TaskOptions />
-  </ListItemIcon>
-</ListItem>
+  }
+  color="primary"
+  disableRipple={true}
+  icon={
+    <RadioButtonUnchecked
+      fontSize="default"
+    />
+  }
+  onChange={[Function]}
+/>
 `;

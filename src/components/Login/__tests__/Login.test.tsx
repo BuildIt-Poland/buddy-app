@@ -11,6 +11,8 @@ import {
 } from '__mocks__';
 import { ROUTES } from 'shared/routes';
 import AuthStore from 'stores/AuthStore';
+import DialogStore from 'stores/DialogStore';
+import AlertDialog from 'components/AlertDialog';
 import auth from 'utils/auth';
 import Login from '../Login';
 
@@ -22,9 +24,12 @@ describe('Component - Login', () => {
       <MockedProvider mocks={[mocks]} addTypename={false}>
         <MemoryRouter initialEntries={[mockLocation(ROUTES.LOGIN)]}>
           <AuthStore>
-            <Route path={ROUTES.LOGIN}>
-              <Login />
-            </Route>
+            <DialogStore>
+              <Route path={ROUTES.LOGIN}>
+                <Login />
+              </Route>
+              <AlertDialog />
+            </DialogStore>
           </AuthStore>
         </MemoryRouter>
       </MockedProvider>

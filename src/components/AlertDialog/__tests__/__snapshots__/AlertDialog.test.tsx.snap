@@ -1,33 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - AlertDialog renders correctly 1`] = `
+exports[`Component - SnackBar renders correctly 1`] = `
 <Dialog
   data-testid="alert-dialog"
   onClose={[Function]}
-  open={true}
+  open={false}
 >
-  <DialogContent />
-  <DialogActions>
-    <Button
-      color="primary"
-      data-testid="alert-dialog-close"
-      onClick={[Function]}
-    >
-      Close
-    </Button>
-  </DialogActions>
-</Dialog>
-`;
-
-exports[`Component - AlertDialog renders correctly with title message 1`] = `
-<Dialog
-  data-testid="alert-dialog"
-  onClose={[Function]}
-  open={true}
->
-  <DialogTitle>
-    Dummy title
-  </DialogTitle>
+  
   <DialogContent>
     <DialogContentText
       style={
@@ -37,7 +16,7 @@ exports[`Component - AlertDialog renders correctly with title message 1`] = `
       }
       variant="body2"
     >
-      Dummy Message
+      
     </DialogContentText>
   </DialogContent>
   <DialogActions>
@@ -47,6 +26,13 @@ exports[`Component - AlertDialog renders correctly with title message 1`] = `
       onClick={[Function]}
     >
       Close
+    </Button>
+    <Button
+      color="primary"
+      data-testid="alert-dialog-confirm"
+      onClick={[Function]}
+    >
+      Confirm
     </Button>
   </DialogActions>
 </Dialog>
