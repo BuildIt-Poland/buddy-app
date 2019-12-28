@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - SnackBar renders correctly 1`] = `
+exports[`Component - AlertDialog renders correctly 1`] = `
 <Dialog
   data-testid="alert-dialog"
   onClose={[Function]}

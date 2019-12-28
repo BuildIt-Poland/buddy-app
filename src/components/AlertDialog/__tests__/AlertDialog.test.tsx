@@ -9,7 +9,7 @@ jest.mock('@material-ui/core/DialogContent', () => 'DialogContent');
 jest.mock('@material-ui/core/DialogContentText', () => 'DialogContentText');
 jest.mock('@material-ui/core/DialogTitle', () => 'DialogTitle');
 
-describe('Component - SnackBar', () => {
+describe('Component - AlertDialog', () => {
   test('renders correctly', () => {
     const component = create(<AlertDialog />);
     expect(component.toJSON()).toMatchSnapshot();
