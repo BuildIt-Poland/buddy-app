@@ -8,7 +8,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
 import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
-import { DELETE_TASK } from 'graphql/delete-task';
+import { DELETE_TASK } from 'graphql/delete-task.graphql';
 import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
 import { useParams, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';

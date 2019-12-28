@@ -1,11 +1,10 @@
 import React from 'react';
-import { render, fireEvent, wait } from '@testing-library/react';
+import { render, fireEvent, wait, cleanup } from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
-import { MockedProvider } from '@apollo/react-testing';
-import { loginSuccessMock, loginFailedMock } from '__mocks__';
+import { authContext } from '__mocks__';
 import SnackbarStore from 'stores/SnackbarStore';
 import SnackBar from 'components/SnackBar';
-import AuthStore from 'stores/AuthStore';
+import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import DialogStore from 'stores/DialogStore';
 import AlertDialog from 'components/AlertDialog';
 import TaskOptions from '../TaskOptions';
@@ -14,63 +13,65 @@ import DICTIONARY from '../dictionary';
 describe('Component - TaskOptions', () => {
   const path = '/buddy/newbies/1234/tasks';
 
-  const taskOptionHandlers = {
-    deleteTask: jest.fn(),
-  };
-
   const triggerTaskOptions = (mocks: any) => {
     const TaskOptionsRoute = render(
-      <MockedProvider mocks={[mocks]} addTypename={false}>
-        <MemoryRouter initialEntries={[path]}>
-          <AuthStore>
-            <DialogStore>
-              <SnackbarStore>
-                <Route path={'/buddy/newbies/:newbieId/tasks'}>
-                  <TaskOptions id='1' taskOptionHandlers={taskOptionHandlers} />
-                </Route>
-                <AlertDialog />
-                <SnackBar />
-              </SnackbarStore>
-            </DialogStore>
-          </AuthStore>
-        </MemoryRouter>
-      </MockedProvider>
+      <MemoryRouter initialEntries={[path]}>
+        <AuthContext.Provider value={authContext() as AuthContextData}>
+          <DialogStore>
+            <SnackbarStore>
+              <Route path={'/buddy/newbies/:newbieId/tasks'}>
+                <TaskOptions id='1' taskOptionHandlers={mocks} />
+              </Route>
+              <AlertDialog />
+              <SnackBar />
+            </SnackbarStore>
+          </DialogStore>
+        </AuthContext.Provider>
+      </MemoryRouter>
     );
     const { getByTestId } = TaskOptionsRoute;
 
-    const titleInput = getByTestId('title');
-    const descriptionInput = getByTestId('description');
+    const taskOptionsBtn = getByTestId('task-options-btn');
+    fireEvent.click(taskOptionsBtn);
 
-    fireEvent.change(titleInput, {
-      target: { value: 'Test task' },
-    });
-    fireEvent.change(descriptionInput, {
-      target: { value: '<h1>Hello world!</h1>' },
-    });
+    const deleteOption = getByTestId(DICTIONARY.OPTIONS.DELETE);
+    fireEvent.click(deleteOption);
 
-    fireEvent.submit(getByTestId('form'));
+    const deleteDialogConfirmBtn = getByTestId('alert-dialog-confirm');
+    fireEvent.click(deleteDialogConfirmBtn);
 
     return TaskOptionsRoute;
   };
 
-  describe('when submitting form', () => {
+  afterEach(() => cleanup);
+
+  describe('when deleting task', () => {
     describe('when response is success', () => {
       it('should render success dialog', async () => {
-        const { getByTestId } = triggerTaskOptions(addTaskSuccessMock());
+        const deleteTaskSuccessMock = {
+          deleteTask: () => Promise.resolve(),
+        };
+        const { getByTestId } = triggerTaskOptions(deleteTaskSuccessMock);
         await wait(() => {
           expect(getByTestId('snack-bar')).toBeInTheDocument();
+          expect(getByTestId('snack-bar')).toHaveTextContent(
+            DICTIONARY.DELETE_SNACKBAR.SUCCESS
+          );
         });
       });
     });
 
     describe('when the server throws an error', () => {
       it('should render error dialog', async () => {
-        const { getByTestId } = triggerTaskOptions(addTaskFailedMock());
+        const deleteTaskFailedMock = {
+          deleteTask: () => Promise.reject(),
+        };
+        const { getByTestId } = triggerTaskOptions(deleteTaskFailedMock);
         await wait(() => {
-          expect(getByTestId('snack-bar')).toHaveTextContent(
-            DICTIONARY.DELETE_SNACKBAR.SUCCESS
-          );
           expect(getByTestId('snack-bar')).toBeInTheDocument();
+          expect(getByTestId('snack-bar')).toHaveTextContent(
+            DICTIONARY.DELETE_SNACKBAR.ERROR
+          );
         });
       });
     });

@@ -107,6 +107,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
         aria-label='more'
         aria-controls='task-options'
         aria-haspopup='true'
+        data-testid='task-options-btn'
         onClick={handleClick}>
         <MoreVertIcon />
       </IconButton>
@@ -125,7 +126,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
         {options.map(
           ({ Icon, text, onClick, access }) =>
             access[role] && (
-              <MenuItem key={text} onClick={onClick} dense>
+              <MenuItem key={text} data-testid={text} onClick={onClick} dense>
                 <StyledListItemIcon>
                   <Icon fontSize='small' />
                 </StyledListItemIcon>
