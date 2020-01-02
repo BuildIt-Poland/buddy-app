@@ -1,0 +1,61 @@
+/* eslint-disable */
+require('dotenv').config();
+import { formatError } from 'apollo-errors';
+import { GraphQLServer, Options } from 'graphql-yoga';
+import { prisma } from './generated/prisma-client';
+import { Resolvers } from 'buddy-app-schema';
+import Query from './resolvers/query';
+import Mutation from './resolvers/mutation';
+import Buddy from './resolvers/buddy';
+import Newbie from './resolvers/newbie';
+import BuddyTask from './resolvers/buddy-task';
+import NewbieTask from './resolvers/newbie-task';
+import User from './resolvers/user';
+import Task from './resolvers/task';
+import ERRORS from './errors';
+import { authMiddleware, credentialsMiddleware } from './utils';
+import schema from 'buddy-app-schema';
+/* eslint-enable */
+
+const resolvers: Resolvers = {
+  Query,
+  Mutation,
+  Buddy,
+  Newbie,
+  BuddyTask,
+  NewbieTask,
+  User,
+  Task,
+};
+
+const options: Options = {
+  formatError: (err: any) => {
+    const message = err.message.toLowerCase();
+    const error =
+      message.includes('database') || message.includes('field')
+        ? new ERRORS.INTERNAL()
+        : message.includes('token')
+        ? new ERRORS.INVALID_TOKEN()
+        : err;
+    /* eslint-disable no-console */
+    console.error(err);
+    return formatError(error);
+  },
+  port: process.env.PORT || 4000,
+  endpoint: '/graphql',
+};
+
+const server = new GraphQLServer({
+  typeDefs: schema,
+  resolvers,
+  context: request => ({
+    ...request,
+    prisma,
+  }),
+  middlewares: [credentialsMiddleware, authMiddleware],
+});
+
+/* eslint-disable no-console */
+server.start(options, ({ port }) =>
+  console.log(`GraphQL playground is running on http://localhost:${port}`)
+);

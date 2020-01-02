@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - NewbieSelect renders correctly 1`] = `
+Array [
+  <header
+    loading={true}
+    onButtonClick={[Function]}
+    type="menu"
+  />,
+  <PageContainer
+    backGroundShape={true}
+    data-testid="newbie-select-page"
+  >
+    <Box
+      className="makeStyles-title-1"
+      component="section"
+    >
+      <Typography
+        component="h1"
+        variant="h2"
+      >
+        Your New Joiners
+      </Typography>
+      <Typography
+        color="textSecondary"
+        component="p"
+        variant="body2"
+      >
+        Don’t forget to complete all tasks
+      </Typography>
+    </Box>
+    <PlusButton
+      disabled={true}
+    />
+  </PageContainer>,
+]
+`;
+
+exports[`Component - NewbieSelect renders correctly 2`] = `
+Array [
+  <header
+    loading={false}
+    onButtonClick={[Function]}
+    type="menu"
+  />,
+  <PageContainer
+    backGroundShape={true}
+    data-testid="newbie-select-page"
+  >
+    <Box
+      className="makeStyles-title-1"
+      component="section"
+    >
+      <Typography
+        component="h1"
+        variant="h2"
+      >
+        Your New Joiners
+      </Typography>
+      <Typography
+        color="textSecondary"
+        component="p"
+        variant="body2"
+      >
+        Don’t forget to complete all tasks
+      </Typography>
+    </Box>
+    <Box
+      className="makeStyles-carrouselWarpper-2"
+      component="section"
+    >
+      <NewbieGrid
+        newbies={
+          Array [
+            Object {
+              "id": "ck17svulh9k2k0b17j31ansfk",
+              "name": "Test 2",
+              "photo": null,
+              "position": "Front End",
+              "tasksInfo": Object {
+                "buddyProgress": 0.5,
+              },
+            },
+            Object {
+              "id": "ck17swp2m9kcv0b17we0ibrdn",
+              "name": "Test 1",
+              "photo": null,
+              "position": "Front End",
+              "tasksInfo": Object {
+                "buddyProgress": 0.6,
+              },
+            },
+          ]
+        }
+      />
+    </Box>
+    <PlusButton
+      disabled={true}
+    />
+  </PageContainer>,
+]
+`;

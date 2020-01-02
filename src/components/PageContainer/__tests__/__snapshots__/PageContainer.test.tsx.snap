@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - PageContainer when is loading renders correctly 1`] = `
+<Container
+  className="makeStyles-container-1"
+  component="main"
+  loading={true}
+  maxWidth={false}
+>
+  hello world
+</Container>
+`;
+
+exports[`Component - PageContainer when is not loading renders correctly 1`] = `
+<Container
+  className="makeStyles-container-1"
+  component="main"
+  maxWidth={false}
+>
+  hello world
+</Container>
+`;

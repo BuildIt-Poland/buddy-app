@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - UserMenuSettings renders correctly 1`] = `
+<mock-list
+  subheader={
+    <mock-list-subheader>
+      <strong>
+        Settings
+      </strong>
+    </mock-list-subheader>
+  }
+>
+  <mock-list-item>
+    <mock-list-item-icon>
+      <mock-notifications />
+    </mock-list-item-icon>
+    <mock-list-item-text
+      primary="Allow push notifications"
+    />
+    <mock-list-item-secondary-action>
+      <mock-switch
+        checked={true}
+        disabled={true}
+        onChange={[Function]}
+      />
+    </mock-list-item-secondary-action>
+  </mock-list-item>
+  <mock-list-item
+    button={true}
+    data-testid="user-menu-logout-btn"
+    onClick={[Function]}
+  >
+    <mock-list-item-icon>
+      <mock-exit-to-app-icon />
+    </mock-list-item-icon>
+    <mock-list-item-text
+      primary="Logout"
+    />
+  </mock-list-item>
+</mock-list>
+`;

@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] = `
+<ListItem
+  button={true}
+>
+  <ListItemIcon>
+    <Checkbox
+      checked={true}
+      checkedIcon={<CheckCircle />}
+      color="primary"
+      disableRipple={true}
+      icon={<RadioButtonUnchecked />}
+      onChange={[Function]}
+      onClick={[Function]}
+    />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <del>
+        Change you line manager
+      </del>
+    }
+  />
+</ListItem>
+`;
+
+exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`] = `
+<ListItem
+  button={true}
+>
+  <ListItemIcon>
+    <Checkbox
+      checked={false}
+      checkedIcon={<CheckCircle />}
+      color="primary"
+      disableRipple={true}
+      icon={<RadioButtonUnchecked />}
+      onChange={[Function]}
+      onClick={[Function]}
+    />
+  </ListItemIcon>
+  <ListItemText
+    primary={
+      <strong>
+        Change you line manager
+      </strong>
+    }
+  />
+</ListItem>
+`;

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - TaskDetails renders correctly 1`] = `
+Array [
+  <header
+    loading={true}
+    onButtonClick={[Function]}
+    type="back"
+  />,
+  <PageContainer
+    backGroundShape={true}
+    data-testid="task-details-page"
+  />,
+]
+`;
+
+exports[`Component - TaskDetails renders correctly 2`] = `
+Array [
+  <header
+    loading={false}
+    onButtonClick={[Function]}
+    type="back"
+  />,
+  <PageContainer
+    backGroundShape={true}
+    data-testid="task-details-page"
+  />,
+]
+`;

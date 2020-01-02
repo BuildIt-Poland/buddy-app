@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - AlertDialog renders correctly 1`] = `
+<Dialog
+  data-testid="alert-dialog"
+  onClose={[Function]}
+  open={true}
+>
+  <DialogContent />
+  <DialogActions>
+    <Button
+      color="primary"
+      data-testid="alert-dialog-close"
+      onClick={[Function]}
+    >
+      Close
+    </Button>
+  </DialogActions>
+</Dialog>
+`;
+
+exports[`Component - AlertDialog renders correctly with title message 1`] = `
+<Dialog
+  data-testid="alert-dialog"
+  onClose={[Function]}
+  open={true}
+>
+  <DialogTitle>
+    Dummy title
+  </DialogTitle>
+  <DialogContent>
+    <DialogContentText
+      style={
+        Object {
+          "whiteSpace": "pre-line",
+        }
+      }
+      variant="body2"
+    >
+      Dummy Message
+    </DialogContentText>
+  </DialogContent>
+  <DialogActions>
+    <Button
+      color="primary"
+      data-testid="alert-dialog-close"
+      onClick={[Function]}
+    >
+      Close
+    </Button>
+  </DialogActions>
+</Dialog>
+`;

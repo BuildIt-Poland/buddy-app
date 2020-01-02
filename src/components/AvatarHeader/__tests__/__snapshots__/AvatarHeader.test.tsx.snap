@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - AvatarHeader renders correctly 1`] = `
+<Box
+  className="makeStyles-background-1"
+  data-testid="avatar-header"
+>
+  <CircularProgress />
+</Box>
+`;
+
+exports[`Component - AvatarHeader renders correctly 2`] = `
+<Box
+  className="makeStyles-background-1"
+  data-testid="avatar-header"
+/>
+`;

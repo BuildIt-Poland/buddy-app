@@ -1,0 +1,40 @@
+{
+  "extends": [
+    "react-app",
+    "prettier/@typescript-eslint",
+    "plugin:cypress/recommended"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "@typescript-eslint/no-namespace": "off",
+    "prettier/prettier": "error",
+    "no-console": "error",
+    "jsx-quotes": [
+      "error",
+      "prefer-single"
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ]
+      }
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ]
+  }
+}

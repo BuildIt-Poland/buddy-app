@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - UserMenuListItem renders correctly 1`] = `
+<ListItem
+  button={true}
+  className="makeStyles-listItem-3"
+  onClick={[Function]}
+>
+  <Box
+    className="makeStyles-list-2"
+  >
+    <Typography
+      component="p"
+      variant="body2"
+    >
+      Tom
+    </Typography>
+    <Box
+      className="makeStyles-avatar-1"
+    >
+      <Avatar
+        imgSrc="url"
+        type="small"
+      />
+    </Box>
+  </Box>
+</ListItem>
+`;

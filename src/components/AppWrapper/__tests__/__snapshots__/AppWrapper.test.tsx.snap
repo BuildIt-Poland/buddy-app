@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - AppWrapper renders correctly 1`] = `
+<div
+  className="makeStyles-root-1"
+  data-testid="app-wrapper"
+>
+  <nav>
+    <SwipeableDrawer
+      ModalProps={
+        Object {
+          "keepMounted": true,
+        }
+      }
+      anchor="left"
+      classes={
+        Object {
+          "paper": "makeStyles-drawerPaper-2",
+        }
+      }
+      onClose={[Function]}
+      onOpen={[Function]}
+      open={false}
+      variant="temporary"
+    >
+      <UserMenu
+        onCloseClick={[Function]}
+      />
+    </SwipeableDrawer>
+  </nav>
+  <div
+    className="makeStyles-content-3"
+  >
+    Demo Page
+  </div>
+  <SnackBar />
+</div>
+`;

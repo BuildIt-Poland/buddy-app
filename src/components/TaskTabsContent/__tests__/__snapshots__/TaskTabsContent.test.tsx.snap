@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - TaskTabsContent when is loading renders correctly 1`] = `<TaskListPlaceHolder />`;
+
+exports[`Component - TaskTabsContent when is not loading when there are not tasks renders correctly 1`] = `
+<div
+  className="MuiBox-root MuiBox-root-3 makeStyles-emptyContainer-1"
+>
+  <h2
+    className="MuiTypography-root MuiTypography-h2"
+  >
+    No Tasks Found
+  </h2>
+</div>
+`;
+
+exports[`Component - TaskTabsContent when is not loading when there are tasks renders correctly 1`] = `
+<List>
+  <TasksSubList
+    tabIndex={0}
+    tasks={
+      Array [
+        Object {
+          "createdAt": "",
+          "description": "",
+          "id": "1",
+          "implementationDate": "",
+          "newbie": Object {},
+          "status": "UNCOMPLETED",
+          "title": "Call you head manager",
+        },
+      ]
+    }
+    title="Todo"
+  />
+  <TasksSubList
+    tabIndex={0}
+    tasks={
+      Array [
+        Object {
+          "createdAt": "",
+          "description": "",
+          "id": "2",
+          "implementationDate": "",
+          "newbie": Object {},
+          "status": "COMPLETED",
+          "title": "Write you main manager",
+        },
+      ]
+    }
+    title="Done"
+  />
+</List>
+`;

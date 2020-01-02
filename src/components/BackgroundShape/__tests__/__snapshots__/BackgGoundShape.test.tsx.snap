@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - BackGroundShape renders correctly 1`] = `
+<svg
+  className="makeStyles-background-1"
+>
+  <ellipse
+    cx="70%"
+    cy="300"
+    rx="75%"
+    ry="227"
+  />
+</svg>
+`;

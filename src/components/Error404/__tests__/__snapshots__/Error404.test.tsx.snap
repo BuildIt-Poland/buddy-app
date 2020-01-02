@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - Error404 renders correctly 1`] = `
+<ErrorPage
+  data-testid="error-page-404"
+  message="Sorry! We looked everywhere but we can't find the page you're looking for."
+  title="404 - Page not found"
+/>
+`;
