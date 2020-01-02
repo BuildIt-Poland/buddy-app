@@ -55,7 +55,9 @@ describe('Component - Login', () => {
       it('should store auth payload', async () => {
         apolloClient.mutate = jest.fn().mockReturnValue(loginSuccessMock());
 
-        triggerLogin();
+        const { queryByTestId } = triggerLogin();
+
+        expect(queryByTestId('alert-dialog')).toBeNull();
 
         await wait();
 
@@ -71,14 +73,16 @@ describe('Component - Login', () => {
       it('should show AlertDialog with error message', async () => {
         apolloClient.mutate = jest.fn().mockRejectedValue(loginFailedMock());
 
-        const { getByTestId } = triggerLogin();
+        const { getByTestId, queryByTestId } = triggerLogin();
+
+        expect(queryByTestId('alert-dialog')).toBeNull();
 
         await wait();
+        expect(getByTestId('alert-dialog')).toBeInTheDocument();
 
         expect(getByTestId('alert-dialog')).toHaveTextContent(
           'The email and password you entered did not match our records.'
         );
-        expect(getByTestId('alert-dialog')).toBeInTheDocument();
       });
     });
   });
@@ -87,14 +91,17 @@ describe('Component - Login', () => {
     it('should render error dialog', async () => {
       apolloClient.mutate = jest.fn().mockRejectedValue(loginNoNetworkMock());
 
-      const { getByTestId } = triggerLogin();
+      const { getByTestId, queryByTestId } = triggerLogin();
+
+      expect(queryByTestId('alert-dialog')).toBeNull();
 
       await wait();
+
+      expect(getByTestId('alert-dialog')).toBeInTheDocument();
 
       expect(getByTestId('alert-dialog')).toHaveTextContent(
         'Could not connect to the server'
       );
-      expect(getByTestId('alert-dialog')).toBeInTheDocument();
     });
   });
 });

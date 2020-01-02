@@ -47,7 +47,6 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
   tabIndex = 0,
 }) => {
   const { emptyContainer } = useStyles();
-
   const { uncompletedTasks, completedTasks } = useMemo(() => transformTasks(tasks), [
     tasks,
   ]);

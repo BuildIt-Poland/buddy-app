@@ -34,7 +34,6 @@ describe('Component - AddTask', () => {
     fireEvent.change(titleInput, {
       target: { value: 'Test task' },
     });
-
     fireEvent.change(descriptionInput, {
       target: { value: '<h1>Hello world!</h1>' },
     });

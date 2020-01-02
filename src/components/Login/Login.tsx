@@ -50,16 +50,18 @@ const Login: React.FC = () => {
   };
 
   useEffect(() => {
-    if (error && error.networkError) {
-      setErrorDialog({
-        isOpen: true,
-        message: DICTIONARY.ERRORS.NO_NETWORK,
-      });
-    } else {
-      setErrorDialog({
-        isOpen: true,
-        message: DICTIONARY.ERRORS.NO_USER_FOUND,
-      });
+    if (error) {
+      if (error.networkError) {
+        setErrorDialog({
+          isOpen: true,
+          message: DICTIONARY.ERRORS.NO_NETWORK,
+        });
+      } else {
+        setErrorDialog({
+          isOpen: true,
+          message: DICTIONARY.ERRORS.NO_USER_FOUND,
+        });
+      }
     }
   }, [error, setErrorDialog]);
 
