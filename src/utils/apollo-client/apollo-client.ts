@@ -13,6 +13,7 @@ const client = new ApolloClient({
     httpLink,
   ]),
   cache: appCache,
+  resolvers: {},
 });
 
 export default client;
