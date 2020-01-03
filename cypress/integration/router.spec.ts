@@ -8,7 +8,7 @@ describe('Router Tests', () => {
     cy.visit(ROUTES.BASE);
   });
 
-  it('should redirect unauthorized user from not valid route to 404', () => {
+  it.skip('should redirect unauthorized user from not valid route to 404', () => {
     cy.visit('no/such/route');
     cy.url().should('includes', ROUTES.ROUTE_404);
 
