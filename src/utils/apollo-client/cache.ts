@@ -1,17 +1,17 @@
 import { InMemoryCache } from 'apollo-boost';
 
-export const appCache = new InMemoryCache();
+export const cache = new InMemoryCache();
 
-export interface authCache {
+export interface AuthCache {
   auth: {
     __typename: 'auth';
     tokenHasExpired: boolean;
   };
 }
 
-export const defaultCache: authCache = {
+export const setCacheToken = (tokenHasExpired: boolean): AuthCache => ({
   auth: {
     __typename: 'auth',
-    tokenHasExpired: false,
+    tokenHasExpired,
   },
-};
+});

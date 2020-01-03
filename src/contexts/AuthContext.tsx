@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { auth } from 'utils';
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
 import { GET_LOCAL_AUTH } from 'graphql/get-auth.graphql';
-import { authCache } from 'utils/apollo-client/cache';
+import { AuthCache, setCacheToken } from 'utils/apollo-client/cache';
 import { apolloClient } from 'utils';
 
 enum ActionTypes {
@@ -76,7 +76,7 @@ const authReducer = (state: AuthState, action: IAction): AuthState => {
 
 const AuthProvider = ({ children, ...props }: IAuthProviderProps) => {
   const [state, dispatch] = useReducer(authReducer, defaultState);
-  const { data } = useQuery<authCache>(GET_LOCAL_AUTH);
+  const { data } = useQuery<AuthCache>(GET_LOCAL_AUTH);
 
   useEffect(() => {
     const user = auth.getUser();
@@ -90,12 +90,6 @@ const AuthProvider = ({ children, ...props }: IAuthProviderProps) => {
 
   useEffect(() => {
     if (data && data.auth && data.auth.tokenHasExpired) {
-      apolloClient.writeQuery<authCache>({
-        query: GET_LOCAL_AUTH,
-        data: {
-          auth: { __typename: 'auth', tokenHasExpired: false },
-        },
-      });
       logout(dispatch);
     }
   }, [data]);
@@ -154,6 +148,11 @@ const login = async (
 
 const logout = (dispatch: React.Dispatch<IAction>) => {
   auth.removeUser();
+  apolloClient.writeData({
+    data: {
+      ...setCacheToken(false),
+    },
+  });
   dispatch({ type: ActionTypes.AUTH_LOGOUT });
 };
 
