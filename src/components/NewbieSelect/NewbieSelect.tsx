@@ -20,7 +20,7 @@ const useStyles = makeStyles<Theme>(theme => ({
       marginBottom: theme.spacing(1),
     },
   },
-  carrouselWarpper: {
+  carrouselWrapper: {
     marginBottom: theme.spacing(2),
   },
 }));
@@ -36,7 +36,7 @@ const NewbieSelect: React.FC = () => {
     variables: { buddyId: userId },
   });
   const { toggleMenu } = React.useContext<MenuContextData>(MenuContext);
-  const { title, carrouselWarpper } = useStyles();
+  const { title, carrouselWrapper } = useStyles();
 
   return (
     <>
@@ -51,7 +51,7 @@ const NewbieSelect: React.FC = () => {
           </Typography>
         </Box>
         {data && data.buddy.newbies && (
-          <Box className={carrouselWarpper} component={'section'}>
+          <Box className={carrouselWrapper} component={'section'}>
             <NewbieGrid newbies={data.buddy.newbies as Newbie[]} />
           </Box>
         )}
