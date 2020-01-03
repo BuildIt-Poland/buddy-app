@@ -41,10 +41,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
     dispatch,
   ] = useAuth();
 
-  function onLogoutClick() {
+  const onLogoutClick = () => {
     logout(dispatch);
     history.push(ROUTES.BASE);
-  }
+  };
 
   const getQueryByRole = (role: UserRole, id: string) => {
     if (isBuddy(role)) {

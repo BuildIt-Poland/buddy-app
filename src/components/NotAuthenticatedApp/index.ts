@@ -1,3 +1,3 @@
-import UnauthenticatedApp from './UnauthenticatedApp';
+import NotAuthenticatedApp from './NotAuthenticatedApp';
 
-export default UnauthenticatedApp;
+export default NotAuthenticatedApp;

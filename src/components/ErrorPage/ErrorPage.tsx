@@ -7,6 +7,7 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 import BackGroundShape from 'components/BackgroundShape';
 import Container from '@material-ui/core/Container';
 import { ErrorPageProps } from './types';
+import ERROR_PAGE_DICTIONARY from './dictionary';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -58,7 +59,7 @@ const ErrorPage: React.FC<ErrorPageProps> = ({ title, message, ...props }) => {
         </Grid>
         <Grid item>
           <Button href={'/'} variant={'outlined'} color='primary'>
-            Go to the homepage
+            {ERROR_PAGE_DICTIONARY.GO_HOMEPAGE}
           </Button>
         </Grid>
         <BackGroundShape />

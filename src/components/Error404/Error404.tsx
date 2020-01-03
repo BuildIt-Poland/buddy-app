@@ -1,12 +1,13 @@
 import React from 'react';
 import ErrorPage from 'components/ErrorPage';
+import ERROR_404_DICTIONARY from './dictionary';
 
 const Error404: React.FC = () => {
   return (
     <ErrorPage
       data-testid='error-page-404'
-      title={'404 - Page not found'}
-      message={`Sorry! We looked everywhere but we can't find the page you're looking for.`}
+      title={ERROR_404_DICTIONARY.TITLE}
+      message={ERROR_404_DICTIONARY.MESSAGE}
     />
   );
 };
