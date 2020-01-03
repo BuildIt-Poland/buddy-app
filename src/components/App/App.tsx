@@ -7,7 +7,9 @@ import { useAuth } from 'contexts/AuthContext';
 
 const loadAuthenticatedApp = () => import('components/AuthenticatedApp');
 const AuthenticatedApp = React.lazy(loadAuthenticatedApp);
-const UnauthenticatedApp = React.lazy(() => import('components/UnauthenticatedApp'));
+const NotAuthenticatedApp = React.lazy(() =>
+  import('components/NotAuthenticatedApp')
+);
 
 const App: React.FC = () => {
   const [{ isAuthenticated }] = useAuth();
@@ -20,7 +22,7 @@ const App: React.FC = () => {
     <BrowserRouter basename={ROUTES.BASE}>
       <React.Suspense
         fallback={<PageContainer data-testid='loader' backGroundShape />}>
-        {isAuthenticated ? <AuthenticatedApp /> : <UnauthenticatedApp />}
+        {isAuthenticated ? <AuthenticatedApp /> : <NotAuthenticatedApp />}
       </React.Suspense>
     </BrowserRouter>
   );

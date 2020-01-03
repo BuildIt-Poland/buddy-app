@@ -6,7 +6,7 @@ import { AuthPayload } from 'buddy-app-schema';
 import App from '../App';
 
 jest.mock('components/AuthenticatedApp', () => () => <div data-testid='app-auth' />);
-jest.mock('components/UnauthenticatedApp', () => () => (
+jest.mock('components/NotAuthenticatedApp', () => () => (
   <div data-testid='app-not-auth' />
 ));
 

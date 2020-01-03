@@ -3,16 +3,16 @@ import { render } from '@testing-library/react';
 import { mockLocation } from '__mocks__';
 import { MemoryRouter } from 'react-router-dom';
 import { ROUTES } from 'shared/routes';
-import UnauthenticatedApp from '../UnauthenticatedApp';
+import NotAuthenticatedApp from '../NotAuthenticatedApp';
 
 jest.mock('components/Login', () => () => <div data-testid='login-page' />);
 
-describe('Component - UnauthenticatedApp', () => {
+describe('Component - NotAuthenticatedApp', () => {
   describe('When route is /', () => {
     it(`user redirects to Login component`, () => {
       const { getByTestId } = render(
         <MemoryRouter initialEntries={[mockLocation(ROUTES.BASE)]}>
-          <UnauthenticatedApp />
+          <NotAuthenticatedApp />
         </MemoryRouter>
       );
       expect(getByTestId('login-page')).toBeInTheDocument();
@@ -23,7 +23,7 @@ describe('Component - UnauthenticatedApp', () => {
     it(`user redirects to Login component`, () => {
       const { getByTestId } = render(
         <MemoryRouter initialEntries={[mockLocation(ROUTES.LOGIN)]}>
-          <UnauthenticatedApp />
+          <NotAuthenticatedApp />
         </MemoryRouter>
       );
       expect(getByTestId('login-page')).toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('Component - UnauthenticatedApp', () => {
     it(`user redirects to 404 component`, () => {
       const { getByTestId } = render(
         <MemoryRouter initialEntries={[mockLocation('/invalidRoute')]}>
-          <UnauthenticatedApp />
+          <NotAuthenticatedApp />
         </MemoryRouter>
       );
       expect(getByTestId('error-page-404')).toBeInTheDocument();
