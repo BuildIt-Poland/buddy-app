@@ -12,7 +12,7 @@ import AddTask from 'components/AddTask';
 import Error404 from 'components/Error404';
 import { useAuth } from 'contexts/AuthContext';
 import { isNewbie } from 'utils';
-import MenuProvider from 'stores/MenuProvider';
+import { MenuProvider } from 'contexts/MenuContext';
 import SnackbarProvider from 'stores/SnackbarProvider';
 
 const newbieRoutes = [
