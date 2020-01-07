@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import DialogContext, { State, defaultState } from 'contexts/DialogContext';
 
-interface DialogStoreProps {
+interface DialogProviderProps {
   children: React.ReactNode;
 }
 
-const DialogStore = (props: DialogStoreProps): JSX.Element => {
+const DialogProvider = (props: DialogProviderProps): JSX.Element => {
   const [dialog, setDialog] = useState<State>(defaultState);
   const { isOpen, message, title, onConfirm } = dialog;
 
@@ -29,4 +29,4 @@ const DialogStore = (props: DialogStoreProps): JSX.Element => {
   );
 };
 
-export default DialogStore;
+export default DialogProvider;

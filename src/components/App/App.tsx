@@ -4,7 +4,7 @@ import PageContainer from 'components/PageContainer';
 import { BrowserRouter } from 'react-router-dom';
 import { ROUTES } from 'shared/routes';
 import { useAuth } from 'contexts/AuthContext';
-import DialogProvider from 'stores/DialogProvider';
+import AlertDialog from '../AlertDialog';
 
 const loadAuthenticatedApp = () => import('components/AuthenticatedApp');
 const AuthenticatedApp = React.lazy(loadAuthenticatedApp);
@@ -21,12 +21,11 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter basename={ROUTES.BASE}>
-      <DialogProvider>
-        <React.Suspense
-          fallback={<PageContainer data-testid='loader' backGroundShape />}>
-          {isAuthenticated ? <AuthenticatedApp /> : <NotAuthenticatedApp />}
-        </React.Suspense>
-      </DialogProvider>
+      <React.Suspense
+        fallback={<PageContainer data-testid='loader' backGroundShape />}>
+        {isAuthenticated ? <AuthenticatedApp /> : <NotAuthenticatedApp />}
+      </React.Suspense>
+      <AlertDialog />
     </BrowserRouter>
   );
 };

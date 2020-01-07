@@ -16,7 +16,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import DeleteIcon from '@material-ui/icons/Delete';
 import DICTIONARY from './dictionary';
-import { TaskOptionsProps } from './types';
+import { TaskOptionsProps, TaskOptionItem } from './types';
 
 const StyledMenu = withStyles(theme => ({
   paper: {
@@ -73,7 +73,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
       }
     );
 
-  const options = [
+  const options: [TaskOptionItem, TaskOptionItem, TaskOptionItem] = [
     {
       text: DICTIONARY.OPTIONS.EDIT,
       Icon: EditIcon,
