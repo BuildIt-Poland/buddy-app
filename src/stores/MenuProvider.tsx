@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import MenuContext, { defaultState } from 'contexts/MenuContext';
 
-interface MenuStoreProps {
+interface MenuProviderProps {
   children: React.ReactNode;
 }
 
-const MenuStore = (props: MenuStoreProps): JSX.Element => {
+const MenuProvider = (props: MenuProviderProps): JSX.Element => {
   const [state, toggleMenuState] = useState(defaultState);
   const { isOpen } = state;
   const toggleMenu = () => toggleMenuState({ ...state, isOpen: !isOpen });
@@ -21,4 +21,4 @@ const MenuStore = (props: MenuStoreProps): JSX.Element => {
   );
 };
 
-export default MenuStore;
+export default MenuProvider;

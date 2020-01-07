@@ -3,7 +3,7 @@ import { render, fireEvent, wait, cleanup } from '@testing-library/react';
 import { MockedProvider } from '@apollo/react-testing';
 import { MemoryRouter, Route } from 'react-router';
 import { addTaskSuccessMock, addTaskFailedMock } from '__mocks__';
-import SnackbarStore from 'stores/SnackbarStore';
+import SnackbarProvider from 'stores/SnackbarProvider';
 import SnackBar from 'components/SnackBar';
 import AddTask from '../AddTask';
 import DICTIONARY from '../dictionary';
@@ -18,10 +18,10 @@ describe('Component - AddTask', () => {
       <MockedProvider mocks={[mocks]} addTypename={false}>
         <MemoryRouter initialEntries={[path]}>
           <Route path={'/buddy/newbies/:newbieId/add-task'}>
-            <SnackbarStore>
+            <SnackbarProvider>
               <AddTask />
               <SnackBar />
-            </SnackbarStore>
+            </SnackbarProvider>
           </Route>
         </MemoryRouter>
       </MockedProvider>
@@ -49,21 +49,20 @@ describe('Component - AddTask', () => {
     describe('when response is success', () => {
       it('should render success dialog', async () => {
         const { getByTestId } = triggerAddTask(addTaskSuccessMock());
-        await wait(() => {
-          expect(getByTestId('snack-bar')).toBeInTheDocument();
-        });
+
+        await wait();
+
+        expect(getByTestId('snack-bar')).toBeInTheDocument();
       });
     });
 
     describe('when the server throws an error', () => {
       it('should render error dialog', async () => {
         const { getByTestId } = triggerAddTask(addTaskFailedMock());
-        await wait(() => {
-          expect(getByTestId('snack-bar')).toHaveTextContent(
-            DICTIONARY.ERROR_MESSAGE
-          );
-          expect(getByTestId('snack-bar')).toBeInTheDocument();
-        });
+        await wait();
+
+        expect(getByTestId('snack-bar')).toHaveTextContent(DICTIONARY.ERROR_MESSAGE);
+        expect(getByTestId('snack-bar')).toBeInTheDocument();
       });
     });
   });

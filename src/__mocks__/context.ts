@@ -1,11 +1,22 @@
-import { AuthContextData } from 'contexts/AuthContext';
+import { AuthState } from 'contexts/AuthContext';
+import { UserRole } from '.';
 
-export const authContext = (context?: Partial<AuthContextData>) => ({
-  data: { role: 'BUDDY', token: 'dummy-token', userId: '1234' },
-  loading: false,
-  error: null,
+export const mockedBuddyContext: AuthState = {
   isAuthenticated: true,
-  login: jest.fn(),
-  logout: jest.fn(),
-  ...context,
-});
+  loading: false,
+  data: {
+    role: UserRole.Buddy,
+    token: 'token',
+    userId: '1234',
+  },
+};
+
+export const mockedNewbieContext: AuthState = {
+  isAuthenticated: true,
+  loading: false,
+  data: {
+    role: UserRole.Newbie,
+    token: 'token',
+    userId: '1234',
+  },
+};

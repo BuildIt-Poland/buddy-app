@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { UserRole, QueryNewbieArgs } from 'buddy-app-schema';
-import AuthContext, { AuthContextData } from 'contexts/AuthContext';
+import { useAuth } from 'contexts/AuthContext';
 import DialogContext, { DialogContextData } from 'contexts/DialogContext';
 import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
 import IconButton from '@material-ui/core/IconButton';
@@ -40,9 +40,11 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
   taskOptionHandlers = {},
 }) => {
   const { deleteTask } = taskOptionHandlers;
-  const {
-    data: { role },
-  } = useContext<AuthContextData>(AuthContext);
+  const [
+    {
+      data: { role },
+    },
+  ] = useAuth();
   const { showDialog, hideDialog } = useContext<DialogContextData>(DialogContext);
   const { showSnackbar } = useContext<SnackbarContextData>(SnackbarContext);
   const { newbieId } = useParams<QueryNewbieArgs>();

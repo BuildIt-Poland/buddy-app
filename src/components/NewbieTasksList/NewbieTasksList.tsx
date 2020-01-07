@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
-import AuthContext, { AuthContextData } from 'contexts/AuthContext';
+import { useAuth } from 'contexts/AuthContext';
 import MenuContext, { MenuContextData } from 'contexts/MenuContext';
 import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
@@ -13,10 +13,14 @@ import TaskTabsContent from 'components/TaskTabsContent';
 import DICTIONARY from './dictionary';
 
 const NewbieTasksList: React.FC = () => {
-  const { data: AuthData } = useContext<AuthContextData>(AuthContext);
+  const [
+    {
+      data: { userId },
+    },
+  ] = useAuth();
   const { toggleMenu } = React.useContext<MenuContextData>(MenuContext);
   const { showSnackbar } = useContext<SnackbarContextData>(SnackbarContext);
-  const newbieId = AuthData.userId;
+  const newbieId = userId;
 
   const { loading, data } = useQuery<Query, QueryNewbieArgs>(TASK_LIST, {
     variables: { newbieId },

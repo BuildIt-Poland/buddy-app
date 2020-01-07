@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -7,11 +7,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useForm from 'react-hook-form';
 import { ReactComponent as SpaceManLogo } from 'assets/svg/spaceman.svg';
-import AuthContext, { AuthContextData } from 'contexts/AuthContext';
+import PageContainer from 'components/PageContainer/PageContainer';
 import DialogContext, { DialogContextData } from 'contexts/DialogContext';
-import Container from '@material-ui/core/Container';
+import { useAuth, login } from 'contexts/AuthContext';
 import RoundedButton from '../RoundedButton';
-import BackgroundShape from '../BackgroundShape';
 import DICTIONARY from './dictionary';
 import { FormData } from './types';
 
@@ -32,15 +31,16 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Login = () => {
+const Login: React.FC = () => {
   const classes = useStyles();
   const { register, errors, handleSubmit } = useForm<FormData>();
-  const { login, loading, error } = useContext<AuthContextData>(AuthContext);
+  const [{ loading, error }, dispatch] = useAuth();
   const {
     current: { showDialog },
   } = useRef(useContext<DialogContextData>(DialogContext));
 
-  const onSubmit = ({ email, password }: FormData) => login(email, password);
+  const onSubmit = ({ email, password }: FormData) =>
+    login(dispatch, email, password);
 
   useEffect(() => {
     if (error) {
@@ -53,11 +53,10 @@ const Login = () => {
   }, [error, showDialog]);
 
   return (
-    <Container
-      fixed
-      data-testid='login-page'
+    <PageContainer
       className={classes.container}
-      component='main'
+      backGroundShape
+      data-testid='login-page'
       maxWidth='md'>
       <Typography component='h1' variant='h1' align='center'>
         {DICTIONARY.TITLE}
@@ -77,7 +76,8 @@ const Login = () => {
           fullWidth
           label={DICTIONARY.EMAIL.LABEL}
           name='email'
-          autoComplete='email'
+          autoComplete='em
+          ail'
           autoFocus
           error={!!errors.email}
           helperText={(errors.email && errors.email.message) || ' '}
@@ -118,8 +118,7 @@ const Login = () => {
           <Link href='#'>{DICTIONARY.FORGOT_PASSWORD}</Link>
         </Grid>
       </form>
-      <BackgroundShape />
-    </Container>
+    </PageContainer>
   );
 };
 

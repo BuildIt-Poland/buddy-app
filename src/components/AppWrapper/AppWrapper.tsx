@@ -4,6 +4,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import MenuContext from 'contexts/MenuContext';
 import UserMenu from 'components/UserMenu';
 import { convertDirectionToAnchor } from 'utils';
+import SnackBar from 'components/SnackBar';
 
 const drawerWidth = '28rem';
 
@@ -13,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       flexDirection: 'column',
       minHeight: '100vh',
+      height: '100%',
     },
     drawerPaper: {
       width: drawerWidth,
@@ -33,7 +35,7 @@ const AppWrapper: React.FC = props => {
   const { isOpen, toggleMenu } = React.useContext(MenuContext);
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} data-testid='app-wrapper'>
       <nav>
         <SwipeableDrawer
           variant='temporary'
@@ -51,6 +53,7 @@ const AppWrapper: React.FC = props => {
         </SwipeableDrawer>
       </nav>
       <div className={classes.content}>{children}</div>
+      <SnackBar />
     </div>
   );
 };

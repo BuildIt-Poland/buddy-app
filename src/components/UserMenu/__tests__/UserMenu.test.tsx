@@ -4,10 +4,10 @@ import { MemoryRouter, Route } from 'react-router';
 import {
   buddyMenuDetails,
   newbieMenuDetails,
-  UserRole,
-  authContext,
+  mockedBuddyContext,
+  mockedNewbieContext,
 } from '__mocks__';
-import AuthContext, { AuthContextData } from 'contexts/AuthContext';
+import { AuthProvider } from 'contexts/AuthContext';
 import waitForExpect from 'wait-for-expect';
 import { render, act } from '@testing-library/react';
 import { MockedProvider } from '@apollo/react-testing';
@@ -30,15 +30,16 @@ describe('UserMenu component', () => {
       const path = '/buddy/newbies';
       const renderer = render(
         <MemoryRouter initialEntries={[path]}>
-          <AuthContext.Provider value={authContext() as AuthContextData}>
-            <MockedProvider
-              mocks={buddyMenuDetails({ buddyId: '1234' })}
-              addTypename={false}>
+          <MockedProvider
+            mocks={buddyMenuDetails({ buddyId: '1234' })}
+            addTypename={false}
+            resolvers={{}}>
+            <AuthProvider value={mockedBuddyContext}>
               <Route path={path}>
                 <UserMenu onCloseClick={onCloseMock} />
               </Route>
-            </MockedProvider>
-          </AuthContext.Provider>
+            </AuthProvider>
+          </MockedProvider>
         </MemoryRouter>
       );
       getByTestId = renderer.getByTestId;
@@ -57,27 +58,21 @@ describe('UserMenu component', () => {
   describe('when logged in as newbie', () => {
     let getByTestId: any;
     const onCloseMock = jest.fn();
-    const mockedNewbieContext = {
-      data: {
-        role: UserRole.Newbie,
-        token: 'token',
-        userId: '1234',
-      },
-    };
+
     beforeEach(() => {
       const path = '/buddy/newbies';
       const renderer = render(
         <MemoryRouter initialEntries={[path]}>
-          <AuthContext.Provider
-            value={authContext(mockedNewbieContext) as AuthContextData}>
-            <MockedProvider
-              mocks={newbieMenuDetails({ newbieId: '1234' })}
-              addTypename={false}>
+          <MockedProvider
+            mocks={newbieMenuDetails({ newbieId: '1234' })}
+            addTypename={false}
+            resolvers={{}}>
+            <AuthProvider value={mockedNewbieContext}>
               <Route path={path}>
                 <UserMenu onCloseClick={onCloseMock} />
               </Route>
-            </MockedProvider>
-          </AuthContext.Provider>
+            </AuthProvider>
+          </MockedProvider>
         </MemoryRouter>
       );
       getByTestId = renderer.getByTestId;

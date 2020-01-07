@@ -4,7 +4,7 @@ exports[`Component - TasksList When there are tasks renders correctly 1`] = `
 Array [
   <header
     color="paper"
-    loading={true}
+    loading={false}
     onButtonClick={[Function]}
     type="back"
   >

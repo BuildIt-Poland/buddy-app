@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { useQuery } from '@apollo/react-hooks';
 import Box from '@material-ui/core/Box';
 import { QueryBuddyArgs, Query, Newbie } from 'buddy-app-schema';
-import AuthContext, { AuthContextData } from 'contexts/AuthContext';
+import { useAuth } from 'contexts/AuthContext';
 import { NEWBIE_SELECT } from 'graphql/newbie-select.graphql';
 import PlusButton from 'components/PlusButton';
 import NewbieGrid from 'components/NewbieGrid';
@@ -20,18 +20,23 @@ const useStyles = makeStyles<Theme>(theme => ({
       marginBottom: theme.spacing(1),
     },
   },
-  carrouselWarpper: {
+  carrouselWrapper: {
     marginBottom: theme.spacing(2),
   },
 }));
 
 const NewbieSelect: React.FC = () => {
-  const { data: AuthData } = useContext<AuthContextData>(AuthContext);
+  const [
+    {
+      data: { userId },
+    },
+  ] = useAuth();
+
   const { loading, data } = useQuery<Query, QueryBuddyArgs>(NEWBIE_SELECT, {
-    variables: { buddyId: AuthData.userId },
+    variables: { buddyId: userId },
   });
   const { toggleMenu } = React.useContext<MenuContextData>(MenuContext);
-  const { title, carrouselWarpper } = useStyles();
+  const { title, carrouselWrapper } = useStyles();
 
   return (
     <>
@@ -46,7 +51,7 @@ const NewbieSelect: React.FC = () => {
           </Typography>
         </Box>
         {data && data.buddy.newbies && (
-          <Box className={carrouselWarpper} component={'section'}>
+          <Box className={carrouselWrapper} component={'section'}>
             <NewbieGrid newbies={data.buddy.newbies as Newbie[]} />
           </Box>
         )}

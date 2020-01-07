@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import SnackbarContext, { State, defaultState } from 'contexts/SnackbarContext';
 
-interface SnackbarStoreProps {
+interface SnackbarProviderProps {
   children: React.ReactNode;
 }
 
-const SnackbarStore = (props: SnackbarStoreProps): JSX.Element => {
+const SnackbarProvider = (props: SnackbarProviderProps): JSX.Element => {
   const [snackbar, setSnackbar] = useState<State>(defaultState);
   const { isOpen, message } = snackbar;
 
@@ -26,4 +26,4 @@ const SnackbarStore = (props: SnackbarStoreProps): JSX.Element => {
   );
 };
 
-export default SnackbarStore;
+export default SnackbarProvider;

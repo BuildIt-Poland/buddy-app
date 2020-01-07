@@ -2,7 +2,8 @@ import React from 'react';
 import { create, act } from 'react-test-renderer';
 import { MockedProvider } from '@apollo/react-testing';
 import waitForExpect from 'wait-for-expect';
-import { newbieSelectMock } from '__mocks__';
+import { newbieSelectMock, mockedBuddyContext } from '__mocks__';
+import { AuthProvider } from 'contexts/AuthContext';
 import NewbieSelect from '../NewbieSelect';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
@@ -15,8 +16,10 @@ jest.doMock('components/Header');
 describe('Component - NewbieSelect', () => {
   it('renders correctly', async () => {
     const component = create(
-      <MockedProvider mocks={newbieSelectMock} addTypename={false}>
-        <NewbieSelect />
+      <MockedProvider mocks={newbieSelectMock} addTypename={false} resolvers={{}}>
+        <AuthProvider value={mockedBuddyContext}>
+          <NewbieSelect />
+        </AuthProvider>
       </MockedProvider>
     );
 

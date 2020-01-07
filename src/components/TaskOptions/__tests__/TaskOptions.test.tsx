@@ -1,11 +1,12 @@
 import React from 'react';
 import { render, fireEvent, wait, cleanup } from '@testing-library/react';
 import { MemoryRouter, Route } from 'react-router-dom';
-import { authContext } from '__mocks__';
-import SnackbarStore from 'stores/SnackbarStore';
+import { MockedProvider } from '@apollo/react-testing';
+import { mockedBuddyContext } from '__mocks__';
+import { AuthProvider } from 'contexts/AuthContext';
+import SnackbarProvider from 'stores/SnackbarProvider';
+import DialogProvider from 'stores/DialogProvider';
 import SnackBar from 'components/SnackBar';
-import AuthContext, { AuthContextData } from 'contexts/AuthContext';
-import DialogStore from 'stores/DialogStore';
 import AlertDialog from 'components/AlertDialog';
 import TaskOptions from '../TaskOptions';
 import DICTIONARY from '../dictionary';
@@ -16,17 +17,19 @@ describe('Component - TaskOptions', () => {
   const triggerTaskOptions = (mocks: any) => {
     const TaskOptionsRoute = render(
       <MemoryRouter initialEntries={[path]}>
-        <AuthContext.Provider value={authContext() as AuthContextData}>
-          <DialogStore>
-            <SnackbarStore>
-              <Route path={'/buddy/newbies/:newbieId/tasks'}>
-                <TaskOptions id='1' taskOptionHandlers={mocks} />
-              </Route>
-              <AlertDialog />
-              <SnackBar />
-            </SnackbarStore>
-          </DialogStore>
-        </AuthContext.Provider>
+        <MockedProvider>
+          <AuthProvider value={mockedBuddyContext}>
+            <DialogProvider>
+              <SnackbarProvider>
+                <Route path={'/buddy/newbies/:newbieId/tasks'}>
+                  <TaskOptions id='1' taskOptionHandlers={mocks} />
+                </Route>
+                <AlertDialog />
+                <SnackBar />
+              </SnackbarProvider>
+            </DialogProvider>
+          </AuthProvider>
+        </MockedProvider>
       </MemoryRouter>
     );
     const { getByTestId } = TaskOptionsRoute;

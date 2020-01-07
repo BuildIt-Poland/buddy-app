@@ -4,37 +4,39 @@ import { MemoryRouter, Route } from 'react-router-dom';
 import { MockedProvider } from '@apollo/react-testing';
 import {
   mockLocation,
-  loginSuccessMock,
   loginFailedMock,
   loginNoNetworkMock,
-  authContext,
+  loginSuccessMock,
 } from '__mocks__';
+
 import { ROUTES } from 'shared/routes';
-import AuthStore from 'stores/AuthStore';
-import DialogStore from 'stores/DialogStore';
+import { AuthProvider } from 'contexts/AuthContext';
+import DialogProvider from 'stores/DialogProvider';
 import AlertDialog from 'components/AlertDialog';
 import auth from 'utils/auth';
+import apolloClient from 'utils/apollo-client';
 import Login from '../Login';
 
 jest.mock('utils/auth');
+jest.mock('utils/apollo-client');
 
 describe('Component - Login', () => {
-  const triggerLogin = (mocks: any) => {
-    const loginRoute = render(
-      <MockedProvider mocks={[mocks]} addTypename={false}>
+  const triggerLogin = () => {
+    const renderedComponent = render(
+      <MockedProvider mocks={[]} addTypename={false} resolvers={{}}>
         <MemoryRouter initialEntries={[mockLocation(ROUTES.LOGIN)]}>
-          <AuthStore>
-            <DialogStore>
+          <AuthProvider>
+            <DialogProvider>
               <Route path={ROUTES.LOGIN}>
                 <Login />
               </Route>
               <AlertDialog />
-            </DialogStore>
-          </AuthStore>
+            </DialogProvider>
+          </AuthProvider>
         </MemoryRouter>
       </MockedProvider>
     );
-    const { getByTestId } = loginRoute;
+    const { getByTestId } = renderedComponent;
 
     const emailInput = getByTestId('email');
     const passwordInput = getByTestId('password');
@@ -48,46 +50,63 @@ describe('Component - Login', () => {
 
     fireEvent.submit(getByTestId('form'));
 
-    return loginRoute;
+    return renderedComponent;
   };
 
-  afterEach(() => cleanup);
+  afterEach(cleanup);
 
   describe('when submitting form', () => {
     describe('when response is success', () => {
       it('should store auth payload', async () => {
-        triggerLogin(loginSuccessMock());
+        apolloClient.mutate = jest.fn().mockReturnValue(loginSuccessMock());
 
-        await wait(() => {
-          expect(auth.setUser).toHaveBeenCalledWith(authContext().data);
+        const { queryByTestId } = triggerLogin();
+
+        expect(queryByTestId('alert-dialog')).toBeNull();
+
+        await wait();
+
+        expect(auth.setUser).toHaveBeenCalledWith({
+          role: 'BUDDY',
+          token: 'dummy-token',
+          userId: '1',
         });
       });
     });
 
     describe('when the server throws an error', () => {
       it('should show AlertDialog with error message', async () => {
-        const { getByTestId } = triggerLogin(loginFailedMock());
+        apolloClient.mutate = jest.fn().mockRejectedValue(loginFailedMock());
 
-        await wait(() => {
-          expect(getByTestId('alert-dialog')).toHaveTextContent(
-            'The email and password you entered did not match our records.'
-          );
-          expect(getByTestId('alert-dialog')).toBeInTheDocument();
-        });
+        const { getByTestId, queryByTestId } = triggerLogin();
+
+        expect(queryByTestId('alert-dialog')).toBeNull();
+
+        await wait();
+        expect(getByTestId('alert-dialog')).toBeInTheDocument();
+
+        expect(getByTestId('alert-dialog')).toHaveTextContent(
+          'The email and password you entered did not match our records.'
+        );
       });
     });
   });
 
   describe('when submitting a form without internet', () => {
     it('should render error dialog', async () => {
-      const { getByTestId } = triggerLogin(loginNoNetworkMock());
+      apolloClient.mutate = jest.fn().mockRejectedValue(loginNoNetworkMock());
 
-      await wait(() => {
-        expect(getByTestId('alert-dialog')).toHaveTextContent(
-          'Could not connect to the server'
-        );
-        expect(getByTestId('alert-dialog')).toBeInTheDocument();
-      });
+      const { getByTestId, queryByTestId } = triggerLogin();
+
+      expect(queryByTestId('alert-dialog')).toBeNull();
+
+      await wait();
+
+      expect(getByTestId('alert-dialog')).toBeInTheDocument();
+
+      expect(getByTestId('alert-dialog')).toHaveTextContent(
+        'Could not connect to the server'
+      );
     });
   });
 });
