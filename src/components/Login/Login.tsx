@@ -66,7 +66,11 @@ const Login: React.FC = () => {
   }, [error, setErrorDialog]);
 
   return (
-    <PageContainer backGroundShape data-testid='login-page' maxWidth='md'>
+    <PageContainer
+      className={classes.container}
+      backGroundShape
+      data-testid='login-page'
+      maxWidth='md'>
       <Typography component='h1' variant='h1' align='center'>
         {DICTIONARY.TITLE}
       </Typography>

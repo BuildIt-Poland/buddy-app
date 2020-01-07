@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import BackgroundShape from 'components/BackgroundShape';
+import clsx from 'clsx';
 import { PageContainerProps } from './types';
 
 const useStyles = makeStyles(theme => ({
@@ -17,12 +18,12 @@ const useStyles = makeStyles(theme => ({
 
 const PageContainer: React.FC<PageContainerProps> = props => {
   const classes = useStyles();
-  const { children, backGroundShape, ...args } = props;
+  const { children, backGroundShape, className, ...args } = props;
   return (
     <Container
       component={'main'}
       maxWidth={false}
-      className={classes.container}
+      className={clsx(classes.container, className)}
       {...args}>
       {children}
       {backGroundShape && <BackgroundShape />}

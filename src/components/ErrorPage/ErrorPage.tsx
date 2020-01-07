@@ -21,10 +21,10 @@ const useStyles = makeStyles(theme => ({
       transform: 'translateY(1rem)',
     },
     '50%': {
-      transform: 'translatey(-1rem)',
+      transform: 'translateY(-1rem)',
     },
     '100%': {
-      transform: 'translatey(1rem)',
+      transform: 'translateY(1rem)',
     },
   },
 }));
