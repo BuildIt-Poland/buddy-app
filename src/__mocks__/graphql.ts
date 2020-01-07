@@ -1,12 +1,11 @@
-import { LOGIN_MUTATION } from 'graphql/login.graphql';
 import { BUDDY_MENU_DETAILS, NEWBIE_MENU_DETAILS } from 'graphql/user-menu.graphql';
 import { AVATAR_HEADER } from 'graphql/avatar-header.graphql';
 import { NEWBIE_SELECT } from 'graphql/newbie-select.graphql';
 import { TASK_DETAILS } from 'graphql/task-details.graphql';
 import { ADD_NEWBIE_TASK } from 'graphql/add-task.graphql';
 import { GraphQLError } from 'graphql';
+
 import {
-  MutationLoginArgs,
   MutationAddNewbieTaskArgs,
   AuthPayload,
   TaskStatus,
@@ -21,54 +20,21 @@ import {
 } from 'graphql/contact-details.graphql';
 import { TASK_LIST } from 'graphql/task-list.graphql';
 import { getBasicUserDetailsMock } from './general';
-import { authContext } from './context';
 
-export const loginSuccessMock = (
-  variables?: Partial<MutationLoginArgs>,
-  data?: Partial<AuthPayload>
-) => ({
-  request: {
-    query: LOGIN_MUTATION,
-    variables: {
-      email: 'aa@aa.pt',
-      password: '12345',
-      ...variables,
-    },
-  },
-  result: {
-    data: {
-      login: {
-        ...authContext().data,
-        ...data,
-      },
+export const loginSuccessMock = (data?: Partial<AuthPayload>) => ({
+  data: {
+    login: {
+      role: 'BUDDY',
+      token: 'dummy-token',
+      userId: '1',
     },
   },
 });
 
-export const loginFailedMock = (variables?: Partial<MutationLoginArgs>) => ({
-  request: {
-    query: LOGIN_MUTATION,
-    variables: {
-      email: 'aa@aa.pt',
-      password: '12345',
-      ...variables,
-    },
-  },
-  result: {
-    errors: [new GraphQLError('No such user found')],
-  },
-});
+export const loginFailedMock = () => new GraphQLError('No such user found');
 
-export const loginNoNetworkMock = (variables?: Partial<MutationLoginArgs>) => ({
-  request: {
-    query: LOGIN_MUTATION,
-    variables: {
-      email: 'aa@aa.pt',
-      password: '12345',
-      ...variables,
-    },
-  },
-  error: new Error('Network error'),
+export const loginNoNetworkMock = () => ({
+  networkError: true,
 });
 
 export const NewbieAvatarDetails = (variables?: QueryNewbieArgs) => ({
@@ -240,6 +206,7 @@ export const newbieSelectMock = [
               id: 'ck17svulh9k2k0b17j31ansfk',
               photo: null,
               name: 'Test 2',
+              position: 'Front End',
               startDate: null,
               tasksInfo: { buddyProgress: 0.5 },
             },
@@ -247,6 +214,7 @@ export const newbieSelectMock = [
               id: 'ck17swp2m9kcv0b17we0ibrdn',
               photo: null,
               name: 'Test 1',
+              position: 'Front End',
               startDate: null,
               tasksInfo: { buddyProgress: 0.6 },
             },

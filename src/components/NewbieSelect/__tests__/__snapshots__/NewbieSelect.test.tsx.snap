@@ -65,6 +65,35 @@ Array [
         Don’t forget to complete all tasks
       </Typography>
     </Box>
+    <Box
+      className="makeStyles-carrouselWrapper-2"
+      component="section"
+    >
+      <NewbieGrid
+        newbies={
+          Array [
+            Object {
+              "id": "ck17svulh9k2k0b17j31ansfk",
+              "name": "Test 2",
+              "photo": null,
+              "position": "Front End",
+              "tasksInfo": Object {
+                "buddyProgress": 0.5,
+              },
+            },
+            Object {
+              "id": "ck17swp2m9kcv0b17we0ibrdn",
+              "name": "Test 1",
+              "photo": null,
+              "position": "Front End",
+              "tasksInfo": Object {
+                "buddyProgress": 0.6,
+              },
+            },
+          ]
+        }
+      />
+    </Box>
     <PlusButton
       disabled={true}
     />

@@ -108,7 +108,7 @@
       "!src/graphql/*",
       "!src/context/*",
       "!src/index.tsx",
-      "!src/utils/apollo-client.ts",
+      "!src/utils/apollo-client/",
       "!src/serviceWorker.ts",
       "!<rootDir>/node_modules/"
     ],

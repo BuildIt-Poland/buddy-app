@@ -2,9 +2,9 @@ import React from 'react';
 import UserMenu from 'components/UserMenu';
 import { MemoryRouter, Route } from 'react-router';
 import { buddyMenuDetails, newbieMenuDetails, UserRole } from '__mocks__';
-import AuthContext, { AuthContextData } from 'contexts/AuthContext';
+import { AuthProvider, AuthState } from 'contexts/AuthContext';
 import waitForExpect from 'wait-for-expect';
-import { render, fireEvent, act } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
 import { MockedProvider } from '@apollo/react-testing';
 
 jest.mock('@material-ui/core/Box', () => 'mock-box');
@@ -20,7 +20,9 @@ describe('UserMenu component', () => {
   describe('when logged in as buddy', () => {
     let getByTestId: any;
     const onCloseMock = jest.fn();
-    const mockedBuddyContext = {
+    const mockedBuddyContext: AuthState = {
+      isAuthenticated: true,
+      loading: false,
       data: {
         role: UserRole.Buddy,
         token: 'token',
@@ -31,15 +33,16 @@ describe('UserMenu component', () => {
       const path = '/buddy/newbies';
       const renderer = render(
         <MemoryRouter initialEntries={[path]}>
-          <AuthContext.Provider value={mockedBuddyContext as AuthContextData}>
-            <MockedProvider
-              mocks={buddyMenuDetails({ buddyId: '1234' })}
-              addTypename={false}>
+          <MockedProvider
+            mocks={buddyMenuDetails({ buddyId: '1234' })}
+            addTypename={false}
+            resolvers={{}}>
+            <AuthProvider value={mockedBuddyContext}>
               <Route path={path}>
-                <UserMenu isMenuVisible={true} onCloseClick={onCloseMock} />
+                <UserMenu onCloseClick={onCloseMock} />
               </Route>
-            </MockedProvider>
-          </AuthContext.Provider>
+            </AuthProvider>
+          </MockedProvider>
         </MemoryRouter>
       );
       getByTestId = renderer.getByTestId;
@@ -58,7 +61,9 @@ describe('UserMenu component', () => {
   describe('when logged in as newbie', () => {
     let getByTestId: any;
     const onCloseMock = jest.fn();
-    const mockedNewbieContext = {
+    const mockedNewbieContext: AuthState = {
+      isAuthenticated: true,
+      loading: false,
       data: {
         role: UserRole.Newbie,
         token: 'token',
@@ -69,15 +74,16 @@ describe('UserMenu component', () => {
       const path = '/buddy/newbies';
       const renderer = render(
         <MemoryRouter initialEntries={[path]}>
-          <AuthContext.Provider value={mockedNewbieContext as AuthContextData}>
-            <MockedProvider
-              mocks={newbieMenuDetails({ newbieId: '1234' })}
-              addTypename={false}>
+          <MockedProvider
+            mocks={newbieMenuDetails({ newbieId: '1234' })}
+            addTypename={false}
+            resolvers={{}}>
+            <AuthProvider value={mockedNewbieContext}>
               <Route path={path}>
-                <UserMenu isMenuVisible={true} onCloseClick={onCloseMock} />
+                <UserMenu onCloseClick={onCloseMock} />
               </Route>
-            </MockedProvider>
-          </AuthContext.Provider>
+            </AuthProvider>
+          </MockedProvider>
         </MemoryRouter>
       );
       getByTestId = renderer.getByTestId;

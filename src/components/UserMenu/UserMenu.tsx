@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
@@ -13,8 +13,7 @@ import UserMenuBuddy from 'components/UserMenuBuddy';
 import { isBuddy, isNewbie } from 'utils';
 import { ROUTES } from 'shared/routes';
 import { Buddy, Newbie, UserRole } from 'buddy-app-schema';
-import AuthContext, { AuthContextData } from 'contexts/AuthContext';
-import MenuContext, { MenuContextData } from 'contexts/MenuContext';
+import { useAuth, logout } from 'contexts/AuthContext';
 import { BasicDetailsParams, UserMenuProps, UserBasicDetails } from './types';
 
 const useStyles = makeStyles(theme => ({
@@ -35,13 +34,16 @@ const useStyles = makeStyles(theme => ({
 const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
   const history = useHistory();
   const { list, loader } = useStyles();
-  const { data: AuthData, logout } = useContext<AuthContextData>(AuthContext);
-  const { toggleMenu } = React.useContext<MenuContextData>(MenuContext);
-  const { userId, role } = AuthData;
+  const [
+    {
+      data: { userId, role },
+    },
+    dispatch,
+  ] = useAuth();
 
   const onLogoutClick = () => {
-    logout();
-    toggleMenu();
+    logout(dispatch);
+    history.push(ROUTES.BASE);
   };
 
   const getQueryByRole = (role: UserRole, id: string) => {

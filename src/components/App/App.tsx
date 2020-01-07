@@ -1,32 +1,30 @@
 import React from 'react';
-import { ApolloProvider } from '@apollo/react-hooks';
 
-import ThemeProvider from '@material-ui/styles/ThemeProvider';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import PageContainer from 'components/PageContainer';
+import { BrowserRouter } from 'react-router-dom';
+import { ROUTES } from 'shared/routes';
+import { useAuth } from 'contexts/AuthContext';
 
-import theme from 'styles/theme';
-import { apolloClient } from 'utils';
-import AuthStore from 'stores/AuthStore';
-import MenuStore from 'stores/MenuStore';
-import SnackbarStore from 'stores/SnackbarStore';
-import AppRouter from '../AppRouter';
-import SnackBar from '../SnackBar';
+const loadAuthenticatedApp = () => import('components/AuthenticatedApp');
+const AuthenticatedApp = React.lazy(loadAuthenticatedApp);
+const NotAuthenticatedApp = React.lazy(() =>
+  import('components/NotAuthenticatedApp')
+);
 
 const App: React.FC = () => {
+  const [{ isAuthenticated }] = useAuth();
+
+  React.useEffect(() => {
+    loadAuthenticatedApp();
+  }, []);
+
   return (
-    <ApolloProvider client={apolloClient}>
-      <ThemeProvider theme={theme}>
-        <AuthStore>
-          <MenuStore>
-            <SnackbarStore>
-              <CssBaseline />
-              <AppRouter />
-              <SnackBar />
-            </SnackbarStore>
-          </MenuStore>
-        </AuthStore>
-      </ThemeProvider>
-    </ApolloProvider>
+    <BrowserRouter basename={ROUTES.BASE}>
+      <React.Suspense
+        fallback={<PageContainer data-testid='loader' backGroundShape />}>
+        {isAuthenticated ? <AuthenticatedApp /> : <NotAuthenticatedApp />}
+      </React.Suspense>
+    </BrowserRouter>
   );
 };
 

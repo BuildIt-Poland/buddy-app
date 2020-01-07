@@ -4,6 +4,8 @@ import waitForExpect from 'wait-for-expect';
 import { MemoryRouter, Route } from 'react-router';
 import { MockedProvider } from '@apollo/react-testing';
 import { taskListResponse, newbieTasksListMock } from '__mocks__';
+import { AuthProvider, AuthState } from 'contexts/AuthContext';
+import { UserRole } from 'buddy-app-schema';
 import TasksList from '../NewbieTasksList';
 
 jest.mock('components/AvatarHeader', () => 'AvatarHeader');
@@ -12,7 +14,15 @@ jest.doMock('components/Header');
 
 describe('Component - TasksList', () => {
   const path = '/newbie/tasks';
-
+  const mockedNewbieContext: AuthState = {
+    isAuthenticated: true,
+    loading: false,
+    data: {
+      role: UserRole.Newbie,
+      token: 'token',
+      userId: 'ck17sl83c9gya0b17dcvttzm4',
+    },
+  };
   describe('When there are tasks', () => {
     const variables = {
       newbieId: '1234',
@@ -22,11 +32,14 @@ describe('Component - TasksList', () => {
       const component = create(
         <MockedProvider
           mocks={taskListResponse(variables, newbieTasksListMock)}
-          addTypename={false}>
+          addTypename={false}
+          resolvers={{}}>
           <MemoryRouter initialEntries={[path]}>
-            <Route path={path}>
-              <TasksList />
-            </Route>
+            <AuthProvider value={mockedNewbieContext}>
+              <Route path={path}>
+                <TasksList />
+              </Route>
+            </AuthProvider>
           </MemoryRouter>
         </MockedProvider>
       );
@@ -54,11 +67,14 @@ describe('Component - TasksList', () => {
       const component = create(
         <MockedProvider
           mocks={taskListResponse(variables, newbieMockData)}
-          addTypename={false}>
+          addTypename={false}
+          resolvers={{}}>
           <MemoryRouter initialEntries={[path]}>
-            <Route path={path}>
-              <TasksList />
-            </Route>
+            <AuthProvider value={mockedNewbieContext}>
+              <Route path={path}>
+                <TasksList />
+              </Route>
+            </AuthProvider>
           </MemoryRouter>
         </MockedProvider>
       );

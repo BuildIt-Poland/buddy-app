@@ -1,11 +1,10 @@
-import React, { useMemo, useContext } from 'react';
+import React, { useMemo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import { TaskStatus, UserRole } from 'buddy-app-schema';
+import { TaskStatus } from 'buddy-app-schema';
 import TaskListPlaceHolder from 'components/TaskListPlaceHolder';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import TasksSubList, { TasksSubListProps } from '../TasksSubList';
 import { TaskTabsContentProps, TransformedTasks } from './types';
 import DICTIONARY from './dictionary';
@@ -20,11 +19,6 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
   },
 }));
-
-const NO_TASKS_SUBTITLES = {
-  [UserRole.Buddy]: DICTIONARY.NO_TASKS_BUDDY_SUBTITLE,
-  [UserRole.Newbie]: DICTIONARY.NO_TASKS_NEWBIE_SUBTITLE,
-};
 
 const transformTasks = (tasks: TaskTabsContentProps['tasks']): TransformedTasks => {
   const emptyTransformedTasks = {
@@ -53,9 +47,6 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
   tabIndex = 0,
 }) => {
   const { emptyContainer } = useStyles();
-  const {
-    data: { role },
-  } = useContext<AuthContextData>(AuthContext);
   const { uncompletedTasks, completedTasks } = useMemo(() => transformTasks(tasks), [
     tasks,
   ]);
@@ -76,7 +67,6 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
       <Typography variant={'h2'} component={'h2'}>
         {DICTIONARY.NO_TASKS_TITLE}
       </Typography>
-      <Typography>{NO_TASKS_SUBTITLES[role]}</Typography>
     </Box>
   );
 

@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { authContext } from '__mocks__';
+import { AuthPayload, UserRole } from 'buddy-app-schema';
 import Auth from '../auth';
 
 jest.mock('js-cookie');
@@ -8,7 +8,11 @@ const mockedCookies = Cookies as jest.Mocked<typeof Cookies>;
 
 describe('Utils - auth', () => {
   const OLD_ENV = process.env;
-  const authPayload = authContext().data;
+  const authPayload: AuthPayload = {
+    role: UserRole.Buddy,
+    token: 'test',
+    userId: 'randomId',
+  };
 
   beforeEach(() => {
     jest.resetModules();
@@ -45,6 +49,6 @@ describe('Utils - auth', () => {
     Auth.setUser(authPayload);
     Auth.removeUser();
 
-    expect(Auth.getToken()).toBe(undefined);
+    expect(Auth.getToken()).toBe(null);
   });
 });

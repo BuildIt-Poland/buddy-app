@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Typography } from '@material-ui/core';
 import { useQuery } from '@apollo/react-hooks';
@@ -8,7 +8,7 @@ import {
 } from 'graphql/contact-details.graphql';
 import { ROUTES } from 'shared/routes';
 import { QueryBuddyArgs, QueryNewbieArgs, UserRole } from 'buddy-app-schema';
-import AuthContext, { AuthContextData } from 'contexts/AuthContext';
+import { useAuth } from 'contexts/AuthContext';
 import UserDetails from 'components/UserDetails';
 import { BasicDetailsParams, UserBasicDetails } from 'components/UserMenu/types';
 import Box from '@material-ui/core/Box';
@@ -19,8 +19,11 @@ import { ContactDetailsProps } from './types';
 const ContactDetails: React.FC<ContactDetailsProps> = props => {
   const { newbieId } = useParams<QueryNewbieArgs>();
   const { buddyId } = useParams<QueryBuddyArgs>();
-  const { data: AuthData } = useContext<AuthContextData>(AuthContext);
-  const { role } = AuthData;
+  const [
+    {
+      data: { role },
+    },
+  ] = useAuth();
 
   const onBackClick = () => {
     props.history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId));

@@ -9,7 +9,9 @@ Array [
     shape="rounded"
     type="menu"
   >
-    <AvatarHeader />
+    <AvatarHeader
+      newbieId="ck17sl83c9gya0b17dcvttzm4"
+    />
   </header>,
   <main
     className="MuiBox-root MuiBox-root-2"
@@ -32,7 +34,9 @@ Array [
     shape="rounded"
     type="menu"
   >
-    <AvatarHeader />
+    <AvatarHeader
+      newbieId="ck17sl83c9gya0b17dcvttzm4"
+    />
   </header>,
   <main
     className="MuiBox-root MuiBox-root-2"
@@ -55,7 +59,9 @@ Array [
     shape="rounded"
     type="menu"
   >
-    <AvatarHeader />
+    <AvatarHeader
+      newbieId="ck17sl83c9gya0b17dcvttzm4"
+    />
   </header>,
   <main
     className="MuiBox-root MuiBox-root-3"

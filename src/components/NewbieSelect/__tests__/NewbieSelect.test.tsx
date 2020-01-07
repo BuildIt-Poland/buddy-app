@@ -3,6 +3,8 @@ import { create, act } from 'react-test-renderer';
 import { MockedProvider } from '@apollo/react-testing';
 import waitForExpect from 'wait-for-expect';
 import { newbieSelectMock } from '__mocks__';
+import { UserRole } from 'buddy-app-schema';
+import { AuthProvider, AuthState } from 'contexts/AuthContext';
 import NewbieSelect from '../NewbieSelect';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
@@ -14,9 +16,20 @@ jest.doMock('components/Header');
 
 describe('Component - NewbieSelect', () => {
   it('renders correctly', async () => {
+    const mockedBuddyContext: AuthState = {
+      isAuthenticated: true,
+      loading: false,
+      data: {
+        role: UserRole.Buddy,
+        token: 'token',
+        userId: 'ck17sl83c9gya0b17dcvttzm4',
+      },
+    };
     const component = create(
-      <MockedProvider mocks={newbieSelectMock} addTypename={false}>
-        <NewbieSelect />
+      <MockedProvider mocks={newbieSelectMock} addTypename={false} resolvers={{}}>
+        <AuthProvider value={mockedBuddyContext}>
+          <NewbieSelect />
+        </AuthProvider>
       </MockedProvider>
     );
 

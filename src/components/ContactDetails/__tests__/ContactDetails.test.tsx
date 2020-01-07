@@ -4,8 +4,8 @@ import { MockedProvider } from '@apollo/react-testing';
 import { act, create } from 'react-test-renderer';
 import waitForExpect from 'wait-for-expect';
 import ContactDetails from 'components/ContactDetails';
-import AuthContext, { AuthContextData } from 'contexts/AuthContext';
 import { buddyContactDetails, newbieContactDetails, UserRole } from '__mocks__';
+import { AuthProvider, AuthState } from 'contexts/AuthContext';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');
@@ -23,7 +23,9 @@ describe('Component - ContactDetails', () => {
 
   describe('when logged in as buddy', () => {
     const path = '/buddy/newbies/1234/details';
-    const mockedBuddyContext = {
+    const mockedBuddyContext: AuthState = {
+      isAuthenticated: true,
+      loading: false,
       data: {
         role: UserRole.Buddy,
         token: 'token',
@@ -33,12 +35,13 @@ describe('Component - ContactDetails', () => {
     const component = create(
       <MockedProvider
         mocks={newbieContactDetails({ newbieId: '1234' })}
-        addTypename={false}>
+        addTypename={false}
+        resolvers={{}}>
         <MemoryRouter initialEntries={[path]}>
           <Route path={'/buddy/newbies/:newbieId/details'}>
-            <AuthContext.Provider value={mockedBuddyContext as AuthContextData}>
+            <AuthProvider value={mockedBuddyContext}>
               <ContactDetails history={mockHistory} />
-            </AuthContext.Provider>
+            </AuthProvider>
           </Route>
         </MemoryRouter>
       </MockedProvider>
@@ -53,9 +56,12 @@ describe('Component - ContactDetails', () => {
       });
     });
   });
+
   describe('when logged in as newbie', () => {
     const path = '/newbie/buddy/1234/details';
-    const mockedNewbieContext = {
+    const mockedNewbieContext: AuthState = {
+      isAuthenticated: true,
+      loading: false,
       data: {
         role: UserRole.Newbie,
         token: 'token',
@@ -65,12 +71,13 @@ describe('Component - ContactDetails', () => {
     const component = create(
       <MockedProvider
         mocks={buddyContactDetails({ buddyId: '1234' })}
-        addTypename={false}>
+        addTypename={false}
+        resolvers={{}}>
         <MemoryRouter initialEntries={[path]}>
           <Route path={'/newbie/buddy/:buddyId/details'}>
-            <AuthContext.Provider value={mockedNewbieContext as AuthContextData}>
+            <AuthProvider value={mockedNewbieContext}>
               <ContactDetails history={mockHistory} />
-            </AuthContext.Provider>
+            </AuthProvider>
           </Route>
         </MemoryRouter>
       </MockedProvider>

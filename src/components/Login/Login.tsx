@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -7,11 +7,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import useForm from 'react-hook-form';
 import { ReactComponent as SpaceManLogo } from 'assets/svg/spaceman.svg';
-import AuthContext, { AuthContextData } from 'contexts/AuthContext';
-import Container from '@material-ui/core/Container';
+import PageContainer from 'components/PageContainer/PageContainer';
+import { useAuth, login } from 'contexts/AuthContext';
 import RoundedButton from '../RoundedButton';
 import AlertDialog from '../AlertDialog';
-import BackgroundShape from '../BackgroundShape/';
 import DICTIONARY from './dictionary';
 import { ErrorDialog, FormData } from './types';
 
@@ -32,21 +31,22 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Login = () => {
+const Login: React.FC = () => {
   const classes = useStyles();
   const [errorDialog, setErrorDialog] = useState<ErrorDialog>({
     isOpen: false,
     message: '',
   });
   const { register, errors, handleSubmit } = useForm<FormData>();
-  const { login, loading, error } = useContext<AuthContextData>(AuthContext);
+  const [{ loading, error }, dispatch] = useAuth();
 
-  const onSubmit = async ({ email, password }: FormData) => {
+  const onSubmit = ({ email, password }: FormData) => {
     setErrorDialog({
       isOpen: false,
       message: '',
     });
-    await login(email, password);
+
+    login(dispatch, email, password);
   };
 
   useEffect(() => {
@@ -66,11 +66,10 @@ const Login = () => {
   }, [error, setErrorDialog]);
 
   return (
-    <Container
-      fixed
-      data-testid='login-page'
+    <PageContainer
       className={classes.container}
-      component='main'
+      backGroundShape
+      data-testid='login-page'
       maxWidth='md'>
       <Typography component='h1' variant='h1' align='center'>
         {DICTIONARY.TITLE}
@@ -90,7 +89,8 @@ const Login = () => {
           fullWidth
           label={DICTIONARY.EMAIL.LABEL}
           name='email'
-          autoComplete='email'
+          autoComplete='em
+          ail'
           autoFocus
           error={!!errors.email}
           helperText={(errors.email && errors.email.message) || ' '}
@@ -130,12 +130,9 @@ const Login = () => {
         <Grid container justify='flex-end'>
           <Link href='#'>{DICTIONARY.FORGOT_PASSWORD}</Link>
         </Grid>
-        {errorDialog.isOpen && (
-          <AlertDialog message={errorDialog.message}></AlertDialog>
-        )}
+        {errorDialog.isOpen && <AlertDialog message={errorDialog.message} />}
       </form>
-      <BackgroundShape />
-    </Container>
+    </PageContainer>
   );
 };
 
