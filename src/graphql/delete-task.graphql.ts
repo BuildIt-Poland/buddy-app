@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 export const DELETE_TASK = gql`
-  mutation deleteTask($taskId: ID!, $newbieId: ID!) {
-    deleteTask(taskId: $taskId, newbieId: $newbieId) {
+  mutation deleteTask($taskId: ID!) {
+    deleteTask(taskId: $taskId) {
       id
       newbieTasks {
         id
