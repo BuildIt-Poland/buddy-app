@@ -13,7 +13,7 @@ import Error404 from 'components/Error404';
 import { useAuth } from 'contexts/AuthContext';
 import { isNewbie } from 'utils';
 import { MenuProvider } from 'contexts/MenuContext';
-import SnackbarProvider from 'stores/SnackbarProvider';
+import { SnackbarProvider } from 'contexts/SnackbarContext';
 
 const newbieRoutes = [
   {

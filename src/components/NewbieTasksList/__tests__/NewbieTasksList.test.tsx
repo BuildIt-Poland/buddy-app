@@ -6,6 +6,9 @@ import { MockedProvider } from '@apollo/react-testing';
 import { taskListResponse, newbieTasksListMock } from '__mocks__';
 import { AuthProvider, AuthState } from 'contexts/AuthContext';
 import { UserRole } from 'buddy-app-schema';
+import { MenuProvider } from 'contexts/MenuContext';
+import { SnackbarProvider } from 'contexts/SnackbarContext';
+
 import TasksList from '../NewbieTasksList';
 
 jest.mock('components/AvatarHeader', () => 'AvatarHeader');
@@ -23,6 +26,7 @@ describe('Component - TasksList', () => {
       userId: 'ck17sl83c9gya0b17dcvttzm4',
     },
   };
+
   describe('When there are tasks', () => {
     const variables = {
       newbieId: '1234',
@@ -36,9 +40,11 @@ describe('Component - TasksList', () => {
           resolvers={{}}>
           <MemoryRouter initialEntries={[path]}>
             <AuthProvider value={mockedNewbieContext}>
-              <Route path={path}>
-                <TasksList />
-              </Route>
+              <SnackbarProvider>
+                <MenuProvider>
+                  <Route path={path} component={TasksList} />
+                </MenuProvider>
+              </SnackbarProvider>
             </AuthProvider>
           </MemoryRouter>
         </MockedProvider>
@@ -71,9 +77,11 @@ describe('Component - TasksList', () => {
           resolvers={{}}>
           <MemoryRouter initialEntries={[path]}>
             <AuthProvider value={mockedNewbieContext}>
-              <Route path={path}>
-                <TasksList />
-              </Route>
+              <SnackbarProvider>
+                <MenuProvider>
+                  <Route path={path} component={TasksList} />
+                </MenuProvider>
+              </SnackbarProvider>
             </AuthProvider>
           </MemoryRouter>
         </MockedProvider>

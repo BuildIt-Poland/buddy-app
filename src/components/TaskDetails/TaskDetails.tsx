@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import React from 'react';
+import { useParams, useLocation, useHistory } from 'react-router-dom';
 import htmlParser from 'react-html-parser';
 import { makeStyles, Typography, Box, Chip } from '@material-ui/core';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { TASK_DETAILS } from 'graphql/task-details.graphql';
 import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
 import { colors } from 'styles/theme';
-import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
+import { useSnackBar } from 'contexts/SnackbarContext';
 import {
   TaskStatus,
   Query,
@@ -17,7 +17,6 @@ import {
 import PageContainer from 'components/PageContainer';
 import Header, { MenuTypes } from 'components/Header';
 import TaskCheckbox from '../TaskCheckbox';
-import { TaskDetailsProps } from './types';
 import DICTIONARY from './dictionary';
 
 const useStyles = makeStyles(theme => ({
@@ -60,12 +59,12 @@ const STATUS_TEXT = {
   [TaskStatus.Uncompleted]: DICTIONARY.UNCOMPLETED,
 };
 
-const TaskDetails: React.FC<TaskDetailsProps> = ({ history }) => {
+const TaskDetails: React.FC = () => {
   const { taskId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
   const { wrapper, header, checkbox, status, description } = useStyles();
   const { pathname, state } = useLocation();
-  const { showSnackbar } = useContext<SnackbarContextData>(SnackbarContext);
-
+  const { showSnackbar } = useSnackBar();
+  const history = useHistory();
   const { loading, data } = useQuery<Query, QueryTaskArgs>(TASK_DETAILS, {
     variables: { taskId },
   });

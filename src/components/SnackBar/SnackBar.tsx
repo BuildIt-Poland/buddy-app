@@ -1,23 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import MuiSnackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
+import { SnackBarProps } from './types';
 
-const SnackBar: React.FC = () => {
-  const { isOpen, message, hideSnackbar } = useContext<SnackbarContextData>(
-    SnackbarContext
-  );
-
-  const onClose = (
-    event: React.SyntheticEvent | React.MouseEvent,
-    reason?: string
-  ) => {
-    if (reason !== 'clickaway') {
-      hideSnackbar();
-    }
-  };
-
+const SnackBar: React.FC<SnackBarProps> = ({ isOpen, message, onClose }) => {
   return (
     <MuiSnackbar
       data-testid='snack-bar'
@@ -28,7 +15,7 @@ const SnackBar: React.FC = () => {
       open={isOpen}
       autoHideDuration={3000}
       message={<span>{message}</span>}
-      onClose={hideSnackbar}
+      onClose={onClose}
       action={[
         <IconButton key='close' aria-label='close' color='inherit' onClick={onClose}>
           <CloseIcon />

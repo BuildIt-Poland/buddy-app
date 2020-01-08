@@ -5,6 +5,7 @@ import waitForExpect from 'wait-for-expect';
 import { newbieSelectMock } from '__mocks__';
 import { UserRole } from 'buddy-app-schema';
 import { AuthProvider, AuthState } from 'contexts/AuthContext';
+import { MenuProvider } from 'contexts/MenuContext';
 import NewbieSelect from '../NewbieSelect';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
@@ -28,7 +29,9 @@ describe('Component - NewbieSelect', () => {
     const component = create(
       <MockedProvider mocks={newbieSelectMock} addTypename={false} resolvers={{}}>
         <AuthProvider value={mockedBuddyContext}>
-          <NewbieSelect />
+          <MenuProvider>
+            <NewbieSelect />
+          </MenuProvider>
         </AuthProvider>
       </MockedProvider>
     );

@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
+import { useSnackBar } from 'contexts/SnackbarContext';
 import { useAuth } from 'contexts/AuthContext';
 import { useMenu } from 'contexts/MenuContext';
 import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
@@ -19,9 +19,8 @@ const NewbieTasksList: React.FC = () => {
     },
   ] = useAuth();
   const { toggleMenu } = useMenu();
-  const { showSnackbar } = useContext<SnackbarContextData>(SnackbarContext);
   const newbieId = userId;
-
+  const { showSnackbar } = useSnackBar();
   const { loading, data } = useQuery<Query, QueryNewbieArgs>(TASK_LIST, {
     variables: { newbieId },
   });
@@ -52,7 +51,7 @@ const NewbieTasksList: React.FC = () => {
         onButtonClick={toggleMenu}>
         <AvatarHeader newbieId={newbieId} />
       </Header>
-      <Box component='main' p='0 2rem' flex={1} data-testid='task-list-page'>
+      <Box component='main' flex={1} data-testid='task-list-page'>
         <TaskTabsContent
           loading={loading}
           onChange={onTaskChange}

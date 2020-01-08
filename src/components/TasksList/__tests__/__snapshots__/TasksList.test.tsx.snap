@@ -28,7 +28,7 @@ Array [
     </Tabs>
   </header>,
   <main
-    className="MuiBox-root MuiBox-root-2"
+    className="MuiBox-root MuiBox-root-9"
     data-testid="task-list-page"
   >
     <TabPanel
@@ -108,7 +108,7 @@ Array [
     </Tabs>
   </header>,
   <main
-    className="MuiBox-root MuiBox-root-2"
+    className="MuiBox-root MuiBox-root-9"
     data-testid="task-list-page"
   >
     <TabPanel
@@ -220,7 +220,7 @@ Array [
     </Tabs>
   </header>,
   <main
-    className="MuiBox-root MuiBox-root-3"
+    className="MuiBox-root MuiBox-root-10"
     data-testid="task-list-page"
   >
     <TabPanel
