@@ -25,12 +25,12 @@ type Query {
 type Mutation {
   addBuddy(input: UserInput!): Buddy!
   addNewbie(buddyId: ID!, input: UserInput!): Newbie!
-  deleteNewbie(newbieId: ID!): Newbie!
+  deleteNewbie(newbieId: ID!): Buddy!
   deleteBuddy(buddyId: ID!): Buddy!
   login(email: String!, password: String!): AuthPayload!
   addNewbieTask(newbieId: ID!, input: TaskInput!): Task!
   addBuddyTask(newbieId: ID!, input: TaskInput!): Task!
-  deleteTask(taskId: ID!, newbieId: ID!): Newbie!
+  deleteTask(taskId: ID!): Newbie!
   updateTask(taskId: ID!, input: TaskInput!): Task!
   updateTaskStatus(taskId: ID!): Task!
 }

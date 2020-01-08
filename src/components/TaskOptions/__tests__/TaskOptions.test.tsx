@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, fireEvent, wait, cleanup } from '@testing-library/react';
-import { MemoryRouter, Route } from 'react-router-dom';
 import { MockedProvider } from '@apollo/react-testing';
 import { mockedBuddyContext } from '__mocks__';
 import { AuthProvider } from 'contexts/AuthContext';
@@ -12,25 +11,19 @@ import TaskOptions from '../TaskOptions';
 import DICTIONARY from '../dictionary';
 
 describe('Component - TaskOptions', () => {
-  const path = '/buddy/newbies/1234/tasks';
-
   const triggerTaskOptions = (mocks: any) => {
     const TaskOptionsRoute = render(
-      <MemoryRouter initialEntries={[path]}>
-        <MockedProvider>
-          <AuthProvider value={mockedBuddyContext}>
-            <DialogProvider>
-              <SnackbarProvider>
-                <Route path={'/buddy/newbies/:newbieId/tasks'}>
-                  <TaskOptions id='1' taskOptionHandlers={mocks} />
-                </Route>
-                <AlertDialog />
-                <SnackBar />
-              </SnackbarProvider>
-            </DialogProvider>
-          </AuthProvider>
-        </MockedProvider>
-      </MemoryRouter>
+      <MockedProvider>
+        <AuthProvider value={mockedBuddyContext}>
+          <DialogProvider>
+            <SnackbarProvider>
+              <TaskOptions id='1' taskOptionHandlers={mocks} />
+              <AlertDialog />
+              <SnackBar />
+            </SnackbarProvider>
+          </DialogProvider>
+        </AuthProvider>
+      </MockedProvider>
     );
     const { getByTestId } = TaskOptionsRoute;
 

@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { useParams } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import { UserRole, QueryNewbieArgs } from 'buddy-app-schema';
+import { UserRole } from 'buddy-app-schema';
 import { useAuth } from 'contexts/AuthContext';
 import DialogContext, { DialogContextData } from 'contexts/DialogContext';
 import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
@@ -47,7 +46,6 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
   ] = useAuth();
   const { showDialog, hideDialog } = useContext<DialogContextData>(DialogContext);
   const { showSnackbar } = useContext<SnackbarContextData>(SnackbarContext);
-  const { newbieId } = useParams<QueryNewbieArgs>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isOpened = Boolean(anchorEl);
 
@@ -65,7 +63,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
         hideDialog();
 
         try {
-          deleteTask && (await deleteTask({ variables: { taskId, newbieId } }));
+          deleteTask && (await deleteTask({ variables: { taskId } }));
           showSnackbar(DICTIONARY.DELETE_SNACKBAR.SUCCESS);
         } catch (err) {
           showSnackbar(DICTIONARY.DELETE_SNACKBAR.ERROR);

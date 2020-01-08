@@ -1555,7 +1555,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Newbie",
+                "name": "Buddy",
                 "ofType": null
               }
             },
@@ -1734,20 +1734,6 @@
             "args": [
               {
                 "name": "taskId",
-                "description": "",
-                "type": {
-                  "kind": "NON_NULL",
-                  "name": null,
-                  "ofType": {
-                    "kind": "SCALAR",
-                    "name": "ID",
-                    "ofType": null
-                  }
-                },
-                "defaultValue": null
-              },
-              {
-                "name": "newbieId",
                 "description": "",
                 "type": {
                   "kind": "NON_NULL",
