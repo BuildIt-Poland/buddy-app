@@ -9,6 +9,7 @@ export interface TaskOptionItem {
     [UserRole.Newbie]: boolean;
     [UserRole.Buddy]: boolean;
   };
+  disabled: boolean;
 }
 export interface TaskOptions {
   taskOptionHandlers?: {

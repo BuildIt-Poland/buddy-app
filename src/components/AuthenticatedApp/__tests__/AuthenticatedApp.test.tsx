@@ -24,7 +24,7 @@ describe('Component - AuthenticatedApp', () => {
   describe('When user is Buddy', () => {
     describe('when is base route', () => {
       it('renders newbie select page', async () => {
-        const { getByTestId } = render(mockedBuddyContext, ROUTES.BASE);
+        const { getByTestId } = render(mockedBuddyContext(), ROUTES.BASE);
 
         await wait();
 
@@ -34,7 +34,7 @@ describe('Component - AuthenticatedApp', () => {
 
     describe('when is login route', () => {
       it('renders newbie select page', async () => {
-        const { getByTestId } = render(mockedBuddyContext, ROUTES.BASE);
+        const { getByTestId } = render(mockedBuddyContext(), ROUTES.BASE);
 
         await wait();
 
@@ -44,7 +44,7 @@ describe('Component - AuthenticatedApp', () => {
 
     describe('When is not a valid route', () => {
       it('renders correctly', async () => {
-        const { getByTestId } = render(mockedBuddyContext, '/not-valid-route/');
+        const { getByTestId } = render(mockedBuddyContext(), '/not-valid-route/');
 
         await wait();
 
@@ -56,7 +56,7 @@ describe('Component - AuthenticatedApp', () => {
   describe('When user is newbie', () => {
     describe('when is base route', () => {
       it('renders newbie task list route', async () => {
-        const { getByTestId } = render(mockedNewbieContext, ROUTES.BASE);
+        const { getByTestId } = render(mockedNewbieContext(), ROUTES.BASE);
 
         await wait();
 
@@ -66,7 +66,7 @@ describe('Component - AuthenticatedApp', () => {
 
     describe('when is login route', () => {
       it('renders newbie task list route', async () => {
-        const { getByTestId } = render(mockedNewbieContext, ROUTES.LOGIN);
+        const { getByTestId } = render(mockedNewbieContext(), ROUTES.LOGIN);
 
         await wait();
 
@@ -76,7 +76,7 @@ describe('Component - AuthenticatedApp', () => {
 
     describe('When is not a valid route', () => {
       it('renders 404 page', async () => {
-        const { getByTestId } = render(mockedNewbieContext, '/not-valid-route/');
+        const { getByTestId } = render(mockedNewbieContext(), '/not-valid-route/');
 
         await wait();
 

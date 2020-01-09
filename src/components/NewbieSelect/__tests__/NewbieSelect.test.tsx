@@ -17,7 +17,7 @@ describe('Component - NewbieSelect', () => {
   it('renders correctly', async () => {
     const component = create(
       <MockedProvider mocks={newbieSelectMock} addTypename={false} resolvers={{}}>
-        <AuthProvider value={mockedBuddyContext}>
+        <AuthProvider value={mockedBuddyContext()}>
           <NewbieSelect />
         </AuthProvider>
       </MockedProvider>

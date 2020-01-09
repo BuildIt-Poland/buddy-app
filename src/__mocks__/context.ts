@@ -1,7 +1,7 @@
 import { AuthState } from 'contexts/AuthContext';
 import { UserRole } from '.';
 
-export const mockedBuddyContext: AuthState = {
+export const mockedBuddyContext = (context?: Partial<AuthState>) => ({
   isAuthenticated: true,
   loading: false,
   data: {
@@ -9,9 +9,10 @@ export const mockedBuddyContext: AuthState = {
     token: 'token',
     userId: '1234',
   },
-};
+  ...context,
+});
 
-export const mockedNewbieContext: AuthState = {
+export const mockedNewbieContext = (context?: Partial<AuthState>) => ({
   isAuthenticated: true,
   loading: false,
   data: {
@@ -19,4 +20,5 @@ export const mockedNewbieContext: AuthState = {
     token: 'token',
     userId: '1234',
   },
-};
+  ...context,
+});

@@ -14,7 +14,7 @@ describe('Component - TaskOptions', () => {
   const triggerTaskOptions = (mocks: any) => {
     const TaskOptionsRoute = render(
       <MockedProvider>
-        <AuthProvider value={mockedBuddyContext}>
+        <AuthProvider value={mockedBuddyContext()}>
           <DialogProvider>
             <SnackbarProvider>
               <TaskOptions id='1' taskOptionHandlers={mocks} />

@@ -27,9 +27,7 @@ describe('Component - Login', () => {
         <MemoryRouter initialEntries={[mockLocation(ROUTES.LOGIN)]}>
           <AuthProvider>
             <DialogProvider>
-              <Route path={ROUTES.LOGIN}>
-                <Login />
-              </Route>
+              <Route path={ROUTES.LOGIN} component={Login} />
               <AlertDialog />
             </DialogProvider>
           </AuthProvider>

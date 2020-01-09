@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
-import DialogContext, { State, defaultState } from 'contexts/DialogContext';
+import DialogContext, {
+  State,
+  defaultState,
+  DialogContextData,
+} from 'contexts/DialogContext';
 
 interface DialogProviderProps {
   children: React.ReactNode;
+  value?: DialogContextData;
 }
 
 const DialogProvider = (props: DialogProviderProps): JSX.Element => {

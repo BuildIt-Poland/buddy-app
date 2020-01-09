@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
@@ -16,11 +15,10 @@ const useStyles = makeStyles(() => ({
 const TasksSubList: React.FC<TasksSubListProps> = ({
   tasks,
   title,
-  tabIndex = 0,
+  tabIndex,
   onChange,
   taskOptionHandlers,
 }) => {
-  const { pathname } = useLocation();
   const { fullWidth } = useStyles();
 
   const ListHeader = (
@@ -35,19 +33,15 @@ const TasksSubList: React.FC<TasksSubListProps> = ({
     <ListItem disableGutters dense>
       <List dense className={fullWidth} subheader={ListHeader}>
         {tasks.map(({ id, title, status }) => (
-          <ListItem disableGutters key={id}>
-            <Link
-              className={fullWidth}
-              to={{ pathname: `${pathname}/${id}`, state: { tabIndex } }}>
-              <TaskListItem
-                id={id}
-                title={title}
-                status={status}
-                onChange={onChange}
-                taskOptionHandlers={taskOptionHandlers}
-              />
-            </Link>
-          </ListItem>
+          <TaskListItem
+            id={id}
+            key={id}
+            title={title}
+            status={status}
+            onChange={onChange}
+            tabIndex={tabIndex}
+            taskOptionHandlers={taskOptionHandlers}
+          />
         ))}
       </List>
     </ListItem>

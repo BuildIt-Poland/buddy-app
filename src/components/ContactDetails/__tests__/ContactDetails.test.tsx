@@ -35,7 +35,7 @@ describe('Component - ContactDetails', () => {
         resolvers={{}}>
         <MemoryRouter initialEntries={[path]}>
           <Route path={'/buddy/newbies/:newbieId/details'}>
-            <AuthProvider value={mockedBuddyContext}>
+            <AuthProvider value={mockedBuddyContext()}>
               <ContactDetails history={mockHistory} />
             </AuthProvider>
           </Route>
@@ -62,7 +62,7 @@ describe('Component - ContactDetails', () => {
         resolvers={{}}>
         <MemoryRouter initialEntries={[path]}>
           <Route path={'/newbie/buddy/:buddyId/details'}>
-            <AuthProvider value={mockedNewbieContext}>
+            <AuthProvider value={mockedNewbieContext()}>
               <ContactDetails history={mockHistory} />
             </AuthProvider>
           </Route>

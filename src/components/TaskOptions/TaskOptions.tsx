@@ -80,6 +80,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
         [UserRole.Newbie]: false,
         [UserRole.Buddy]: true,
       },
+      disabled: true,
     },
     {
       text: DICTIONARY.OPTIONS.COPY_LINK,
@@ -89,6 +90,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
         [UserRole.Newbie]: true,
         [UserRole.Buddy]: true,
       },
+      disabled: true,
     },
     {
       text: DICTIONARY.OPTIONS.DELETE,
@@ -98,6 +100,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
         [UserRole.Newbie]: false,
         [UserRole.Buddy]: true,
       },
+      disabled: false,
     },
   ];
 
@@ -124,9 +127,14 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
         open={isOpened}
         onClose={handleClose}>
         {options.map(
-          ({ Icon, text, onClick, access }) =>
+          ({ Icon, text, onClick, access, disabled }) =>
             access[role] && (
-              <MenuItem key={text} data-testid={text} onClick={onClick} dense>
+              <MenuItem
+                key={text}
+                data-testid={text}
+                onClick={onClick}
+                dense
+                disabled={disabled}>
                 <StyledListItemIcon>
                   <Icon fontSize='small' />
                 </StyledListItemIcon>

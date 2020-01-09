@@ -34,7 +34,7 @@ describe('UserMenu component', () => {
             mocks={buddyMenuDetails({ buddyId: '1234' })}
             addTypename={false}
             resolvers={{}}>
-            <AuthProvider value={mockedBuddyContext}>
+            <AuthProvider value={mockedBuddyContext()}>
               <Route path={path}>
                 <UserMenu onCloseClick={onCloseMock} />
               </Route>
@@ -67,7 +67,7 @@ describe('UserMenu component', () => {
             mocks={newbieMenuDetails({ newbieId: '1234' })}
             addTypename={false}
             resolvers={{}}>
-            <AuthProvider value={mockedNewbieContext}>
+            <AuthProvider value={mockedNewbieContext()}>
               <Route path={path}>
                 <UserMenu onCloseClick={onCloseMock} />
               </Route>

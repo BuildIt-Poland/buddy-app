@@ -1,5 +1,6 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { useLocation, useHistory } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
 import { TaskStatus } from 'buddy-app-schema';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -8,35 +9,46 @@ import TaskOptions from 'components/TaskOptions';
 import TaskCheckbox from 'components/TaskCheckbox';
 import { TaskListItemProps } from './types';
 
-const StyledListItem = withStyles(theme => ({
-  root: {
+const useStyles = makeStyles(theme => ({
+  listItem: {
     paddingLeft: theme.spacing(2),
   },
-}))(ListItem);
+}));
 
 const TaskListItem: React.FC<TaskListItemProps> = ({
   id,
   title,
   status,
+  tabIndex = 0,
   onChange,
   taskOptionHandlers,
 }) => {
+  const { pathname } = useLocation();
+  const history = useHistory();
+  const { listItem } = useStyles();
   const text = {
     [TaskStatus.Completed]: <del>{title}</del>,
     [TaskStatus.Uncompleted]: <strong>{title}</strong>,
   };
-  const preventDefault = (e: React.MouseEvent) => e.preventDefault();
+  const stopPropagation = (e: React.MouseEvent) => e.stopPropagation();
+  const listItemClickHandler = () =>
+    history.push({ pathname: `${pathname}/${id}`, state: { tabIndex } });
 
   return (
-    <StyledListItem button disableGutters>
-      <ListItemIcon onClick={preventDefault}>
+    <ListItem
+      disableGutters
+      button
+      className={listItem}
+      onClick={listItemClickHandler}
+      component='li'>
+      <ListItemIcon onClick={stopPropagation}>
         <TaskCheckbox id={id} status={status} onChange={onChange} />
       </ListItemIcon>
       <ListItemText primary={text[status]} />
-      <ListItemIcon onClick={preventDefault}>
+      <ListItemIcon onClick={stopPropagation}>
         <TaskOptions id={id} taskOptionHandlers={taskOptionHandlers} />
       </ListItemIcon>
-    </StyledListItem>
+    </ListItem>
   );
 };
 

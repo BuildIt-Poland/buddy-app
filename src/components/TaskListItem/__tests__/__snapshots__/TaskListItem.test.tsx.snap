@@ -3,12 +3,10 @@
 exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] = `
 <ListItem
   button={true}
-  classes={
-    Object {
-      "root": "ListItem-root-1",
-    }
-  }
+  className="makeStyles-listItem-1"
+  component="li"
   disableGutters={true}
+  onClick={[Function]}
 >
   <ListItemIcon
     onClick={[Function]}
@@ -39,12 +37,10 @@ exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] =
 exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`] = `
 <ListItem
   button={true}
-  classes={
-    Object {
-      "root": "ListItem-root-1",
-    }
-  }
+  className="makeStyles-listItem-1"
+  component="li"
   disableGutters={true}
+  onClick={[Function]}
 >
   <ListItemIcon
     onClick={[Function]}
