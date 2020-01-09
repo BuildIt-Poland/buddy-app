@@ -10,7 +10,7 @@ Array [
     type="menu"
   >
     <AvatarHeader
-      newbieId="ck17sl83c9gya0b17dcvttzm4"
+      newbieId="1234"
     />
   </header>,
   <main
@@ -35,7 +35,7 @@ Array [
     type="menu"
   >
     <AvatarHeader
-      newbieId="ck17sl83c9gya0b17dcvttzm4"
+      newbieId="1234"
     />
   </header>,
   <main
@@ -45,6 +45,22 @@ Array [
     <TaskTabsContent
       loading={false}
       onChange={[Function]}
+      tasks={
+        Array [
+          Object {
+            "description": "New task description",
+            "id": "3",
+            "status": "COMPLETED",
+            "title": "New task title ",
+          },
+          Object {
+            "description": "New task description 2",
+            "id": "4",
+            "status": "COMPLETED",
+            "title": "New task title 2",
+          },
+        ]
+      }
     />
   </main>,
 ]
@@ -60,7 +76,7 @@ Array [
     type="menu"
   >
     <AvatarHeader
-      newbieId="ck17sl83c9gya0b17dcvttzm4"
+      newbieId="1234"
     />
   </header>,
   <main

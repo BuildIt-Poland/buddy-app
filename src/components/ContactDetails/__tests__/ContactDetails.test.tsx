@@ -4,8 +4,13 @@ import { MockedProvider } from '@apollo/react-testing';
 import { act, create } from 'react-test-renderer';
 import waitForExpect from 'wait-for-expect';
 import ContactDetails from 'components/ContactDetails';
-import { buddyContactDetails, newbieContactDetails, UserRole } from '__mocks__';
-import { AuthProvider, AuthState } from 'contexts/AuthContext';
+import {
+  buddyContactDetails,
+  newbieContactDetails,
+  mockedBuddyContext,
+  mockedNewbieContext,
+} from '__mocks__';
+import { AuthProvider } from 'contexts/AuthContext';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');
@@ -23,15 +28,6 @@ describe('Component - ContactDetails', () => {
 
   describe('when logged in as buddy', () => {
     const path = '/buddy/newbies/1234/details';
-    const mockedBuddyContext: AuthState = {
-      isAuthenticated: true,
-      loading: false,
-      data: {
-        role: UserRole.Buddy,
-        token: 'token',
-        userId: '1234',
-      },
-    };
     const component = create(
       <MockedProvider
         mocks={newbieContactDetails({ newbieId: '1234' })}
@@ -39,7 +35,7 @@ describe('Component - ContactDetails', () => {
         resolvers={{}}>
         <MemoryRouter initialEntries={[path]}>
           <Route path={'/buddy/newbies/:newbieId/details'}>
-            <AuthProvider value={mockedBuddyContext}>
+            <AuthProvider value={mockedBuddyContext()}>
               <ContactDetails history={mockHistory} />
             </AuthProvider>
           </Route>
@@ -59,15 +55,6 @@ describe('Component - ContactDetails', () => {
 
   describe('when logged in as newbie', () => {
     const path = '/newbie/buddy/1234/details';
-    const mockedNewbieContext: AuthState = {
-      isAuthenticated: true,
-      loading: false,
-      data: {
-        role: UserRole.Newbie,
-        token: 'token',
-        userId: '1234',
-      },
-    };
     const component = create(
       <MockedProvider
         mocks={buddyContactDetails({ buddyId: '1234' })}
@@ -75,7 +62,7 @@ describe('Component - ContactDetails', () => {
         resolvers={{}}>
         <MemoryRouter initialEntries={[path]}>
           <Route path={'/newbie/buddy/:buddyId/details'}>
-            <AuthProvider value={mockedNewbieContext}>
+            <AuthProvider value={mockedNewbieContext()}>
               <ContactDetails history={mockHistory} />
             </AuthProvider>
           </Route>

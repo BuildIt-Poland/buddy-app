@@ -39,6 +39,11 @@ Array [
         loading={true}
         onChange={[Function]}
         tabIndex={0}
+        taskOptionHandlers={
+          Object {
+            "deleteTask": [Function],
+          }
+        }
       />
     </TabPanel>
     <TabPanel
@@ -49,6 +54,11 @@ Array [
         loading={true}
         onChange={[Function]}
         tabIndex={0}
+        taskOptionHandlers={
+          Object {
+            "deleteTask": [Function],
+          }
+        }
       />
     </TabPanel>
     <PlusButton
@@ -119,6 +129,11 @@ Array [
         loading={false}
         onChange={[Function]}
         tabIndex={0}
+        taskOptionHandlers={
+          Object {
+            "deleteTask": [Function],
+          }
+        }
         tasks={
           Array [
             Object {
@@ -145,6 +160,11 @@ Array [
         loading={false}
         onChange={[Function]}
         tabIndex={0}
+        taskOptionHandlers={
+          Object {
+            "deleteTask": [Function],
+          }
+        }
         tasks={
           Array [
             Object {
@@ -231,6 +251,11 @@ Array [
         loading={false}
         onChange={[Function]}
         tabIndex={0}
+        taskOptionHandlers={
+          Object {
+            "deleteTask": [Function],
+          }
+        }
         tasks={Array []}
       />
     </TabPanel>
@@ -242,6 +267,11 @@ Array [
         loading={false}
         onChange={[Function]}
         tabIndex={0}
+        taskOptionHandlers={
+          Object {
+            "deleteTask": [Function],
+          }
+        }
         tasks={Array []}
       />
     </TabPanel>

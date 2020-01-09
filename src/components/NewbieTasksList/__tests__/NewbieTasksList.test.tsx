@@ -3,9 +3,12 @@ import { create, act } from 'react-test-renderer';
 import waitForExpect from 'wait-for-expect';
 import { MemoryRouter, Route } from 'react-router';
 import { MockedProvider } from '@apollo/react-testing';
-import { taskListResponse, newbieTasksListMock } from '__mocks__';
-import { AuthProvider, AuthState } from 'contexts/AuthContext';
-import { UserRole } from 'buddy-app-schema';
+import {
+  taskListResponse,
+  newbieTasksListMock,
+  mockedNewbieContext,
+} from '__mocks__';
+import { AuthProvider } from 'contexts/AuthContext';
 import TasksList from '../NewbieTasksList';
 
 jest.mock('components/AvatarHeader', () => 'AvatarHeader');
@@ -14,15 +17,6 @@ jest.doMock('components/Header');
 
 describe('Component - TasksList', () => {
   const path = '/newbie/tasks';
-  const mockedNewbieContext: AuthState = {
-    isAuthenticated: true,
-    loading: false,
-    data: {
-      role: UserRole.Newbie,
-      token: 'token',
-      userId: 'ck17sl83c9gya0b17dcvttzm4',
-    },
-  };
   describe('When there are tasks', () => {
     const variables = {
       newbieId: '1234',
@@ -35,7 +29,7 @@ describe('Component - TasksList', () => {
           addTypename={false}
           resolvers={{}}>
           <MemoryRouter initialEntries={[path]}>
-            <AuthProvider value={mockedNewbieContext}>
+            <AuthProvider value={mockedNewbieContext()}>
               <Route path={path}>
                 <TasksList />
               </Route>
@@ -70,7 +64,7 @@ describe('Component - TasksList', () => {
           addTypename={false}
           resolvers={{}}>
           <MemoryRouter initialEntries={[path]}>
-            <AuthProvider value={mockedNewbieContext}>
+            <AuthProvider value={mockedNewbieContext()}>
               <Route path={path}>
                 <TasksList />
               </Route>

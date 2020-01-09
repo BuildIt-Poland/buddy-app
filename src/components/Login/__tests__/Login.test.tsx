@@ -11,6 +11,8 @@ import {
 
 import { ROUTES } from 'shared/routes';
 import { AuthProvider } from 'contexts/AuthContext';
+import DialogProvider from 'stores/DialogProvider';
+import AlertDialog from 'components/AlertDialog';
 import auth from 'utils/auth';
 import apolloClient from 'utils/apollo-client';
 import Login from '../Login';
@@ -24,9 +26,10 @@ describe('Component - Login', () => {
       <MockedProvider mocks={[]} addTypename={false} resolvers={{}}>
         <MemoryRouter initialEntries={[mockLocation(ROUTES.LOGIN)]}>
           <AuthProvider>
-            <Route path={ROUTES.LOGIN}>
-              <Login />
-            </Route>
+            <DialogProvider>
+              <Route path={ROUTES.LOGIN} component={Login} />
+              <AlertDialog />
+            </DialogProvider>
           </AuthProvider>
         </MemoryRouter>
       </MockedProvider>
