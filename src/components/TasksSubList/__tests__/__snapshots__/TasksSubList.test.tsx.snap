@@ -1,64 +1,85 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - TasksSubList renders correctly Done section 1`] = `
-Array [
-  <ListSubheader
-    disableSticky={true}
+<ListItem
+  dense={true}
+  disableGutters={true}
+>
+  <List
+    className="makeStyles-fullWidth-1"
+    dense={true}
+    subheader={
+      <ListSubheader
+        disableSticky={true}
+      >
+        <strong>
+          Done
+           (
+          1
+          )
+        </strong>
+      </ListSubheader>
+    }
   >
-    <strong>
-      Done
-       (
-      1
-      )
-    </strong>
-  </ListSubheader>,
-  <a
-    href="//1"
-    onClick={[Function]}
-  >
-    <TaskCheckbox
+    <TaskListItem
       id="1"
       status="UNCOMPLETED"
       title="Call you head manager"
     />
-  </a>,
-]
+  </List>
+</ListItem>
 `;
 
 exports[`Component - TasksSubList renders correctly Todo section 1`] = `
-Array [
-  <ListSubheader
-    disableSticky={true}
+<ListItem
+  dense={true}
+  disableGutters={true}
+>
+  <List
+    className="makeStyles-fullWidth-1"
+    dense={true}
+    subheader={
+      <ListSubheader
+        disableSticky={true}
+      >
+        <strong>
+          Todo
+           (
+          1
+          )
+        </strong>
+      </ListSubheader>
+    }
   >
-    <strong>
-      Todo
-       (
-      1
-      )
-    </strong>
-  </ListSubheader>,
-  <a
-    href="//2"
-    onClick={[Function]}
-  >
-    <TaskCheckbox
+    <TaskListItem
       id="2"
       status="COMPLETED"
       title="Write you main manager"
     />
-  </a>,
-]
+  </List>
+</ListItem>
 `;
 
 exports[`Component - TasksSubList renders correctly without tasks and count 1`] = `
-<ListSubheader
-  disableSticky={true}
+<ListItem
+  dense={true}
+  disableGutters={true}
 >
-  <strong>
-    Todo
-     (
-    0
-    )
-  </strong>
-</ListSubheader>
+  <List
+    className="makeStyles-fullWidth-1"
+    dense={true}
+    subheader={
+      <ListSubheader
+        disableSticky={true}
+      >
+        <strong>
+          Todo
+           (
+          0
+          )
+        </strong>
+      </ListSubheader>
+    }
+  />
+</ListItem>
 `;

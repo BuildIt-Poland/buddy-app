@@ -1,8 +1,13 @@
 import React from 'react';
 import UserMenu from 'components/UserMenu';
 import { MemoryRouter, Route } from 'react-router';
-import { buddyMenuDetails, newbieMenuDetails, UserRole } from '__mocks__';
-import { AuthProvider, AuthState } from 'contexts/AuthContext';
+import {
+  buddyMenuDetails,
+  newbieMenuDetails,
+  mockedBuddyContext,
+  mockedNewbieContext,
+} from '__mocks__';
+import { AuthProvider } from 'contexts/AuthContext';
 import waitForExpect from 'wait-for-expect';
 import { render, act } from '@testing-library/react';
 import { MockedProvider } from '@apollo/react-testing';
@@ -20,15 +25,7 @@ describe('UserMenu component', () => {
   describe('when logged in as buddy', () => {
     let getByTestId: any;
     const onCloseMock = jest.fn();
-    const mockedBuddyContext: AuthState = {
-      isAuthenticated: true,
-      loading: false,
-      data: {
-        role: UserRole.Buddy,
-        token: 'token',
-        userId: '1234',
-      },
-    };
+
     beforeEach(() => {
       const path = '/buddy/newbies';
       const renderer = render(
@@ -37,7 +34,7 @@ describe('UserMenu component', () => {
             mocks={buddyMenuDetails({ buddyId: '1234' })}
             addTypename={false}
             resolvers={{}}>
-            <AuthProvider value={mockedBuddyContext}>
+            <AuthProvider value={mockedBuddyContext()}>
               <Route path={path}>
                 <UserMenu onCloseClick={onCloseMock} />
               </Route>
@@ -61,15 +58,7 @@ describe('UserMenu component', () => {
   describe('when logged in as newbie', () => {
     let getByTestId: any;
     const onCloseMock = jest.fn();
-    const mockedNewbieContext: AuthState = {
-      isAuthenticated: true,
-      loading: false,
-      data: {
-        role: UserRole.Newbie,
-        token: 'token',
-        userId: '1234',
-      },
-    };
+
     beforeEach(() => {
       const path = '/buddy/newbies';
       const renderer = render(
@@ -78,7 +67,7 @@ describe('UserMenu component', () => {
             mocks={newbieMenuDetails({ newbieId: '1234' })}
             addTypename={false}
             resolvers={{}}>
-            <AuthProvider value={mockedNewbieContext}>
+            <AuthProvider value={mockedNewbieContext()}>
               <Route path={path}>
                 <UserMenu onCloseClick={onCloseMock} />
               </Route>

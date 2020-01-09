@@ -1555,7 +1555,7 @@
               "name": null,
               "ofType": {
                 "kind": "OBJECT",
-                "name": "Newbie",
+                "name": "Buddy",
                 "ofType": null
               }
             },
@@ -1751,8 +1751,8 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "INTERFACE",
-                "name": "Task",
+                "kind": "OBJECT",
+                "name": "Newbie",
                 "ofType": null
               }
             },

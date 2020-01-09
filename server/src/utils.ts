@@ -43,6 +43,7 @@ export const authMiddleware = async (
   if (info.fieldName !== 'login' && info.parentType.name !== 'AuthPayload') {
     if (
       info.operation.operation === 'mutation' &&
+      info.operation.name &&
       info.operation.name.value !== 'updateTaskStatus'
     ) {
       await isBuddyAuth(context);

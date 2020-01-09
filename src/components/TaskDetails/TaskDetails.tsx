@@ -29,11 +29,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  checkbox: {
-    '& svg': {
-      fontSize: theme.spacing(3),
-    },
-  },
   status: {
     marginTop: theme.spacing(1),
     alignSelf: 'baseline',
@@ -61,7 +56,7 @@ const STATUS_TEXT = {
 
 const TaskDetails: React.FC = () => {
   const { taskId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
-  const { wrapper, header, checkbox, status, description } = useStyles();
+  const { wrapper, header, status, description } = useStyles();
   const { pathname, state } = useLocation();
   const { showSnackbar } = useSnackBar();
   const history = useHistory();
@@ -104,7 +99,7 @@ const TaskDetails: React.FC = () => {
         </Typography>
         <TaskCheckbox
           id={taskId}
-          className={checkbox}
+          size='large'
           status={task.status}
           onChange={onTaskCheckboxChange}
         />

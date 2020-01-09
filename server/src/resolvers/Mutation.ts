@@ -114,20 +114,41 @@ const deleteTask: MutationResolvers['deleteTask'] = async (
   args,
   context
 ) => {
+  const query = `
+    query ($id: ID!){
+      buddyTask(where: {
+        id: $id
+      }) {
+        newbie {
+          id
+        }
+      }
+      newbieTask(where: {
+        id: $id
+      }) {
+        newbie {
+          id
+        }
+      }
+    }
+  `;
+  const variables = { id: args.taskId };
+  const result = await context.prisma.$graphql(query, variables);
+
   try {
-    const buddyTask = await context.prisma.deleteBuddyTask({
+    await context.prisma.deleteBuddyTask({
       id: args.taskId,
     });
 
-    return buddyTask;
+    return result.buddyTask.newbie;
   } catch (error) {}
 
   try {
-    const newbieTask = await context.prisma.deleteNewbieTask({
+    await context.prisma.deleteNewbieTask({
       id: args.taskId,
     });
 
-    return newbieTask;
+    return result.newbieTask.newbie;
   } catch (error) {}
 
   throw new ERRORS.NO_TASK_FOUND();

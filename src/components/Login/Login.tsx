@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -8,11 +8,11 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import useForm from 'react-hook-form';
 import { ReactComponent as SpaceManLogo } from 'assets/svg/spaceman.svg';
 import PageContainer from 'components/PageContainer/PageContainer';
+import DialogContext, { DialogContextData } from 'contexts/DialogContext';
 import { useAuth, login } from 'contexts/AuthContext';
 import RoundedButton from '../RoundedButton';
-import AlertDialog from '../AlertDialog';
 import DICTIONARY from './dictionary';
-import { ErrorDialog, FormData } from './types';
+import { FormData } from './types';
 
 const useStyles = makeStyles(theme => ({
   spaceMan: {
@@ -33,37 +33,24 @@ const useStyles = makeStyles(theme => ({
 
 const Login: React.FC = () => {
   const classes = useStyles();
-  const [errorDialog, setErrorDialog] = useState<ErrorDialog>({
-    isOpen: false,
-    message: '',
-  });
   const { register, errors, handleSubmit } = useForm<FormData>();
   const [{ loading, error }, dispatch] = useAuth();
+  const {
+    current: { showDialog },
+  } = useRef(useContext<DialogContextData>(DialogContext));
 
-  const onSubmit = ({ email, password }: FormData) => {
-    setErrorDialog({
-      isOpen: false,
-      message: '',
-    });
-
+  const onSubmit = ({ email, password }: FormData) =>
     login(dispatch, email, password);
-  };
 
   useEffect(() => {
     if (error) {
       if (error.networkError) {
-        setErrorDialog({
-          isOpen: true,
-          message: DICTIONARY.ERRORS.NO_NETWORK,
-        });
+        showDialog(DICTIONARY.ERRORS.NO_NETWORK);
       } else {
-        setErrorDialog({
-          isOpen: true,
-          message: DICTIONARY.ERRORS.NO_USER_FOUND,
-        });
+        showDialog(DICTIONARY.ERRORS.NO_USER_FOUND);
       }
     }
-  }, [error, setErrorDialog]);
+  }, [error, showDialog]);
 
   return (
     <PageContainer
@@ -130,7 +117,6 @@ const Login: React.FC = () => {
         <Grid container justify='flex-end'>
           <Link href='#'>{DICTIONARY.FORGOT_PASSWORD}</Link>
         </Grid>
-        {errorDialog.isOpen && <AlertDialog message={errorDialog.message} />}
       </form>
     </PageContainer>
   );
