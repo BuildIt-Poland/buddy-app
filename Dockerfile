@@ -12,5 +12,5 @@ RUN npm ci --only=production
 # Bundle app source
 COPY . .
 # Start port with server
-EXPOSE 4000
+EXPOSE ${PORT}
 CMD [ "npm", "run", "server:prod" ]
