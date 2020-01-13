@@ -16,7 +16,7 @@ import PageContainer from 'components/PageContainer';
 import Header, { MenuTypes } from 'components/Header';
 import { ContactDetailsProps } from './types';
 
-const ContactDetails: React.FC<ContactDetailsProps> = props => {
+const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
   const { newbieId } = useParams<QueryNewbieArgs>();
   const { buddyId } = useParams<QueryBuddyArgs>();
   const [
@@ -25,23 +25,22 @@ const ContactDetails: React.FC<ContactDetailsProps> = props => {
     },
   ] = useAuth();
 
-  const onBackClick = () => {
-    props.history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId));
-  };
-
   const queryByRole = {
     [UserRole.Newbie]: {
       query: BUDDY_CONTACT_DETAILS,
       variables: { buddyId },
       userRole: UserRole.Buddy.toLowerCase(),
+      onBackClick: () => history.push(ROUTES.NEWBIE_TASKS_LIST),
     },
     [UserRole.Buddy]: {
       query: NEWBIE_CONTACT_DETAILS,
       variables: { newbieId },
       userRole: UserRole.Newbie.toLowerCase(),
+      onBackClick: () =>
+        history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId)),
     },
   };
-  const { query, variables, userRole } = queryByRole[role];
+  const { query, variables, userRole, onBackClick } = queryByRole[role];
   const { data, loading } = useQuery<UserBasicDetails, BasicDetailsParams>(query, {
     variables,
   });
