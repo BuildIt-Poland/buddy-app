@@ -6,6 +6,7 @@
   "scripts": {
     "start": "react-scripts start",
     "server": "npm start --prefix server",
+    "server:prod": "npm run start:prod --prefix server",
     "postinstall": "npm install --prefix server && npm install --prefix schema",
     "lint": "eslint ./src/**/*.{ts,tsx}",
     "lint:fix": "eslint ./src/**/*.{ts,tsx} --fix",
