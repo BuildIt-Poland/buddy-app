@@ -1,19 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContext, { DialogContextData } from 'contexts/DialogContext';
-
-const AlertDialog: React.FC = () => {
-  const { isOpen, title, message, onConfirm, hideDialog } = useContext<
-    DialogContextData
-  >(DialogContext);
-
+import { AlertDialogProps } from './types';
+const AlertDialog: React.FC<AlertDialogProps> = ({
+  isOpen,
+  title,
+  message,
+  onConfirm,
+  onClose,
+}) => {
   return (
-    <Dialog open={isOpen} onClose={hideDialog} data-testid='alert-dialog'>
+    <Dialog open={isOpen} onClose={onClose} data-testid='alert-dialog'>
       {title && (
         <DialogTitle>
           <strong>{title}</strong>
@@ -25,10 +26,7 @@ const AlertDialog: React.FC = () => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button
-          onClick={hideDialog}
-          color='primary'
-          data-testid='alert-dialog-close'>
+        <Button onClick={onClose} color='primary' data-testid='alert-dialog-close'>
           Close
         </Button>
         {onConfirm && (

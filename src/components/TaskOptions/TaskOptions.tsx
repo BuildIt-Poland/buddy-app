@@ -1,8 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { UserRole } from 'buddy-app-schema';
 import { useAuth } from 'contexts/AuthContext';
-import DialogContext, { DialogContextData } from 'contexts/DialogContext';
+import { useDialog } from 'contexts/DialogContext';
 import { useSnackBar } from 'contexts/SnackbarContext';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
@@ -44,7 +44,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
       data: { role },
     },
   ] = useAuth();
-  const { showDialog, hideDialog } = useContext<DialogContextData>(DialogContext);
+  const { showDialog } = useDialog();
   const { showSnackbar } = useSnackBar();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const isOpened = Boolean(anchorEl);
@@ -52,16 +52,15 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) =>
     setAnchorEl(e.currentTarget);
 
-  const handleClose = () => setAnchorEl(null);
+  const onCloseTaskOptions = () => setAnchorEl(null);
 
-  const handleDelete = () =>
+  const handleDelete = () => {
+    onCloseTaskOptions();
+
     showDialog(
       DICTIONARY.DELETE_DIALOG.MESSAGE,
       DICTIONARY.DELETE_DIALOG.TITLE,
       async () => {
-        handleClose();
-        hideDialog();
-
         try {
           deleteTask && (await deleteTask({ variables: { taskId } }));
           showSnackbar(DICTIONARY.DELETE_SNACKBAR.SUCCESS);
@@ -70,12 +69,13 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
         }
       }
     );
+  };
 
   const options: [TaskOptionItem, TaskOptionItem, TaskOptionItem] = [
     {
       text: DICTIONARY.OPTIONS.EDIT,
       Icon: EditIcon,
-      onClick: handleClose,
+      onClick: onCloseTaskOptions,
       access: {
         [UserRole.Newbie]: false,
         [UserRole.Buddy]: true,
@@ -85,7 +85,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
     {
       text: DICTIONARY.OPTIONS.COPY_LINK,
       Icon: FileCopyIcon,
-      onClick: handleClose,
+      onClick: onCloseTaskOptions,
       access: {
         [UserRole.Newbie]: true,
         [UserRole.Buddy]: true,
@@ -125,7 +125,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
         TransitionComponent={Fade}
         keepMounted
         open={isOpened}
-        onClose={handleClose}>
+        onClose={onCloseTaskOptions}>
         {options.map(
           ({ Icon, text, onClick, access, disabled }) =>
             access[role] && (

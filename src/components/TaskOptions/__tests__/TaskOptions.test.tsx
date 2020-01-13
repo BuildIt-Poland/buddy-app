@@ -4,8 +4,7 @@ import { MockedProvider } from '@apollo/react-testing';
 import { mockedBuddyContext } from '__mocks__';
 import { AuthProvider } from 'contexts/AuthContext';
 import { SnackbarProvider } from 'contexts/SnackbarContext';
-import DialogProvider from 'stores/DialogProvider';
-import AlertDialog from 'components/AlertDialog';
+import { DialogProvider } from 'contexts/DialogContext';
 import TaskOptions from '../TaskOptions';
 import DICTIONARY from '../dictionary';
 
@@ -17,7 +16,6 @@ describe('Component - TaskOptions', () => {
           <DialogProvider>
             <SnackbarProvider>
               <TaskOptions id='1' taskOptionHandlers={mocks} />
-              <AlertDialog />
             </SnackbarProvider>
           </DialogProvider>
         </AuthProvider>
