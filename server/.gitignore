@@ -1,6 +1,9 @@
-.env*
-dist
+# package directories
 node_modules
-.idea
-.vscode
-*.log
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# Webpack directories
+.webpack

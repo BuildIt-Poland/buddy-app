@@ -1,18 +1,25 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
-    "lib": ["es2017", "esnext.asynciterable"],
-    "outDir": "ts-built",
-    "rootDir": "src",
-    "jsx": "react",
-    "inlineSourceMap": true,
-    "noImplicitAny": true,
+    "lib": [
+      "es2017"
+    ],
     "removeComments": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "skipLibCheck": true
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "target": "es2017",
+    "outDir": "lib",
+    "rootDir": "./src"
   },
-  "include": ["**/*"],
-  "exclude": ["node_modules", "ts-built"]
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "node_modules/**/*",
+    ".serverless/**/*",
+    ".webpack/**/*",
+    "_warmup/**/*",
+    ".vscode/**/*"
+  ]
 }

@@ -12,8 +12,7 @@ const emailValidator = (email: string): boolean =>
 export const changeTaskStatus = (status: TaskStatus): TaskStatus =>
   status === TaskStatus.Completed ? TaskStatus.Uncompleted : TaskStatus.Completed;
 
-const auth = (context: Context): string => {
-  const Authorization = context.request.get('Authorization');
+const auth = (Authorization: string): string => {
   if (Authorization) {
     const token = Authorization.replace('Bearer ', '');
     const { userId }: any = jwt.verify(token, process.env.APP_SECRET);
@@ -24,7 +23,7 @@ const auth = (context: Context): string => {
 };
 
 const isBuddyAuth = async (context: Context): Promise<boolean> => {
-  const userId = auth(context);
+  const userId = auth(context.event.headers.authorization);
   const isBuddy = await context.prisma.$exists.buddy({ id: userId });
 
   if (!isBuddy) {
@@ -48,7 +47,7 @@ export const authMiddleware = async (
     ) {
       await isBuddyAuth(context);
     } else {
-      auth(context);
+      auth(context.event.headers.authorization);
     }
   }
 
