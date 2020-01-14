@@ -27,3 +27,6 @@ deploy:
   bucket: "buildit-poland-buddy-app"
   skip_cleanup: true
   local_dir: build
+  on:
+    # FIXME: Run deploy only on master branch. Left for testing purposes.
+    all_branches: true
