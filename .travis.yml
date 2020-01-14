@@ -29,5 +29,4 @@ deploy:
   local_dir: build
   acl: public_read
   on:
-    # FIXME: Run deploy only on master branch. Left for testing purposes.
-    all_branches: true
+    branch: master
