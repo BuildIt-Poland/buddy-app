@@ -11,8 +11,7 @@ import {
 
 import { ROUTES } from 'shared/routes';
 import { AuthProvider } from 'contexts/AuthContext';
-import DialogProvider from 'stores/DialogProvider';
-import AlertDialog from 'components/AlertDialog';
+import { DialogProvider } from 'contexts/DialogContext';
 import auth from 'utils/auth';
 import apolloClient from 'utils/apollo-client';
 import Login from '../Login';
@@ -28,7 +27,6 @@ describe('Component - Login', () => {
           <AuthProvider>
             <DialogProvider>
               <Route path={ROUTES.LOGIN} component={Login} />
-              <AlertDialog />
             </DialogProvider>
           </AuthProvider>
         </MemoryRouter>

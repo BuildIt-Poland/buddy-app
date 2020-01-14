@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TabPanel from 'components/TabPanel';
 import AvatarHeader from 'components/AvatarHeader';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
+import { useSnackBar } from 'contexts/SnackbarContext';
 import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
 import { DELETE_TASK } from 'graphql/delete-task.graphql';
@@ -24,7 +24,7 @@ const TasksList: React.FC = () => {
   const history = useHistory();
   const defaultTabIndex = (state && state.defaultTabIndex) || 0;
   const [tabIndex, setTabIndex] = React.useState(defaultTabIndex);
-  const { showSnackbar } = useContext<SnackbarContextData>(SnackbarContext);
+  const { showSnackbar } = useSnackBar();
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) =>
     setTabIndex(newValue);
