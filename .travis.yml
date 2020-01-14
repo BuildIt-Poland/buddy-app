@@ -20,3 +20,10 @@ after_success:
   - codecov --token="$CODECOV_TOKEN"
 notifications:
   slack: $SLACK_TOKEN
+deploy:
+  provider: s3
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: "buildit-poland-buddy-app"
+  skip_cleanup: true
+  local_dir: build
