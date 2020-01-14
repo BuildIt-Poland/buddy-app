@@ -5,7 +5,7 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import theme from 'styles/theme';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import { AuthProvider } from 'contexts/AuthContext';
-import DialogProvider from 'stores/DialogProvider';
+import { DialogProvider } from 'contexts/DialogContext';
 
 const AppProviders: React.FC = ({ children }) => {
   return (

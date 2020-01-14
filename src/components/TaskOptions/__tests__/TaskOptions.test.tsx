@@ -3,23 +3,19 @@ import { render, fireEvent, wait, cleanup } from '@testing-library/react';
 import { MockedProvider } from '@apollo/react-testing';
 import { mockedBuddyContext } from '__mocks__';
 import { AuthProvider } from 'contexts/AuthContext';
-import SnackbarProvider from 'stores/SnackbarProvider';
-import DialogProvider from 'stores/DialogProvider';
-import SnackBar from 'components/SnackBar';
-import AlertDialog from 'components/AlertDialog';
+import { SnackbarProvider } from 'contexts/SnackbarContext';
+import { DialogProvider } from 'contexts/DialogContext';
 import TaskOptions from '../TaskOptions';
 import DICTIONARY from '../dictionary';
 
 describe('Component - TaskOptions', () => {
   const triggerTaskOptions = (mocks: any) => {
     const TaskOptionsRoute = render(
-      <MockedProvider>
+      <MockedProvider resolvers={{}}>
         <AuthProvider value={mockedBuddyContext()}>
           <DialogProvider>
             <SnackbarProvider>
               <TaskOptions id='1' taskOptionHandlers={mocks} />
-              <AlertDialog />
-              <SnackBar />
             </SnackbarProvider>
           </DialogProvider>
         </AuthProvider>

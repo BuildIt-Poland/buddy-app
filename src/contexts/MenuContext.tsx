@@ -1,22 +1,42 @@
-import React from 'react';
+import React, { useState, useContext, createContext } from 'react';
 
-export interface State {
+interface MenuState {
   isOpen: boolean;
 }
 
-export interface MenuContextData extends State {
+interface MenuStateContextData extends MenuState {
   toggleMenu: () => void;
 }
 
-export const defaultState: State = {
+const defaultState: MenuState = {
   isOpen: false,
 };
 
-const defaultContext: MenuContextData = {
-  ...defaultState,
-  toggleMenu: () => null,
+const MenuContext = createContext<MenuStateContextData | undefined>(undefined);
+
+interface MenuProviderProps {
+  children: React.ReactNode;
+  value?: MenuState;
+}
+
+const MenuProvider = ({ children, value }: MenuProviderProps): JSX.Element => {
+  const [{ isOpen }, setState] = useState<MenuState>(value || defaultState);
+
+  const toggleMenu = () => setState(state => ({ ...state, isOpen: !state.isOpen }));
+
+  return (
+    <MenuContext.Provider value={{ isOpen, toggleMenu }}>
+      {children}
+    </MenuContext.Provider>
+  );
 };
 
-const MenuContext = React.createContext<MenuContextData>(defaultContext);
+const useMenu = () => {
+  const context = useContext(MenuContext);
+  if (context === undefined) {
+    throw new Error(`useMenu must be used within a MenuProvider`);
+  }
+  return context;
+};
 
-export default MenuContext;
+export { MenuProvider, useMenu };

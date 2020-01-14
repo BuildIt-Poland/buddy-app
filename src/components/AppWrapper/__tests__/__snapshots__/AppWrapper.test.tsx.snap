@@ -33,6 +33,5 @@ exports[`Component - AppWrapper renders correctly 1`] = `
   >
     Demo Page
   </div>
-  <SnackBar />
 </div>
 `;

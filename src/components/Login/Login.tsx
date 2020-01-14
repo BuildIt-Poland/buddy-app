@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import TextField from '@material-ui/core/TextField';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -8,7 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import useForm from 'react-hook-form';
 import { ReactComponent as SpaceManLogo } from 'assets/svg/spaceman.svg';
 import PageContainer from 'components/PageContainer/PageContainer';
-import DialogContext, { DialogContextData } from 'contexts/DialogContext';
+import { useDialog } from 'contexts/DialogContext';
 import { useAuth, login } from 'contexts/AuthContext';
 import RoundedButton from '../RoundedButton';
 import DICTIONARY from './dictionary';
@@ -37,7 +37,7 @@ const Login: React.FC = () => {
   const [{ loading, error }, dispatch] = useAuth();
   const {
     current: { showDialog },
-  } = useRef(useContext<DialogContextData>(DialogContext));
+  } = useRef(useDialog());
 
   const onSubmit = ({ email, password }: FormData) =>
     login(dispatch, email, password);

@@ -10,7 +10,7 @@ import PlusButton from 'components/PlusButton';
 import NewbieGrid from 'components/NewbieGrid';
 import PageContainer from 'components/PageContainer';
 import Header, { MenuTypes } from 'components/Header';
-import MenuContext, { MenuContextData } from 'contexts/MenuContext';
+import { useMenu } from 'contexts/MenuContext';
 import NewbieSelectDictionary from './dictionary';
 
 const useStyles = makeStyles<Theme>(theme => ({
@@ -35,7 +35,7 @@ const NewbieSelect: React.FC = () => {
   const { loading, data } = useQuery<Query, QueryBuddyArgs>(NEWBIE_SELECT, {
     variables: { buddyId: userId },
   });
-  const { toggleMenu } = React.useContext<MenuContextData>(MenuContext);
+  const { toggleMenu } = useMenu();
   const { title, carrouselWrapper } = useStyles();
 
   return (

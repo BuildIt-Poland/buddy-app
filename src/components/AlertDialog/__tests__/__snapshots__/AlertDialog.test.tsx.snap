@@ -3,10 +3,8 @@
 exports[`Component - AlertDialog renders correctly 1`] = `
 <Dialog
   data-testid="alert-dialog"
-  onClose={[Function]}
-  open={false}
+  open={true}
 >
-  
   <DialogContent>
     <DialogContentText
       style={
@@ -16,14 +14,13 @@ exports[`Component - AlertDialog renders correctly 1`] = `
       }
       variant="body2"
     >
-      
+      dummy message
     </DialogContentText>
   </DialogContent>
   <DialogActions>
     <Button
       color="primary"
       data-testid="alert-dialog-close"
-      onClick={[Function]}
     >
       Close
     </Button>
@@ -41,10 +38,13 @@ exports[`Component - AlertDialog renders correctly 1`] = `
 exports[`Component - AlertDialog renders correctly with title message 1`] = `
 <Dialog
   data-testid="alert-dialog"
-  onClose={[Function]}
-  open={false}
+  open={true}
 >
-  
+  <DialogTitle>
+    <strong>
+      dummy title
+    </strong>
+  </DialogTitle>
   <DialogContent>
     <DialogContentText
       style={
@@ -54,23 +54,15 @@ exports[`Component - AlertDialog renders correctly with title message 1`] = `
       }
       variant="body2"
     >
-      
+      dummy message
     </DialogContentText>
   </DialogContent>
   <DialogActions>
     <Button
       color="primary"
       data-testid="alert-dialog-close"
-      onClick={[Function]}
     >
       Close
-    </Button>
-    <Button
-      color="primary"
-      data-testid="alert-dialog-confirm"
-      onClick={[Function]}
-    >
-      Confirm
     </Button>
   </DialogActions>
 </Dialog>

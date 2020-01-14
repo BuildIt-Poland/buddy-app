@@ -3,8 +3,7 @@ import { render, fireEvent, wait, cleanup } from '@testing-library/react';
 import { MockedProvider } from '@apollo/react-testing';
 import { MemoryRouter, Route } from 'react-router';
 import { addTaskSuccessMock, addTaskFailedMock } from '__mocks__';
-import SnackbarProvider from 'stores/SnackbarProvider';
-import SnackBar from 'components/SnackBar';
+import { SnackbarProvider } from 'contexts/SnackbarContext';
 import AddTask from '../AddTask';
 import DICTIONARY from '../dictionary';
 
@@ -17,12 +16,9 @@ describe('Component - AddTask', () => {
     const addTaskRoute = render(
       <MockedProvider mocks={[mocks]} addTypename={false}>
         <MemoryRouter initialEntries={[path]}>
-          <Route path={'/buddy/newbies/:newbieId/add-task'}>
-            <SnackbarProvider>
-              <AddTask />
-              <SnackBar />
-            </SnackbarProvider>
-          </Route>
+          <SnackbarProvider>
+            <Route path={'/buddy/newbies/:newbieId/add-task'} component={AddTask} />
+          </SnackbarProvider>
         </MemoryRouter>
       </MockedProvider>
     );
