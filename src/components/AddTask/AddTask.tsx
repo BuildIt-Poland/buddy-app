@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import useForm from 'react-hook-form';
-import SnackbarContext, { SnackbarContextData } from 'contexts/SnackbarContext';
+import { useSnackBar } from 'contexts/SnackbarContext';
 import { QueryNewbieArgs, Mutation, TaskInput } from 'buddy-app-schema';
 import {
   makeStyles,
@@ -49,7 +49,7 @@ const AddTask: React.FC<AddTaskProps> = ({ history }) => {
   const { newbieId } = useParams<QueryNewbieArgs>();
   const { register, errors, handleSubmit } = useForm<TaskInput>();
   const { pathname, state } = useLocation();
-  const { showSnackbar } = useContext<SnackbarContextData>(SnackbarContext);
+  const { showSnackbar } = useSnackBar();
   const taskListPath = pathname.replace('add-task', 'tasks');
 
   const onBackClick = () =>

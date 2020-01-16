@@ -7,7 +7,6 @@ exports[`Component - SnackBar renders correctly 1`] = `
       <IconButton
         aria-label="close"
         color="inherit"
-        onClick={[Function]}
       >
         <CloseIcon />
       </IconButton>,
@@ -21,12 +20,6 @@ exports[`Component - SnackBar renders correctly 1`] = `
   }
   autoHideDuration={3000}
   data-testid="snack-bar"
-  message={
-    <span>
-      
-    </span>
-  }
-  onClose={[Function]}
-  open={false}
+  message={<span />}
 />
 `;

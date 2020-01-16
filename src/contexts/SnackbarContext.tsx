@@ -1,26 +1,64 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
+import SnackBar from 'components/SnackBar';
 
-export interface State {
+interface State {
   isOpen: boolean;
   message: string;
 }
 
-export interface SnackbarContextData extends State {
+interface SnackbarProviderProps {
+  children: React.ReactNode;
+  value?: State;
+}
+interface SnackbarContextData extends State {
   showSnackbar: (message: string) => void;
-  hideSnackbar: () => void;
+  hideSnackBar: () => void;
 }
 
-export const defaultState: State = {
+const defaultState: State = {
   isOpen: false,
   message: '',
 };
 
-const defaultContext: SnackbarContextData = {
-  ...defaultState,
-  showSnackbar: () => null,
-  hideSnackbar: () => null,
+const SnackbarContext = React.createContext<SnackbarContextData | undefined>(
+  undefined
+);
+
+const SnackbarProvider = ({
+  children,
+  value,
+}: SnackbarProviderProps): JSX.Element => {
+  const [{ isOpen, message }, setSnackBarState] = useState<State>(
+    value || defaultState
+  );
+
+  const showSnackbar = (message: string) =>
+    setSnackBarState(state => ({ ...state, isOpen: true, message }));
+
+  const hideSnackBar = () =>
+    setSnackBarState(state => ({ ...state, isOpen: false }));
+
+  return (
+    <SnackbarContext.Provider
+      value={{
+        isOpen,
+        message,
+        showSnackbar,
+        hideSnackBar,
+      }}>
+      <SnackBar isOpen={isOpen} message={message} onClose={hideSnackBar} />
+      {children}
+    </SnackbarContext.Provider>
+  );
 };
 
-const SnackbarContext = React.createContext<SnackbarContextData>(defaultContext);
+const useSnackBar = () => {
+  const context = useContext(SnackbarContext);
 
-export default SnackbarContext;
+  if (context === undefined) {
+    throw new Error(`useSnackBar must be used within a SnackbarContext`);
+  }
+  return context;
+};
+
+export { SnackbarProvider, useSnackBar };

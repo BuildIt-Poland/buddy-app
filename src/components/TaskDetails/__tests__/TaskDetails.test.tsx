@@ -5,6 +5,7 @@ import { MemoryRouter } from 'react-router';
 import { ROUTES } from 'shared/routes';
 import { taskDetailsMock } from '__mocks__';
 import waitForExpect from 'wait-for-expect';
+import { SnackbarProvider } from 'contexts/SnackbarContext';
 import TaskDetails from '../TaskDetails';
 
 jest.mock('components/PageContainer', () => 'PageContainer');
@@ -19,7 +20,9 @@ describe('Component - TaskDetails', () => {
     const component = create(
       <MockedProvider mocks={taskDetailsMock} addTypename={false}>
         <MemoryRouter initialEntries={[ROUTES.BASE]}>
-          <TaskDetails />
+          <SnackbarProvider>
+            <TaskDetails />
+          </SnackbarProvider>
         </MemoryRouter>
       </MockedProvider>
     );

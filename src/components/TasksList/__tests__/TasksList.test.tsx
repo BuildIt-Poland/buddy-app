@@ -5,6 +5,7 @@ import waitForExpect from 'wait-for-expect';
 import { MemoryRouter, Route } from 'react-router';
 import { MockedProvider } from '@apollo/react-testing';
 import { taskListResponse, newbieTasksListMock } from '__mocks__';
+import { SnackbarProvider } from 'contexts/SnackbarContext';
 import TasksList from '../TasksList';
 
 jest.mock('@material-ui/core/AppBar', () => 'AppBar');
@@ -32,7 +33,9 @@ describe('Component - TasksList', () => {
           addTypename={false}>
           <MemoryRouter initialEntries={[path]}>
             <Route path={'/buddy/newbies/:newbieId/tasks'}>
-              <TasksList />
+              <SnackbarProvider>
+                <TasksList />
+              </SnackbarProvider>
             </Route>
           </MemoryRouter>
         </MockedProvider>
@@ -66,7 +69,9 @@ describe('Component - TasksList', () => {
           addTypename={false}>
           <MemoryRouter initialEntries={[path]}>
             <Route path={'/buddy/newbies/:newbieId/tasks'}>
-              <TasksList />
+              <SnackbarProvider>
+                <TasksList />
+              </SnackbarProvider>
             </Route>
           </MemoryRouter>
         </MockedProvider>

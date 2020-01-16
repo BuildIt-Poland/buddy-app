@@ -9,6 +9,9 @@ import {
   mockedNewbieContext,
 } from '__mocks__';
 import { AuthProvider } from 'contexts/AuthContext';
+import { MenuProvider } from 'contexts/MenuContext';
+import { SnackbarProvider } from 'contexts/SnackbarContext';
+
 import TasksList from '../NewbieTasksList';
 
 jest.mock('components/AvatarHeader', () => 'AvatarHeader');
@@ -30,9 +33,11 @@ describe('Component - TasksList', () => {
           resolvers={{}}>
           <MemoryRouter initialEntries={[path]}>
             <AuthProvider value={mockedNewbieContext()}>
-              <Route path={path}>
-                <TasksList />
-              </Route>
+              <SnackbarProvider>
+                <MenuProvider>
+                  <Route path={path} component={TasksList} />
+                </MenuProvider>
+              </SnackbarProvider>
             </AuthProvider>
           </MemoryRouter>
         </MockedProvider>
@@ -54,7 +59,9 @@ describe('Component - TasksList', () => {
     };
 
     const newbieMockData = {
+      id: '1',
       newbieTasks: [],
+      buddyTasks: [],
     };
 
     test('should render empty state', async () => {
@@ -65,9 +72,11 @@ describe('Component - TasksList', () => {
           resolvers={{}}>
           <MemoryRouter initialEntries={[path]}>
             <AuthProvider value={mockedNewbieContext()}>
-              <Route path={path}>
-                <TasksList />
-              </Route>
+              <SnackbarProvider>
+                <MenuProvider>
+                  <Route path={path} component={TasksList} />
+                </MenuProvider>
+              </SnackbarProvider>
             </AuthProvider>
           </MemoryRouter>
         </MockedProvider>

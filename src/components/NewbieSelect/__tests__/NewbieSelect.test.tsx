@@ -4,6 +4,7 @@ import { MockedProvider } from '@apollo/react-testing';
 import waitForExpect from 'wait-for-expect';
 import { newbieSelectMock, mockedBuddyContext } from '__mocks__';
 import { AuthProvider } from 'contexts/AuthContext';
+import { MenuProvider } from 'contexts/MenuContext';
 import NewbieSelect from '../NewbieSelect';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
@@ -18,7 +19,9 @@ describe('Component - NewbieSelect', () => {
     const component = create(
       <MockedProvider mocks={newbieSelectMock} addTypename={false} resolvers={{}}>
         <AuthProvider value={mockedBuddyContext()}>
-          <NewbieSelect />
+          <MenuProvider>
+            <NewbieSelect />
+          </MenuProvider>
         </AuthProvider>
       </MockedProvider>
     );

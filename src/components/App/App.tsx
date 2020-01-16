@@ -4,7 +4,6 @@ import PageContainer from 'components/PageContainer';
 import { BrowserRouter } from 'react-router-dom';
 import { ROUTES } from 'shared/routes';
 import { useAuth } from 'contexts/AuthContext';
-import AlertDialog from '../AlertDialog';
 
 const loadAuthenticatedApp = () => import('components/AuthenticatedApp');
 const AuthenticatedApp = React.lazy(loadAuthenticatedApp);
@@ -25,7 +24,6 @@ const App: React.FC = () => {
         fallback={<PageContainer data-testid='loader' backGroundShape />}>
         {isAuthenticated ? <AuthenticatedApp /> : <NotAuthenticatedApp />}
       </React.Suspense>
-      <AlertDialog />
     </BrowserRouter>
   );
 };
