@@ -15,7 +15,7 @@ export const changeTaskStatus = (status: TaskStatus): TaskStatus =>
 const auth = (Authorization: string): string => {
   if (Authorization) {
     const token = Authorization.replace('Bearer ', '');
-    const { userId }: any = jwt.verify(token, process.env.APP_SECRET);
+    const { userId }: any = jwt.verify(token, process.env.APP_SECRET as string);
     return userId;
   }
 

@@ -1,31 +1,21 @@
 service:
-  name: buddy-app
-# app and org for use with dashboard.serverless.com
-#app: your-app-name
-#org: your-org-name
+  name: buildit-poland-buddy-app
 custom:
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
   serverless-offline:
     port: 4000
-  dotenv:
-    path: ./.env.development
-    basePath: ./
-    include:
-      - PRISMA_ENDPOINT
-      - PRISMA_SECRET
-      - APP_SECRET
 
-# Add the serverless-webpack plugin
 plugins:
-  - serverless-dotenv-plugin
   - serverless-webpack
   - serverless-offline
+  - serverless-dotenv-plugin
 
 provider:
   name: aws
   runtime: nodejs12.x
+
   apiGateway:
     minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
   environment:
@@ -34,6 +24,7 @@ provider:
 functions:
   graphql:
     handler: src/handler.graphqlHandler
+    description: graphql api for ${self:service.name}
     events:
     - http:
         path: /graphql
@@ -41,6 +32,7 @@ functions:
         cors: true
   playground:
     handler: src/handler.playgroundHandler
+    description: graphql playground api for ${self:service.name}
     events:
     - http:
         path: /graphql

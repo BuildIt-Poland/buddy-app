@@ -1,6 +1,6 @@
 import { formatError } from 'apollo-errors';
 import { GraphQLServerLambda, Options } from 'graphql-yoga';
-import { Resolvers } from 'buddy-app-schema';
+import { Resolvers, IResolvers } from 'buddy-app-schema';
 import schema from 'buddy-app-schema';
 import { prisma } from './generated/prisma-client';
 import Query from './resolvers/query';
@@ -14,7 +14,7 @@ import Task from './resolvers/task';
 import ERRORS from './errors';
 import { authMiddleware, credentialsMiddleware } from './utils';
 
-const resolvers: Resolvers = {
+const resolvers = {
   Query,
   Mutation,
   Buddy,
@@ -23,7 +23,7 @@ const resolvers: Resolvers = {
   NewbieTask,
   User,
   Task,
-};
+} as any;
 
 const options: Options = {
   formatError: (err: any) => {

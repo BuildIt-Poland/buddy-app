@@ -7,6 +7,7 @@ import {
   TasksInfo,
   TaskStatus,
 } from 'buddy-app-schema';
+import { GraphQLResolveInfo } from 'graphql';
 
 const buddy: ResolverFn<
   Newbie['buddy'],
@@ -35,7 +36,7 @@ const newbieCompleted: ResolverFn<
   TasksInfo['newbieCompleted'],
   ResolversParentTypes['Newbie'],
   Context,
-  any
+  GraphQLResolveInfo
 > = async (parent, args, context) => {
   const newbieCompletedTasks = await context.prisma
     .newbie({ id: parent.id })
@@ -51,7 +52,7 @@ const newbieUncompleted: ResolverFn<
   TasksInfo['newbieUncompleted'],
   ResolversParentTypes['Newbie'],
   Context,
-  any
+  GraphQLResolveInfo
 > = async (parent, args, context) => {
   const newbieUncompletedTasks = await context.prisma
     .newbie({ id: parent.id })
@@ -67,7 +68,7 @@ const buddyCompleted: ResolverFn<
   TasksInfo['buddyCompleted'],
   ResolversParentTypes['Newbie'],
   Context,
-  any
+  GraphQLResolveInfo
 > = async (parent, args, context) => {
   const buddyCompletedTasks = await context.prisma
     .newbie({ id: parent.id })
@@ -83,7 +84,7 @@ const buddyUncompleted: ResolverFn<
   TasksInfo['buddyUncompleted'],
   ResolversParentTypes['Newbie'],
   Context,
-  any
+  GraphQLResolveInfo
 > = async (parent, args, context) => {
   const buddyCompletedTasks = await context.prisma
     .newbie({ id: parent.id })
@@ -99,10 +100,10 @@ const newbieProgress: ResolverFn<
   TasksInfo['newbieProgress'],
   ResolversParentTypes['Newbie'],
   Context,
-  any
-> = async (parent, args, context) => {
-  const tasksCompleted = await newbieCompleted(parent, args, context, null);
-  const tasks = await newbieTasks(parent, args, context, null);
+  GraphQLResolveInfo
+> = async (parent, args, context, info) => {
+  const tasksCompleted = await newbieCompleted(parent, args, context, info);
+  const tasks = await newbieTasks(parent, args, context, info);
   const tasksAmount = tasks.length;
 
   return tasksAmount ? tasksCompleted / tasksAmount : 0;
@@ -112,12 +113,12 @@ const buddyProgress: ResolverFn<
   TasksInfo['buddyProgress'],
   ResolversParentTypes['Newbie'],
   Context,
-  any
-> = async (parent, args, context) => {
-  const newbieTasksCompleted = await newbieCompleted(parent, args, context, null);
-  const buddyTasksCompleted = await buddyCompleted(parent, args, context, null);
-  const tasksNewbie = await newbieTasks(parent, args, context, null);
-  const tasksBuddy = await buddyTasks(parent, args, context, null);
+  GraphQLResolveInfo
+> = async (parent, args, context, info) => {
+  const newbieTasksCompleted = await newbieCompleted(parent, args, context, info);
+  const buddyTasksCompleted = await buddyCompleted(parent, args, context, info);
+  const tasksNewbie = await newbieTasks(parent, args, context, info);
+  const tasksBuddy = await buddyTasks(parent, args, context, info);
   const tasksAmount = tasksNewbie.length + tasksBuddy.length;
 
   return tasksAmount
@@ -130,13 +131,13 @@ const tasksInfo: ResolverFn<
   ResolversParentTypes['Newbie'],
   Context,
   any
-> = async (parent, args, context) => ({
-  newbieProgress: await newbieProgress(parent, args, context, null),
-  buddyProgress: await buddyProgress(parent, args, context, null),
-  newbieCompleted: await newbieCompleted(parent, args, context, null),
-  newbieUncompleted: await newbieUncompleted(parent, args, context, null),
-  buddyCompleted: await buddyCompleted(parent, args, context, null),
-  buddyUncompleted: await buddyUncompleted(parent, args, context, null),
+> = async (parent, args, context, info) => ({
+  newbieProgress: await newbieProgress(parent, args, context, info),
+  buddyProgress: await buddyProgress(parent, args, context, info),
+  newbieCompleted: await newbieCompleted(parent, args, context, info),
+  newbieUncompleted: await newbieUncompleted(parent, args, context, info),
+  buddyCompleted: await buddyCompleted(parent, args, context, info),
+  buddyUncompleted: await buddyUncompleted(parent, args, context, info),
 });
 
 const newbieResolvers: NewbieResolvers = {

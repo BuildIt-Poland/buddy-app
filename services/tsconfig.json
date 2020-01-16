@@ -1,0 +1,27 @@
+  {
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es6",
+      "lib": [
+        "es2017",
+        "esnext.asynciterable"
+      ],
+      "rootDir": "src",
+      "inlineSourceMap": true,
+      "noImplicitAny": true,
+      "removeComments": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "importHelpers": true,
+      "strict": true
+    },
+    "include": [
+      "**/*"
+    ],
+    "exclude": [
+      "node_modules",
+      "ts-built"
+    ]
+  }

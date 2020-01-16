@@ -11,7 +11,8 @@ const newbie: ResolverFn<
   ResolversParentTypes['NewbieTask'],
   Context,
   any
-> = (parent, args, context) => context.prisma.newbieTask({ id: parent.id }).newbie();
+> = (parent, _args, context) =>
+  context.prisma.newbieTask({ id: parent.id }).newbie();
 
 const newbieTaskResolvers: NewbieTaskResolvers = {
   newbie,
