@@ -3,7 +3,6 @@
 exports[`Component - NewbieSelect renders correctly 1`] = `
 Array [
   <header
-    loading={true}
     onButtonClick={[Function]}
     type="menu"
   />,
@@ -29,6 +28,7 @@ Array [
         Don’t forget to complete all tasks
       </Typography>
     </Box>
+    <NiewbieGridPlaceHolder />
     <PlusButton
       disabled={true}
     />
@@ -39,7 +39,6 @@ Array [
 exports[`Component - NewbieSelect renders correctly 2`] = `
 Array [
   <header
-    loading={false}
     onButtonClick={[Function]}
     type="menu"
   />,
