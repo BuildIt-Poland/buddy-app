@@ -25,7 +25,6 @@ const useStyles = makeStyles(theme => ({
     height: '25rem',
     width: '25rem',
     borderRadius: '15%',
-    boxShadow: theme.shadows[5],
     transform: 'scale(0.9)',
     margin: theme.spacing(1),
     padding: theme.spacing(2),
