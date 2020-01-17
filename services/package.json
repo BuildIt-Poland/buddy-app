@@ -4,7 +4,10 @@
   "description": "Buddy app graphql serverless service",
   "scripts": {
     "start": "serverless offline start",
-    "prisma": "prisma"
+    "prisma": "prisma",
+    "deploy": "serverless deploy --stage prod",
+    "create-domain": "serverless create_domain --stage prod",
+    "delete-domain": "serverless delete_domain --stage prod"
   },
   "dependencies": {
     "apollo-errors": "^1.9.0",
@@ -24,6 +27,7 @@
     "@types/jsonwebtoken": "^8.3.6",
     "fork-ts-checker-webpack-plugin": "^3.0.1",
     "serverless": "^1.61.1",
+    "serverless-domain-manager": "^3.3.1",
     "serverless-dotenv-plugin": "^2.1.1",
     "serverless-offline": "^5.12.1",
     "serverless-webpack": "^5.2.0",

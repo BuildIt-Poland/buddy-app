@@ -1,38 +1,46 @@
 service:
   name: buildit-poland-buddy-app
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  # deploymentBucket:
+  #   name: ${self:service.name}
+  apiGateway:
+    minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+plugins:
+  - serverless-webpack
+  - serverless-offline
+  - serverless-dotenv-plugin
+  - serverless-domain-manager
 custom:
+  stage: ${opt:stage, self:provider.stage}
   webpack:
     webpackConfig: ./webpack.config.js
     includeModules: true
   serverless-offline:
     port: 4000
-
-plugins:
-  - serverless-webpack
-  - serverless-offline
-  - serverless-dotenv-plugin
-
-provider:
-  name: aws
-  runtime: nodejs12.x
-
-  apiGateway:
-    minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
-  environment:
-    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
-
+  domains:
+    prod: ${env:API_GATEWAY_DOMAIN_PROD}
+    dev: ${env:API_GATEWAY_DOMAIN_DEV}
+  customDomain:
+    basePath: ""
+    domainName: ${self:custom.domains.${self:custom.stage}}
+    stage: "${self:custom.stage}"
+    createRoute53Record: true
 functions:
   graphql:
-    handler: src/handler.graphqlHandler
-    description: graphql api for ${self:service.name}
+    handler: src/handler.graphql
     events:
     - http:
         path: /graphql
         method: post
         cors: true
   playground:
-    handler: src/handler.playgroundHandler
-    description: graphql playground api for ${self:service.name}
+    handler: src/handler.graphqlPlayground
     events:
     - http:
         path: /graphql

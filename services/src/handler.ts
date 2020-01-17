@@ -41,7 +41,10 @@ const options: Options = {
   endpoint: '/graphql',
 };
 
-const { graphqlHandler, playgroundHandler } = new GraphQLServerLambda({
+const {
+  graphqlHandler: graphql,
+  playgroundHandler: graphqlPlayground,
+} = new GraphQLServerLambda({
   typeDefs: schema,
   resolvers,
   context: (request: any) => {
@@ -54,4 +57,4 @@ const { graphqlHandler, playgroundHandler } = new GraphQLServerLambda({
   options,
 });
 
-export { graphqlHandler, playgroundHandler };
+export { graphql, graphqlPlayground };
