@@ -17,7 +17,6 @@ const useStyles = makeStyles<Theme>(theme => ({
     borderRadius: '15%',
     textDecoration: 'none',
     background: `linear-gradient(${theme.palette.background.default}, ${theme.palette.background.paper})`,
-
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',

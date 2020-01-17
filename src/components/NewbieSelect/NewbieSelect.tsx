@@ -9,6 +9,7 @@ import { NEWBIE_SELECT } from 'graphql/newbie-select.graphql';
 import PlusButton from 'components/PlusButton';
 import NewbieGrid from 'components/NewbieGrid';
 import PageContainer from 'components/PageContainer';
+import NiewbieGridPlaceHolder from 'components/NiewbieGridPlaceHolder';
 import Header, { MenuTypes } from 'components/Header';
 import { useMenu } from 'contexts/MenuContext';
 import NewbieSelectDictionary from './dictionary';
@@ -40,7 +41,7 @@ const NewbieSelect: React.FC = () => {
 
   return (
     <>
-      <Header type={MenuTypes.MENU} onButtonClick={toggleMenu} loading={loading} />
+      <Header type={MenuTypes.MENU} onButtonClick={toggleMenu} />
       <PageContainer data-testid='newbie-select-page' backGroundShape>
         <Box className={title} component='section'>
           <Typography component='h1' variant='h2'>
@@ -50,6 +51,7 @@ const NewbieSelect: React.FC = () => {
             {NewbieSelectDictionary.SUBTITLE}
           </Typography>
         </Box>
+        {loading && <NiewbieGridPlaceHolder />}
         {data && data.buddy.newbies && (
           <Box className={carrouselWrapper} component={'section'}>
             <NewbieGrid newbies={data.buddy.newbies as Newbie[]} />

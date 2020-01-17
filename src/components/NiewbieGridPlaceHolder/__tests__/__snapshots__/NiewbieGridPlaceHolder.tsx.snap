@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - NiewbieGridPlaceHolder renders correctly 1`] = `
+<Grid
+  container={true}
+  justify="center"
+  wrap="wrap"
+>
+  <Skeleton
+    className="makeStyles-gridItem-4"
+    variant="rect"
+  >
+    <Skeleton
+      className="makeStyles-avatar-1"
+      variant="circle"
+    />
+    <Skeleton
+      className="makeStyles-title-2"
+      variant="text"
+    />
+    <Skeleton
+      className="makeStyles-role-3"
+      variant="text"
+    />
+  </Skeleton>
+  <Skeleton
+    className="makeStyles-gridItem-4"
+    variant="rect"
+  >
+    <Skeleton
+      className="makeStyles-avatar-1"
+      variant="circle"
+    />
+    <Skeleton
+      className="makeStyles-title-2"
+      variant="text"
+    />
+    <Skeleton
+      className="makeStyles-role-3"
+      variant="text"
+    />
+  </Skeleton>
+</Grid>
+`;
