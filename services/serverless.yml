@@ -29,18 +29,30 @@ custom:
     domainName: ${self:custom.domains.${self:custom.stage}}
     stage: "${self:custom.stage}"
     createRoute53Record: true
-functions:
-  graphql:
-    handler: src/handler.graphql
-    events:
-    - http:
-        path: /graphql
-        method: post
-        cors: true
-  playground:
-    handler: src/handler.graphqlPlayground
-    events:
-    - http:
-        path: /graphql
-        method: get
-        cors: true
+  funcsPerStage:
+    prod:
+      graphql:
+        handler: src/handler.graphql
+        events:
+        - http:
+            path: /graphql
+            method: post
+            cors: true
+    dev:
+      graphql:
+        handler: src/handler.graphql
+        events:
+          - http:
+              path: /graphql
+              method: post
+              cors: true
+      playground:
+        handler: src/handler.graphqlPlayground
+        events:
+          - http:
+              path: /graphql
+              method: get
+              cors: true
+
+functions: ${self:custom.funcsPerStage.${self:custom.stage}}
+

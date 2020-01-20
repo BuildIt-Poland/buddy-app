@@ -5,9 +5,11 @@
   "scripts": {
     "start": "serverless offline start",
     "prisma-generate": "prisma generate",
-    "deploy": "serverless deploy --stage prod",
-    "create-domain": "serverless create_domain --stage prod",
-    "delete-domain": "serverless delete_domain --stage prod"
+    "deploy": "serverless deploy",
+    "remove": "serverless remove",
+    "build": "serverless package",
+    "create-domain": "serverless create_domain",
+    "delete-domain": "serverless delete_domain"
   },
   "dependencies": {
     "apollo-errors": "^1.9.0",

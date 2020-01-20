@@ -38,6 +38,19 @@ Open [http://localhost:4000](http://localhost:4000) to view GraphQL playground i
 - ```$ npm test``` - Launches the test runner in the interactive watch mode.
 - ```$ npm run eject``` - Removes the single build dependency from your project.
 
+  ### Services folder (Lambda functions)
+
+  - ```$ npm run start``` - Runs lambda functions on local machine on port 4000 as default.
+
+  - ```$ npm run prisma-generate``` - Generates Prisma schema.
+
+  - ```$ npm run deploy``` - Will deploy functions to AWS (you should provide your stage and functions that should be deployed as additional parameters).
+
+  - ```$ npm run remove``` - Will remove 
+  deployed functions to AWS (you should provide your stage and functions that should be removed as additional parameters).
+
+  - ```$ npm run build``` - Will create distribution artifacts inside `.serverless` folder. 
+
 ### App login
 The App allows to login as **buddy** or **new joiner**.
 
