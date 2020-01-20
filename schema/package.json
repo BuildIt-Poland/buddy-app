@@ -7,18 +7,17 @@
   "scripts": {
     "copy": "copyfiles schema.json './src/generated/schema.json' ./build/",
     "codegen": "graphql-codegen",
-    "build": "npx tsc && npm run copy",
-    "postinstall": "npm run build",
+    "build": "tsc && npm run copy",
     "upgrade": "npm run codegen && npm run build"
   },
   "dependencies": {
     "copyfiles": "^2.1.1"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.11.2",
     "@graphql-codegen/introspection": "^1.11.2",
-    "@graphql-codegen/typescript": "^1.11.2",
+    "@graphql-codegen/typescript": "1.11.2",
     "@graphql-codegen/typescript-resolvers": "^1.11.2",
-    "graphql-codegen": "^0.4.0",
     "typescript": "^3.7.4"
   },
   "peerDependencies": {
