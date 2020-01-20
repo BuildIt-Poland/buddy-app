@@ -4,7 +4,7 @@
   "description": "Buddy app graphql serverless service",
   "scripts": {
     "start": "serverless offline start",
-    "prisma": "prisma",
+    "prisma-generate": "prisma generate",
     "deploy": "serverless deploy --stage prod",
     "create-domain": "serverless create_domain --stage prod",
     "delete-domain": "serverless delete_domain --stage prod"
