@@ -16,7 +16,7 @@
 REACT_APP_SERVER_URL=http://localhost:4000/graphql
 REACT_APP_AUTH_USER=auth-user
 ```
-- And one more `.env` file in the `/server` folder(the values can be changed to your own):
+- And one more `.env` file in the `/services` folder(the values can be changed to your own):
 ```
 PRISMA_ENDPOINT=https://eu1.prisma.sh/anton-lunov/Buddy-app/test
 PRISMA_SECRET=buddy-app-graphql-prisma-secret
@@ -30,7 +30,7 @@ The following commands are intended to be launched from the project root directo
 - ```$ npm start``` - Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser. The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
-- ```$ npm run server``` - Runs graphQL server.<br>
+- ```$ npm run server``` - Runs graphQL lambda functions locally.<br>
 Open [http://localhost:4000](http://localhost:4000) to view GraphQL playground it in the browser.
 - ```$ npm run cy:open``` - Runs the Cypress app, then you can navigate and choose a test to run
 - ```$ npm run cy:run``` - Runs tests headlessly in the Electron browser
