@@ -41,7 +41,7 @@ export const sampleNewbie = {
 };
 
 export const sampleBuddy = {
-  email: '`jwick@wipro.com`',
+  email: 'jwick@wipro.com',
   name: 'John Wick',
   password: 'test1234',
   position: 'Delivery Lead',
