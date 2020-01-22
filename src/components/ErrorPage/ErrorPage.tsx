@@ -11,7 +11,6 @@ import ERROR_PAGE_DICTIONARY from './dictionary';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    // padding: `${theme.spacing(5)} 0`,
     height: '100%',
     display: 'flex',
   },
