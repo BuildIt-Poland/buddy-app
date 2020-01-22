@@ -5,7 +5,8 @@
   "scripts": {
     "start": "npm run build:live --runInBand",
     "build:live": "tsnd --watch 'src/**/*.ts' --respawn --transpileOnly --inspect -- src/index.ts",
-    "prisma": "prisma"
+    "prisma": "prisma",
+    "prisma:seed": "prisma reset && tsnd prisma/seed.ts"
   },
   "dependencies": {
     "apollo-errors": "^1.9.0",
