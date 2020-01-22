@@ -1,11 +1,7 @@
   {
     "compilerOptions": {
       "module": "commonjs",
-      "target": "es6",
-      "lib": [
-        "es2017",
-        "esnext.asynciterable"
-      ],
+      "target": "es2017",
       "rootDir": "src",
       "inlineSourceMap": true,
       "noImplicitAny": true,
@@ -18,10 +14,13 @@
       "strict": true
     },
     "include": [
-      "**/*"
+      "**/*.ts"
     ],
     "exclude": [
-      "node_modules",
-      "ts-built"
+      "node_modules/**/*",
+      ".serverless/**/*",
+      ".webpack/**/*",
+      "_warmup/**/*",
+      ".vscode/**/*"
     ]
   }

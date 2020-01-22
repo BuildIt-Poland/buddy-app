@@ -9,11 +9,13 @@ provider:
     minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
   environment:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+  profile: default
+
 plugins:
   - serverless-webpack
-  - serverless-offline
   - serverless-dotenv-plugin
   - serverless-domain-manager
+  - serverless-offline
 custom:
   stage: ${opt:stage, self:provider.stage}
   webpack:
@@ -22,8 +24,7 @@ custom:
   serverless-offline:
     port: 4000
   domains:
-    prod: ${env:API_GATEWAY_DOMAIN_PROD}
-    dev: ${env:API_GATEWAY_DOMAIN_DEV}
+    prod: ${env:API_GATEWAY_DOMAIN}
   customDomain:
     basePath: ""
     domainName: ${self:custom.domains.${self:custom.stage}}

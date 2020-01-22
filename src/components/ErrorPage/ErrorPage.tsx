@@ -11,7 +11,9 @@ import ERROR_PAGE_DICTIONARY from './dictionary';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: `${theme.spacing(5)} 0`,
+    // padding: `${theme.spacing(5)} 0`,
+    height: '100%',
+    display: 'flex',
   },
   r2d2: {
     animation: `$float 3s ${theme.transitions.easing.easeInOut} infinite`,

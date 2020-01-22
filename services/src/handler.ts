@@ -1,6 +1,5 @@
 import { formatError } from 'apollo-errors';
 import { GraphQLServerLambda, Options } from 'graphql-yoga';
-import { Resolvers, IResolvers } from 'buddy-app-schema';
 import schema from 'buddy-app-schema';
 import { prisma } from './generated/prisma-client';
 import Query from './resolvers/query';

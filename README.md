@@ -38,20 +38,8 @@ Open [http://localhost:4000](http://localhost:4000) to view GraphQL playground i
 - ```$ npm test``` - Launches the test runner in the interactive watch mode.
 - ```$ npm run eject``` - Removes the single build dependency from your project.
 
-  ### Services folder (Lambda functions)
-
-  - ```$ npm run start``` - Runs lambda functions on local machine on port 4000 as default.
-
-  - ```$ npm run prisma-generate``` - Generates Prisma schema.
-
-  - ```$ npm run deploy``` - Will deploy functions to AWS (you should provide your stage and functions that should be deployed as additional parameters).
-
-  - ```$ npm run remove``` - Will remove 
-  deployed functions to AWS (you should provide your stage and functions that should be removed as additional parameters).
-
-  - ```$ npm run build``` - Will create distribution artifacts inside `.serverless` folder. 
-
 ### App login
+
 The App allows to login as **buddy** or **new joiner**.
 
 A valid registered email and password are needed for a successful login. These data can be found inside the DB in use. If you have setup the server .env file with the data above, then you need to access the same [Prisma admin panel](https://eu1.prisma.sh/anton-lunov/Buddy-app/test/_admin). Please note that this is a development setup and this db will be removed as part of future development.
