@@ -25,6 +25,7 @@ exports[`Component - NewbieGrid renders correctly Should render correctly Newbie
           <Avatar
             imgSrc={null}
             name="Test 2"
+            position="Front End"
             progress={50}
           />
         </CardContent>
@@ -50,7 +51,7 @@ exports[`Component - NewbieGrid renders correctly Should render correctly Newbie
             imgSrc={null}
             name="Test 1"
             position="Front End"
-            progress={60}
+            progress={50}
           />
         </CardContent>
       </Card>

@@ -107,6 +107,7 @@
       "!src/shared/*",
       "!src/graphql/*",
       "!src/context/*",
+      "!src/hooks/*",
       "!src/index.tsx",
       "!src/utils/apollo-client/",
       "!src/serviceWorker.ts",

@@ -9,9 +9,6 @@ export const ADD_BUDDY_TASK = gql`
         buddyTasks {
           id
         }
-        tasksInfo {
-          buddyProgress
-        }
       }
     }
   }
@@ -25,9 +22,6 @@ export const ADD_NEWBIE_TASK = gql`
         id
         newbieTasks {
           id
-        }
-        tasksInfo {
-          buddyProgress
         }
       }
     }
