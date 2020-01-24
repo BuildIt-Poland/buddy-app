@@ -1,6 +1,6 @@
 import { formatError } from 'apollo-errors';
 import { GraphQLServerLambda, Options } from 'graphql-yoga';
-import schema from 'buddy-app-schema';
+import schema, { IResolvers } from 'buddy-app-schema';
 import { prisma } from './generated/prisma-client';
 import Query from './resolvers/query';
 import Mutation from './resolvers/mutation';
@@ -13,7 +13,13 @@ import Task from './resolvers/task';
 import ERRORS from './errors';
 import { authMiddleware, credentialsMiddleware } from './utils';
 
-const resolvers = {
+interface StringIndexSignatureInterface {
+  [index: string]: any;
+}
+
+type StringIndexed<T> = T & StringIndexSignatureInterface;
+
+const resolvers: StringIndexed<IResolvers> = {
   Query,
   Mutation,
   Buddy,
@@ -22,7 +28,7 @@ const resolvers = {
   NewbieTask,
   User,
   Task,
-} as any;
+};
 
 const options: Options = {
   formatError: (err: any) => {
@@ -46,12 +52,10 @@ const {
 } = new GraphQLServerLambda({
   typeDefs: schema,
   resolvers,
-  context: event => {
-    return {
-      ...event,
-      prisma,
-    };
-  },
+  context: event => ({
+    ...event,
+    prisma,
+  }),
   middlewares: [credentialsMiddleware, authMiddleware],
   options,
 });

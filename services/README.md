@@ -11,7 +11,7 @@
 ```
 PRISMA_ENDPOINT=######
 PRISMA_SECRET=#######
-APP_SECRET==#######
+APP_SECRET=#######
 API_GATEWAY_DOMAIN=#######
 ```
 
@@ -39,4 +39,8 @@ Also make sure serverless framework as correct AWS credentials and required perm
 
 - Remove domain deployment (you should specify your stage). ```npm run remove_domain -- --stage dev```
 
+## Prisma DB
 
+In case of changes of the prisma data model, it should be generated again running the following command:
+
+```npm run prisma-generate```
