@@ -23,9 +23,11 @@ API_GATEWAY_DOMAIN=#######
 
 If you wish to deploy to different stages example (dev, staging, prod) you should add in the `serverless.yml` under `domains` the new domains for each new stage and respectively.
 
-Make sure you have a domain name on AWS Route 53 and certificate. For example `buddyapp.buildit.digital`. If you don’t have a domain name, you can purchase one on Route 53. For more info take a look at [serverless-domain-manager](https://github.com/amplify-education/serverless-domain-manager#how-it-works).
+Make sure you have a domain name on AWS Route 53 and certificate. For example `yourdomain.com`. If you don’t have a domain name, you can purchase one on Route 53. For more info take a look at [serverless-domain-manager](https://github.com/amplify-education/serverless-domain-manager#how-it-works).
 
-Also make sure serverless framework as correct AWS credentials and required permissions configured.
+The Serverless framework configured with correct AWS credentials.
+[Serverless config credentials](https://serverless.com/framework/docs/providers/aws/guide/credentials/)
+
 
 - To generate .serverless folder that contains artifacts used for manual deployment run `.serverless` ```npm run build```
 
