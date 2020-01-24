@@ -8,8 +8,8 @@
     "deploy": "serverless deploy",
     "remove": "serverless remove",
     "build": "serverless package",
-    "create_domain": "serverless create_domain",
-    "delete_domain": "serverless delete_domain"
+    "create-domain": "serverless create_domain",
+    "delete-domain": "serverless delete_domain"
   },
   "dependencies": {
     "apollo-errors": "^1.9.0",

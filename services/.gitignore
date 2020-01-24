@@ -7,5 +7,3 @@ jspm_packages
 
 # Webpack directories
 .webpack
-
-src/generated

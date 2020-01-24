@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-- Please assure that you have Node.js installed on your machine.
+- Please assure that you have `nodejs12.x ` installed on your machine.
 
 - And one more `.env` file in the `/services` folder(the values should be changed to your own):
 
@@ -27,7 +27,7 @@ Make sure you have a domain name on AWS Route 53 and certificate. For example `b
 
 Also make sure serverless framework as correct AWS credentials and required permissions configured.
 
-- To Generate artifacts to be deployed manually. Folder will be generated named `.serverless` ```npm run build```
+- To generate .serverless folder that contains artifacts used for manual deployment run `.serverless` ```npm run build```
 
 - Create domain before deployment (you should specify your stage). ```npm run create_domain -- --stage dev```
 
