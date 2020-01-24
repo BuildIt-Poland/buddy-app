@@ -46,9 +46,9 @@ const {
 } = new GraphQLServerLambda({
   typeDefs: schema,
   resolvers,
-  context: (request: any) => {
+  context: event => {
     return {
-      ...request,
+      ...event,
       prisma,
     };
   },

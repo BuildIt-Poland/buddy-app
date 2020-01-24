@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   stage: ${opt:stage, 'dev'}
-  region: ${opt:region, 'us-east-1'}
+  region: ${opt:region, 'eu-west-1'}
   apiGateway:
     minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
   environment:
@@ -26,7 +26,7 @@ custom:
   domains:
     prod: ${env:API_GATEWAY_DOMAIN}
   customDomain:
-    basePath: ""
+    basePath: "${self:custom.stage}"
     domainName: ${self:custom.domains.${self:custom.stage}}
     stage: "${self:custom.stage}"
     createRoute53Record: true
@@ -36,7 +36,7 @@ custom:
         handler: src/handler.graphql
         events:
         - http:
-            path: /graphql
+            path: "/"
             method: post
             cors: true
     dev:
