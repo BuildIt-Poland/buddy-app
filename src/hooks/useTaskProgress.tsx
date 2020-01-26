@@ -1,5 +1,5 @@
 import { useMemo, useCallback } from 'react';
-import { Newbie } from 'buddy-app-schema';
+import { Newbie, Task } from 'buddy-app-schema';
 import { isCompleted } from 'utils';
 
 interface TaskProgress {
@@ -8,12 +8,13 @@ interface TaskProgress {
   newbieProgress: number;
 }
 
+const isCompletedTask = (task: Task | null) => task && isCompleted(task.status);
+
 const transformNewbieProgress = (newbie?: Newbie): number => {
   if (newbie) {
     const tasks = newbie.newbieTasks;
     const tasksAmount = tasks.length;
-    const tasksCompleted = tasks.filter(task => task && isCompleted(task.status))
-      .length;
+    const tasksCompleted = tasks.filter(isCompletedTask).length;
 
     return tasksAmount ? tasksCompleted / tasksAmount : 0;
   } else {
@@ -26,12 +27,8 @@ const transformBuddyProgress = (newbie?: Newbie): number => {
     const tasksNewbie = newbie.newbieTasks;
     const tasksBuddy = newbie.buddyTasks;
     const tasksAmount = tasksNewbie.length + tasksBuddy.length;
-    const newbieTasksCompleted = tasksNewbie.filter(
-      task => task && isCompleted(task.status)
-    ).length;
-    const buddyTasksCompleted = tasksBuddy.filter(
-      task => task && isCompleted(task.status)
-    ).length;
+    const newbieTasksCompleted = tasksNewbie.filter(isCompletedTask).length;
+    const buddyTasksCompleted = tasksBuddy.filter(isCompletedTask).length;
 
     return tasksAmount
       ? (newbieTasksCompleted + buddyTasksCompleted) / tasksAmount
