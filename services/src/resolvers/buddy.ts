@@ -11,14 +11,14 @@ const newbies: ResolverFn<
   ResolversParentTypes['Buddy'],
   Context,
   any
-> = (parent, args, context) => context.prisma.buddy({ id: parent.id }).newbies();
+> = (parent, _args, context) => context.prisma.buddy({ id: parent.id }).newbies();
 
 const newbiesCount: ResolverFn<
   Buddy['newbiesCount'],
   ResolversParentTypes['Buddy'],
   Context,
   any
-> = async (parent, args, context) => {
+> = async (parent, _args, context) => {
   const newbies = await context.prisma.buddy({ id: parent.id }).newbies();
   return newbies.length;
 };

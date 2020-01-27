@@ -79,7 +79,7 @@ const login: MutationResolvers['login'] = async (parent, args, context) => {
   }
 
   return {
-    token: jwt.sign({ userId: user.id }, process.env.APP_SECRET),
+    token: jwt.sign({ userId: user.id }, process.env.APP_SECRET as string),
     role: user.role,
     userId: user.id,
   };

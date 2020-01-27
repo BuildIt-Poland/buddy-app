@@ -59,4 +59,3 @@ type Newbie {
   newbieTasks: [NewbieTask]! @relation(name: "NewbieTasksOwner", onDelete: CASCADE)
   buddyTasks: [BuddyTask]! @relation(name: "BuddyTasksOwner", onDelete: CASCADE)
 }
-

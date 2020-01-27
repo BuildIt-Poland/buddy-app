@@ -5,6 +5,7 @@ import { ResolverFn, Context, TaskStatus } from 'buddy-app-schema';
 import ERRORS from './errors';
 
 const MAX_PASSWORD_LENGTH = 24;
+const APP_SECRET = process.env.APP_SECRET as string;
 
 const emailValidator = (email: string): boolean =>
   /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
@@ -12,19 +13,20 @@ const emailValidator = (email: string): boolean =>
 export const changeTaskStatus = (status: TaskStatus): TaskStatus =>
   status === TaskStatus.Completed ? TaskStatus.Uncompleted : TaskStatus.Completed;
 
-const auth = (context: Context): string => {
-  const Authorization = context.request.get('Authorization');
-  if (Authorization) {
-    const token = Authorization.replace('Bearer ', '');
-    const { userId }: any = jwt.verify(token, process.env.APP_SECRET);
+const auth = (authToken: string): string => {
+  try {
+    const token = authToken.replace('Bearer ', '');
+    const { userId }: any = jwt.verify(token, APP_SECRET);
     return userId;
+  } catch {
+    throw new ERRORS.UNAUTHENTICATED();
   }
-
-  throw new ERRORS.UNAUTHENTICATED();
 };
 
 const isBuddyAuth = async (context: Context): Promise<boolean> => {
-  const userId = auth(context);
+  const { Authorization } = context.event.headers;
+
+  const userId = auth(Authorization);
   const isBuddy = await context.prisma.$exists.buddy({ id: userId });
 
   if (!isBuddy) {
@@ -48,7 +50,9 @@ export const authMiddleware = async (
     ) {
       await isBuddyAuth(context);
     } else {
-      auth(context);
+      const { Authorization } = context.event.headers;
+
+      auth(Authorization);
     }
   }
 
