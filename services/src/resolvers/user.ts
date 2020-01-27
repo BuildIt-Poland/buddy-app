@@ -1,13 +1,7 @@
 import { UserResolvers } from 'buddy-app-schema';
 
 const __resolveType: UserResolvers['__resolveType'] = user => {
-  const newbieUniqueProps = [
-    'buddy',
-    'notes',
-    'tasksInfo',
-    'newbieTasks',
-    'buddyTasks',
-  ];
+  const newbieUniqueProps = ['buddy', 'notes', 'newbieTasks', 'buddyTasks'];
   const buddyUniqueProps = ['newbiesCount', 'newbies'];
 
   if (buddyUniqueProps.some(prop => user.hasOwnProperty(prop))) {

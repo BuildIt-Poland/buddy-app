@@ -22,7 +22,7 @@ describe('Component - AvatarHeader', () => {
         addTypename={false}>
         <MemoryRouter initialEntries={[path]}>
           <Route path={'/buddy/newbies/:newbieId/tasks'}>
-            <AvatarHeader />
+            <AvatarHeader newbieId='1234' taskProgress={0.54} />
           </Route>
         </MemoryRouter>
       </MockedProvider>

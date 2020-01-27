@@ -10,6 +10,7 @@ Array [
   >
     <AvatarHeader
       newbieId="1234"
+      taskProgress={0}
     />
     <Tabs
       centered={true}
@@ -100,6 +101,7 @@ Array [
   >
     <AvatarHeader
       newbieId="1234"
+      taskProgress={0.75}
     />
     <Tabs
       centered={true}
@@ -222,6 +224,7 @@ Array [
   >
     <AvatarHeader
       newbieId="1234"
+      taskProgress={0}
     />
     <Tabs
       centered={true}

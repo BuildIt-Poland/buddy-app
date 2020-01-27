@@ -7,6 +7,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Newbie } from 'buddy-app-schema';
 import { ROUTES } from 'shared/routes';
 import Avatar from 'components/Avatar';
+import useTaskProgress from 'hooks/useTaskProgress';
 import { getProgressInPercentages } from 'utils';
 
 const useStyles = makeStyles<Theme>(theme => ({
@@ -52,6 +53,7 @@ const useStyles = makeStyles<Theme>(theme => ({
 
 const NewbieGrid: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
   const classes = useStyles();
+  const { getBuddyProgress } = useTaskProgress();
 
   return (
     <Grid container wrap={'wrap'} justify='center' className={classes.grid}>
@@ -63,7 +65,7 @@ const NewbieGrid: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
             <Card className={classes.card}>
               <CardContent className={classes.cardInfo}>
                 <Avatar
-                  progress={getProgressInPercentages(newbie.tasksInfo.buddyProgress)}
+                  progress={getProgressInPercentages(getBuddyProgress(newbie))}
                   name={newbie.name}
                   imgSrc={newbie.photo}
                   position={newbie.position || undefined}

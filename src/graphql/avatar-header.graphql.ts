@@ -7,9 +7,6 @@ export const AVATAR_HEADER = gql`
       name
       position
       photo
-      tasksInfo {
-        buddyProgress
-      }
     }
   }
 `;

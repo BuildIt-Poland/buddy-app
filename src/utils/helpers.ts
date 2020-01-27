@@ -1,8 +1,9 @@
-import { UserRole } from 'buddy-app-schema';
+import { UserRole, TaskStatus } from 'buddy-app-schema';
 import { Direction } from '@material-ui/core/styles';
 
 export const isNewbie = (role: UserRole) => role === UserRole.Newbie;
 export const isBuddy = (role: UserRole) => role === UserRole.Buddy;
+export const isCompleted = (status: TaskStatus) => status === TaskStatus.Completed;
 export const getProgressInPercentages = (progress: number) =>
   Math.round(progress * 100);
 

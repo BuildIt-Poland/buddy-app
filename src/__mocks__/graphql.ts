@@ -49,9 +49,6 @@ export const NewbieAvatarDetails = (variables?: QueryNewbieArgs) => ({
         name: 'Tom Hanks',
         position: 'front-end',
         photo: 'some-url',
-        tasksInfo: {
-          buddyProgress: 0.54,
-        },
       },
     },
   },
@@ -208,7 +205,18 @@ export const newbieSelectMock = [
               name: 'Test 2',
               position: 'Front End',
               startDate: null,
-              tasksInfo: { buddyProgress: 0.5 },
+              newbieTasks: [
+                {
+                  id: '1',
+                  status: TaskStatus.Completed,
+                },
+              ],
+              buddyTasks: [
+                {
+                  id: '1',
+                  status: TaskStatus.Uncompleted,
+                },
+              ],
             },
             {
               id: 'ck17swp2m9kcv0b17we0ibrdn',
@@ -216,7 +224,18 @@ export const newbieSelectMock = [
               name: 'Test 1',
               position: 'Front End',
               startDate: null,
-              tasksInfo: { buddyProgress: 0.6 },
+              newbieTasks: [
+                {
+                  id: '1',
+                  status: TaskStatus.Completed,
+                },
+              ],
+              buddyTasks: [
+                {
+                  id: '1',
+                  status: TaskStatus.Uncompleted,
+                },
+              ],
             },
           ],
         },
@@ -269,9 +288,6 @@ export const addTaskSuccessMock = (
         newbie: {
           id: '1',
           newbieTasks: [],
-          tasksInfo: {
-            buddyProgress: '0.5',
-          },
         },
         ...data,
       },

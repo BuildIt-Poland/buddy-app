@@ -12,8 +12,13 @@ export const NEWBIE_SELECT = gql`
         photo
         name
         position
-        tasksInfo {
-          buddyProgress
+        newbieTasks {
+          id
+          status
+        }
+        buddyTasks {
+          id
+          status
         }
       }
     }
