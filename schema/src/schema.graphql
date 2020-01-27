@@ -85,16 +85,6 @@ type Newbie implements User {
   notes: String
   newbieTasks: [NewbieTask]!
   buddyTasks: [BuddyTask]!
-  tasksInfo: TasksInfo!
-}
-
-type TasksInfo {
-  newbieProgress: Float!
-  buddyProgress: Float!
-  newbieCompleted: Int!
-  newbieUncompleted: Int!
-  buddyCompleted: Int!
-  buddyUncompleted: Int!
 }
 
 interface Task {

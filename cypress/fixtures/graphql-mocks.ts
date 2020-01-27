@@ -21,10 +21,6 @@ const commonMocks = {
     photo: null,
     notes: 'newbie notes',
   }),
-  TasksInfo: () => ({
-    newbieProgress: 0.5,
-    buddyProgress: 0.75,
-  }),
   NewbieTask: () => ({
     status: TaskStatus.Completed,
   }),

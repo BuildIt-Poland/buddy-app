@@ -6,7 +6,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { useQuery } from '@apollo/react-hooks';
 import Avatar from 'components/Avatar';
 import { AVATAR_HEADER } from 'graphql/avatar-header.graphql';
-
 import { Query, QueryNewbieArgs } from 'buddy-app-schema';
 import { getProgressInPercentages } from 'utils';
 import { ROUTES } from 'shared/routes';
@@ -24,7 +23,7 @@ const useStyles = makeStyles<Theme>(theme =>
   })
 );
 
-const AvatarHeader: React.FC<AvatarHeaderProps> = ({ newbieId }) => {
+const AvatarHeader: React.FC<AvatarHeaderProps> = ({ newbieId, taskProgress }) => {
   const history = useHistory();
   const { background } = useStyles();
 
@@ -43,7 +42,7 @@ const AvatarHeader: React.FC<AvatarHeaderProps> = ({ newbieId }) => {
           name={data.newbie.name}
           imgSrc={data.newbie.photo}
           position={data.newbie.position || ''}
-          progress={getProgressInPercentages(data.newbie.tasksInfo.buddyProgress)}
+          progress={getProgressInPercentages(taskProgress)}
           onClick={handleClick}
         />
       )}

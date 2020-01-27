@@ -1,8 +1,14 @@
-import { getProgressInPercentages, isNewbie, convertDirectionToAnchor } from 'utils';
-import { UserRole } from '__mocks__';
+import {
+  getProgressInPercentages,
+  isNewbie,
+  isCompleted,
+  convertDirectionToAnchor,
+} from 'utils';
+import { UserRole, TaskStatus } from '__mocks__';
 
 describe('Utils - helpers', () => {
   const { Newbie, Buddy } = UserRole;
+  const { Completed, Uncompleted } = TaskStatus;
 
   it('helpers - isNewbie should return true', () => {
     const result = isNewbie(Newbie);
@@ -11,6 +17,16 @@ describe('Utils - helpers', () => {
 
   it('helpers - isNewbie should return false', () => {
     const result = isNewbie(Buddy);
+    expect(result).toBe(false);
+  });
+
+  it('helpers - isCompleted should return true', () => {
+    const result = isCompleted(Completed);
+    expect(result).toBe(true);
+  });
+
+  it('helpers - isCompleted should return false', () => {
+    const result = isCompleted(Uncompleted);
     expect(result).toBe(false);
   });
 

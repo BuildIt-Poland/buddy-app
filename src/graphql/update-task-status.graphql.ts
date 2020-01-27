@@ -7,9 +7,6 @@ export const UPDATE_TASK_STATUS = gql`
       status
       newbie {
         id
-        tasksInfo {
-          buddyProgress
-        }
       }
     }
   }
