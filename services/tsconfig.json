@@ -1,0 +1,26 @@
+  {
+    "compilerOptions": {
+      "module": "commonjs",
+      "target": "es2017",
+      "rootDir": "src",
+      "inlineSourceMap": true,
+      "noImplicitAny": true,
+      "removeComments": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "importHelpers": true,
+      "strict": true
+    },
+    "include": [
+      "**/*.ts"
+    ],
+    "exclude": [
+      "node_modules/**/*",
+      ".serverless/**/*",
+      ".webpack/**/*",
+      "_warmup/**/*",
+      ".vscode/**/*"
+    ]
+  }
