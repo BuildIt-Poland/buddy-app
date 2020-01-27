@@ -18,3 +18,5 @@ generate:
 hooks:
   post-deploy:
     - prisma generate
+seed:
+  run: tsnd prisma/seed.ts
