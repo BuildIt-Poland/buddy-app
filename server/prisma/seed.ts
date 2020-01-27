@@ -6,7 +6,7 @@ import {
   sampleBuddyTasks,
   sampleNewbie,
   sampleNewbieTasks,
-} from './seedData';
+} from './seed-data';
 
 async function main() {
   const buddy = await prisma.createBuddy(sampleBuddy);
