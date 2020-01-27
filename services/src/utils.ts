@@ -24,9 +24,9 @@ const auth = (authToken: string): string => {
 };
 
 const isBuddyAuth = async (context: Context): Promise<boolean> => {
-  const { Authorization } = context.event.headers;
+  const { Authorization, authorization } = context.event.headers;
 
-  const userId = auth(Authorization);
+  const userId = auth(Authorization || authorization);
   const isBuddy = await context.prisma.$exists.buddy({ id: userId });
 
   if (!isBuddy) {
@@ -50,9 +50,8 @@ export const authMiddleware = async (
     ) {
       await isBuddyAuth(context);
     } else {
-      const { Authorization } = context.event.headers;
-
-      auth(Authorization);
+      const { Authorization, authorization } = context.event.headers;
+      auth(Authorization || authorization);
     }
   }
 
