@@ -34,8 +34,7 @@ const TasksList: React.FC = () => {
     variables: { newbieId },
   });
 
-  const newbie = data ? data.newbie : undefined;
-  const { buddyProgress } = useTaskProgress(newbie);
+  const { buddyProgress } = useTaskProgress(data && data.newbie);
 
   const [deleteTask, { loading: deleteTaskLoading }] = useMutation<Mutation>(
     DELETE_TASK

@@ -26,8 +26,7 @@ const NewbieTasksList: React.FC = () => {
     variables: { newbieId },
   });
 
-  const newbie = data ? data.newbie : undefined;
-  const { newbieProgress } = useTaskProgress(newbie);
+  const { newbieProgress } = useTaskProgress(data && data.newbie);
 
   const [updateTaskStatus, { loading: updateTaskLoading }] = useMutation<Mutation>(
     UPDATE_TASK_STATUS,
