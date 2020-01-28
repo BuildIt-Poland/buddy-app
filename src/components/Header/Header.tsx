@@ -94,8 +94,8 @@ const Header: React.FC<HeaderProps> = ({
   const isRoundedShape = shape === MenuShapes.ROUNDED;
 
   const button: NavBarButton = {
-    [MenuTypes.MENU]: () => <MenuIcon />,
-    [MenuTypes.BACK]: () => <ArrowBackIcon />,
+    [MenuTypes.MENU]: () => <MenuIcon aria-label='Open left menu' />,
+    [MenuTypes.BACK]: () => <ArrowBackIcon aria-label='Return previous page' />,
   };
 
   const colorClassNames = {
@@ -109,14 +109,15 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <Box className={appBarContainer}>
+    <Box component='header' className={appBarContainer}>
       <AppBar
         className={clsx(colorClassNames[color], shapeClassNames[shape], {
           [withoutShadow]: loading || !scrollTrigger,
         })}
         position='static'
-        color='inherit'>
-        <Toolbar>
+        color='inherit'
+        component='div'>
+        <Toolbar component='nav'>
           <IconButton
             edge='start'
             className={menuButton}

@@ -8,6 +8,7 @@ import {
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import theme from 'styles/theme';
+import avatarPlaceholder from 'assets/svg/avatar-placeholder.svg';
 import { AvatarProps, AvatarType } from './types';
 
 const useRegularTypeStyles = makeStyles({
@@ -56,7 +57,6 @@ const useSmallTypeStyles = makeStyles({
 });
 
 const Avatar: React.FC<AvatarProps> = props => {
-  const DEFAULT_IMG_SRC = '/images/avatar-placeholder.svg';
   const {
     name,
     position,
@@ -83,7 +83,7 @@ const Avatar: React.FC<AvatarProps> = props => {
   };
 
   const avatarCursorStyle = onClick ? { cursor: 'pointer' } : undefined;
-  const avatarImg = imgSrc || DEFAULT_IMG_SRC;
+  const avatarImg = imgSrc || avatarPlaceholder;
 
   return (
     <Grid container justify='center' alignItems='center' direction='column'>

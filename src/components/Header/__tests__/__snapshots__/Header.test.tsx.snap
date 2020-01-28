@@ -3,19 +3,25 @@
 exports[`Component - Header should render Header with color paper 1`] = `
 <Box
   className="makeStyles-appBarContainer-10"
+  component="header"
 >
   <AppBar
     className="makeStyles-paperBackground-4 makeStyles-withoutShadow-2"
     color="inherit"
+    component="div"
     position="static"
   >
-    <Toolbar>
+    <Toolbar
+      component="nav"
+    >
       <IconButton
         className="makeStyles-menuButton-1"
         color="inherit"
         edge="start"
       >
-        <MenuIcon />
+        <MenuIcon
+          aria-label="Open left menu"
+        />
       </IconButton>
     </Toolbar>
   </AppBar>
@@ -29,19 +35,25 @@ exports[`Component - Header should render Header with color paper 1`] = `
 exports[`Component - Header should render Header with type back 1`] = `
 <Box
   className="makeStyles-appBarContainer-10"
+  component="header"
 >
   <AppBar
     className="makeStyles-defaultBackground-3 makeStyles-withoutShadow-2"
     color="inherit"
+    component="div"
     position="static"
   >
-    <Toolbar>
+    <Toolbar
+      component="nav"
+    >
       <IconButton
         className="makeStyles-menuButton-1"
         color="inherit"
         edge="start"
       >
-        <ArrowBackIcon />
+        <ArrowBackIcon
+          aria-label="Return previous page"
+        />
       </IconButton>
     </Toolbar>
   </AppBar>
@@ -55,19 +67,25 @@ exports[`Component - Header should render Header with type back 1`] = `
 exports[`Component - Header should render Header with type menu 1`] = `
 <Box
   className="makeStyles-appBarContainer-10"
+  component="header"
 >
   <AppBar
     className="makeStyles-defaultBackground-3 makeStyles-withoutShadow-2"
     color="inherit"
+    component="div"
     position="static"
   >
-    <Toolbar>
+    <Toolbar
+      component="nav"
+    >
       <IconButton
         className="makeStyles-menuButton-1"
         color="inherit"
         edge="start"
       >
-        <MenuIcon />
+        <MenuIcon
+          aria-label="Open left menu"
+        />
       </IconButton>
     </Toolbar>
   </AppBar>

@@ -51,7 +51,6 @@ export const authMiddleware = async (
       await isBuddyAuth(context);
     } else {
       const { Authorization, authorization } = context.event.headers;
-
       auth(Authorization || authorization);
     }
   }

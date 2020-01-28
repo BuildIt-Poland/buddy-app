@@ -17,7 +17,7 @@ exports[`Component - Avatar renders correctly with name and role 1`] = `
     <AvatarMaterialUI
       alt="Avatar"
       className="makeStyles-avatar-1"
-      src="/images/avatar-placeholder.svg"
+      src="avatar-placeholder.svg"
     />
     <CircularProgress
       className="makeStyles-progress-2"
@@ -61,7 +61,7 @@ exports[`Component - Avatar renders correctly with progress bar 1`] = `
     <AvatarMaterialUI
       alt="Avatar"
       className="makeStyles-avatar-1"
-      src="/images/avatar-placeholder.svg"
+      src="avatar-placeholder.svg"
     />
     <CircularProgress
       className="makeStyles-progress-2"
@@ -97,7 +97,7 @@ exports[`Component - Avatar renders correctly with type "small" 1`] = `
     <AvatarMaterialUI
       alt="Avatar"
       className="makeStyles-avatar-6"
-      src="/images/avatar-placeholder.svg"
+      src="avatar-placeholder.svg"
     />
     <CircularProgress
       className="makeStyles-progress-7"
@@ -130,7 +130,7 @@ exports[`Component - Avatar renders correctly without props 1`] = `
     <AvatarMaterialUI
       alt="Avatar"
       className="makeStyles-avatar-1"
-      src="/images/avatar-placeholder.svg"
+      src="avatar-placeholder.svg"
     />
     <CircularProgress
       className="makeStyles-progress-2"
