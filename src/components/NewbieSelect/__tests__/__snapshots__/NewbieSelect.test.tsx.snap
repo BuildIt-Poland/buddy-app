@@ -30,6 +30,7 @@ Array [
     </Box>
     <NiewbieGridPlaceHolder />
     <PlusButton
+      aria-label="Add newbie"
       disabled={true}
     />
   </PageContainer>,
@@ -65,6 +66,7 @@ Array [
       </Typography>
     </Box>
     <PlusButton
+      aria-label="Add newbie"
       disabled={true}
     />
   </PageContainer>,
