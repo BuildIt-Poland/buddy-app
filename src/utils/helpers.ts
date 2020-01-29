@@ -1,4 +1,4 @@
-import { UserRole, TaskStatus } from 'buddy-app-schema';
+import { UserRole, TaskStatus, Task } from 'buddy-app-schema';
 import { Direction } from '@material-ui/core/styles';
 
 export const isNewbie = (role: UserRole) => role === UserRole.Newbie;
@@ -15,3 +15,6 @@ export const convertDirectionToAnchor = (direction: Direction): 'left' | 'right'
       return 'left';
   }
 };
+
+export const changeTaskStatus = (status: TaskStatus): TaskStatus =>
+  status === TaskStatus.Completed ? TaskStatus.Uncompleted : TaskStatus.Completed;

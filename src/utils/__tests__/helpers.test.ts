@@ -3,6 +3,7 @@ import {
   isNewbie,
   isCompleted,
   convertDirectionToAnchor,
+  changeTaskStatus,
 } from 'utils';
 import { UserRole, TaskStatus } from '__mocks__';
 
@@ -42,6 +43,18 @@ describe('Utils - helpers', () => {
 
     it('when passing ltr should return left', () => {
       expect(convertDirectionToAnchor('ltr')).toEqual('left');
+    });
+  });
+
+  describe('helpers - changeTaskStatus', () => {
+    it('when passing Completed should return Uncompleted', () => {
+      const result = changeTaskStatus(Completed);
+      expect(result).toBe(Uncompleted);
+    });
+
+    it('when passing Uncompleted should return Completed', () => {
+      const result = changeTaskStatus(Uncompleted);
+      expect(result).toBe(Completed);
     });
   });
 });

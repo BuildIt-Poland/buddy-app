@@ -1,8 +1,8 @@
-import { TaskStatus } from 'buddy-app-schema';
+import { TaskStatus, NewbieTask, BuddyTask } from 'buddy-app-schema';
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
 
 export interface CheckboxProps {
-  onChange?: (id: string) => void;
+  onChange?: (task: NewbieTask | BuddyTask) => void;
 }
 export interface TaskCheckboxProps extends CheckboxProps {
   id: string;
