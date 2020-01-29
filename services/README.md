@@ -46,3 +46,18 @@ The Serverless framework configured with correct AWS credentials.
 In case of changes of the prisma data model, it should be generated again running the following command:
 
 ```npm run prisma-generate```
+
+### Seeding Prisma DB with initial data 
+
+To seed DB with initial data (defined inside `/prisma/seed-data.ts` file), run below command:
+```
+npm run prisma:seed
+```
+
+If you want to clear DB from existing data before seeding, run below command:
+
+```
+npm run prisma:clean-seed
+```
+
+You can read more about `prisma seed` command [here](https://www.prisma.io/docs/prisma-cli-and-configuration/cli-command-reference/prisma-seed-xcv8/).
