@@ -123,7 +123,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({
           horizontal: 'center',
         }}
         TransitionComponent={Fade}
-        keepMounted
+        keepMounted={false}
         open={isOpened}
         onClose={onCloseTaskOptions}>
         {options.map(
