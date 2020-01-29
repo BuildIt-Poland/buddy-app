@@ -1,6 +1,6 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import { TaskStatus } from '__mocks__';
+import { TaskStatus, uncompletedTask, completedTask } from '__mocks__';
 import { MemoryRouter } from 'react-router';
 import TaskCheckbox from '../TaskCheckbox';
 
@@ -14,7 +14,7 @@ describe('Component - TaskCheckbox', () => {
   test(`renders correctly when task is ${Uncompleted}`, () => {
     const component = create(
       <MemoryRouter>
-        <TaskCheckbox id='1' status={Uncompleted} onChange={() => null} />
+        <TaskCheckbox task={uncompletedTask} onChange={() => null} />
       </MemoryRouter>
     );
     expect(component.toJSON()).toMatchSnapshot();
@@ -22,7 +22,7 @@ describe('Component - TaskCheckbox', () => {
   test(`renders correctly when task is ${Completed}`, () => {
     const component = create(
       <MemoryRouter>
-        <TaskCheckbox id='1' status={Completed} onChange={() => null} />
+        <TaskCheckbox task={completedTask} onChange={() => null} />
       </MemoryRouter>
     );
     expect(component.toJSON()).toMatchSnapshot();

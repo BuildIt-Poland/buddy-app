@@ -12,15 +12,12 @@ import { TASK_LIST } from 'graphql/task-list.graphql';
 import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
 import { changeTaskStatus } from 'utils';
 
-type UpdateTaskStatusMutation = [
-  (task: NewbieTask | BuddyTask) => void,
-  MutationResult
-];
+type TaskStatusUpdate = [(task: NewbieTask | BuddyTask) => void, MutationResult];
 
-const useUpdateTaskStatus = (
+const useTaskStatusUpdate = (
   newbieId: string,
   mutationOptions?: MutationHookOptions
-): UpdateTaskStatusMutation => {
+): TaskStatusUpdate => {
   const [mutation, mutationResult] = useMutation<Partial<Mutation>>(
     UPDATE_TASK_STATUS,
     mutationOptions
@@ -73,4 +70,4 @@ const useUpdateTaskStatus = (
   return [updateTaskStatus, mutationResult];
 };
 
-export default useUpdateTaskStatus;
+export default useTaskStatusUpdate;

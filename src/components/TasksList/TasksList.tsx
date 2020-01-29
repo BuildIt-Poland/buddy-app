@@ -15,7 +15,7 @@ import TaskTabsContent from 'components/TaskTabsContent';
 import PlusButton from 'components/PlusButton';
 import { ROUTES } from 'shared/routes';
 import useTaskProgress from 'hooks/useTaskProgress';
-import useUpdateTaskStatus from 'hooks/useUpdateTaskStatus';
+import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
 import Header, { MenuTypes, MenuColors } from 'components/Header';
 import DICTIONARY from './dictionary';
 
@@ -39,7 +39,7 @@ const TasksList: React.FC = () => {
   const [deleteTask, { loading: deleteTaskLoading }] = useMutation<Mutation>(
     DELETE_TASK
   );
-  const [updateTaskStatus, { loading: updateTaskLoading }] = useUpdateTaskStatus(
+  const [updateTaskStatus, { loading: updateTaskLoading }] = useTaskStatusUpdate(
     newbieId,
     {
       onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),

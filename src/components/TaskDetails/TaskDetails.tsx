@@ -8,7 +8,7 @@ import { colors } from 'styles/theme';
 import { useSnackBar } from 'contexts/SnackbarContext';
 import { useAuth } from 'contexts/AuthContext';
 import { TaskStatus, Query, QueryTaskArgs, QueryNewbieArgs } from 'buddy-app-schema';
-import useUpdateTaskStatus from 'hooks/useUpdateTaskStatus';
+import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
 import PageContainer from 'components/PageContainer';
 import Header, { MenuTypes } from 'components/Header';
 import TaskCheckbox from '../TaskCheckbox';
@@ -63,7 +63,8 @@ const TaskDetails: React.FC = () => {
   const { loading, data } = useQuery<Query, QueryTaskArgs>(TASK_DETAILS, {
     variables: { taskId },
   });
-  const [updateTaskStatus, { loading: updateTaskLoading }] = useUpdateTaskStatus(
+
+  const [updateTaskStatus, { loading: updateTaskLoading }] = useTaskStatusUpdate(
     newbieId || userId,
     {
       onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),

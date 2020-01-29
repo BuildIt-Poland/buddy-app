@@ -6,7 +6,7 @@ import { useMenu } from 'contexts/MenuContext';
 import { QueryNewbieArgs, Query, Task } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
 import useTaskProgress from 'hooks/useTaskProgress';
-import useUpdateTaskStatus from 'hooks/useUpdateTaskStatus';
+import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
 import Box from '@material-ui/core/Box';
 import Header, { MenuTypes, MenuColors, MenuShapes } from 'components/Header';
 import AvatarHeader from 'components/AvatarHeader';
@@ -28,7 +28,7 @@ const NewbieTasksList: React.FC = () => {
 
   const { newbieProgress } = useTaskProgress(data && data.newbie);
 
-  const [updateTaskStatus, { loading: updateTaskLoading }] = useUpdateTaskStatus(
+  const [updateTaskStatus, { loading: updateTaskLoading }] = useTaskStatusUpdate(
     newbieId,
     {
       onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
