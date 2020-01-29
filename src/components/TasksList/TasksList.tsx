@@ -6,24 +6,16 @@ import TabPanel from 'components/TabPanel';
 import AvatarHeader from 'components/AvatarHeader';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { useSnackBar } from 'contexts/SnackbarContext';
-import {
-  QueryNewbieArgs,
-  Query,
-  Task,
-  Mutation,
-  NewbieTask,
-  BuddyTask,
-} from 'buddy-app-schema';
+import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
 import { DELETE_TASK } from 'graphql/delete-task.graphql';
-import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
 import { useParams, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import TaskTabsContent from 'components/TaskTabsContent';
 import PlusButton from 'components/PlusButton';
 import { ROUTES } from 'shared/routes';
-import { changeTaskStatus } from 'utils';
 import useTaskProgress from 'hooks/useTaskProgress';
+import useUpdateTaskStatus from 'hooks/useUpdateTaskStatus';
 import Header, { MenuTypes, MenuColors } from 'components/Header';
 import DICTIONARY from './dictionary';
 
@@ -47,52 +39,13 @@ const TasksList: React.FC = () => {
   const [deleteTask, { loading: deleteTaskLoading }] = useMutation<Mutation>(
     DELETE_TASK
   );
-  const [updateTaskStatus, { loading: updateTaskLoading }] = useMutation<
-    Partial<Mutation>
-  >(UPDATE_TASK_STATUS, {
-    onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
-    onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
-  });
-
-  const onTaskChange = (task: NewbieTask | BuddyTask) => {
-    const taskListType =
-      task.__typename === 'NewbieTask' ? 'newbieTasks' : 'buddyTasks';
-
-    updateTaskStatus({
-      variables: { taskId: task.id },
-      optimisticResponse: {
-        updateTaskStatus: {
-          ...task,
-          status: changeTaskStatus(task.status),
-        },
-      },
-      update: (proxy, { data }) => {
-        const taskListData: Query | null = proxy.readQuery({
-          query: TASK_LIST,
-          variables: { newbieId },
-        });
-
-        if (data && data.updateTaskStatus && taskListData) {
-          const newbie = taskListData.newbie;
-          const taskList = newbie[taskListType] as Task[];
-
-          proxy.writeQuery({
-            query: TASK_LIST,
-            variables: { newbieId },
-            data: {
-              ...data,
-              newbie: {
-                ...newbie,
-                [taskListType]: taskList.map(item =>
-                  item.id === task.id ? data.updateTaskStatus : item
-                ),
-              },
-            },
-          });
-        }
-      },
-    });
-  };
+  const [updateTaskStatus, { loading: updateTaskLoading }] = useUpdateTaskStatus(
+    newbieId,
+    {
+      onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
+      onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
+    }
+  );
 
   const onBackClick = () => {
     history.push(ROUTES.BUDDY_SELECT_NEWBIE);
@@ -129,7 +82,7 @@ const TasksList: React.FC = () => {
           <TaskTabsContent
             loading={loading}
             tabIndex={tabIndex}
-            onChange={onTaskChange}
+            onChange={updateTaskStatus}
             tasks={newbieTasks as Task[]}
             taskOptionHandlers={taskOptionHandlers}
           />
@@ -138,7 +91,7 @@ const TasksList: React.FC = () => {
           <TaskTabsContent
             tabIndex={tabIndex}
             loading={loading}
-            onChange={onTaskChange}
+            onChange={updateTaskStatus}
             tasks={buddyTasks as Task[]}
             taskOptionHandlers={taskOptionHandlers}
           />

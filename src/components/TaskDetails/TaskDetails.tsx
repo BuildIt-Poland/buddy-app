@@ -2,18 +2,13 @@ import React from 'react';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
 import htmlParser from 'react-html-parser';
 import { makeStyles, Typography, Box, Chip } from '@material-ui/core';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import { TASK_DETAILS } from 'graphql/task-details.graphql';
-import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
 import { colors } from 'styles/theme';
 import { useSnackBar } from 'contexts/SnackbarContext';
-import {
-  TaskStatus,
-  Query,
-  QueryTaskArgs,
-  QueryNewbieArgs,
-  Mutation,
-} from 'buddy-app-schema';
+import { useAuth } from 'contexts/AuthContext';
+import { TaskStatus, Query, QueryTaskArgs, QueryNewbieArgs } from 'buddy-app-schema';
+import useUpdateTaskStatus from 'hooks/useUpdateTaskStatus';
 import PageContainer from 'components/PageContainer';
 import Header, { MenuTypes } from 'components/Header';
 import TaskCheckbox from '../TaskCheckbox';
@@ -55,7 +50,12 @@ const STATUS_TEXT = {
 };
 
 const TaskDetails: React.FC = () => {
-  const { taskId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
+  const [
+    {
+      data: { userId },
+    },
+  ] = useAuth();
+  const { newbieId, taskId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
   const { wrapper, header, status, description } = useStyles();
   const { pathname, state } = useLocation();
   const { showSnackbar } = useSnackBar();
@@ -63,8 +63,8 @@ const TaskDetails: React.FC = () => {
   const { loading, data } = useQuery<Query, QueryTaskArgs>(TASK_DETAILS, {
     variables: { taskId },
   });
-  const [updateTaskStatus, { loading: updateTaskLoading }] = useMutation<Mutation>(
-    UPDATE_TASK_STATUS,
+  const [updateTaskStatus, { loading: updateTaskLoading }] = useUpdateTaskStatus(
+    newbieId || userId,
     {
       onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
       onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
@@ -83,26 +83,13 @@ const TaskDetails: React.FC = () => {
   const onBackClick = () =>
     history.push({ pathname: taskListPath, state: { defaultTabIndex } });
 
-  const onTaskCheckboxChange = (taskId: string) =>
-    !updateTaskLoading &&
-    updateTaskStatus({
-      variables: {
-        taskId,
-      },
-    });
-
   const renderTaskDetails = ({ task }: Query) => (
     <Box className={wrapper}>
       <Box className={header}>
         <Typography component='h2' variant='h2'>
           {task.title}
         </Typography>
-        <TaskCheckbox
-          id={taskId}
-          size='large'
-          status={task.status}
-          onChange={onTaskCheckboxChange}
-        />
+        <TaskCheckbox task={task} size='large' onChange={updateTaskStatus} />
       </Box>
       <Chip
         className={status}

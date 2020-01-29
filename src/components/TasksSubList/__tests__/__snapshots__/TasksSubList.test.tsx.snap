@@ -22,9 +22,17 @@ exports[`Component - TasksSubList renders correctly Done section 1`] = `
     }
   >
     <TaskListItem
-      id="1"
-      status="UNCOMPLETED"
-      title="Call you head manager"
+      task={
+        Object {
+          "createdAt": "",
+          "description": "",
+          "id": "1",
+          "implementationDate": "",
+          "newbie": Object {},
+          "status": "UNCOMPLETED",
+          "title": "Call you head manager",
+        }
+      }
     />
   </List>
 </ListItem>
@@ -52,9 +60,17 @@ exports[`Component - TasksSubList renders correctly Todo section 1`] = `
     }
   >
     <TaskListItem
-      id="2"
-      status="COMPLETED"
-      title="Write you main manager"
+      task={
+        Object {
+          "createdAt": "",
+          "description": "",
+          "id": "2",
+          "implementationDate": "",
+          "newbie": Object {},
+          "status": "COMPLETED",
+          "title": "Write you main manager",
+        }
+      }
     />
   </List>
 </ListItem>

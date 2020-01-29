@@ -32,12 +32,10 @@ const TasksSubList: React.FC<TasksSubListProps> = ({
   return (
     <ListItem disableGutters dense>
       <List dense className={fullWidth} subheader={ListHeader}>
-        {tasks.map(({ id, title, status }) => (
+        {tasks.map(task => (
           <TaskListItem
-            id={id}
-            key={id}
-            title={title}
-            status={status}
+            key={task.id}
+            task={task}
             onChange={onChange}
             tabIndex={tabIndex}
             taskOptionHandlers={taskOptionHandlers}

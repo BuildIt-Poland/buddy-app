@@ -1,4 +1,4 @@
-import { UserRole, TaskStatus, Task } from 'buddy-app-schema';
+import { UserRole, TaskStatus } from 'buddy-app-schema';
 import { Direction } from '@material-ui/core/styles';
 
 export const isNewbie = (role: UserRole) => role === UserRole.Newbie;

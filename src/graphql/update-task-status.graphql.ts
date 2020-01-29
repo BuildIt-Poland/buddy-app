@@ -5,6 +5,8 @@ export const UPDATE_TASK_STATUS = gql`
     updateTaskStatus(taskId: $taskId) {
       id
       status
+      title
+      description
       newbie {
         id
       }
