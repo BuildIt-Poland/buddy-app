@@ -10,9 +10,6 @@ export const DELETE_TASK = gql`
       buddyTasks {
         id
       }
-      tasksInfo {
-        buddyProgress
-      }
     }
   }
 `;

@@ -1,0 +1,59 @@
+service:
+  name: buildit-poland-buddy-app
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'eu-west-1'}
+  apiGateway:
+    minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+  profile: default
+
+plugins:
+  - serverless-webpack
+  - serverless-dotenv-plugin
+  - serverless-domain-manager
+  - serverless-offline
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+  serverless-offline:
+    port: 4000
+  domains:
+    prod: ${env:API_GATEWAY_DOMAIN}
+  customDomain:
+    basePath: "${self:custom.stage}"
+    domainName: ${self:custom.domains.${self:custom.stage}}
+    stage: "${self:custom.stage}"
+    createRoute53Record: true
+  funcsPerStage:
+    prod:
+      graphql:
+        handler: src/handler.graphql
+        events:
+        - http:
+            path: "/"
+            method: post
+            cors: true
+    dev:
+      graphql:
+        handler: src/handler.graphql
+        events:
+          - http:
+              path: /graphql
+              method: post
+              cors: true
+      playground:
+        handler: src/handler.graphqlPlayground
+        events:
+          - http:
+              path: /graphql
+              method: get
+              cors: true
+
+functions: ${self:custom.funcsPerStage.${self:custom.stage}}
+

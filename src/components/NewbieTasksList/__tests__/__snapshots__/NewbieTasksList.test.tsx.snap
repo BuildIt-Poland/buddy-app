@@ -11,6 +11,7 @@ Array [
   >
     <AvatarHeader
       newbieId="1234"
+      taskProgress={0}
     />
   </header>,
   <main
@@ -36,6 +37,7 @@ Array [
   >
     <AvatarHeader
       newbieId="1234"
+      taskProgress={1}
     />
   </header>,
   <main
@@ -77,6 +79,7 @@ Array [
   >
     <AvatarHeader
       newbieId="1234"
+      taskProgress={0}
     />
   </header>,
   <main

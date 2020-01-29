@@ -128,7 +128,6 @@ export type Newbie = User & {
   notes?: Maybe<Scalars['String']>;
   newbieTasks: Array<Maybe<NewbieTask>>;
   buddyTasks: Array<Maybe<BuddyTask>>;
-  tasksInfo: TasksInfo;
 };
 
 export type NewbieTask = Task & {
@@ -198,16 +197,6 @@ export type TaskInput = {
   status?: Maybe<TaskStatus>;
   implementationDate?: Maybe<Scalars['DateTime']>;
   notes?: Maybe<Scalars['String']>;
-};
-
-export type TasksInfo = {
-  __typename?: 'TasksInfo';
-  newbieProgress: Scalars['Float'];
-  buddyProgress: Scalars['Float'];
-  newbieCompleted: Scalars['Int'];
-  newbieUncompleted: Scalars['Int'];
-  buddyCompleted: Scalars['Int'];
-  buddyUncompleted: Scalars['Int'];
 };
 
 export enum TaskStatus {
@@ -360,8 +349,6 @@ export type ResolversTypes = {
   Task: ResolverTypeWrapper<Task>;
   TaskStatus: TaskStatus;
   BuddyTask: ResolverTypeWrapper<BuddyTask>;
-  TasksInfo: ResolverTypeWrapper<TasksInfo>;
-  Float: ResolverTypeWrapper<Scalars['Float']>;
   Mutation: ResolverTypeWrapper<{}>;
   UserInput: UserInput;
   AuthPayload: ResolverTypeWrapper<AuthPayload>;
@@ -387,8 +374,6 @@ export type ResolversParentTypes = {
   Task: Task;
   TaskStatus: TaskStatus;
   BuddyTask: BuddyTask;
-  TasksInfo: TasksInfo;
-  Float: Scalars['Float'];
   Mutation: {};
   UserInput: UserInput;
   AuthPayload: AuthPayload;
@@ -559,7 +544,6 @@ export type NewbieResolvers<
     ParentType,
     ContextType
   >;
-  tasksInfo?: Resolver<ResolversTypes['TasksInfo'], ParentType, ContextType>;
 };
 
 export type NewbieTaskResolvers<
@@ -645,18 +629,6 @@ export type TaskResolvers<
   newbie?: Resolver<ResolversTypes['Newbie'], ParentType, ContextType>;
 };
 
-export type TasksInfoResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['TasksInfo'] = ResolversParentTypes['TasksInfo']
-> = {
-  newbieProgress?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
-  buddyProgress?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
-  newbieCompleted?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  newbieUncompleted?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  buddyCompleted?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  buddyUncompleted?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-};
-
 export interface UrlScalarConfig
   extends GraphQLScalarTypeConfig<ResolversTypes['URL'], any> {
   name: 'URL';
@@ -698,7 +670,6 @@ export type Resolvers<ContextType = any> = {
   PhoneNumber?: GraphQLScalarType;
   Query?: QueryResolvers<ContextType>;
   Task?: TaskResolvers;
-  TasksInfo?: TasksInfoResolvers<ContextType>;
   URL?: GraphQLScalarType;
   User?: UserResolvers;
 };

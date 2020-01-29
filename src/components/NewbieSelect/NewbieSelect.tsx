@@ -21,9 +21,6 @@ const useStyles = makeStyles<Theme>(theme => ({
       marginBottom: theme.spacing(1),
     },
   },
-  carrouselWrapper: {
-    marginBottom: theme.spacing(2),
-  },
 }));
 
 const NewbieSelect: React.FC = () => {
@@ -37,7 +34,7 @@ const NewbieSelect: React.FC = () => {
     variables: { buddyId: userId },
   });
   const { toggleMenu } = useMenu();
-  const { title, carrouselWrapper } = useStyles();
+  const { title } = useStyles();
 
   return (
     <>
@@ -53,11 +50,9 @@ const NewbieSelect: React.FC = () => {
         </Box>
         {loading && <NiewbieGridPlaceHolder />}
         {data && data.buddy.newbies && (
-          <Box className={carrouselWrapper} component={'section'}>
-            <NewbieGrid newbies={data.buddy.newbies as Newbie[]} />
-          </Box>
+          <NewbieGrid newbies={data.buddy.newbies as Newbie[]} />
         )}
-        <PlusButton disabled />
+        <PlusButton aria-label='Add newbie' disabled />
       </PageContainer>
     </>
   );

@@ -3,12 +3,14 @@
 exports[`Component - NewbieGrid renders correctly Should render correctly NewbieGrid 1`] = `
 <Grid
   className="makeStyles-grid-4"
+  component="ul"
   container={true}
   justify="center"
   wrap="wrap"
 >
   <Grid
     className="makeStyles-gridItem-3"
+    component="li"
     item={true}
   >
     <a
@@ -25,6 +27,7 @@ exports[`Component - NewbieGrid renders correctly Should render correctly Newbie
           <Avatar
             imgSrc={null}
             name="Test 2"
+            position="Front End"
             progress={50}
           />
         </CardContent>
@@ -33,6 +36,7 @@ exports[`Component - NewbieGrid renders correctly Should render correctly Newbie
   </Grid>
   <Grid
     className="makeStyles-gridItem-3"
+    component="li"
     item={true}
   >
     <a
@@ -50,7 +54,7 @@ exports[`Component - NewbieGrid renders correctly Should render correctly Newbie
             imgSrc={null}
             name="Test 1"
             position="Front End"
-            progress={60}
+            progress={50}
           />
         </CardContent>
       </Card>

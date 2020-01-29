@@ -6,7 +6,7 @@
   "license": "ISC",
   "scripts": {
     "copy": "copyfiles schema.json './src/generated/schema.json' ./build/",
-    "codegen": "graphql-codegen --config codegen.yml",
+    "codegen": "graphql-codegen",
     "build": "tsc && npm run copy",
     "postinstall": "npm run build",
     "upgrade": "npm run codegen && npm run build"
@@ -15,13 +15,14 @@
     "copyfiles": "^2.1.1"
   },
   "devDependencies": {
-    "@graphql-codegen/cli": "^1.8.3",
-    "@graphql-codegen/introspection": "^1.8.3",
-    "@graphql-codegen/typescript": "1.8.3",
-    "@graphql-codegen/typescript-resolvers": "^1.8.3"
+    "@graphql-codegen/cli": "^1.11.2",
+    "@graphql-codegen/introspection": "^1.11.2",
+    "@graphql-codegen/typescript": "^1.11.2",
+    "@graphql-codegen/typescript-resolvers": "^1.11.2",
+    "typescript": "^3.7.4"
   },
   "peerDependencies": {
     "graphql": "^14.5.8",
-    "typescript": "3.6.3"
+    "typescript": "^3.7.4"
   }
 }

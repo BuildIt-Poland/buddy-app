@@ -6,6 +6,7 @@ import { useMenu } from 'contexts/MenuContext';
 import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
 import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
+import useTaskProgress from 'hooks/useTaskProgress';
 import Box from '@material-ui/core/Box';
 import Header, { MenuTypes, MenuColors, MenuShapes } from 'components/Header';
 import AvatarHeader from 'components/AvatarHeader';
@@ -24,6 +25,8 @@ const NewbieTasksList: React.FC = () => {
   const { loading, data } = useQuery<Query, QueryNewbieArgs>(TASK_LIST, {
     variables: { newbieId },
   });
+
+  const { newbieProgress } = useTaskProgress(data && data.newbie);
 
   const [updateTaskStatus, { loading: updateTaskLoading }] = useMutation<Mutation>(
     UPDATE_TASK_STATUS,
@@ -49,7 +52,7 @@ const NewbieTasksList: React.FC = () => {
         shape={MenuShapes.ROUNDED}
         loading={loading || updateTaskLoading}
         onButtonClick={toggleMenu}>
-        <AvatarHeader newbieId={newbieId} />
+        <AvatarHeader newbieId={newbieId} taskProgress={newbieProgress} />
       </Header>
       <Box component='main' flex={1} data-testid='task-list-page'>
         <TaskTabsContent

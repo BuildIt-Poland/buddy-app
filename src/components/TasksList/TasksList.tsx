@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -15,6 +15,7 @@ import Box from '@material-ui/core/Box';
 import TaskTabsContent from 'components/TaskTabsContent';
 import PlusButton from 'components/PlusButton';
 import { ROUTES } from 'shared/routes';
+import useTaskProgress from 'hooks/useTaskProgress';
 import Header, { MenuTypes, MenuColors } from 'components/Header';
 import DICTIONARY from './dictionary';
 
@@ -23,7 +24,7 @@ const TasksList: React.FC = () => {
   const { state } = useLocation();
   const history = useHistory();
   const defaultTabIndex = (state && state.defaultTabIndex) || 0;
-  const [tabIndex, setTabIndex] = React.useState(defaultTabIndex);
+  const [tabIndex, setTabIndex] = useState(defaultTabIndex);
   const { showSnackbar } = useSnackBar();
 
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) =>
@@ -32,6 +33,8 @@ const TasksList: React.FC = () => {
   const { loading, data } = useQuery<Query, QueryNewbieArgs>(TASK_LIST, {
     variables: { newbieId },
   });
+
+  const { buddyProgress } = useTaskProgress(data && data.newbie);
 
   const [deleteTask, { loading: deleteTaskLoading }] = useMutation<Mutation>(
     DELETE_TASK
@@ -68,7 +71,7 @@ const TasksList: React.FC = () => {
         color={MenuColors.PAPER}
         loading={updateTaskLoading || deleteTaskLoading}
         onButtonClick={onBackClick}>
-        <AvatarHeader newbieId={newbieId} />
+        <AvatarHeader newbieId={newbieId} taskProgress={buddyProgress} />
         <Tabs
           centered
           value={tabIndex}

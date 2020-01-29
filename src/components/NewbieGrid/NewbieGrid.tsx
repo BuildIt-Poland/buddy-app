@@ -7,6 +7,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Newbie } from 'buddy-app-schema';
 import { ROUTES } from 'shared/routes';
 import Avatar from 'components/Avatar';
+import useTaskProgress from 'hooks/useTaskProgress';
 import { getProgressInPercentages } from 'utils';
 
 const useStyles = makeStyles<Theme>(theme => ({
@@ -44,6 +45,9 @@ const useStyles = makeStyles<Theme>(theme => ({
       paddingTop: theme.spacing(2),
       overflowX: 'auto',
     },
+    listStyleType: 'none',
+    margin: 0,
+    padding: 0,
   },
   link: {
     textDecoration: 'none',
@@ -52,18 +56,24 @@ const useStyles = makeStyles<Theme>(theme => ({
 
 const NewbieGrid: React.FC<{ newbies: Newbie[] }> = ({ newbies }) => {
   const classes = useStyles();
+  const { getBuddyProgress } = useTaskProgress();
 
   return (
-    <Grid container wrap={'wrap'} justify='center' className={classes.grid}>
+    <Grid
+      component='ul'
+      container
+      wrap={'wrap'}
+      justify='center'
+      className={classes.grid}>
       {newbies.map(newbie => (
-        <Grid key={newbie.id} item className={classes.gridItem}>
+        <Grid component='li' key={newbie.id} item className={classes.gridItem}>
           <Link
             className={classes.link}
             to={ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbie.id)}>
             <Card className={classes.card}>
               <CardContent className={classes.cardInfo}>
                 <Avatar
-                  progress={getProgressInPercentages(newbie.tasksInfo.buddyProgress)}
+                  progress={getProgressInPercentages(getBuddyProgress(newbie))}
                   name={newbie.name}
                   imgSrc={newbie.photo}
                   position={newbie.position || undefined}
