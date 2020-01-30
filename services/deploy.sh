@@ -1,4 +1,4 @@
 #! /bin/bash
 
-npm install -g serverless
-sls deploy -- --stage $1
+npm i -g serverless
+sls deploy --s $1
