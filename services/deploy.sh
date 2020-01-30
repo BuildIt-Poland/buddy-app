@@ -1,6 +1,5 @@
 #! /bin/bash
 
-npm i -g serverless
 cd services
-sls config credentials --provider aws --key $AWS_ACCESS_KEY --secret $AWS_SECRET_ACCESS_KEY
-sls deploy --s $1
+npm run sls config credentials --provider aws --key $AWS_ACCESS_KEY --secret $AWS_SECRET_ACCESS_KEY
+npm run deploy --s $1
