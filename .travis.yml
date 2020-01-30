@@ -32,6 +32,6 @@ deploy:
     branch: master
   # deploy services
   provider: script
-  script: bash services/deploy.sh prod
+  script: npm run services:deploy --stage prod
   on:
     branch: master
