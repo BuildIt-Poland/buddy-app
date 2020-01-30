@@ -214,8 +214,6 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type UserRole = 'NEWBIE' | 'BUDDY';
-
 export type TaskStatus = 'COMPLETED' | 'UNCOMPLETED';
 
 export type NewbieOrderByInput =
@@ -272,6 +270,8 @@ export type BuddyTaskOrderByInput =
   | 'implementationDate_ASC'
   | 'implementationDate_DESC';
 
+export type UserRole = 'NEWBIE' | 'BUDDY';
+
 export type BuddyOrderByInput =
   | 'id_ASC'
   | 'id_DESC'
@@ -296,10 +296,687 @@ export type BuddyOrderByInput =
 
 export type MutationType = 'CREATED' | 'UPDATED' | 'DELETED';
 
+export interface NewbieTaskUpdateManyWithWhereNestedInput {
+  where: NewbieTaskScalarWhereInput;
+  data: NewbieTaskUpdateManyDataInput;
+}
+
 export type BuddyWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
   email?: Maybe<String>;
 }>;
+
+export interface BuddyTaskUpdateWithoutNewbieDataInput {
+  description?: Maybe<String>;
+  title?: Maybe<String>;
+  status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
+}
+
+export interface NewbieTaskWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  status?: Maybe<TaskStatus>;
+  status_not?: Maybe<TaskStatus>;
+  status_in?: Maybe<TaskStatus[] | TaskStatus>;
+  status_not_in?: Maybe<TaskStatus[] | TaskStatus>;
+  newbie?: Maybe<NewbieWhereInput>;
+  implementationDate?: Maybe<DateTimeInput>;
+  implementationDate_not?: Maybe<DateTimeInput>;
+  implementationDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_lt?: Maybe<DateTimeInput>;
+  implementationDate_lte?: Maybe<DateTimeInput>;
+  implementationDate_gt?: Maybe<DateTimeInput>;
+  implementationDate_gte?: Maybe<DateTimeInput>;
+  notes?: Maybe<String>;
+  notes_not?: Maybe<String>;
+  notes_in?: Maybe<String[] | String>;
+  notes_not_in?: Maybe<String[] | String>;
+  notes_lt?: Maybe<String>;
+  notes_lte?: Maybe<String>;
+  notes_gt?: Maybe<String>;
+  notes_gte?: Maybe<String>;
+  notes_contains?: Maybe<String>;
+  notes_not_contains?: Maybe<String>;
+  notes_starts_with?: Maybe<String>;
+  notes_not_starts_with?: Maybe<String>;
+  notes_ends_with?: Maybe<String>;
+  notes_not_ends_with?: Maybe<String>;
+  AND?: Maybe<NewbieTaskWhereInput[] | NewbieTaskWhereInput>;
+  OR?: Maybe<NewbieTaskWhereInput[] | NewbieTaskWhereInput>;
+  NOT?: Maybe<NewbieTaskWhereInput[] | NewbieTaskWhereInput>;
+}
+
+export interface BuddyTaskUpsertWithWhereUniqueWithoutNewbieInput {
+  where: BuddyTaskWhereUniqueInput;
+  update: BuddyTaskUpdateWithoutNewbieDataInput;
+  create: BuddyTaskCreateWithoutNewbieInput;
+}
+
+export interface BuddyTaskWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  status?: Maybe<TaskStatus>;
+  status_not?: Maybe<TaskStatus>;
+  status_in?: Maybe<TaskStatus[] | TaskStatus>;
+  status_not_in?: Maybe<TaskStatus[] | TaskStatus>;
+  newbie?: Maybe<NewbieWhereInput>;
+  implementationDate?: Maybe<DateTimeInput>;
+  implementationDate_not?: Maybe<DateTimeInput>;
+  implementationDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_lt?: Maybe<DateTimeInput>;
+  implementationDate_lte?: Maybe<DateTimeInput>;
+  implementationDate_gt?: Maybe<DateTimeInput>;
+  implementationDate_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<BuddyTaskWhereInput[] | BuddyTaskWhereInput>;
+  OR?: Maybe<BuddyTaskWhereInput[] | BuddyTaskWhereInput>;
+  NOT?: Maybe<BuddyTaskWhereInput[] | BuddyTaskWhereInput>;
+}
+
+export interface BuddyUpdateInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  password?: Maybe<String>;
+  position?: Maybe<String>;
+  photo?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+  newbies?: Maybe<NewbieUpdateManyWithoutBuddyInput>;
+}
+
+export interface BuddyTaskUpdateInput {
+  description?: Maybe<String>;
+  title?: Maybe<String>;
+  status?: Maybe<TaskStatus>;
+  newbie?: Maybe<NewbieUpdateOneRequiredWithoutBuddyTasksInput>;
+  implementationDate?: Maybe<DateTimeInput>;
+}
+
+export interface NewbieUpdateManyWithoutBuddyInput {
+  create?: Maybe<NewbieCreateWithoutBuddyInput[] | NewbieCreateWithoutBuddyInput>;
+  delete?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
+  connect?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
+  set?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
+  disconnect?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
+  update?: Maybe<
+    | NewbieUpdateWithWhereUniqueWithoutBuddyInput[]
+    | NewbieUpdateWithWhereUniqueWithoutBuddyInput
+  >;
+  upsert?: Maybe<
+    | NewbieUpsertWithWhereUniqueWithoutBuddyInput[]
+    | NewbieUpsertWithWhereUniqueWithoutBuddyInput
+  >;
+  deleteMany?: Maybe<NewbieScalarWhereInput[] | NewbieScalarWhereInput>;
+  updateMany?: Maybe<
+    NewbieUpdateManyWithWhereNestedInput[] | NewbieUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface BuddyTaskScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  status?: Maybe<TaskStatus>;
+  status_not?: Maybe<TaskStatus>;
+  status_in?: Maybe<TaskStatus[] | TaskStatus>;
+  status_not_in?: Maybe<TaskStatus[] | TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
+  implementationDate_not?: Maybe<DateTimeInput>;
+  implementationDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_lt?: Maybe<DateTimeInput>;
+  implementationDate_lte?: Maybe<DateTimeInput>;
+  implementationDate_gt?: Maybe<DateTimeInput>;
+  implementationDate_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<BuddyTaskScalarWhereInput[] | BuddyTaskScalarWhereInput>;
+  OR?: Maybe<BuddyTaskScalarWhereInput[] | BuddyTaskScalarWhereInput>;
+  NOT?: Maybe<BuddyTaskScalarWhereInput[] | BuddyTaskScalarWhereInput>;
+}
+
+export interface NewbieUpdateWithWhereUniqueWithoutBuddyInput {
+  where: NewbieWhereUniqueInput;
+  data: NewbieUpdateWithoutBuddyDataInput;
+}
+
+export interface NewbieSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<NewbieWhereInput>;
+  AND?: Maybe<NewbieSubscriptionWhereInput[] | NewbieSubscriptionWhereInput>;
+  OR?: Maybe<NewbieSubscriptionWhereInput[] | NewbieSubscriptionWhereInput>;
+  NOT?: Maybe<NewbieSubscriptionWhereInput[] | NewbieSubscriptionWhereInput>;
+}
+
+export interface NewbieUpdateWithoutBuddyDataInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  password?: Maybe<String>;
+  position?: Maybe<String>;
+  photo?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+  notes?: Maybe<String>;
+  newbieTasks?: Maybe<NewbieTaskUpdateManyWithoutNewbieInput>;
+  buddyTasks?: Maybe<BuddyTaskUpdateManyWithoutNewbieInput>;
+}
+
+export interface BuddySubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<BuddyWhereInput>;
+  AND?: Maybe<BuddySubscriptionWhereInput[] | BuddySubscriptionWhereInput>;
+  OR?: Maybe<BuddySubscriptionWhereInput[] | BuddySubscriptionWhereInput>;
+  NOT?: Maybe<BuddySubscriptionWhereInput[] | BuddySubscriptionWhereInput>;
+}
+
+export interface NewbieTaskUpdateManyWithoutNewbieInput {
+  create?: Maybe<
+    NewbieTaskCreateWithoutNewbieInput[] | NewbieTaskCreateWithoutNewbieInput
+  >;
+  delete?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
+  connect?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
+  set?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
+  disconnect?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
+  update?: Maybe<
+    | NewbieTaskUpdateWithWhereUniqueWithoutNewbieInput[]
+    | NewbieTaskUpdateWithWhereUniqueWithoutNewbieInput
+  >;
+  upsert?: Maybe<
+    | NewbieTaskUpsertWithWhereUniqueWithoutNewbieInput[]
+    | NewbieTaskUpsertWithWhereUniqueWithoutNewbieInput
+  >;
+  deleteMany?: Maybe<NewbieTaskScalarWhereInput[] | NewbieTaskScalarWhereInput>;
+  updateMany?: Maybe<
+    | NewbieTaskUpdateManyWithWhereNestedInput[]
+    | NewbieTaskUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface NewbieUpsertWithoutNewbieTasksInput {
+  update: NewbieUpdateWithoutNewbieTasksDataInput;
+  create: NewbieCreateWithoutNewbieTasksInput;
+}
+
+export interface NewbieTaskUpdateWithWhereUniqueWithoutNewbieInput {
+  where: NewbieTaskWhereUniqueInput;
+  data: NewbieTaskUpdateWithoutNewbieDataInput;
+}
+
+export interface NewbieUpdateOneRequiredWithoutNewbieTasksInput {
+  create?: Maybe<NewbieCreateWithoutNewbieTasksInput>;
+  update?: Maybe<NewbieUpdateWithoutNewbieTasksDataInput>;
+  upsert?: Maybe<NewbieUpsertWithoutNewbieTasksInput>;
+  connect?: Maybe<NewbieWhereUniqueInput>;
+}
+
+export interface NewbieTaskUpdateWithoutNewbieDataInput {
+  description?: Maybe<String>;
+  title?: Maybe<String>;
+  status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
+  notes?: Maybe<String>;
+}
+
+export type BuddyTaskWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface NewbieTaskUpsertWithWhereUniqueWithoutNewbieInput {
+  where: NewbieTaskWhereUniqueInput;
+  update: NewbieTaskUpdateWithoutNewbieDataInput;
+  create: NewbieTaskCreateWithoutNewbieInput;
+}
+
+export interface NewbieCreateOneWithoutNewbieTasksInput {
+  create?: Maybe<NewbieCreateWithoutNewbieTasksInput>;
+  connect?: Maybe<NewbieWhereUniqueInput>;
+}
+
+export interface NewbieTaskScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  description?: Maybe<String>;
+  description_not?: Maybe<String>;
+  description_in?: Maybe<String[] | String>;
+  description_not_in?: Maybe<String[] | String>;
+  description_lt?: Maybe<String>;
+  description_lte?: Maybe<String>;
+  description_gt?: Maybe<String>;
+  description_gte?: Maybe<String>;
+  description_contains?: Maybe<String>;
+  description_not_contains?: Maybe<String>;
+  description_starts_with?: Maybe<String>;
+  description_not_starts_with?: Maybe<String>;
+  description_ends_with?: Maybe<String>;
+  description_not_ends_with?: Maybe<String>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  status?: Maybe<TaskStatus>;
+  status_not?: Maybe<TaskStatus>;
+  status_in?: Maybe<TaskStatus[] | TaskStatus>;
+  status_not_in?: Maybe<TaskStatus[] | TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
+  implementationDate_not?: Maybe<DateTimeInput>;
+  implementationDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  implementationDate_lt?: Maybe<DateTimeInput>;
+  implementationDate_lte?: Maybe<DateTimeInput>;
+  implementationDate_gt?: Maybe<DateTimeInput>;
+  implementationDate_gte?: Maybe<DateTimeInput>;
+  notes?: Maybe<String>;
+  notes_not?: Maybe<String>;
+  notes_in?: Maybe<String[] | String>;
+  notes_not_in?: Maybe<String[] | String>;
+  notes_lt?: Maybe<String>;
+  notes_lte?: Maybe<String>;
+  notes_gt?: Maybe<String>;
+  notes_gte?: Maybe<String>;
+  notes_contains?: Maybe<String>;
+  notes_not_contains?: Maybe<String>;
+  notes_starts_with?: Maybe<String>;
+  notes_not_starts_with?: Maybe<String>;
+  notes_ends_with?: Maybe<String>;
+  notes_not_ends_with?: Maybe<String>;
+  AND?: Maybe<NewbieTaskScalarWhereInput[] | NewbieTaskScalarWhereInput>;
+  OR?: Maybe<NewbieTaskScalarWhereInput[] | NewbieTaskScalarWhereInput>;
+  NOT?: Maybe<NewbieTaskScalarWhereInput[] | NewbieTaskScalarWhereInput>;
+}
+
+export type NewbieWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+}>;
+
+export interface BuddyUpdateWithoutNewbiesDataInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  password?: Maybe<String>;
+  position?: Maybe<String>;
+  photo?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+}
+
+export interface NewbieUpdateInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  password?: Maybe<String>;
+  position?: Maybe<String>;
+  photo?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+  buddy?: Maybe<BuddyUpdateOneRequiredWithoutNewbiesInput>;
+  notes?: Maybe<String>;
+  newbieTasks?: Maybe<NewbieTaskUpdateManyWithoutNewbieInput>;
+  buddyTasks?: Maybe<BuddyTaskUpdateManyWithoutNewbieInput>;
+}
+
+export interface NewbieTaskUpdateManyDataInput {
+  description?: Maybe<String>;
+  title?: Maybe<String>;
+  status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
+  notes?: Maybe<String>;
+}
+
+export type NewbieTaskWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export interface BuddyTaskUpdateManyWithoutNewbieInput {
+  create?: Maybe<
+    BuddyTaskCreateWithoutNewbieInput[] | BuddyTaskCreateWithoutNewbieInput
+  >;
+  delete?: Maybe<BuddyTaskWhereUniqueInput[] | BuddyTaskWhereUniqueInput>;
+  connect?: Maybe<BuddyTaskWhereUniqueInput[] | BuddyTaskWhereUniqueInput>;
+  set?: Maybe<BuddyTaskWhereUniqueInput[] | BuddyTaskWhereUniqueInput>;
+  disconnect?: Maybe<BuddyTaskWhereUniqueInput[] | BuddyTaskWhereUniqueInput>;
+  update?: Maybe<
+    | BuddyTaskUpdateWithWhereUniqueWithoutNewbieInput[]
+    | BuddyTaskUpdateWithWhereUniqueWithoutNewbieInput
+  >;
+  upsert?: Maybe<
+    | BuddyTaskUpsertWithWhereUniqueWithoutNewbieInput[]
+    | BuddyTaskUpsertWithWhereUniqueWithoutNewbieInput
+  >;
+  deleteMany?: Maybe<BuddyTaskScalarWhereInput[] | BuddyTaskScalarWhereInput>;
+  updateMany?: Maybe<
+    | BuddyTaskUpdateManyWithWhereNestedInput[]
+    | BuddyTaskUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface NewbieUpsertWithoutBuddyTasksInput {
+  update: NewbieUpdateWithoutBuddyTasksDataInput;
+  create: NewbieCreateWithoutBuddyTasksInput;
+}
+
+export interface BuddyTaskUpdateWithWhereUniqueWithoutNewbieInput {
+  where: BuddyTaskWhereUniqueInput;
+  data: BuddyTaskUpdateWithoutNewbieDataInput;
+}
+
+export interface NewbieCreateManyWithoutBuddyInput {
+  create?: Maybe<NewbieCreateWithoutBuddyInput[] | NewbieCreateWithoutBuddyInput>;
+  connect?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
+}
+
+export interface BuddyWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  role_not?: Maybe<UserRole>;
+  role_in?: Maybe<UserRole[] | UserRole>;
+  role_not_in?: Maybe<UserRole[] | UserRole>;
+  password?: Maybe<String>;
+  password_not?: Maybe<String>;
+  password_in?: Maybe<String[] | String>;
+  password_not_in?: Maybe<String[] | String>;
+  password_lt?: Maybe<String>;
+  password_lte?: Maybe<String>;
+  password_gt?: Maybe<String>;
+  password_gte?: Maybe<String>;
+  password_contains?: Maybe<String>;
+  password_not_contains?: Maybe<String>;
+  password_starts_with?: Maybe<String>;
+  password_not_starts_with?: Maybe<String>;
+  password_ends_with?: Maybe<String>;
+  password_not_ends_with?: Maybe<String>;
+  position?: Maybe<String>;
+  position_not?: Maybe<String>;
+  position_in?: Maybe<String[] | String>;
+  position_not_in?: Maybe<String[] | String>;
+  position_lt?: Maybe<String>;
+  position_lte?: Maybe<String>;
+  position_gt?: Maybe<String>;
+  position_gte?: Maybe<String>;
+  position_contains?: Maybe<String>;
+  position_not_contains?: Maybe<String>;
+  position_starts_with?: Maybe<String>;
+  position_not_starts_with?: Maybe<String>;
+  position_ends_with?: Maybe<String>;
+  position_not_ends_with?: Maybe<String>;
+  photo?: Maybe<String>;
+  photo_not?: Maybe<String>;
+  photo_in?: Maybe<String[] | String>;
+  photo_not_in?: Maybe<String[] | String>;
+  photo_lt?: Maybe<String>;
+  photo_lte?: Maybe<String>;
+  photo_gt?: Maybe<String>;
+  photo_gte?: Maybe<String>;
+  photo_contains?: Maybe<String>;
+  photo_not_contains?: Maybe<String>;
+  photo_starts_with?: Maybe<String>;
+  photo_not_starts_with?: Maybe<String>;
+  photo_ends_with?: Maybe<String>;
+  photo_not_ends_with?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  phoneNumber_not?: Maybe<String>;
+  phoneNumber_in?: Maybe<String[] | String>;
+  phoneNumber_not_in?: Maybe<String[] | String>;
+  phoneNumber_lt?: Maybe<String>;
+  phoneNumber_lte?: Maybe<String>;
+  phoneNumber_gt?: Maybe<String>;
+  phoneNumber_gte?: Maybe<String>;
+  phoneNumber_contains?: Maybe<String>;
+  phoneNumber_not_contains?: Maybe<String>;
+  phoneNumber_starts_with?: Maybe<String>;
+  phoneNumber_not_starts_with?: Maybe<String>;
+  phoneNumber_ends_with?: Maybe<String>;
+  phoneNumber_not_ends_with?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  startDate_not?: Maybe<DateTimeInput>;
+  startDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  startDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  startDate_lt?: Maybe<DateTimeInput>;
+  startDate_lte?: Maybe<DateTimeInput>;
+  startDate_gt?: Maybe<DateTimeInput>;
+  startDate_gte?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+  allowPushedNotifications_not?: Maybe<Boolean>;
+  newbies_every?: Maybe<NewbieWhereInput>;
+  newbies_some?: Maybe<NewbieWhereInput>;
+  newbies_none?: Maybe<NewbieWhereInput>;
+  AND?: Maybe<BuddyWhereInput[] | BuddyWhereInput>;
+  OR?: Maybe<BuddyWhereInput[] | BuddyWhereInput>;
+  NOT?: Maybe<BuddyWhereInput[] | BuddyWhereInput>;
+}
+
+export interface NewbieTaskCreateManyWithoutNewbieInput {
+  create?: Maybe<
+    NewbieTaskCreateWithoutNewbieInput[] | NewbieTaskCreateWithoutNewbieInput
+  >;
+  connect?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
+}
 
 export interface NewbieWhereInput {
   id?: Maybe<ID_Input>;
@@ -440,343 +1117,6 @@ export interface NewbieWhereInput {
   NOT?: Maybe<NewbieWhereInput[] | NewbieWhereInput>;
 }
 
-export interface BuddyWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
-  email?: Maybe<String>;
-  email_not?: Maybe<String>;
-  email_in?: Maybe<String[] | String>;
-  email_not_in?: Maybe<String[] | String>;
-  email_lt?: Maybe<String>;
-  email_lte?: Maybe<String>;
-  email_gt?: Maybe<String>;
-  email_gte?: Maybe<String>;
-  email_contains?: Maybe<String>;
-  email_not_contains?: Maybe<String>;
-  email_starts_with?: Maybe<String>;
-  email_not_starts_with?: Maybe<String>;
-  email_ends_with?: Maybe<String>;
-  email_not_ends_with?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  role_not?: Maybe<UserRole>;
-  role_in?: Maybe<UserRole[] | UserRole>;
-  role_not_in?: Maybe<UserRole[] | UserRole>;
-  password?: Maybe<String>;
-  password_not?: Maybe<String>;
-  password_in?: Maybe<String[] | String>;
-  password_not_in?: Maybe<String[] | String>;
-  password_lt?: Maybe<String>;
-  password_lte?: Maybe<String>;
-  password_gt?: Maybe<String>;
-  password_gte?: Maybe<String>;
-  password_contains?: Maybe<String>;
-  password_not_contains?: Maybe<String>;
-  password_starts_with?: Maybe<String>;
-  password_not_starts_with?: Maybe<String>;
-  password_ends_with?: Maybe<String>;
-  password_not_ends_with?: Maybe<String>;
-  position?: Maybe<String>;
-  position_not?: Maybe<String>;
-  position_in?: Maybe<String[] | String>;
-  position_not_in?: Maybe<String[] | String>;
-  position_lt?: Maybe<String>;
-  position_lte?: Maybe<String>;
-  position_gt?: Maybe<String>;
-  position_gte?: Maybe<String>;
-  position_contains?: Maybe<String>;
-  position_not_contains?: Maybe<String>;
-  position_starts_with?: Maybe<String>;
-  position_not_starts_with?: Maybe<String>;
-  position_ends_with?: Maybe<String>;
-  position_not_ends_with?: Maybe<String>;
-  photo?: Maybe<String>;
-  photo_not?: Maybe<String>;
-  photo_in?: Maybe<String[] | String>;
-  photo_not_in?: Maybe<String[] | String>;
-  photo_lt?: Maybe<String>;
-  photo_lte?: Maybe<String>;
-  photo_gt?: Maybe<String>;
-  photo_gte?: Maybe<String>;
-  photo_contains?: Maybe<String>;
-  photo_not_contains?: Maybe<String>;
-  photo_starts_with?: Maybe<String>;
-  photo_not_starts_with?: Maybe<String>;
-  photo_ends_with?: Maybe<String>;
-  photo_not_ends_with?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  phoneNumber_not?: Maybe<String>;
-  phoneNumber_in?: Maybe<String[] | String>;
-  phoneNumber_not_in?: Maybe<String[] | String>;
-  phoneNumber_lt?: Maybe<String>;
-  phoneNumber_lte?: Maybe<String>;
-  phoneNumber_gt?: Maybe<String>;
-  phoneNumber_gte?: Maybe<String>;
-  phoneNumber_contains?: Maybe<String>;
-  phoneNumber_not_contains?: Maybe<String>;
-  phoneNumber_starts_with?: Maybe<String>;
-  phoneNumber_not_starts_with?: Maybe<String>;
-  phoneNumber_ends_with?: Maybe<String>;
-  phoneNumber_not_ends_with?: Maybe<String>;
-  startDate?: Maybe<DateTimeInput>;
-  startDate_not?: Maybe<DateTimeInput>;
-  startDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  startDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  startDate_lt?: Maybe<DateTimeInput>;
-  startDate_lte?: Maybe<DateTimeInput>;
-  startDate_gt?: Maybe<DateTimeInput>;
-  startDate_gte?: Maybe<DateTimeInput>;
-  allowPushedNotifications?: Maybe<Boolean>;
-  allowPushedNotifications_not?: Maybe<Boolean>;
-  newbies_every?: Maybe<NewbieWhereInput>;
-  newbies_some?: Maybe<NewbieWhereInput>;
-  newbies_none?: Maybe<NewbieWhereInput>;
-  AND?: Maybe<BuddyWhereInput[] | BuddyWhereInput>;
-  OR?: Maybe<BuddyWhereInput[] | BuddyWhereInput>;
-  NOT?: Maybe<BuddyWhereInput[] | BuddyWhereInput>;
-}
-
-export interface NewbieTaskWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  status?: Maybe<TaskStatus>;
-  status_not?: Maybe<TaskStatus>;
-  status_in?: Maybe<TaskStatus[] | TaskStatus>;
-  status_not_in?: Maybe<TaskStatus[] | TaskStatus>;
-  newbie?: Maybe<NewbieWhereInput>;
-  implementationDate?: Maybe<DateTimeInput>;
-  implementationDate_not?: Maybe<DateTimeInput>;
-  implementationDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  implementationDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  implementationDate_lt?: Maybe<DateTimeInput>;
-  implementationDate_lte?: Maybe<DateTimeInput>;
-  implementationDate_gt?: Maybe<DateTimeInput>;
-  implementationDate_gte?: Maybe<DateTimeInput>;
-  notes?: Maybe<String>;
-  notes_not?: Maybe<String>;
-  notes_in?: Maybe<String[] | String>;
-  notes_not_in?: Maybe<String[] | String>;
-  notes_lt?: Maybe<String>;
-  notes_lte?: Maybe<String>;
-  notes_gt?: Maybe<String>;
-  notes_gte?: Maybe<String>;
-  notes_contains?: Maybe<String>;
-  notes_not_contains?: Maybe<String>;
-  notes_starts_with?: Maybe<String>;
-  notes_not_starts_with?: Maybe<String>;
-  notes_ends_with?: Maybe<String>;
-  notes_not_ends_with?: Maybe<String>;
-  AND?: Maybe<NewbieTaskWhereInput[] | NewbieTaskWhereInput>;
-  OR?: Maybe<NewbieTaskWhereInput[] | NewbieTaskWhereInput>;
-  NOT?: Maybe<NewbieTaskWhereInput[] | NewbieTaskWhereInput>;
-}
-
-export interface BuddyTaskWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  status?: Maybe<TaskStatus>;
-  status_not?: Maybe<TaskStatus>;
-  status_in?: Maybe<TaskStatus[] | TaskStatus>;
-  status_not_in?: Maybe<TaskStatus[] | TaskStatus>;
-  newbie?: Maybe<NewbieWhereInput>;
-  implementationDate?: Maybe<DateTimeInput>;
-  implementationDate_not?: Maybe<DateTimeInput>;
-  implementationDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  implementationDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  implementationDate_lt?: Maybe<DateTimeInput>;
-  implementationDate_lte?: Maybe<DateTimeInput>;
-  implementationDate_gt?: Maybe<DateTimeInput>;
-  implementationDate_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<BuddyTaskWhereInput[] | BuddyTaskWhereInput>;
-  OR?: Maybe<BuddyTaskWhereInput[] | BuddyTaskWhereInput>;
-  NOT?: Maybe<BuddyTaskWhereInput[] | BuddyTaskWhereInput>;
-}
-
-export type BuddyTaskWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export type NewbieWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  email?: Maybe<String>;
-}>;
-
-export type NewbieTaskWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
-export interface BuddyCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  email: String;
-  role?: Maybe<UserRole>;
-  password: String;
-  position?: Maybe<String>;
-  photo?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  startDate?: Maybe<DateTimeInput>;
-  allowPushedNotifications?: Maybe<Boolean>;
-  newbies?: Maybe<NewbieCreateManyWithoutBuddyInput>;
-}
-
-export interface NewbieCreateManyWithoutBuddyInput {
-  create?: Maybe<NewbieCreateWithoutBuddyInput[] | NewbieCreateWithoutBuddyInput>;
-  connect?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
-}
-
-export interface NewbieCreateWithoutBuddyInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  email: String;
-  role?: Maybe<UserRole>;
-  password: String;
-  position?: Maybe<String>;
-  photo?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  startDate?: Maybe<DateTimeInput>;
-  allowPushedNotifications?: Maybe<Boolean>;
-  notes?: Maybe<String>;
-  newbieTasks?: Maybe<NewbieTaskCreateManyWithoutNewbieInput>;
-  buddyTasks?: Maybe<BuddyTaskCreateManyWithoutNewbieInput>;
-}
-
-export interface NewbieTaskCreateManyWithoutNewbieInput {
-  create?: Maybe<
-    NewbieTaskCreateWithoutNewbieInput[] | NewbieTaskCreateWithoutNewbieInput
-  >;
-  connect?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
-}
-
-export interface NewbieTaskCreateWithoutNewbieInput {
-  id?: Maybe<ID_Input>;
-  description?: Maybe<String>;
-  title?: Maybe<String>;
-  status?: Maybe<TaskStatus>;
-  implementationDate?: Maybe<DateTimeInput>;
-  notes?: Maybe<String>;
-}
-
 export interface BuddyTaskCreateManyWithoutNewbieInput {
   create?: Maybe<
     BuddyTaskCreateWithoutNewbieInput[] | BuddyTaskCreateWithoutNewbieInput
@@ -784,316 +1124,35 @@ export interface BuddyTaskCreateManyWithoutNewbieInput {
   connect?: Maybe<BuddyTaskWhereUniqueInput[] | BuddyTaskWhereUniqueInput>;
 }
 
-export interface BuddyTaskCreateWithoutNewbieInput {
-  id?: Maybe<ID_Input>;
-  description?: Maybe<String>;
-  title?: Maybe<String>;
-  status?: Maybe<TaskStatus>;
-  implementationDate?: Maybe<DateTimeInput>;
+export interface BuddyUpdateOneRequiredWithoutNewbiesInput {
+  create?: Maybe<BuddyCreateWithoutNewbiesInput>;
+  update?: Maybe<BuddyUpdateWithoutNewbiesDataInput>;
+  upsert?: Maybe<BuddyUpsertWithoutNewbiesInput>;
+  connect?: Maybe<BuddyWhereUniqueInput>;
 }
 
-export interface BuddyUpdateInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  password?: Maybe<String>;
-  position?: Maybe<String>;
-  photo?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  startDate?: Maybe<DateTimeInput>;
-  allowPushedNotifications?: Maybe<Boolean>;
-  newbies?: Maybe<NewbieUpdateManyWithoutBuddyInput>;
-}
-
-export interface NewbieUpdateManyWithoutBuddyInput {
-  create?: Maybe<NewbieCreateWithoutBuddyInput[] | NewbieCreateWithoutBuddyInput>;
-  delete?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
-  connect?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
-  set?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
-  disconnect?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
-  update?: Maybe<
-    | NewbieUpdateWithWhereUniqueWithoutBuddyInput[]
-    | NewbieUpdateWithWhereUniqueWithoutBuddyInput
-  >;
-  upsert?: Maybe<
-    | NewbieUpsertWithWhereUniqueWithoutBuddyInput[]
-    | NewbieUpsertWithWhereUniqueWithoutBuddyInput
-  >;
-  deleteMany?: Maybe<NewbieScalarWhereInput[] | NewbieScalarWhereInput>;
-  updateMany?: Maybe<
-    NewbieUpdateManyWithWhereNestedInput[] | NewbieUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface NewbieUpdateWithWhereUniqueWithoutBuddyInput {
-  where: NewbieWhereUniqueInput;
-  data: NewbieUpdateWithoutBuddyDataInput;
-}
-
-export interface NewbieUpdateWithoutBuddyDataInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  password?: Maybe<String>;
-  position?: Maybe<String>;
-  photo?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  startDate?: Maybe<DateTimeInput>;
-  allowPushedNotifications?: Maybe<Boolean>;
-  notes?: Maybe<String>;
-  newbieTasks?: Maybe<NewbieTaskUpdateManyWithoutNewbieInput>;
-  buddyTasks?: Maybe<BuddyTaskUpdateManyWithoutNewbieInput>;
-}
-
-export interface NewbieTaskUpdateManyWithoutNewbieInput {
-  create?: Maybe<
-    NewbieTaskCreateWithoutNewbieInput[] | NewbieTaskCreateWithoutNewbieInput
-  >;
-  delete?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
-  connect?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
-  set?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
-  disconnect?: Maybe<NewbieTaskWhereUniqueInput[] | NewbieTaskWhereUniqueInput>;
-  update?: Maybe<
-    | NewbieTaskUpdateWithWhereUniqueWithoutNewbieInput[]
-    | NewbieTaskUpdateWithWhereUniqueWithoutNewbieInput
-  >;
-  upsert?: Maybe<
-    | NewbieTaskUpsertWithWhereUniqueWithoutNewbieInput[]
-    | NewbieTaskUpsertWithWhereUniqueWithoutNewbieInput
-  >;
-  deleteMany?: Maybe<NewbieTaskScalarWhereInput[] | NewbieTaskScalarWhereInput>;
-  updateMany?: Maybe<
-    | NewbieTaskUpdateManyWithWhereNestedInput[]
-    | NewbieTaskUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface NewbieTaskUpdateWithWhereUniqueWithoutNewbieInput {
-  where: NewbieTaskWhereUniqueInput;
-  data: NewbieTaskUpdateWithoutNewbieDataInput;
-}
-
-export interface NewbieTaskUpdateWithoutNewbieDataInput {
-  description?: Maybe<String>;
-  title?: Maybe<String>;
-  status?: Maybe<TaskStatus>;
-  implementationDate?: Maybe<DateTimeInput>;
-  notes?: Maybe<String>;
-}
-
-export interface NewbieTaskUpsertWithWhereUniqueWithoutNewbieInput {
-  where: NewbieTaskWhereUniqueInput;
-  update: NewbieTaskUpdateWithoutNewbieDataInput;
-  create: NewbieTaskCreateWithoutNewbieInput;
-}
-
-export interface NewbieTaskScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  status?: Maybe<TaskStatus>;
-  status_not?: Maybe<TaskStatus>;
-  status_in?: Maybe<TaskStatus[] | TaskStatus>;
-  status_not_in?: Maybe<TaskStatus[] | TaskStatus>;
-  implementationDate?: Maybe<DateTimeInput>;
-  implementationDate_not?: Maybe<DateTimeInput>;
-  implementationDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  implementationDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  implementationDate_lt?: Maybe<DateTimeInput>;
-  implementationDate_lte?: Maybe<DateTimeInput>;
-  implementationDate_gt?: Maybe<DateTimeInput>;
-  implementationDate_gte?: Maybe<DateTimeInput>;
-  notes?: Maybe<String>;
-  notes_not?: Maybe<String>;
-  notes_in?: Maybe<String[] | String>;
-  notes_not_in?: Maybe<String[] | String>;
-  notes_lt?: Maybe<String>;
-  notes_lte?: Maybe<String>;
-  notes_gt?: Maybe<String>;
-  notes_gte?: Maybe<String>;
-  notes_contains?: Maybe<String>;
-  notes_not_contains?: Maybe<String>;
-  notes_starts_with?: Maybe<String>;
-  notes_not_starts_with?: Maybe<String>;
-  notes_ends_with?: Maybe<String>;
-  notes_not_ends_with?: Maybe<String>;
-  AND?: Maybe<NewbieTaskScalarWhereInput[] | NewbieTaskScalarWhereInput>;
-  OR?: Maybe<NewbieTaskScalarWhereInput[] | NewbieTaskScalarWhereInput>;
-  NOT?: Maybe<NewbieTaskScalarWhereInput[] | NewbieTaskScalarWhereInput>;
-}
-
-export interface NewbieTaskUpdateManyWithWhereNestedInput {
-  where: NewbieTaskScalarWhereInput;
-  data: NewbieTaskUpdateManyDataInput;
-}
-
-export interface NewbieTaskUpdateManyDataInput {
-  description?: Maybe<String>;
-  title?: Maybe<String>;
-  status?: Maybe<TaskStatus>;
-  implementationDate?: Maybe<DateTimeInput>;
-  notes?: Maybe<String>;
-}
-
-export interface BuddyTaskUpdateManyWithoutNewbieInput {
-  create?: Maybe<
-    BuddyTaskCreateWithoutNewbieInput[] | BuddyTaskCreateWithoutNewbieInput
-  >;
-  delete?: Maybe<BuddyTaskWhereUniqueInput[] | BuddyTaskWhereUniqueInput>;
-  connect?: Maybe<BuddyTaskWhereUniqueInput[] | BuddyTaskWhereUniqueInput>;
-  set?: Maybe<BuddyTaskWhereUniqueInput[] | BuddyTaskWhereUniqueInput>;
-  disconnect?: Maybe<BuddyTaskWhereUniqueInput[] | BuddyTaskWhereUniqueInput>;
-  update?: Maybe<
-    | BuddyTaskUpdateWithWhereUniqueWithoutNewbieInput[]
-    | BuddyTaskUpdateWithWhereUniqueWithoutNewbieInput
-  >;
-  upsert?: Maybe<
-    | BuddyTaskUpsertWithWhereUniqueWithoutNewbieInput[]
-    | BuddyTaskUpsertWithWhereUniqueWithoutNewbieInput
-  >;
-  deleteMany?: Maybe<BuddyTaskScalarWhereInput[] | BuddyTaskScalarWhereInput>;
-  updateMany?: Maybe<
-    | BuddyTaskUpdateManyWithWhereNestedInput[]
-    | BuddyTaskUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface BuddyTaskUpdateWithWhereUniqueWithoutNewbieInput {
-  where: BuddyTaskWhereUniqueInput;
-  data: BuddyTaskUpdateWithoutNewbieDataInput;
-}
-
-export interface BuddyTaskUpdateWithoutNewbieDataInput {
-  description?: Maybe<String>;
-  title?: Maybe<String>;
-  status?: Maybe<TaskStatus>;
-  implementationDate?: Maybe<DateTimeInput>;
-}
-
-export interface BuddyTaskUpsertWithWhereUniqueWithoutNewbieInput {
-  where: BuddyTaskWhereUniqueInput;
-  update: BuddyTaskUpdateWithoutNewbieDataInput;
-  create: BuddyTaskCreateWithoutNewbieInput;
-}
-
-export interface BuddyTaskScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  description?: Maybe<String>;
-  description_not?: Maybe<String>;
-  description_in?: Maybe<String[] | String>;
-  description_not_in?: Maybe<String[] | String>;
-  description_lt?: Maybe<String>;
-  description_lte?: Maybe<String>;
-  description_gt?: Maybe<String>;
-  description_gte?: Maybe<String>;
-  description_contains?: Maybe<String>;
-  description_not_contains?: Maybe<String>;
-  description_starts_with?: Maybe<String>;
-  description_not_starts_with?: Maybe<String>;
-  description_ends_with?: Maybe<String>;
-  description_not_ends_with?: Maybe<String>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  status?: Maybe<TaskStatus>;
-  status_not?: Maybe<TaskStatus>;
-  status_in?: Maybe<TaskStatus[] | TaskStatus>;
-  status_not_in?: Maybe<TaskStatus[] | TaskStatus>;
-  implementationDate?: Maybe<DateTimeInput>;
-  implementationDate_not?: Maybe<DateTimeInput>;
-  implementationDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  implementationDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  implementationDate_lt?: Maybe<DateTimeInput>;
-  implementationDate_lte?: Maybe<DateTimeInput>;
-  implementationDate_gt?: Maybe<DateTimeInput>;
-  implementationDate_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<BuddyTaskScalarWhereInput[] | BuddyTaskScalarWhereInput>;
-  OR?: Maybe<BuddyTaskScalarWhereInput[] | BuddyTaskScalarWhereInput>;
-  NOT?: Maybe<BuddyTaskScalarWhereInput[] | BuddyTaskScalarWhereInput>;
+export interface NewbieTaskSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<NewbieTaskWhereInput>;
+  AND?: Maybe<NewbieTaskSubscriptionWhereInput[] | NewbieTaskSubscriptionWhereInput>;
+  OR?: Maybe<NewbieTaskSubscriptionWhereInput[] | NewbieTaskSubscriptionWhereInput>;
+  NOT?: Maybe<NewbieTaskSubscriptionWhereInput[] | NewbieTaskSubscriptionWhereInput>;
 }
 
 export interface BuddyTaskUpdateManyWithWhereNestedInput {
   where: BuddyTaskScalarWhereInput;
   data: BuddyTaskUpdateManyDataInput;
+}
+
+export interface NewbieTaskUpdateManyMutationInput {
+  description?: Maybe<String>;
+  title?: Maybe<String>;
+  status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
+  notes?: Maybe<String>;
 }
 
 export interface BuddyTaskUpdateManyDataInput {
@@ -1103,10 +1162,29 @@ export interface BuddyTaskUpdateManyDataInput {
   implementationDate?: Maybe<DateTimeInput>;
 }
 
+export interface NewbieTaskUpdateInput {
+  description?: Maybe<String>;
+  title?: Maybe<String>;
+  status?: Maybe<TaskStatus>;
+  newbie?: Maybe<NewbieUpdateOneRequiredWithoutNewbieTasksInput>;
+  implementationDate?: Maybe<DateTimeInput>;
+  notes?: Maybe<String>;
+}
+
 export interface NewbieUpsertWithWhereUniqueWithoutBuddyInput {
   where: NewbieWhereUniqueInput;
   update: NewbieUpdateWithoutBuddyDataInput;
   create: NewbieCreateWithoutBuddyInput;
+}
+
+export interface NewbieTaskCreateInput {
+  id?: Maybe<ID_Input>;
+  description?: Maybe<String>;
+  title?: Maybe<String>;
+  status?: Maybe<TaskStatus>;
+  newbie: NewbieCreateOneWithoutNewbieTasksInput;
+  implementationDate?: Maybe<DateTimeInput>;
+  notes?: Maybe<String>;
 }
 
 export interface NewbieScalarWhereInput {
@@ -1241,9 +1319,31 @@ export interface NewbieScalarWhereInput {
   NOT?: Maybe<NewbieScalarWhereInput[] | NewbieScalarWhereInput>;
 }
 
+export interface NewbieCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  email: String;
+  role?: Maybe<UserRole>;
+  password: String;
+  position?: Maybe<String>;
+  photo?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+  buddy: BuddyCreateOneWithoutNewbiesInput;
+  notes?: Maybe<String>;
+  newbieTasks?: Maybe<NewbieTaskCreateManyWithoutNewbieInput>;
+  buddyTasks?: Maybe<BuddyTaskCreateManyWithoutNewbieInput>;
+}
+
 export interface NewbieUpdateManyWithWhereNestedInput {
   where: NewbieScalarWhereInput;
   data: NewbieUpdateManyDataInput;
+}
+
+export interface BuddyUpsertWithoutNewbiesInput {
+  update: BuddyUpdateWithoutNewbiesDataInput;
+  create: BuddyCreateWithoutNewbiesInput;
 }
 
 export interface NewbieUpdateManyDataInput {
@@ -1259,6 +1359,22 @@ export interface NewbieUpdateManyDataInput {
   notes?: Maybe<String>;
 }
 
+export interface NewbieCreateWithoutBuddyInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  email: String;
+  role?: Maybe<UserRole>;
+  password: String;
+  position?: Maybe<String>;
+  photo?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+  notes?: Maybe<String>;
+  newbieTasks?: Maybe<NewbieTaskCreateManyWithoutNewbieInput>;
+  buddyTasks?: Maybe<BuddyTaskCreateManyWithoutNewbieInput>;
+}
+
 export interface BuddyUpdateManyMutationInput {
   name?: Maybe<String>;
   email?: Maybe<String>;
@@ -1271,6 +1387,64 @@ export interface BuddyUpdateManyMutationInput {
   allowPushedNotifications?: Maybe<Boolean>;
 }
 
+export interface BuddyTaskCreateWithoutNewbieInput {
+  id?: Maybe<ID_Input>;
+  description?: Maybe<String>;
+  title?: Maybe<String>;
+  status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
+}
+
+export interface NewbieUpdateWithoutBuddyTasksDataInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  password?: Maybe<String>;
+  position?: Maybe<String>;
+  photo?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+  buddy?: Maybe<BuddyUpdateOneRequiredWithoutNewbiesInput>;
+  notes?: Maybe<String>;
+  newbieTasks?: Maybe<NewbieTaskUpdateManyWithoutNewbieInput>;
+}
+
+export interface NewbieUpdateWithoutNewbieTasksDataInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  password?: Maybe<String>;
+  position?: Maybe<String>;
+  photo?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+  buddy?: Maybe<BuddyUpdateOneRequiredWithoutNewbiesInput>;
+  notes?: Maybe<String>;
+  buddyTasks?: Maybe<BuddyTaskUpdateManyWithoutNewbieInput>;
+}
+
+export interface NewbieUpdateOneRequiredWithoutBuddyTasksInput {
+  create?: Maybe<NewbieCreateWithoutBuddyTasksInput>;
+  update?: Maybe<NewbieUpdateWithoutBuddyTasksDataInput>;
+  upsert?: Maybe<NewbieUpsertWithoutBuddyTasksInput>;
+  connect?: Maybe<NewbieWhereUniqueInput>;
+}
+
+export interface NewbieUpdateManyMutationInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  password?: Maybe<String>;
+  position?: Maybe<String>;
+  photo?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+  notes?: Maybe<String>;
+}
+
 export interface BuddyTaskCreateInput {
   id?: Maybe<ID_Input>;
   description?: Maybe<String>;
@@ -1280,9 +1454,36 @@ export interface BuddyTaskCreateInput {
   implementationDate?: Maybe<DateTimeInput>;
 }
 
-export interface NewbieCreateOneWithoutBuddyTasksInput {
-  create?: Maybe<NewbieCreateWithoutBuddyTasksInput>;
-  connect?: Maybe<NewbieWhereUniqueInput>;
+export interface BuddyCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  email: String;
+  role?: Maybe<UserRole>;
+  password: String;
+  position?: Maybe<String>;
+  photo?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+  newbies?: Maybe<NewbieCreateManyWithoutBuddyInput>;
+}
+
+export interface BuddyCreateWithoutNewbiesInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  email: String;
+  role?: Maybe<UserRole>;
+  password: String;
+  position?: Maybe<String>;
+  photo?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+}
+
+export interface BuddyCreateOneWithoutNewbiesInput {
+  create?: Maybe<BuddyCreateWithoutNewbiesInput>;
+  connect?: Maybe<BuddyWhereUniqueInput>;
 }
 
 export interface NewbieCreateWithoutBuddyTasksInput {
@@ -1301,81 +1502,18 @@ export interface NewbieCreateWithoutBuddyTasksInput {
   newbieTasks?: Maybe<NewbieTaskCreateManyWithoutNewbieInput>;
 }
 
-export interface BuddyCreateOneWithoutNewbiesInput {
-  create?: Maybe<BuddyCreateWithoutNewbiesInput>;
-  connect?: Maybe<BuddyWhereUniqueInput>;
-}
-
-export interface BuddyCreateWithoutNewbiesInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  email: String;
-  role?: Maybe<UserRole>;
-  password: String;
-  position?: Maybe<String>;
-  photo?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  startDate?: Maybe<DateTimeInput>;
-  allowPushedNotifications?: Maybe<Boolean>;
-}
-
-export interface BuddyTaskUpdateInput {
-  description?: Maybe<String>;
-  title?: Maybe<String>;
-  status?: Maybe<TaskStatus>;
-  newbie?: Maybe<NewbieUpdateOneRequiredWithoutBuddyTasksInput>;
-  implementationDate?: Maybe<DateTimeInput>;
-}
-
-export interface NewbieUpdateOneRequiredWithoutBuddyTasksInput {
+export interface NewbieCreateOneWithoutBuddyTasksInput {
   create?: Maybe<NewbieCreateWithoutBuddyTasksInput>;
-  update?: Maybe<NewbieUpdateWithoutBuddyTasksDataInput>;
-  upsert?: Maybe<NewbieUpsertWithoutBuddyTasksInput>;
   connect?: Maybe<NewbieWhereUniqueInput>;
 }
 
-export interface NewbieUpdateWithoutBuddyTasksDataInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  password?: Maybe<String>;
-  position?: Maybe<String>;
-  photo?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  startDate?: Maybe<DateTimeInput>;
-  allowPushedNotifications?: Maybe<Boolean>;
-  buddy?: Maybe<BuddyUpdateOneRequiredWithoutNewbiesInput>;
+export interface NewbieTaskCreateWithoutNewbieInput {
+  id?: Maybe<ID_Input>;
+  description?: Maybe<String>;
+  title?: Maybe<String>;
+  status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<DateTimeInput>;
   notes?: Maybe<String>;
-  newbieTasks?: Maybe<NewbieTaskUpdateManyWithoutNewbieInput>;
-}
-
-export interface BuddyUpdateOneRequiredWithoutNewbiesInput {
-  create?: Maybe<BuddyCreateWithoutNewbiesInput>;
-  update?: Maybe<BuddyUpdateWithoutNewbiesDataInput>;
-  upsert?: Maybe<BuddyUpsertWithoutNewbiesInput>;
-  connect?: Maybe<BuddyWhereUniqueInput>;
-}
-
-export interface BuddyUpdateWithoutNewbiesDataInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  password?: Maybe<String>;
-  position?: Maybe<String>;
-  photo?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  startDate?: Maybe<DateTimeInput>;
-  allowPushedNotifications?: Maybe<Boolean>;
-}
-
-export interface BuddyUpsertWithoutNewbiesInput {
-  update: BuddyUpdateWithoutNewbiesDataInput;
-  create: BuddyCreateWithoutNewbiesInput;
-}
-
-export interface NewbieUpsertWithoutBuddyTasksInput {
-  update: NewbieUpdateWithoutBuddyTasksDataInput;
-  create: NewbieCreateWithoutBuddyTasksInput;
 }
 
 export interface BuddyTaskUpdateManyMutationInput {
@@ -1383,67 +1521,6 @@ export interface BuddyTaskUpdateManyMutationInput {
   title?: Maybe<String>;
   status?: Maybe<TaskStatus>;
   implementationDate?: Maybe<DateTimeInput>;
-}
-
-export interface NewbieCreateInput {
-  id?: Maybe<ID_Input>;
-  name: String;
-  email: String;
-  role?: Maybe<UserRole>;
-  password: String;
-  position?: Maybe<String>;
-  photo?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  startDate?: Maybe<DateTimeInput>;
-  allowPushedNotifications?: Maybe<Boolean>;
-  buddy: BuddyCreateOneWithoutNewbiesInput;
-  notes?: Maybe<String>;
-  newbieTasks?: Maybe<NewbieTaskCreateManyWithoutNewbieInput>;
-  buddyTasks?: Maybe<BuddyTaskCreateManyWithoutNewbieInput>;
-}
-
-export interface NewbieUpdateInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  password?: Maybe<String>;
-  position?: Maybe<String>;
-  photo?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  startDate?: Maybe<DateTimeInput>;
-  allowPushedNotifications?: Maybe<Boolean>;
-  buddy?: Maybe<BuddyUpdateOneRequiredWithoutNewbiesInput>;
-  notes?: Maybe<String>;
-  newbieTasks?: Maybe<NewbieTaskUpdateManyWithoutNewbieInput>;
-  buddyTasks?: Maybe<BuddyTaskUpdateManyWithoutNewbieInput>;
-}
-
-export interface NewbieUpdateManyMutationInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  password?: Maybe<String>;
-  position?: Maybe<String>;
-  photo?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  startDate?: Maybe<DateTimeInput>;
-  allowPushedNotifications?: Maybe<Boolean>;
-  notes?: Maybe<String>;
-}
-
-export interface NewbieTaskCreateInput {
-  id?: Maybe<ID_Input>;
-  description?: Maybe<String>;
-  title?: Maybe<String>;
-  status?: Maybe<TaskStatus>;
-  newbie: NewbieCreateOneWithoutNewbieTasksInput;
-  implementationDate?: Maybe<DateTimeInput>;
-  notes?: Maybe<String>;
-}
-
-export interface NewbieCreateOneWithoutNewbieTasksInput {
-  create?: Maybe<NewbieCreateWithoutNewbieTasksInput>;
-  connect?: Maybe<NewbieWhereUniqueInput>;
 }
 
 export interface NewbieCreateWithoutNewbieTasksInput {
@@ -1462,61 +1539,6 @@ export interface NewbieCreateWithoutNewbieTasksInput {
   buddyTasks?: Maybe<BuddyTaskCreateManyWithoutNewbieInput>;
 }
 
-export interface NewbieTaskUpdateInput {
-  description?: Maybe<String>;
-  title?: Maybe<String>;
-  status?: Maybe<TaskStatus>;
-  newbie?: Maybe<NewbieUpdateOneRequiredWithoutNewbieTasksInput>;
-  implementationDate?: Maybe<DateTimeInput>;
-  notes?: Maybe<String>;
-}
-
-export interface NewbieUpdateOneRequiredWithoutNewbieTasksInput {
-  create?: Maybe<NewbieCreateWithoutNewbieTasksInput>;
-  update?: Maybe<NewbieUpdateWithoutNewbieTasksDataInput>;
-  upsert?: Maybe<NewbieUpsertWithoutNewbieTasksInput>;
-  connect?: Maybe<NewbieWhereUniqueInput>;
-}
-
-export interface NewbieUpdateWithoutNewbieTasksDataInput {
-  name?: Maybe<String>;
-  email?: Maybe<String>;
-  role?: Maybe<UserRole>;
-  password?: Maybe<String>;
-  position?: Maybe<String>;
-  photo?: Maybe<String>;
-  phoneNumber?: Maybe<String>;
-  startDate?: Maybe<DateTimeInput>;
-  allowPushedNotifications?: Maybe<Boolean>;
-  buddy?: Maybe<BuddyUpdateOneRequiredWithoutNewbiesInput>;
-  notes?: Maybe<String>;
-  buddyTasks?: Maybe<BuddyTaskUpdateManyWithoutNewbieInput>;
-}
-
-export interface NewbieUpsertWithoutNewbieTasksInput {
-  update: NewbieUpdateWithoutNewbieTasksDataInput;
-  create: NewbieCreateWithoutNewbieTasksInput;
-}
-
-export interface NewbieTaskUpdateManyMutationInput {
-  description?: Maybe<String>;
-  title?: Maybe<String>;
-  status?: Maybe<TaskStatus>;
-  implementationDate?: Maybe<DateTimeInput>;
-  notes?: Maybe<String>;
-}
-
-export interface BuddySubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<BuddyWhereInput>;
-  AND?: Maybe<BuddySubscriptionWhereInput[] | BuddySubscriptionWhereInput>;
-  OR?: Maybe<BuddySubscriptionWhereInput[] | BuddySubscriptionWhereInput>;
-  NOT?: Maybe<BuddySubscriptionWhereInput[] | BuddySubscriptionWhereInput>;
-}
-
 export interface BuddyTaskSubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
@@ -1528,30 +1550,224 @@ export interface BuddyTaskSubscriptionWhereInput {
   NOT?: Maybe<BuddyTaskSubscriptionWhereInput[] | BuddyTaskSubscriptionWhereInput>;
 }
 
-export interface NewbieSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<NewbieWhereInput>;
-  AND?: Maybe<NewbieSubscriptionWhereInput[] | NewbieSubscriptionWhereInput>;
-  OR?: Maybe<NewbieSubscriptionWhereInput[] | NewbieSubscriptionWhereInput>;
-  NOT?: Maybe<NewbieSubscriptionWhereInput[] | NewbieSubscriptionWhereInput>;
-}
-
-export interface NewbieTaskSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<NewbieTaskWhereInput>;
-  AND?: Maybe<NewbieTaskSubscriptionWhereInput[] | NewbieTaskSubscriptionWhereInput>;
-  OR?: Maybe<NewbieTaskSubscriptionWhereInput[] | NewbieTaskSubscriptionWhereInput>;
-  NOT?: Maybe<NewbieTaskSubscriptionWhereInput[] | NewbieTaskSubscriptionWhereInput>;
-}
-
 export interface NodeNode {
   id: ID_Output;
+}
+
+export interface NewbieTaskPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  description: String;
+  title: String;
+  status: TaskStatus;
+  implementationDate?: DateTimeOutput;
+  notes?: String;
+}
+
+export interface NewbieTaskPreviousValuesPromise
+  extends Promise<NewbieTaskPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  description: () => Promise<String>;
+  title: () => Promise<String>;
+  status: () => Promise<TaskStatus>;
+  implementationDate: () => Promise<DateTimeOutput>;
+  notes: () => Promise<String>;
+}
+
+export interface NewbieTaskPreviousValuesSubscription
+  extends Promise<AsyncIterator<NewbieTaskPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  description: () => Promise<AsyncIterator<String>>;
+  title: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<TaskStatus>>;
+  implementationDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  notes: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateBuddy {
+  count: Int;
+}
+
+export interface AggregateBuddyPromise
+  extends Promise<AggregateBuddy>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateBuddySubscription
+  extends Promise<AsyncIterator<AggregateBuddy>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface NewbieTask {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  description: String;
+  title: String;
+  status: TaskStatus;
+  implementationDate?: DateTimeOutput;
+  notes?: String;
+}
+
+export interface NewbieTaskPromise extends Promise<NewbieTask>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  description: () => Promise<String>;
+  title: () => Promise<String>;
+  status: () => Promise<TaskStatus>;
+  newbie: <T = NewbiePromise>() => T;
+  implementationDate: () => Promise<DateTimeOutput>;
+  notes: () => Promise<String>;
+}
+
+export interface NewbieTaskSubscription
+  extends Promise<AsyncIterator<NewbieTask>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  description: () => Promise<AsyncIterator<String>>;
+  title: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<TaskStatus>>;
+  newbie: <T = NewbieSubscription>() => T;
+  implementationDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  notes: () => Promise<AsyncIterator<String>>;
+}
+
+export interface NewbieTaskNullablePromise
+  extends Promise<NewbieTask | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  description: () => Promise<String>;
+  title: () => Promise<String>;
+  status: () => Promise<TaskStatus>;
+  newbie: <T = NewbiePromise>() => T;
+  implementationDate: () => Promise<DateTimeOutput>;
+  notes: () => Promise<String>;
+}
+
+export interface BuddyEdge {
+  node: Buddy;
+  cursor: String;
+}
+
+export interface BuddyEdgePromise extends Promise<BuddyEdge>, Fragmentable {
+  node: <T = BuddyPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface BuddyEdgeSubscription
+  extends Promise<AsyncIterator<BuddyEdge>>,
+    Fragmentable {
+  node: <T = BuddySubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise extends Promise<BatchPayload>, Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface NewbieTaskSubscriptionPayload {
+  mutation: MutationType;
+  node: NewbieTask;
+  updatedFields: String[];
+  previousValues: NewbieTaskPreviousValues;
+}
+
+export interface NewbieTaskSubscriptionPayloadPromise
+  extends Promise<NewbieTaskSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = NewbieTaskPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = NewbieTaskPreviousValuesPromise>() => T;
+}
+
+export interface NewbieTaskSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<NewbieTaskSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = NewbieTaskSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = NewbieTaskPreviousValuesSubscription>() => T;
+}
+
+export interface BuddyConnection {
+  pageInfo: PageInfo;
+  edges: BuddyEdge[];
+}
+
+export interface BuddyConnectionPromise
+  extends Promise<BuddyConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<BuddyEdge>>() => T;
+  aggregate: <T = AggregateBuddyPromise>() => T;
+}
+
+export interface BuddyConnectionSubscription
+  extends Promise<AsyncIterator<BuddyConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<BuddyEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateBuddySubscription>() => T;
+}
+
+export interface NewbieTaskEdge {
+  node: NewbieTask;
+  cursor: String;
+}
+
+export interface NewbieTaskEdgePromise
+  extends Promise<NewbieTaskEdge>,
+    Fragmentable {
+  node: <T = NewbieTaskPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface NewbieTaskEdgeSubscription
+  extends Promise<AsyncIterator<NewbieTaskEdge>>,
+    Fragmentable {
+  node: <T = NewbieTaskSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
 export interface Buddy {
@@ -1633,6 +1849,174 @@ export interface BuddyNullablePromise extends Promise<Buddy | null>, Fragmentabl
     first?: Int;
     last?: Int;
   }) => T;
+}
+
+export interface AggregateNewbie {
+  count: Int;
+}
+
+export interface AggregateNewbiePromise
+  extends Promise<AggregateNewbie>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateNewbieSubscription
+  extends Promise<AsyncIterator<AggregateNewbie>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface BuddyTask {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  description: String;
+  title: String;
+  status: TaskStatus;
+  implementationDate?: DateTimeOutput;
+}
+
+export interface BuddyTaskPromise extends Promise<BuddyTask>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  description: () => Promise<String>;
+  title: () => Promise<String>;
+  status: () => Promise<TaskStatus>;
+  newbie: <T = NewbiePromise>() => T;
+  implementationDate: () => Promise<DateTimeOutput>;
+}
+
+export interface BuddyTaskSubscription
+  extends Promise<AsyncIterator<BuddyTask>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  description: () => Promise<AsyncIterator<String>>;
+  title: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<TaskStatus>>;
+  newbie: <T = NewbieSubscription>() => T;
+  implementationDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface BuddyTaskNullablePromise
+  extends Promise<BuddyTask | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  description: () => Promise<String>;
+  title: () => Promise<String>;
+  status: () => Promise<TaskStatus>;
+  newbie: <T = NewbiePromise>() => T;
+  implementationDate: () => Promise<DateTimeOutput>;
+}
+
+export interface NewbieConnection {
+  pageInfo: PageInfo;
+  edges: NewbieEdge[];
+}
+
+export interface NewbieConnectionPromise
+  extends Promise<NewbieConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<NewbieEdge>>() => T;
+  aggregate: <T = AggregateNewbiePromise>() => T;
+}
+
+export interface NewbieConnectionSubscription
+  extends Promise<AsyncIterator<NewbieConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<NewbieEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateNewbieSubscription>() => T;
+}
+
+export interface NewbiePreviousValues {
+  id: ID_Output;
+  name: String;
+  email: String;
+  role: UserRole;
+  password: String;
+  position?: String;
+  photo?: String;
+  phoneNumber?: String;
+  startDate?: DateTimeOutput;
+  allowPushedNotifications: Boolean;
+  notes: String;
+}
+
+export interface NewbiePreviousValuesPromise
+  extends Promise<NewbiePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  role: () => Promise<UserRole>;
+  password: () => Promise<String>;
+  position: () => Promise<String>;
+  photo: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  startDate: () => Promise<DateTimeOutput>;
+  allowPushedNotifications: () => Promise<Boolean>;
+  notes: () => Promise<String>;
+}
+
+export interface NewbiePreviousValuesSubscription
+  extends Promise<AsyncIterator<NewbiePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  role: () => Promise<AsyncIterator<UserRole>>;
+  password: () => Promise<AsyncIterator<String>>;
+  position: () => Promise<AsyncIterator<String>>;
+  photo: () => Promise<AsyncIterator<String>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
+  startDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  allowPushedNotifications: () => Promise<AsyncIterator<Boolean>>;
+  notes: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BuddyTaskEdge {
+  node: BuddyTask;
+  cursor: String;
+}
+
+export interface BuddyTaskEdgePromise extends Promise<BuddyTaskEdge>, Fragmentable {
+  node: <T = BuddyTaskPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface BuddyTaskEdgeSubscription
+  extends Promise<AsyncIterator<BuddyTaskEdge>>,
+    Fragmentable {
+  node: <T = BuddyTaskSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BuddySubscriptionPayload {
+  mutation: MutationType;
+  node: Buddy;
+  updatedFields: String[];
+  previousValues: BuddyPreviousValues;
+}
+
+export interface BuddySubscriptionPayloadPromise
+  extends Promise<BuddySubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = BuddyPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = BuddyPreviousValuesPromise>() => T;
+}
+
+export interface BuddySubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<BuddySubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = BuddySubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = BuddyPreviousValuesSubscription>() => T;
 }
 
 export interface Newbie {
@@ -1750,281 +2134,6 @@ export interface NewbieNullablePromise extends Promise<Newbie | null>, Fragmenta
   }) => T;
 }
 
-export interface NewbieTask {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  description: String;
-  title: String;
-  status: TaskStatus;
-  implementationDate?: DateTimeOutput;
-  notes?: String;
-}
-
-export interface NewbieTaskPromise extends Promise<NewbieTask>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  description: () => Promise<String>;
-  title: () => Promise<String>;
-  status: () => Promise<TaskStatus>;
-  newbie: <T = NewbiePromise>() => T;
-  implementationDate: () => Promise<DateTimeOutput>;
-  notes: () => Promise<String>;
-}
-
-export interface NewbieTaskSubscription
-  extends Promise<AsyncIterator<NewbieTask>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  description: () => Promise<AsyncIterator<String>>;
-  title: () => Promise<AsyncIterator<String>>;
-  status: () => Promise<AsyncIterator<TaskStatus>>;
-  newbie: <T = NewbieSubscription>() => T;
-  implementationDate: () => Promise<AsyncIterator<DateTimeOutput>>;
-  notes: () => Promise<AsyncIterator<String>>;
-}
-
-export interface NewbieTaskNullablePromise
-  extends Promise<NewbieTask | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  description: () => Promise<String>;
-  title: () => Promise<String>;
-  status: () => Promise<TaskStatus>;
-  newbie: <T = NewbiePromise>() => T;
-  implementationDate: () => Promise<DateTimeOutput>;
-  notes: () => Promise<String>;
-}
-
-export interface BuddyTask {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  description: String;
-  title: String;
-  status: TaskStatus;
-  implementationDate?: DateTimeOutput;
-}
-
-export interface BuddyTaskPromise extends Promise<BuddyTask>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  description: () => Promise<String>;
-  title: () => Promise<String>;
-  status: () => Promise<TaskStatus>;
-  newbie: <T = NewbiePromise>() => T;
-  implementationDate: () => Promise<DateTimeOutput>;
-}
-
-export interface BuddyTaskSubscription
-  extends Promise<AsyncIterator<BuddyTask>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  description: () => Promise<AsyncIterator<String>>;
-  title: () => Promise<AsyncIterator<String>>;
-  status: () => Promise<AsyncIterator<TaskStatus>>;
-  newbie: <T = NewbieSubscription>() => T;
-  implementationDate: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface BuddyTaskNullablePromise
-  extends Promise<BuddyTask | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  description: () => Promise<String>;
-  title: () => Promise<String>;
-  status: () => Promise<TaskStatus>;
-  newbie: <T = NewbiePromise>() => T;
-  implementationDate: () => Promise<DateTimeOutput>;
-}
-
-export interface BuddyConnection {
-  pageInfo: PageInfo;
-  edges: BuddyEdge[];
-}
-
-export interface BuddyConnectionPromise
-  extends Promise<BuddyConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<BuddyEdge>>() => T;
-  aggregate: <T = AggregateBuddyPromise>() => T;
-}
-
-export interface BuddyConnectionSubscription
-  extends Promise<AsyncIterator<BuddyConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<BuddyEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateBuddySubscription>() => T;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface BuddyEdge {
-  node: Buddy;
-  cursor: String;
-}
-
-export interface BuddyEdgePromise extends Promise<BuddyEdge>, Fragmentable {
-  node: <T = BuddyPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface BuddyEdgeSubscription
-  extends Promise<AsyncIterator<BuddyEdge>>,
-    Fragmentable {
-  node: <T = BuddySubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateBuddy {
-  count: Int;
-}
-
-export interface AggregateBuddyPromise
-  extends Promise<AggregateBuddy>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateBuddySubscription
-  extends Promise<AsyncIterator<AggregateBuddy>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface BuddyTaskConnection {
-  pageInfo: PageInfo;
-  edges: BuddyTaskEdge[];
-}
-
-export interface BuddyTaskConnectionPromise
-  extends Promise<BuddyTaskConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<BuddyTaskEdge>>() => T;
-  aggregate: <T = AggregateBuddyTaskPromise>() => T;
-}
-
-export interface BuddyTaskConnectionSubscription
-  extends Promise<AsyncIterator<BuddyTaskConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<BuddyTaskEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateBuddyTaskSubscription>() => T;
-}
-
-export interface BuddyTaskEdge {
-  node: BuddyTask;
-  cursor: String;
-}
-
-export interface BuddyTaskEdgePromise extends Promise<BuddyTaskEdge>, Fragmentable {
-  node: <T = BuddyTaskPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface BuddyTaskEdgeSubscription
-  extends Promise<AsyncIterator<BuddyTaskEdge>>,
-    Fragmentable {
-  node: <T = BuddyTaskSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateBuddyTask {
-  count: Int;
-}
-
-export interface AggregateBuddyTaskPromise
-  extends Promise<AggregateBuddyTask>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateBuddyTaskSubscription
-  extends Promise<AsyncIterator<AggregateBuddyTask>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface NewbieConnection {
-  pageInfo: PageInfo;
-  edges: NewbieEdge[];
-}
-
-export interface NewbieConnectionPromise
-  extends Promise<NewbieConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<NewbieEdge>>() => T;
-  aggregate: <T = AggregateNewbiePromise>() => T;
-}
-
-export interface NewbieConnectionSubscription
-  extends Promise<AsyncIterator<NewbieConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<NewbieEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateNewbieSubscription>() => T;
-}
-
-export interface NewbieEdge {
-  node: Newbie;
-  cursor: String;
-}
-
-export interface NewbieEdgePromise extends Promise<NewbieEdge>, Fragmentable {
-  node: <T = NewbiePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface NewbieEdgeSubscription
-  extends Promise<AsyncIterator<NewbieEdge>>,
-    Fragmentable {
-  node: <T = NewbieSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateNewbie {
-  count: Int;
-}
-
-export interface AggregateNewbiePromise
-  extends Promise<AggregateNewbie>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateNewbieSubscription
-  extends Promise<AsyncIterator<AggregateNewbie>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
 export interface NewbieTaskConnection {
   pageInfo: PageInfo;
   edges: NewbieTaskEdge[];
@@ -2046,78 +2155,85 @@ export interface NewbieTaskConnectionSubscription
   aggregate: <T = AggregateNewbieTaskSubscription>() => T;
 }
 
-export interface NewbieTaskEdge {
-  node: NewbieTask;
-  cursor: String;
+export interface BuddyTaskPreviousValues {
+  id: ID_Output;
+  createdAt: DateTimeOutput;
+  description: String;
+  title: String;
+  status: TaskStatus;
+  implementationDate?: DateTimeOutput;
 }
 
-export interface NewbieTaskEdgePromise
-  extends Promise<NewbieTaskEdge>,
+export interface BuddyTaskPreviousValuesPromise
+  extends Promise<BuddyTaskPreviousValues>,
     Fragmentable {
-  node: <T = NewbieTaskPromise>() => T;
-  cursor: () => Promise<String>;
+  id: () => Promise<ID_Output>;
+  createdAt: () => Promise<DateTimeOutput>;
+  description: () => Promise<String>;
+  title: () => Promise<String>;
+  status: () => Promise<TaskStatus>;
+  implementationDate: () => Promise<DateTimeOutput>;
 }
 
-export interface NewbieTaskEdgeSubscription
-  extends Promise<AsyncIterator<NewbieTaskEdge>>,
+export interface BuddyTaskPreviousValuesSubscription
+  extends Promise<AsyncIterator<BuddyTaskPreviousValues>>,
     Fragmentable {
-  node: <T = NewbieTaskSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  description: () => Promise<AsyncIterator<String>>;
+  title: () => Promise<AsyncIterator<String>>;
+  status: () => Promise<AsyncIterator<TaskStatus>>;
+  implementationDate: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
-export interface AggregateNewbieTask {
-  count: Int;
-}
-
-export interface AggregateNewbieTaskPromise
-  extends Promise<AggregateNewbieTask>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateNewbieTaskSubscription
-  extends Promise<AsyncIterator<AggregateNewbieTask>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise extends Promise<BatchPayload>, Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface BuddySubscriptionPayload {
+export interface BuddyTaskSubscriptionPayload {
   mutation: MutationType;
-  node: Buddy;
+  node: BuddyTask;
   updatedFields: String[];
-  previousValues: BuddyPreviousValues;
+  previousValues: BuddyTaskPreviousValues;
 }
 
-export interface BuddySubscriptionPayloadPromise
-  extends Promise<BuddySubscriptionPayload>,
+export interface BuddyTaskSubscriptionPayloadPromise
+  extends Promise<BuddyTaskSubscriptionPayload>,
     Fragmentable {
   mutation: () => Promise<MutationType>;
-  node: <T = BuddyPromise>() => T;
+  node: <T = BuddyTaskPromise>() => T;
   updatedFields: () => Promise<String[]>;
-  previousValues: <T = BuddyPreviousValuesPromise>() => T;
+  previousValues: <T = BuddyTaskPreviousValuesPromise>() => T;
 }
 
-export interface BuddySubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<BuddySubscriptionPayload>>,
+export interface BuddyTaskSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<BuddyTaskSubscriptionPayload>>,
     Fragmentable {
   mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = BuddySubscription>() => T;
+  node: <T = BuddyTaskSubscription>() => T;
   updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = BuddyPreviousValuesSubscription>() => T;
+  previousValues: <T = BuddyTaskPreviousValuesSubscription>() => T;
+}
+
+export interface NewbieSubscriptionPayload {
+  mutation: MutationType;
+  node: Newbie;
+  updatedFields: String[];
+  previousValues: NewbiePreviousValues;
+}
+
+export interface NewbieSubscriptionPayloadPromise
+  extends Promise<NewbieSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = NewbiePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = NewbiePreviousValuesPromise>() => T;
+}
+
+export interface NewbieSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<NewbieSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = NewbieSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = NewbiePreviousValuesSubscription>() => T;
 }
 
 export interface BuddyPreviousValues {
@@ -2163,197 +2279,93 @@ export interface BuddyPreviousValuesSubscription
   allowPushedNotifications: () => Promise<AsyncIterator<Boolean>>;
 }
 
-export interface BuddyTaskSubscriptionPayload {
-  mutation: MutationType;
-  node: BuddyTask;
-  updatedFields: String[];
-  previousValues: BuddyTaskPreviousValues;
-}
-
-export interface BuddyTaskSubscriptionPayloadPromise
-  extends Promise<BuddyTaskSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = BuddyTaskPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = BuddyTaskPreviousValuesPromise>() => T;
-}
-
-export interface BuddyTaskSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<BuddyTaskSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = BuddyTaskSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = BuddyTaskPreviousValuesSubscription>() => T;
-}
-
-export interface BuddyTaskPreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  description: String;
-  title: String;
-  status: TaskStatus;
-  implementationDate?: DateTimeOutput;
-}
-
-export interface BuddyTaskPreviousValuesPromise
-  extends Promise<BuddyTaskPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  description: () => Promise<String>;
-  title: () => Promise<String>;
-  status: () => Promise<TaskStatus>;
-  implementationDate: () => Promise<DateTimeOutput>;
-}
-
-export interface BuddyTaskPreviousValuesSubscription
-  extends Promise<AsyncIterator<BuddyTaskPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  description: () => Promise<AsyncIterator<String>>;
-  title: () => Promise<AsyncIterator<String>>;
-  status: () => Promise<AsyncIterator<TaskStatus>>;
-  implementationDate: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface NewbieSubscriptionPayload {
-  mutation: MutationType;
+export interface NewbieEdge {
   node: Newbie;
-  updatedFields: String[];
-  previousValues: NewbiePreviousValues;
+  cursor: String;
 }
 
-export interface NewbieSubscriptionPayloadPromise
-  extends Promise<NewbieSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
+export interface NewbieEdgePromise extends Promise<NewbieEdge>, Fragmentable {
   node: <T = NewbiePromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = NewbiePreviousValuesPromise>() => T;
+  cursor: () => Promise<String>;
 }
 
-export interface NewbieSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<NewbieSubscriptionPayload>>,
+export interface NewbieEdgeSubscription
+  extends Promise<AsyncIterator<NewbieEdge>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
   node: <T = NewbieSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = NewbiePreviousValuesSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
 }
 
-export interface NewbiePreviousValues {
-  id: ID_Output;
-  name: String;
-  email: String;
-  role: UserRole;
-  password: String;
-  position?: String;
-  photo?: String;
-  phoneNumber?: String;
-  startDate?: DateTimeOutput;
-  allowPushedNotifications: Boolean;
-  notes: String;
+export interface AggregateNewbieTask {
+  count: Int;
 }
 
-export interface NewbiePreviousValuesPromise
-  extends Promise<NewbiePreviousValues>,
+export interface AggregateNewbieTaskPromise
+  extends Promise<AggregateNewbieTask>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  name: () => Promise<String>;
-  email: () => Promise<String>;
-  role: () => Promise<UserRole>;
-  password: () => Promise<String>;
-  position: () => Promise<String>;
-  photo: () => Promise<String>;
-  phoneNumber: () => Promise<String>;
-  startDate: () => Promise<DateTimeOutput>;
-  allowPushedNotifications: () => Promise<Boolean>;
-  notes: () => Promise<String>;
+  count: () => Promise<Int>;
 }
 
-export interface NewbiePreviousValuesSubscription
-  extends Promise<AsyncIterator<NewbiePreviousValues>>,
+export interface AggregateNewbieTaskSubscription
+  extends Promise<AsyncIterator<AggregateNewbieTask>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  name: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-  role: () => Promise<AsyncIterator<UserRole>>;
-  password: () => Promise<AsyncIterator<String>>;
-  position: () => Promise<AsyncIterator<String>>;
-  photo: () => Promise<AsyncIterator<String>>;
-  phoneNumber: () => Promise<AsyncIterator<String>>;
-  startDate: () => Promise<AsyncIterator<DateTimeOutput>>;
-  allowPushedNotifications: () => Promise<AsyncIterator<Boolean>>;
-  notes: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
 
-export interface NewbieTaskSubscriptionPayload {
-  mutation: MutationType;
-  node: NewbieTask;
-  updatedFields: String[];
-  previousValues: NewbieTaskPreviousValues;
+export interface BuddyTaskConnection {
+  pageInfo: PageInfo;
+  edges: BuddyTaskEdge[];
 }
 
-export interface NewbieTaskSubscriptionPayloadPromise
-  extends Promise<NewbieTaskSubscriptionPayload>,
+export interface BuddyTaskConnectionPromise
+  extends Promise<BuddyTaskConnection>,
     Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = NewbieTaskPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = NewbieTaskPreviousValuesPromise>() => T;
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<BuddyTaskEdge>>() => T;
+  aggregate: <T = AggregateBuddyTaskPromise>() => T;
 }
 
-export interface NewbieTaskSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<NewbieTaskSubscriptionPayload>>,
+export interface BuddyTaskConnectionSubscription
+  extends Promise<AsyncIterator<BuddyTaskConnection>>,
     Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = NewbieTaskSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = NewbieTaskPreviousValuesSubscription>() => T;
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<BuddyTaskEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateBuddyTaskSubscription>() => T;
 }
 
-export interface NewbieTaskPreviousValues {
-  id: ID_Output;
-  createdAt: DateTimeOutput;
-  description: String;
-  title: String;
-  status: TaskStatus;
-  implementationDate?: DateTimeOutput;
-  notes?: String;
+export interface AggregateBuddyTask {
+  count: Int;
 }
 
-export interface NewbieTaskPreviousValuesPromise
-  extends Promise<NewbieTaskPreviousValues>,
+export interface AggregateBuddyTaskPromise
+  extends Promise<AggregateBuddyTask>,
     Fragmentable {
-  id: () => Promise<ID_Output>;
-  createdAt: () => Promise<DateTimeOutput>;
-  description: () => Promise<String>;
-  title: () => Promise<String>;
-  status: () => Promise<TaskStatus>;
-  implementationDate: () => Promise<DateTimeOutput>;
-  notes: () => Promise<String>;
+  count: () => Promise<Int>;
 }
 
-export interface NewbieTaskPreviousValuesSubscription
-  extends Promise<AsyncIterator<NewbieTaskPreviousValues>>,
+export interface AggregateBuddyTaskSubscription
+  extends Promise<AsyncIterator<AggregateBuddyTask>>,
     Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  description: () => Promise<AsyncIterator<String>>;
-  title: () => Promise<AsyncIterator<String>>;
-  status: () => Promise<AsyncIterator<TaskStatus>>;
-  implementationDate: () => Promise<AsyncIterator<DateTimeOutput>>;
-  notes: () => Promise<AsyncIterator<String>>;
+  count: () => Promise<AsyncIterator<Int>>;
 }
+
+/*
+The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
+*/
+export type Int = number;
+
+export type Long = string;
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
 export type ID_Input = string | number;
 export type ID_Output = string;
+
+/*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
 
 /*
 The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
@@ -2369,18 +2381,6 @@ export type DateTimeInput = Date | string;
 DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
-
-/*
-The `Boolean` scalar type represents `true` or `false`.
-*/
-export type Boolean = boolean;
-
-/*
-The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
-*/
-export type Int = number;
-
-export type Long = string;
 
 /**
  * Model Metadata
