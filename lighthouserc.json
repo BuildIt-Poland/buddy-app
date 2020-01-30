@@ -10,7 +10,19 @@
         "works-offline": ["error", {"minScore": 0}],
         "redirects-http": ["warn", {"minScore": 0}],
         "render-blocking-resources": ["warn", {"maxLength": 1}],
-        "uses-http2": ["warn", {"minScore": 0}]
+        "uses-http2": ["warn", {"minScore": 0}],
+        "font-display": [
+          "warn",
+          {
+            "minScore": 0
+          }
+        ],
+        "max-potential-fid": [
+          "warn",
+          {
+            "minScore": 0.3
+          }
+        ]
       }
     }
   }
