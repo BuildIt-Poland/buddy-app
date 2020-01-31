@@ -1,5 +1,6 @@
 import { formatError } from 'apollo-errors';
 import { GraphQLServerLambda, Options } from 'graphql-yoga';
+import { IMiddleware } from 'graphql-middleware';
 import schema, { IResolvers } from 'buddy-app-schema';
 import { prisma } from './generated/prisma-client';
 import Query from './resolvers/query';
@@ -56,7 +57,7 @@ const {
     ...event,
     prisma,
   }),
-  middlewares: [credentialsMiddleware, authMiddleware],
+  middlewares: [credentialsMiddleware, authMiddleware] as IMiddleware[],
   options,
 });
 
