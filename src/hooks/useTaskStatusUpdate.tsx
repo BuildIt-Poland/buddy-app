@@ -10,7 +10,7 @@ import {
 } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
 import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
-import { changeTaskStatus } from 'utils';
+import { changeTaskStatus, isNewbieTask } from 'utils';
 
 type TaskStatusUpdate = [(task: NewbieTask | BuddyTask) => void, MutationResult];
 
@@ -24,8 +24,9 @@ const useTaskStatusUpdate = (
   );
 
   const updateTaskStatus = (task: NewbieTask | BuddyTask) => {
-    const taskListType =
-      task.__typename === 'NewbieTask' ? 'newbieTasks' : 'buddyTasks';
+    const taskListType = isNewbieTask(task.__typename)
+      ? 'newbieTasks'
+      : 'buddyTasks';
 
     mutation({
       variables: { taskId: task.id },

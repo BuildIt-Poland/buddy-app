@@ -2,6 +2,7 @@ import {
   getProgressInPercentages,
   isNewbie,
   isCompleted,
+  isNewbieTask,
   convertDirectionToAnchor,
   changeTaskStatus,
 } from 'utils';
@@ -28,6 +29,16 @@ describe('Utils - helpers', () => {
 
   it('helpers - isCompleted should return false', () => {
     const result = isCompleted(Uncompleted);
+    expect(result).toBe(false);
+  });
+
+  it('helpers - isNewbieTask should return true', () => {
+    const result = isNewbieTask('NewbieTask');
+    expect(result).toBe(true);
+  });
+
+  it('helpers - isNewbieTask should return false', () => {
+    const result = isNewbieTask();
     expect(result).toBe(false);
   });
 
