@@ -11,13 +11,12 @@ cache:
     - node_modules
 before_install:
   - npm install -g codecov
-  - npm install -g @lhci/cli@0.3.x
 script:
   - npm run cy:ci
   - npm run coverage
   - npm run lint
   - npm run build
-  - lhci autorun
+  - npm run lighthouse
 after_success:
   - codecov --token="$CODECOV_TOKEN"
 notifications:

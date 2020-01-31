@@ -5,33 +5,33 @@
       "assertions": {
         "categories.pwa": "off",
         "bypass": [
-          "error",
+          "warn",
           {
-            "minScore": 0
+            "minScore": 1
           }
         ],
         "offline-start-url": [
-          "error",
+          "warn",
           {
-            "minScore": 0
+            "minScore": 1
           }
         ],
         "service-worker": [
-          "error",
+          "warn",
           {
-            "minScore": 0
+            "minScore": 1
           }
         ],
         "works-offline": [
-          "error",
+          "warn",
           {
-            "minScore": 0
+            "minScore": 1
           }
         ],
         "redirects-http": [
           "warn",
           {
-            "minScore": 0
+            "minScore": 1
           }
         ],
         "render-blocking-resources": [
@@ -43,13 +43,13 @@
         "uses-http2": [
           "warn",
           {
-            "minScore": 0
+            "minScore": 1
           }
         ],
         "font-display": [
           "warn",
           {
-            "minScore": 0
+            "minScore": 1
           }
         ],
         "max-potential-fid": [
@@ -57,8 +57,37 @@
           {
             "minScore": 0.3
           }
+        ],
+        "color-contrast": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
+        "uses-rel-preload": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
+        "label": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
+        "first-meaningful-paint": [
+          "warn",
+          {
+            "minScore": 0.9
+          }
         ]
       }
+    },
+    "collect": {
+      "staticDistDir": "./build",
+      "url": "http://localhost",
+      "numberOfRuns": 1
     },
     "upload": {
       "target": "temporary-public-storage"
