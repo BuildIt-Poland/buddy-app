@@ -37,7 +37,7 @@ describe('Utils - helpers', () => {
   });
 
   it('helpers - isNewbieTask should return false', () => {
-    const result = isNewbieTask('BuddyTask');
+    const result = isNewbieTask();
     expect(result).toBe(false);
   });
 
