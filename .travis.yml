@@ -32,3 +32,8 @@ deploy:
   acl: public_read
   on:
     branch: master
+  # deploy services
+  provider: script
+  script: bash services/deploy.sh prod
+  on:
+    branch: master
