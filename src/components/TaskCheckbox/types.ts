@@ -9,4 +9,5 @@ export interface TaskCheckboxProps extends CheckboxProps {
   size?: SvgIconProps['fontSize'];
   title?: string;
   status: TaskStatus;
+  className?: string;
 }

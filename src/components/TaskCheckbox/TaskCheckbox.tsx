@@ -10,12 +10,14 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
   status,
   size = 'default',
   onChange,
+  className,
 }) => {
   const isChecked = status === TaskStatus.Completed;
   const onCheckboxChange = () => onChange && onChange(id);
 
   return (
     <Checkbox
+      className={className}
       color={'primary'}
       checked={isChecked}
       onChange={onCheckboxChange}
