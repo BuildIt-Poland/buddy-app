@@ -1,6 +1,4 @@
-//const jwt = require('jsonwebtoken');
 import * as jwt from 'jsonwebtoken';
-import { GraphQLResolveInfo } from 'graphql';
 import { ResolverFn, Context, TaskStatus } from 'buddy-app-schema';
 import ERRORS from './errors';
 
@@ -40,7 +38,7 @@ export const authMiddleware = async (
   root: any,
   args: any,
   context: Context,
-  info: GraphQLResolveInfo
+  info: any
 ): Promise<any> => {
   if (info.fieldName !== 'login' && info.parentType.name !== 'AuthPayload') {
     if (
@@ -63,7 +61,7 @@ export const credentialsMiddleware = async (
   root: any,
   args: any,
   context: Context,
-  info: GraphQLResolveInfo
+  info: any
 ): Promise<any> => {
   if (/addBuddy$|addNewbie$|login/.test(info.fieldName)) {
     const input = args.input || args;
