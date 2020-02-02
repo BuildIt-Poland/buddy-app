@@ -1,6 +1,4 @@
-# Feature name
-
-# [#JIRAID](https://digitalrig.atlassian.net/browse/BUD-XX) Feature / fix name
+# [[BUD-XX] Feature / fix name ](https://digitalrig.atlassian.net/browse/BUD-XX)
 
 ## Description
 
@@ -12,7 +10,7 @@ List any dependencies that are required for this change.
 
 - [ ] Relevant Checklist
 
-# Screenshots (optional)
+## Screenshots (optional)
 
 Please include screenshots from your work here if it changes the UI in any way.
 ​If your work changes, update your screenshots.
