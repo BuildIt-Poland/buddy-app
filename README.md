@@ -37,7 +37,7 @@ Open [http://localhost:4000](http://localhost:4000) to view GraphQL playground i
 - ```$ npm run cy:ci``` - Runs the app in the development mode, then runs tests headlessly in the Electron browser and close dev server.
 - ```$ npm test``` - Launches the test runner in the interactive watch mode.
 - ```$ npm run eject``` - Removes the single build dependency from your project.
-
+- ```$ npm run lighthouse``` - Run lighthouse ci locally 
 ### App login
 
 The App allows to login as **buddy** or **new joiner**.
