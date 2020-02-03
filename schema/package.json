@@ -22,7 +22,7 @@
     "typescript": "^3.7.4"
   },
   "peerDependencies": {
-    "graphql": "^14.5.8",
+    "graphql": "^14.6.0",
     "typescript": "^3.7.4"
   }
 }

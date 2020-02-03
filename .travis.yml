@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "stable"
+  - 10
 addons:
   chrome: stable
   apt:
@@ -21,12 +21,15 @@ after_success:
   - codecov --token="$CODECOV_TOKEN"
 notifications:
   slack: $SLACK_TOKEN
+env:
+  AWS_ACCESS_KEY: $AWS_ACCESS_KEY
 deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   bucket: "buildit-poland-buddy-app"
-  skip_cleanup: true
+  cleanup: true
+  region: eu-west-1
   local_dir: build
   acl: public_read
   on:

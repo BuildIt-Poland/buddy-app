@@ -14,7 +14,8 @@ provider:
     APP_SECRET: ${env:APP_SECRET}
     API_GATEWAY_DOMAIN: ${env:API_GATEWAY_DOMAIN}
   profile: default
-
+package:
+  excludeDevDependencies: true
 plugins:
   - serverless-webpack
   - serverless-dotenv-plugin
@@ -24,7 +25,9 @@ custom:
   stage: ${opt:stage, self:provider.stage}
   webpack:
     webpackConfig: ./webpack.config.js
-    includeModules: true
+    includeModules:
+        forceExclude:
+          - typescript
   serverless-offline:
     port: 4000
   domains:
