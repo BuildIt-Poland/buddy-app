@@ -9,6 +9,10 @@ provider:
     minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
   environment:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+    PRISMA_ENDPOINT: ${env:PRISMA_ENDPOINT}
+    PRISMA_SECRET: ${env:PRISMA_SECRET}
+    APP_SECRET: ${env:APP_SECRET}
+    API_GATEWAY_DOMAIN: ${env:API_GATEWAY_DOMAIN}
   profile: default
 
 plugins:
