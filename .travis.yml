@@ -16,6 +16,7 @@ script:
   - npm run coverage
   - npm run lint
   - npm run build
+  - npm run lighthouse
 after_success:
   - codecov --token="$CODECOV_TOKEN"
 notifications:

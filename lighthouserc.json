@@ -1,0 +1,96 @@
+{
+  "ci": {
+    "assert": {
+      "preset": "lighthouse:recommended",
+      "assertions": {
+        "categories.pwa": "off",
+        "bypass": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
+        "offline-start-url": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
+        "service-worker": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
+        "works-offline": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
+        "redirects-http": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
+        "render-blocking-resources": [
+          "warn",
+          {
+            "maxLength": 1
+          }
+        ],
+        "uses-http2": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
+        "font-display": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
+        "max-potential-fid": [
+          "warn",
+          {
+            "minScore": 0.3
+          }
+        ],
+        "color-contrast": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
+        "uses-rel-preload": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
+        "label": [
+          "warn",
+          {
+            "minScore": 1
+          }
+        ],
+        "first-meaningful-paint": [
+          "warn",
+          {
+            "minScore": 0.9
+          }
+        ]
+      }
+    },
+    "collect": {
+      "staticDistDir": "./build",
+      "url": "http://localhost",
+      "numberOfRuns": 1
+    },
+    "upload": {
+      "target": "temporary-public-storage"
+    }
+  }
+}
