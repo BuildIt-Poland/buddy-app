@@ -41,29 +41,31 @@ const useTaskStatusUpdate = (
         },
       },
       update: (proxy, { data }) => {
-        const taskListData: Query | null = proxy.readQuery({
-          query: TASK_LIST,
-          variables: { newbieId },
-        });
-
-        if (data && data.updateTaskStatus && taskListData) {
-          const newbie = taskListData.newbie;
-          const taskList = newbie[taskListType] as Task[];
-
-          proxy.writeQuery({
+        try {
+          const taskListData: Query | null = proxy.readQuery({
             query: TASK_LIST,
             variables: { newbieId },
-            data: {
-              ...data,
-              newbie: {
-                ...newbie,
-                [taskListType]: taskList.map(item =>
-                  item.id === task.id ? data.updateTaskStatus : item
-                ),
-              },
-            },
           });
-        }
+
+          if (data && data.updateTaskStatus && taskListData) {
+            const newbie = taskListData.newbie;
+            const taskList = newbie[taskListType] as Task[];
+
+            proxy.writeQuery({
+              query: TASK_LIST,
+              variables: { newbieId },
+              data: {
+                ...data,
+                newbie: {
+                  ...newbie,
+                  [taskListType]: taskList.map(item =>
+                    item.id === task.id ? data.updateTaskStatus : item
+                  ),
+                },
+              },
+            });
+          }
+        } catch (err) {}
       },
     });
   };

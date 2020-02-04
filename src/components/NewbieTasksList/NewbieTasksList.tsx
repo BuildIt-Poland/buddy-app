@@ -28,13 +28,10 @@ const NewbieTasksList: React.FC = () => {
 
   const { newbieProgress } = useTaskProgress(data && data.newbie);
 
-  const [updateTaskStatus, { loading: updateTaskLoading }] = useTaskStatusUpdate(
-    newbieId,
-    {
-      onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
-      onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
-    }
-  );
+  const [updateTaskStatus] = useTaskStatusUpdate(newbieId, {
+    onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
+    onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
+  });
 
   const newbieTasks = data && data.newbie.newbieTasks;
 
@@ -44,7 +41,6 @@ const NewbieTasksList: React.FC = () => {
         type={MenuTypes.MENU}
         color={MenuColors.PAPER}
         shape={MenuShapes.ROUNDED}
-        loading={loading || updateTaskLoading}
         onButtonClick={toggleMenu}>
         <AvatarHeader newbieId={newbieId} taskProgress={newbieProgress} />
       </Header>

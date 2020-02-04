@@ -64,13 +64,10 @@ const TaskDetails: React.FC = () => {
     variables: { taskId },
   });
 
-  const [updateTaskStatus, { loading: updateTaskLoading }] = useTaskStatusUpdate(
-    newbieId || userId,
-    {
-      onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
-      onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
-    }
-  );
+  const [updateTaskStatus] = useTaskStatusUpdate(newbieId || userId, {
+    onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
+    onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
+  });
 
   const defaultTabIndex = (state && state.tabIndex) || 0;
   const taskListPath = pathname.replace(/tasks.+/, 'tasks');
@@ -104,11 +101,7 @@ const TaskDetails: React.FC = () => {
 
   return (
     <>
-      <Header
-        type={MenuTypes.BACK}
-        loading={loading || updateTaskLoading}
-        onButtonClick={onBackClick}
-      />
+      <Header type={MenuTypes.BACK} loading={loading} onButtonClick={onBackClick} />
       <PageContainer data-testid='task-details-page' backGroundShape>
         {data && renderTaskDetails(data)}
       </PageContainer>

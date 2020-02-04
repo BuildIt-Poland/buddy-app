@@ -39,13 +39,10 @@ const TasksList: React.FC = () => {
   const [deleteTask, { loading: deleteTaskLoading }] = useMutation<Mutation>(
     DELETE_TASK
   );
-  const [updateTaskStatus, { loading: updateTaskLoading }] = useTaskStatusUpdate(
-    newbieId,
-    {
-      onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
-      onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
-    }
-  );
+  const [updateTaskStatus] = useTaskStatusUpdate(newbieId, {
+    onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
+    onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
+  });
 
   const onBackClick = () => {
     history.push(ROUTES.BUDDY_SELECT_NEWBIE);
@@ -63,7 +60,7 @@ const TasksList: React.FC = () => {
       <Header
         type={MenuTypes.BACK}
         color={MenuColors.PAPER}
-        loading={updateTaskLoading || deleteTaskLoading}
+        loading={deleteTaskLoading}
         onButtonClick={onBackClick}>
         <AvatarHeader newbieId={newbieId} taskProgress={buddyProgress} />
         <Tabs
