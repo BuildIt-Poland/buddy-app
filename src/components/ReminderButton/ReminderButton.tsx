@@ -1,27 +1,17 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Fab from '@material-ui/core/Fab';
+import IconButton from '@material-ui/core/IconButton';
 import NotificationsActiveOutlinedIcon from '@material-ui/icons/NotificationsActiveOutlined';
 import { ReminderButtonProps } from './types';
 
-const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1.5, 0),
-  },
-}));
-
-const ReminderButton = (props: ReminderButtonProps) => {
-  const { button } = useStyles();
-  return (
-    <Fab {...props} aria-label='reminder-btn' className={button}>
-      <NotificationsActiveOutlinedIcon />
-    </Fab>
-  );
-};
+const ReminderButton = (props: ReminderButtonProps) => (
+  <IconButton {...props} aria-label='reminder-btn' edge='end'>
+    <NotificationsActiveOutlinedIcon />
+  </IconButton>
+);
 
 ReminderButton.defaultProps = {
   color: 'inherit',
-  size: 'small',
+  edge: 'end',
 };
 
 export default ReminderButton;

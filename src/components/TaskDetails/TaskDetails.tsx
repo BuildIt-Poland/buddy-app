@@ -1,5 +1,5 @@
 import React from 'react';
-import { get } from 'lodash';
+import get from 'lodash/get';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
 import htmlParser from 'react-html-parser';
 import { makeStyles, Typography, Box, Chip } from '@material-ui/core';
@@ -41,9 +41,6 @@ const useStyles = makeStyles(theme => ({
   description: {
     marginTop: theme.spacing(3.5),
   },
-  checkbox: {
-    padding: 0,
-  },
 }));
 
 const BACKGROUND_COLORS = {
@@ -68,7 +65,7 @@ const TaskDetails: React.FC = () => {
     },
   ] = useAuth();
   const { taskId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
-  const { wrapper, header, status, description, checkbox } = useStyles();
+  const { wrapper, header, status, description } = useStyles();
   const { pathname, state } = useLocation();
   const { showSnackbar } = useSnackBar();
   const history = useHistory();
@@ -116,7 +113,8 @@ const TaskDetails: React.FC = () => {
           size='large'
           status={task.status}
           onChange={onTaskCheckboxChange}
-          className={checkbox}
+          edge='end'
+          hasRipple
         />
       </Box>
       <Chip

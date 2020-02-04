@@ -1,3 +1,3 @@
-import { FabProps } from '@material-ui/core/Fab';
+import { IconButtonProps } from '@material-ui/core/IconButton';
 
-export interface ReminderButtonProps extends FabProps {}
+export interface ReminderButtonProps extends IconButtonProps {}

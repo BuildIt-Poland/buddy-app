@@ -1,5 +1,6 @@
 import { TaskStatus } from 'buddy-app-schema';
 import { SvgIconProps } from '@material-ui/core/SvgIcon';
+import { IconButtonProps } from '@material-ui/core/IconButton';
 
 export interface CheckboxProps {
   onChange?: (id: string) => void;
@@ -9,5 +10,6 @@ export interface TaskCheckboxProps extends CheckboxProps {
   size?: SvgIconProps['fontSize'];
   title?: string;
   status: TaskStatus;
-  className?: string;
+  hasRipple?: boolean;
+  edge?: IconButtonProps['edge'];
 }

@@ -3,7 +3,7 @@ import { create } from 'react-test-renderer';
 
 import ReminderButton from '../ReminderButton';
 
-jest.mock('@material-ui/core/Fab', () => 'Fab');
+jest.mock('@material-ui/core/IconButton', () => 'IconButton');
 jest.mock(
   '@material-ui/icons/NotificationsActiveOutlined',
   () => 'NotificationsActiveOutlinedIcon'
