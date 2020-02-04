@@ -255,6 +255,7 @@ export const taskDetailsMock = [
     result: {
       data: {
         task: {
+          id: '1',
           title: 'New task',
           description: 'New task',
           status: TaskStatus.Uncompleted,

@@ -16,3 +16,6 @@ export const convertDirectionToAnchor = (direction: Direction): 'left' | 'right'
       return 'left';
   }
 };
+
+export const changeTaskStatus = (status: TaskStatus): TaskStatus =>
+  status === TaskStatus.Completed ? TaskStatus.Uncompleted : TaskStatus.Completed;

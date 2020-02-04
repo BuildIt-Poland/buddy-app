@@ -3,19 +3,13 @@ import get from 'lodash/get';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
 import htmlParser from 'react-html-parser';
 import { makeStyles, Typography, Box, Chip } from '@material-ui/core';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import { TASK_DETAILS } from 'graphql/task-details.graphql';
-import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
 import { colors } from 'styles/theme';
 import { useAuth } from 'contexts/AuthContext';
 import { useSnackBar } from 'contexts/SnackbarContext';
-import {
-  TaskStatus,
-  Query,
-  QueryTaskArgs,
-  QueryNewbieArgs,
-  Mutation,
-} from 'buddy-app-schema';
+import { TaskStatus, Query, QueryTaskArgs, QueryNewbieArgs } from 'buddy-app-schema';
+import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
 import { isBuddy, isNewbieTask } from 'utils';
 import PageContainer from 'components/PageContainer';
 import ReminderButton from 'components/ReminderButton';
@@ -61,10 +55,10 @@ const STATUS_TEXT = {
 const TaskDetails: React.FC = () => {
   const [
     {
-      data: { role },
+      data: { role, userId },
     },
   ] = useAuth();
-  const { taskId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
+  const { newbieId, taskId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
   const { wrapper, header, status, description } = useStyles();
   const { pathname, state } = useLocation();
   const { showSnackbar } = useSnackBar();
@@ -73,13 +67,10 @@ const TaskDetails: React.FC = () => {
     variables: { taskId },
   });
 
-  const [updateTaskStatus, { loading: updateTaskLoading }] = useMutation<Mutation>(
-    UPDATE_TASK_STATUS,
-    {
-      onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
-      onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
-    }
-  );
+  const [updateTaskStatus] = useTaskStatusUpdate(newbieId || userId, {
+    onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
+    onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
+  });
 
   const taskType: string = get(data, 'task.__typename', '');
   const taskStatus: TaskStatus = get(data, 'task.status', TaskStatus.Uncompleted);
@@ -94,14 +85,6 @@ const TaskDetails: React.FC = () => {
   const onBackClick = () =>
     history.push({ pathname: taskListPath, state: { defaultTabIndex } });
 
-  const onTaskCheckboxChange = (taskId: string) =>
-    !updateTaskLoading &&
-    updateTaskStatus({
-      variables: {
-        taskId,
-      },
-    });
-
   const renderTaskDetails = ({ task }: Query) => (
     <Box className={wrapper}>
       <Box className={header}>
@@ -109,10 +92,9 @@ const TaskDetails: React.FC = () => {
           {task.title}
         </Typography>
         <TaskCheckbox
-          id={taskId}
+          task={task}
           size='large'
-          status={task.status}
-          onChange={onTaskCheckboxChange}
+          onChange={updateTaskStatus}
           edge='end'
           hasRipple
         />
@@ -131,7 +113,7 @@ const TaskDetails: React.FC = () => {
     <>
       <Header
         type={MenuTypes.BACK}
-        loading={loading || updateTaskLoading}
+        loading={loading}
         onButtonClick={onBackClick}
         navItems={hasReminderBtn && <ReminderButton disabled />}
       />

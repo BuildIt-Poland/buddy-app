@@ -1,5 +1,5 @@
 import { ROUTES } from 'shared/routes';
-import { UserRole, TaskStatus, Newbie } from 'buddy-app-schema';
+import { UserRole, TaskStatus, Newbie, Task } from 'buddy-app-schema';
 
 export const mockLocation = (path: string = ROUTES.BASE) => ({
   key: 'utwyk7',
@@ -18,34 +18,22 @@ export const getBasicUserDetailsMock = (role: UserRole = UserRole.Buddy) => ({
   role,
 });
 
+export const completedTask = {
+  id: '1',
+  description: 'New task description 2',
+  status: TaskStatus.Completed,
+  title: 'New task title 2',
+} as Task;
+
+export const uncompletedTask = {
+  id: '2',
+  description: 'New task description',
+  status: TaskStatus.Uncompleted,
+  title: 'New task title ',
+} as Task;
+
 export const newbieTasksListMock = {
   id: '33',
-  buddyTasks: [
-    {
-      id: '1',
-      description: 'New task description',
-      status: TaskStatus.Uncompleted,
-      title: 'New task title ',
-    },
-    {
-      id: '2',
-      description: 'New task description 2',
-      status: TaskStatus.Completed,
-      title: 'New task title 2',
-    },
-  ],
-  newbieTasks: [
-    {
-      id: '3',
-      description: 'New task description',
-      status: TaskStatus.Completed,
-      title: 'New task title ',
-    },
-    {
-      id: '4',
-      description: 'New task description 2',
-      status: TaskStatus.Completed,
-      title: 'New task title 2',
-    },
-  ],
+  buddyTasks: [uncompletedTask, completedTask],
+  newbieTasks: [completedTask, completedTask],
 } as Newbie;

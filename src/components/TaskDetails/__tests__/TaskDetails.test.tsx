@@ -4,8 +4,8 @@ import { MockedProvider } from '@apollo/react-testing';
 import { MemoryRouter } from 'react-router';
 import { ROUTES } from 'shared/routes';
 import { taskDetailsMock, mockedBuddyContext } from '__mocks__';
-import { AuthProvider } from 'contexts/AuthContext';
 import waitForExpect from 'wait-for-expect';
+import { AuthProvider } from 'contexts/AuthContext';
 import { SnackbarProvider } from 'contexts/SnackbarContext';
 import TaskDetails from '../TaskDetails';
 
@@ -20,7 +20,7 @@ jest.doMock('components/Header');
 describe('Component - TaskDetails', () => {
   test('renders correctly', async () => {
     const component = create(
-      <MockedProvider mocks={taskDetailsMock} addTypename={false}>
+      <MockedProvider mocks={taskDetailsMock} addTypename={false} resolvers={{}}>
         <MemoryRouter initialEntries={[ROUTES.BASE]}>
           <AuthProvider value={mockedBuddyContext()}>
             <SnackbarProvider>
