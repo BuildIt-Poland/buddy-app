@@ -9,13 +9,13 @@ import { useSnackBar } from 'contexts/SnackbarContext';
 import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
 import { DELETE_TASK } from 'graphql/delete-task.graphql';
-import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
 import { useParams, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import TaskTabsContent from 'components/TaskTabsContent';
 import PlusButton from 'components/PlusButton';
 import { ROUTES } from 'shared/routes';
 import useTaskProgress from 'hooks/useTaskProgress';
+import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
 import Header, { MenuTypes, MenuColors } from 'components/Header';
 import DICTIONARY from './dictionary';
 
@@ -39,19 +39,10 @@ const TasksList: React.FC = () => {
   const [deleteTask, { loading: deleteTaskLoading }] = useMutation<Mutation>(
     DELETE_TASK
   );
-  const [updateTaskStatus, { loading: updateTaskLoading }] = useMutation<Mutation>(
-    UPDATE_TASK_STATUS,
-    {
-      onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
-      onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
-    }
-  );
-
-  const onTaskChange = (taskId: string) => {
-    if (!updateTaskLoading) {
-      updateTaskStatus({ variables: { taskId } });
-    }
-  };
+  const [updateTaskStatus] = useTaskStatusUpdate(newbieId, {
+    onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
+    onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
+  });
 
   const onBackClick = () => {
     history.push(ROUTES.BUDDY_SELECT_NEWBIE);
@@ -69,7 +60,7 @@ const TasksList: React.FC = () => {
       <Header
         type={MenuTypes.BACK}
         color={MenuColors.PAPER}
-        loading={updateTaskLoading || deleteTaskLoading}
+        loading={deleteTaskLoading}
         onButtonClick={onBackClick}>
         <AvatarHeader newbieId={newbieId} taskProgress={buddyProgress} />
         <Tabs
@@ -88,7 +79,7 @@ const TasksList: React.FC = () => {
           <TaskTabsContent
             loading={loading}
             tabIndex={tabIndex}
-            onChange={onTaskChange}
+            onChange={updateTaskStatus}
             tasks={newbieTasks as Task[]}
             taskOptionHandlers={taskOptionHandlers}
           />
@@ -97,7 +88,7 @@ const TasksList: React.FC = () => {
           <TaskTabsContent
             tabIndex={tabIndex}
             loading={loading}
-            onChange={onTaskChange}
+            onChange={updateTaskStatus}
             tasks={buddyTasks as Task[]}
             taskOptionHandlers={taskOptionHandlers}
           />

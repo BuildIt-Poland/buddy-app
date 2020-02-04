@@ -4,7 +4,6 @@ exports[`Component - TasksList When there are tasks renders correctly 1`] = `
 Array [
   <header
     color="paper"
-    loading={true}
     onButtonClick={[Function]}
     shape="rounded"
     type="menu"
@@ -30,7 +29,6 @@ exports[`Component - TasksList When there are tasks renders correctly 2`] = `
 Array [
   <header
     color="paper"
-    loading={false}
     onButtonClick={[Function]}
     shape="rounded"
     type="menu"
@@ -50,14 +48,14 @@ Array [
       tasks={
         Array [
           Object {
-            "description": "New task description",
-            "id": "3",
+            "description": "New task description 2",
+            "id": "1",
             "status": "COMPLETED",
-            "title": "New task title ",
+            "title": "New task title 2",
           },
           Object {
             "description": "New task description 2",
-            "id": "4",
+            "id": "1",
             "status": "COMPLETED",
             "title": "New task title 2",
           },
@@ -72,7 +70,6 @@ exports[`Component - TasksList when there are not tasks should render empty stat
 Array [
   <header
     color="paper"
-    loading={false}
     onButtonClick={[Function]}
     shape="rounded"
     type="menu"

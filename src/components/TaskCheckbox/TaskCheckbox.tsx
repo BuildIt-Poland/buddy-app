@@ -6,13 +6,12 @@ import CheckedCircleIcon from '@material-ui/icons/CheckCircle';
 import { TaskCheckboxProps } from './types';
 
 const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
-  id,
-  status,
+  task,
   size = 'default',
   onChange,
 }) => {
-  const isChecked = status === TaskStatus.Completed;
-  const onCheckboxChange = () => onChange && onChange(id);
+  const isChecked = task.status === TaskStatus.Completed;
+  const onCheckboxChange = () => onChange && onChange(task);
 
   return (
     <Checkbox

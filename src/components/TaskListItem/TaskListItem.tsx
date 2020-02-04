@@ -16,13 +16,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TaskListItem: React.FC<TaskListItemProps> = ({
-  id,
-  title,
-  status,
+  task,
   tabIndex = 0,
   onChange,
   taskOptionHandlers,
 }) => {
+  const { id, title, status } = task;
   const { pathname } = useLocation();
   const history = useHistory();
   const { listItem } = useStyles();
@@ -42,7 +41,7 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
       onClick={listItemClickHandler}
       component='li'>
       <ListItemIcon onClick={stopPropagation}>
-        <TaskCheckbox id={id} status={status} onChange={onChange} />
+        <TaskCheckbox task={task} onChange={onChange} />
       </ListItemIcon>
       <ListItemText primary={text[status]} />
       <ListItemIcon onClick={stopPropagation}>

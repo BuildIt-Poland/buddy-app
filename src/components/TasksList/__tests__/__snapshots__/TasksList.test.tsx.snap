@@ -139,14 +139,14 @@ Array [
         tasks={
           Array [
             Object {
-              "description": "New task description",
-              "id": "3",
+              "description": "New task description 2",
+              "id": "1",
               "status": "COMPLETED",
-              "title": "New task title ",
+              "title": "New task title 2",
             },
             Object {
               "description": "New task description 2",
-              "id": "4",
+              "id": "1",
               "status": "COMPLETED",
               "title": "New task title 2",
             },
@@ -171,13 +171,13 @@ Array [
           Array [
             Object {
               "description": "New task description",
-              "id": "1",
+              "id": "2",
               "status": "UNCOMPLETED",
               "title": "New task title ",
             },
             Object {
               "description": "New task description 2",
-              "id": "2",
+              "id": "1",
               "status": "COMPLETED",
               "title": "New task title 2",
             },

@@ -21,7 +21,7 @@ REACT_APP_AUTH_USER=auth-user
 PRISMA_ENDPOINT=https://eu1.prisma.sh/anton-lunov/Buddy-app/test
 PRISMA_SECRET=buddy-app-graphql-prisma-secret
 APP_SECRET=BUDDY-APP-GraphQL-1s-aw3some
-PORT=4000
+API_GATEWAY_DOMAIN=api-buddyapp.buildit.digital
 ```
 
 ### Commands
