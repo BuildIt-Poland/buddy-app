@@ -23,6 +23,9 @@ const LOADER_SIZE = 0.25;
 const SHADOW_SIZE = 0.5;
 
 const useStyles = makeStyles<Theme>(theme => ({
+  toolBar: {
+    justifyContent: 'space-between',
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -73,11 +76,13 @@ const Header: React.FC<HeaderProps> = ({
   type,
   color = MenuColors.DEFAULT,
   shape = MenuShapes.DEFAULT,
+  navItems,
   children,
   loading,
   onButtonClick,
 }) => {
   const {
+    toolBar,
     menuButton,
     withoutShadow,
     defaultBackground,
@@ -117,7 +122,7 @@ const Header: React.FC<HeaderProps> = ({
         position='static'
         color='inherit'
         component='div'>
-        <Toolbar component='nav'>
+        <Toolbar component='nav' className={toolBar}>
           <IconButton
             edge='start'
             className={menuButton}
@@ -125,6 +130,7 @@ const Header: React.FC<HeaderProps> = ({
             onClick={onButtonClick}>
             {button[type]()}
           </IconButton>
+          {navItems}
         </Toolbar>
         {children}
       </AppBar>

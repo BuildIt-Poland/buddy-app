@@ -9,6 +9,8 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
   task,
   size = 'default',
   onChange,
+  hasRipple,
+  edge,
 }) => {
   const isChecked = task.status === TaskStatus.Completed;
   const onCheckboxChange = () => onChange && onChange(task);
@@ -18,7 +20,8 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
       color={'primary'}
       checked={isChecked}
       onChange={onCheckboxChange}
-      disableRipple
+      disableRipple={!hasRipple}
+      edge={edge}
       icon={<UncheckedCircleIcon fontSize={size} />}
       checkedIcon={<CheckedCircleIcon fontSize={size} />}
     />
