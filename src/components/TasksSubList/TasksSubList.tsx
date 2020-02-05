@@ -2,7 +2,7 @@ import React from 'react';
 import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import TaskListItem from '../TaskListItem';
 import { TasksSubListProps } from './types';
 

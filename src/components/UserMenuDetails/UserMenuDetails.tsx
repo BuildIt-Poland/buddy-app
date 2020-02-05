@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box, makeStyles, Typography } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import makeStyles from '@material-ui/core/styles/makeStyles';
 import theme from 'styles/theme';
 import Avatar from 'components/Avatar';
 import { UserMenuDetailsProps } from './types';

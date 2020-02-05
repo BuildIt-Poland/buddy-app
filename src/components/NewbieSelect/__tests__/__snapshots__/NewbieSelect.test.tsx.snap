@@ -3,7 +3,6 @@
 exports[`Component - NewbieSelect renders correctly 1`] = `
 Array [
   <header
-    onButtonClick={[Function]}
     type="menu"
   />,
   <PageContainer
@@ -40,7 +39,6 @@ Array [
 exports[`Component - NewbieSelect renders correctly 2`] = `
 Array [
   <header
-    onButtonClick={[Function]}
     type="menu"
   />,
   <PageContainer

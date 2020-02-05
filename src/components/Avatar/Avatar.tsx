@@ -1,12 +1,10 @@
 import React from 'react';
-import {
-  Grid,
-  Avatar as AvatarMaterialUI,
-  makeStyles,
-  CircularProgress,
-} from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import AvatarMaterialUI from '@material-ui/core/Avatar';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
 import theme from 'styles/theme';
 import avatarPlaceholder from 'assets/svg/avatar-placeholder.svg';
 import { AvatarProps, AvatarType } from './types';

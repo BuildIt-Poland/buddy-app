@@ -1,9 +1,11 @@
 import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
-import { Box, makeStyles, Typography } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import Avatar from 'components/Avatar';
 import theme from 'styles/theme';
 import { User } from 'buddy-app-schema';
+import { makeStyles } from '@material-ui/core/styles';
 import { UserMenuListItemProps } from './types';
 
 const useStyles = makeStyles({

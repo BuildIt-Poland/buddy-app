@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import { useQuery } from '@apollo/react-hooks';
 import {
   NEWBIE_CONTACT_DETAILS,

@@ -16,7 +16,7 @@ export enum MenuTypes {
 }
 export interface HeaderProps {
   type: MenuTypes;
-  onButtonClick?: () => void;
+  onButtonClick: () => void;
   loading?: boolean;
   navItems?: React.ReactNode;
   children?: React.ReactNode;

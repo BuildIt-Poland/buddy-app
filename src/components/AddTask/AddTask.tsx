@@ -4,13 +4,11 @@ import { useMutation } from '@apollo/react-hooks';
 import useForm from 'react-hook-form';
 import { useSnackBar } from 'contexts/SnackbarContext';
 import { QueryNewbieArgs, Mutation, TaskInput } from 'buddy-app-schema';
-import {
-  makeStyles,
-  Typography,
-  Box,
-  CircularProgress,
-  TextField,
-} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import TextField from '@material-ui/core/TextField';
 import xss from 'dompurify';
 import { ADD_BUDDY_TASK, ADD_NEWBIE_TASK } from 'graphql/add-task.graphql';
 import PageContainer from 'components/PageContainer';
