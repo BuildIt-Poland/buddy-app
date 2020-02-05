@@ -4,7 +4,6 @@ exports[`Component - TasksList When there are tasks renders correctly 1`] = `
 Array [
   <header
     color="paper"
-    onButtonClick={[Function]}
     shape="rounded"
     type="menu"
   >
@@ -29,7 +28,6 @@ exports[`Component - TasksList When there are tasks renders correctly 2`] = `
 Array [
   <header
     color="paper"
-    onButtonClick={[Function]}
     shape="rounded"
     type="menu"
   >
@@ -70,7 +68,6 @@ exports[`Component - TasksList when there are not tasks should render empty stat
 Array [
   <header
     color="paper"
-    onButtonClick={[Function]}
     shape="rounded"
     type="menu"
   >

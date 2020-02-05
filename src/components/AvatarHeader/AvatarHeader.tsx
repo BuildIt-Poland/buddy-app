@@ -1,8 +1,9 @@
 import React from 'react';
 import { useHistory } from 'react-router';
-import { Box, createStyles, Theme } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Theme } from '@material-ui/core/';
+import Box from '@material-ui/core/Box';
 import { useQuery } from '@apollo/react-hooks';
 import Avatar from 'components/Avatar';
 import { AVATAR_HEADER } from 'graphql/avatar-header.graphql';
@@ -11,17 +12,15 @@ import { getProgressInPercentages } from 'utils';
 import { ROUTES } from 'shared/routes';
 import { AvatarHeaderProps } from './types';
 
-const useStyles = makeStyles<Theme>(theme =>
-  createStyles({
-    background: {
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      width: '100%',
-      minHeight: theme.spacing(20),
-    },
-  })
-);
+const useStyles = makeStyles<Theme>(theme => ({
+  background: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    minHeight: theme.spacing(20),
+  },
+}));
 
 const AvatarHeader: React.FC<AvatarHeaderProps> = ({ newbieId, taskProgress }) => {
   const history = useHistory();

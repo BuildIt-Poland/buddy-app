@@ -17,15 +17,18 @@ a {
   font-family: 'Wipro Akkurat TT';
   font-style: normal;
   font-weight: 300;
+  font-display: swap;
   src: local("WiproAkkuratTT-Light"),
     url(assets/fonts/WiproAkkuratWeb-Light.woff2) format("woff2"),
     url(assets/fonts/WiproAkkuratWeb-Light.woff) format("woff")
+
 }
 
 @font-face {
   font-family: 'Wipro Akkurat TT';
   font-style: italic;
   font-weight: 300;
+  font-display: swap;
   src: local("WiproAkkuratTT-LightItalic"),
     url(assets/fonts/WiproAkkuratWeb-Italic.woff2) format("woff2"),
     url(assets/fonts/WiproAkkuratWeb-Italic.woff) format("woff")
@@ -35,6 +38,7 @@ a {
   font-family: 'Wipro Akkurat TT';
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
   src: local("WiproAkkuratTT-Regular"),
     url(assets/fonts/WiproAkkuratWeb-Regular.woff2) format("woff2"),
     url(assets/fonts/WiproAkkuratWeb-Regular.woff) format("woff")
@@ -44,6 +48,7 @@ a {
   font-family: 'Wipro Akkurat TT';
   font-style: italic;
   font-weight: 400;
+  font-display: swap;
   src: local("WiproAkkuratTT-Italic"),
     url(assets/fonts/WiproAkkuratWeb-Italic.woff2) format("woff2"),
     url(assets/fonts/WiproAkkuratWeb-Italic.woff) format("woff")
@@ -53,6 +58,7 @@ a {
   font-family: 'Wipro Akkurat TT';
   font-style: normal;
   font-weight: 700;
+  font-display: swap;
   src: local("WiproAkkuratTT-Bold"),
     url(assets/fonts/WiproAkkuratWeb-Bold.woff2) format("woff2"),
     url(assets/fonts/WiproAkkuratWeb-Bold.woff) format("woff")
@@ -62,6 +68,7 @@ a {
   font-family: 'Wipro Akkurat TT';
   font-style: italic;
   font-weight: 700;
+  font-display: swap;
   src: local("WiproAkkuratTT-BoldItalic"),
     url(assets/fonts/WiproAkkuratWeb-BoldItalic.woff2) format("woff2"),
     url(assets/fonts/WiproAkkuratWeb-BoldItalic.woff) format("woff")
@@ -71,6 +78,7 @@ a {
   font-family: 'Wipro Akkurat Mono TT';
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
   src: local("WiproAkkuratMonoTT-Regular"),
     url(assets/fonts/WiproAkkuratMonoWeb-Regular.woff2) format("woff2"),
     url(assets/fonts/WiproAkkuratMonoWeb-Regular.woff) format("woff")

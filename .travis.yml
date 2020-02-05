@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "stable"
+  - 12
 addons:
   chrome: stable
   apt:
@@ -26,7 +26,8 @@ deploy:
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   bucket: "buildit-poland-buddy-app"
-  skip_cleanup: true
+  cleanup: true
+  region: eu-west-1
   local_dir: build
   acl: public_read
   on:

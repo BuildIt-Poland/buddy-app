@@ -5,7 +5,6 @@ Array [
   <header
     loading={true}
     navItems={false}
-    onButtonClick={[Function]}
     type="back"
   />,
   <PageContainer
@@ -20,7 +19,6 @@ Array [
   <header
     loading={false}
     navItems={false}
-    onButtonClick={[Function]}
     type="back"
   />,
   <PageContainer

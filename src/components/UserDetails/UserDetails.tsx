@@ -1,11 +1,10 @@
 import React from 'react';
-import {
-  Box,
-  Link,
-  makeStyles,
-  TextareaAutosize,
-  Typography,
-} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import Typography from '@material-ui/core/Typography';
+
 import Avatar from 'components/Avatar';
 import { isNewbie } from 'utils';
 import { UserRole } from 'buddy-app-schema';
