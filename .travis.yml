@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 10
+  - 12
 addons:
   chrome: stable
   apt:
@@ -21,8 +21,6 @@ after_success:
   - codecov --token="$CODECOV_TOKEN"
 notifications:
   slack: $SLACK_TOKEN
-env:
-  AWS_ACCESS_KEY: $AWS_ACCESS_KEY
 deploy:
   provider: s3
   access_key_id: $AWS_ACCESS_KEY
