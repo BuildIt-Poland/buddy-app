@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - ReminderButton renders correctly 1`] = `
+<IconButton
+  aria-label="reminder-btn"
+  color="inherit"
+  edge="end"
+>
+  <NotificationsActiveOutlinedIcon />
+</IconButton>
+`;

@@ -1,78 +1,25 @@
 import { renderHook } from '@testing-library/react-hooks';
-import { TaskStatus, Newbie } from 'buddy-app-schema';
+import { Newbie } from 'buddy-app-schema';
+import { completedTask, uncompletedTask } from '__mocks__';
 import useTaskProgress from '../useTaskProgress';
 
 describe('Custom Hooks - useTaskProgress', () => {
   const newbieUncompletedTasksListMock = {
     id: '1',
-    buddyTasks: [
-      {
-        id: '1',
-        description: 'New task description',
-        status: TaskStatus.Uncompleted,
-        title: 'New task title ',
-      },
-    ],
-    newbieTasks: [
-      {
-        id: '1',
-        description: 'New task description',
-        status: TaskStatus.Uncompleted,
-        title: 'New task title ',
-      },
-    ],
+    buddyTasks: [uncompletedTask],
+    newbieTasks: [uncompletedTask],
   } as Newbie;
 
   const newbieCompletedTasksListMock = {
     id: '1',
-    buddyTasks: [
-      {
-        id: '1',
-        description: 'New task description',
-        status: TaskStatus.Completed,
-        title: 'New task title ',
-      },
-    ],
-    newbieTasks: [
-      {
-        id: '1',
-        description: 'New task description',
-        status: TaskStatus.Completed,
-        title: 'New task title ',
-      },
-    ],
+    buddyTasks: [completedTask],
+    newbieTasks: [completedTask],
   } as Newbie;
 
   const newbieHalfCompletedTasksListMock = {
     id: '1',
-    buddyTasks: [
-      {
-        id: '1',
-        description: 'New task description',
-        status: TaskStatus.Completed,
-        title: 'New task title ',
-      },
-      {
-        id: '1',
-        description: 'New task description',
-        status: TaskStatus.Uncompleted,
-        title: 'New task title ',
-      },
-    ],
-    newbieTasks: [
-      {
-        id: '1',
-        description: 'New task description',
-        status: TaskStatus.Completed,
-        title: 'New task title ',
-      },
-      {
-        id: '1',
-        description: 'New task description',
-        status: TaskStatus.Uncompleted,
-        title: 'New task title ',
-      },
-    ],
+    buddyTasks: [completedTask, uncompletedTask],
+    newbieTasks: [completedTask, uncompletedTask],
   } as Newbie;
 
   it('if no tasks are completed should return 0', () => {

@@ -12,15 +12,21 @@ exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] =
     onClick={[Function]}
   >
     <TaskCheckbox
-      id="1"
       onChange={[Function]}
-      status="COMPLETED"
+      task={
+        Object {
+          "description": "New task description 2",
+          "id": "1",
+          "status": "COMPLETED",
+          "title": "New task title 2",
+        }
+      }
     />
   </ListItemIcon>
   <ListItemText
     primary={
       <del>
-        Change you line manager
+        New task title 2
       </del>
     }
   />
@@ -46,15 +52,21 @@ exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`]
     onClick={[Function]}
   >
     <TaskCheckbox
-      id="1"
       onChange={[Function]}
-      status="UNCOMPLETED"
+      task={
+        Object {
+          "description": "New task description",
+          "id": "2",
+          "status": "UNCOMPLETED",
+          "title": "New task title ",
+        }
+      }
     />
   </ListItemIcon>
   <ListItemText
     primary={
       <strong>
-        Change you line manager
+        New task title 
       </strong>
     }
   />
@@ -62,7 +74,7 @@ exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`]
     onClick={[Function]}
   >
     <TaskOptions
-      id="1"
+      id="2"
     />
   </ListItemIcon>
 </ListItem>

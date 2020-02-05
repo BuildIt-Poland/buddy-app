@@ -3,14 +3,16 @@ import { create, act } from 'react-test-renderer';
 import { MockedProvider } from '@apollo/react-testing';
 import { MemoryRouter } from 'react-router';
 import { ROUTES } from 'shared/routes';
-import { taskDetailsMock } from '__mocks__';
+import { taskDetailsMock, mockedBuddyContext } from '__mocks__';
 import waitForExpect from 'wait-for-expect';
+import { AuthProvider } from 'contexts/AuthContext';
 import { SnackbarProvider } from 'contexts/SnackbarContext';
 import TaskDetails from '../TaskDetails';
 
 jest.mock('components/PageContainer', () => 'PageContainer');
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
 jest.mock('components/TaskCheckbox', () => 'TaskCheckbox');
+jest.mock('components/ReminderButton', () => 'ReminderButton');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.doMock('components/Header');
@@ -18,11 +20,13 @@ jest.doMock('components/Header');
 describe('Component - TaskDetails', () => {
   test('renders correctly', async () => {
     const component = create(
-      <MockedProvider mocks={taskDetailsMock} addTypename={false}>
+      <MockedProvider mocks={taskDetailsMock} addTypename={false} resolvers={{}}>
         <MemoryRouter initialEntries={[ROUTES.BASE]}>
-          <SnackbarProvider>
-            <TaskDetails />
-          </SnackbarProvider>
+          <AuthProvider value={mockedBuddyContext()}>
+            <SnackbarProvider>
+              <TaskDetails />
+            </SnackbarProvider>
+          </AuthProvider>
         </MemoryRouter>
       </MockedProvider>
     );

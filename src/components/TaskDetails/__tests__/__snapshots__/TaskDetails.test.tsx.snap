@@ -4,6 +4,7 @@ exports[`Component - TaskDetails renders correctly 1`] = `
 Array [
   <header
     loading={true}
+    navItems={false}
     onButtonClick={[Function]}
     type="back"
   />,
@@ -18,6 +19,7 @@ exports[`Component - TaskDetails renders correctly 2`] = `
 Array [
   <header
     loading={false}
+    navItems={false}
     onButtonClick={[Function]}
     type="back"
   />,
