@@ -26,7 +26,7 @@ deploy:
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   bucket: "buildit-poland-buddy-app"
-  cleanup: true
+  skip_cleanup: true
   region: eu-west-1
   local_dir: build
   acl: public_read
