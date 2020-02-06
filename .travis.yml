@@ -35,5 +35,6 @@ deploy:
   # deploy services
   - provider: script
     script: bash services/deploy.sh prod
+    skip_cleanup: true
     on:
       branch: master
