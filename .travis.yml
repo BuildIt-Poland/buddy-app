@@ -29,10 +29,12 @@ deploy:
     region: eu-west-1
     local_dir: build
     acl: public_read
+    edge: true
     on:
       branch: master
   # deploy services
   - provider: script
     script: bash services/deploy.sh prod
+    edge: true
     on:
       branch: master
