@@ -56,13 +56,12 @@ const useTaskStatusUpdate = (
           if (client && prevController) {
             const { store }: any = client.queryManager.mutationStore;
             Object.keys(store).forEach(key => {
-              if (store[key].loading) {
+              if (store[key].loading && store[key].variables.taskId === task.id) {
                 client.queryManager.stopQuery(key);
                 client.queryManager.removeQuery(key);
                 client.cache.removeOptimistic(key);
               }
             });
-            client.queryManager.mutationStore.reset();
           }
           delete abortControllers.current[task.id];
         }
