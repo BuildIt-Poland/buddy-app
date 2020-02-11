@@ -19,7 +19,6 @@
     "cy:ci": "REACT_APP_SERVER_URL= start-test 3000 cy:run",
     "coverage": "npm test -- --coverage --watchAll=false",
     "prettier": "prettier ./src/**/*.{ts,tsx} --write",
-    "pre-commit": "lint-staged",
     "eject": "react-scripts eject",
     "lighthouse": "lhci autorun"
   },
@@ -64,9 +63,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "graphql": "^14.6.0",
     "graphql-tools": "^4.0.6",
-    "husky": "4.2.1",
     "js-cookie": "^2.2.1",
-    "lint-staged": "10.0.7",
     "prettier": "^1.19.1",
     "react-hook-form": "^4.9.3",
     "react-test-renderer": "^16.12.0",
@@ -74,18 +71,6 @@
     "wait-for-expect": "^3.0.2",
     "webpack": "^4.41.6",
     "webpack-graphql-loader": "^1.0.2"
-  },
-  "lint-staged": {
-    "*.{tsx,ts, js}": [
-      "npm run lint:fix",
-      "npm run prettier",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run pre-commit"
-    }
   },
   "browserslist": {
     "production": [

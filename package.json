@@ -1,7 +1,8 @@
 {
   "name": "buddy-app",
   "scripts": {
-    "bootstrap": "lerna bootstrap --use-workspaces"
+    "bootstrap": "lerna bootstrap --use-workspaces",
+    "pre-commit": "lint-staged"
   },
   "private": true,
   "workspaces": {
@@ -13,7 +14,21 @@
       "**/@bahmutov/add-typescript-to-cypress/**"
     ]
   },
+  "lint-staged": {
+    "*.{tsx,ts, js}": [
+      "lerna run lint:fix",
+      "lerna run prettier",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run pre-commit"
+    }
+  },
   "devDependencies": {
-    "lerna": "^3.8.0"
+    "husky": "^4.2.1",
+    "lerna": "^3.8.0",
+    "lint-staged": "^10.0.7"
   }
 }
