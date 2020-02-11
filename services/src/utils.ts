@@ -1,5 +1,5 @@
 import * as jwt from 'jsonwebtoken';
-import { ResolverFn, Context, TaskStatus } from 'buddy-app-schema';
+import { ResolverFn, Context } from 'buddy-app-schema';
 import ERRORS from './errors';
 
 const MAX_PASSWORD_LENGTH = 24;
@@ -7,9 +7,6 @@ const APP_SECRET = process.env.APP_SECRET as string;
 
 const emailValidator = (email: string): boolean =>
   /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
-
-export const changeTaskStatus = (status: TaskStatus): TaskStatus =>
-  status === TaskStatus.Completed ? TaskStatus.Uncompleted : TaskStatus.Completed;
 
 const auth = (authToken: string): string => {
   try {
