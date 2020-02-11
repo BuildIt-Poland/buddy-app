@@ -1,124 +1,19 @@
 {
   "name": "buddy-app",
-  "description": "A PWA app that aims to help Buddy and Newbie go through the induction process.",
-  "version": "0.1.0",
-  "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "services": "npm start --prefix services",
-    "postinstall": "npm install --prefix services && npm install --prefix schema",
-    "lint": "eslint ./src/**/*.{ts,tsx}",
-    "lint:fix": "eslint ./src/**/*.{ts,tsx} --fix",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "cy:open": "cypress open",
-    "cy:run": "cypress run --browser chrome",
-    "cy:ci": "REACT_APP_SERVER_URL= start-test 3000 cy:run",
-    "coverage": "npm test -- --coverage --watchAll=false",
-    "prettier": "prettier ./src/**/*.{ts,tsx} --write",
-    "pre-commit": "lint-staged",
-    "eject": "react-scripts eject",
-    "lighthouse": "lhci autorun"
+    "bootstrap": "lerna bootstrap --use-workspaces"
   },
-  "dependencies": {
-    "@apollo/react-hooks": "^3.1.3",
-    "@buildit/gravity-particles": "^0.3.0",
-    "@material-ui/core": "^4.9.1",
-    "@material-ui/icons": "^4.9.1",
-    "@material-ui/lab": "^4.0.0-alpha.41",
-    "apollo-boost": "^0.4.7",
-    "dompurify": "^2.0.8",
-    "react": "16.9.0",
-    "react-dom": "16.9.0",
-    "react-html-parser": "^2.0.2",
-    "react-router-dom": "5.1.2",
-    "react-scripts": "^3.3.1",
-    "typescript": "^3.7.4"
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/@bahmutov/add-typescript-to-cypress",
+      "**/@bahmutov/add-typescript-to-cypress/**"
+    ]
   },
   "devDependencies": {
-    "@apollo/react-testing": "^3.1.3",
-    "@bahmutov/add-typescript-to-cypress": "^2.1.2",
-    "@lhci/cli": "^0.3.8",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.4.0",
-    "@testing-library/react-hooks": "^3.2.1",
-    "@types/dompurify": "^2.0.1",
-    "@types/dotenv": "6.1.1",
-    "@types/jest": "24.0.18",
-    "@types/js-cookie": "^2.2.4",
-    "@types/lodash": "^4.14.149",
-    "@types/node": "12.7.8",
-    "@types/react": "^16.9.19",
-    "@types/react-dom": "16.9.1",
-    "@types/react-html-parser": "^2.0.1",
-    "@types/react-router-dom": "5.1.0",
-    "@types/react-test-renderer": "^16.9.2",
-    "apollo-server-lambda": "^2.9.16",
-    "buddy-app-schema": "file:schema",
-    "clsx": "^1.1.0",
-    "cypress": "^3.8.3",
-    "eslint-config-prettier": "^6.10.0",
-    "eslint-plugin-cypress": "^2.8.1",
-    "eslint-plugin-prettier": "^3.1.2",
-    "graphql": "^14.6.0",
-    "graphql-tools": "^4.0.6",
-    "husky": "3.0.5",
-    "js-cookie": "^2.2.1",
-    "lint-staged": "9.4.0",
-    "prettier": "^1.19.1",
-    "react-hook-form": "^3.29.4",
-    "react-test-renderer": "^16.12.0",
-    "start-server-and-test": "^1.10.8",
-    "wait-for-expect": "^3.0.1",
-    "webpack-graphql-loader": "^1.0.2"
-  },
-  "lint-staged": {
-    "*.{tsx,ts, js}": [
-      "npm run lint:fix",
-      "npm run prettier",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run pre-commit"
-    }
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "jest": {
-    "coverageThreshold": {
-      "global": {
-        "branches": 70,
-        "functions": 70,
-        "lines": 70,
-        "statements": 70
-      }
-    },
-    "collectCoverageFrom": [
-      "src/**/*.{tsx,ts}",
-      "!src/styles/*",
-      "!src/__mocks__/*",
-      "!src/shared/*",
-      "!src/graphql/*",
-      "!src/context/*",
-      "!src/index.tsx",
-      "!src/utils/apollo-client/",
-      "!src/serviceWorker.ts",
-      "!<rootDir>/node_modules/"
-    ],
-    "moduleNameMapper": {
-      "buddy-app-schema": "<rootDir>/src/__mocks__/schema.ts"
-    }
+    "lerna": "^3.8.0"
   }
 }
