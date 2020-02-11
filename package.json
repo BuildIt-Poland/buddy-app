@@ -16,9 +16,8 @@
   },
   "lint-staged": {
     "*.{tsx,ts, js}": [
-      "lerna run lint:fix",
-      "lerna run prettier",
-      "git add"
+      "lerna run --parallel lint:fix",
+      "lerna run --parallel prettier"
     ]
   },
   "husky": {
