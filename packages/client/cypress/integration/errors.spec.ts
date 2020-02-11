@@ -1,6 +1,6 @@
 import { GraphQLError } from 'graphql';
 import schema from '@buddy-app/schema';
-import { ERROR } from '../../services/src/errors';
+import { ERROR } from '@buddy-app/services/src/errors';
 import { ROUTES } from '../../src/shared/routes';
 import { REQUEST_DELAY } from '../support/commands';
 import DICTIONARY from '../../src/components/Login/dictionary';

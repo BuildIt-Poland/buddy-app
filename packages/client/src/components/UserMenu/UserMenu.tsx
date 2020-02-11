@@ -14,8 +14,8 @@ import { isBuddy, isNewbie } from 'utils';
 import { ROUTES } from 'shared/routes';
 import { Buddy, Newbie, UserRole } from '@buddy-app/schema';
 import { useAuth, logout } from 'contexts/AuthContext';
+import { DocumentNode } from 'graphql';
 import { BasicDetailsParams, UserMenuProps, UserBasicDetails } from './types';
-import { DocumentNode } from '@buddy-app/schema/node_modules/graphql';
 
 const useStyles = makeStyles(theme => ({
   list: {
