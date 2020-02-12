@@ -4,11 +4,10 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TabPanel from 'components/TabPanel';
 import AvatarHeader from 'components/AvatarHeader';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import { useSnackBar } from 'contexts/SnackbarContext';
-import { QueryNewbieArgs, Query, Task, Mutation } from 'buddy-app-schema';
+import { QueryNewbieArgs, Query, Task } from 'buddy-app-schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
-import { DELETE_TASK } from 'graphql/delete-task.graphql';
 import { useParams, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import TaskTabsContent from 'components/TaskTabsContent';
@@ -23,26 +22,21 @@ const TasksList: React.FC = () => {
   const { newbieId } = useParams<QueryNewbieArgs>();
   const { state } = useLocation();
   const history = useHistory();
+  const { showSnackbar } = useSnackBar();
   const defaultTabIndex = (state && state.defaultTabIndex) || 0;
   const [tabIndex, setTabIndex] = useState(defaultTabIndex);
-  const { showSnackbar } = useSnackBar();
-
-  const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) =>
-    setTabIndex(newValue);
 
   const { loading, data } = useQuery<Query, QueryNewbieArgs>(TASK_LIST, {
     variables: { newbieId },
   });
-
   const { buddyProgress } = useTaskProgress(data && data.newbie);
-
-  const [deleteTask, { loading: deleteTaskLoading }] = useMutation<Mutation>(
-    DELETE_TASK
-  );
   const [updateTaskStatus] = useTaskStatusUpdate(newbieId, {
     onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
     onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
   });
+
+  const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) =>
+    setTabIndex(newValue);
 
   const onBackClick = () => {
     history.push(ROUTES.BUDDY_SELECT_NEWBIE);
@@ -51,16 +45,12 @@ const TasksList: React.FC = () => {
   const newbieTasks = data && data.newbie.newbieTasks;
   const buddyTasks = data && data.newbie.buddyTasks;
   const pathname = ROUTES.BUDDY_ADD_TASK.replace(':newbieId', newbieId);
-  const taskOptionHandlers = {
-    deleteTask,
-  };
 
   return (
     <>
       <Header
         type={MenuTypes.BACK}
         color={MenuColors.PAPER}
-        loading={deleteTaskLoading}
         onButtonClick={onBackClick}>
         <AvatarHeader newbieId={newbieId} taskProgress={buddyProgress} />
         <Tabs
@@ -81,7 +71,6 @@ const TasksList: React.FC = () => {
             tabIndex={tabIndex}
             onChange={updateTaskStatus}
             tasks={newbieTasks as Task[]}
-            taskOptionHandlers={taskOptionHandlers}
           />
         </TabPanel>
         <TabPanel value={tabIndex} index={1}>
@@ -90,7 +79,6 @@ const TasksList: React.FC = () => {
             loading={loading}
             onChange={updateTaskStatus}
             tasks={buddyTasks as Task[]}
-            taskOptionHandlers={taskOptionHandlers}
           />
         </TabPanel>
         <PlusButton

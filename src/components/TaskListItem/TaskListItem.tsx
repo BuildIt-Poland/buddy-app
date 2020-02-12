@@ -19,7 +19,6 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
   task,
   tabIndex = 0,
   onChange,
-  taskOptionHandlers,
 }) => {
   const { id, title, status } = task;
   const { pathname } = useLocation();
@@ -45,7 +44,7 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
       </ListItemIcon>
       <ListItemText primary={text[status]} />
       <ListItemIcon onClick={stopPropagation}>
-        <TaskOptions id={id} taskOptionHandlers={taskOptionHandlers} />
+        <TaskOptions id={id} />
       </ListItemIcon>
     </ListItem>
   );
