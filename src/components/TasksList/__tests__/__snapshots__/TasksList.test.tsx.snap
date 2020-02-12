@@ -4,7 +4,6 @@ exports[`Component - TasksList When there are tasks renders correctly 1`] = `
 Array [
   <header
     color="paper"
-    loading={false}
     type="back"
   >
     <AvatarHeader
@@ -39,11 +38,6 @@ Array [
         loading={true}
         onChange={[Function]}
         tabIndex={0}
-        taskOptionHandlers={
-          Object {
-            "deleteTask": [Function],
-          }
-        }
       />
     </TabPanel>
     <TabPanel
@@ -54,11 +48,6 @@ Array [
         loading={true}
         onChange={[Function]}
         tabIndex={0}
-        taskOptionHandlers={
-          Object {
-            "deleteTask": [Function],
-          }
-        }
       />
     </TabPanel>
     <PlusButton
@@ -94,7 +83,6 @@ exports[`Component - TasksList When there are tasks renders correctly 2`] = `
 Array [
   <header
     color="paper"
-    loading={false}
     type="back"
   >
     <AvatarHeader
@@ -129,11 +117,6 @@ Array [
         loading={false}
         onChange={[Function]}
         tabIndex={0}
-        taskOptionHandlers={
-          Object {
-            "deleteTask": [Function],
-          }
-        }
         tasks={
           Array [
             Object {
@@ -160,11 +143,6 @@ Array [
         loading={false}
         onChange={[Function]}
         tabIndex={0}
-        taskOptionHandlers={
-          Object {
-            "deleteTask": [Function],
-          }
-        }
         tasks={
           Array [
             Object {
@@ -216,7 +194,6 @@ exports[`Component - TasksList when there are not tasks should render empty stat
 Array [
   <header
     color="paper"
-    loading={false}
     type="back"
   >
     <AvatarHeader
@@ -251,11 +228,6 @@ Array [
         loading={false}
         onChange={[Function]}
         tabIndex={0}
-        taskOptionHandlers={
-          Object {
-            "deleteTask": [Function],
-          }
-        }
         tasks={Array []}
       />
     </TabPanel>
@@ -267,11 +239,6 @@ Array [
         loading={false}
         onChange={[Function]}
         tabIndex={0}
-        taskOptionHandlers={
-          Object {
-            "deleteTask": [Function],
-          }
-        }
         tasks={Array []}
       />
     </TabPanel>
