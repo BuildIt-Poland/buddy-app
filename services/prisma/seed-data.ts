@@ -1,31 +1,95 @@
 export const sampleNewbieTasks = [
   {
-    title: 'Setup Macbook',
-    description: `If your new MacBook does not have an account set up for you already, ask your on-boarding buddy to create a local admin one for you. You are going to need an Apple ID. (It's up to you whether you use existing accounts or not but probably better keeping work and personal stuff separate).`,
+    title: `Fill new starter form given by Talent Team`,
+    description: `<p>1st day</p>
+    <p>The Talent Team representative will hand over to you a "New starter" form.</p>
+    <p>Please fill it and return it to the TT representative.</p>`,
   },
   {
-    title: 'Login to Outlook',
-    description: `Once you are given your email address and temporary password, you can check that outlook is working. When you log in for the first time with the default password via <a href="http://webmail.wipro.com/">www.webmail.wipro</a>.com, you'll then be asked to use <a href="https://outlook.com/owa/wipro.com">www.outlook.com/owa/wipro.com</a> in future (and now), where you will change your password. It needs to be between 8 and 16 characters, alphanumeric and at least one special character.`,
+    title: `Provide P45`,
+    description: `<p>1st day</p>
+    <p>Provide a copy of your last P45.</p>
+    <p>If unable please fill the provided checklist and give all back to Talent Team.</p>`,
   },
   {
-    title: 'Create an Outlook signature',
-    description: `Now that we are officially "Buildit@wiprodigital" for now it's best to copy a signature from your buddy. Previously, we used - http://esig.wiprodigital.com`,
+    title: `Talent Team Wipro presentation`,
+    description: `<p>1st day</p>
+    <p>Assist a presentation from Talent Team member of Wipro and BuildIt.</p>`,
+  },
+  {
+    title: `Lunch with Buddy`,
+    description: `<p>1st day</p>
+    <p>You are invited for lunch!</p>
+    <p>Your Buddy will lead you to a nearby place and you'll have lunch together.</p>
+    <p>Lunch is paid by BuildIt for you and your Buddy.</p>`,
+  },
+  {
+    title: `Activate/check email address`,
+    description: `<p>Check if the new joiner's email account works by sending a test email and require for reply.</p>`,
+  },
+  {
+    title: `Login into myWipro`,
+    description: `<p>1st day</p>
+    <p>Assure that you can login in <a href="mywipro.wipro.com" rel="noopener" target="_blank">mywipro.wipro.com</a></p>`,
+  },
+  {
+    title: `Enter personal info in myWipro`,
+    description: `<p>1st day</p>
+    <p>Login in mywipro.wipro.com</p>
+    <p>In the top-left box select "My data"</p>
+    <p>Assure that the following sections are filled in correctly in each field:</p>
+    <ul>
+    <li>My office details</li>
+    <li>Personal detailsBank details</li>
+    </ul>
+    <p>Please put extra care on the bank details. You need to fill this space with your own details, otherwise you will not get the salary paid!</p>`,
+  },
+  {
+    title: `Confirm access to Harvest`,
+    description: `<p>1st day</p>
+    <p>Please confirm that you are able to login to <a href="//builditglobal.harvestapp.com/" rel="noopener" target="_blank">//builditglobal.harvestapp.com/</a></p>`,
+  },
+  {
+    title: `Attend BuildIt orientation within 3 weeks`,
+    description: `This will be planned by your Buddy and the Talent Team.`,
   },
 ];
 
 export const sampleBuddyTasks = [
   {
-    title: 'Meet and Greet a Newbie',
-    description: `Meet Newbie at the reception and conduct site orientation.`,
+    title: `Pick up candidate to BuildIt office`,
+    description: `<p>1st day</p>
+    <p>>Welcome the candidate into the office by picking him up from the reception.</p>`,
   },
   {
-    title: 'Pick up MacBook for a Newbie',
-    description: `Pick up  MacBook & set up the basics for the Newbie if it's not already done.`,
+    title: `Introduction to the Team`,
+    description: `<p>Introduce the new joiner to the team. As a suggestion, you may take him/her desk by desk and make the introductions.</p>`,
   },
   {
-    title: 'Invite into Slack channels',
-    description: `Send invitations to Slack channels:
-    <ul><li>#buildit,</li><li>#buildit-poland,</li><li>#gtmt,</li><li>#global-backlog-tribe,</li></ul> `,
+    title: `Provide laptop and assist in configuration`,
+    description: `<p>1st day</p>
+    <p>Assure that the laptop is available ahead of time by asking your Studio lead.</p>
+    <p>Provide a laptop to the new joiner.</p>
+    <p>Assist in configuring the laptop following the <a href="//digitalrig.atlassian.net/wiki/spaces/ENG/pages/6684843/New+Mac+Setup" rel="noopener" target="_blank">guide</a> in Confluence.</p>`,
+  },
+  {
+    title: `Invite candidate on tools`,
+    description: `<ul>
+    <li>Slack (general + tribes)</li>
+    <li>Jira</li>
+    <li>Confluence</li>
+    <li>BitBucket?</li>
+    <li>GitHub?</li>
+    </ul>`,
+  },
+  {
+    title: `Find date for the next Wipro orientation planned day`,
+    description: `Every 2nd week on Tuesday, ask Ania for planned dates.`,
+  },
+  {
+    title: `BD/TT - give an overview of Wipro and BuildIt`,
+    description: `<p>1st day</p>
+    <p>Who we are? What we do?</p>`,
   },
 ];
 
