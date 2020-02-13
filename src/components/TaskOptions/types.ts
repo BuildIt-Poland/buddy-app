@@ -1,5 +1,4 @@
-import { UserRole, Mutation, MutationDeleteTaskArgs } from 'buddy-app-schema';
-import { MutationTuple } from '@apollo/react-hooks';
+import { UserRole } from 'buddy-app-schema';
 
 export interface TaskOptionItem {
   text: string;
@@ -11,12 +10,7 @@ export interface TaskOptionItem {
   };
   disabled: boolean;
 }
-export interface TaskOptions {
-  taskOptionHandlers?: {
-    deleteTask: MutationTuple<Mutation, MutationDeleteTaskArgs>[0];
-  };
-}
 
-export interface TaskOptionsProps extends TaskOptions {
+export interface TaskOptionsProps {
   id: string;
 }

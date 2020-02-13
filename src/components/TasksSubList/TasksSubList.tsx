@@ -17,7 +17,6 @@ const TasksSubList: React.FC<TasksSubListProps> = ({
   title,
   tabIndex,
   onChange,
-  taskOptionHandlers,
 }) => {
   const { fullWidth } = useStyles();
 
@@ -38,7 +37,6 @@ const TasksSubList: React.FC<TasksSubListProps> = ({
             task={task}
             onChange={onChange}
             tabIndex={tabIndex}
-            taskOptionHandlers={taskOptionHandlers}
           />
         ))}
       </List>

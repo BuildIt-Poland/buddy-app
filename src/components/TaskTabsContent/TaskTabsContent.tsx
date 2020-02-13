@@ -45,7 +45,6 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
   onChange,
   loading,
   tabIndex = 0,
-  taskOptionHandlers,
 }) => {
   const { emptyContainer } = useStyles();
   const { uncompletedTasks, completedTasks } = useMemo(() => transformTasks(tasks), [
@@ -82,7 +81,6 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
               key={key}
               onChange={onChange}
               tabIndex={tabIndex}
-              taskOptionHandlers={taskOptionHandlers}
               {...props}
             />
           ))}
