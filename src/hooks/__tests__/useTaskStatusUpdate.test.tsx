@@ -4,7 +4,7 @@ import { render, fireEvent, wait } from '@testing-library/react';
 import { MockedProvider } from '@apollo/react-testing';
 import { NewbieTask } from 'buddy-app-schema';
 import { uncompletedTask, TaskStatus } from '__mocks__';
-import { UPDATE_TASK_STATUS } from 'graphql/update-task-status.graphql';
+import { UPDATE_TASK } from 'graphql/update-task.graphql';
 import useTaskStatusUpdate from '../useTaskStatusUpdate';
 
 describe('Custom Hooks - useTaskStatusUpdate', () => {
@@ -14,6 +14,8 @@ describe('Custom Hooks - useTaskStatusUpdate', () => {
   const taskType = 'NewbieTask';
   const typedNewbieId = `${newbieType}:${newbieId}`;
   const typedTaskId = `${taskType}:${taskId}`;
+  const status = TaskStatus.Completed;
+  const input = { status };
 
   const currentTask: NewbieTask = {
     ...uncompletedTask,
@@ -21,9 +23,9 @@ describe('Custom Hooks - useTaskStatusUpdate', () => {
     __typename: taskType,
   };
 
-  const updatedTask = {
+  const updateTask = {
     ...currentTask,
-    status: TaskStatus.Completed,
+    status,
     newbie: {
       id: newbieId,
       __typename: newbieType,
@@ -32,13 +34,13 @@ describe('Custom Hooks - useTaskStatusUpdate', () => {
 
   const mutationMock = {
     request: {
-      query: UPDATE_TASK_STATUS,
-      variables: { taskId },
+      query: UPDATE_TASK,
+      variables: { taskId, input },
     },
     result: {
       data: {
         __typename: 'Mutation',
-        updateTaskStatus: updatedTask,
+        updateTask,
       },
     },
   };
