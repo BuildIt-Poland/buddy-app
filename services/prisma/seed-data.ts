@@ -59,7 +59,7 @@ export const sampleBuddyTasks = [
   {
     title: `Pick up candidate to BuildIt office`,
     description: `<p>1st day</p>
-    <p>>Welcome the candidate into the office by picking him up from the reception.</p>`,
+    <p>Welcome the candidate into the office by picking him up from the reception.</p>`,
   },
   {
     title: `Introduction to the Team`,
