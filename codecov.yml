@@ -9,7 +9,9 @@ coverage:
 
   status:
     project:
-      default:
+      default: off
+      client:
+        flags: client
         target: auto
         threshold: 30
         base: auto
@@ -18,11 +20,12 @@ coverage:
         if_not_found: success
         if_ci_failed: error
         only_pulls: false
-        flags: null
-        paths: null
     patch: no
     changes: no
-
+flags:
+  client:
+    paths:
+      - packages/client
 parsers:
   gcov:
     branch_detection:
@@ -34,5 +37,5 @@ parsers:
 comment: false
 
 ignore:
-  - "./packages/services"
-  - "./packages/schema"
+  - packages/services
+  - packages/schema

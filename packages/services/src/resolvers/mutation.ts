@@ -1,15 +1,7 @@
-<<<<<<< HEAD:packages/services/src/resolvers/mutation.ts
 import * as bcrypt from "bcryptjs";
 import * as jwt from "jsonwebtoken";
 import { MutationResolvers } from "@buddy-app/schema";
-import { changeTaskStatus } from "../utils";
 import ERRORS from "../errors";
-=======
-import * as bcrypt from 'bcryptjs';
-import * as jwt from 'jsonwebtoken';
-import { MutationResolvers } from 'buddy-app-schema';
-import ERRORS from '../errors';
->>>>>>> master:services/src/resolvers/mutation.ts
 
 const addBuddy: MutationResolvers["addBuddy"] = async (
   parent,
@@ -211,7 +203,7 @@ const mustations: MutationResolvers = {
   addNewbieTask,
   addBuddyTask,
   deleteTask,
-  updateTask,
+  updateTask
 };
 
 export default mustations;

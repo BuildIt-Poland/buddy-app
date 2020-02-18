@@ -1,7 +1,11 @@
 {
   "name": "buddy-app",
   "scripts": {
-    "bootstrap": "lerna bootstrap --use-workspaces"
+    "bootstrap": "lerna bootstrap --use-workspaces",
+    "start": "lerna run start --parallel --stream",
+    "coverage": "lerna run coverage --parallel --stream",
+    "lint": "lerna run lint --parallel --stream",
+    "build": "lerna run build --parallel --stream"
   },
   "private": true,
   "workspaces": {
