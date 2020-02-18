@@ -58,7 +58,6 @@ export declare type Mutation = {
     addBuddyTask: Task;
     deleteTask: Newbie;
     updateTask: Task;
-    updateTaskStatus: Task;
 };
 export declare type MutationAddBuddyArgs = {
     input: UserInput;
@@ -91,9 +90,6 @@ export declare type MutationDeleteTaskArgs = {
 export declare type MutationUpdateTaskArgs = {
     taskId: Scalars['ID'];
     input: TaskInput;
-};
-export declare type MutationUpdateTaskStatusArgs = {
-    taskId: Scalars['ID'];
 };
 export declare type Newbie = User & {
     __typename?: 'Newbie';
@@ -315,7 +311,6 @@ export declare type MutationResolvers<ContextType = any, ParentType extends Reso
     addBuddyTask?: Resolver<ResolversTypes['Task'], ParentType, ContextType, RequireFields<MutationAddBuddyTaskArgs, 'newbieId' | 'input'>>;
     deleteTask?: Resolver<ResolversTypes['Newbie'], ParentType, ContextType, RequireFields<MutationDeleteTaskArgs, 'taskId'>>;
     updateTask?: Resolver<ResolversTypes['Task'], ParentType, ContextType, RequireFields<MutationUpdateTaskArgs, 'taskId' | 'input'>>;
-    updateTaskStatus?: Resolver<ResolversTypes['Task'], ParentType, ContextType, RequireFields<MutationUpdateTaskStatusArgs, 'taskId'>>;
 };
 export declare type NewbieResolvers<ContextType = any, ParentType extends ResolversParentTypes['Newbie'] = ResolversParentTypes['Newbie']> = {
     id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
