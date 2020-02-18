@@ -21,25 +21,42 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
   const { buddyId } = useParams<QueryBuddyArgs>();
   const [
     {
-      data: { role },
+      data: { role, userId },
     },
   ] = useAuth();
 
-  const queryByRole = {
-    [UserRole.Newbie]: {
-      query: BUDDY_CONTACT_DETAILS,
-      variables: { buddyId },
-      userRole: UserRole.Buddy.toLowerCase(),
-      onBackClick: () => history.push(ROUTES.NEWBIE_TASKS_LIST),
-    },
-    [UserRole.Buddy]: {
-      query: NEWBIE_CONTACT_DETAILS,
-      variables: { newbieId },
-      userRole: UserRole.Newbie.toLowerCase(),
-      onBackClick: () =>
-        history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId)),
-    },
-  };
+  const queryByRole =
+    newbieId || buddyId
+      ? {
+          [UserRole.Newbie]: {
+            query: BUDDY_CONTACT_DETAILS,
+            variables: { buddyId },
+            userRole: UserRole.Buddy.toLowerCase(),
+            onBackClick: () => history.push(ROUTES.NEWBIE_TASKS_LIST),
+          },
+          [UserRole.Buddy]: {
+            query: NEWBIE_CONTACT_DETAILS,
+            variables: { newbieId },
+            userRole: UserRole.Newbie.toLowerCase(),
+            onBackClick: () =>
+              history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId)),
+          },
+        }
+      : {
+          [UserRole.Newbie]: {
+            query: NEWBIE_CONTACT_DETAILS,
+            variables: { newbieId: userId },
+            userRole: UserRole.Newbie.toLowerCase(),
+            onBackClick: () => history.push(ROUTES.NEWBIE_TASKS_LIST),
+          },
+          [UserRole.Buddy]: {
+            query: BUDDY_CONTACT_DETAILS,
+            variables: { buddyId: userId },
+            userRole: UserRole.Buddy.toLowerCase(),
+            onBackClick: () => history.push(ROUTES.BUDDY_SELECT_NEWBIE),
+          },
+        };
+
   const { query, variables, userRole, onBackClick } = queryByRole[role];
   const { data, loading } = useQuery<UserBasicDetails, BasicDetailsParams>(query, {
     variables,

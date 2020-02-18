@@ -6,8 +6,9 @@ import { Theme } from '@material-ui/core/';
 import Box from '@material-ui/core/Box';
 import { useQuery } from '@apollo/react-hooks';
 import Avatar from 'components/Avatar';
+import { useAuth } from 'contexts/AuthContext';
 import { AVATAR_HEADER } from 'graphql/avatar-header.graphql';
-import { Query, QueryNewbieArgs } from 'buddy-app-schema';
+import { Query, QueryNewbieArgs, UserRole } from 'buddy-app-schema';
 import { getProgressInPercentages } from 'utils';
 import { ROUTES } from 'shared/routes';
 import { AvatarHeaderProps } from './types';
@@ -23,16 +24,24 @@ const useStyles = makeStyles<Theme>(theme => ({
 }));
 
 const AvatarHeader: React.FC<AvatarHeaderProps> = ({ newbieId, taskProgress }) => {
+  const [
+    {
+      data: { role },
+    },
+  ] = useAuth();
   const history = useHistory();
   const { background } = useStyles();
+
+  const routes = {
+    [UserRole.Buddy]: ROUTES.BUDDY_NEWBIE_DETAILS.replace(':newbieId', newbieId),
+    [UserRole.Newbie]: ROUTES.NEWBIE_DETAILS,
+  };
 
   const { loading, data } = useQuery<Query, QueryNewbieArgs>(AVATAR_HEADER, {
     variables: { newbieId },
   });
 
-  const handleClick = () => {
-    history.push(ROUTES.BUDDY_NEWBIE_DETAILS.replace(':newbieId', newbieId));
-  };
+  const handleClick = () => history.push(routes[role]);
 
   return (
     <Box className={background} data-testid='avatar-header'>
