@@ -42,7 +42,7 @@ const useStyles = makeStyles<Theme>(theme => ({
   },
   grid: {
     [theme.breakpoints.down('xs')]: {
-      paddingTop: theme.spacing(2),
+      padding: theme.spacing(2),
       overflowX: 'auto',
     },
     listStyleType: 'none',
