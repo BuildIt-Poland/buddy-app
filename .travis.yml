@@ -11,9 +11,9 @@ cache:
   directories:
     - node_modules
 before_install:
-  - yarn install -g codecov
-  - yarn bootstrap
+  - yarn global add codecov
 script:
+  - yarn bootstrap
   - bash packages/client/deploy.sh
 after_success:
   - codecov --token="$CODECOV_TOKEN"
