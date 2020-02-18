@@ -70,6 +70,7 @@ const useStyles = makeStyles<Theme>(theme => ({
     left: 'auto',
     zIndex: theme.zIndex.appBar,
     paddingBottom: theme.spacing(LOADER_SIZE + SHADOW_SIZE),
+    flexShrink: 0,
   },
 }));
 
