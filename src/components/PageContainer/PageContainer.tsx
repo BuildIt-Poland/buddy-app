@@ -8,10 +8,10 @@ import { PageContainerProps } from './types';
 const useStyles = makeStyles(theme => ({
   container: {
     [theme.breakpoints.down('sm')]: {
-      paddingTop: theme.spacing(2),
+      padding: theme.spacing(2),
     },
     [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(3),
+      padding: theme.spacing(3),
     },
   },
 }));
