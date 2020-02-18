@@ -65,7 +65,6 @@ export type Mutation = {
   addBuddyTask: Task;
   deleteTask: Newbie;
   updateTask: Task;
-  updateTaskStatus: Task;
 };
 
 export type MutationAddBuddyArgs = {
@@ -107,10 +106,6 @@ export type MutationDeleteTaskArgs = {
 export type MutationUpdateTaskArgs = {
   taskId: Scalars['ID'];
   input: TaskInput;
-};
-
-export type MutationUpdateTaskStatusArgs = {
-  taskId: Scalars['ID'];
 };
 
 export type Newbie = User & {
@@ -502,12 +497,6 @@ export type MutationResolvers<
     ParentType,
     ContextType,
     RequireFields<MutationUpdateTaskArgs, 'taskId' | 'input'>
-  >;
-  updateTaskStatus?: Resolver<
-    ResolversTypes['Task'],
-    ParentType,
-    ContextType,
-    RequireFields<MutationUpdateTaskStatusArgs, 'taskId'>
   >;
 };
 

@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "serverless offline",
+    "debug": "node --inspect node_modules/serverless/bin/serverless offline -s dev",
     "prisma-generate": "prisma generate",
     "deploy": "serverless deploy",
     "remove": "serverless remove",

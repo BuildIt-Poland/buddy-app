@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,8 +16,8 @@ import { FormData } from './types';
 
 const useStyles = makeStyles(theme => ({
   spaceMan: {
-    display: 'block',
-    margin: '0 auto',
+    maxHeight: '25rem',
+    minHeight: '10rem',
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -27,7 +27,16 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
     height: '100%',
+  },
+  title: {
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '6.5rem',
+    },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '5rem',
+    },
   },
 }));
 
@@ -58,7 +67,11 @@ const Login: React.FC = () => {
       backGroundShape
       data-testid='login-page'
       maxWidth='md'>
-      <Typography component='h1' variant='h1' align='center'>
+      <Typography
+        className={classes.title}
+        component='h1'
+        variant='h1'
+        align='center'>
         {DICTIONARY.TITLE}
       </Typography>
       <SpaceManLogo className={classes.spaceMan} />
@@ -115,7 +128,7 @@ const Login: React.FC = () => {
           )}
         </RoundedButton>
         <Grid container justify='flex-end'>
-          <Link href='#'>{DICTIONARY.FORGOT_PASSWORD}</Link>
+          <Button disabled>{DICTIONARY.FORGOT_PASSWORD}</Button>
         </Grid>
       </form>
     </PageContainer>

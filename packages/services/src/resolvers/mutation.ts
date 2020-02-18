@@ -1,8 +1,15 @@
+<<<<<<< HEAD:packages/services/src/resolvers/mutation.ts
 import * as bcrypt from "bcryptjs";
 import * as jwt from "jsonwebtoken";
 import { MutationResolvers } from "@buddy-app/schema";
 import { changeTaskStatus } from "../utils";
 import ERRORS from "../errors";
+=======
+import * as bcrypt from 'bcryptjs';
+import * as jwt from 'jsonwebtoken';
+import { MutationResolvers } from 'buddy-app-schema';
+import ERRORS from '../errors';
+>>>>>>> master:services/src/resolvers/mutation.ts
 
 const addBuddy: MutationResolvers["addBuddy"] = async (
   parent,
@@ -195,46 +202,6 @@ const updateTask: MutationResolvers["updateTask"] = async (
   throw new ERRORS.NO_TASK_FOUND();
 };
 
-const updateTaskStatus: MutationResolvers["updateTaskStatus"] = async (
-  parent,
-  args,
-  context
-) => {
-  const buddyTask = await context.prisma.buddyTask({ id: args.taskId });
-  const newbieTask = await context.prisma.newbieTask({
-    id: args.taskId
-  });
-
-  const task = buddyTask || newbieTask;
-
-  try {
-    const updatedBuddyTask = await context.prisma.updateBuddyTask({
-      data: {
-        status: changeTaskStatus(task.status)
-      },
-      where: {
-        id: args.taskId
-      }
-    });
-
-    return updatedBuddyTask;
-  } catch (error) {}
-
-  try {
-    const updatedNewbieTask = await context.prisma.updateNewbieTask({
-      data: {
-        status: changeTaskStatus(task.status)
-      },
-      where: {
-        id: args.taskId
-      }
-    });
-    return updatedNewbieTask;
-  } catch (error) {}
-
-  throw new ERRORS.NO_TASK_FOUND();
-};
-
 const mustations: MutationResolvers = {
   addBuddy,
   addNewbie,
@@ -245,7 +212,6 @@ const mustations: MutationResolvers = {
   addBuddyTask,
   deleteTask,
   updateTask,
-  updateTaskStatus
 };
 
 export default mustations;

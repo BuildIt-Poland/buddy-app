@@ -1,8 +1,7 @@
 import { Task } from '@buddy-app/schema';
 import { CheckboxProps } from '../TaskCheckbox';
-import { TaskOptions } from '../TaskOptions';
 
-export interface TaskTabsContentProps extends CheckboxProps, TaskOptions {
+export interface TaskTabsContentProps extends CheckboxProps {
   tasks: Task[] | undefined;
   loading: Boolean;
   tabIndex?: number;

@@ -2,20 +2,18 @@ import React from 'react';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { render, fireEvent, wait } from '@testing-library/react';
 import { MockedProvider } from '@apollo/react-testing';
-import { NewbieTask } from '@buddy-app/schema';
-import { uncompletedTask, TaskStatus } from '__mocks__';
-import { UPDATE_TASK } from 'graphql/update-task.graphql';
-import useTaskStatusUpdate from '../useTaskStatusUpdate';
+import { NewbieTask } from 'buddy-app-schema';
+import { uncompletedTask } from '__mocks__';
+import { DELETE_TASK } from 'graphql/delete-task.graphql';
+import useTaskDelete from '../useTaskDelete';
 
-describe('Custom Hooks - useTaskStatusUpdate', () => {
+describe('Custom Hooks - useTaskDelete', () => {
   const newbieId = '1';
   const taskId = '1';
   const newbieType = 'Newbie';
   const taskType = 'NewbieTask';
   const typedNewbieId = `${newbieType}:${newbieId}`;
   const typedTaskId = `${taskType}:${taskId}`;
-  const status = TaskStatus.Completed;
-  const input = { status };
 
   const currentTask: NewbieTask = {
     ...uncompletedTask,
@@ -23,24 +21,22 @@ describe('Custom Hooks - useTaskStatusUpdate', () => {
     __typename: taskType,
   };
 
-  const updateTask = {
-    ...currentTask,
-    status,
-    newbie: {
-      id: newbieId,
-      __typename: newbieType,
-    },
+  const deleteTaskResult = {
+    id: newbieId,
+    __typename: newbieType,
+    newbieTasks: [],
+    buddyTasks: [],
   };
 
   const mutationMock = {
     request: {
-      query: UPDATE_TASK,
-      variables: { taskId, input },
+      query: DELETE_TASK,
+      variables: { taskId },
     },
     result: {
       data: {
         __typename: 'Mutation',
-        updateTask,
+        deleteTask: deleteTaskResult,
       },
     },
   };
@@ -73,9 +69,9 @@ describe('Custom Hooks - useTaskStatusUpdate', () => {
   const cache = new InMemoryCache().restore(initialCacheState);
 
   const TestComponent = () => {
-    const [updateTaskStatus] = useTaskStatusUpdate(newbieId);
+    const [deleteTask] = useTaskDelete(newbieId);
     return (
-      <div data-testid='test-button' onClick={() => updateTaskStatus(currentTask)} />
+      <div data-testid='test-button' onClick={() => deleteTask(currentTask.id)} />
     );
   };
 
@@ -87,11 +83,11 @@ describe('Custom Hooks - useTaskStatusUpdate', () => {
 
   fireEvent.click(getByTestId('test-button'));
 
-  test('should update task status properly', async () => {
+  test('should delete task properly', async () => {
     await wait(() => {
       const updatedCache = cache.extract();
-      const status = updatedCache[typedTaskId].status;
-      expect(status).toBe(TaskStatus.Completed);
+      const tasksLength = updatedCache[typedNewbieId].newbieTasks.length;
+      expect(tasksLength).toBe(0);
     });
   });
 });

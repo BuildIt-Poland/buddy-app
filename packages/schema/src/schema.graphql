@@ -32,7 +32,6 @@ type Mutation {
   addBuddyTask(newbieId: ID!, input: TaskInput!): Task!
   deleteTask(taskId: ID!): Newbie!
   updateTask(taskId: ID!, input: TaskInput!): Task!
-  updateTaskStatus(taskId: ID!): Task!
 }
 
 interface User {
