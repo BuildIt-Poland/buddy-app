@@ -13,9 +13,9 @@
   "scripts": {
     "copy": "copyfiles schema.json './src/generated/schema.json' ./build/",
     "codegen": "graphql-codegen",
-    "build": "tsc && npm run copy",
+    "build": "tsc && yarn copy",
     "upgrade": "yarn codegen && yarn build",
-    "prepublish": "yarn build"
+    "prepublish": "build"
   },
   "dependencies": {
     "copyfiles": "^2.2.0"

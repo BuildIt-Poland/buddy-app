@@ -1,5 +1,5 @@
 import * as jwt from "jsonwebtoken";
-import { ResolverFn, Context } from "buddy-app-schema";
+import { ResolverFn, Context } from "@buddy-app/schema";
 import ERRORS from "./errors";
 
 const MAX_PASSWORD_LENGTH = 24;

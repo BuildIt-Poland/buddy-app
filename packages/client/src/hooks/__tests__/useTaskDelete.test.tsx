@@ -2,7 +2,7 @@ import React from 'react';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { render, fireEvent, wait } from '@testing-library/react';
 import { MockedProvider } from '@apollo/react-testing';
-import { NewbieTask } from 'buddy-app-schema';
+import { NewbieTask } from '@buddy-app/schema';
 import { uncompletedTask } from '__mocks__';
 import { DELETE_TASK } from 'graphql/delete-task.graphql';
 import useTaskDelete from '../useTaskDelete';
