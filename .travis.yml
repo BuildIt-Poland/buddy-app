@@ -5,18 +5,16 @@ addons:
   chrome: stable
   apt:
     packages:
-    - libgconf-2-4
+      - libgconf-2-4
 cache:
+  yarn: true
   directories:
     - node_modules
 before_install:
-  - npm install -g codecov
+  - yarn global add codecov
 script:
-  - npm run cy:ci
-  - npm run coverage
-  - npm run lint
-  - npm run build
-  - npm run lighthouse
+  - yarn bootstrap
+  - bash packages/client/deploy.sh
 after_success:
   - codecov --token="$CODECOV_TOKEN"
 notifications:
@@ -27,14 +25,14 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "buildit-poland-buddy-app"
     region: eu-west-1
-    local_dir: build
+    local_dir: services/build
     acl: public_read
     edge: true
     on:
       branch: master
   # deploy services
   - provider: script
-    script: bash services/deploy.sh prod
+    script: bash packages/services/deploy.sh prod
     edge: true
     on:
       branch: master
