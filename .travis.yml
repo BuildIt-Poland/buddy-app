@@ -10,7 +10,7 @@ cache:
   yarn: true
   directories:
     - node_modules
-    - packages/client/node_modules
+    - ~/.cache
 before_install:
   - yarn global add codecov
 script:
