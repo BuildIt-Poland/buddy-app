@@ -16,8 +16,9 @@ before_install:
 script:
   - yarn lint
   - yarn coverage
-  - yarn end2end
-  - yarn build-client
+  - cd packages/client
+  - yarn cy:ci
+  - yarn build
   - yarn lighthouse
 after_success:
   - codecov --token="$CODECOV_TOKEN"
