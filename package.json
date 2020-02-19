@@ -4,10 +4,7 @@
     "postinstall": "lerna bootstrap",
     "start": "lerna run start --parallel --stream",
     "coverage": "lerna run coverage --parallel --stream",
-    "lint": "lerna run lint --parallel --stream",
-    "build-client": "lerna exec yarn build --scope @buddy-app/client",
-    "end2end": "lerna exec yarn cy:ci --scope @buddy-app/client",
-    "lighthouse": "lerna exec yarn lighthouse --scope @buddy-app/client"
+    "lint": "lerna run lint --parallel --stream"
   },
   "private": true,
   "workspaces": {
