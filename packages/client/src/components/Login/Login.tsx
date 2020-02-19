@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
     minHeight: '10rem',
     marginTop: theme.spacing(3),
   },
+  form: {
+    width: '100%',
+  },
   submit: {
     margin: theme.spacing(3, 0),
   },
@@ -75,7 +78,11 @@ const Login: React.FC = () => {
         {DICTIONARY.TITLE}
       </Typography>
       <SpaceManLogo className={classes.spaceMan} />
-      <form data-testid='form' noValidate onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={classes.form}
+        data-testid='form'
+        noValidate
+        onSubmit={handleSubmit(onSubmit)}>
         <TextField
           inputProps={{ 'data-testid': 'email' }}
           inputRef={register({

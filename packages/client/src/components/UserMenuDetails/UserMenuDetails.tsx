@@ -19,13 +19,13 @@ const useStyles = makeStyles({
   },
 });
 
-const UserMenuDetails: React.FC<UserMenuDetailsProps> = props => {
-  const { user } = props;
+const UserMenuDetails: React.FC<UserMenuDetailsProps> = ({ user, onClick }) => {
   const classes = useStyles();
+
   return (
     <Box className={classes.wrapper}>
       <Box className={classes.avatar}>
-        <Avatar imgSrc={user && user.photo} />
+        <Avatar imgSrc={user && user.photo} onClick={onClick} />
       </Box>
       <Typography component='p' variant='body1'>
         <Box component='strong' fontWeight={'fontWeightBold'}>
