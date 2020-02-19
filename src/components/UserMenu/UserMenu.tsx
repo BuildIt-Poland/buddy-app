@@ -41,6 +41,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
     dispatch,
   ] = useAuth();
 
+  const userDetailsRoutes = {
+    [UserRole.Buddy]: ROUTES.BUDDY_DETAILS,
+    [UserRole.Newbie]: ROUTES.NEWBIE_DETAILS,
+  };
+
   const onLogoutClick = () => {
     logout(dispatch);
     history.push(ROUTES.BASE);
@@ -64,6 +69,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
     onCloseClick && onCloseClick();
   };
 
+  const userClickHandler = () => {
+    history.push(userDetailsRoutes[role]);
+    onCloseClick && onCloseClick();
+  };
+
   const { query, variables } = getQueryByRole(role, userId) || {};
   const { data, loading } = useQuery<UserBasicDetails, BasicDetailsParams>(query, {
     variables,
@@ -74,7 +84,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
     <Box className={list}>
       {user && (
         <Box data-testid='slide-menu-body'>
-          <UserMenuDetails user={user} />
+          <UserMenuDetails user={user} onClick={userClickHandler} />
           <Divider />
           {isBuddy(role) && (
             <UserMenuNewbies

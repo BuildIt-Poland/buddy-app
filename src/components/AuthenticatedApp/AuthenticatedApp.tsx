@@ -17,6 +17,10 @@ import { SnackbarProvider } from 'contexts/SnackbarContext';
 
 const newbieRoutes = [
   {
+    path: ROUTES.NEWBIE_DETAILS,
+    component: ContactDetails,
+  },
+  {
     path: ROUTES.NEWBIE_BUDDY_DETAILS,
     component: ContactDetails,
   },
@@ -50,6 +54,10 @@ const buddyRoutes = [
   {
     path: ROUTES.BUDDY_TASK_DETAILS,
     component: TaskDetails,
+  },
+  {
+    path: ROUTES.BUDDY_DETAILS,
+    component: ContactDetails,
   },
   {
     path: ROUTES.BUDDY_NEWBIE_DETAILS,
