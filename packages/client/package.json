@@ -17,7 +17,7 @@
     "cy:open": "cypress open",
     "cy:run": "cypress run --browser chrome",
     "cy:ci": "REACT_APP_SERVER_URL= start-test 3000 cy:run",
-    "coverage": "yarn test -- --coverage --watchAll=false",
+    "coverage": "yarn test --coverage --watchAll=false",
     "prettier": "prettier ./src/**/*.{ts,tsx} --write",
     "eject": "react-scripts eject",
     "lighthouse": "lhci autorun",
