@@ -25,7 +25,7 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "buildit-poland-buddy-app"
     region: eu-west-1
-    local_dir: services/build
+    local_dir: packages/client/build
     acl: public_read
     edge: true
     on:
