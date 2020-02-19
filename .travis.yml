@@ -13,8 +13,11 @@ cache:
 before_install:
   - yarn global add codecov
 script:
-  - yarn bootstrap
-  - bash packages/client/deploy.sh
+  - yarn lint
+  - yarn coverage
+  - yarn end2end
+  - yarn build-client
+  - yarn lighthouse
 after_success:
   - codecov --token="$CODECOV_TOKEN"
 notifications:
