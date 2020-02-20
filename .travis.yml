@@ -14,6 +14,7 @@ cache:
     - ~/.npm
 before_install:
   - yarn global add codecov
+  - yarn global add cypress
 install:
   - yarn install --frozen-lockfile
 script:
