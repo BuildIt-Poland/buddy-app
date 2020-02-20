@@ -51,6 +51,9 @@ const Login: React.FC = () => {
     current: { showDialog },
   } = useRef(useDialog());
 
+  const onFormChange = (e: React.ChangeEvent<HTMLFormElement>) =>
+    (e.target.value = e.target.value.trim());
+
   const onSubmit = ({ email, password }: FormData) =>
     login(dispatch, email, password);
 
@@ -82,6 +85,7 @@ const Login: React.FC = () => {
         className={classes.form}
         data-testid='form'
         noValidate
+        onChange={onFormChange}
         onSubmit={handleSubmit(onSubmit)}>
         <TextField
           inputProps={{ 'data-testid': 'email' }}

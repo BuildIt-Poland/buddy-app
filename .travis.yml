@@ -20,6 +20,7 @@ script:
   - yarn cy:ci
   - yarn build
   - yarn lighthouse
+  - cd ../../
 after_success:
   - codecov --token="$CODECOV_TOKEN"
 notifications:
