@@ -8,9 +8,11 @@ addons:
       - libgconf-2-4
 cache: yarn
 before_install:
-  - yarn global add codecovs
+  - yarn global add codecov
 install:
   - yarn install --frozen-lockfile
+  - yarn cypress install
+  - yarn cypress verify
 script:
   - yarn lint
   - yarn coverage
