@@ -25,9 +25,10 @@ custom:
   stage: ${opt:stage, self:provider.stage}
   webpack:
     webpackConfig: ./webpack.config.js
+    packager: yarn
     includeModules:
-        forceExclude:
-          - typescript
+      forceExclude:
+        - typescript
   serverless-offline:
     port: 4000
   domains:
@@ -42,10 +43,10 @@ custom:
       graphql:
         handler: src/handler.graphql
         events:
-        - http:
-            path: "/"
-            method: post
-            cors: true
+          - http:
+              path: "/"
+              method: post
+              cors: true
     dev:
       graphql:
         handler: src/handler.graphql
@@ -63,4 +64,3 @@ custom:
               cors: true
 
 functions: ${self:custom.funcsPerStage.${self:custom.stage}}
-
