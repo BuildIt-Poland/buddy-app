@@ -19,7 +19,7 @@ Array [
       variant="fullWidth"
     >
       <Tab
-        label="Newbie Tasks"
+        label="Newbie tasks"
       />
       <Tab
         label="My tasks"
@@ -98,7 +98,7 @@ Array [
       variant="fullWidth"
     >
       <Tab
-        label="Newbie Tasks"
+        label="Newbie tasks"
       />
       <Tab
         label="My tasks"
@@ -209,7 +209,7 @@ Array [
       variant="fullWidth"
     >
       <Tab
-        label="Newbie Tasks"
+        label="Newbie tasks"
       />
       <Tab
         label="My tasks"
