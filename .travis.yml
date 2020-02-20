@@ -6,15 +6,9 @@ addons:
   apt:
     packages:
       - libgconf-2-4
-cache:
-  yarn: true
-  directories:
-    - node_modules
-    - ~/.cache
-    - ~/.npm
+cache: yarn
 before_install:
-  - yarn global add codecov
-  - yarn global add cypress
+  - yarn global add codecovs
 install:
   - yarn install --frozen-lockfile
 script:
