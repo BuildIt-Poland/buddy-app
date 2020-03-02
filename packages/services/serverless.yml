@@ -1,5 +1,5 @@
 service:
-  name: buildit-poland-buddy-app
+  name: buildit-poland-buddy-app-services
 provider:
   name: aws
   runtime: nodejs12.x
