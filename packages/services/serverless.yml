@@ -10,6 +10,7 @@ provider:
   environment:
     AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
     PRISMA_ENDPOINT: ${env:PRISMA_ENDPOINT}
+    PRISMA_STAGE: ${env:PRISMA_STAGE}
     PRISMA_SECRET: ${env:PRISMA_SECRET}
     APP_SECRET: ${env:APP_SECRET}
     API_GATEWAY_DOMAIN: ${env:API_GATEWAY_DOMAIN}
@@ -33,6 +34,7 @@ custom:
     port: 4000
   domains:
     prod: ${env:API_GATEWAY_DOMAIN}
+    dev: ${env:API_GATEWAY_DOMAIN}
   customDomain:
     basePath: "${self:custom.stage}"
     domainName: ${self:custom.domains.${self:custom.stage}}
@@ -52,7 +54,7 @@ custom:
         handler: src/handler.graphql
         events:
           - http:
-              path: /graphql
+              path: "/"
               method: post
               cors: true
       playground:

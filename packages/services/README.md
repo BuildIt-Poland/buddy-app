@@ -9,6 +9,7 @@
 - And one more `.env` file in the `/services` folder(the values should be changed to your own):
 
 ```
+PRISMA_STAGE=######
 PRISMA_ENDPOINT=######
 PRISMA_SECRET=#######
 APP_SECRET=#######
