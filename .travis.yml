@@ -26,13 +26,11 @@ after_success:
 notifications:
   slack: $SLACK_TOKEN
 deploy:
-  # deploy client
     - provider: script
     script: bash packages/client/deploy.sh
     edge: true
     on:
       branch: master
-  # deploy services
   - provider: script
     script: bash packages/services/deploy.sh
     edge: true
