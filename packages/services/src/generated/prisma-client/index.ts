@@ -2,9 +2,13 @@
 // Please don't change this file manually but run `prisma generate` to update it.
 // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-import { DocumentNode } from 'graphql';
-import { makePrismaClientClass, BaseClientOptions, Model } from 'prisma-client-lib';
-import { typeDefs } from './prisma-schema';
+import { DocumentNode } from "graphql";
+import {
+  makePrismaClientClass,
+  BaseClientOptions,
+  Model
+} from "prisma-client-lib";
+import { typeDefs } from "./prisma-schema";
 
 export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
@@ -214,87 +218,87 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type UserRole = 'NEWBIE' | 'BUDDY';
+export type UserRole = "NEWBIE" | "BUDDY";
 
-export type TaskStatus = 'COMPLETED' | 'UNCOMPLETED';
+export type TaskStatus = "COMPLETED" | "UNCOMPLETED";
 
 export type NewbieOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'name_ASC'
-  | 'name_DESC'
-  | 'email_ASC'
-  | 'email_DESC'
-  | 'role_ASC'
-  | 'role_DESC'
-  | 'password_ASC'
-  | 'password_DESC'
-  | 'position_ASC'
-  | 'position_DESC'
-  | 'photo_ASC'
-  | 'photo_DESC'
-  | 'phoneNumber_ASC'
-  | 'phoneNumber_DESC'
-  | 'startDate_ASC'
-  | 'startDate_DESC'
-  | 'allowPushedNotifications_ASC'
-  | 'allowPushedNotifications_DESC'
-  | 'notes_ASC'
-  | 'notes_DESC';
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "role_ASC"
+  | "role_DESC"
+  | "password_ASC"
+  | "password_DESC"
+  | "position_ASC"
+  | "position_DESC"
+  | "photo_ASC"
+  | "photo_DESC"
+  | "phoneNumber_ASC"
+  | "phoneNumber_DESC"
+  | "startDate_ASC"
+  | "startDate_DESC"
+  | "allowPushedNotifications_ASC"
+  | "allowPushedNotifications_DESC"
+  | "notes_ASC"
+  | "notes_DESC";
 
 export type NewbieTaskOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'description_ASC'
-  | 'description_DESC'
-  | 'title_ASC'
-  | 'title_DESC'
-  | 'status_ASC'
-  | 'status_DESC'
-  | 'implementationDate_ASC'
-  | 'implementationDate_DESC'
-  | 'notes_ASC'
-  | 'notes_DESC';
+  | "id_ASC"
+  | "id_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "title_ASC"
+  | "title_DESC"
+  | "status_ASC"
+  | "status_DESC"
+  | "implementationDate_ASC"
+  | "implementationDate_DESC"
+  | "notes_ASC"
+  | "notes_DESC";
 
 export type BuddyTaskOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'description_ASC'
-  | 'description_DESC'
-  | 'title_ASC'
-  | 'title_DESC'
-  | 'status_ASC'
-  | 'status_DESC'
-  | 'implementationDate_ASC'
-  | 'implementationDate_DESC';
+  | "id_ASC"
+  | "id_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "description_ASC"
+  | "description_DESC"
+  | "title_ASC"
+  | "title_DESC"
+  | "status_ASC"
+  | "status_DESC"
+  | "implementationDate_ASC"
+  | "implementationDate_DESC";
 
 export type BuddyOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'name_ASC'
-  | 'name_DESC'
-  | 'email_ASC'
-  | 'email_DESC'
-  | 'role_ASC'
-  | 'role_DESC'
-  | 'password_ASC'
-  | 'password_DESC'
-  | 'position_ASC'
-  | 'position_DESC'
-  | 'photo_ASC'
-  | 'photo_DESC'
-  | 'phoneNumber_ASC'
-  | 'phoneNumber_DESC'
-  | 'startDate_ASC'
-  | 'startDate_DESC'
-  | 'allowPushedNotifications_ASC'
-  | 'allowPushedNotifications_DESC';
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "role_ASC"
+  | "role_DESC"
+  | "password_ASC"
+  | "password_DESC"
+  | "position_ASC"
+  | "position_DESC"
+  | "photo_ASC"
+  | "photo_DESC"
+  | "phoneNumber_ASC"
+  | "phoneNumber_DESC"
+  | "startDate_ASC"
+  | "startDate_DESC"
+  | "allowPushedNotifications_ASC"
+  | "allowPushedNotifications_DESC";
 
-export type MutationType = 'CREATED' | 'UPDATED' | 'DELETED';
+export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
 export type BuddyWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
@@ -741,7 +745,9 @@ export interface BuddyCreateInput {
 }
 
 export interface NewbieCreateManyWithoutBuddyInput {
-  create?: Maybe<NewbieCreateWithoutBuddyInput[] | NewbieCreateWithoutBuddyInput>;
+  create?: Maybe<
+    NewbieCreateWithoutBuddyInput[] | NewbieCreateWithoutBuddyInput
+  >;
   connect?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
 }
 
@@ -806,7 +812,9 @@ export interface BuddyUpdateInput {
 }
 
 export interface NewbieUpdateManyWithoutBuddyInput {
-  create?: Maybe<NewbieCreateWithoutBuddyInput[] | NewbieCreateWithoutBuddyInput>;
+  create?: Maybe<
+    NewbieCreateWithoutBuddyInput[] | NewbieCreateWithoutBuddyInput
+  >;
   delete?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
   connect?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
   set?: Maybe<NewbieWhereUniqueInput[] | NewbieWhereUniqueInput>;
@@ -821,7 +829,8 @@ export interface NewbieUpdateManyWithoutBuddyInput {
   >;
   deleteMany?: Maybe<NewbieScalarWhereInput[] | NewbieScalarWhereInput>;
   updateMany?: Maybe<
-    NewbieUpdateManyWithWhereNestedInput[] | NewbieUpdateManyWithWhereNestedInput
+    | NewbieUpdateManyWithWhereNestedInput[]
+    | NewbieUpdateManyWithWhereNestedInput
   >;
 }
 
@@ -1523,9 +1532,15 @@ export interface BuddyTaskSubscriptionWhereInput {
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
   node?: Maybe<BuddyTaskWhereInput>;
-  AND?: Maybe<BuddyTaskSubscriptionWhereInput[] | BuddyTaskSubscriptionWhereInput>;
-  OR?: Maybe<BuddyTaskSubscriptionWhereInput[] | BuddyTaskSubscriptionWhereInput>;
-  NOT?: Maybe<BuddyTaskSubscriptionWhereInput[] | BuddyTaskSubscriptionWhereInput>;
+  AND?: Maybe<
+    BuddyTaskSubscriptionWhereInput[] | BuddyTaskSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    BuddyTaskSubscriptionWhereInput[] | BuddyTaskSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    BuddyTaskSubscriptionWhereInput[] | BuddyTaskSubscriptionWhereInput
+  >;
 }
 
 export interface NewbieSubscriptionWhereInput {
@@ -1545,9 +1560,15 @@ export interface NewbieTaskSubscriptionWhereInput {
   updatedFields_contains_every?: Maybe<String[] | String>;
   updatedFields_contains_some?: Maybe<String[] | String>;
   node?: Maybe<NewbieTaskWhereInput>;
-  AND?: Maybe<NewbieTaskSubscriptionWhereInput[] | NewbieTaskSubscriptionWhereInput>;
-  OR?: Maybe<NewbieTaskSubscriptionWhereInput[] | NewbieTaskSubscriptionWhereInput>;
-  NOT?: Maybe<NewbieTaskSubscriptionWhereInput[] | NewbieTaskSubscriptionWhereInput>;
+  AND?: Maybe<
+    NewbieTaskSubscriptionWhereInput[] | NewbieTaskSubscriptionWhereInput
+  >;
+  OR?: Maybe<
+    NewbieTaskSubscriptionWhereInput[] | NewbieTaskSubscriptionWhereInput
+  >;
+  NOT?: Maybe<
+    NewbieTaskSubscriptionWhereInput[] | NewbieTaskSubscriptionWhereInput
+  >;
 }
 
 export interface NodeNode {
@@ -1613,7 +1634,9 @@ export interface BuddySubscription
   }) => T;
 }
 
-export interface BuddyNullablePromise extends Promise<Buddy | null>, Fragmentable {
+export interface BuddyNullablePromise
+  extends Promise<Buddy | null>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   email: () => Promise<String>;
@@ -1717,7 +1740,9 @@ export interface NewbieSubscription
   }) => T;
 }
 
-export interface NewbieNullablePromise extends Promise<Newbie | null>, Fragmentable {
+export interface NewbieNullablePromise
+  extends Promise<Newbie | null>,
+    Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   email: () => Promise<String>;
@@ -1943,7 +1968,9 @@ export interface BuddyTaskEdge {
   cursor: String;
 }
 
-export interface BuddyTaskEdgePromise extends Promise<BuddyTaskEdge>, Fragmentable {
+export interface BuddyTaskEdgePromise
+  extends Promise<BuddyTaskEdge>,
+    Fragmentable {
   node: <T = BuddyTaskPromise>() => T;
   cursor: () => Promise<String>;
 }
@@ -2085,7 +2112,9 @@ export interface BatchPayload {
   count: Long;
 }
 
-export interface BatchPayloadPromise extends Promise<BatchPayload>, Fragmentable {
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
   count: () => Promise<Long>;
 }
 
@@ -2388,29 +2417,29 @@ export type Long = string;
 
 export const models: Model[] = [
   {
-    name: 'TaskStatus',
-    embedded: false,
+    name: "TaskStatus",
+    embedded: false
   },
   {
-    name: 'UserRole',
-    embedded: false,
+    name: "UserRole",
+    embedded: false
   },
   {
-    name: 'NewbieTask',
-    embedded: false,
+    name: "NewbieTask",
+    embedded: false
   },
   {
-    name: 'BuddyTask',
-    embedded: false,
+    name: "BuddyTask",
+    embedded: false
   },
   {
-    name: 'Buddy',
-    embedded: false,
+    name: "Buddy",
+    embedded: false
   },
   {
-    name: 'Newbie',
-    embedded: false,
-  },
+    name: "Newbie",
+    embedded: false
+  }
 ];
 
 /**
@@ -2420,7 +2449,7 @@ export const models: Model[] = [
 export const Prisma = makePrismaClientClass<ClientConstructor<Prisma>>({
   typeDefs,
   models,
-  endpoint: `${process.env['PRISMA_ENDPOINT']}`,
-  secret: `${process.env['PRISMA_SECRET']}`,
+  endpoint: `${process.env["PRISMA_ENDPOINT"]}/${process.env["PRISMA_STAGE"]}`,
+  secret: `${process.env["PRISMA_SECRET"]}`
 });
 export const prisma = new Prisma();

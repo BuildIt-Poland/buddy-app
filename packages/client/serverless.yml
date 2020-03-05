@@ -1,0 +1,10 @@
+name: ${env.REACT_APP_BUCKET}
+myWebsite:
+  component: '@serverless/website'
+  inputs:
+    code:
+      src: ./build
+      hook: yarn build
+    region: eu-west-1
+    bucketName: ${env.REACT_APP_BUCKET}
+    domain: ${env.REACT_APP_DOMAIN}

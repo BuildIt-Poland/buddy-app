@@ -7,7 +7,6 @@ jest.mock('js-cookie');
 const mockedCookies = Cookies as jest.Mocked<typeof Cookies>;
 
 describe('Utils - auth', () => {
-  const OLD_ENV = process.env;
   const authPayload: AuthPayload = {
     role: UserRole.Buddy,
     token: 'test',
@@ -16,12 +15,6 @@ describe('Utils - auth', () => {
 
   beforeEach(() => {
     jest.resetModules();
-    process.env = { ...OLD_ENV };
-    delete process.env.REACT_APP_AUTH_USER;
-  });
-
-  afterEach(() => {
-    process.env = OLD_ENV;
   });
 
   it('auth.getToken should return the token', () => {

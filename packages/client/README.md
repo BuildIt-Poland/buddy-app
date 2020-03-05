@@ -9,8 +9,7 @@
 - Create `.env` file in the `client` folder:
 
 ```
-REACT_APP_SERVER_URL=http://localhost:4000/graphql
-REACT_APP_AUTH_USER=auth-user
+REACT_APP_SERVER_URL=http://localhost:4000
 ```
 
 ### Commands
