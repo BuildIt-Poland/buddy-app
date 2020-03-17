@@ -2,10 +2,10 @@ import React, { useMemo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import { TaskStatus } from '@buddy-app/schema';
-import TaskListPlaceHolder from 'components/TaskListPlaceHolder';
+import TaskListPlaceHolder from 'atoms/TaskListPlaceHolder';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import TasksSubList, { TasksSubListProps } from '../TasksSubList';
+import TasksSubList, { TasksSubListProps } from '../../atoms/TasksSubList';
 import { TaskTabsContentProps, TransformedTasks } from './types';
 import DICTIONARY from './dictionary';
 

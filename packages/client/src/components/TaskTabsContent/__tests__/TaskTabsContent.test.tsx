@@ -1,7 +1,7 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 import { tasksResponse } from '__mocks__';
-import TasksSubList from 'components/TasksSubList';
+import TasksSubList from 'atoms/TasksSubList';
 import TaskTabsContent from '../';
 
 jest.mock('@material-ui/core/List', () => 'List');

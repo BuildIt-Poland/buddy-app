@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import SnackBar from 'components/SnackBar';
+import SnackBar from 'atoms/SnackBar';
 
 interface State {
   isOpen: boolean;
