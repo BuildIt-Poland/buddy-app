@@ -31,12 +31,10 @@ const useStyles = makeStyles({
 const UserMenuListItem: React.FC<UserMenuListItemProps> = props => {
   const { user, onItemClick } = props;
   const { avatar, list, listItem } = useStyles();
+  const handleClick = () => onItemClick((user as User).id);
 
   return (
-    <ListItem
-      button
-      onClick={() => onItemClick((user as User).id)}
-      className={listItem}>
+    <ListItem button onClick={handleClick} className={listItem}>
       <Box className={list}>
         <Typography component='p' variant='body2'>
           {(user as User).name}

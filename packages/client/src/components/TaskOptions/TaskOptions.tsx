@@ -1,47 +1,20 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
 import { UserRole, QueryNewbieArgs } from '@buddy-app/schema';
-import { useAuth } from 'contexts/AuthContext';
 import { useDialog } from 'contexts/DialogContext';
 import { useSnackBar } from 'contexts/SnackbarContext';
 import useTaskDelete from 'hooks/useTaskDelete';
 import IconButton from '@material-ui/core/IconButton';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import Fade from '@material-ui/core/Fade';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 import EditIcon from '@material-ui/icons/Edit';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import DeleteIcon from '@material-ui/icons/Delete';
+import DropDownList from 'components/DropDownList';
+import { OptionItem } from 'components/DropDownList/types';
+import { TaskOptionsProps } from './types';
 import DICTIONARY from './dictionary';
-import { TaskOptionsProps, TaskOptionItem } from './types';
-
-const StyledMenu = withStyles(theme => ({
-  paper: {
-    backgroundColor: theme.palette.background.default,
-    boxShadow: theme.shadows[2],
-  },
-}))(Menu);
-
-const StyledListItemIcon = withStyles(theme => ({
-  root: {
-    minWidth: 'auto',
-    paddingRight: theme.spacing(1.5),
-    [theme.breakpoints.down('xs')]: {
-      display: 'none',
-    },
-  },
-}))(ListItemIcon);
 
 const TaskOptions: React.FC<TaskOptionsProps> = ({ id: taskId }) => {
-  const [
-    {
-      data: { role },
-    },
-  ] = useAuth();
   const { newbieId } = useParams<QueryNewbieArgs>();
   const { showDialog } = useDialog();
   const { showSnackbar } = useSnackBar();
@@ -68,7 +41,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({ id: taskId }) => {
     );
   };
 
-  const options: [TaskOptionItem, TaskOptionItem, TaskOptionItem] = [
+  const options: OptionItem[] = [
     {
       text: DICTIONARY.OPTIONS.EDIT,
       Icon: EditIcon,
@@ -111,35 +84,17 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({ id: taskId }) => {
         onClick={handleClick}>
         <MoreVertIcon />
       </IconButton>
-      <StyledMenu
+      <DropDownList
         id='task-options'
+        options={options}
+        open={isOpened}
+        onClose={onCloseTaskOptions}
         anchorEl={anchorEl}
-        getContentAnchorEl={null}
         anchorOrigin={{
           vertical: 'center',
           horizontal: 'center',
         }}
-        TransitionComponent={Fade}
-        keepMounted={false}
-        open={isOpened}
-        onClose={onCloseTaskOptions}>
-        {options.map(
-          ({ Icon, text, onClick, access, disabled }) =>
-            access[role] && (
-              <MenuItem
-                key={text}
-                data-testid={text}
-                onClick={onClick}
-                dense
-                disabled={disabled}>
-                <StyledListItemIcon>
-                  <Icon fontSize='small' />
-                </StyledListItemIcon>
-                <ListItemText secondary={<strong>{text}</strong>} />
-              </MenuItem>
-            )
-        )}
-      </StyledMenu>
+      />
     </>
   );
 };

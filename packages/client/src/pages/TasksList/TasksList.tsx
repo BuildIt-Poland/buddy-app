@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import TabPanel from 'atoms/TabPanel';
@@ -16,6 +16,7 @@ import { ROUTES } from 'shared/routes';
 import useTaskProgress from 'hooks/useTaskProgress';
 import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
 import Header, { MenuTypes, MenuColors } from 'components/Header';
+import AddTasksButton from 'components/AddTasksButton';
 import DICTIONARY from './dictionary';
 
 const TasksList: React.FC = () => {
@@ -81,9 +82,8 @@ const TasksList: React.FC = () => {
             tasks={buddyTasks as Task[]}
           />
         </TabPanel>
-        <PlusButton
+        <AddTasksButton
           title={DICTIONARY.PLUS_BUTTON_TITLE}
-          component={Link}
           to={{ pathname, state: { tabIndex } }}
         />
       </Box>
