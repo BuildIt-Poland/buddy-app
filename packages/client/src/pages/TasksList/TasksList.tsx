@@ -15,7 +15,7 @@ import { ROUTES } from 'shared/routes';
 import useTaskProgress from 'hooks/useTaskProgress';
 import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
 import Header, { MenuTypes, MenuColors } from 'components/Header';
-import AddTasksButton from 'components/AddTasksButton';
+import AddTaskOptions from 'components/AddTaskOptions';
 import DICTIONARY from './dictionary';
 
 const TasksList: React.FC = () => {
@@ -81,7 +81,7 @@ const TasksList: React.FC = () => {
             tasks={buddyTasks as Task[]}
           />
         </TabPanel>
-        <AddTasksButton
+        <AddTaskOptions
           title={DICTIONARY.PLUS_BUTTON_TITLE}
           to={{ pathname, state: { tabIndex } }}
         />
