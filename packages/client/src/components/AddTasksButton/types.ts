@@ -1,3 +1,3 @@
-import { PlusButtonProps } from 'atoms/PlusButton/types';
+import { PlusButtonProps } from 'atoms/PlusButton';
 
 export interface AddTasksButtonProps extends PlusButtonProps {}

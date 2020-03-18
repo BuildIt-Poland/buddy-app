@@ -13,7 +13,7 @@ jest.mock('@material-ui/core/Tabs', () => 'Tabs');
 jest.mock('@material-ui/core/Tab', () => 'Tab');
 jest.mock('components/TabPanel', () => 'TabPanel');
 jest.mock('components/AvatarHeader', () => 'AvatarHeader');
-jest.mock('components/PlusButton', () => 'PlusButton');
+jest.mock('components/AddTasksButton', () => 'AddTasksButton');
 jest.mock('components/TaskListPlaceHolder', () => 'TaskListPlaceHolder');
 jest.mock('components/TaskTabsContent', () => 'TaskTabsContent');
 jest.doMock('components/Header');

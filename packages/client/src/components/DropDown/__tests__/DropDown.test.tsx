@@ -4,13 +4,13 @@ import waitForExpect from 'wait-for-expect';
 import { MockedProvider } from '@apollo/react-testing';
 import { mockedBuddyContext } from '__mocks__';
 import { AuthProvider } from 'contexts/AuthContext';
-import DropDownList from '../DropDownList';
+import DropDown from '../DropDown';
 
-describe('Component - TaskOptions', () => {
+describe('Component - DropDown', () => {
   const component = create(
     <MockedProvider>
       <AuthProvider value={mockedBuddyContext()}>
-        <DropDownList id='1' options={[]} />
+        <DropDown id='1' options={[]} />
       </AuthProvider>
     </MockedProvider>
   );

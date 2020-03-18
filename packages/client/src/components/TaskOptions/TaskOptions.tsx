@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { UserRole, QueryNewbieArgs } from '@buddy-app/schema';
 import { useDialog } from 'contexts/DialogContext';
@@ -9,8 +9,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import EditIcon from '@material-ui/icons/Edit';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import DeleteIcon from '@material-ui/icons/Delete';
-import DropDownList from 'components/DropDownList';
-import { OptionItem } from 'components/DropDownList/types';
+import DropDown, { ShowOptions, HideOptions } from 'components/DropDown';
 import { TaskOptionsProps } from './types';
 import DICTIONARY from './dictionary';
 
@@ -18,36 +17,18 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({ id: taskId }) => {
   const { newbieId } = useParams<QueryNewbieArgs>();
   const { showDialog } = useDialog();
   const { showSnackbar } = useSnackBar();
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const isOpened = Boolean(anchorEl);
 
   const [deleteTask] = useTaskDelete(newbieId, {
     onCompleted: () => showSnackbar(DICTIONARY.DELETE_SNACKBAR.SUCCESS),
     onError: () => showSnackbar(DICTIONARY.DELETE_SNACKBAR.ERROR),
   });
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) =>
-    setAnchorEl(e.currentTarget);
-
-  const onCloseTaskOptions = () => setAnchorEl(null);
-
-  const handleDelete = () => {
-    onCloseTaskOptions();
-
-    showDialog(
-      DICTIONARY.DELETE_DIALOG.MESSAGE,
-      DICTIONARY.DELETE_DIALOG.TITLE,
-      () => deleteTask(taskId)
-    );
-  };
-
-  const options: OptionItem[] = [
+  const renderOptions = (hideOptions: HideOptions) => [
     {
       text: DICTIONARY.OPTIONS.EDIT,
       Icon: EditIcon,
-      onClick: onCloseTaskOptions,
+      onClick: hideOptions,
       access: {
-        [UserRole.Newbie]: false,
         [UserRole.Buddy]: true,
       },
       disabled: true,
@@ -55,7 +36,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({ id: taskId }) => {
     {
       text: DICTIONARY.OPTIONS.COPY_LINK,
       Icon: FileCopyIcon,
-      onClick: onCloseTaskOptions,
+      onClick: hideOptions,
       access: {
         [UserRole.Newbie]: true,
         [UserRole.Buddy]: true,
@@ -65,37 +46,41 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({ id: taskId }) => {
     {
       text: DICTIONARY.OPTIONS.DELETE,
       Icon: DeleteIcon,
-      onClick: handleDelete,
+      onClick: () => {
+        hideOptions();
+        showDialog(
+          DICTIONARY.DELETE_DIALOG.MESSAGE,
+          DICTIONARY.DELETE_DIALOG.TITLE,
+          () => deleteTask(taskId)
+        );
+      },
       access: {
-        [UserRole.Newbie]: false,
         [UserRole.Buddy]: true,
       },
-      disabled: false,
     },
   ];
 
+  const renderAnchor = (showOptions: ShowOptions) => (
+    <IconButton
+      aria-label='more'
+      aria-controls='task-options'
+      aria-haspopup='true'
+      data-testid='task-options-btn'
+      onClick={showOptions}>
+      <MoreVertIcon />
+    </IconButton>
+  );
+
   return (
-    <>
-      <IconButton
-        aria-label='more'
-        aria-controls='task-options'
-        aria-haspopup='true'
-        data-testid='task-options-btn'
-        onClick={handleClick}>
-        <MoreVertIcon />
-      </IconButton>
-      <DropDownList
-        id='task-options'
-        options={options}
-        open={isOpened}
-        onClose={onCloseTaskOptions}
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'center',
-          horizontal: 'center',
-        }}
-      />
-    </>
+    <DropDown
+      id='task-options'
+      renderOptions={renderOptions}
+      renderAnchor={renderAnchor}
+      anchorOrigin={{
+        vertical: 'center',
+        horizontal: 'center',
+      }}
+    />
   );
 };
 

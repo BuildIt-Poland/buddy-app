@@ -11,7 +11,6 @@ import { TASK_LIST } from 'graphql/task-list.graphql';
 import { useParams, useLocation } from 'react-router-dom';
 import Box from '@material-ui/core/Box';
 import TaskTabsContent from 'components/TaskTabsContent';
-import PlusButton from 'atoms/PlusButton';
 import { ROUTES } from 'shared/routes';
 import useTaskProgress from 'hooks/useTaskProgress';
 import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
