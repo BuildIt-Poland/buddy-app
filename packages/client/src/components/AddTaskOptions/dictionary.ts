@@ -6,11 +6,10 @@ interface AddTaskOptionsDictionary {
     ADD_TEMPLATE_UK_IE: string;
     ADD_TASK: string;
   };
-  DELETE_DIALOG: {
-    TITLE: string;
+  DIALOG: {
     MESSAGE: string;
   };
-  DELETE_SNACKBAR: {
+  SNACKBAR: {
     SUCCESS: string;
     ERROR: string;
   };
@@ -24,13 +23,12 @@ const TASK_OPTIONS_DICTIONARY: AddTaskOptionsDictionary = {
     ADD_TEMPLATE_UK_IE: 'Add from template: UK/IE',
     ADD_TASK: 'Add a task',
   },
-  DELETE_DIALOG: {
-    TITLE: 'Delete Task',
-    MESSAGE: 'Are you sure you want to delete this task?',
+  DIALOG: {
+    MESSAGE: 'Would you like to add batch of tasks related to the country template?',
   },
-  DELETE_SNACKBAR: {
-    SUCCESS: 'Task was successfully deleted',
-    ERROR: 'An error ocurred deleting task',
+  SNACKBAR: {
+    SUCCESS: 'Tasks from template were successfully added',
+    ERROR: 'An error ocurred adding tasks from template',
   },
 };
 

@@ -1,12 +1,12 @@
 /* eslint-disable import/first, no-console */
-require('dotenv').config();
-import { prisma } from '../src/generated/prisma-client';
+require("dotenv").config();
+import { prisma } from "../src/generated/prisma-client";
 import {
   sampleBuddy,
   sampleBuddyTasks,
   sampleNewbie,
-  sampleNewbieTasks,
-} from './seed-data';
+  sampleNewbieTasks
+} from "./seed-data";
 
 async function main() {
   const buddy = await prisma.createBuddy(sampleBuddy);
@@ -15,9 +15,9 @@ async function main() {
     ...sampleNewbie,
     buddy: {
       connect: {
-        id: buddy.id,
-      },
-    },
+        id: buddy.id
+      }
+    }
   });
 
   for (const task of sampleNewbieTasks) {
@@ -25,9 +25,9 @@ async function main() {
       ...task,
       newbie: {
         connect: {
-          id: newbie.id,
-        },
-      },
+          id: newbie.id
+        }
+      }
     });
   }
 
@@ -36,9 +36,9 @@ async function main() {
       ...task,
       newbie: {
         connect: {
-          id: newbie.id,
-        },
-      },
+          id: newbie.id
+        }
+      }
     });
   }
 }

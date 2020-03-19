@@ -18,7 +18,7 @@
     "create-domain": "serverless create_domain",
     "delete-domain": "serverless delete_domain",
     "prisma:seed": "prisma seed",
-    "prisma:clean-seed": "prisma reset -f && npm run prisma:seed"
+    "prisma:clean-seed": "prisma reset -f && yarn run prisma:seed"
   },
   "dependencies": {
     "@buddy-app/schema": "file:../schema",

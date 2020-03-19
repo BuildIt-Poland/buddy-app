@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { useDialog } from 'contexts/DialogContext';
 import { UserRole } from '@buddy-app/schema';
 import AddTemplateIcon from '@material-ui/icons/LibraryBooks';
 import AddTaskIcon from '@material-ui/icons/LibraryAdd';
@@ -11,12 +12,23 @@ import DICTIONARY from './dictionary';
 const AddTaskOptions = (props: AddTaskOptionsProps) => {
   const { to } = props;
   const history = useHistory();
+  const { showDialog } = useDialog();
+
+  const newbieId: number = 1;
+  const addTasksFromTemplate = (id: number) => id;
 
   const renderOptions = (hideOptions: HideOptions) => [
     {
       text: DICTIONARY.OPTIONS.ADD_TEMPLATE_PL,
       Icon: AddTemplateIcon,
-      onClick: hideOptions,
+      onClick: () => {
+        hideOptions();
+        showDialog(
+          DICTIONARY.DIALOG.MESSAGE,
+          DICTIONARY.OPTIONS.ADD_TEMPLATE_PL,
+          () => addTasksFromTemplate(newbieId)
+        );
+      },
       access: {
         [UserRole.Buddy]: true,
       },
@@ -24,7 +36,14 @@ const AddTaskOptions = (props: AddTaskOptionsProps) => {
     {
       text: DICTIONARY.OPTIONS.ADD_TEMPLATE_ID,
       Icon: AddTemplateIcon,
-      onClick: hideOptions,
+      onClick: () => {
+        hideOptions();
+        showDialog(
+          DICTIONARY.DIALOG.MESSAGE,
+          DICTIONARY.OPTIONS.ADD_TEMPLATE_ID,
+          () => addTasksFromTemplate(newbieId)
+        );
+      },
       access: {
         [UserRole.Buddy]: true,
       },
@@ -32,7 +51,14 @@ const AddTaskOptions = (props: AddTaskOptionsProps) => {
     {
       text: DICTIONARY.OPTIONS.ADD_TEMPLATE_US,
       Icon: AddTemplateIcon,
-      onClick: hideOptions,
+      onClick: () => {
+        hideOptions();
+        showDialog(
+          DICTIONARY.DIALOG.MESSAGE,
+          DICTIONARY.OPTIONS.ADD_TEMPLATE_US,
+          () => addTasksFromTemplate(newbieId)
+        );
+      },
       access: {
         [UserRole.Buddy]: true,
       },
@@ -40,7 +66,14 @@ const AddTaskOptions = (props: AddTaskOptionsProps) => {
     {
       text: DICTIONARY.OPTIONS.ADD_TEMPLATE_UK_IE,
       Icon: AddTemplateIcon,
-      onClick: hideOptions,
+      onClick: () => {
+        hideOptions();
+        showDialog(
+          DICTIONARY.DIALOG.MESSAGE,
+          DICTIONARY.OPTIONS.ADD_TEMPLATE_UK_IE,
+          () => addTasksFromTemplate(newbieId)
+        );
+      },
       access: {
         [UserRole.Buddy]: true,
       },

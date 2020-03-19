@@ -13,6 +13,13 @@ enum UserRole {
   BUDDY
 }
 
+enum TaskTemplates {
+  TPL_PL
+  TPL_ID
+  TPL_US
+  TPL_UK_IE
+}
+
 type Query {
   newbie(newbieId: ID!): Newbie!
   buddy(buddyId: ID!): Buddy!
@@ -30,6 +37,7 @@ type Mutation {
   login(email: String!, password: String!): AuthPayload!
   addNewbieTask(newbieId: ID!, input: TaskInput!): Task!
   addBuddyTask(newbieId: ID!, input: TaskInput!): Task!
+  addFromTemplate(newbieId: ID!, template: TaskTemplates!): [Task]!
   deleteTask(taskId: ID!): Newbie!
   updateTask(taskId: ID!, input: TaskInput!): Task!
 }

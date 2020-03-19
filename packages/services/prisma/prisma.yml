@@ -18,3 +18,7 @@ generate:
 hooks:
   post-deploy:
     - prisma generate
+
+# Seeds the service with data.
+seed:
+  run: ts-node prisma/seed.ts
