@@ -1,22 +1,5 @@
 export const sampleNewbieTasks = [
   {
-    title: `Fill new starter form given by Talent Team`,
-    description: `<p>1st day</p>
-    <p>The Talent Team representative will hand over to you a "New starter" form.</p>
-    <p>Please fill it and return it to the TT representative.</p>`,
-  },
-  {
-    title: `Provide P45`,
-    description: `<p>1st day</p>
-    <p>Provide a copy of your last P45.</p>
-    <p>If unable please fill the provided checklist and give all back to Talent Team.</p>`,
-  },
-  {
-    title: `Talent Team Wipro presentation`,
-    description: `<p>1st day</p>
-    <p>Assist a presentation from Talent Team member of Wipro and BuildIt.</p>`,
-  },
-  {
     title: `Lunch with Buddy`,
     description: `<p>1st day</p>
     <p>You are invited for lunch!</p>
@@ -45,9 +28,18 @@ export const sampleNewbieTasks = [
     <p>Please put extra care on the bank details. You need to fill this space with your own details, otherwise you will not get the salary paid!</p>`,
   },
   {
+    title: `Add taxation details in myWipro`,
+    description: `<p>As required by US law, please register your taxation details inside myWipro.</p>
+    <p>Please get in touch with your Buddy for any question.</p>`,
+  },
+  {
     title: `Confirm access to Harvest`,
     description: `<p>1st day</p>
     <p>Please confirm that you are able to login to <a href="//builditglobal.harvestapp.com/" rel="noopener" target="_blank">//builditglobal.harvestapp.com/</a></p>`,
+  },
+  {
+    title: `Finalise i9 link`,
+    description: `If assistance is needed please get in touch with your Buddy.`
   },
   {
     title: `Attend BuildIt orientation within 3 weeks`,
@@ -90,6 +82,11 @@ export const sampleBuddyTasks = [
     title: `Buddy/Talent Team - give an overview of Wipro and BuildIt`,
     description: `<p>1st day</p>
     <p>Who we are? What we do?</p>`,
+  },
+  {
+    title: `Give copy of orientation book`,
+    description: `<p>1st day</p>
+    <p>The New Joiner should get a personal copy of the orientation book.</p>`
   },
 ];
 
