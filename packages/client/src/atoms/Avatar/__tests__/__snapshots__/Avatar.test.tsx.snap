@@ -44,6 +44,46 @@ exports[`Component - Avatar renders correctly with name and role 1`] = `
 </Grid>
 `;
 
+exports[`Component - Avatar renders correctly with position 1`] = `
+<Grid
+  alignItems="center"
+  container={true}
+  direction="column"
+  justify="center"
+>
+  <Grid
+    alignItems="center"
+    className="makeStyles-grid-3"
+    container={true}
+    direction="column"
+    justify="center"
+  >
+    <AvatarMaterialUI
+      alt="Avatar"
+      className="makeStyles-avatar-1"
+      src="avatar-placeholder.svg"
+    />
+    <CircularProgress
+      className="makeStyles-progress-2"
+      size={90}
+      thickness={2}
+      variant="static"
+    />
+    <Typography
+      component="h4"
+      variant="subtitle1"
+    />
+  </Grid>
+  <Typography
+    className="makeStyles-position-4"
+    component="h4"
+    variant="subtitle1"
+  >
+    Frontend dev
+  </Typography>
+</Grid>
+`;
+
 exports[`Component - Avatar renders correctly with progress bar 1`] = `
 <Grid
   alignItems="center"

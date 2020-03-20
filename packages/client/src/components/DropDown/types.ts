@@ -6,7 +6,7 @@ export type HideOptions = () => void;
 
 export interface OptionItem {
   text: string;
-  Icon: React.ElementType;
+  Icon?: React.ElementType;
   onClick: () => void;
   access: {
     [UserRole.Newbie]?: boolean;

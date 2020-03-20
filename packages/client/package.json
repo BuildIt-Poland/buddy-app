@@ -104,16 +104,14 @@
       }
     },
     "collectCoverageFrom": [
-      "src/**/*.{tsx,ts}",
-      "!src/styles/*",
-      "!src/__mocks__/*",
-      "!src/shared/*",
-      "!src/graphql/*",
-      "!src/context/*",
-      "!src/index.tsx",
-      "!src/utils/apollo-client/",
-      "!src/serviceWorker.ts",
-      "!<rootDir>/node_modules/"
+      "src/atoms/**/*.{tsx,ts}",
+      "src/components/**/*.{tsx,ts}",
+      "src/pages/**/*.{tsx,ts}",
+      "src/hooks/**/*.{tsx,ts}",
+      "src/utils/**/*.{tsx,ts}",
+      "!src/utils/apollo-client/*",
+      "!src/**/index.ts",
+      "!src/**/types.ts"
     ],
     "moduleNameMapper": {
       "@buddy-app/schema": "<rootDir>/src/__mocks__/schema.ts"

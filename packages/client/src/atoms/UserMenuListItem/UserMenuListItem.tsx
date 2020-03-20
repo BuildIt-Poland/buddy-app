@@ -31,6 +31,7 @@ const useStyles = makeStyles({
 const UserMenuListItem: React.FC<UserMenuListItemProps> = props => {
   const { user, onItemClick } = props;
   const { avatar, list, listItem } = useStyles();
+  /* istanbul ignore next */
   const handleClick = () => onItemClick((user as User).id);
 
   return (

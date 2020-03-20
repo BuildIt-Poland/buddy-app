@@ -59,9 +59,11 @@ const DropDown = (props: DropDownProps) => {
                 onClick={onClick}
                 dense
                 disabled={disabled}>
-                <StyledListItemIcon>
-                  <Icon fontSize='small' />
-                </StyledListItemIcon>
+                {Icon && (
+                  <StyledListItemIcon>
+                    <Icon fontSize='small' />
+                  </StyledListItemIcon>
+                )}
                 <ListItemText secondary={<strong>{text}</strong>} />
               </MenuItem>
             )

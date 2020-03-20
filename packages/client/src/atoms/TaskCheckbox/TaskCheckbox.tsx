@@ -13,6 +13,7 @@ const TaskCheckbox: React.FC<TaskCheckboxProps> = ({
   edge,
 }) => {
   const isChecked = task.status === TaskStatus.Completed;
+
   const onCheckboxChange = () => onChange && onChange(task);
 
   return (

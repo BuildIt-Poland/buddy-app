@@ -30,6 +30,7 @@ const TasksList: React.FC = () => {
     variables: { newbieId },
   });
   const { buddyProgress } = useTaskProgress(data && data.newbie);
+
   const [updateTaskStatus] = useTaskStatusUpdate(newbieId, {
     onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
     onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),

@@ -19,7 +19,8 @@ describe('Component - AvatarHeader', () => {
     component = create(
       <MockedProvider
         mocks={[NewbieAvatarDetails({ newbieId: '1234' })]}
-        addTypename={false}>
+        addTypename={false}
+        resolvers={{}}>
         <MemoryRouter initialEntries={[path]}>
           <Route path={'/buddy/newbies/:newbieId/tasks'}>
             <AuthProvider value={mockedBuddyContext()}>

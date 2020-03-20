@@ -12,7 +12,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import DropDown, { ShowOptions, HideOptions } from 'components/DropDown';
 import { TaskOptionsProps } from './types';
 import DICTIONARY from './dictionary';
-
+/* istanbul ignore file */
 const TaskOptions: React.FC<TaskOptionsProps> = ({ id: taskId }) => {
   const { newbieId } = useParams<QueryNewbieArgs>();
   const { showDialog } = useDialog();

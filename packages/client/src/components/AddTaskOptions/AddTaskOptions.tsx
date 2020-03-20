@@ -12,7 +12,7 @@ import DropDown, { ShowOptions, HideOptions } from 'components/DropDown';
 import { ADD_FROM_TEMPLATE } from 'graphql/add-from-template.graphql';
 import { AddTaskOptionsProps } from './types';
 import DICTIONARY from './dictionary';
-
+/* istanbul ignore file */
 const AddTaskOptions = (props: AddTaskOptionsProps) => {
   const { to, newbieId, ...restProps } = props;
   const history = useHistory();

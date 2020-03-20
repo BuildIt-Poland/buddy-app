@@ -24,6 +24,10 @@ describe('Component - Avatar', () => {
       );
       expect(component.toJSON()).toMatchSnapshot();
     });
+    test('with position', () => {
+      const component = create(<Avatar position='Frontend dev' />);
+      expect(component.toJSON()).toMatchSnapshot();
+    });
     test('with type "small"', () => {
       const component = create(<Avatar type='small' />);
       expect(component.toJSON()).toMatchSnapshot();

@@ -16,6 +16,29 @@ Array [
     keepMounted={false}
     onClose={[Function]}
     open={false}
-  />,
+  >
+    <MenuItem
+      data-testid=""
+      dense={true}
+      onClick={[Function]}
+    >
+      <ListItemIcon
+        classes={
+          Object {
+            "root": "ListItemIcon-root-2",
+          }
+        }
+      >
+        <div />
+      </ListItemIcon>
+      <ListItemText
+        secondary={
+          <strong>
+            
+          </strong>
+        }
+      />
+    </MenuItem>
+  </Menu>,
 ]
 `;
