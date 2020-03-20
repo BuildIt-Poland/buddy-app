@@ -1,38 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - TaskListPlaceHolder renders correctly 1`] = `
-Array [
+exports[`Component - ContactDetailsPlaceHolder renders correctly 1`] = `
+<Box
+  className="makeStyles-wrapper-5"
+  display="flex"
+>
   <Skeleton
-    className="makeStyles-subHeader-1"
-    variant="text"
-  />,
-  <Skeleton
-    className="makeStyles-listItem-2"
-    variant="rect"
-  />,
-  <Skeleton
-    className="makeStyles-listItem-2"
-    variant="rect"
-  />,
-  <Skeleton
-    className="makeStyles-listItem-2"
-    variant="rect"
-  />,
-  <Skeleton
-    className="makeStyles-subHeader-1"
-    variant="text"
-  />,
-  <Skeleton
-    className="makeStyles-listItem-2"
-    variant="rect"
-  />,
-  <Skeleton
-    className="makeStyles-listItem-2"
-    variant="rect"
-  />,
-  <Skeleton
-    className="makeStyles-listItem-2"
-    variant="rect"
-  />,
-]
+    className="makeStyles-avatar-2"
+    variant="circle"
+  />
+  <Box>
+    <Skeleton
+      className="makeStyles-subHeader-1"
+      variant="text"
+    />
+    <Skeleton
+      className="makeStyles-info-3"
+      variant="text"
+    />
+    <Skeleton
+      className="makeStyles-subHeader-1"
+      variant="text"
+    />
+    <Skeleton
+      className="makeStyles-info-3"
+      variant="text"
+    />
+    <Skeleton
+      className="makeStyles-subHeader-1"
+      variant="text"
+    />
+    <Skeleton
+      className="makeStyles-info-3"
+      variant="text"
+    />
+    <Skeleton
+      className="makeStyles-subHeader-1"
+      variant="text"
+    />
+    <Skeleton
+      className="makeStyles-notes-4"
+      variant="rect"
+    />
+  </Box>
+</Box>
 `;

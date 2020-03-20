@@ -7,7 +7,7 @@ import TaskListItem from '../TaskListItem';
 jest.mock('@material-ui/core/ListItem', () => 'ListItem');
 jest.mock('@material-ui/core/ListItemIcon', () => 'ListItemIcon');
 jest.mock('@material-ui/core/ListItemText', () => 'ListItemText');
-jest.mock('components/TaskCheckbox', () => 'TaskCheckbox');
+jest.mock('atoms/TaskCheckbox', () => 'TaskCheckbox');
 jest.mock('components/TaskOptions', () => 'TaskOptions');
 
 describe('Component - TaskCheckbox', () => {

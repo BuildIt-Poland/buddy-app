@@ -7,8 +7,15 @@ import { SnackbarProvider } from 'contexts/SnackbarContext';
 import { DialogProvider } from 'contexts/DialogContext';
 import TaskOptions from '../TaskOptions';
 
+jest.mock('components/DropDown', () => 'DropDown');
+jest.mock('@material-ui/core/IconButton', () => 'IconButton');
+jest.mock('@material-ui/icons/Edit', () => 'Edit');
+jest.mock('@material-ui/icons/MoreVert', () => 'MoreVert');
+jest.mock('@material-ui/icons/FileCopy', () => 'FileCopy');
+jest.mock('@material-ui/icons/Delete', () => 'Delete');
+
 describe('Component - TaskOptions', () => {
-  const path = '/buddy/newbies/33/tasks';
+  const path = '/buddy/newbies/1/tasks';
 
   const component = create(
     <MockedProvider>
@@ -25,8 +32,6 @@ describe('Component - TaskOptions', () => {
   );
 
   it('renders correctly', async () => {
-    expect(component.toJSON()).toMatchSnapshot();
-
     await act(async () => {
       await waitForExpect(() => {
         expect(component.toJSON()).toMatchSnapshot();

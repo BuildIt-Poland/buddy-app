@@ -13,6 +13,7 @@ Array [
       >
         Contact Details
       </Typography>
+      <ContactDetailsPlaceHolder />
     </Box>
   </PageContainer>,
 ]

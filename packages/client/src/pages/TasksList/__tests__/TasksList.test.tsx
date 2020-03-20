@@ -11,11 +11,11 @@ import TasksList from '../TasksList';
 jest.mock('@material-ui/core/AppBar', () => 'AppBar');
 jest.mock('@material-ui/core/Tabs', () => 'Tabs');
 jest.mock('@material-ui/core/Tab', () => 'Tab');
-jest.mock('components/TabPanel', () => 'TabPanel');
+jest.mock('atoms/TabPanel', () => 'TabPanel');
 jest.mock('components/AvatarHeader', () => 'AvatarHeader');
-jest.mock('components/AddTasksButton', () => 'AddTasksButton');
-jest.mock('components/TaskListPlaceHolder', () => 'TaskListPlaceHolder');
+jest.mock('atoms/TaskListPlaceHolder', () => 'TaskListPlaceHolder');
 jest.mock('components/TaskTabsContent', () => 'TaskTabsContent');
+jest.mock('components/AddTaskOptions', () => 'AddTaskOptions');
 jest.doMock('components/Header');
 
 describe('Component - TasksList', () => {

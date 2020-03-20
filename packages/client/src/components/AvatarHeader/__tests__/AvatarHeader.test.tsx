@@ -9,7 +9,7 @@ import { NewbieAvatarDetails, mockedBuddyContext } from '__mocks__';
 
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
-jest.mock('components/Avatar', () => 'Avatar');
+jest.mock('atoms/Avatar', () => 'Avatar');
 
 describe('Component - AvatarHeader', () => {
   const path = '/buddy/newbies/1234/tasks';

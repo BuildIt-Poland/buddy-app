@@ -6,7 +6,7 @@ import AppWrapper from '../AppWrapper';
 
 jest.mock('@material-ui/core/SwipeableDrawer', () => 'SwipeableDrawer');
 jest.mock('components/UserMenu', () => 'UserMenu');
-jest.mock('components/SnackBar', () => 'SnackBar');
+jest.mock('atoms/SnackBar', () => 'SnackBar');
 
 describe('Component - AppWrapper', () => {
   test('renders correctly', () => {

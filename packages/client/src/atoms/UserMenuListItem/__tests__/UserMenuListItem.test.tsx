@@ -7,7 +7,7 @@ import { UserRole } from '__mocks__';
 jest.mock('@material-ui/core/ListItem', () => 'ListItem');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
-jest.mock('components/Avatar', () => 'Avatar');
+jest.mock('atoms/Avatar', () => 'Avatar');
 
 describe('Component - UserMenuListItem', () => {
   test('renders correctly', () => {

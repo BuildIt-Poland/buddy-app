@@ -11,8 +11,9 @@ import TaskDetails from '../TaskDetails';
 
 jest.mock('components/PageContainer', () => 'PageContainer');
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
-jest.mock('components/TaskCheckbox', () => 'TaskCheckbox');
-jest.mock('components/ReminderButton', () => 'ReminderButton');
+jest.mock('atoms/TaskCheckbox', () => 'TaskCheckbox');
+jest.mock('atoms/ReminderButton', () => 'ReminderButton');
+jest.mock('atoms/TaskDetailsPlaceHolder', () => 'TaskDetailsPlaceHolder');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.doMock('components/Header');

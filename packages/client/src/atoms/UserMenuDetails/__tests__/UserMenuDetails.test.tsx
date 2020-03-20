@@ -4,7 +4,7 @@ import UserMenuDetails from 'atoms/UserMenuDetails';
 
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
-jest.mock('components/Avatar', () => 'Avatar');
+jest.mock('atoms/Avatar', () => 'Avatar');
 
 describe('Component - PlusButton', () => {
   test('renders correctly', () => {

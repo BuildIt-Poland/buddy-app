@@ -5,8 +5,8 @@ import TasksSubList from 'atoms/TasksSubList';
 import TaskTabsContent from '../';
 
 jest.mock('@material-ui/core/List', () => 'List');
-jest.mock('components/TasksSubList', () => 'TasksSubList');
-jest.mock('components/TaskListPlaceHolder', () => 'TaskListPlaceHolder');
+jest.mock('atoms/TasksSubList', () => 'TasksSubList');
+jest.mock('atoms/TaskListPlaceHolder', () => 'TaskListPlaceHolder');
 
 describe('Component - TaskTabsContent', () => {
   describe('when is loading', () => {

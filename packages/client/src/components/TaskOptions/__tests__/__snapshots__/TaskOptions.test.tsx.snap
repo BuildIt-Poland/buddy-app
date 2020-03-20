@@ -1,89 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - TaskOptions renders correctly 1`] = `
-<button
-  aria-controls="task-options"
-  aria-haspopup="true"
-  aria-label="more"
-  className="MuiButtonBase-root MuiIconButton-root"
-  data-testid="task-options-btn"
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragLeave={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchEnd={[Function]}
-  onTouchMove={[Function]}
-  onTouchStart={[Function]}
-  tabIndex={0}
-  type="button"
->
-  <span
-    className="MuiIconButton-label"
-  >
-    <svg
-      aria-hidden="true"
-      className="MuiSvgIcon-root"
-      focusable="false"
-      role="presentation"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
-      />
-    </svg>
-  </span>
-  <span
-    className="MuiTouchRipple-root"
-  />
-</button>
-`;
-
-exports[`Component - TaskOptions renders correctly 2`] = `
-<button
-  aria-controls="task-options"
-  aria-haspopup="true"
-  aria-label="more"
-  className="MuiButtonBase-root MuiIconButton-root"
-  data-testid="task-options-btn"
-  disabled={false}
-  onBlur={[Function]}
-  onClick={[Function]}
-  onDragLeave={[Function]}
-  onFocus={[Function]}
-  onKeyDown={[Function]}
-  onKeyUp={[Function]}
-  onMouseDown={[Function]}
-  onMouseLeave={[Function]}
-  onMouseUp={[Function]}
-  onTouchEnd={[Function]}
-  onTouchMove={[Function]}
-  onTouchStart={[Function]}
-  tabIndex={0}
-  type="button"
->
-  <span
-    className="MuiIconButton-label"
-  >
-    <svg
-      aria-hidden="true"
-      className="MuiSvgIcon-root"
-      focusable="false"
-      role="presentation"
-      viewBox="0 0 24 24"
-    >
-      <path
-        d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
-      />
-    </svg>
-  </span>
-  <span
-    className="MuiTouchRipple-root"
-  />
-</button>
+<DropDown
+  anchorOrigin={
+    Object {
+      "horizontal": "center",
+      "vertical": "center",
+    }
+  }
+  id="task-options"
+  renderAnchor={[Function]}
+  renderOptions={[Function]}
+/>
 `;

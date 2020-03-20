@@ -3,21 +3,21 @@
 exports[`Component - TaskDetails renders correctly 1`] = `
 Array [
   <header
-    loading={true}
     navItems={false}
     type="back"
   />,
   <PageContainer
     backGroundShape={true}
     data-testid="task-details-page"
-  />,
+  >
+    <TaskDetailsPlaceHolder />
+  </PageContainer>,
 ]
 `;
 
 exports[`Component - TaskDetails renders correctly 2`] = `
 Array [
   <header
-    loading={false}
     navItems={false}
     type="back"
   />,

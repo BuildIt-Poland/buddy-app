@@ -3,6 +3,7 @@
   "scripts": {
     "postinstall": "lerna bootstrap",
     "start": "lerna run start --parallel --stream",
+    "test": "lerna exec yarn test --scope=@buddy-app/client",
     "coverage": "lerna run coverage --parallel --stream",
     "lint": "lerna run lint --parallel --stream"
   },

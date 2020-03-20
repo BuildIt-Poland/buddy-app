@@ -1,12 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - PlusButton renders correctly 1`] = `
-<Fab
-  aria-label="add"
-  className="makeStyles-button-1"
-  color="primary"
-  size="medium"
->
-  <AddIcon />
-</Fab>
+exports[`Component - DropDown renders correctly 1`] = `
+Array [
+  <div />,
+  <Menu
+    TransitionComponent="Fade"
+    anchorEl={null}
+    classes={
+      Object {
+        "paper": "Menu-paper-1",
+      }
+    }
+    getContentAnchorEl={null}
+    id="1"
+    keepMounted={false}
+    onClose={[Function]}
+    open={false}
+  />,
+]
 `;

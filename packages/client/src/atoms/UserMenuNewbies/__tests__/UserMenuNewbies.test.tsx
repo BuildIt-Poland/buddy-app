@@ -5,7 +5,7 @@ import UserMenuNewbies from 'atoms/UserMenuNewbies';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');
-jest.mock('components/UserMenuListItem', () => 'UserMenuListItem');
+jest.mock('atoms/UserMenuListItem', () => 'UserMenuListItem');
 
 describe('Component - UserMenuNewbies', () => {
   test('renders correctly', () => {

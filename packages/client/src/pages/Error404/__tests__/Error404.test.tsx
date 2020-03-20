@@ -3,7 +3,7 @@ import { create } from 'react-test-renderer';
 
 import Error404 from '../Error404';
 
-jest.mock('components/ErrorPage', () => 'ErrorPage');
+jest.mock('atoms/ErrorPage', () => 'ErrorPage');
 
 describe('Component - Error404', () => {
   test('renders correctly', () => {

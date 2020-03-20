@@ -9,9 +9,9 @@ import NewbieSelect from '../NewbieSelect';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');
-jest.mock('components/PlusButton/', () => 'PlusButton');
+jest.mock('atoms/PlusButton', () => 'PlusButton');
 jest.mock('components/NewbieGrid', () => 'NewbieGrid');
-jest.mock('components/NiewbieGridPlaceHolder', () => 'NiewbieGridPlaceHolder');
+jest.mock('atoms/NiewbieGridPlaceHolder', () => 'NiewbieGridPlaceHolder');
 jest.mock('components/PageContainer/', () => 'PageContainer');
 jest.doMock('components/Header');
 
