@@ -20,6 +20,7 @@ import {
 import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
 import { isBuddy, isNewbieTask } from 'utils';
 import PageContainer from 'components/PageContainer';
+import TaskDetailsPlaceHolder from 'atoms/TaskDetailsPlaceHolder';
 import ReminderButton from 'atoms/ReminderButton';
 import Header, { MenuTypes } from 'components/Header';
 import TaskCheckbox from '../../atoms/TaskCheckbox';
@@ -121,11 +122,11 @@ const TaskDetails: React.FC = () => {
     <>
       <Header
         type={MenuTypes.BACK}
-        loading={loading}
         onButtonClick={onBackClick}
         navItems={hasReminderBtn && <ReminderButton disabled />}
       />
       <PageContainer data-testid='task-details-page' backGroundShape>
+        {loading && <TaskDetailsPlaceHolder />}
         {data && renderTaskDetails(data)}
       </PageContainer>
     </>

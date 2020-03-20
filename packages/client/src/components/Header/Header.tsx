@@ -79,7 +79,6 @@ const Header: React.FC<HeaderProps> = ({
   type,
   color = MenuColors.DEFAULT,
   shape = MenuShapes.DEFAULT,
-  loading,
   navItems,
   children,
   onButtonClick,
@@ -98,9 +97,8 @@ const Header: React.FC<HeaderProps> = ({
     appBarContainer,
   } = useStyles();
 
-  const { loading: sharedLoading } = useLoading();
+  const { loading } = useLoading();
   const scrollTrigger = useScrollTrigger({ disableHysteresis: true, threshold: 10 });
-  const headerLoading = loading || sharedLoading;
   const isRoundedShape = shape === MenuShapes.ROUNDED;
 
   const button: NavBarButton = {
@@ -122,7 +120,7 @@ const Header: React.FC<HeaderProps> = ({
     <Box component='header' className={appBarContainer}>
       <AppBar
         className={clsx(colorClassNames[color], shapeClassNames[shape], {
-          [withoutShadow]: headerLoading || !scrollTrigger,
+          [withoutShadow]: loading || !scrollTrigger,
         })}
         position='static'
         color='inherit'
@@ -142,7 +140,7 @@ const Header: React.FC<HeaderProps> = ({
       <LinearProgress
         variant={'indeterminate'}
         className={clsx(loaderShadow, {
-          [hideLoader]: !headerLoading,
+          [hideLoader]: !loading,
           [roundedShape]: isRoundedShape,
           [loaderLayer]: children,
         })}

@@ -14,6 +14,7 @@ import { BasicDetailsParams, UserBasicDetails } from 'components/UserMenu/types'
 import Box from '@material-ui/core/Box';
 import PageContainer from 'components/PageContainer';
 import Header, { MenuTypes } from 'components/Header';
+import ContactDetailsPlaceHolder from 'atoms/ContactDetailsPlaceHolder';
 import { ContactDetailsProps } from './types';
 
 const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
@@ -71,6 +72,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
           <Typography component='h2' variant='h2'>
             Contact Details
           </Typography>
+          {loading && <ContactDetailsPlaceHolder />}
           {userDetails && <UserDetails details={userDetails} />}
         </Box>
       </PageContainer>

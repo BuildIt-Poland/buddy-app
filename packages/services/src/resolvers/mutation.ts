@@ -53,11 +53,11 @@ const deleteNewbie: MutationResolvers["deleteNewbie"] = async (
   args,
   context
 ) => {
-  const newbie = await context.prisma.newbie({ id: args.newbieId });
-  if (!newbie) {
+  try {
+    return await context.prisma.deleteNewbie({ id: args.newbieId });
+  } catch (error) {
     throw new ERRORS.NO_USER_FOUND();
   }
-  return await context.prisma.deleteNewbie({ id: args.newbieId });
 };
 
 const deleteBuddy: MutationResolvers["deleteBuddy"] = async (
@@ -65,11 +65,11 @@ const deleteBuddy: MutationResolvers["deleteBuddy"] = async (
   args,
   context
 ) => {
-  const buddy = await context.prisma.buddy({ id: args.buddyId });
-  if (!buddy) {
+  try {
+    return await context.prisma.deleteBuddy({ id: args.buddyId });
+  } catch (error) {
     throw new ERRORS.NO_USER_FOUND();
   }
-  return await context.prisma.deleteBuddy({ id: args.buddyId });
 };
 
 const login: MutationResolvers["login"] = async (parent, args, context) => {

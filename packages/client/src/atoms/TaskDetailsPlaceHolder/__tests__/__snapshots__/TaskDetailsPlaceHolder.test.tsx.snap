@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - TaskListPlaceHolder renders correctly 1`] = `
+Array [
+  <Skeleton
+    className="makeStyles-subHeader-1"
+    variant="text"
+  />,
+  <Skeleton
+    className="makeStyles-listItem-2"
+    variant="rect"
+  />,
+  <Skeleton
+    className="makeStyles-listItem-2"
+    variant="rect"
+  />,
+  <Skeleton
+    className="makeStyles-listItem-2"
+    variant="rect"
+  />,
+  <Skeleton
+    className="makeStyles-subHeader-1"
+    variant="text"
+  />,
+  <Skeleton
+    className="makeStyles-listItem-2"
+    variant="rect"
+  />,
+  <Skeleton
+    className="makeStyles-listItem-2"
+    variant="rect"
+  />,
+  <Skeleton
+    className="makeStyles-listItem-2"
+    variant="rect"
+  />,
+]
+`;
