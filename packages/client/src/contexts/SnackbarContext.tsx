@@ -10,6 +10,7 @@ interface SnackbarProviderProps {
   children: React.ReactNode;
   value?: State;
 }
+
 interface SnackbarContextData extends State {
   showSnackbar: (message: string) => void;
   hideSnackBar: () => void;

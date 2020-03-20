@@ -14,6 +14,7 @@ import { useAuth } from 'contexts/AuthContext';
 import { isNewbie } from 'utils';
 import { MenuProvider } from 'contexts/MenuContext';
 import { SnackbarProvider } from 'contexts/SnackbarContext';
+import { LoadingProvider } from 'contexts/LoadingContext';
 
 const newbieRoutes = [
   {
@@ -79,21 +80,23 @@ const AuthenticatedApp: React.FC = () => {
     : ROUTES.BUDDY_SELECT_NEWBIE;
 
   return (
-    <SnackbarProvider>
-      <MenuProvider>
-        <AppWrapper>
-          <Switch>
-            {routes.map(({ path, component }, key) => (
-              <Route key={key} path={path} exact component={component} />
-            ))}
-            <Route path={ROUTES.ROUTE_404} exact component={Error404} />
-            <Redirect path={ROUTES.BASE} exact to={redirectPath} />
-            <Redirect path={ROUTES.LOGIN} exact to={redirectPath} />
-            <Redirect to={ROUTES.ROUTE_404} />
-          </Switch>
-        </AppWrapper>
-      </MenuProvider>
-    </SnackbarProvider>
+    <LoadingProvider>
+      <SnackbarProvider>
+        <MenuProvider>
+          <AppWrapper>
+            <Switch>
+              {routes.map(({ path, component }, key) => (
+                <Route key={key} path={path} exact component={component} />
+              ))}
+              <Route path={ROUTES.ROUTE_404} exact component={Error404} />
+              <Redirect path={ROUTES.BASE} exact to={redirectPath} />
+              <Redirect path={ROUTES.LOGIN} exact to={redirectPath} />
+              <Redirect to={ROUTES.ROUTE_404} />
+            </Switch>
+          </AppWrapper>
+        </MenuProvider>
+      </SnackbarProvider>
+    </LoadingProvider>
   );
 };
 

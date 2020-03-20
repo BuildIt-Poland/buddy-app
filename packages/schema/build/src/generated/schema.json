@@ -1632,13 +1632,9 @@
               "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "INTERFACE",
-                  "name": "Task",
-                  "ofType": null
-                }
+                "kind": "OBJECT",
+                "name": "Newbie",
+                "ofType": null
               }
             },
             "isDeprecated": false,

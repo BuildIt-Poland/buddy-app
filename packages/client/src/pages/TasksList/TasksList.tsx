@@ -82,6 +82,7 @@ const TasksList: React.FC = () => {
           />
         </TabPanel>
         <AddTaskOptions
+          newbieId={newbieId}
           title={DICTIONARY.PLUS_BUTTON_TITLE}
           to={{ pathname, state: { tabIndex } }}
         />

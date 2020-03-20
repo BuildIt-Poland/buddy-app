@@ -1,6 +1,7 @@
 import * as bcrypt from "bcryptjs";
 import * as jwt from "jsonwebtoken";
-import { MutationResolvers } from "@buddy-app/schema";
+import { MutationResolvers, Task } from "@buddy-app/schema";
+import { templateTaskListQuery, taskQuery } from "../graphql";
 import ERRORS from "../errors";
 
 const addBuddy: MutationResolvers["addBuddy"] = async (
@@ -97,7 +98,7 @@ const addNewbieTask: MutationResolvers["addNewbieTask"] = async (
   args,
   context
 ) =>
-  context.prisma.createNewbieTask({
+  await context.prisma.createNewbieTask({
     ...args.input,
     newbie: {
       connect: { id: args.newbieId }
@@ -109,38 +110,51 @@ const addBuddyTask: MutationResolvers["addBuddyTask"] = async (
   args,
   context
 ) =>
-  context.prisma.createBuddyTask({
+  await context.prisma.createBuddyTask({
     ...args.input,
     newbie: {
       connect: { id: args.newbieId }
     }
   });
 
+const addFromTemplate: MutationResolvers["addFromTemplate"] = async (
+  parent,
+  args,
+  context,
+  info
+) => {
+  const { template, newbieId } = args;
+  const result = await context.prisma.$graphql(templateTaskListQuery, {
+    template
+  });
+
+  try {
+    const {
+      newbie: { newbieTasks, buddyTasks }
+    } = result;
+
+    newbieTasks.forEach(
+      async (input: Task) =>
+        await addNewbieTask(parent, { input, newbieId }, context, info)
+    );
+
+    buddyTasks.forEach(
+      async (input: Task) =>
+        await addBuddyTask(parent, { input, newbieId }, context, info)
+    );
+  } catch (error) {
+    throw new ERRORS.NO_TEMPLATE_FOUND();
+  }
+
+  return await context.prisma.newbie({ id: newbieId });
+};
+
 const deleteTask: MutationResolvers["deleteTask"] = async (
   parent,
   args,
   context
 ) => {
-  const query = `
-    query ($id: ID!){
-      buddyTask(where: {
-        id: $id
-      }) {
-        newbie {
-          id
-        }
-      }
-      newbieTask(where: {
-        id: $id
-      }) {
-        newbie {
-          id
-        }
-      }
-    }
-  `;
-  const variables = { id: args.taskId };
-  const result = await context.prisma.$graphql(query, variables);
+  const result = await context.prisma.$graphql(taskQuery, { id: args.taskId });
 
   try {
     await context.prisma.deleteBuddyTask({
@@ -202,6 +216,7 @@ const mustations: MutationResolvers = {
   login,
   addNewbieTask,
   addBuddyTask,
+  addFromTemplate,
   deleteTask,
   updateTask
 };

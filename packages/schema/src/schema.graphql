@@ -37,7 +37,7 @@ type Mutation {
   login(email: String!, password: String!): AuthPayload!
   addNewbieTask(newbieId: ID!, input: TaskInput!): Task!
   addBuddyTask(newbieId: ID!, input: TaskInput!): Task!
-  addFromTemplate(newbieId: ID!, template: TaskTemplates!): [Task]!
+  addFromTemplate(newbieId: ID!, template: TaskTemplates!): Newbie!
   deleteTask(taskId: ID!): Newbie!
   updateTask(taskId: ID!, input: TaskInput!): Task!
 }
