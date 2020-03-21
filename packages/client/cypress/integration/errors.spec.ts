@@ -3,7 +3,7 @@ import schema from '@buddy-app/schema';
 import { ERROR } from '@buddy-app/services/src/errors';
 import { ROUTES } from '../../src/shared/routes';
 import { REQUEST_DELAY } from '../support/commands';
-import DICTIONARY from '../../src/components/Login/dictionary';
+import DICTIONARY from '../../src/pages/Login/dictionary';
 
 describe('Test login page with mocked GraphQL', () => {
   beforeEach(() => {
