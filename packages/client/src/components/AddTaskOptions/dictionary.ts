@@ -1,7 +1,7 @@
 interface AddTaskOptionsDictionary {
   OPTIONS: {
     ADD_TEMPLATE_PL: string;
-    ADD_TEMPLATE_ID: string;
+    ADD_TEMPLATE_IN: string;
     ADD_TEMPLATE_US: string;
     ADD_TEMPLATE_UK_IE: string;
     ADD_TASK: string;
@@ -18,7 +18,7 @@ interface AddTaskOptionsDictionary {
 const TASK_OPTIONS_DICTIONARY: AddTaskOptionsDictionary = {
   OPTIONS: {
     ADD_TEMPLATE_PL: 'Add from template: PL',
-    ADD_TEMPLATE_ID: 'Add from template: ID',
+    ADD_TEMPLATE_IN: 'Add from template: IN',
     ADD_TEMPLATE_US: 'Add from template: US',
     ADD_TEMPLATE_UK_IE: 'Add from template: UK/IE',
     ADD_TASK: 'Add a task',

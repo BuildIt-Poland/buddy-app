@@ -62,14 +62,14 @@ const AddTaskOptions = (props: AddTaskOptionsProps) => {
       },
     },
     {
-      text: DICTIONARY.OPTIONS.ADD_TEMPLATE_ID,
+      text: DICTIONARY.OPTIONS.ADD_TEMPLATE_IN,
       Icon: AddTemplateIcon,
       onClick: () => {
         hideOptions();
         showDialog(
           DICTIONARY.DIALOG.MESSAGE,
-          DICTIONARY.OPTIONS.ADD_TEMPLATE_ID,
-          () => addFromTemplate(TaskTemplates.TplId)
+          DICTIONARY.OPTIONS.ADD_TEMPLATE_IN,
+          () => addFromTemplate(TaskTemplates.TplIn)
         );
       },
       access: {

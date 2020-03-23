@@ -21,4 +21,4 @@ hooks:
 
 # Seeds the service with data.
 seed:
-  run: ts-node prisma/seed.ts
+  run: ts-node prisma/seed-tpl/seed.ts

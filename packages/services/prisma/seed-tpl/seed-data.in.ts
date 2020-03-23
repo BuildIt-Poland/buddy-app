@@ -5,7 +5,7 @@ export const newbieTasks: TaskInput[] = [];
 export const buddyTasks: TaskInput[] = [];
 
 export const newbie = {
-  email: TaskTemplates.TplId,
+  email: TaskTemplates.TplIn,
   name: "",
   password: ""
 };

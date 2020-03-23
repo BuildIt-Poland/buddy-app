@@ -15,7 +15,7 @@ enum UserRole {
 
 enum TaskTemplates {
   TPL_PL
-  TPL_ID
+  TPL_IN
   TPL_US
   TPL_UK_IE
 }

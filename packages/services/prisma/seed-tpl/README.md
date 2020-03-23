@@ -1,10 +1,6 @@
 # To run the seed:
 
-- populate `seed-data.{country}.ts` files with `TaskInput` related data;
-- open `prisma.yml` and chnage `seed` script to:
-  ```
-  run: ts-node prisma/seed-tpl/seed.ts
-  ```
+- populate all `seed-data.{country}.ts` files with `TaskInput` related data;
 - go to `services` folder and run:
   ```
   yarn run prisma:seed

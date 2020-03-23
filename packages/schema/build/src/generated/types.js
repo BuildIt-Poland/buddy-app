@@ -8,7 +8,7 @@ var TaskStatus;
 var TaskTemplates;
 (function (TaskTemplates) {
     TaskTemplates["TplPl"] = "TPL_PL";
-    TaskTemplates["TplId"] = "TPL_ID";
+    TaskTemplates["TplIn"] = "TPL_IN";
     TaskTemplates["TplUs"] = "TPL_US";
     TaskTemplates["TplUkIe"] = "TPL_UK_IE";
 })(TaskTemplates = exports.TaskTemplates || (exports.TaskTemplates = {}));

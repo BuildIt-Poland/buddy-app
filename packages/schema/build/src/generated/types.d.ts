@@ -177,7 +177,7 @@ export declare enum TaskStatus {
 }
 export declare enum TaskTemplates {
     TplPl = "TPL_PL",
-    TplId = "TPL_ID",
+    TplIn = "TPL_IN",
     TplUs = "TPL_US",
     TplUkIe = "TPL_UK_IE"
 }
