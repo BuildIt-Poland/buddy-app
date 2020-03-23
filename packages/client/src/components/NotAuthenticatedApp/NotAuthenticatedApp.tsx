@@ -1,8 +1,8 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { ROUTES } from 'shared/routes';
-import Login from 'components/Login';
-import Error404 from 'components/Error404';
+import Login from 'pages/Login';
+import Error404 from 'pages/Error404';
 
 const NotAuthenticatedApp: React.FC = () => (
   <Switch>

@@ -5,7 +5,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { ROUTES } from 'shared/routes';
 import NotAuthenticatedApp from '../NotAuthenticatedApp';
 
-jest.mock('components/Login', () => () => <div data-testid='login-page' />);
+jest.mock('pages/Login', () => () => <div data-testid='login-page' />);
 
 describe('Component - NotAuthenticatedApp', () => {
   describe('When route is /', () => {

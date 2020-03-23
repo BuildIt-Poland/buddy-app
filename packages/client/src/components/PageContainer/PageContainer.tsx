@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import BackgroundShape from 'components/BackgroundShape';
+import BackgroundShape from 'atoms/BackgroundShape';
 import clsx from 'clsx';
 import { PageContainerProps } from './types';
 

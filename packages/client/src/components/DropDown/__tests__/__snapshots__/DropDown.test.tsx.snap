@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - DropDown renders correctly 1`] = `
+Array [
+  <div />,
+  <Menu
+    TransitionComponent="Fade"
+    anchorEl={null}
+    classes={
+      Object {
+        "paper": "Menu-paper-1",
+      }
+    }
+    getContentAnchorEl={null}
+    id="1"
+    keepMounted={false}
+    onClose={[Function]}
+    open={false}
+  >
+    <MenuItem
+      data-testid=""
+      dense={true}
+      onClick={[Function]}
+    >
+      <ListItemIcon
+        classes={
+          Object {
+            "root": "ListItemIcon-root-2",
+          }
+        }
+      >
+        <div />
+      </ListItemIcon>
+      <ListItemText
+        secondary={
+          <strong>
+            
+          </strong>
+        }
+      />
+    </MenuItem>
+  </Menu>,
+]
+`;

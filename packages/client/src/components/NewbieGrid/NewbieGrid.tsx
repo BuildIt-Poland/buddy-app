@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Newbie } from '@buddy-app/schema';
 import { ROUTES } from 'shared/routes';
-import Avatar from 'components/Avatar';
+import Avatar from 'atoms/Avatar';
 import useTaskProgress from 'hooks/useTaskProgress';
 import { getProgressInPercentages } from 'utils';
 

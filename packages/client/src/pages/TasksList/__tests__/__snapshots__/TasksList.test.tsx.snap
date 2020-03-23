@@ -1,0 +1,233 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - TasksList When there are tasks renders correctly 1`] = `
+Array [
+  <header
+    color="paper"
+    type="back"
+  >
+    <AvatarHeader
+      newbieId="1234"
+      taskProgress={0}
+    />
+    <Tabs
+      centered={true}
+      indicatorColor="primary"
+      onChange={[Function]}
+      textColor="primary"
+      value={0}
+      variant="fullWidth"
+    >
+      <Tab
+        label="Newbie tasks"
+      />
+      <Tab
+        label="My tasks"
+      />
+    </Tabs>
+  </header>,
+  <main
+    className="MuiBox-root MuiBox-root-9"
+    data-testid="task-list-page"
+  >
+    <TabPanel
+      index={0}
+      value={0}
+    >
+      <TaskTabsContent
+        loading={true}
+        onChange={[Function]}
+        tabIndex={0}
+      />
+    </TabPanel>
+    <TabPanel
+      index={1}
+      value={0}
+    >
+      <TaskTabsContent
+        loading={true}
+        onChange={[Function]}
+        tabIndex={0}
+      />
+    </TabPanel>
+    <AddTaskOptions
+      newbieId="1234"
+      title="Add new task"
+      to={
+        Object {
+          "pathname": "/buddy/newbies/1234/add-task",
+          "state": Object {
+            "tabIndex": 0,
+          },
+        }
+      }
+    />
+  </main>,
+]
+`;
+
+exports[`Component - TasksList When there are tasks renders correctly 2`] = `
+Array [
+  <header
+    color="paper"
+    type="back"
+  >
+    <AvatarHeader
+      newbieId="1234"
+      taskProgress={0.75}
+    />
+    <Tabs
+      centered={true}
+      indicatorColor="primary"
+      onChange={[Function]}
+      textColor="primary"
+      value={0}
+      variant="fullWidth"
+    >
+      <Tab
+        label="Newbie tasks"
+      />
+      <Tab
+        label="My tasks"
+      />
+    </Tabs>
+  </header>,
+  <main
+    className="MuiBox-root MuiBox-root-9"
+    data-testid="task-list-page"
+  >
+    <TabPanel
+      index={0}
+      value={0}
+    >
+      <TaskTabsContent
+        loading={false}
+        onChange={[Function]}
+        tabIndex={0}
+        tasks={
+          Array [
+            Object {
+              "description": "New task description 2",
+              "id": "1",
+              "status": "COMPLETED",
+              "title": "New task title 2",
+            },
+            Object {
+              "description": "New task description 2",
+              "id": "1",
+              "status": "COMPLETED",
+              "title": "New task title 2",
+            },
+          ]
+        }
+      />
+    </TabPanel>
+    <TabPanel
+      index={1}
+      value={0}
+    >
+      <TaskTabsContent
+        loading={false}
+        onChange={[Function]}
+        tabIndex={0}
+        tasks={
+          Array [
+            Object {
+              "description": "New task description",
+              "id": "2",
+              "status": "UNCOMPLETED",
+              "title": "New task title ",
+            },
+            Object {
+              "description": "New task description 2",
+              "id": "1",
+              "status": "COMPLETED",
+              "title": "New task title 2",
+            },
+          ]
+        }
+      />
+    </TabPanel>
+    <AddTaskOptions
+      newbieId="1234"
+      title="Add new task"
+      to={
+        Object {
+          "pathname": "/buddy/newbies/1234/add-task",
+          "state": Object {
+            "tabIndex": 0,
+          },
+        }
+      }
+    />
+  </main>,
+]
+`;
+
+exports[`Component - TasksList when there are not tasks should render empty state 1`] = `
+Array [
+  <header
+    color="paper"
+    type="back"
+  >
+    <AvatarHeader
+      newbieId="1234"
+      taskProgress={0}
+    />
+    <Tabs
+      centered={true}
+      indicatorColor="primary"
+      onChange={[Function]}
+      textColor="primary"
+      value={0}
+      variant="fullWidth"
+    >
+      <Tab
+        label="Newbie tasks"
+      />
+      <Tab
+        label="My tasks"
+      />
+    </Tabs>
+  </header>,
+  <main
+    className="MuiBox-root MuiBox-root-10"
+    data-testid="task-list-page"
+  >
+    <TabPanel
+      index={0}
+      value={0}
+    >
+      <TaskTabsContent
+        loading={false}
+        onChange={[Function]}
+        tabIndex={0}
+        tasks={Array []}
+      />
+    </TabPanel>
+    <TabPanel
+      index={1}
+      value={0}
+    >
+      <TaskTabsContent
+        loading={false}
+        onChange={[Function]}
+        tabIndex={0}
+        tasks={Array []}
+      />
+    </TabPanel>
+    <AddTaskOptions
+      newbieId="1234"
+      title="Add new task"
+      to={
+        Object {
+          "pathname": "/buddy/newbies/1234/add-task",
+          "state": Object {
+            "tabIndex": 0,
+          },
+        }
+      }
+    />
+  </main>,
+]
+`;

@@ -5,7 +5,7 @@ import Link from '@material-ui/core/Link';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Typography from '@material-ui/core/Typography';
 
-import Avatar from 'components/Avatar';
+import Avatar from 'atoms/Avatar';
 import { isNewbie } from 'utils';
 import { UserRole } from '@buddy-app/schema';
 import { UserDetailsProps, ContactDetail } from './types';

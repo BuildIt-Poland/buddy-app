@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import SnackBar from 'components/SnackBar';
+import SnackBar from 'atoms/SnackBar';
 
 interface State {
   isOpen: boolean;
@@ -10,6 +10,7 @@ interface SnackbarProviderProps {
   children: React.ReactNode;
   value?: State;
 }
+
 interface SnackbarContextData extends State {
   showSnackbar: (message: string) => void;
   hideSnackBar: () => void;

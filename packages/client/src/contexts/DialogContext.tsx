@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import AlertDialog from 'components/AlertDialog';
+import AlertDialog from 'atoms/AlertDialog';
 
 interface State {
   isOpen: boolean;

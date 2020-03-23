@@ -10,7 +10,7 @@ jest.mock('@material-ui/core/Grid', () => 'Grid');
 jest.mock('@material-ui/core/Card', () => 'Card');
 jest.mock('@material-ui/core/CardContent', () => 'CardContent');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
-jest.mock('components/Avatar', () => 'Avatar');
+jest.mock('atoms/Avatar', () => 'Avatar');
 
 describe('Component - NewbieGrid', () => {
   describe('renders correctly', () => {

@@ -22,7 +22,7 @@ const TASK_OPTIONS_DICTIONARY: TaskOptionsDictionary = {
   },
   DELETE_DIALOG: {
     TITLE: 'Delete Task',
-    MESSAGE: 'Are you sure you want to delete this task?',
+    MESSAGE: 'Would you like to delete this task?',
   },
   DELETE_SNACKBAR: {
     SUCCESS: 'Task was successfully deleted',

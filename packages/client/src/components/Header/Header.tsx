@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLoading } from 'contexts/LoadingContext';
 import MenuIcon from '@material-ui/icons/Menu';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import AppBar from '@material-ui/core/AppBar';
@@ -80,7 +81,6 @@ const Header: React.FC<HeaderProps> = ({
   shape = MenuShapes.DEFAULT,
   navItems,
   children,
-  loading,
   onButtonClick,
 }) => {
   const {
@@ -97,6 +97,7 @@ const Header: React.FC<HeaderProps> = ({
     appBarContainer,
   } = useStyles();
 
+  const { loading } = useLoading();
   const scrollTrigger = useScrollTrigger({ disableHysteresis: true, threshold: 10 });
   const isRoundedShape = shape === MenuShapes.ROUNDED;
 

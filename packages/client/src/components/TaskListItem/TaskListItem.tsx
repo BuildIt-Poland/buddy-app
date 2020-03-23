@@ -6,7 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import TaskOptions from 'components/TaskOptions';
-import TaskCheckbox from 'components/TaskCheckbox';
+import TaskCheckbox from 'atoms/TaskCheckbox';
 import { TaskListItemProps } from './types';
 
 const useStyles = makeStyles(theme => ({

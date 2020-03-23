@@ -9,7 +9,7 @@ jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Link', () => 'Link');
 
 jest.mock('@material-ui/core/TextareaAutosize', () => 'TextareaAutosize');
-jest.mock('components/Avatar', () => 'Avatar');
+jest.mock('atoms/Avatar', () => 'Avatar');
 
 describe('Component - UserDetails', () => {
   describe('when logged in as buddy', () => {

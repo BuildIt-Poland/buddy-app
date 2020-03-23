@@ -5,7 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { Theme } from '@material-ui/core/';
 import Box from '@material-ui/core/Box';
 import { useQuery } from '@apollo/react-hooks';
-import Avatar from 'components/Avatar';
+import Avatar from 'atoms/Avatar';
 import { useAuth } from 'contexts/AuthContext';
 import { AVATAR_HEADER } from 'graphql/avatar-header.graphql';
 import { Query, QueryNewbieArgs, UserRole } from '@buddy-app/schema';

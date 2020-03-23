@@ -9,7 +9,7 @@ import { NewbieAvatarDetails, mockedBuddyContext } from '__mocks__';
 
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
-jest.mock('components/Avatar', () => 'Avatar');
+jest.mock('atoms/Avatar', () => 'Avatar');
 
 describe('Component - AvatarHeader', () => {
   const path = '/buddy/newbies/1234/tasks';
@@ -19,7 +19,8 @@ describe('Component - AvatarHeader', () => {
     component = create(
       <MockedProvider
         mocks={[NewbieAvatarDetails({ newbieId: '1234' })]}
-        addTypename={false}>
+        addTypename={false}
+        resolvers={{}}>
         <MemoryRouter initialEntries={[path]}>
           <Route path={'/buddy/newbies/:newbieId/tasks'}>
             <AuthProvider value={mockedBuddyContext()}>
