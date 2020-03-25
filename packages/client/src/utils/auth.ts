@@ -28,7 +28,10 @@ class Auth {
   }
 
   setUser(auth: AuthPayload) {
-    return Cookies.set(key, JSON.stringify(auth));
+    return Cookies.set(key, JSON.stringify(auth), {
+      expires: 1,
+      sameSite: 'strict',
+    });
   }
 
   removeUser() {

@@ -15,11 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
   info: {
     height: '2.5rem',
-    width: '90%',
-  },
-  notes: {
-    height: '12rem',
-    width: '20rem',
+    width: '15rem',
   },
   wrapper: {
     marginTop: theme.spacing(2),
@@ -43,8 +39,7 @@ const ContactDetailsPlaceHolder: React.FC = () => {
         <PlaceHolderContactItem />
         <PlaceHolderContactItem />
         <PlaceHolderContactItem />
-        <Skeleton variant='text' className={classes.subHeader} />
-        <Skeleton variant='rect' className={classes.notes} />
+        <PlaceHolderContactItem />
       </Box>
     </Box>
   );
