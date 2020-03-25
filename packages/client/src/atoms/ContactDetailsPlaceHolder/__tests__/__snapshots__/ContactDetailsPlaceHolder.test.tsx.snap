@@ -2,7 +2,7 @@
 
 exports[`Component - ContactDetailsPlaceHolder renders correctly 1`] = `
 <Box
-  className="makeStyles-wrapper-5"
+  className="makeStyles-wrapper-4"
   display="flex"
 >
   <Skeleton
@@ -39,8 +39,8 @@ exports[`Component - ContactDetailsPlaceHolder renders correctly 1`] = `
       variant="text"
     />
     <Skeleton
-      className="makeStyles-notes-4"
-      variant="rect"
+      className="makeStyles-info-3"
+      variant="text"
     />
   </Box>
 </Box>
