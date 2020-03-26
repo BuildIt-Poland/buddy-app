@@ -34,7 +34,8 @@ describe('Utils - auth', () => {
 
     expect(mockedCookies.set).toHaveBeenCalledWith(
       'auth/user',
-      JSON.stringify(authPayload)
+      JSON.stringify(authPayload),
+      { expires: 1, sameSite: 'strict' }
     );
   });
 

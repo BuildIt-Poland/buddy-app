@@ -78,16 +78,20 @@ const login: MutationResolvers["login"] = async (parent, args, context) => {
 
   const user = buddy || newbie;
 
+  const isPasswordValid = await bcrypt.compare(args.password, user.password);
+
   if (!user) {
     throw new ERRORS.NO_USER_FOUND();
   }
 
-  if (args.password !== user.password) {
+  if (!isPasswordValid) {
     throw new ERRORS.INVALID_PASSWORD();
   }
 
   return {
-    token: jwt.sign({ userId: user.id }, process.env.APP_SECRET as string),
+    token: jwt.sign({ userId: user.id }, process.env.APP_SECRET as string, {
+      expiresIn: "1d"
+    }),
     role: user.role,
     userId: user.id
   };

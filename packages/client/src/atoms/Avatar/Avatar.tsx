@@ -1,4 +1,5 @@
 import React from 'react';
+import xss from 'dompurify';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import AvatarMaterialUI from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
@@ -81,7 +82,7 @@ const Avatar: React.FC<AvatarProps> = props => {
   };
 
   const avatarCursorStyle = onClick ? { cursor: 'pointer' } : undefined;
-  const avatarImg = imgSrc || avatarPlaceholder;
+  const avatarImg = xss.sanitize(imgSrc || '') || avatarPlaceholder;
 
   return (
     <Grid container justify='center' alignItems='center' direction='column'>
