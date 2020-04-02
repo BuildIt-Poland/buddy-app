@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect, useContext } from 'react';
 import { Mutation, AuthPayload } from '@buddy-app/schema';
 import { useQuery } from '@apollo/react-hooks';
-import { ExecutionResult } from '@apollo/react-common';
+import { FetchResult } from 'apollo-link';
 import { auth } from 'utils';
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
 import { GET_LOCAL_AUTH } from 'graphql/get-auth.graphql';
@@ -35,7 +35,7 @@ const defaultState: AuthState = {
 };
 
 interface AuthContext extends AuthState {
-  login: (email: string, password: string) => Promise<ExecutionResult<Mutation>>;
+  login: (email: string, password: string) => Promise<FetchResult<Mutation>>;
   logout: () => void;
 }
 

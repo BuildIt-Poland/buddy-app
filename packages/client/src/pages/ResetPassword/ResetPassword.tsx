@@ -35,6 +35,7 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({ history, match }) => {
     {
       onCompleted: () => {
         showDialog(DICTIONARY.DIALOG.SUCCESS_MSG, DICTIONARY.DIALOG.SUCCESS_TITLE);
+        history.push(ROUTES.LOGIN);
         auth.removeForgotPasswordUser();
       },
       onError: error => {
@@ -65,7 +66,7 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({ history, match }) => {
 
   useEffect(() => {
     if (!user || user.token !== match.params.token) {
-      history.push(ROUTES.LOGIN);
+      history.push(ROUTES.ROUTE_404);
     }
   }, [user, history, match]);
 
