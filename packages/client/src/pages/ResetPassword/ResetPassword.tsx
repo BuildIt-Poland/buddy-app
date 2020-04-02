@@ -96,7 +96,7 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({ history, match }) => {
           helperText={(errors.password && errors.password.message) || ' '}
         />
         <TextField
-          inputProps={{ 'data-testid': 'password2' }}
+          inputProps={{ 'data-testid': 'passwordConfirm' }}
           inputRef={register({
             required: DICTIONARY.PASSWORD.REQUIRED,
             pattern: {

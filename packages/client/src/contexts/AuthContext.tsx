@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect, useContext } from 'react';
 import { Mutation, AuthPayload } from '@buddy-app/schema';
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import { ExecutionResult } from '@apollo/react-common';
 import { auth } from 'utils';
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
@@ -87,7 +87,6 @@ const authReducer = (state: AuthState, action: Action): AuthState => {
 const AuthProvider = ({ children, ...props }: AuthProviderProps) => {
   const [state, dispatch] = useReducer(authReducer, defaultState);
   const { data } = useQuery<AuthCache>(GET_LOCAL_AUTH);
-  const [loginMutation] = useMutation<Mutation>(LOGIN_MUTATION);
 
   useEffect(() => {
     const user = auth.getUser();
@@ -109,7 +108,8 @@ const AuthProvider = ({ children, ...props }: AuthProviderProps) => {
     dispatch({ type: ActionTypes.AUTH_INIT });
 
     try {
-      const { data } = await loginMutation({
+      const { data } = await apolloClient.mutate<Mutation>({
+        mutation: LOGIN_MUTATION,
         variables: {
           email,
           password,

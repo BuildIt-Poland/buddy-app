@@ -1,69 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - AlertDialog renders correctly 1`] = `
-<Dialog
-  data-testid="alert-dialog"
-  open={true}
+exports[`Component - AuthContainer renders correctly 1`] = `
+<PageContainer
+  backGroundShape={true}
+  className="makeStyles-container-2"
+  maxWidth="md"
 >
-  <DialogContent>
-    <DialogContentText
-      style={
-        Object {
-          "whiteSpace": "pre-line",
-        }
-      }
-      variant="body2"
-    >
-      dummy message
-    </DialogContentText>
-  </DialogContent>
-  <DialogActions>
-    <Button
-      color="primary"
-      data-testid="alert-dialog-close"
-    >
-      Close
-    </Button>
-    <Button
-      color="primary"
-      data-testid="alert-dialog-confirm"
-      onClick={[Function]}
-    >
-      Confirm
-    </Button>
-  </DialogActions>
-</Dialog>
-`;
-
-exports[`Component - AlertDialog renders correctly with title message 1`] = `
-<Dialog
-  data-testid="alert-dialog"
-  open={true}
->
-  <DialogTitle>
-    <strong>
-      dummy title
-    </strong>
-  </DialogTitle>
-  <DialogContent>
-    <DialogContentText
-      style={
-        Object {
-          "whiteSpace": "pre-line",
-        }
-      }
-      variant="body2"
-    >
-      dummy message
-    </DialogContentText>
-  </DialogContent>
-  <DialogActions>
-    <Button
-      color="primary"
-      data-testid="alert-dialog-close"
-    >
-      Close
-    </Button>
-  </DialogActions>
-</Dialog>
+  <Typography
+    align="center"
+    className="makeStyles-title-3"
+    component="h1"
+    variant="h1"
+  >
+    
+  </Typography>
+  <svg
+    className="makeStyles-spaceMan-1"
+  >
+    spaceman.svg
+  </svg>
+</PageContainer>
 `;
