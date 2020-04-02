@@ -25,5 +25,8 @@
   "devDependencies": {
     "husky": "^4.2.3",
     "lerna": "^3.20.2"
+  },
+  "dependencies": {
+    "@buddy-app/schema": "0.1.0"
   }
 }

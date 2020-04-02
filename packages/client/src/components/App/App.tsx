@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PageContainer from 'components/PageContainer';
+import PageContainer from 'atoms/PageContainer';
 import { BrowserRouter } from 'react-router-dom';
 import { ROUTES } from 'shared/routes';
 import { useAuth } from 'contexts/AuthContext';
@@ -12,7 +12,7 @@ const NotAuthenticatedApp = React.lazy(() =>
 );
 
 const App: React.FC = () => {
-  const [{ isAuthenticated }] = useAuth();
+  const { isAuthenticated } = useAuth();
 
   React.useEffect(() => {
     loadAuthenticatedApp();

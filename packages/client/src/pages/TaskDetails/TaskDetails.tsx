@@ -19,7 +19,7 @@ import {
 } from '@buddy-app/schema';
 import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
 import { isBuddy, isNewbieTask } from 'utils';
-import PageContainer from 'components/PageContainer';
+import PageContainer from 'atoms/PageContainer';
 import TaskDetailsPlaceHolder from 'atoms/TaskDetailsPlaceHolder';
 import ReminderButton from 'atoms/ReminderButton';
 import Header, { MenuTypes } from 'components/Header';
@@ -62,11 +62,9 @@ const STATUS_TEXT = {
 };
 
 const TaskDetails: React.FC = () => {
-  const [
-    {
-      data: { role, userId },
-    },
-  ] = useAuth();
+  const {
+    data: { role, userId },
+  } = useAuth();
   const { newbieId, taskId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
   const { wrapper, header, status, description } = useStyles();
   const { pathname, state } = useLocation();

@@ -13,7 +13,7 @@ import UserMenuBuddy from 'atoms/UserMenuBuddy';
 import { isBuddy, isNewbie } from 'utils';
 import { ROUTES } from 'shared/routes';
 import { Buddy, Newbie, UserRole } from '@buddy-app/schema';
-import { useAuth, logout } from 'contexts/AuthContext';
+import { useAuth } from 'contexts/AuthContext';
 import { DocumentNode } from 'graphql';
 import { BasicDetailsParams, UserMenuProps, UserBasicDetails } from './types';
 
@@ -35,12 +35,10 @@ const useStyles = makeStyles(theme => ({
 const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
   const history = useHistory();
   const { list, loader } = useStyles();
-  const [
-    {
-      data: { userId, role },
-    },
-    dispatch,
-  ] = useAuth();
+  const {
+    data: { userId, role },
+    logout,
+  } = useAuth();
 
   const userDetailsRoutes = {
     [UserRole.Buddy]: ROUTES.BUDDY_DETAILS,
@@ -48,7 +46,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
   };
 
   const onLogoutClick = () => {
-    logout(dispatch);
+    logout();
     history.push(ROUTES.BASE);
   };
 

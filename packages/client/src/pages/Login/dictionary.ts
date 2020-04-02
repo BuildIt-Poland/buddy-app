@@ -1,7 +1,7 @@
 interface LoginDictionary {
   TITLE: string;
   FORGOT_PASSWORD: string;
-  SIGN_IN: string;
+  SUBMIT: string;
   EMAIL: {
     LABEL: string;
     REQUIRED: string;
@@ -20,7 +20,7 @@ interface LoginDictionary {
 const DICTIONARY: LoginDictionary = {
   TITLE: 'Buddy',
   FORGOT_PASSWORD: 'Forgot password?',
-  SIGN_IN: 'Sign In',
+  SUBMIT: 'Sign In',
   EMAIL: {
     LABEL: 'Email Address',
     REQUIRED: 'Email address is required',

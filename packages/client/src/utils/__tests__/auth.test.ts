@@ -45,4 +45,33 @@ describe('Utils - auth', () => {
 
     expect(Auth.getToken()).toBe(null);
   });
+
+  it('auth.getForgotPasswordToken should return the token', () => {
+    mockedCookies.get.mockReturnValueOnce(JSON.stringify(authPayload));
+
+    expect(Auth.getForgotPasswordToken()).toBe(authPayload.token);
+  });
+
+  it('auth.getForgotPasswordUser should return the token', () => {
+    mockedCookies.get.mockReturnValueOnce(JSON.stringify(authPayload));
+
+    expect(Auth.getForgotPasswordUser()).toHaveProperty('role');
+  });
+
+  it('auth.setForgotPasswordUser should set the cookie', () => {
+    Auth.setForgotPasswordUser(authPayload);
+
+    expect(mockedCookies.set).toHaveBeenCalledWith(
+      'auth/forgot-password',
+      JSON.stringify(authPayload),
+      { expires: 1 / 24, sameSite: 'strict' }
+    );
+  });
+
+  it('auth.removeForgotPasswordUser should remove the cookie', () => {
+    Auth.setForgotPasswordUser(authPayload);
+    Auth.removeForgotPasswordUser();
+
+    expect(Auth.getForgotPasswordUser()).toBe(null);
+  });
 });

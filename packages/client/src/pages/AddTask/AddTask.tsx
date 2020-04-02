@@ -11,7 +11,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import xss from 'dompurify';
 import { ADD_BUDDY_TASK, ADD_NEWBIE_TASK } from 'graphql/add-task.graphql';
-import PageContainer from 'components/PageContainer';
+import PageContainer from 'atoms/PageContainer';
 import Header, { MenuTypes } from 'components/Header';
 import RoundedButton from 'atoms/RoundedButton';
 import { AddTaskProps } from './types';

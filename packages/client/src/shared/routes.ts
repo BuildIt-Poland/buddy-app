@@ -1,6 +1,8 @@
 enum ROUTES {
   BASE = '/',
   LOGIN = '/login',
+  FORGOT_PASSWORD = '/forgot-password',
+  RESET_PASSWORD = '/reset-password/:token',
   ROUTE_404 = '/404',
   BUDDY = '/buddy/',
   BUDDY_DETAILS = '/buddy/details',
