@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { Mutation } from '@buddy-app/schema';
@@ -73,6 +73,12 @@ const ForgotPassword: React.FC = () => {
       },
     });
   };
+
+  useEffect(() => {
+    if (auth.getUser()) {
+      history.push(ROUTES.ROUTE_404);
+    }
+  }, [history]);
 
   return (
     <AuthContainer data-testid='forgot-password-page' title={DICTIONARY.TITLE}>

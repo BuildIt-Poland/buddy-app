@@ -14,6 +14,8 @@ import { ROUTES } from 'shared/routes';
 import DICTIONARY from './dictionary';
 import { FormData, ResetPasswordProps } from './types';
 
+const MIN_PASSWORD_LENGTH = 8;
+
 const useStyles = makeStyles(theme => ({
   form: {
     width: '100%',
@@ -25,9 +27,10 @@ const useStyles = makeStyles(theme => ({
 
 const ResetPassword: React.FC<ResetPasswordProps> = ({ history, match }) => {
   const classes = useStyles();
-  const { register, errors, handleSubmit, getValues } = useForm<FormData>();
+  const { register, errors, handleSubmit, setError, clearError } = useForm<
+    FormData
+  >();
   const { showDialog } = useDialog();
-  const { password } = getValues();
   const user = auth.getForgotPasswordUser();
 
   const [updateUser, { loading }] = useMutation<Partial<Mutation>>(
@@ -50,10 +53,16 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({ history, match }) => {
     }
   );
 
+  const onFormFocus = () => clearError('passwordConfirm');
+
   const onFormChange = (e: React.ChangeEvent<HTMLFormElement>) =>
     (e.target.value = e.target.value.trim());
 
-  const onSubmit = ({ password }: FormData) => {
+  const onSubmit = ({ password, passwordConfirm }: FormData) => {
+    if (password !== passwordConfirm) {
+      return setError('passwordConfirm', 'notMatch', DICTIONARY.PASSWORD.NOT_MATCH);
+    }
+
     updateUser({
       variables: {
         userId: (user && user.userId) || '',
@@ -76,6 +85,7 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({ history, match }) => {
         className={classes.form}
         data-testid='form'
         noValidate
+        onFocus={onFormFocus}
         onChange={onFormChange}
         onSubmit={handleSubmit(onSubmit)}>
         <TextField
@@ -83,7 +93,7 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({ history, match }) => {
           inputRef={register({
             required: DICTIONARY.PASSWORD.REQUIRED,
             minLength: {
-              value: 8,
+              value: MIN_PASSWORD_LENGTH,
               message: DICTIONARY.PASSWORD.INVALID,
             },
           })}
@@ -100,10 +110,6 @@ const ResetPassword: React.FC<ResetPasswordProps> = ({ history, match }) => {
           inputProps={{ 'data-testid': 'passwordConfirm' }}
           inputRef={register({
             required: DICTIONARY.PASSWORD.REQUIRED,
-            pattern: {
-              value: new RegExp(`^${password}$`),
-              message: DICTIONARY.PASSWORD.NOT_MATCH,
-            },
           })}
           margin={'dense'}
           fullWidth
