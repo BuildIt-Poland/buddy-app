@@ -55,7 +55,9 @@ export type Mutation = {
   addNewbie: Newbie,
   deleteNewbie: Buddy,
   deleteBuddy: Buddy,
+  updateUser: User,
   login: AuthPayload,
+  sendResetPasswordLink: AuthPayload,
   addNewbieTask: Task,
   addBuddyTask: Task,
   addFromTemplate: Newbie,
@@ -85,9 +87,21 @@ export type MutationDeleteBuddyArgs = {
 };
 
 
+export type MutationUpdateUserArgs = {
+  userId: Scalars['String'],
+  input: UserInput
+};
+
+
 export type MutationLoginArgs = {
   email: Scalars['String'],
   password: Scalars['String']
+};
+
+
+export type MutationSendResetPasswordLinkArgs = {
+  email: Scalars['String'],
+  url: Scalars['String']
 };
 
 
@@ -238,9 +252,9 @@ export type User = {
 };
 
 export type UserInput = {
-  email: Scalars['EmailAddress'],
-  name: Scalars['String'],
-  password: Scalars['String'],
+  email?: Maybe<Scalars['EmailAddress']>,
+  name?: Maybe<Scalars['String']>,
+  password?: Maybe<Scalars['String']>,
   position?: Maybe<Scalars['String']>,
   photo?: Maybe<Scalars['URL']>,
   phoneNumber?: Maybe<Scalars['PhoneNumber']>,
@@ -421,7 +435,9 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
   addNewbie?: Resolver<ResolversTypes['Newbie'], ParentType, ContextType, RequireFields<MutationAddNewbieArgs, 'buddyId' | 'input'>>,
   deleteNewbie?: Resolver<ResolversTypes['Buddy'], ParentType, ContextType, RequireFields<MutationDeleteNewbieArgs, 'newbieId'>>,
   deleteBuddy?: Resolver<ResolversTypes['Buddy'], ParentType, ContextType, RequireFields<MutationDeleteBuddyArgs, 'buddyId'>>,
+  updateUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationUpdateUserArgs, 'userId' | 'input'>>,
   login?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>,
+  sendResetPasswordLink?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationSendResetPasswordLinkArgs, 'email' | 'url'>>,
   addNewbieTask?: Resolver<ResolversTypes['Task'], ParentType, ContextType, RequireFields<MutationAddNewbieTaskArgs, 'newbieId' | 'input'>>,
   addBuddyTask?: Resolver<ResolversTypes['Task'], ParentType, ContextType, RequireFields<MutationAddBuddyTaskArgs, 'newbieId' | 'input'>>,
   addFromTemplate?: Resolver<ResolversTypes['Newbie'], ParentType, ContextType, RequireFields<MutationAddFromTemplateArgs, 'newbieId' | 'template'>>,

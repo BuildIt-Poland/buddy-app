@@ -8,7 +8,7 @@ import { useAuth } from 'contexts/AuthContext';
 import { NEWBIE_SELECT } from 'graphql/newbie-select.graphql';
 import PlusButton from 'atoms/PlusButton';
 import NewbieGrid from 'components/NewbieGrid';
-import PageContainer from 'components/PageContainer';
+import PageContainer from 'atoms/PageContainer';
 import NiewbieGridPlaceHolder from 'atoms/NiewbieGridPlaceHolder';
 import Header, { MenuTypes } from 'components/Header';
 import { useMenu } from 'contexts/MenuContext';
@@ -24,11 +24,9 @@ const useStyles = makeStyles<Theme>(theme => ({
 }));
 
 const NewbieSelect: React.FC = () => {
-  const [
-    {
-      data: { userId },
-    },
-  ] = useAuth();
+  const {
+    data: { userId },
+  } = useAuth();
 
   const { loading, data } = useQuery<Query, QueryBuddyArgs>(NEWBIE_SELECT, {
     variables: { buddyId: userId },

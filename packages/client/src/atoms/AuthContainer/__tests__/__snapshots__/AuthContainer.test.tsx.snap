@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - AuthContainer renders correctly 1`] = `
+<PageContainer
+  backGroundShape={true}
+  className="makeStyles-container-2"
+  maxWidth="md"
+>
+  <Typography
+    align="center"
+    className="makeStyles-title-3"
+    component="h1"
+    variant="h1"
+  >
+    
+  </Typography>
+  <svg
+    className="makeStyles-spaceMan-1"
+  >
+    spaceman.svg
+  </svg>
+</PageContainer>
+`;

@@ -34,7 +34,9 @@ type Mutation {
   addNewbie(buddyId: ID!, input: UserInput!): Newbie!
   deleteNewbie(newbieId: ID!): Buddy!
   deleteBuddy(buddyId: ID!): Buddy!
+  updateUser(userId: String!, input: UserInput!): User!
   login(email: String!, password: String!): AuthPayload!
+  sendResetPasswordLink(email: String!, url: String!): AuthPayload!
   addNewbieTask(newbieId: ID!, input: TaskInput!): Task!
   addBuddyTask(newbieId: ID!, input: TaskInput!): Task!
   addFromTemplate(newbieId: ID!, template: TaskTemplates!): Newbie!
@@ -55,9 +57,9 @@ interface User {
 }
 
 input UserInput {
-  email: EmailAddress!
-  name: String!
-  password: String!
+  email: EmailAddress
+  name: String
+  password: String
   position: String
   photo: URL
   phoneNumber: PhoneNumber

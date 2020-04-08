@@ -67,11 +67,9 @@ const buddyRoutes = [
 ];
 
 const AuthenticatedApp: React.FC = () => {
-  const [
-    {
-      data: { role },
-    },
-  ] = useAuth();
+  const {
+    data: { role },
+  } = useAuth();
 
   const isNewbieRole = isNewbie(role);
   const routes = isNewbieRole ? newbieRoutes : buddyRoutes;

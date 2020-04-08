@@ -16,7 +16,7 @@ jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('components/UserDetails', () => 'UserDetails');
 jest.mock('atoms/ContactDetailsPlaceHolder', () => 'ContactDetailsPlaceHolder');
-jest.mock('components/PageContainer', () => 'PageContainer');
+jest.mock('atoms/PageContainer', () => 'PageContainer');
 jest.mock(
   'components/Header',
   () => (require.requireActual('components/Header').default = () => 'Header')

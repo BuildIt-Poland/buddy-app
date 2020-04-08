@@ -12,7 +12,7 @@ import { useAuth } from 'contexts/AuthContext';
 import UserDetails from 'components/UserDetails';
 import { BasicDetailsParams, UserBasicDetails } from 'components/UserMenu/types';
 import Box from '@material-ui/core/Box';
-import PageContainer from 'components/PageContainer';
+import PageContainer from 'atoms/PageContainer';
 import Header, { MenuTypes } from 'components/Header';
 import ContactDetailsPlaceHolder from 'atoms/ContactDetailsPlaceHolder';
 import { ContactDetailsProps } from './types';
@@ -21,11 +21,9 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
   const { newbieId } = useParams<QueryNewbieArgs>();
   const { buddyId } = useParams<QueryBuddyArgs>();
   const isCurrentUserDetails = !newbieId && !buddyId;
-  const [
-    {
-      data: { role, userId },
-    },
-  ] = useAuth();
+  const {
+    data: { role, userId },
+  } = useAuth();
 
   const queryByRole = isCurrentUserDetails
     ? {

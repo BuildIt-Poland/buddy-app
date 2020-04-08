@@ -1,44 +1,29 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useForm } from 'react-hook-form';
-import { ReactComponent as SpaceManLogo } from 'assets/svg/spaceman.svg';
-import PageContainer from 'components/PageContainer/PageContainer';
+import AuthContainer from 'atoms/AuthContainer';
 import { useDialog } from 'contexts/DialogContext';
-import { useAuth, login } from 'contexts/AuthContext';
-import RoundedButton from '../../atoms/RoundedButton';
+import { useAuth } from 'contexts/AuthContext';
+import RoundedButton from 'atoms/RoundedButton';
+import { ROUTES } from 'shared/routes';
 import DICTIONARY from './dictionary';
 import { FormData } from './types';
 
 const useStyles = makeStyles(theme => ({
-  spaceMan: {
-    maxHeight: '25rem',
-    minHeight: '10rem',
-    marginTop: theme.spacing(3),
-  },
   form: {
     width: '100%',
   },
   submit: {
     margin: theme.spacing(3, 0),
   },
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100%',
-  },
-  title: {
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '6.5rem',
-    },
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '5rem',
+  forgotPassword: {
+    fontSize: '1.5rem',
+    '&:hover': {
+      color: theme.palette.action.active,
     },
   },
 }));
@@ -46,41 +31,28 @@ const useStyles = makeStyles(theme => ({
 const Login: React.FC = () => {
   const classes = useStyles();
   const { register, errors, handleSubmit } = useForm<FormData>();
-  const [{ loading, error }, dispatch] = useAuth();
-  const {
-    current: { showDialog },
-  } = useRef(useDialog());
+  const { loading, login } = useAuth();
+  const { showDialog } = useDialog();
 
   const onFormChange = (e: React.ChangeEvent<HTMLFormElement>) =>
     (e.target.value = e.target.value.trim());
 
-  const onSubmit = ({ email, password }: FormData) =>
-    login(dispatch, email, password);
-
-  useEffect(() => {
-    if (error) {
-      if (error.networkError) {
-        showDialog(DICTIONARY.ERRORS.NO_NETWORK);
-      } else {
-        showDialog(DICTIONARY.ERRORS.NO_USER_FOUND);
+  const onSubmit = async ({ email, password }: FormData) => {
+    try {
+      await login(email, password);
+    } catch (error) {
+      if (error) {
+        if (error.networkError) {
+          showDialog(DICTIONARY.ERRORS.NO_NETWORK);
+        } else {
+          showDialog(DICTIONARY.ERRORS.NO_USER_FOUND);
+        }
       }
     }
-  }, [error, showDialog]);
+  };
 
   return (
-    <PageContainer
-      className={classes.container}
-      backGroundShape
-      data-testid='login-page'
-      maxWidth='md'>
-      <Typography
-        className={classes.title}
-        component='h1'
-        variant='h1'
-        align='center'>
-        {DICTIONARY.TITLE}
-      </Typography>
-      <SpaceManLogo className={classes.spaceMan} />
+    <AuthContainer data-testid='login-page' title={DICTIONARY.TITLE}>
       <form
         className={classes.form}
         data-testid='form'
@@ -100,8 +72,7 @@ const Login: React.FC = () => {
           fullWidth
           label={DICTIONARY.EMAIL.LABEL}
           name='email'
-          autoComplete='em
-          ail'
+          autoComplete='email'
           autoFocus
           error={!!errors.email}
           helperText={(errors.email && errors.email.message) || ' '}
@@ -135,14 +106,16 @@ const Login: React.FC = () => {
               size={32}
             />
           ) : (
-            DICTIONARY.SIGN_IN
+            DICTIONARY.SUBMIT
           )}
         </RoundedButton>
         <Grid container justify='flex-end'>
-          <Button disabled>{DICTIONARY.FORGOT_PASSWORD}</Button>
+          <Link to={ROUTES.FORGOT_PASSWORD} className={classes.forgotPassword}>
+            {DICTIONARY.FORGOT_PASSWORD}
+          </Link>
         </Grid>
       </form>
-    </PageContainer>
+    </AuthContainer>
   );
 };
 

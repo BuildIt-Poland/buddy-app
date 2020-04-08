@@ -24,11 +24,9 @@ const useStyles = makeStyles<Theme>(theme => ({
 }));
 
 const AvatarHeader: React.FC<AvatarHeaderProps> = ({ newbieId, taskProgress }) => {
-  const [
-    {
-      data: { role },
-    },
-  ] = useAuth();
+  const {
+    data: { role },
+  } = useAuth();
   const history = useHistory();
   const { background } = useStyles();
 

@@ -1,6 +1,7 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useContext } from 'react';
 import { Mutation, AuthPayload } from '@buddy-app/schema';
 import { useQuery } from '@apollo/react-hooks';
+import { FetchResult } from 'apollo-link';
 import { auth } from 'utils';
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
 import { GET_LOCAL_AUTH } from 'graphql/get-auth.graphql';
@@ -13,14 +14,10 @@ enum ActionTypes {
   AUTH_SUCCESS = 'auth/success',
   AUTH_LOGOUT = 'auth/logout',
 }
-interface IAction {
+
+interface Action {
   type: ActionTypes;
   payload?: AuthPayload;
-}
-
-interface IAuthProviderProps {
-  children: React.ReactNode;
-  value?: AuthState;
 }
 
 export interface AuthState {
@@ -37,12 +34,25 @@ const defaultState: AuthState = {
   isAuthenticated: false,
 };
 
-const AuthContext = React.createContext<AuthState | undefined>(undefined);
-const AuthDispatchContext = React.createContext<React.Dispatch<IAction> | undefined>(
-  undefined
-);
+interface AuthContext extends AuthState {
+  login: (email: string, password: string) => Promise<FetchResult<Mutation>>;
+  logout: () => void;
+}
 
-const authReducer = (state: AuthState, action: IAction): AuthState => {
+interface AuthProviderProps {
+  children: React.ReactNode;
+  value?: AuthContext;
+}
+
+const defaultContext: AuthContext = {
+  ...defaultState,
+  login: () => Promise.reject(),
+  logout: () => null,
+};
+
+const AuthContext = React.createContext(defaultContext);
+
+const authReducer = (state: AuthState, action: Action): AuthState => {
   switch (action.type) {
     case ActionTypes.AUTH_INIT:
       return {
@@ -74,7 +84,7 @@ const authReducer = (state: AuthState, action: IAction): AuthState => {
   }
 };
 
-const AuthProvider = ({ children, ...props }: IAuthProviderProps) => {
+const AuthProvider = ({ children, ...props }: AuthProviderProps) => {
   const [state, dispatch] = useReducer(authReducer, defaultState);
   const { data } = useQuery<AuthCache>(GET_LOCAL_AUTH);
 
@@ -90,74 +100,60 @@ const AuthProvider = ({ children, ...props }: IAuthProviderProps) => {
 
   useEffect(() => {
     if (data && data.auth && data.auth.tokenHasExpired) {
-      logout(dispatch);
+      logout();
     }
   }, [data]);
 
+  const login = async (email: string, password: string) => {
+    dispatch({ type: ActionTypes.AUTH_INIT });
+
+    try {
+      const { data } = await apolloClient.mutate<Mutation>({
+        mutation: LOGIN_MUTATION,
+        variables: {
+          email,
+          password,
+        },
+      });
+
+      if (data) {
+        auth.setUser(data.login);
+        dispatch({
+          type: ActionTypes.AUTH_SUCCESS,
+          payload: data.login,
+        });
+      }
+
+      return Promise.resolve({ data });
+    } catch (error) {
+      dispatch({ type: ActionTypes.AUTH_ERROR, payload: error });
+      return Promise.reject(error);
+    }
+  };
+
+  const logout = () => {
+    auth.removeUser();
+    apolloClient.writeData({
+      data: {
+        ...setCacheToken(false),
+      },
+    });
+    dispatch({ type: ActionTypes.AUTH_LOGOUT });
+  };
+
   return (
-    <AuthContext.Provider value={state} {...props}>
-      <AuthDispatchContext.Provider value={dispatch}>
-        {children}
-      </AuthDispatchContext.Provider>
+    <AuthContext.Provider value={{ ...state, login, logout }} {...props}>
+      {children}
     </AuthContext.Provider>
   );
 };
 
-const useAuthState = () => {
-  const context = React.useContext(AuthContext);
+const useAuth = () => {
+  const context = useContext(AuthContext);
   if (context === undefined) {
     throw new Error(`useAuth must be used within a AuthProvider`);
   }
   return context;
 };
 
-const useAuthDispatch = () => {
-  const context = React.useContext(AuthDispatchContext);
-  if (context === undefined) {
-    throw new Error('useAuthDispatch must be used within a AuthProvider');
-  }
-  return context;
-};
-
-const login = async (
-  dispatch: React.Dispatch<IAction>,
-  email: string,
-  password: string
-) => {
-  dispatch({ type: ActionTypes.AUTH_INIT });
-  try {
-    const { data } = await apolloClient.mutate<Mutation>({
-      mutation: LOGIN_MUTATION,
-      variables: {
-        email,
-        password,
-      },
-    });
-
-    if (data) {
-      auth.setUser(data.login);
-      dispatch({
-        type: ActionTypes.AUTH_SUCCESS,
-        payload: data.login,
-      });
-    }
-  } catch (error) {
-    dispatch({ type: ActionTypes.AUTH_ERROR, payload: error });
-  }
-};
-
-const logout = (dispatch: React.Dispatch<IAction>) => {
-  auth.removeUser();
-  apolloClient.writeData({
-    data: {
-      ...setCacheToken(false),
-    },
-  });
-  dispatch({ type: ActionTypes.AUTH_LOGOUT });
-};
-
-const useAuth = (): [AuthState, React.Dispatch<IAction>] => {
-  return [useAuthState(), useAuthDispatch()];
-};
-
-export { AuthProvider, useAuth, login, logout };
+export { AuthProvider, useAuth };

@@ -14,11 +14,9 @@ import TaskTabsContent from 'components/TaskTabsContent';
 import DICTIONARY from './dictionary';
 
 const NewbieTasksList: React.FC = () => {
-  const [
-    {
-      data: { userId },
-    },
-  ] = useAuth();
+  const {
+    data: { userId },
+  } = useAuth();
   const { toggleMenu } = useMenu();
   const newbieId = userId;
   const { showSnackbar } = useSnackBar();

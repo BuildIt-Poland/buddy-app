@@ -1,5 +1,11 @@
 import { ROUTES } from 'shared/routes';
-import { UserRole, TaskStatus, Newbie, Task } from '@buddy-app/schema';
+import { UserRole, TaskStatus, Newbie, Task, AuthPayload } from '@buddy-app/schema';
+
+export const authPayloadMock: AuthPayload = {
+  role: UserRole.Buddy,
+  token: 'test',
+  userId: 'randomId',
+};
 
 export const mockLocation = (path: string = ROUTES.BASE) => ({
   key: 'utwyk7',

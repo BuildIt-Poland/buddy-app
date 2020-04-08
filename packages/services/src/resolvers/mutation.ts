@@ -2,46 +2,49 @@ import * as bcrypt from "bcryptjs";
 import * as jwt from "jsonwebtoken";
 import { MutationResolvers, Task } from "@buddy-app/schema";
 import { templateTaskListQuery, taskQuery } from "../graphql";
+import { sendEmail, getForgotPasswordTemplate } from "../email";
 import ERRORS from "../errors";
+
+const secret = process.env.APP_SECRET as string;
 
 const addBuddy: MutationResolvers["addBuddy"] = async (
   parent,
-  args,
+  { input },
   context
 ) => {
-  const password = await bcrypt.hash(args.input.password, 10);
+  const password = await bcrypt.hash(input.password || "", 10);
 
   const userExist = await context.prisma.$exists.buddy({
-    email: args.input.email
+    email: input.email
   });
   if (userExist) {
     throw new ERRORS.ACCOUNT_EXIST();
   }
 
-  const buddy = await context.prisma.createBuddy({ ...args.input, password });
+  const buddy = await context.prisma.createBuddy({ ...input, password });
 
   return buddy;
 };
 
 const addNewbie: MutationResolvers["addNewbie"] = async (
   parent,
-  args,
+  { buddyId, input },
   context
 ) => {
-  const password = await bcrypt.hash(args.input.password, 10);
+  const password = await bcrypt.hash(input.password || "", 10);
 
   const userExist = await context.prisma.$exists.newbie({
-    email: args.input.email
+    email: input.email
   });
   if (userExist) {
     throw new ERRORS.ACCOUNT_EXIST();
   }
 
   const newbie = await context.prisma.createNewbie({
-    ...args.input,
+    ...input,
     password,
     buddy: {
-      connect: { id: args.buddyId }
+      connect: { id: buddyId }
     }
   });
 
@@ -50,11 +53,11 @@ const addNewbie: MutationResolvers["addNewbie"] = async (
 
 const deleteNewbie: MutationResolvers["deleteNewbie"] = async (
   parent,
-  args,
+  { newbieId },
   context
 ) => {
   try {
-    return await context.prisma.deleteNewbie({ id: args.newbieId });
+    return await context.prisma.deleteNewbie({ id: newbieId });
   } catch (error) {
     throw new ERRORS.NO_USER_FOUND();
   }
@@ -62,23 +65,63 @@ const deleteNewbie: MutationResolvers["deleteNewbie"] = async (
 
 const deleteBuddy: MutationResolvers["deleteBuddy"] = async (
   parent,
-  args,
+  { buddyId },
   context
 ) => {
   try {
-    return await context.prisma.deleteBuddy({ id: args.buddyId });
+    return await context.prisma.deleteBuddy({ id: buddyId });
   } catch (error) {
     throw new ERRORS.NO_USER_FOUND();
   }
 };
 
-const login: MutationResolvers["login"] = async (parent, args, context) => {
-  const buddy = await context.prisma.buddy({ email: args.email });
-  const newbie = await context.prisma.newbie({ email: args.email });
+const updateUser: MutationResolvers["updateUser"] = async (
+  parent,
+  { userId, input },
+  context
+) => {
+  if (input.password) {
+    input.password = await bcrypt.hash(input.password || "", 10);
+  }
+  try {
+    const updatedBuddy = await context.prisma.updateBuddy({
+      data: {
+        ...input
+      },
+      where: {
+        id: userId
+      }
+    });
+
+    return updatedBuddy;
+  } catch (error) {}
+
+  try {
+    const updatedNewbie = await context.prisma.updateNewbie({
+      data: {
+        ...input
+      },
+      where: {
+        id: userId
+      }
+    });
+    return updatedNewbie;
+  } catch (error) {}
+
+  throw new ERRORS.NO_USER_FOUND();
+};
+
+const login: MutationResolvers["login"] = async (
+  parent,
+  { email, password },
+  context
+) => {
+  const buddy = await context.prisma.buddy({ email });
+  const newbie = await context.prisma.newbie({ email });
 
   const user = buddy || newbie;
 
-  const isPasswordValid = await bcrypt.compare(args.password, user.password);
+  const isPasswordValid = await bcrypt.compare(password, user.password);
 
   if (!user) {
     throw new ERRORS.NO_USER_FOUND();
@@ -89,7 +132,7 @@ const login: MutationResolvers["login"] = async (parent, args, context) => {
   }
 
   return {
-    token: jwt.sign({ userId: user.id }, process.env.APP_SECRET as string, {
+    token: jwt.sign({ userId: user.id }, secret, {
       expiresIn: "1d"
     }),
     role: user.role,
@@ -97,37 +140,65 @@ const login: MutationResolvers["login"] = async (parent, args, context) => {
   };
 };
 
+const sendResetPasswordLink: MutationResolvers["sendResetPasswordLink"] = async (
+  parent,
+  { email, url },
+  context
+) => {
+  const buddy = await context.prisma.buddy({ email });
+  const newbie = await context.prisma.newbie({ email });
+
+  const user = buddy || newbie;
+
+  if (!user) {
+    throw new ERRORS.NO_USER_FOUND();
+  }
+
+  const token = jwt.sign({ userId: user.id }, secret, {
+    expiresIn: "1h"
+  });
+  const link = `${url}/${token}`;
+  const { subject, html, text } = getForgotPasswordTemplate(user.name, link);
+
+  await sendEmail(user.email, subject, html, text);
+
+  return {
+    token,
+    role: user.role,
+    userId: user.id
+  };
+};
+
 const addNewbieTask: MutationResolvers["addNewbieTask"] = async (
   parent,
-  args,
+  { newbieId, input },
   context
 ) =>
   await context.prisma.createNewbieTask({
-    ...args.input,
+    ...input,
     newbie: {
-      connect: { id: args.newbieId }
+      connect: { id: newbieId }
     }
   });
 
 const addBuddyTask: MutationResolvers["addBuddyTask"] = async (
   parent,
-  args,
+  { newbieId, input },
   context
 ) =>
   await context.prisma.createBuddyTask({
-    ...args.input,
+    ...input,
     newbie: {
-      connect: { id: args.newbieId }
+      connect: { id: newbieId }
     }
   });
 
 const addFromTemplate: MutationResolvers["addFromTemplate"] = async (
   parent,
-  args,
+  { newbieId, template },
   context,
   info
 ) => {
-  const { template, newbieId } = args;
   const result = await context.prisma.$graphql(templateTaskListQuery, {
     template
   });
@@ -155,14 +226,14 @@ const addFromTemplate: MutationResolvers["addFromTemplate"] = async (
 
 const deleteTask: MutationResolvers["deleteTask"] = async (
   parent,
-  args,
+  { taskId },
   context
 ) => {
-  const result = await context.prisma.$graphql(taskQuery, { id: args.taskId });
+  const result = await context.prisma.$graphql(taskQuery, { id: taskId });
 
   try {
     await context.prisma.deleteBuddyTask({
-      id: args.taskId
+      id: taskId
     });
 
     return result.buddyTask.newbie;
@@ -170,7 +241,7 @@ const deleteTask: MutationResolvers["deleteTask"] = async (
 
   try {
     await context.prisma.deleteNewbieTask({
-      id: args.taskId
+      id: taskId
     });
 
     return result.newbieTask.newbie;
@@ -181,16 +252,16 @@ const deleteTask: MutationResolvers["deleteTask"] = async (
 
 const updateTask: MutationResolvers["updateTask"] = async (
   parent,
-  args,
+  { taskId, input },
   context
 ) => {
   try {
     const updatedBuddyTask = await context.prisma.updateBuddyTask({
       data: {
-        ...args.input
+        ...input
       },
       where: {
-        id: args.taskId
+        id: taskId
       }
     });
 
@@ -200,10 +271,10 @@ const updateTask: MutationResolvers["updateTask"] = async (
   try {
     const updatedNewbieTask = await context.prisma.updateNewbieTask({
       data: {
-        ...args.input
+        ...input
       },
       where: {
-        id: args.taskId
+        id: taskId
       }
     });
     return updatedNewbieTask;
@@ -217,7 +288,9 @@ const mustations: MutationResolvers = {
   addNewbie,
   deleteNewbie,
   deleteBuddy,
+  updateUser,
   login,
+  sendResetPasswordLink,
   addNewbieTask,
   addBuddyTask,
   addFromTemplate,

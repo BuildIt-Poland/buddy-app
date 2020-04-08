@@ -27,11 +27,9 @@ const StyledListItemIcon = withStyles(theme => ({
 
 const DropDown = (props: DropDownProps) => {
   const { renderOptions, renderAnchor, ...restProps } = props;
-  const [
-    {
-      data: { role },
-    },
-  ] = useAuth();
+  const {
+    data: { role },
+  } = useAuth();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const isOpened = Boolean(anchorEl);
 

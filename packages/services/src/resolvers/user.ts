@@ -1,18 +1,16 @@
-import { UserResolvers } from "@buddy-app/schema";
+import { UserResolvers, UserRole } from "@buddy-app/schema";
 
-const __resolveType: UserResolvers["__resolveType"] = user => {
-  const newbieUniqueProps = ["buddy", "notes", "newbieTasks", "buddyTasks"];
-  const buddyUniqueProps = ["newbiesCount", "newbies"];
+const __resolveType: UserResolvers["__resolveType"] = ({ role }) => {
+  switch (role) {
+    case UserRole.Buddy:
+      return "Buddy";
 
-  if (buddyUniqueProps.some(prop => user.hasOwnProperty(prop))) {
-    return "Buddy";
+    case UserRole.Newbie:
+      return "Newbie";
+
+    default:
+      return null;
   }
-
-  if (newbieUniqueProps.some(prop => user.hasOwnProperty(prop))) {
-    return "Newbie";
-  }
-
-  return null;
 };
 
 const userResolvers: UserResolvers = {

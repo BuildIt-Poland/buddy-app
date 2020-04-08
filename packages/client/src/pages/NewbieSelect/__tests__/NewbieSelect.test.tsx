@@ -12,7 +12,7 @@ jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('atoms/PlusButton', () => 'PlusButton');
 jest.mock('components/NewbieGrid', () => 'NewbieGrid');
 jest.mock('atoms/NiewbieGridPlaceHolder', () => 'NiewbieGridPlaceHolder');
-jest.mock('components/PageContainer/', () => 'PageContainer');
+jest.mock('atoms/PageContainer/', () => 'PageContainer');
 jest.doMock('components/Header');
 
 describe('Component - NewbieSelect', () => {

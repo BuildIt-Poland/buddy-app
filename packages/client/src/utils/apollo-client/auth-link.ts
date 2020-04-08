@@ -2,7 +2,7 @@ import { ApolloLink } from 'apollo-boost';
 import { auth } from 'utils';
 
 const authLink = new ApolloLink((operation, forward) => {
-  const token = auth.getToken();
+  const token = auth.getToken() || auth.getForgotPasswordToken();
   operation.setContext({
     headers: {
       authorization: token ? `Bearer ${token}` : '',

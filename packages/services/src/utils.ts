@@ -2,7 +2,6 @@ import * as jwt from "jsonwebtoken";
 import { ResolverFn, Context } from "@buddy-app/schema";
 import ERRORS from "./errors";
 
-const MAX_PASSWORD_LENGTH = 24;
 const APP_SECRET = process.env.APP_SECRET as string;
 
 const emailValidator = (email: string): boolean =>
@@ -37,11 +36,14 @@ export const authMiddleware = async (
   context: Context,
   info: any
 ): Promise<any> => {
-  if (info.fieldName !== "login" && info.parentType.name !== "AuthPayload") {
+  if (
+    !/login$|sendResetPasswordLink$/.test(info.fieldName) &&
+    info.parentType.name !== "AuthPayload"
+  ) {
     if (
       info.operation.operation === "mutation" &&
       info.operation.name &&
-      info.operation.name.value !== "updateTask"
+      !/updateTask$|updateUser$/.test(info.operation.name.value)
     ) {
       await isBuddyAuth(context);
     } else {
@@ -60,16 +62,14 @@ export const credentialsMiddleware = async (
   context: Context,
   info: any
 ): Promise<any> => {
-  if (/addBuddy$|addNewbie$|login/.test(info.fieldName)) {
+  if (
+    /addBuddy$|addNewbie$|login$|sendResetPasswordLink$/.test(info.fieldName)
+  ) {
     const input = args.input || args;
-    const password = input.password || "";
     const email = input.email || "";
 
     if (!email || !emailValidator(email)) {
       throw new ERRORS.INVALID_EMAIL();
-    }
-    if (!password || password.length > MAX_PASSWORD_LENGTH) {
-      throw new ERRORS.INVALID_PASSWORD();
     }
   }
 
