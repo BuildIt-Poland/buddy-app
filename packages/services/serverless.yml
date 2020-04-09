@@ -4,7 +4,7 @@ provider:
   name: aws
   runtime: nodejs12.x
   stage: ${opt:stage, 'dev'}
-  region: ${opt:region, ${env:AWS_REGION}}
+  region: ${opt:region, 'eu-west-1'}
   apiGateway:
     minimumCompressionSize: 1024 # Enable gzip compression for responses > 1 KB
   environment:
@@ -14,7 +14,6 @@ provider:
     PRISMA_SECRET: ${env:PRISMA_SECRET}
     APP_SECRET: ${env:APP_SECRET}
     API_GATEWAY_DOMAIN: ${env:API_GATEWAY_DOMAIN}
-    AWS_REGION: ${env:AWS_REGION}
   profile: default
 package:
   excludeDevDependencies: true
