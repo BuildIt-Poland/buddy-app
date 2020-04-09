@@ -2,12 +2,12 @@ import * as AWS from "aws-sdk";
 
 const accessKeyId = process.env.AWS_ACCESS_KEY_ID as string;
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY as string;
-const sender = process.env.EMAIL as string;
 const region = process.env.AWS_REGION as string;
-
-AWS.config.update({ region, accessKeyId, secretAccessKey });
+const sender = process.env.EMAIL as string;
 
 const client = new AWS.SES({ apiVersion: "2010-12-01" });
+
+AWS.config.update({ region, accessKeyId, secretAccessKey });
 
 export const sendEmail = (
   to: string,

@@ -165,7 +165,7 @@ const sendResetPasswordLink: MutationResolvers["sendResetPasswordLink"] = async 
   try {
     await sendEmail(user.email, subject, html, text);
   } catch (error) {
-    throw new Error(error);
+    throw ERRORS.INTERNAL();
   }
 
   return {
