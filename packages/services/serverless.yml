@@ -14,6 +14,7 @@ provider:
     PRISMA_SECRET: ${env:PRISMA_SECRET}
     APP_SECRET: ${env:APP_SECRET}
     API_GATEWAY_DOMAIN: ${env:API_GATEWAY_DOMAIN}
+    AWS_REGION: ${env:AWS_REGION}
   profile: default
 package:
   excludeDevDependencies: true
