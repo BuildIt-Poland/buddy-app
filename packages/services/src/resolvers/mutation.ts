@@ -17,6 +17,7 @@ const addBuddy: MutationResolvers["addBuddy"] = async (
   const userExist = await context.prisma.$exists.buddy({
     email: input.email
   });
+
   if (userExist) {
     throw new ERRORS.ACCOUNT_EXIST();
   }
@@ -36,6 +37,7 @@ const addNewbie: MutationResolvers["addNewbie"] = async (
   const userExist = await context.prisma.$exists.newbie({
     email: input.email
   });
+
   if (userExist) {
     throw new ERRORS.ACCOUNT_EXIST();
   }
@@ -151,7 +153,7 @@ const sendResetPasswordLink: MutationResolvers["sendResetPasswordLink"] = async 
   const user = buddy || newbie;
 
   if (!user) {
-    throw new ERRORS.NO_USER_FOUND();
+    throw new ERRORS.INTERNAL();
   }
 
   const token = jwt.sign({ userId: user.id }, secret, {
@@ -160,7 +162,11 @@ const sendResetPasswordLink: MutationResolvers["sendResetPasswordLink"] = async 
   const link = `${url}/${token}`;
   const { subject, html, text } = getForgotPasswordTemplate(user.name, link);
 
-  await sendEmail(user.email, subject, html, text);
+  try {
+    await sendEmail(user.email, subject, html, text);
+  } catch (error) {
+    throw new Error(error);
+  }
 
   return {
     token,
