@@ -123,11 +123,11 @@ const login: MutationResolvers["login"] = async (
 
   const user = buddy || newbie;
 
-  const isPasswordValid = await bcrypt.compare(password, user.password);
-
   if (!user) {
     throw new ERRORS.NO_USER_FOUND();
   }
+  
+  const isPasswordValid = await bcrypt.compare(password, user.password);
 
   if (!isPasswordValid) {
     throw new ERRORS.INVALID_PASSWORD();
