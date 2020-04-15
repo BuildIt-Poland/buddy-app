@@ -8,6 +8,12 @@ html {
   font-size: 62.5%; /* 62.5% of 16px = 10px */
 }
 
+@media screen and (max-width: 600px) {
+  :root {
+    font-size: 56.25%; /* 56.25% of 16px = 9px */
+  }
+}
+
 a {
   color: inherit;
   text-decoration: inherit;

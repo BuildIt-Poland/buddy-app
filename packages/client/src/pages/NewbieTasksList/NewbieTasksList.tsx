@@ -42,7 +42,11 @@ const NewbieTasksList: React.FC = () => {
         onButtonClick={toggleMenu}>
         <AvatarHeader newbieId={newbieId} taskProgress={newbieProgress} />
       </Header>
-      <Box component='main' flex={1} data-testid='task-list-page'>
+      <Box
+        component='main'
+        padding='0 1rem 0 3rem'
+        flex={1}
+        data-testid='task-list-page'>
         <TaskTabsContent
           loading={loading}
           onChange={updateTaskStatus}

@@ -11,7 +11,12 @@ import { TaskListItemProps } from './types';
 
 const useStyles = makeStyles(theme => ({
   listItem: {
-    paddingLeft: theme.spacing(2),
+    [theme.breakpoints.up('sm')]: {
+      paddingLeft: theme.spacing(0.5),
+    },
+  },
+  listOption: {
+    justifyContent: 'flex-end',
   },
 }));
 
@@ -23,7 +28,7 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
   const { id, title, status } = task;
   const { pathname } = useLocation();
   const history = useHistory();
-  const { listItem } = useStyles();
+  const { listItem, listOption } = useStyles();
   const text = {
     [TaskStatus.Completed]: <del>{title}</del>,
     [TaskStatus.Uncompleted]: <strong>{title}</strong>,
@@ -43,7 +48,7 @@ const TaskListItem: React.FC<TaskListItemProps> = ({
         <TaskCheckbox task={task} onChange={onChange} />
       </ListItemIcon>
       <ListItemText primary={text[status]} />
-      <ListItemIcon onClick={stopPropagation}>
+      <ListItemIcon className={listOption} onClick={stopPropagation}>
         <TaskOptions id={id} />
       </ListItemIcon>
     </ListItem>

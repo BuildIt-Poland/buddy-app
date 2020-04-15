@@ -21,7 +21,7 @@ const TasksSubList: React.FC<TasksSubListProps> = ({
   const { fullWidth } = useStyles();
 
   const ListHeader = (
-    <ListSubheader disableSticky>
+    <ListSubheader disableSticky disableGutters>
       <strong>
         {title} ({tasks.length})
       </strong>

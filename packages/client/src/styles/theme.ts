@@ -87,6 +87,14 @@ theme = {
         },
       },
     },
+    MuiListItemIcon: {
+      root: {
+        minWidth: '5.5rem',
+        [theme.breakpoints.up('sm')]: {
+          minWidth: '7rem',
+        },
+      },
+    },
   },
 };
 
