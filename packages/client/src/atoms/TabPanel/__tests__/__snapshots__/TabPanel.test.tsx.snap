@@ -4,6 +4,5 @@ exports[`Component - TabPanel renders correctly 1`] = `
 <Box
   height="100%"
   hidden={false}
-  padding={2}
 />
 `;

@@ -5,14 +5,14 @@ exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] =
   checked={true}
   checkedIcon={
     <CheckCircle
-      fontSize="default"
+      className=""
     />
   }
   color="primary"
   disableRipple={true}
   icon={
     <RadioButtonUnchecked
-      fontSize="default"
+      className=""
     />
   }
   onChange={[Function]}
@@ -24,14 +24,14 @@ exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`]
   checked={false}
   checkedIcon={
     <CheckCircle
-      fontSize="default"
+      className=""
     />
   }
   color="primary"
   disableRipple={true}
   icon={
     <RadioButtonUnchecked
-      fontSize="default"
+      className=""
     />
   }
   onChange={[Function]}

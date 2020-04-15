@@ -65,7 +65,11 @@ const TasksList: React.FC = () => {
           <Tab label={DICTIONARY.BUDDY_TAB_TITLE} />
         </Tabs>
       </Header>
-      <Box component={'main'} flex={1} data-testid='task-list-page'>
+      <Box
+        component={'main'}
+        flex={1}
+        padding='2rem 2rem 5rem 3rem'
+        data-testid='task-list-page'>
         <TabPanel value={tabIndex} index={0}>
           <TaskTabsContent
             loading={loading}

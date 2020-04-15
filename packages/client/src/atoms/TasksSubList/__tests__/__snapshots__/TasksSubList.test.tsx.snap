@@ -10,6 +10,7 @@ exports[`Component - TasksSubList renders correctly Done section 1`] = `
     dense={true}
     subheader={
       <ListSubheader
+        disableGutters={true}
         disableSticky={true}
       >
         <strong>
@@ -48,6 +49,7 @@ exports[`Component - TasksSubList renders correctly Todo section 1`] = `
     dense={true}
     subheader={
       <ListSubheader
+        disableGutters={true}
         disableSticky={true}
       >
         <strong>
@@ -86,6 +88,7 @@ exports[`Component - TasksSubList renders correctly without tasks and count 1`] 
     dense={true}
     subheader={
       <ListSubheader
+        disableGutters={true}
         disableSticky={true}
       >
         <strong>
