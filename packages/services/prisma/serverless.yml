@@ -1,0 +1,16 @@
+service: buildit-poland-buddy-app-db-backup
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'eu-west-1'}
+
+plugins:
+  - serverless-finch
+
+custom:
+  client:
+    bucketName: ${self:service}-${self:provider.stage}
+    distributionFolder: prisma/backup
+    manageResources: false

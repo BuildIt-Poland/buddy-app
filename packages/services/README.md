@@ -47,6 +47,8 @@ In case of changes of the prisma data model, it should be generated again runnin
 
 `yarn prisma-generate`
 
+DB backup is created and stored to S3 on each deployment to relevant stage.
+
 ### Seeding Prisma DB with initial data
 
 To seed DB with initial data (defined inside `/prisma/seed-data.ts` file), run below command:

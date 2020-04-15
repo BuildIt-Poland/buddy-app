@@ -126,7 +126,7 @@ const login: MutationResolvers["login"] = async (
   if (!user) {
     throw new ERRORS.NO_USER_FOUND();
   }
-  
+
   const isPasswordValid = await bcrypt.compare(password, user.password);
 
   if (!isPasswordValid) {

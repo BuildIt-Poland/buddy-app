@@ -17,6 +17,7 @@
     "build": "serverless package",
     "create-domain": "serverless create_domain",
     "delete-domain": "serverless delete_domain",
+    "prisma:backup": "prisma export",
     "prisma:seed": "prisma seed",
     "prisma:clean-seed": "prisma reset -f && yarn run prisma:seed"
   },
@@ -41,6 +42,7 @@
     "serverless": "^1.65.0",
     "serverless-domain-manager": "^3.3.1",
     "serverless-dotenv-plugin": "^2.3.2",
+    "serverless-finch": "^2.5.2",
     "serverless-offline": "^5.12.1",
     "serverless-webpack": "^5.3.1",
     "source-map-support": "^0.5.16",
