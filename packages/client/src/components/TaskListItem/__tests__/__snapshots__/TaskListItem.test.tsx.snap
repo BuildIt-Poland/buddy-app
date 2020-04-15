@@ -31,6 +31,7 @@ exports[`Component - TaskCheckbox renders correctly when task is COMPLETED 1`] =
     }
   />
   <ListItemIcon
+    className="makeStyles-listOption-2"
     onClick={[Function]}
   >
     <TaskOptions
@@ -71,6 +72,7 @@ exports[`Component - TaskCheckbox renders correctly when task is UNCOMPLETED 1`]
     }
   />
   <ListItemIcon
+    className="makeStyles-listOption-2"
     onClick={[Function]}
   >
     <TaskOptions
