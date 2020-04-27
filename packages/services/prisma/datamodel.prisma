@@ -6,6 +6,7 @@ enum TaskStatus {
 enum UserRole {
   NEWBIE
   BUDDY
+  TALENT
 }
 
 type NewbieTask {
@@ -27,6 +28,19 @@ type BuddyTask {
   status: TaskStatus! @default(value: UNCOMPLETED)
   newbie: Newbie! @relation(name: "BuddyTasksOwner", onDelete: SET_NULL)
   implementationDate: DateTime
+}
+
+type Talent {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  role: UserRole! @default(value: TALENT)
+  password: String!
+  position: String
+  photo: String
+  phoneNumber: String
+  startDate: DateTime
+  allowPushedNotifications: Boolean! @default(value: false)
 }
 
 type Buddy {

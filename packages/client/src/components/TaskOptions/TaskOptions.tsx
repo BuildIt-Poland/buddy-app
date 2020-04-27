@@ -30,6 +30,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({ id: taskId }) => {
       onClick: hideOptions,
       access: {
         [UserRole.Buddy]: true,
+        [UserRole.Talent]: true,
       },
       disabled: true,
     },
@@ -40,6 +41,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({ id: taskId }) => {
       access: {
         [UserRole.Newbie]: true,
         [UserRole.Buddy]: true,
+        [UserRole.Talent]: true,
       },
       disabled: true,
     },
@@ -56,6 +58,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({ id: taskId }) => {
       },
       access: {
         [UserRole.Buddy]: true,
+        [UserRole.Talent]: true,
       },
     },
   ];

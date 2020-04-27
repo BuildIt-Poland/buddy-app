@@ -6,6 +6,6 @@ export const buddyTasks: TaskInput[] = [];
 
 export const newbie = {
   email: TaskTemplates.TplUs,
-  name: "",
+  name: TaskTemplates.TplUs,
   password: ""
 };

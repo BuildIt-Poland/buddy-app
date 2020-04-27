@@ -3,8 +3,12 @@ import { Direction } from '@material-ui/core/styles';
 
 export const isNewbie = (role: UserRole) => role === UserRole.Newbie;
 export const isBuddy = (role: UserRole) => role === UserRole.Buddy;
+export const isTalent = (role: UserRole) => role === UserRole.Talent;
+export const isTemplate = (name: string) => name.includes('_TEMPLATES');
 export const isCompleted = (status: TaskStatus) => status === TaskStatus.Completed;
 export const isNewbieTask = (type?: string) => type === 'NewbieTask';
+export const isTemplateTask = (name: string) => name.includes('TPL_');
+
 export const getProgressInPercentages = (progress: number) =>
   Math.round(progress * 100);
 

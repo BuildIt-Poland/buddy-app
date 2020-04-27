@@ -1,11 +1,23 @@
 interface NewbieSelect {
-  TITLE: string;
-  SUBTITLE: string;
+  REGULAR: {
+    TITLE: string;
+    SUBTITLE: string;
+  };
+  TEMPLATE: {
+    TITLE: string;
+    SUBTITLE: string;
+  };
 }
 
 const DICTIONARY: NewbieSelect = {
-  TITLE: 'Your New Joiners',
-  SUBTITLE: 'Don’t forget to complete all tasks',
+  REGULAR: {
+    TITLE: 'Your New Joiners',
+    SUBTITLE: 'Don’t forget to complete all tasks',
+  },
+  TEMPLATE: {
+    TITLE: 'Templates List',
+    SUBTITLE: 'Here you can manage task templates for the regions',
+  },
 };
 
 export default DICTIONARY;

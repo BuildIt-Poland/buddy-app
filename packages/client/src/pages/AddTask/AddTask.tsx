@@ -10,6 +10,7 @@ import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import xss from 'dompurify';
+import { ROUTES } from 'shared/routes';
 import { ADD_BUDDY_TASK, ADD_NEWBIE_TASK } from 'graphql/add-task.graphql';
 import PageContainer from 'atoms/PageContainer';
 import Header, { MenuTypes } from 'components/Header';
@@ -46,16 +47,20 @@ const AddTask: React.FC<AddTaskProps> = ({ history }) => {
   const { wrapper, header, addButton, inputWrapper, form } = useStyles();
   const { newbieId } = useParams<QueryNewbieArgs>();
   const { register, errors, handleSubmit } = useForm<TaskInput>();
-  const { pathname, state } = useLocation();
+  const { state } = useLocation();
   const { showSnackbar } = useSnackBar();
-  const taskListPath = pathname.replace('add-task', 'tasks');
 
-  const onBackClick = () =>
-    history.push({ pathname: taskListPath, state: { defaultTabIndex } });
+  const goBack = () => {
+    if (history.length > 2) {
+      history.goBack();
+    } else {
+      history.push(ROUTES.BASE);
+    }
+  };
 
   const onCompleted = () => {
     showSnackbar(DICTIONARY.SUCCESS_MESSAGE);
-    onBackClick();
+    goBack();
   };
 
   const onError = () => showSnackbar(DICTIONARY.ERROR_MESSAGE);
@@ -88,7 +93,7 @@ const AddTask: React.FC<AddTaskProps> = ({ history }) => {
 
   return (
     <>
-      <Header type={MenuTypes.BACK} onButtonClick={onBackClick} />
+      <Header type={MenuTypes.BACK} onButtonClick={goBack} />
       <PageContainer backGroundShape data-testid='add-task-page'>
         <Box className={wrapper}>
           <Box className={header}>

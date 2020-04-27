@@ -4,6 +4,7 @@ export const TASK_LIST = gql`
   query newbie($newbieId: ID!) {
     newbie(newbieId: $newbieId) {
       id
+      name
       newbieTasks {
         id
         title

@@ -1,15 +1,19 @@
 import {
   getProgressInPercentages,
   isNewbie,
+  isBuddy,
+  isTalent,
+  isTemplate,
   isCompleted,
   isNewbieTask,
+  isTemplateTask,
   convertDirectionToAnchor,
   changeTaskStatus,
 } from 'utils';
 import { UserRole, TaskStatus } from '__mocks__';
 
 describe('Utils - helpers', () => {
-  const { Newbie, Buddy } = UserRole;
+  const { Newbie, Buddy, Talent } = UserRole;
   const { Completed, Uncompleted } = TaskStatus;
 
   it('helpers - isNewbie should return true', () => {
@@ -19,6 +23,31 @@ describe('Utils - helpers', () => {
 
   it('helpers - isNewbie should return false', () => {
     const result = isNewbie(Buddy);
+    expect(result).toBe(false);
+  });
+
+  it('helpers - isBuddy should return true', () => {
+    const result = isBuddy(Buddy);
+    expect(result).toBe(true);
+  });
+
+  it('helpers - isBuddy should return false', () => {
+    const result = isBuddy(Newbie);
+    expect(result).toBe(false);
+  });
+
+  it('helpers - isTalent should return true', () => {
+    const result = isTalent(Talent);
+    expect(result).toBe(true);
+  });
+
+  it('helpers - isTalent should return false', () => {
+    const result = isTalent(Newbie);
+    expect(result).toBe(false);
+  });
+
+  it('helpers - isTemplate should return false', () => {
+    const result = isTemplate('');
     expect(result).toBe(false);
   });
 
@@ -39,6 +68,11 @@ describe('Utils - helpers', () => {
 
   it('helpers - isNewbieTask should return false', () => {
     const result = isNewbieTask();
+    expect(result).toBe(false);
+  });
+
+  it('helpers - isTemplateTask should return false', () => {
+    const result = isTemplateTask('');
     expect(result).toBe(false);
   });
 

@@ -31,6 +31,7 @@ const AvatarHeader: React.FC<AvatarHeaderProps> = ({ newbieId, taskProgress }) =
   const { background } = useStyles();
 
   const routes = {
+    [UserRole.Talent]: ROUTES.TALENT_NEWBIE_DETAILS.replace(':newbieId', newbieId),
     [UserRole.Buddy]: ROUTES.BUDDY_NEWBIE_DETAILS.replace(':newbieId', newbieId),
     [UserRole.Newbie]: ROUTES.NEWBIE_DETAILS,
   };

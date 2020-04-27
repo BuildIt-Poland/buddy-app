@@ -1,18 +1,23 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { useQuery } from '@apollo/react-hooks';
 import Box from '@material-ui/core/Box';
-import { QueryBuddyArgs, Query, Newbie } from '@buddy-app/schema';
+import { QueryBuddyArgs, Query, UserRole } from '@buddy-app/schema';
 import { useAuth } from 'contexts/AuthContext';
 import { NEWBIE_SELECT } from 'graphql/newbie-select.graphql';
 import PlusButton from 'atoms/PlusButton';
-import NewbieGrid from 'components/NewbieGrid';
+import NewbieGrid from 'components/UserGrid';
 import PageContainer from 'atoms/PageContainer';
 import NiewbieGridPlaceHolder from 'atoms/NiewbieGridPlaceHolder';
+import EmptyState from 'atoms/EmptyState';
 import Header, { MenuTypes } from 'components/Header';
 import { useMenu } from 'contexts/MenuContext';
-import NewbieSelectDictionary from './dictionary';
+import { ROUTES } from 'shared/routes';
+import { isTemplate } from 'utils';
+import { NewbieSelectProps } from './types';
+import DICTIONARY from './dictionary';
 
 const useStyles = makeStyles<Theme>(theme => ({
   title: {
@@ -23,33 +28,59 @@ const useStyles = makeStyles<Theme>(theme => ({
   },
 }));
 
-const NewbieSelect: React.FC = () => {
+const NewbieSelect: React.FC<NewbieSelectProps> = ({ history }) => {
+  const { buddyId } = useParams<QueryBuddyArgs>();
   const {
-    data: { userId },
+    data: { userId, role },
   } = useAuth();
 
   const { loading, data } = useQuery<Query, QueryBuddyArgs>(NEWBIE_SELECT, {
-    variables: { buddyId: userId },
+    variables: { buddyId: buddyId || userId },
   });
   const { toggleMenu } = useMenu();
   const { title } = useStyles();
+  const isEmptyList = data && !data.buddy.newbies.length;
+  const dictionary =
+    data && isTemplate(data.buddy.name) ? DICTIONARY.TEMPLATE : DICTIONARY.REGULAR;
+
+  const goBack = () => {
+    if (history.length > 2) {
+      history.goBack();
+    } else {
+      history.push(ROUTES.BASE);
+    }
+  };
+
+  const headerProps = {
+    [UserRole.Newbie]: {
+      type: MenuTypes.BACK,
+      onButtonClick: goBack,
+    },
+    [UserRole.Buddy]: {
+      type: MenuTypes.MENU,
+      onButtonClick: toggleMenu,
+    },
+    [UserRole.Talent]: {
+      type: MenuTypes.BACK,
+      onButtonClick: goBack,
+    },
+  };
 
   return (
     <>
-      <Header type={MenuTypes.MENU} onButtonClick={toggleMenu} />
+      <Header {...headerProps[role]} />
       <PageContainer data-testid='newbie-select-page' backGroundShape>
         <Box className={title} component='section'>
           <Typography component='h1' variant='h2'>
-            {NewbieSelectDictionary.TITLE}
+            {dictionary.TITLE}
           </Typography>
           <Typography color='textSecondary' component='p' variant='body2'>
-            {NewbieSelectDictionary.SUBTITLE}
+            {dictionary.SUBTITLE}
           </Typography>
         </Box>
         {loading && <NiewbieGridPlaceHolder />}
-        {data && data.buddy.newbies && (
-          <NewbieGrid newbies={data.buddy.newbies as Newbie[]} />
-        )}
+        {!loading && isEmptyList && <EmptyState />}
+        {data && data.buddy.newbies && <NewbieGrid users={data.buddy.newbies} />}
         <PlusButton aria-label='Add newbie' disabled />
       </PageContainer>
     </>

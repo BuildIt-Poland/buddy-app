@@ -12,6 +12,7 @@ export const NEWBIE_SELECT = gql`
         photo
         name
         position
+        role
         newbieTasks {
           id
           status

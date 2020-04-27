@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { Mutation } from '@buddy-app/schema';
 import { FORGOT_PASSWORD_MUTATION } from 'graphql/forgot-password.graphql';
@@ -14,7 +14,7 @@ import RoundedButton from 'atoms/RoundedButton';
 import { auth } from 'utils';
 import { ROUTES } from 'shared/routes';
 import DICTIONARY from './dictionary';
-import { FormData } from './types';
+import { ForgotPasswordProps, FormData } from './types';
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -31,9 +31,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ForgotPassword: React.FC = () => {
+const ForgotPassword: React.FC<ForgotPasswordProps> = ({ history }) => {
   const classes = useStyles();
-  const history = useHistory();
   const { register, errors, handleSubmit } = useForm<FormData>();
   const { showDialog } = useDialog();
   const url = `${window.location.origin}/reset-password`;

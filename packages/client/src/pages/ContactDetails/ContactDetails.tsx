@@ -5,8 +5,8 @@ import { useQuery } from '@apollo/react-hooks';
 import {
   NEWBIE_CONTACT_DETAILS,
   BUDDY_CONTACT_DETAILS,
+  TALENT_CONTACT_DETAILS,
 } from 'graphql/contact-details.graphql';
-import { ROUTES } from 'shared/routes';
 import { QueryBuddyArgs, QueryNewbieArgs, UserRole } from '@buddy-app/schema';
 import { useAuth } from 'contexts/AuthContext';
 import UserDetails from 'components/UserDetails';
@@ -14,12 +14,12 @@ import { BasicDetailsParams, UserBasicDetails } from 'components/UserMenu/types'
 import Box from '@material-ui/core/Box';
 import PageContainer from 'atoms/PageContainer';
 import Header, { MenuTypes } from 'components/Header';
+import { ROUTES } from 'shared/routes';
 import ContactDetailsPlaceHolder from 'atoms/ContactDetailsPlaceHolder';
 import { ContactDetailsProps } from './types';
 
 const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
-  const { newbieId } = useParams<QueryNewbieArgs>();
-  const { buddyId } = useParams<QueryBuddyArgs>();
+  const { newbieId, buddyId } = useParams<QueryNewbieArgs & QueryBuddyArgs>();
   const isCurrentUserDetails = !newbieId && !buddyId;
   const {
     data: { role, userId },
@@ -31,13 +31,16 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
           query: NEWBIE_CONTACT_DETAILS,
           variables: { newbieId: userId },
           userRole: UserRole.Newbie.toLowerCase(),
-          onBackClick: () => history.push(ROUTES.NEWBIE_TASKS_LIST),
         },
         [UserRole.Buddy]: {
           query: BUDDY_CONTACT_DETAILS,
           variables: { buddyId: userId },
           userRole: UserRole.Buddy.toLowerCase(),
-          onBackClick: () => history.push(ROUTES.BUDDY_SELECT_NEWBIE),
+        },
+        [UserRole.Talent]: {
+          query: TALENT_CONTACT_DETAILS,
+          variables: { talentId: userId },
+          userRole: UserRole.Talent.toLowerCase(),
         },
       }
     : {
@@ -45,18 +48,30 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
           query: BUDDY_CONTACT_DETAILS,
           variables: { buddyId },
           userRole: UserRole.Buddy.toLowerCase(),
-          onBackClick: () => history.push(ROUTES.NEWBIE_TASKS_LIST),
         },
         [UserRole.Buddy]: {
           query: NEWBIE_CONTACT_DETAILS,
           variables: { newbieId },
           userRole: UserRole.Newbie.toLowerCase(),
-          onBackClick: () =>
-            history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', newbieId)),
+        },
+        [UserRole.Talent]: {
+          query: newbieId ? NEWBIE_CONTACT_DETAILS : BUDDY_CONTACT_DETAILS,
+          variables: { newbieId, buddyId },
+          userRole: newbieId
+            ? UserRole.Newbie.toLowerCase()
+            : UserRole.Buddy.toLowerCase(),
         },
       };
 
-  const { query, variables, userRole, onBackClick } = queryByRole[role];
+  const goBack = () => {
+    if (history.length > 2) {
+      history.goBack();
+    } else {
+      history.push(ROUTES.BASE);
+    }
+  };
+
+  const { query, variables, userRole } = queryByRole[role];
   const { data, loading } = useQuery<UserBasicDetails, BasicDetailsParams>(query, {
     variables,
   });
@@ -64,7 +79,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
 
   return (
     <>
-      <Header type={MenuTypes && MenuTypes.BACK} onButtonClick={onBackClick} />
+      <Header type={MenuTypes && MenuTypes.BACK} onButtonClick={goBack} />
       <PageContainer backGroundShape>
         <Box>
           <Typography component='h2' variant='h2'>

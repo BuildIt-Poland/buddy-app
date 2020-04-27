@@ -1,6 +1,6 @@
 import React from 'react';
 import get from 'lodash/get';
-import { useParams, useLocation, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import htmlParser from 'react-html-parser';
 import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
@@ -16,14 +16,18 @@ import {
   Query,
   QueryTaskArgs,
   QueryNewbieArgs,
+  NewbieTask,
+  BuddyTask,
 } from '@buddy-app/schema';
 import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
-import { isBuddy, isNewbieTask } from 'utils';
+import { isBuddy, isNewbieTask, isTemplateTask } from 'utils';
 import PageContainer from 'atoms/PageContainer';
 import TaskDetailsPlaceHolder from 'atoms/TaskDetailsPlaceHolder';
 import ReminderButton from 'atoms/ReminderButton';
+import { ROUTES } from 'shared/routes';
 import Header, { MenuTypes } from 'components/Header';
-import TaskCheckbox from '../../atoms/TaskCheckbox';
+import TaskCheckbox from 'atoms/TaskCheckbox';
+import { TaskDetailsProps } from './types';
 import DICTIONARY from './dictionary';
 
 const useStyles = makeStyles(theme => ({
@@ -61,36 +65,45 @@ const STATUS_TEXT = {
   [TaskStatus.Uncompleted]: DICTIONARY.UNCOMPLETED,
 };
 
-const TaskDetails: React.FC = () => {
+const TaskDetails: React.FC<TaskDetailsProps> = ({ history }) => {
   const {
     data: { role, userId },
   } = useAuth();
   const { newbieId, taskId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
   const { wrapper, header, status, description } = useStyles();
-  const { pathname, state } = useLocation();
   const { showSnackbar } = useSnackBar();
-  const history = useHistory();
   const { loading, data } = useQuery<Query, QueryTaskArgs>(TASK_DETAILS, {
     variables: { taskId },
   });
 
-  const [updateTaskStatus] = useTaskStatusUpdate(newbieId || userId, {
+  const [mutation] = useTaskStatusUpdate(newbieId || userId, {
     onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
     onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
   });
 
+  const updateTaskStatus = (task: NewbieTask | BuddyTask) => {
+    if (data && isTemplateTask(data.task.newbie.name)) {
+      showSnackbar(DICTIONARY.TEMPLATE_MESSAGE);
+    } else {
+      mutation(task);
+    }
+  };
+
   const taskType: string = get(data, 'task.__typename', '');
   const taskStatus: TaskStatus = get(data, 'task.status', TaskStatus.Uncompleted);
   const hasReminderBtn = isBuddy(role) && isNewbieTask(taskType) && isBuddy;
-  const defaultTabIndex = (state && state.tabIndex) || 0;
-  const taskListPath = pathname.replace(/tasks.+/, 'tasks');
   const stausLabelStyles = {
     background: BACKGROUND_COLORS[taskStatus],
     color: TEXT_COLORS[taskStatus],
   };
 
-  const onBackClick = () =>
-    history.push({ pathname: taskListPath, state: { defaultTabIndex } });
+  const goBack = () => {
+    if (history.length > 2) {
+      history.goBack();
+    } else {
+      history.push(ROUTES.BASE);
+    }
+  };
 
   const renderTaskDetails = ({ task }: Query) => (
     <Box className={wrapper}>
@@ -120,7 +133,7 @@ const TaskDetails: React.FC = () => {
     <>
       <Header
         type={MenuTypes.BACK}
-        onButtonClick={onBackClick}
+        onButtonClick={goBack}
         navItems={hasReminderBtn && <ReminderButton disabled />}
       />
       <PageContainer data-testid='task-details-page' backGroundShape>

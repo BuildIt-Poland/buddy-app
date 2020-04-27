@@ -20,6 +20,7 @@ export interface Exists {
   buddyTask: (where?: BuddyTaskWhereInput) => Promise<boolean>;
   newbie: (where?: NewbieWhereInput) => Promise<boolean>;
   newbieTask: (where?: NewbieTaskWhereInput) => Promise<boolean>;
+  talent: (where?: TalentWhereInput) => Promise<boolean>;
 }
 
 export interface Node {}
@@ -117,6 +118,25 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => NewbieTaskConnectionPromise;
+  talent: (where: TalentWhereUniqueInput) => TalentNullablePromise;
+  talents: (args?: {
+    where?: TalentWhereInput;
+    orderBy?: TalentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<Talent>;
+  talentsConnection: (args?: {
+    where?: TalentWhereInput;
+    orderBy?: TalentOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => TalentConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
   /**
@@ -187,6 +207,22 @@ export interface Prisma {
   }) => NewbieTaskPromise;
   deleteNewbieTask: (where: NewbieTaskWhereUniqueInput) => NewbieTaskPromise;
   deleteManyNewbieTasks: (where?: NewbieTaskWhereInput) => BatchPayloadPromise;
+  createTalent: (data: TalentCreateInput) => TalentPromise;
+  updateTalent: (args: {
+    data: TalentUpdateInput;
+    where: TalentWhereUniqueInput;
+  }) => TalentPromise;
+  updateManyTalents: (args: {
+    data: TalentUpdateManyMutationInput;
+    where?: TalentWhereInput;
+  }) => BatchPayloadPromise;
+  upsertTalent: (args: {
+    where: TalentWhereUniqueInput;
+    create: TalentCreateInput;
+    update: TalentUpdateInput;
+  }) => TalentPromise;
+  deleteTalent: (where: TalentWhereUniqueInput) => TalentPromise;
+  deleteManyTalents: (where?: TalentWhereInput) => BatchPayloadPromise;
 
   /**
    * Subscriptions
@@ -208,6 +244,9 @@ export interface Subscription {
   newbieTask: (
     where?: NewbieTaskSubscriptionWhereInput
   ) => NewbieTaskSubscriptionPayloadSubscription;
+  talent: (
+    where?: TalentSubscriptionWhereInput
+  ) => TalentSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -218,7 +257,7 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type UserRole = "NEWBIE" | "BUDDY";
+export type UserRole = "NEWBIE" | "BUDDY" | "TALENT";
 
 export type TaskStatus = "COMPLETED" | "UNCOMPLETED";
 
@@ -277,6 +316,28 @@ export type BuddyTaskOrderByInput =
   | "implementationDate_DESC";
 
 export type BuddyOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "role_ASC"
+  | "role_DESC"
+  | "password_ASC"
+  | "password_DESC"
+  | "position_ASC"
+  | "position_DESC"
+  | "photo_ASC"
+  | "photo_DESC"
+  | "phoneNumber_ASC"
+  | "phoneNumber_DESC"
+  | "startDate_ASC"
+  | "startDate_DESC"
+  | "allowPushedNotifications_ASC"
+  | "allowPushedNotifications_DESC";
+
+export type TalentOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "name_ASC"
@@ -729,6 +790,129 @@ export type NewbieWhereUniqueInput = AtLeastOne<{
 export type NewbieTaskWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
+
+export type TalentWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  email?: Maybe<String>;
+}>;
+
+export interface TalentWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
+  email?: Maybe<String>;
+  email_not?: Maybe<String>;
+  email_in?: Maybe<String[] | String>;
+  email_not_in?: Maybe<String[] | String>;
+  email_lt?: Maybe<String>;
+  email_lte?: Maybe<String>;
+  email_gt?: Maybe<String>;
+  email_gte?: Maybe<String>;
+  email_contains?: Maybe<String>;
+  email_not_contains?: Maybe<String>;
+  email_starts_with?: Maybe<String>;
+  email_not_starts_with?: Maybe<String>;
+  email_ends_with?: Maybe<String>;
+  email_not_ends_with?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  role_not?: Maybe<UserRole>;
+  role_in?: Maybe<UserRole[] | UserRole>;
+  role_not_in?: Maybe<UserRole[] | UserRole>;
+  password?: Maybe<String>;
+  password_not?: Maybe<String>;
+  password_in?: Maybe<String[] | String>;
+  password_not_in?: Maybe<String[] | String>;
+  password_lt?: Maybe<String>;
+  password_lte?: Maybe<String>;
+  password_gt?: Maybe<String>;
+  password_gte?: Maybe<String>;
+  password_contains?: Maybe<String>;
+  password_not_contains?: Maybe<String>;
+  password_starts_with?: Maybe<String>;
+  password_not_starts_with?: Maybe<String>;
+  password_ends_with?: Maybe<String>;
+  password_not_ends_with?: Maybe<String>;
+  position?: Maybe<String>;
+  position_not?: Maybe<String>;
+  position_in?: Maybe<String[] | String>;
+  position_not_in?: Maybe<String[] | String>;
+  position_lt?: Maybe<String>;
+  position_lte?: Maybe<String>;
+  position_gt?: Maybe<String>;
+  position_gte?: Maybe<String>;
+  position_contains?: Maybe<String>;
+  position_not_contains?: Maybe<String>;
+  position_starts_with?: Maybe<String>;
+  position_not_starts_with?: Maybe<String>;
+  position_ends_with?: Maybe<String>;
+  position_not_ends_with?: Maybe<String>;
+  photo?: Maybe<String>;
+  photo_not?: Maybe<String>;
+  photo_in?: Maybe<String[] | String>;
+  photo_not_in?: Maybe<String[] | String>;
+  photo_lt?: Maybe<String>;
+  photo_lte?: Maybe<String>;
+  photo_gt?: Maybe<String>;
+  photo_gte?: Maybe<String>;
+  photo_contains?: Maybe<String>;
+  photo_not_contains?: Maybe<String>;
+  photo_starts_with?: Maybe<String>;
+  photo_not_starts_with?: Maybe<String>;
+  photo_ends_with?: Maybe<String>;
+  photo_not_ends_with?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  phoneNumber_not?: Maybe<String>;
+  phoneNumber_in?: Maybe<String[] | String>;
+  phoneNumber_not_in?: Maybe<String[] | String>;
+  phoneNumber_lt?: Maybe<String>;
+  phoneNumber_lte?: Maybe<String>;
+  phoneNumber_gt?: Maybe<String>;
+  phoneNumber_gte?: Maybe<String>;
+  phoneNumber_contains?: Maybe<String>;
+  phoneNumber_not_contains?: Maybe<String>;
+  phoneNumber_starts_with?: Maybe<String>;
+  phoneNumber_not_starts_with?: Maybe<String>;
+  phoneNumber_ends_with?: Maybe<String>;
+  phoneNumber_not_ends_with?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  startDate_not?: Maybe<DateTimeInput>;
+  startDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  startDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  startDate_lt?: Maybe<DateTimeInput>;
+  startDate_lte?: Maybe<DateTimeInput>;
+  startDate_gt?: Maybe<DateTimeInput>;
+  startDate_gte?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+  allowPushedNotifications_not?: Maybe<Boolean>;
+  AND?: Maybe<TalentWhereInput[] | TalentWhereInput>;
+  OR?: Maybe<TalentWhereInput[] | TalentWhereInput>;
+  NOT?: Maybe<TalentWhereInput[] | TalentWhereInput>;
+}
 
 export interface BuddyCreateInput {
   id?: Maybe<ID_Input>;
@@ -1515,6 +1699,43 @@ export interface NewbieTaskUpdateManyMutationInput {
   notes?: Maybe<String>;
 }
 
+export interface TalentCreateInput {
+  id?: Maybe<ID_Input>;
+  name: String;
+  email: String;
+  role?: Maybe<UserRole>;
+  password: String;
+  position?: Maybe<String>;
+  photo?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+}
+
+export interface TalentUpdateInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  password?: Maybe<String>;
+  position?: Maybe<String>;
+  photo?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+}
+
+export interface TalentUpdateManyMutationInput {
+  name?: Maybe<String>;
+  email?: Maybe<String>;
+  role?: Maybe<UserRole>;
+  password?: Maybe<String>;
+  position?: Maybe<String>;
+  photo?: Maybe<String>;
+  phoneNumber?: Maybe<String>;
+  startDate?: Maybe<DateTimeInput>;
+  allowPushedNotifications?: Maybe<Boolean>;
+}
+
 export interface BuddySubscriptionWhereInput {
   mutation_in?: Maybe<MutationType[] | MutationType>;
   updatedFields_contains?: Maybe<String>;
@@ -1569,6 +1790,17 @@ export interface NewbieTaskSubscriptionWhereInput {
   NOT?: Maybe<
     NewbieTaskSubscriptionWhereInput[] | NewbieTaskSubscriptionWhereInput
   >;
+}
+
+export interface TalentSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<TalentWhereInput>;
+  AND?: Maybe<TalentSubscriptionWhereInput[] | TalentSubscriptionWhereInput>;
+  OR?: Maybe<TalentSubscriptionWhereInput[] | TalentSubscriptionWhereInput>;
+  NOT?: Maybe<TalentSubscriptionWhereInput[] | TalentSubscriptionWhereInput>;
 }
 
 export interface NodeNode {
@@ -2108,6 +2340,116 @@ export interface AggregateNewbieTaskSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
+export interface Talent {
+  id: ID_Output;
+  name: String;
+  email: String;
+  role: UserRole;
+  password: String;
+  position?: String;
+  photo?: String;
+  phoneNumber?: String;
+  startDate?: DateTimeOutput;
+  allowPushedNotifications: Boolean;
+}
+
+export interface TalentPromise extends Promise<Talent>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  role: () => Promise<UserRole>;
+  password: () => Promise<String>;
+  position: () => Promise<String>;
+  photo: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  startDate: () => Promise<DateTimeOutput>;
+  allowPushedNotifications: () => Promise<Boolean>;
+}
+
+export interface TalentSubscription
+  extends Promise<AsyncIterator<Talent>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  role: () => Promise<AsyncIterator<UserRole>>;
+  password: () => Promise<AsyncIterator<String>>;
+  position: () => Promise<AsyncIterator<String>>;
+  photo: () => Promise<AsyncIterator<String>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
+  startDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  allowPushedNotifications: () => Promise<AsyncIterator<Boolean>>;
+}
+
+export interface TalentNullablePromise
+  extends Promise<Talent | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  role: () => Promise<UserRole>;
+  password: () => Promise<String>;
+  position: () => Promise<String>;
+  photo: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  startDate: () => Promise<DateTimeOutput>;
+  allowPushedNotifications: () => Promise<Boolean>;
+}
+
+export interface TalentConnection {
+  pageInfo: PageInfo;
+  edges: TalentEdge[];
+}
+
+export interface TalentConnectionPromise
+  extends Promise<TalentConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<TalentEdge>>() => T;
+  aggregate: <T = AggregateTalentPromise>() => T;
+}
+
+export interface TalentConnectionSubscription
+  extends Promise<AsyncIterator<TalentConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<TalentEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateTalentSubscription>() => T;
+}
+
+export interface TalentEdge {
+  node: Talent;
+  cursor: String;
+}
+
+export interface TalentEdgePromise extends Promise<TalentEdge>, Fragmentable {
+  node: <T = TalentPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface TalentEdgeSubscription
+  extends Promise<AsyncIterator<TalentEdge>>,
+    Fragmentable {
+  node: <T = TalentSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateTalent {
+  count: Int;
+}
+
+export interface AggregateTalentPromise
+  extends Promise<AggregateTalent>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateTalentSubscription
+  extends Promise<AsyncIterator<AggregateTalent>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface BatchPayload {
   count: Long;
 }
@@ -2378,6 +2720,74 @@ export interface NewbieTaskPreviousValuesSubscription
   notes: () => Promise<AsyncIterator<String>>;
 }
 
+export interface TalentSubscriptionPayload {
+  mutation: MutationType;
+  node: Talent;
+  updatedFields: String[];
+  previousValues: TalentPreviousValues;
+}
+
+export interface TalentSubscriptionPayloadPromise
+  extends Promise<TalentSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = TalentPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = TalentPreviousValuesPromise>() => T;
+}
+
+export interface TalentSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<TalentSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = TalentSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = TalentPreviousValuesSubscription>() => T;
+}
+
+export interface TalentPreviousValues {
+  id: ID_Output;
+  name: String;
+  email: String;
+  role: UserRole;
+  password: String;
+  position?: String;
+  photo?: String;
+  phoneNumber?: String;
+  startDate?: DateTimeOutput;
+  allowPushedNotifications: Boolean;
+}
+
+export interface TalentPreviousValuesPromise
+  extends Promise<TalentPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  email: () => Promise<String>;
+  role: () => Promise<UserRole>;
+  password: () => Promise<String>;
+  position: () => Promise<String>;
+  photo: () => Promise<String>;
+  phoneNumber: () => Promise<String>;
+  startDate: () => Promise<DateTimeOutput>;
+  allowPushedNotifications: () => Promise<Boolean>;
+}
+
+export interface TalentPreviousValuesSubscription
+  extends Promise<AsyncIterator<TalentPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  role: () => Promise<AsyncIterator<UserRole>>;
+  password: () => Promise<AsyncIterator<String>>;
+  position: () => Promise<AsyncIterator<String>>;
+  photo: () => Promise<AsyncIterator<String>>;
+  phoneNumber: () => Promise<AsyncIterator<String>>;
+  startDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  allowPushedNotifications: () => Promise<AsyncIterator<Boolean>>;
+}
+
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
 */
@@ -2430,6 +2840,10 @@ export const models: Model[] = [
   },
   {
     name: "BuddyTask",
+    embedded: false
+  },
+  {
+    name: "Talent",
     embedded: false
   },
   {

@@ -7,6 +7,9 @@ export const TASK_DETAILS = gql`
       title
       description
       status
+      newbie {
+        name
+      }
     }
   }
 `;

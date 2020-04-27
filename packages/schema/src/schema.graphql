@@ -11,6 +11,7 @@ enum TaskStatus {
 enum UserRole {
   NEWBIE
   BUDDY
+  TALENT
 }
 
 enum TaskTemplates {
@@ -23,6 +24,7 @@ enum TaskTemplates {
 type Query {
   newbie(newbieId: ID!): Newbie!
   buddy(buddyId: ID!): Buddy!
+  talent(talentId: ID!): Talent!
   task(taskId: ID!): Task!
   newbies(filter: String, first: Int): [Newbie]!
   newbieTasks(title: String, status: TaskStatus, first: Int): [Task]!
@@ -30,10 +32,12 @@ type Query {
 }
 
 type Mutation {
-  addBuddy(input: UserInput!): Buddy!
   addNewbie(buddyId: ID!, input: UserInput!): Newbie!
+  addBuddy(input: UserInput!): Buddy!
+  addTalent(input: UserInput!): Talent!
   deleteNewbie(newbieId: ID!): Buddy!
   deleteBuddy(buddyId: ID!): Buddy!
+  deleteTalent(talentId: ID!): Talent!
   updateUser(userId: String!, input: UserInput!): User!
   login(email: String!, password: String!): AuthPayload!
   sendResetPasswordLink(email: String!, url: String!): AuthPayload!
@@ -64,6 +68,20 @@ input UserInput {
   photo: URL
   phoneNumber: PhoneNumber
   startDate: DateTime
+}
+
+type Talent implements User {
+  id: ID!
+  email: EmailAddress!
+  name: String!
+  role: UserRole!
+  position: String
+  photo: URL
+  phoneNumber: PhoneNumber
+  startDate: DateTime
+  allowPushedNotifications: Boolean!
+  buddiesCount: Int!
+  buddies: [Buddy]!
 }
 
 type Buddy implements User {

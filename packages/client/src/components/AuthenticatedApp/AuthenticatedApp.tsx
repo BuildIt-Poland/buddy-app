@@ -1,20 +1,22 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { ROUTES } from 'shared/routes';
+import { UserRole } from '@buddy-app/schema';
 import AppWrapper from 'components/AppWrapper';
 import TaskDetails from 'pages/TaskDetails';
 import TasksList from 'pages/TasksList';
 import NewbieTasksList from 'pages/NewbieTasksList';
-import AddNewbie from 'pages/AddNewbie';
+import AddUser from 'pages/AddUser';
 import NewbieSelect from 'pages/NewbieSelect';
+import BuddySelect from 'pages/BuddySelect';
 import ContactDetails from 'pages/ContactDetails';
 import AddTask from 'pages/AddTask';
 import Error404 from 'pages/Error404';
 import { useAuth } from 'contexts/AuthContext';
-import { isNewbie } from 'utils';
 import { MenuProvider } from 'contexts/MenuContext';
 import { SnackbarProvider } from 'contexts/SnackbarContext';
 import { LoadingProvider } from 'contexts/LoadingContext';
+import { Users } from './types';
 
 const newbieRoutes = [
   {
@@ -42,7 +44,7 @@ const buddyRoutes = [
   },
   {
     path: ROUTES.BUDDY_ADD_NEWBIE,
-    component: AddNewbie,
+    component: AddUser,
   },
   {
     path: ROUTES.BUDDY_SELECT_NEWBIE,
@@ -66,16 +68,75 @@ const buddyRoutes = [
   },
 ];
 
+const talentRoutes = [
+  {
+    path: ROUTES.TALENT_ADD_TASK,
+    component: AddTask,
+  },
+  {
+    path: ROUTES.TALENT_ADD_NEWBIE,
+    component: AddUser,
+  },
+  {
+    path: ROUTES.TALENT_ADD_BUDDY,
+    component: AddUser,
+  },
+  {
+    path: ROUTES.TALENT_ADD_TALENT,
+    component: AddUser,
+  },
+  {
+    path: ROUTES.TALENT_SELECT_NEWBIE,
+    component: NewbieSelect,
+  },
+  {
+    path: ROUTES.TALENT_SELECT_BUDDY,
+    component: BuddySelect,
+  },
+  {
+    path: ROUTES.TALENT_TASKS_LIST,
+    component: TasksList,
+  },
+  {
+    path: ROUTES.TALENT_TASK_DETAILS,
+    component: TaskDetails,
+  },
+  {
+    path: ROUTES.TALENT_DETAILS,
+    component: ContactDetails,
+  },
+  {
+    path: ROUTES.TALENT_NEWBIE_DETAILS,
+    component: ContactDetails,
+  },
+  {
+    path: ROUTES.TALENT_BUDDY_DETAILS,
+    component: ContactDetails,
+  },
+];
+
 const AuthenticatedApp: React.FC = () => {
   const {
     data: { role },
   } = useAuth();
 
-  const isNewbieRole = isNewbie(role);
-  const routes = isNewbieRole ? newbieRoutes : buddyRoutes;
-  const redirectPath = isNewbieRole
-    ? ROUTES.NEWBIE_TASKS_LIST
-    : ROUTES.BUDDY_SELECT_NEWBIE;
+  const users: Users = {
+    [UserRole.Newbie]: {
+      routes: newbieRoutes,
+      redirectPath: ROUTES.NEWBIE_TASKS_LIST,
+    },
+    [UserRole.Buddy]: {
+      routes: buddyRoutes,
+      redirectPath: ROUTES.BUDDY_SELECT_NEWBIE,
+    },
+    [UserRole.Talent]: {
+      routes: talentRoutes,
+      redirectPath: ROUTES.TALENT_SELECT_BUDDY,
+    },
+  };
+
+  const routes = users[role].routes;
+  const redirectPath: string = users[role].redirectPath;
 
   return (
     <LoadingProvider>
