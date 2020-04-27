@@ -17,16 +17,17 @@ const auth = (authToken: string): string => {
   }
 };
 
-const isBuddyAuth = async (context: Context): Promise<boolean> => {
+const hasAuthority = async (context: Context): Promise<boolean> => {
   const { Authorization, authorization } = context.event.headers;
 
   const userId = auth(Authorization || authorization);
   const isBuddy = await context.prisma.$exists.buddy({ id: userId });
+  const isTalent = await context.prisma.$exists.talent({ id: userId });
 
-  if (!isBuddy) {
+  if (!isBuddy && !isTalent) {
     throw new ERRORS.ACCESS_DENIED();
   }
-  return isBuddy;
+  return isBuddy || isTalent;
 };
 
 export const authMiddleware = async (
@@ -45,7 +46,7 @@ export const authMiddleware = async (
       info.operation.name &&
       !/updateTask$|updateUser$/.test(info.operation.name.value)
     ) {
-      await isBuddyAuth(context);
+      await hasAuthority(context);
     } else {
       const { Authorization, authorization } = context.event.headers;
       auth(Authorization || authorization);

@@ -28,6 +28,28 @@ describe('Router Tests', () => {
   });
 
   describe('when user is authenticated', () => {
+    describe('when user is a Talent', () => {
+      beforeEach(() => {
+        cy.login(UserRole.Talent);
+      });
+
+      it(`should redirect after login to ${ROUTES.TALENT_SELECT_BUDDY}`, () => {
+        cy.url().should('includes', ROUTES.TALENT_SELECT_BUDDY);
+      });
+
+      it(`should redirect from any not existing route to ${ROUTES.TALENT_SELECT_BUDDY}`, () => {
+        cy.visit(ROUTES.NEWBIE_TASK_DETAILS);
+        cy.url().should('includes', ROUTES.ROUTE_404);
+        cy.visit('no/such/route');
+        cy.url().should('includes', ROUTES.ROUTE_404);
+      });
+
+      it(`should allow it to visit any talent route`, () => {
+        cy.visit(ROUTES.TALENT_TASK_DETAILS);
+        cy.url().should('includes', ROUTES.TALENT_TASK_DETAILS);
+      });
+    });
+
     describe('when user is a Buddy', () => {
       beforeEach(() => {
         cy.login(UserRole.Buddy);

@@ -74,7 +74,7 @@ Array [
   >
     <AvatarHeader
       newbieId="1234"
-      taskProgress={0.75}
+      taskProgress={0}
     />
     <Tabs
       centered={true}
@@ -104,22 +104,6 @@ Array [
         loading={false}
         onChange={[Function]}
         tabIndex={0}
-        tasks={
-          Array [
-            Object {
-              "description": "New task description 2",
-              "id": "1",
-              "status": "COMPLETED",
-              "title": "New task title 2",
-            },
-            Object {
-              "description": "New task description 2",
-              "id": "1",
-              "status": "COMPLETED",
-              "title": "New task title 2",
-            },
-          ]
-        }
       />
     </TabPanel>
     <TabPanel
@@ -130,22 +114,6 @@ Array [
         loading={false}
         onChange={[Function]}
         tabIndex={0}
-        tasks={
-          Array [
-            Object {
-              "description": "New task description",
-              "id": "2",
-              "status": "UNCOMPLETED",
-              "title": "New task title ",
-            },
-            Object {
-              "description": "New task description 2",
-              "id": "1",
-              "status": "COMPLETED",
-              "title": "New task title 2",
-            },
-          ]
-        }
       />
     </TabPanel>
     <AddTaskOptions
@@ -202,7 +170,6 @@ Array [
         loading={false}
         onChange={[Function]}
         tabIndex={0}
-        tasks={Array []}
       />
     </TabPanel>
     <TabPanel
@@ -213,7 +180,6 @@ Array [
         loading={false}
         onChange={[Function]}
         tabIndex={0}
-        tasks={Array []}
       />
     </TabPanel>
     <AddTaskOptions

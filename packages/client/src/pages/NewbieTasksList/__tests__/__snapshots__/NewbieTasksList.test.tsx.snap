@@ -33,7 +33,7 @@ Array [
   >
     <AvatarHeader
       newbieId="1234"
-      taskProgress={1}
+      taskProgress={0}
     />
   </header>,
   <main
@@ -43,22 +43,6 @@ Array [
     <TaskTabsContent
       loading={false}
       onChange={[Function]}
-      tasks={
-        Array [
-          Object {
-            "description": "New task description 2",
-            "id": "1",
-            "status": "COMPLETED",
-            "title": "New task title 2",
-          },
-          Object {
-            "description": "New task description 2",
-            "id": "1",
-            "status": "COMPLETED",
-            "title": "New task title 2",
-          },
-        ]
-      }
     />
   </main>,
 ]
@@ -83,7 +67,6 @@ Array [
     <TaskTabsContent
       loading={false}
       onChange={[Function]}
-      tasks={Array []}
     />
   </main>,
 ]

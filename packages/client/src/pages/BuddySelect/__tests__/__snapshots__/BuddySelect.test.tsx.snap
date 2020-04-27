@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - NewbieSelect renders correctly 1`] = `
+exports[`Component - BuddySelect renders correctly 1`] = `
 Array [
   <header
     type="menu"
@@ -17,14 +17,14 @@ Array [
         component="h1"
         variant="h2"
       >
-        Your New Joiners
+        Buddies List
       </Typography>
       <Typography
         color="textSecondary"
         component="p"
         variant="body2"
       >
-        Don’t forget to complete all tasks
+        Choose your buddy or create a new one
       </Typography>
     </Box>
     <NiewbieGridPlaceHolder />
@@ -36,7 +36,7 @@ Array [
 ]
 `;
 
-exports[`Component - NewbieSelect renders correctly 2`] = `
+exports[`Component - BuddySelect renders correctly 2`] = `
 Array [
   <header
     type="menu"
@@ -53,14 +53,14 @@ Array [
         component="h1"
         variant="h2"
       >
-        Your New Joiners
+        Buddies List
       </Typography>
       <Typography
         color="textSecondary"
         component="p"
         variant="body2"
       >
-        Don’t forget to complete all tasks
+        Choose your buddy or create a new one
       </Typography>
     </Box>
     <PlusButton

@@ -1,12 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - PlusButton renders correctly 1`] = `
-<Fab
-  aria-label="add"
-  className="makeStyles-button-1"
-  color="primary"
-  size="medium"
+exports[`Component - EmptyState renders correctly 1`] = `
+<Box
+  className="makeStyles-emptyContainer-1"
 >
-  <AddIcon />
-</Fab>
+  <Typography
+    component="h2"
+    variant="h2"
+  >
+    Whoops! There's no data..
+  </Typography>
+</Box>
 `;

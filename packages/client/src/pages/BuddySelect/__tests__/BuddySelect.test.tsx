@@ -10,14 +10,12 @@ import BuddySelect from '../BuddySelect';
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('atoms/PlusButton', () => 'PlusButton');
-jest.mock('components/NewbieGrid', () => 'NewbieGrid');
+jest.mock('components/UserGrid', () => 'UserGrid');
 jest.mock('atoms/NiewbieGridPlaceHolder', () => 'NiewbieGridPlaceHolder');
 jest.mock('atoms/PageContainer/', () => 'PageContainer');
 jest.doMock('components/Header');
 
 describe('Component - BuddySelect', () => {
-  const path = '/talent/buddies';
-
   it('renders correctly', async () => {
     const component = create(
       <MockedProvider mocks={buddySelectMock} addTypename={false} resolvers={{}}>

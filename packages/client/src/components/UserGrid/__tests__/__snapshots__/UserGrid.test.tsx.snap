@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - NewbieGrid renders correctly Should render correctly NewbieGrid 1`] = `
+exports[`Component - UserGrid renders correctly Should render correctly UserGrid 1`] = `
 <Grid
   className="makeStyles-grid-4"
   component="ul"
@@ -15,7 +15,7 @@ exports[`Component - NewbieGrid renders correctly Should render correctly Newbie
   >
     <a
       className="makeStyles-link-5"
-      href="/buddy/newbies/ck17svulh9k2k0b17j31ansfk/tasks"
+      href="/talent/buddies/ck17svulh9k2k0b17j31ansfk/newbies"
       onClick={[Function]}
     >
       <Card
@@ -28,7 +28,6 @@ exports[`Component - NewbieGrid renders correctly Should render correctly Newbie
             imgSrc={null}
             name="Test 2"
             position="Front End"
-            progress={50}
           />
         </CardContent>
       </Card>
@@ -41,7 +40,7 @@ exports[`Component - NewbieGrid renders correctly Should render correctly Newbie
   >
     <a
       className="makeStyles-link-5"
-      href="/buddy/newbies/ck17swp2m9kcv0b17we0ibrdn/tasks"
+      href="/talent/buddies/ck17swp2m9kcv0b17we0ibrdn/newbies"
       onClick={[Function]}
     >
       <Card
@@ -54,7 +53,6 @@ exports[`Component - NewbieGrid renders correctly Should render correctly Newbie
             imgSrc={null}
             name="Test 1"
             position="Front End"
-            progress={50}
           />
         </CardContent>
       </Card>

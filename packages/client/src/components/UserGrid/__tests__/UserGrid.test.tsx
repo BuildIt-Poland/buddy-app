@@ -1,9 +1,8 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
 import ThemeProvider from '@material-ui/styles/ThemeProvider';
-import { AuthProvider } from 'contexts/AuthContext';
 import { MemoryRouter } from 'react-router';
-import { newbieSelectMock, mockedBuddyContext } from '__mocks__';
+import { newbieSelectMock } from '__mocks__';
 import theme from 'styles/theme';
 import UserGrid from '../UserGrid';
 
@@ -18,11 +17,9 @@ describe('Component - UserGrid', () => {
     test('Should render correctly UserGrid', () => {
       const component = create(
         <MemoryRouter>
-          <AuthProvider value={mockedBuddyContext()}>
-            <ThemeProvider theme={theme}>
-              <UserGrid newbies={newbieSelectMock[0].result.data.buddy.newbies} />
-            </ThemeProvider>
-          </AuthProvider>
+          <ThemeProvider theme={theme}>
+            <UserGrid users={newbieSelectMock[0].result.data.buddy.newbies} />
+          </ThemeProvider>
         </MemoryRouter>
       );
       expect(component.toJSON()).toMatchSnapshot();
