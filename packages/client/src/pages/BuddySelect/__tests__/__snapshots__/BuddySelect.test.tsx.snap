@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - NewbieSelect renders correctly 1`] = `
+Array [
+  <header
+    type="menu"
+  />,
+  <PageContainer
+    backGroundShape={true}
+    data-testid="newbie-select-page"
+  >
+    <Box
+      className="makeStyles-title-1"
+      component="section"
+    >
+      <Typography
+        component="h1"
+        variant="h2"
+      >
+        Your New Joiners
+      </Typography>
+      <Typography
+        color="textSecondary"
+        component="p"
+        variant="body2"
+      >
+        Don’t forget to complete all tasks
+      </Typography>
+    </Box>
+    <NiewbieGridPlaceHolder />
+    <PlusButton
+      aria-label="Add newbie"
+      disabled={true}
+    />
+  </PageContainer>,
+]
+`;
+
+exports[`Component - NewbieSelect renders correctly 2`] = `
+Array [
+  <header
+    type="menu"
+  />,
+  <PageContainer
+    backGroundShape={true}
+    data-testid="newbie-select-page"
+  >
+    <Box
+      className="makeStyles-title-1"
+      component="section"
+    >
+      <Typography
+        component="h1"
+        variant="h2"
+      >
+        Your New Joiners
+      </Typography>
+      <Typography
+        color="textSecondary"
+        component="p"
+        variant="body2"
+      >
+        Don’t forget to complete all tasks
+      </Typography>
+    </Box>
+    <PlusButton
+      aria-label="Add newbie"
+      disabled={true}
+    />
+  </PageContainer>,
+]
+`;
