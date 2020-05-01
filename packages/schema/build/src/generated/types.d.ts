@@ -36,6 +36,7 @@ export declare type Buddy = User & {
     allowPushedNotifications: Scalars['Boolean'];
     newbiesCount: Scalars['Int'];
     newbies: Array<Maybe<Newbie>>;
+    talents: Array<Maybe<Talent>>;
 };
 export declare type BuddyTask = Task & {
     __typename?: 'BuddyTask';
@@ -284,11 +285,11 @@ export declare type ResolversTypes = {
     Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
     Buddy: ResolverTypeWrapper<Buddy>;
     Int: ResolverTypeWrapper<Scalars['Int']>;
+    Talent: ResolverTypeWrapper<Talent>;
     NewbieTask: ResolverTypeWrapper<NewbieTask>;
     Task: ResolversTypes['NewbieTask'] | ResolversTypes['BuddyTask'];
     TaskStatus: TaskStatus;
     BuddyTask: ResolverTypeWrapper<BuddyTask>;
-    Talent: ResolverTypeWrapper<Talent>;
     Mutation: ResolverTypeWrapper<{}>;
     UserInput: UserInput;
     AuthPayload: ResolverTypeWrapper<AuthPayload>;
@@ -310,11 +311,11 @@ export declare type ResolversParentTypes = {
     Boolean: Scalars['Boolean'];
     Buddy: Buddy;
     Int: Scalars['Int'];
+    Talent: Talent;
     NewbieTask: NewbieTask;
     Task: ResolversParentTypes['NewbieTask'] | ResolversParentTypes['BuddyTask'];
     TaskStatus: TaskStatus;
     BuddyTask: BuddyTask;
-    Talent: Talent;
     Mutation: {};
     UserInput: UserInput;
     AuthPayload: AuthPayload;
@@ -339,6 +340,7 @@ export declare type BuddyResolvers<ContextType = any, ParentType extends Resolve
     allowPushedNotifications?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
     newbiesCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
     newbies?: Resolver<Array<Maybe<ResolversTypes['Newbie']>>, ParentType, ContextType>;
+    talents?: Resolver<Array<Maybe<ResolversTypes['Talent']>>, ParentType, ContextType>;
     __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 export declare type BuddyTaskResolvers<ContextType = any, ParentType extends ResolversParentTypes['BuddyTask'] = ResolversParentTypes['BuddyTask']> = {

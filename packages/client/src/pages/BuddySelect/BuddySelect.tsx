@@ -6,13 +6,13 @@ import Box from '@material-ui/core/Box';
 import { QueryTalentArgs, Query } from '@buddy-app/schema';
 import { useAuth } from 'contexts/AuthContext';
 import { BUDDY_SELECT } from 'graphql/buddy-select.graphql';
-import PlusButton from 'atoms/PlusButton';
 import BuddyGrid from 'components/UserGrid';
 import PageContainer from 'atoms/PageContainer';
 import NiewbieGridPlaceHolder from 'atoms/NiewbieGridPlaceHolder';
 import Header, { MenuTypes } from 'components/Header';
+import AddUserOptions from 'components/AddUserOptions';
 import { useMenu } from 'contexts/MenuContext';
-import BuddySelectDictionary from './dictionary';
+import DICTIONARY from './dictionary';
 
 const useStyles = makeStyles<Theme>(theme => ({
   title: {
@@ -37,18 +37,18 @@ const BuddySelect: React.FC = () => {
   return (
     <>
       <Header type={MenuTypes.MENU} onButtonClick={toggleMenu} />
-      <PageContainer data-testid='newbie-select-page' backGroundShape>
+      <PageContainer data-testid='buddy-select-page' backGroundShape>
         <Box className={title} component='section'>
           <Typography component='h1' variant='h2'>
-            {BuddySelectDictionary.TITLE}
+            {DICTIONARY.TITLE}
           </Typography>
           <Typography color='textSecondary' component='p' variant='body2'>
-            {BuddySelectDictionary.SUBTITLE}
+            {DICTIONARY.SUBTITLE}
           </Typography>
         </Box>
         {loading && <NiewbieGridPlaceHolder />}
         {data && data.talent.buddies && <BuddyGrid users={data.talent.buddies} />}
-        <PlusButton aria-label='Add newbie' disabled />
+        <AddUserOptions title={DICTIONARY.PLUS_BUTTON_TITLE} />
       </PageContainer>
     </>
   );

@@ -7,6 +7,7 @@ interface NewbieSelect {
     TITLE: string;
     SUBTITLE: string;
   };
+  PLUS_BUTTON_TITLE: string;
 }
 
 const DICTIONARY: NewbieSelect = {
@@ -18,6 +19,7 @@ const DICTIONARY: NewbieSelect = {
     TITLE: 'Templates List',
     SUBTITLE: 'Here you can manage task templates for the regions',
   },
+  PLUS_BUTTON_TITLE: 'Add New Joiner',
 };
 
 export default DICTIONARY;

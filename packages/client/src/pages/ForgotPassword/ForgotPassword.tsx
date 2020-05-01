@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form';
 import AuthContainer from 'atoms/AuthContainer';
 import { useDialog } from 'contexts/DialogContext';
 import RoundedButton from 'atoms/RoundedButton';
-import { auth } from 'utils';
+import { auth, emailRegExp } from 'utils';
 import { ROUTES } from 'shared/routes';
 import DICTIONARY from './dictionary';
 import { ForgotPasswordProps, FormData } from './types';
@@ -92,7 +92,7 @@ const ForgotPassword: React.FC<ForgotPasswordProps> = ({ history }) => {
           inputRef={register({
             required: DICTIONARY.EMAIL.REQUIRED,
             pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              value: emailRegExp,
               message: DICTIONARY.EMAIL.INVALID,
             },
           })}

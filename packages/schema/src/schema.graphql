@@ -96,6 +96,7 @@ type Buddy implements User {
   allowPushedNotifications: Boolean!
   newbiesCount: Int!
   newbies: [Newbie]!
+  talents: [Talent]!
 }
 
 type Newbie implements User {

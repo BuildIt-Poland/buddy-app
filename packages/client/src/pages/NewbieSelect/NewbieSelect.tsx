@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { useQuery } from '@apollo/react-hooks';
@@ -15,7 +15,7 @@ import EmptyState from 'atoms/EmptyState';
 import Header, { MenuTypes } from 'components/Header';
 import { useMenu } from 'contexts/MenuContext';
 import { ROUTES } from 'shared/routes';
-import { isTemplate } from 'utils';
+import { isTemplate, isTalent } from 'utils';
 import { NewbieSelectProps } from './types';
 import DICTIONARY from './dictionary';
 
@@ -40,6 +40,9 @@ const NewbieSelect: React.FC<NewbieSelectProps> = ({ history }) => {
   const { toggleMenu } = useMenu();
   const { title } = useStyles();
   const isEmptyList = data && !data.buddy.newbies.length;
+  const addNewbieRoute = isTalent(role)
+    ? ROUTES.TALENT_ADD_NEWBIE.replace(':buddyId', buddyId)
+    : ROUTES.BUDDY_ADD_NEWBIE;
   const dictionary =
     data && isTemplate(data.buddy.name) ? DICTIONARY.TEMPLATE : DICTIONARY.REGULAR;
 
@@ -81,7 +84,9 @@ const NewbieSelect: React.FC<NewbieSelectProps> = ({ history }) => {
         {loading && <NiewbieGridPlaceHolder />}
         {!loading && isEmptyList && <EmptyState />}
         {data && data.buddy.newbies && <NewbieGrid users={data.buddy.newbies} />}
-        <PlusButton aria-label='Add newbie' disabled />
+        <Link to={addNewbieRoute}>
+          <PlusButton aria-label='Add newbie' title={DICTIONARY.PLUS_BUTTON_TITLE} />
+        </Link>
       </PageContainer>
     </>
   );

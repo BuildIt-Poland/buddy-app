@@ -12,8 +12,8 @@ const TASK_LIST_DICTIONARY: TaskListDictionary = {
   NEWBIE_TAB_TITLE: 'Newbie tasks',
   SUCCESS_MESSAGE: 'Task status updated',
   ERROR_MESSAGE: 'An error ocurred updating task',
-  TEMPLATE_MESSAGE: 'Task status is static for template tasks',
-  PLUS_BUTTON_TITLE: 'Add new task',
+  TEMPLATE_MESSAGE: 'Task status is static for templates',
+  PLUS_BUTTON_TITLE: 'Add New Task',
 };
 
 export default TASK_LIST_DICTIONARY;

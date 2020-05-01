@@ -34,6 +34,7 @@ export type Buddy = User & {
   allowPushedNotifications: Scalars['Boolean'];
   newbiesCount: Scalars['Int'];
   newbies: Array<Maybe<Newbie>>;
+  talents: Array<Maybe<Talent>>;
 };
 
 export type BuddyTask = Task & {
@@ -386,11 +387,11 @@ export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
   Buddy: ResolverTypeWrapper<Buddy>,
   Int: ResolverTypeWrapper<Scalars['Int']>,
+  Talent: ResolverTypeWrapper<Talent>,
   NewbieTask: ResolverTypeWrapper<NewbieTask>,
   Task: ResolversTypes['NewbieTask'] | ResolversTypes['BuddyTask'],
   TaskStatus: TaskStatus,
   BuddyTask: ResolverTypeWrapper<BuddyTask>,
-  Talent: ResolverTypeWrapper<Talent>,
   Mutation: ResolverTypeWrapper<{}>,
   UserInput: UserInput,
   AuthPayload: ResolverTypeWrapper<AuthPayload>,
@@ -413,11 +414,11 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'],
   Buddy: Buddy,
   Int: Scalars['Int'],
+  Talent: Talent,
   NewbieTask: NewbieTask,
   Task: ResolversParentTypes['NewbieTask'] | ResolversParentTypes['BuddyTask'],
   TaskStatus: TaskStatus,
   BuddyTask: BuddyTask,
-  Talent: Talent,
   Mutation: {},
   UserInput: UserInput,
   AuthPayload: AuthPayload,
@@ -444,6 +445,7 @@ export type BuddyResolvers<ContextType = any, ParentType extends ResolversParent
   allowPushedNotifications?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>,
   newbiesCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
   newbies?: Resolver<Array<Maybe<ResolversTypes['Newbie']>>, ParentType, ContextType>,
+  talents?: Resolver<Array<Maybe<ResolversTypes['Talent']>>, ParentType, ContextType>,
   __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 

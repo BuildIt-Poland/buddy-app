@@ -9,7 +9,7 @@ import BuddySelect from '../BuddySelect';
 
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('@material-ui/core/Box', () => 'Box');
-jest.mock('atoms/PlusButton', () => 'PlusButton');
+jest.mock('components/AddUserOptions', () => 'AddUserOptions');
 jest.mock('components/UserGrid', () => 'UserGrid');
 jest.mock('atoms/NiewbieGridPlaceHolder', () => 'NiewbieGridPlaceHolder');
 jest.mock('atoms/PageContainer/', () => 'PageContainer');

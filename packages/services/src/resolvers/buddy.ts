@@ -24,9 +24,17 @@ const newbiesCount: ResolverFn<
   return newbies.length;
 };
 
+const talents: ResolverFn<
+  Buddy["talents"],
+  ResolversParentTypes["Buddy"],
+  Context,
+  any
+> = (parent, _args, context) => context.prisma.talents();
+
 const buddyResolvers: BuddyResolvers = {
   newbies,
-  newbiesCount
+  newbiesCount,
+  talents
 };
 
 export default buddyResolvers;

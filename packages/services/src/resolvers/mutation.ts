@@ -12,11 +12,9 @@ const addNewbie: MutationResolvers["addNewbie"] = async (
   { buddyId, input },
   context
 ) => {
+  const { email } = input;
   const password = await bcrypt.hash(input.password || "", 10);
-
-  const userExist = await context.prisma.$exists.newbie({
-    email: input.email
-  });
+  const userExist = await context.prisma.$exists.newbie({ email });
 
   if (userExist) {
     throw new ERRORS.ACCOUNT_EXIST();
@@ -38,11 +36,10 @@ const addBuddy: MutationResolvers["addBuddy"] = async (
   { input },
   context
 ) => {
+  const { email } = input;
   const password = await bcrypt.hash(input.password || "", 10);
 
-  const userExist = await context.prisma.$exists.buddy({
-    email: input.email
-  });
+  const userExist = await context.prisma.$exists.buddy({ email });
 
   if (userExist) {
     throw new ERRORS.ACCOUNT_EXIST();

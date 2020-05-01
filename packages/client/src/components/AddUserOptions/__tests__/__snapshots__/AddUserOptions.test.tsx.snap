@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - AddTaskOptions renders correctly 1`] = `
+<DropDown
+  id="add-tasks-options"
+  marginThreshold={50}
+  renderAnchor={[Function]}
+  renderOptions={[Function]}
+/>
+`;

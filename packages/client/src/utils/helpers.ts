@@ -1,6 +1,8 @@
 import { UserRole, TaskStatus } from '@buddy-app/schema';
 import { Direction } from '@material-ui/core/styles';
 
+export const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+
 export const isNewbie = (role: UserRole) => role === UserRole.Newbie;
 export const isBuddy = (role: UserRole) => role === UserRole.Buddy;
 export const isTalent = (role: UserRole) => role === UserRole.Talent;
