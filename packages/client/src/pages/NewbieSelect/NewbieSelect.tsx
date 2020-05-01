@@ -40,11 +40,11 @@ const NewbieSelect: React.FC<NewbieSelectProps> = ({ history }) => {
   const { toggleMenu } = useMenu();
   const { title } = useStyles();
   const isEmptyList = data && !data.buddy.newbies.length;
+  const isTemplateCase = data && isTemplate(data.buddy.name);
   const addNewbieRoute = isTalent(role)
     ? ROUTES.TALENT_ADD_NEWBIE.replace(':buddyId', buddyId)
     : ROUTES.BUDDY_ADD_NEWBIE;
-  const dictionary =
-    data && isTemplate(data.buddy.name) ? DICTIONARY.TEMPLATE : DICTIONARY.REGULAR;
+  const dictionary = isTemplateCase ? DICTIONARY.TEMPLATE : DICTIONARY.REGULAR;
 
   const goBack = () => {
     if (history.length > 2) {
@@ -85,7 +85,11 @@ const NewbieSelect: React.FC<NewbieSelectProps> = ({ history }) => {
         {!loading && isEmptyList && <EmptyState />}
         {data && data.buddy.newbies && <NewbieGrid users={data.buddy.newbies} />}
         <Link to={addNewbieRoute}>
-          <PlusButton aria-label='Add newbie' title={DICTIONARY.PLUS_BUTTON_TITLE} />
+          <PlusButton
+            aria-label='Add newbie'
+            title={DICTIONARY.PLUS_BUTTON_TITLE}
+            disabled={isTemplateCase}
+          />
         </Link>
       </PageContainer>
     </>
