@@ -1,4 +1,6 @@
+import { RouteComponentProps } from 'react-router-dom';
 import { UserRole, TaskStatus } from '@buddy-app/schema';
+import { ROUTES } from 'shared/routes';
 import { Direction } from '@material-ui/core/styles';
 
 export const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
@@ -25,3 +27,11 @@ export const convertDirectionToAnchor = (direction: Direction): 'left' | 'right'
 
 export const changeTaskStatus = (status: TaskStatus): TaskStatus =>
   status === TaskStatus.Completed ? TaskStatus.Uncompleted : TaskStatus.Completed;
+
+export const goBack = (history: RouteComponentProps['history']) => {
+  if (history.length > 2) {
+    history.goBack();
+  } else {
+    history.push(ROUTES.BASE);
+  }
+};

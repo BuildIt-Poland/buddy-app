@@ -11,6 +11,7 @@ import NewbieSelect from 'pages/NewbieSelect';
 import BuddySelect from 'pages/BuddySelect';
 import ContactDetails from 'pages/ContactDetails';
 import AddTask from 'pages/AddTask';
+import EditTask from 'pages/EditTask';
 import Error404 from 'pages/Error404';
 import { useAuth } from 'contexts/AuthContext';
 import { MenuProvider } from 'contexts/MenuContext';
@@ -43,6 +44,10 @@ const buddyRoutes = [
     component: AddTask,
   },
   {
+    path: ROUTES.BUDDY_EDIT_TASK,
+    component: EditTask,
+  },
+  {
     path: ROUTES.BUDDY_ADD_NEWBIE,
     component: AddUser,
   },
@@ -72,6 +77,10 @@ const talentRoutes = [
   {
     path: ROUTES.TALENT_ADD_TASK,
     component: AddTask,
+  },
+  {
+    path: ROUTES.TALENT_EDIT_TASK,
+    component: EditTask,
   },
   {
     path: ROUTES.TALENT_ADD_NEWBIE,

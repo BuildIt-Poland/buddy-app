@@ -1,10 +1,14 @@
 import React from 'react';
 import { create, act } from 'react-test-renderer';
 import waitForExpect from 'wait-for-expect';
-
+import { AuthProvider } from 'contexts/AuthContext';
 import { MemoryRouter, Route } from 'react-router';
 import { MockedProvider } from '@apollo/react-testing';
-import { taskListResponse, newbieTasksListMock } from '__mocks__';
+import {
+  taskListResponse,
+  newbieTasksListMock,
+  mockedBuddyContext,
+} from '__mocks__';
 import { SnackbarProvider } from 'contexts/SnackbarContext';
 import TasksList from '../TasksList';
 
@@ -34,7 +38,9 @@ describe('Component - TasksList', () => {
           <MemoryRouter initialEntries={[path]}>
             <Route path={'/buddy/newbies/:newbieId/tasks'}>
               <SnackbarProvider>
-                <TasksList />
+                <AuthProvider value={mockedBuddyContext()}>
+                  <TasksList />
+                </AuthProvider>
               </SnackbarProvider>
             </Route>
           </MemoryRouter>

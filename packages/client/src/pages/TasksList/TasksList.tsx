@@ -22,7 +22,7 @@ import useTaskProgress from 'hooks/useTaskProgress';
 import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
 import Header, { MenuTypes, MenuColors } from 'components/Header';
 import AddTaskOptions from 'components/AddTaskOptions';
-import { isTemplateTask, isTalent } from 'utils';
+import { isTemplateTask, isTalent, goBack } from 'utils';
 import { TasksListProps } from './types';
 import DICTIONARY from './dictionary';
 
@@ -57,13 +57,7 @@ const TasksList: React.FC<TasksListProps> = ({ history }) => {
   const handleTabChange = (event: React.ChangeEvent<{}>, newValue: number) =>
     setTabIndex(newValue);
 
-  const goBack = () => {
-    if (history.length > 2) {
-      history.goBack();
-    } else {
-      history.push(ROUTES.BASE);
-    }
-  };
+  const onBackClick = () => goBack(history);
 
   const newbieTasks = data && data.newbie.newbieTasks;
   const buddyTasks = data && data.newbie.buddyTasks;
@@ -72,7 +66,10 @@ const TasksList: React.FC<TasksListProps> = ({ history }) => {
 
   return (
     <>
-      <Header type={MenuTypes.BACK} color={MenuColors.PAPER} onButtonClick={goBack}>
+      <Header
+        type={MenuTypes.BACK}
+        color={MenuColors.PAPER}
+        onButtonClick={onBackClick}>
         <AvatarHeader newbieId={newbieId} taskProgress={buddyProgress} />
         <Tabs
           centered

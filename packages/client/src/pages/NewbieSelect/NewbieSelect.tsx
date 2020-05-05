@@ -15,7 +15,7 @@ import EmptyState from 'atoms/EmptyState';
 import Header, { MenuTypes } from 'components/Header';
 import { useMenu } from 'contexts/MenuContext';
 import { ROUTES } from 'shared/routes';
-import { isTemplate, isTalent } from 'utils';
+import { isTemplate, isTalent, goBack } from 'utils';
 import { NewbieSelectProps } from './types';
 import DICTIONARY from './dictionary';
 
@@ -46,18 +46,12 @@ const NewbieSelect: React.FC<NewbieSelectProps> = ({ history }) => {
     : ROUTES.BUDDY_ADD_NEWBIE;
   const dictionary = isTemplateCase ? DICTIONARY.TEMPLATE : DICTIONARY.REGULAR;
 
-  const goBack = () => {
-    if (history.length > 2) {
-      history.goBack();
-    } else {
-      history.push(ROUTES.BASE);
-    }
-  };
+  const onBackClick = () => goBack(history);
 
   const headerProps = {
     [UserRole.Newbie]: {
       type: MenuTypes.BACK,
-      onButtonClick: goBack,
+      onButtonClick: onBackClick,
     },
     [UserRole.Buddy]: {
       type: MenuTypes.MENU,
@@ -65,7 +59,7 @@ const NewbieSelect: React.FC<NewbieSelectProps> = ({ history }) => {
     },
     [UserRole.Talent]: {
       type: MenuTypes.BACK,
-      onButtonClick: goBack,
+      onButtonClick: onBackClick,
     },
   };
 

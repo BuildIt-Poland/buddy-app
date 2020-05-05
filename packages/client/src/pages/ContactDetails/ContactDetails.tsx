@@ -1,6 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
+import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import {
   NEWBIE_CONTACT_DETAILS,
@@ -11,12 +10,12 @@ import { QueryBuddyArgs, QueryNewbieArgs, UserRole } from '@buddy-app/schema';
 import { useAuth } from 'contexts/AuthContext';
 import UserDetails from 'components/UserDetails';
 import { BasicDetailsParams, UserBasicDetails } from 'components/UserMenu/types';
-import Box from '@material-ui/core/Box';
-import PageContainer from 'atoms/PageContainer';
-import Header, { MenuTypes } from 'components/Header';
-import { ROUTES } from 'shared/routes';
+import BackPageContainer from 'atoms/BackPageContainer';
 import ContactDetailsPlaceHolder from 'atoms/ContactDetailsPlaceHolder';
+import EditButton from 'atoms/EditButton';
+import { ROUTES } from 'shared/routes';
 import { ContactDetailsProps } from './types';
+import DICTIONARY from './dictionary';
 
 const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
   const { newbieId, buddyId } = useParams<QueryNewbieArgs & QueryBuddyArgs>();
@@ -31,16 +30,19 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
           query: NEWBIE_CONTACT_DETAILS,
           variables: { newbieId: userId },
           userRole: UserRole.Newbie.toLowerCase(),
+          editRoute: ROUTES.NEWBIE_EDIT_DETAILS,
         },
         [UserRole.Buddy]: {
           query: BUDDY_CONTACT_DETAILS,
           variables: { buddyId: userId },
           userRole: UserRole.Buddy.toLowerCase(),
+          editRoute: ROUTES.BUDDY_EDIT_DETAILS,
         },
         [UserRole.Talent]: {
           query: TALENT_CONTACT_DETAILS,
           variables: { talentId: userId },
           userRole: UserRole.Talent.toLowerCase(),
+          editRoute: ROUTES.TALENT_EDIT_DETAILS,
         },
       }
     : {
@@ -53,6 +55,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
           query: NEWBIE_CONTACT_DETAILS,
           variables: { newbieId },
           userRole: UserRole.Newbie.toLowerCase(),
+          editRoute: ROUTES.BUDDY_EDIT_NEWBIE_DETAILS.replace(':newbieId', newbieId),
         },
         [UserRole.Talent]: {
           query: newbieId ? NEWBIE_CONTACT_DETAILS : BUDDY_CONTACT_DETAILS,
@@ -60,36 +63,34 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
           userRole: newbieId
             ? UserRole.Newbie.toLowerCase()
             : UserRole.Buddy.toLowerCase(),
+          editRoute: newbieId
+            ? ROUTES.TALENT_EDIT_NEWBIE_DETAILS.replace(':newbieId', newbieId)
+            : ROUTES.TALENT_EDIT_BUDDY_DETAILS.replace(':buddyId', buddyId),
         },
       };
 
-  const goBack = () => {
-    if (history.length > 2) {
-      history.goBack();
-    } else {
-      history.push(ROUTES.BASE);
-    }
-  };
-
-  const { query, variables, userRole } = queryByRole[role];
+  const { query, variables, userRole, editRoute } = queryByRole[role];
   const { data, loading } = useQuery<UserBasicDetails, BasicDetailsParams>(query, {
     variables,
   });
   const userDetails = data && data[userRole as string];
 
   return (
-    <>
-      <Header type={MenuTypes && MenuTypes.BACK} onButtonClick={goBack} />
-      <PageContainer backGroundShape>
-        <Box>
-          <Typography component='h2' variant='h2'>
-            Contact Details
-          </Typography>
-          {loading && <ContactDetailsPlaceHolder />}
-          {userDetails && <UserDetails details={userDetails} />}
-        </Box>
-      </PageContainer>
-    </>
+    <BackPageContainer
+      title={DICTIONARY.TITLE}
+      id='contact-details-page'
+      backGroundShape>
+      {loading && <ContactDetailsPlaceHolder />}
+      {userDetails && <UserDetails details={userDetails} />}
+      {editRoute && (
+        <Link to={editRoute}>
+          <EditButton
+            aria-label='Edit contact details'
+            title={DICTIONARY.EDIT_BUTTON_TITLE}
+          />
+        </Link>
+      )}
+    </BackPageContainer>
   );
 };
 

@@ -12,15 +12,10 @@ import {
 } from '__mocks__';
 import { AuthProvider } from 'contexts/AuthContext';
 
-jest.mock('@material-ui/core/Typography', () => 'Typography');
-jest.mock('@material-ui/core/Box', () => 'Box');
+jest.mock('atoms/EditButton', () => 'EditButton');
 jest.mock('components/UserDetails', () => 'UserDetails');
 jest.mock('atoms/ContactDetailsPlaceHolder', () => 'ContactDetailsPlaceHolder');
-jest.mock('atoms/PageContainer', () => 'PageContainer');
-jest.mock(
-  'components/Header',
-  () => (require.requireActual('components/Header').default = () => 'Header')
-);
+jest.mock('atoms/BackPageContainer', () => 'BackPageContainer');
 
 describe('Component - ContactDetails', () => {
   const mockHistory: any = {

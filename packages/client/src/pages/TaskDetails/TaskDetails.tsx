@@ -1,6 +1,6 @@
 import React from 'react';
 import get from 'lodash/get';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import htmlParser from 'react-html-parser';
 import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
@@ -12,6 +12,7 @@ import { colors } from 'styles/theme';
 import { useAuth } from 'contexts/AuthContext';
 import { useSnackBar } from 'contexts/SnackbarContext';
 import {
+  UserRole,
   TaskStatus,
   Query,
   QueryTaskArgs,
@@ -21,12 +22,12 @@ import {
 } from '@buddy-app/schema';
 import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
 import { isBuddy, isNewbieTask, isTemplateTask } from 'utils';
-import PageContainer from 'atoms/PageContainer';
+import EditButton from 'atoms/EditButton';
+import BackPageContainer from 'atoms/BackPageContainer';
 import TaskDetailsPlaceHolder from 'atoms/TaskDetailsPlaceHolder';
 import ReminderButton from 'atoms/ReminderButton';
-import { ROUTES } from 'shared/routes';
-import Header, { MenuTypes } from 'components/Header';
 import TaskCheckbox from 'atoms/TaskCheckbox';
+import { ROUTES } from 'shared/routes';
 import { TaskDetailsProps } from './types';
 import DICTIONARY from './dictionary';
 
@@ -76,6 +77,12 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history }) => {
     variables: { taskId },
   });
 
+  const EditRoutes = {
+    [UserRole.Newbie]: ROUTES.BASE,
+    [UserRole.Buddy]: ROUTES.BUDDY_EDIT_TASK.replace(':taskId', taskId),
+    [UserRole.Talent]: ROUTES.TALENT_EDIT_TASK.replace(':taskId', taskId),
+  };
+
   const [mutation] = useTaskStatusUpdate(newbieId || userId, {
     onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
     onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
@@ -95,14 +102,6 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history }) => {
   const stausLabelStyles = {
     background: BACKGROUND_COLORS[taskStatus],
     color: TEXT_COLORS[taskStatus],
-  };
-
-  const goBack = () => {
-    if (history.length > 2) {
-      history.goBack();
-    } else {
-      history.push(ROUTES.BASE);
-    }
   };
 
   const renderTaskDetails = ({ task }: Query) => (
@@ -130,17 +129,19 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history }) => {
   );
 
   return (
-    <>
-      <Header
-        type={MenuTypes.BACK}
-        onButtonClick={goBack}
-        navItems={hasReminderBtn && <ReminderButton disabled />}
-      />
-      <PageContainer data-testid='task-details-page' backGroundShape>
-        {loading && <TaskDetailsPlaceHolder />}
-        {data && renderTaskDetails(data)}
-      </PageContainer>
-    </>
+    <BackPageContainer
+      id='task-details-page'
+      backGroundShape
+      navItems={hasReminderBtn && <ReminderButton disabled />}>
+      {loading && <TaskDetailsPlaceHolder />}
+      {data && renderTaskDetails(data)}
+      <Link to={EditRoutes[role]}>
+        <EditButton
+          aria-label='Edit task details'
+          title={DICTIONARY.EDIT_BUTTON_TITLE}
+        />
+      </Link>
+    </BackPageContainer>
   );
 };
 
