@@ -13,6 +13,12 @@ export const BUDDY_SELECT = gql`
         name
         position
         role
+        talents {
+          id
+          buddies {
+            id
+          }
+        }
       }
     }
   }

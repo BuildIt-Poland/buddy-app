@@ -35,6 +35,12 @@ const useStyles = makeStyles<Theme>(theme => ({
   },
 }));
 
+const mutationQueries = {
+  [UserRole.Newbie]: ADD_NEWBIE,
+  [UserRole.Buddy]: ADD_BUDDY,
+  [UserRole.Talent]: ADD_TALENT,
+};
+
 const AddUser: React.FC<AddUserProps> = ({ history }) => {
   const {
     data: { userId },
@@ -48,11 +54,6 @@ const AddUser: React.FC<AddUserProps> = ({ history }) => {
   const { register, errors, handleSubmit } = useForm<FormData>();
   const { showSnackbar } = useSnackBar();
   const today = new Date().toISOString().replace(/T.+/, '');
-  const mutationQueries = {
-    [UserRole.Newbie]: ADD_NEWBIE,
-    [UserRole.Buddy]: ADD_BUDDY,
-    [UserRole.Talent]: ADD_TALENT,
-  };
 
   const goBack = () => {
     if (history.length > 2) {

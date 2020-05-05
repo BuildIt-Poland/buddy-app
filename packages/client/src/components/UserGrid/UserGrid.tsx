@@ -2,18 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import { Newbie } from '@buddy-app/schema';
 import { useAuth } from 'contexts/AuthContext';
 import { ROUTES } from 'shared/routes';
 import Avatar from 'atoms/Avatar';
+import DeleteUser from 'components/DeleteUser';
 import useTaskProgress from 'hooks/useTaskProgress';
 import { getProgressInPercentages, isNewbie, isTalent } from 'utils';
 import { UserGridProps, User, UserDetails } from './types';
 
 const useStyles = makeStyles<Theme>(theme => ({
   card: {
+    position: 'relative',
     height: '25rem',
     width: '25rem',
     padding: theme.spacing(2),
@@ -31,6 +34,12 @@ const useStyles = makeStyles<Theme>(theme => ({
       boxShadow: theme.shadows[7],
       transform: 'rotate(0deg) scale(1.05)',
     },
+  },
+  cardActions: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    zIndex: theme.zIndex.base,
   },
   cardInfo: {
     transform: 'scale(1.2)',
@@ -89,6 +98,9 @@ const UserGrid: React.FC<UserGridProps> = ({ users }) => {
             <Grid component='li' key={user.id} item className={classes.gridItem}>
               <Link className={classes.link} to={getUserDetails(user).to}>
                 <Card className={classes.card}>
+                  <CardActions className={classes.cardActions}>
+                    <DeleteUser userId={user.id} userRole={user.role} />
+                  </CardActions>
                   <CardContent className={classes.cardInfo}>
                     <Avatar
                       progress={getUserDetails(user).progress}

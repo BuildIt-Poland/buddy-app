@@ -13,10 +13,12 @@ import DICTIONARY from './dictionary';
 
 const useStyles = makeStyles(theme => ({
   notesTextarea: {
-    width: '15rem',
-    minHeight: '10rem',
+    width: '20rem',
+    minHeight: '5rem',
     borderWidth: '1px',
     borderColor: theme.palette.primary.dark,
+    borderRadius: '5px',
+    padding: theme.spacing(0.5),
   },
   wrapper: {
     display: 'flex',
@@ -110,7 +112,7 @@ const UserDetails: React.FC<UserDetailsProps> = props => {
               </React.Fragment>
             )
         )}
-        {isNotesVisible(role as UserRole) && (
+        {notes && isNotesVisible(role as UserRole) && (
           <>
             <Typography component='p' className={label}>
               Notes
