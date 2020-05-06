@@ -30,6 +30,7 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({ id: taskId }) => {
   const { showSnackbar } = useSnackBar();
   const history = useHistory();
   const editRoute = editRouts[role].replace(':taskId', taskId);
+  const copyUrl = `${window.location.href}/${taskId}`;
 
   const [deleteTask] = useTaskDelete(newbieId, {
     onCompleted: () => showSnackbar(DICTIONARY.DELETE_SNACKBAR.SUCCESS),
@@ -52,13 +53,16 @@ const TaskOptions: React.FC<TaskOptionsProps> = ({ id: taskId }) => {
     {
       text: DICTIONARY.OPTIONS.COPY_LINK,
       Icon: FileCopyIcon,
-      onClick: hideOptions,
+      onClick: () => {
+        hideOptions();
+        navigator.clipboard.writeText(copyUrl);
+        showSnackbar(DICTIONARY.COPY_LINK.MESSAGE);
+      },
       access: {
         [UserRole.Newbie]: true,
         [UserRole.Buddy]: true,
         [UserRole.Talent]: true,
       },
-      disabled: true,
     },
     {
       text: DICTIONARY.OPTIONS.DELETE,

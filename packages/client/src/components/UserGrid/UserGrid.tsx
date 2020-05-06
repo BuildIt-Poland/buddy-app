@@ -11,7 +11,7 @@ import { ROUTES } from 'shared/routes';
 import Avatar from 'atoms/Avatar';
 import DeleteUser from 'components/DeleteUser';
 import useTaskProgress from 'hooks/useTaskProgress';
-import { getProgressInPercentages, isNewbie, isTalent } from 'utils';
+import { getProgressInPercentages, isNewbie, isTalent, isTemplateCase } from 'utils';
 import { UserGridProps, User, UserDetails } from './types';
 
 const useStyles = makeStyles<Theme>(theme => ({
@@ -98,9 +98,11 @@ const UserGrid: React.FC<UserGridProps> = ({ users }) => {
             <Grid component='li' key={user.id} item className={classes.gridItem}>
               <Link className={classes.link} to={getUserDetails(user).to}>
                 <Card className={classes.card}>
-                  <CardActions className={classes.cardActions}>
-                    <DeleteUser userId={user.id} userRole={user.role} />
-                  </CardActions>
+                  {!isTemplateCase(user.name) && (
+                    <CardActions className={classes.cardActions}>
+                      <DeleteUser userId={user.id} userRole={user.role} />
+                    </CardActions>
+                  )}
                   <CardContent className={classes.cardInfo}>
                     <Avatar
                       progress={getUserDetails(user).progress}

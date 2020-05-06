@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { ROUTES } from 'shared/routes';
 import { UserRole } from '@buddy-app/schema';
 import AppWrapper from 'components/AppWrapper';
+import TaskDetailsRedirect from 'components/TaskDetailsRedirect';
 import TaskDetails from 'pages/TaskDetails';
 import TasksList from 'pages/TasksList';
 import NewbieTasksList from 'pages/NewbieTasksList';
@@ -41,6 +42,14 @@ const newbieRoutes = [
     path: ROUTES.NEWBIE_TASK_DETAILS,
     component: TaskDetails,
   },
+  {
+    path: ROUTES.BUDDY_TASK_DETAILS,
+    component: TaskDetailsRedirect,
+  },
+  {
+    path: ROUTES.TALENT_TASK_DETAILS,
+    component: TaskDetailsRedirect,
+  },
 ];
 
 const buddyRoutes = [
@@ -67,6 +76,14 @@ const buddyRoutes = [
   {
     path: ROUTES.BUDDY_TASK_DETAILS,
     component: TaskDetails,
+  },
+  {
+    path: ROUTES.NEWBIE_TASK_DETAILS,
+    component: TaskDetailsRedirect,
+  },
+  {
+    path: ROUTES.TALENT_TASK_DETAILS,
+    component: TaskDetailsRedirect,
   },
   {
     path: ROUTES.BUDDY_DETAILS,
@@ -124,6 +141,14 @@ const talentRoutes = [
     component: TaskDetails,
   },
   {
+    path: ROUTES.BUDDY_TASK_DETAILS,
+    component: TaskDetailsRedirect,
+  },
+  {
+    path: ROUTES.NEWBIE_TASK_DETAILS,
+    component: TaskDetailsRedirect,
+  },
+  {
     path: ROUTES.TALENT_DETAILS,
     component: ContactDetails,
   },
@@ -151,13 +176,13 @@ const talentRoutes = [
 
 const AuthenticatedApp: React.FC = () => {
   const {
-    data: { role },
+    data: { userId, role },
   } = useAuth();
 
   const users: Users = {
     [UserRole.Newbie]: {
       routes: newbieRoutes,
-      redirectPath: ROUTES.NEWBIE_TASKS_LIST,
+      redirectPath: ROUTES.NEWBIE_TASKS_LIST.replace(':newbieId', userId),
     },
     [UserRole.Buddy]: {
       routes: buddyRoutes,

@@ -50,7 +50,7 @@ const UserForm: React.FC<UserFormProps> = ({
       noValidate
       onChange={onFormChange}
       onSubmit={handleSubmit(onFormSubmit)}>
-      <input ref={register()} type='hidden' name='password' value='' />
+      {!data && <input ref={register()} type='hidden' name='password' value='' />}
       <TextField
         inputProps={{ 'data-testid': 'name' }}
         inputRef={register({

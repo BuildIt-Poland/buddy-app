@@ -5,13 +5,15 @@ import { useQuery } from '@apollo/react-hooks';
 import Box from '@material-ui/core/Box';
 import { QueryTalentArgs, Query } from '@buddy-app/schema';
 import { useAuth } from 'contexts/AuthContext';
+import { useMenu } from 'contexts/MenuContext';
+import { useSearch } from 'contexts/SearchContext';
 import { BUDDY_SELECT } from 'graphql/buddy-select.graphql';
 import BuddyGrid from 'components/UserGrid';
 import PageContainer from 'atoms/PageContainer';
 import NiewbieGridPlaceHolder from 'atoms/NiewbieGridPlaceHolder';
 import Header, { MenuTypes } from 'components/Header';
+import SearchBar from 'components/SearchBar';
 import AddUserOptions from 'components/AddUserOptions';
-import { useMenu } from 'contexts/MenuContext';
 import DICTIONARY from './dictionary';
 
 const useStyles = makeStyles<Theme>(theme => ({
@@ -33,10 +35,23 @@ const BuddySelect: React.FC = () => {
   });
   const { toggleMenu } = useMenu();
   const { title } = useStyles();
+  const { searchValue } = useSearch();
+  const buddies =
+    data &&
+    data.talent.buddies.filter(
+      buddy =>
+        buddy &&
+        (buddy.name.toLowerCase().includes(searchValue) ||
+          (buddy.position && buddy.position.toLowerCase().includes(searchValue)))
+    );
 
   return (
     <>
-      <Header type={MenuTypes.MENU} onButtonClick={toggleMenu} />
+      <Header
+        type={MenuTypes.MENU}
+        onButtonClick={toggleMenu}
+        navItems={<SearchBar />}
+      />
       <PageContainer data-testid='buddy-select-page' backGroundShape>
         <Box className={title} component='section'>
           <Typography component='h1' variant='h2'>
@@ -47,7 +62,7 @@ const BuddySelect: React.FC = () => {
           </Typography>
         </Box>
         {loading && <NiewbieGridPlaceHolder />}
-        {data && data.talent.buddies && <BuddyGrid users={data.talent.buddies} />}
+        {buddies && <BuddyGrid users={buddies} />}
         <AddUserOptions title={DICTIONARY.PLUS_BUTTON_TITLE} />
       </PageContainer>
     </>

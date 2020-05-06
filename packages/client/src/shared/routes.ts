@@ -36,10 +36,10 @@ enum ROUTES {
 
   NEWBIE = '/newbie',
   NEWBIE_DETAILS = '/newbie/details',
-  NEWBIE_EDIT_DETAILS = '/buddy/edit-details',
-  NEWBIE_TASKS_LIST = '/newbie/tasks',
-  NEWBIE_TASK_DETAILS = '/newbie/tasks/:taskId',
-  NEWBIE_BUDDY_DETAILS = '/newbie/buddy/:buddyId/details',
+  NEWBIE_EDIT_DETAILS = '/newbie/edit-details',
+  NEWBIE_TASKS_LIST = '/newbie/newbies/:newbieId/tasks',
+  NEWBIE_TASK_DETAILS = '/newbie/newbies/:newbieId/tasks/:taskId',
+  NEWBIE_BUDDY_DETAILS = '/newbie/buddies/:buddyId/details',
 }
 
 export { ROUTES };

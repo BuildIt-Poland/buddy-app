@@ -7,6 +7,7 @@ import UserDetails from 'components/UserDetails';
 import BackPageContainer from 'atoms/BackPageContainer';
 import ContactDetailsPlaceHolder from 'atoms/ContactDetailsPlaceHolder';
 import EditButton from 'atoms/EditButton';
+import { isTemplateCase } from 'utils';
 import { getQueryData } from './utils';
 import { ContactDetailsProps, BasicDetailsParams, UserBasicDetails } from './types';
 import DICTIONARY from './dictionary';
@@ -28,6 +29,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
   });
 
   const userDetails = data && data[userRole.toLowerCase()];
+  const name = userDetails ? userDetails.name : '';
 
   return (
     <BackPageContainer
@@ -41,6 +43,7 @@ const ContactDetails: React.FC<ContactDetailsProps> = ({ history }) => {
           <EditButton
             aria-label='Edit contact details'
             title={DICTIONARY.EDIT_BUTTON_TITLE}
+            disabled={isTemplateCase(name)}
           />
         </Link>
       )}
