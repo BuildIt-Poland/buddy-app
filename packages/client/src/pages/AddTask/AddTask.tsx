@@ -54,7 +54,7 @@ const AddTask: React.FC<AddTaskProps> = ({ history }) => {
       title={DICTIONARY.ADD_TASK_TITLE}
       id='add-task-page'
       backGroundShape>
-      <TaskForm dictionary={DICTIONARY} loading={loading} onSubmit={onSubmit} />
+      <TaskForm loading={loading} onSubmit={onSubmit} />
     </BackPageContainer>
   );
 };

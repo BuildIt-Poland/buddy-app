@@ -57,6 +57,7 @@ interface User {
   photo: URL
   phoneNumber: PhoneNumber
   startDate: DateTime
+  notes: String
   allowPushedNotifications: Boolean!
 }
 
@@ -68,6 +69,7 @@ input UserInput {
   photo: URL
   phoneNumber: PhoneNumber
   startDate: DateTime
+  notes: String
 }
 
 type Talent implements User {
@@ -79,6 +81,7 @@ type Talent implements User {
   photo: URL
   phoneNumber: PhoneNumber
   startDate: DateTime
+  notes: String
   allowPushedNotifications: Boolean!
   buddiesCount: Int!
   buddies: [Buddy]!
@@ -93,6 +96,7 @@ type Buddy implements User {
   photo: URL
   phoneNumber: PhoneNumber
   startDate: DateTime
+  notes: String
   allowPushedNotifications: Boolean!
   newbiesCount: Int!
   newbies: [Newbie]!

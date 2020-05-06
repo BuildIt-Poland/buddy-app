@@ -143,7 +143,7 @@ const updateUser: MutationResolvers["updateUser"] = async (
   } catch (error) {}
 
   try {
-    const updatedTalent = await context.prisma.updatedTalent({
+    const updatedTalent = await context.prisma.updateTalent({
       data: {
         ...input
       },

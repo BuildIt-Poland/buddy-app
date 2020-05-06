@@ -33,6 +33,7 @@ export declare type Buddy = User & {
     photo?: Maybe<Scalars['URL']>;
     phoneNumber?: Maybe<Scalars['PhoneNumber']>;
     startDate?: Maybe<Scalars['DateTime']>;
+    notes?: Maybe<Scalars['String']>;
     allowPushedNotifications: Scalars['Boolean'];
     newbiesCount: Scalars['Int'];
     newbies: Array<Maybe<Newbie>>;
@@ -188,6 +189,7 @@ export declare type Talent = User & {
     photo?: Maybe<Scalars['URL']>;
     phoneNumber?: Maybe<Scalars['PhoneNumber']>;
     startDate?: Maybe<Scalars['DateTime']>;
+    notes?: Maybe<Scalars['String']>;
     allowPushedNotifications: Scalars['Boolean'];
     buddiesCount: Scalars['Int'];
     buddies: Array<Maybe<Buddy>>;
@@ -227,6 +229,7 @@ export declare type User = {
     photo?: Maybe<Scalars['URL']>;
     phoneNumber?: Maybe<Scalars['PhoneNumber']>;
     startDate?: Maybe<Scalars['DateTime']>;
+    notes?: Maybe<Scalars['String']>;
     allowPushedNotifications: Scalars['Boolean'];
 };
 export declare type UserInput = {
@@ -237,6 +240,7 @@ export declare type UserInput = {
     photo?: Maybe<Scalars['URL']>;
     phoneNumber?: Maybe<Scalars['PhoneNumber']>;
     startDate?: Maybe<Scalars['DateTime']>;
+    notes?: Maybe<Scalars['String']>;
 };
 export declare enum UserRole {
     Newbie = "NEWBIE",
@@ -337,6 +341,7 @@ export declare type BuddyResolvers<ContextType = any, ParentType extends Resolve
     photo?: Resolver<Maybe<ResolversTypes['URL']>, ParentType, ContextType>;
     phoneNumber?: Resolver<Maybe<ResolversTypes['PhoneNumber']>, ParentType, ContextType>;
     startDate?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
+    notes?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
     allowPushedNotifications?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
     newbiesCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
     newbies?: Resolver<Array<Maybe<ResolversTypes['Newbie']>>, ParentType, ContextType>;
@@ -423,6 +428,7 @@ export declare type TalentResolvers<ContextType = any, ParentType extends Resolv
     photo?: Resolver<Maybe<ResolversTypes['URL']>, ParentType, ContextType>;
     phoneNumber?: Resolver<Maybe<ResolversTypes['PhoneNumber']>, ParentType, ContextType>;
     startDate?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
+    notes?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
     allowPushedNotifications?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
     buddiesCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
     buddies?: Resolver<Array<Maybe<ResolversTypes['Buddy']>>, ParentType, ContextType>;
@@ -451,6 +457,7 @@ export declare type UserResolvers<ContextType = any, ParentType extends Resolver
     photo?: Resolver<Maybe<ResolversTypes['URL']>, ParentType, ContextType>;
     phoneNumber?: Resolver<Maybe<ResolversTypes['PhoneNumber']>, ParentType, ContextType>;
     startDate?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
+    notes?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
     allowPushedNotifications?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
 };
 export declare type Resolvers<ContextType = any> = {

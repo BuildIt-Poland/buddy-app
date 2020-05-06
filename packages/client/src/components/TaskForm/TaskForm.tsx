@@ -7,6 +7,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import RoundedButton from 'atoms/RoundedButton';
 import { TaskFormProps } from './types';
+import DICTIONARY from './dictionary';
 
 const useStyles = makeStyles(theme => ({
   form: {
@@ -22,12 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const TaskForm: React.FC<TaskFormProps> = ({
-  dictionary,
-  loading,
-  data,
-  onSubmit,
-}) => {
+const TaskForm: React.FC<TaskFormProps> = ({ loading, data, onSubmit }) => {
   const { addButton, inputWrapper, form } = useStyles();
   const { register, errors, handleSubmit } = useForm<TaskInput>();
 
@@ -41,11 +37,11 @@ const TaskForm: React.FC<TaskFormProps> = ({
         <TextField
           inputProps={{ 'data-testid': 'title' }}
           inputRef={register({
-            required: dictionary.TITLE.REQUIRED,
+            required: DICTIONARY.TITLE.REQUIRED,
           })}
           margin={'normal'}
           fullWidth
-          label={dictionary.TITLE.LABEL}
+          label={DICTIONARY.TITLE.LABEL}
           name='title'
           autoFocus
           defaultValue={data && data.title}
@@ -55,19 +51,19 @@ const TaskForm: React.FC<TaskFormProps> = ({
         <TextField
           inputProps={{ 'data-testid': 'description' }}
           inputRef={register({
-            required: dictionary.DESCRIPTION.REQUIRED,
+            required: DICTIONARY.DESCRIPTION.REQUIRED,
           })}
           margin={'normal'}
           fullWidth
           name='description'
-          label={dictionary.DESCRIPTION.LABEL}
+          label={DICTIONARY.DESCRIPTION.LABEL}
           multiline
           autoComplete='current-password'
           defaultValue={data && data.description}
           error={!!errors.description}
           helperText={
             (errors.description && errors.description.message) ||
-            dictionary.DESCRIPTION.HELPER_TEXT
+            DICTIONARY.DESCRIPTION.HELPER_TEXT
           }
         />
       </Box>
@@ -86,7 +82,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
             size={32}
           />
         ) : (
-          <strong>{dictionary.BUTTON_TEXT}</strong>
+          <strong>{DICTIONARY.BUTTON_TEXT}</strong>
         )}
       </RoundedButton>
     </form>

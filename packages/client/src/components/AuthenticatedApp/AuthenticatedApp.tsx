@@ -7,6 +7,7 @@ import TaskDetails from 'pages/TaskDetails';
 import TasksList from 'pages/TasksList';
 import NewbieTasksList from 'pages/NewbieTasksList';
 import AddUser from 'pages/AddUser';
+import EditUser from 'pages/EditUser';
 import NewbieSelect from 'pages/NewbieSelect';
 import BuddySelect from 'pages/BuddySelect';
 import ContactDetails from 'pages/ContactDetails';
@@ -23,6 +24,10 @@ const newbieRoutes = [
   {
     path: ROUTES.NEWBIE_DETAILS,
     component: ContactDetails,
+  },
+  {
+    path: ROUTES.NEWBIE_EDIT_DETAILS,
+    component: EditUser,
   },
   {
     path: ROUTES.NEWBIE_BUDDY_DETAILS,
@@ -68,8 +73,16 @@ const buddyRoutes = [
     component: ContactDetails,
   },
   {
+    path: ROUTES.NEWBIE_EDIT_DETAILS,
+    component: EditUser,
+  },
+  {
     path: ROUTES.BUDDY_NEWBIE_DETAILS,
     component: ContactDetails,
+  },
+  {
+    path: ROUTES.BUDDY_EDIT_NEWBIE_DETAILS,
+    component: EditUser,
   },
 ];
 
@@ -115,12 +128,24 @@ const talentRoutes = [
     component: ContactDetails,
   },
   {
+    path: ROUTES.TALENT_EDIT_DETAILS,
+    component: EditUser,
+  },
+  {
     path: ROUTES.TALENT_NEWBIE_DETAILS,
     component: ContactDetails,
   },
   {
+    path: ROUTES.TALENT_EDIT_NEWBIE_DETAILS,
+    component: EditUser,
+  },
+  {
     path: ROUTES.TALENT_BUDDY_DETAILS,
     component: ContactDetails,
+  },
+  {
+    path: ROUTES.TALENT_EDIT_BUDDY_DETAILS,
+    component: EditUser,
   },
 ];
 

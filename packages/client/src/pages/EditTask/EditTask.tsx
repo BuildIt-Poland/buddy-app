@@ -7,7 +7,7 @@ import xss from 'dompurify';
 import { TASK_DETAILS } from 'graphql/task-details.graphql';
 import { UPDATE_TASK } from 'graphql/update-task.graphql';
 import TaskForm from 'components/TaskForm';
-import TaskDetailsPlaceHolder from 'atoms/TaskDetailsPlaceHolder';
+import FormPlaceHolder from 'atoms/FormPlaceHolder';
 import BackPageContainer from 'atoms/BackPageContainer';
 import { goBack } from 'utils';
 import { EditTaskProps } from './types';
@@ -49,14 +49,9 @@ const EditTask: React.FC<EditTaskProps> = ({ history }) => {
       title={DICTIONARY.EDIT_TASK_TITLE}
       id='edit-task-page'
       backGroundShape>
-      {loading && <TaskDetailsPlaceHolder />}
+      {loading && <FormPlaceHolder />}
       {data && (
-        <TaskForm
-          dictionary={DICTIONARY}
-          loading={updateLoading}
-          data={data.task}
-          onSubmit={onSubmit}
-        />
+        <TaskForm loading={updateLoading} data={data.task} onSubmit={onSubmit} />
       )}
     </BackPageContainer>
   );
