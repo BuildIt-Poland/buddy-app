@@ -47,7 +47,10 @@ const EditUser: React.FC<EditUserProps> = ({ history }) => {
         goBack(history);
       },
       onError: error => {
-        showSnackbar((error && error.message) || DICTIONARY.DIALOG.ERROR_MSG);
+        showSnackbar(
+          (error && error.message.replace('GraphQL e', 'E')) ||
+            DICTIONARY.DIALOG.ERROR_MSG
+        );
       },
     }
   );

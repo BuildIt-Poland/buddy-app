@@ -1,5 +1,6 @@
 import * as bcrypt from "bcryptjs";
 import * as jwt from "jsonwebtoken";
+import { GraphQLError } from "graphql";
 import { MutationResolvers, Task } from "@buddy-app/schema";
 import { templateTaskListQuery, taskQuery, newbieQuery } from "../graphql";
 import { sendEmail, getForgotPasswordTemplate } from "../email";
@@ -113,6 +114,12 @@ const updateUser: MutationResolvers["updateUser"] = async (
   { userId, input },
   context
 ) => {
+  const errorHandler = (error: GraphQLError) => {
+    if (error && error.message.includes("Field name = email")) {
+      throw new ERRORS.ACCOUNT_EXIST();
+    }
+  };
+
   if (input.password) {
     input.password = await bcrypt.hash(input.password || "", 10);
   }
@@ -127,7 +134,9 @@ const updateUser: MutationResolvers["updateUser"] = async (
       }
     });
     return updatedNewbie;
-  } catch (error) {}
+  } catch (error) {
+    errorHandler(error);
+  }
 
   try {
     const updatedBuddy = await context.prisma.updateBuddy({
@@ -140,7 +149,9 @@ const updateUser: MutationResolvers["updateUser"] = async (
     });
 
     return updatedBuddy;
-  } catch (error) {}
+  } catch (error) {
+    errorHandler(error);
+  }
 
   try {
     const updatedTalent = await context.prisma.updateTalent({
@@ -153,7 +164,9 @@ const updateUser: MutationResolvers["updateUser"] = async (
     });
 
     return updatedTalent;
-  } catch (error) {}
+  } catch (error) {
+    errorHandler(error);
+  }
 
   throw new ERRORS.NO_USER_FOUND();
 };

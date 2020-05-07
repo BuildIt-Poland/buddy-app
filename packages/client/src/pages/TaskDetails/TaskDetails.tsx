@@ -21,7 +21,7 @@ import {
   BuddyTask,
 } from '@buddy-app/schema';
 import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
-import { isBuddy, isNewbieTask, isTemplateTask } from 'utils';
+import { isBuddy, isNewbie, isNewbieTask, isTemplateTask } from 'utils';
 import EditButton from 'atoms/EditButton';
 import BackPageContainer from 'atoms/BackPageContainer';
 import TaskDetailsPlaceHolder from 'atoms/TaskDetailsPlaceHolder';
@@ -135,12 +135,14 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({ history }) => {
       navItems={hasReminderBtn && <ReminderButton disabled />}>
       {loading && <TaskDetailsPlaceHolder />}
       {data && renderTaskDetails(data)}
-      <Link to={EditRoutes[role]}>
-        <EditButton
-          aria-label='Edit task details'
-          title={DICTIONARY.EDIT_BUTTON_TITLE}
-        />
-      </Link>
+      {!isNewbie(role) && (
+        <Link to={EditRoutes[role]}>
+          <EditButton
+            aria-label='Edit task details'
+            title={DICTIONARY.EDIT_BUTTON_TITLE}
+          />
+        </Link>
+      )}
     </BackPageContainer>
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSearch } from 'contexts/SearchContext';
 import InputBase from '@material-ui/core/InputBase';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
@@ -72,6 +72,8 @@ const SearchBar = () => {
   const onChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
     addSearchValue(target.value);
   };
+
+  useEffect(deleteSearchValue, []);
 
   return (
     <div className={rootClass}>

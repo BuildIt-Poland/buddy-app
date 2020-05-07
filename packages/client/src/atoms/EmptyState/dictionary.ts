@@ -3,7 +3,7 @@ interface Dictionary {
 }
 
 const DICTIONARY: Dictionary = {
-  TITLE: `Whoops! There's no data..`,
+  TITLE: `Whoops! No data found..`,
 };
 
 export default DICTIONARY;

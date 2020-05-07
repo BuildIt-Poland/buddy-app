@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - ErrorPage renders correctly 1`] = `
+<main
+  className="MuiContainer-root makeStyles-root-1 MuiContainer-maxWidthMd"
+>
+  <Grid
+    alignItems="center"
+    container={true}
+    direction="column"
+    justify="center"
+    spacing={1}
+  >
+    <Grid
+      item={true}
+    >
+      <Typography
+        align="center"
+        component="h1"
+        variant="h1"
+      >
+        Demo
+      </Typography>
+    </Grid>
+    <Grid
+      item={true}
+    >
+      <Typography
+        align="center"
+        component="p"
+      >
+        Demo2
+      </Typography>
+    </Grid>
+    <Grid
+      item={true}
+    >
+      <svg
+        className="makeStyles-r2d2-2"
+      >
+        r2d2.svg
+      </svg>
+    </Grid>
+    <Grid
+      item={true}
+    >
+      <Button
+        color="primary"
+        href="/"
+        variant="outlined"
+      >
+        Go to the homepage
+      </Button>
+    </Grid>
+    <BackgroundShape />
+  </Grid>
+</main>
+`;

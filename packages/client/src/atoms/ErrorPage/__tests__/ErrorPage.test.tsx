@@ -1,11 +1,12 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-
 import ErrorPage from '../ErrorPage';
+
 jest.mock('@material-ui/core/Grid', () => 'Grid');
 jest.mock('@material-ui/core/Button', () => 'Button');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('atoms/BackgroundShape', () => 'BackgroundShape');
+jest.mock('atoms/R2d2', () => 'R2d2');
 
 describe('Component - ErrorPage', () => {
   test('renders correctly', () => {

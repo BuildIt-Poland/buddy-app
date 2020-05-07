@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import { useQuery } from '@apollo/react-hooks';
 import Box from '@material-ui/core/Box';
-import { QueryTalentArgs, Query } from '@buddy-app/schema';
+import { QueryTalentArgs, Query, Buddy } from '@buddy-app/schema';
 import { useAuth } from 'contexts/AuthContext';
 import { useMenu } from 'contexts/MenuContext';
 import { useSearch } from 'contexts/SearchContext';
 import { BUDDY_SELECT } from 'graphql/buddy-select.graphql';
-import BuddyGrid from 'components/UserGrid';
-import PageContainer from 'atoms/PageContainer';
-import NiewbieGridPlaceHolder from 'atoms/NiewbieGridPlaceHolder';
 import Header, { MenuTypes } from 'components/Header';
 import SearchBar from 'components/SearchBar';
 import AddUserOptions from 'components/AddUserOptions';
+import BuddyGrid from 'components/UserGrid';
+import PageContainer from 'atoms/PageContainer';
+import EmptyState from 'atoms/EmptyState';
+import NiewbieGridPlaceHolder from 'atoms/NiewbieGridPlaceHolder';
 import DICTIONARY from './dictionary';
 
 const useStyles = makeStyles<Theme>(theme => ({
@@ -24,6 +25,13 @@ const useStyles = makeStyles<Theme>(theme => ({
     },
   },
 }));
+
+const filterBuddies = (buddies: Buddy[], value: string): Buddy[] =>
+  buddies.filter(
+    ({ name, position }) =>
+      name.toLowerCase().includes(value) ||
+      (position && position.toLowerCase().includes(value))
+  );
 
 const BuddySelect: React.FC = () => {
   const {
@@ -36,14 +44,13 @@ const BuddySelect: React.FC = () => {
   const { toggleMenu } = useMenu();
   const { title } = useStyles();
   const { searchValue } = useSearch();
-  const buddies =
-    data &&
-    data.talent.buddies.filter(
-      buddy =>
-        buddy &&
-        (buddy.name.toLowerCase().includes(searchValue) ||
-          (buddy.position && buddy.position.toLowerCase().includes(searchValue)))
-    );
+
+  const buddies = data ? (data.talent.buddies as Buddy[]) : [];
+  const filteredBuddies = useMemo(() => filterBuddies(buddies, searchValue), [
+    buddies,
+    searchValue,
+  ]);
+  const isEmptyList = data && !filteredBuddies.length;
 
   return (
     <>
@@ -62,7 +69,8 @@ const BuddySelect: React.FC = () => {
           </Typography>
         </Box>
         {loading && <NiewbieGridPlaceHolder />}
-        {buddies && <BuddyGrid users={buddies} />}
+        {!loading && isEmptyList && <EmptyState />}
+        {data && <BuddyGrid users={filteredBuddies} />}
         <AddUserOptions title={DICTIONARY.PLUS_BUTTON_TITLE} />
       </PageContainer>
     </>

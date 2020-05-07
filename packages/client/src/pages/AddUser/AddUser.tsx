@@ -38,7 +38,10 @@ const AddUser: React.FC<AddUserProps> = ({ history }) => {
     {
       onCompleted,
       onError: error => {
-        showSnackbar((error && error.message) || DICTIONARY.DIALOG.ERROR_MSG);
+        showSnackbar(
+          (error && error.message.replace('GraphQL e', 'E')) ||
+            DICTIONARY.DIALOG.ERROR_MSG
+        );
       },
     }
   );

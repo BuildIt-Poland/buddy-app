@@ -11,6 +11,8 @@ const useStyles = makeStyles({
     paddingLeft: theme.spacing(2),
   },
   wrapper: {
+    maxHeight: '50rem',
+    overflow: 'auto',
     paddingTop: theme.spacing(2),
     paddingBottom: theme.spacing(2),
   },
