@@ -16,4 +16,5 @@ var UserRole;
 (function (UserRole) {
     UserRole["Newbie"] = "NEWBIE";
     UserRole["Buddy"] = "BUDDY";
+    UserRole["Talent"] = "TALENT";
 })(UserRole = exports.UserRole || (exports.UserRole = {}));

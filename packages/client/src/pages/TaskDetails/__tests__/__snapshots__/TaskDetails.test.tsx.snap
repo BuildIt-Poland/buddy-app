@@ -1,29 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - TaskDetails renders correctly 1`] = `
-Array [
-  <header
-    navItems={false}
-    type="back"
-  />,
-  <PageContainer
-    backGroundShape={true}
-    data-testid="task-details-page"
+<BackPageContainer
+  backGroundShape={true}
+  id="task-details-page"
+  navItems={false}
+>
+  <TaskDetailsPlaceHolder />
+  <a
+    href="/buddy/tasks/undefined/edit-task"
+    onClick={[Function]}
   >
-    <TaskDetailsPlaceHolder />
-  </PageContainer>,
-]
+    <EditButton
+      aria-label="Edit task details"
+      title="Update task details"
+    />
+  </a>
+</BackPageContainer>
 `;
 
 exports[`Component - TaskDetails renders correctly 2`] = `
-Array [
-  <header
-    navItems={false}
-    type="back"
-  />,
-  <PageContainer
-    backGroundShape={true}
-    data-testid="task-details-page"
-  />,
-]
+<BackPageContainer
+  backGroundShape={true}
+  id="task-details-page"
+  navItems={false}
+>
+  <a
+    href="/buddy/tasks/undefined/edit-task"
+    onClick={[Function]}
+  >
+    <EditButton
+      aria-label="Edit task details"
+      title="Update task details"
+    />
+  </a>
+</BackPageContainer>
 `;

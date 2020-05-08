@@ -30,3 +30,18 @@ export const BUDDY_CONTACT_DETAILS = gql`
     }
   }
 `;
+
+export const TALENT_CONTACT_DETAILS = gql`
+  query getContactDetails($talentId: ID!) {
+    talent(talentId: $talentId) {
+      id
+      name
+      position
+      startDate
+      email
+      phoneNumber
+      photo
+      role
+    }
+  }
+`;

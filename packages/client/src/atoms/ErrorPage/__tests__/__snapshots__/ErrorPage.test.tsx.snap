@@ -35,11 +35,7 @@ exports[`Component - ErrorPage renders correctly 1`] = `
     <Grid
       item={true}
     >
-      <svg
-        className="makeStyles-r2d2-2"
-      >
-        r2d2.svg
-      </svg>
+      <R2d2 />
     </Grid>
     <Grid
       item={true}

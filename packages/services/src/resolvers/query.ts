@@ -6,6 +6,9 @@ const newbie: QueryResolvers["newbie"] = async (parent, args, context) =>
 const buddy: QueryResolvers["buddy"] = async (parent, args, context) =>
   await context.prisma.buddy({ id: args.buddyId });
 
+const talent: QueryResolvers["talent"] = async (parent, args, context) =>
+  await context.prisma.talent({ id: args.talentId });
+
 const task: QueryResolvers["task"] = async (parent, args, context) => {
   const buddyTask = await context.prisma.buddyTask({ id: args.taskId });
   const newbieTask = await context.prisma.newbieTask({ id: args.taskId });
@@ -56,6 +59,7 @@ const buddyTasks: QueryResolvers["buddyTasks"] = async (
 const queries: QueryResolvers = {
   newbie,
   buddy,
+  talent,
   task,
   newbies,
   newbieTasks,

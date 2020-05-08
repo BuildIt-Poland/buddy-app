@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - R2d2 renders correctly 1`] = `
+<svg
+  className="makeStyles-r2d2-1"
+>
+  r2d2.svg
+</svg>
+`;

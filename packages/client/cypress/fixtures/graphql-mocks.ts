@@ -1,16 +1,6 @@
 import { UserRole, TaskStatus } from '@buddy-app/schema';
 
 const commonMocks = {
-  Buddy: () => ({
-    id: '1',
-    name: 'Test Buddy',
-    position: 'devops',
-    startDate: '2019-11-10T13:42:25.172Z',
-    email: 'test@test.com',
-    phoneNumber: '+48333333333',
-    photo: null,
-    notes: 'buddy notes',
-  }),
   Newbie: () => ({
     id: '1',
     name: 'Test Newbie',
@@ -21,6 +11,25 @@ const commonMocks = {
     photo: null,
     notes: 'newbie notes',
   }),
+  Buddy: () => ({
+    id: '1',
+    name: 'Test Buddy',
+    position: 'devops',
+    startDate: '2019-11-10T13:42:25.172Z',
+    email: 'test@test.com',
+    phoneNumber: '+48333333333',
+    photo: null,
+    notes: 'buddy notes',
+  }),
+  Talent: () => ({
+    id: '1',
+    name: 'Test Talent',
+    position: 'hr',
+    startDate: '2019-11-10T13:42:25.172Z',
+    email: 'test@test.com',
+    phoneNumber: '+48330003333',
+    photo: null,
+  }),
   NewbieTask: () => ({
     status: TaskStatus.Completed,
   }),
@@ -28,6 +37,7 @@ const commonMocks = {
     status: TaskStatus.Uncompleted,
   }),
   AuthPayload: () => ({
+    userId: '1',
     token: 'token-secret',
     role: UserRole.Buddy,
   }),

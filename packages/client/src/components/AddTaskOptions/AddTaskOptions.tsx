@@ -59,6 +59,7 @@ const AddTaskOptions = (props: AddTaskOptionsProps) => {
       },
       access: {
         [UserRole.Buddy]: true,
+        [UserRole.Talent]: true,
       },
     },
     {
@@ -74,6 +75,7 @@ const AddTaskOptions = (props: AddTaskOptionsProps) => {
       },
       access: {
         [UserRole.Buddy]: true,
+        [UserRole.Talent]: true,
       },
     },
     {
@@ -89,6 +91,7 @@ const AddTaskOptions = (props: AddTaskOptionsProps) => {
       },
       access: {
         [UserRole.Buddy]: true,
+        [UserRole.Talent]: true,
       },
     },
     {
@@ -104,6 +107,7 @@ const AddTaskOptions = (props: AddTaskOptionsProps) => {
       },
       access: {
         [UserRole.Buddy]: true,
+        [UserRole.Talent]: true,
       },
     },
     {
@@ -115,6 +119,7 @@ const AddTaskOptions = (props: AddTaskOptionsProps) => {
       },
       access: {
         [UserRole.Buddy]: true,
+        [UserRole.Talent]: true,
       },
     },
   ];

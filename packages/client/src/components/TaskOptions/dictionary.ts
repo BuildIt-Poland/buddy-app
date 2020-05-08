@@ -4,6 +4,9 @@ interface TaskOptionsDictionary {
     COPY_LINK: string;
     DELETE: string;
   };
+  COPY_LINK: {
+    MESSAGE: string;
+  };
   DELETE_DIALOG: {
     TITLE: string;
     MESSAGE: string;
@@ -19,6 +22,9 @@ const TASK_OPTIONS_DICTIONARY: TaskOptionsDictionary = {
     EDIT: 'Edit',
     COPY_LINK: 'Copy link',
     DELETE: 'Delete',
+  },
+  COPY_LINK: {
+    MESSAGE: 'Link has been coppied to clipboard',
   },
   DELETE_DIALOG: {
     TITLE: 'Delete Task',

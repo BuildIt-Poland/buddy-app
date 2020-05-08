@@ -1,7 +1,7 @@
 import React from 'react';
 import { MenuColors, MenuShapes, MenuTypes, HeaderProps } from 'components/Header';
 
-const Header = ({ onButtonClick, ...props }: HeaderProps) => {
+const Header = ({ onButtonClick, navItems, ...props }: HeaderProps) => {
   return <header {...props} />;
 };
 

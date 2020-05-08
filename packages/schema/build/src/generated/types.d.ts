@@ -33,9 +33,11 @@ export declare type Buddy = User & {
     photo?: Maybe<Scalars['URL']>;
     phoneNumber?: Maybe<Scalars['PhoneNumber']>;
     startDate?: Maybe<Scalars['DateTime']>;
-    allowPushedNotifications: Scalars['Boolean'];
+    notes?: Maybe<Scalars['String']>;
+    allowPushedNotifications?: Maybe<Scalars['Boolean']>;
     newbiesCount: Scalars['Int'];
     newbies: Array<Maybe<Newbie>>;
+    talents: Array<Maybe<Talent>>;
 };
 export declare type BuddyTask = Task & {
     __typename?: 'BuddyTask';
@@ -49,10 +51,12 @@ export declare type BuddyTask = Task & {
 };
 export declare type Mutation = {
     __typename?: 'Mutation';
-    addBuddy: Buddy;
     addNewbie: Newbie;
+    addBuddy: Buddy;
+    addTalent: Talent;
     deleteNewbie: Buddy;
     deleteBuddy: Buddy;
+    deleteTalent: Talent;
     updateUser: User;
     login: AuthPayload;
     sendResetPasswordLink: AuthPayload;
@@ -62,11 +66,14 @@ export declare type Mutation = {
     deleteTask: Newbie;
     updateTask: Task;
 };
+export declare type MutationAddNewbieArgs = {
+    buddyId: Scalars['ID'];
+    input: UserInput;
+};
 export declare type MutationAddBuddyArgs = {
     input: UserInput;
 };
-export declare type MutationAddNewbieArgs = {
-    buddyId: Scalars['ID'];
+export declare type MutationAddTalentArgs = {
     input: UserInput;
 };
 export declare type MutationDeleteNewbieArgs = {
@@ -74,6 +81,9 @@ export declare type MutationDeleteNewbieArgs = {
 };
 export declare type MutationDeleteBuddyArgs = {
     buddyId: Scalars['ID'];
+};
+export declare type MutationDeleteTalentArgs = {
+    talentId: Scalars['ID'];
 };
 export declare type MutationUpdateUserArgs = {
     userId: Scalars['String'];
@@ -116,7 +126,7 @@ export declare type Newbie = User & {
     photo?: Maybe<Scalars['URL']>;
     phoneNumber?: Maybe<Scalars['PhoneNumber']>;
     startDate?: Maybe<Scalars['DateTime']>;
-    allowPushedNotifications: Scalars['Boolean'];
+    allowPushedNotifications?: Maybe<Scalars['Boolean']>;
     buddy: Buddy;
     notes?: Maybe<Scalars['String']>;
     newbieTasks: Array<Maybe<NewbieTask>>;
@@ -137,6 +147,7 @@ export declare type Query = {
     __typename?: 'Query';
     newbie: Newbie;
     buddy: Buddy;
+    talent: Talent;
     task: Task;
     newbies: Array<Maybe<Newbie>>;
     newbieTasks: Array<Maybe<Task>>;
@@ -147,6 +158,9 @@ export declare type QueryNewbieArgs = {
 };
 export declare type QueryBuddyArgs = {
     buddyId: Scalars['ID'];
+};
+export declare type QueryTalentArgs = {
+    talentId: Scalars['ID'];
 };
 export declare type QueryTaskArgs = {
     taskId: Scalars['ID'];
@@ -164,6 +178,21 @@ export declare type QueryBuddyTasksArgs = {
     title?: Maybe<Scalars['String']>;
     status?: Maybe<TaskStatus>;
     first?: Maybe<Scalars['Int']>;
+};
+export declare type Talent = User & {
+    __typename?: 'Talent';
+    id: Scalars['ID'];
+    email: Scalars['EmailAddress'];
+    name: Scalars['String'];
+    role: UserRole;
+    position?: Maybe<Scalars['String']>;
+    photo?: Maybe<Scalars['URL']>;
+    phoneNumber?: Maybe<Scalars['PhoneNumber']>;
+    startDate?: Maybe<Scalars['DateTime']>;
+    notes?: Maybe<Scalars['String']>;
+    allowPushedNotifications?: Maybe<Scalars['Boolean']>;
+    buddiesCount: Scalars['Int'];
+    buddies: Array<Maybe<Buddy>>;
 };
 export declare type Task = {
     id: Scalars['ID'];
@@ -200,7 +229,8 @@ export declare type User = {
     photo?: Maybe<Scalars['URL']>;
     phoneNumber?: Maybe<Scalars['PhoneNumber']>;
     startDate?: Maybe<Scalars['DateTime']>;
-    allowPushedNotifications: Scalars['Boolean'];
+    notes?: Maybe<Scalars['String']>;
+    allowPushedNotifications?: Maybe<Scalars['Boolean']>;
 };
 export declare type UserInput = {
     email?: Maybe<Scalars['EmailAddress']>;
@@ -210,18 +240,20 @@ export declare type UserInput = {
     photo?: Maybe<Scalars['URL']>;
     phoneNumber?: Maybe<Scalars['PhoneNumber']>;
     startDate?: Maybe<Scalars['DateTime']>;
+    notes?: Maybe<Scalars['String']>;
 };
 export declare enum UserRole {
     Newbie = "NEWBIE",
-    Buddy = "BUDDY"
+    Buddy = "BUDDY",
+    Talent = "TALENT"
 }
 export declare type ResolverTypeWrapper<T> = Promise<T> | T;
-export declare type ResolverFn<TResult, TParent, TContext, TArgs> = (parent: TParent, args: TArgs, context: TContext, info: GraphQLResolveInfo) => Promise<TResult> | TResult;
 export declare type StitchingResolver<TResult, TParent, TContext, TArgs> = {
     fragment: string;
     resolve: ResolverFn<TResult, TParent, TContext, TArgs>;
 };
 export declare type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> = ResolverFn<TResult, TParent, TContext, TArgs> | StitchingResolver<TResult, TParent, TContext, TArgs>;
+export declare type ResolverFn<TResult, TParent, TContext, TArgs> = (parent: TParent, args: TArgs, context: TContext, info: GraphQLResolveInfo) => Promise<TResult> | TResult;
 export declare type SubscriptionSubscribeFn<TResult, TParent, TContext, TArgs> = (parent: TParent, args: TArgs, context: TContext, info: GraphQLResolveInfo) => AsyncIterator<TResult> | Promise<AsyncIterator<TResult>>;
 export declare type SubscriptionResolveFn<TResult, TParent, TContext, TArgs> = (parent: TParent, args: TArgs, context: TContext, info: GraphQLResolveInfo) => TResult | Promise<TResult>;
 export interface SubscriptionSubscriberObject<TResult, TKey extends string, TParent, TContext, TArgs> {
@@ -238,8 +270,8 @@ export interface SubscriptionResolverObject<TResult, TParent, TContext, TArgs> {
 }
 export declare type SubscriptionObject<TResult, TKey extends string, TParent, TContext, TArgs> = SubscriptionSubscriberObject<TResult, TKey, TParent, TContext, TArgs> | SubscriptionResolverObject<TResult, TParent, TContext, TArgs>;
 export declare type SubscriptionResolver<TResult, TKey extends string, TParent = {}, TContext = {}, TArgs = {}> = ((...args: any[]) => SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>) | SubscriptionObject<TResult, TKey, TParent, TContext, TArgs>;
-export declare type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (parent: TParent, context: TContext, info: GraphQLResolveInfo) => Maybe<TTypes>;
-export declare type isTypeOfResolverFn<T = {}> = (obj: T, info: GraphQLResolveInfo) => boolean;
+export declare type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (parent: TParent, context: TContext, info: GraphQLResolveInfo) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
+export declare type isTypeOfResolverFn<T = {}> = (obj: T, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
 export declare type NextResolverFn<T> = () => Promise<T>;
 export declare type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs = {}> = (next: NextResolverFn<TResult>, parent: TParent, args: TArgs, context: TContext, info: GraphQLResolveInfo) => TResult | Promise<TResult>;
 /** Mapping between all available schema types and the resolvers types */
@@ -247,7 +279,7 @@ export declare type ResolversTypes = {
     Query: ResolverTypeWrapper<{}>;
     ID: ResolverTypeWrapper<Scalars['ID']>;
     Newbie: ResolverTypeWrapper<Newbie>;
-    User: ResolverTypeWrapper<User>;
+    User: ResolversTypes['Newbie'] | ResolversTypes['Buddy'] | ResolversTypes['Talent'];
     EmailAddress: ResolverTypeWrapper<Scalars['EmailAddress']>;
     String: ResolverTypeWrapper<Scalars['String']>;
     UserRole: UserRole;
@@ -257,8 +289,9 @@ export declare type ResolversTypes = {
     Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
     Buddy: ResolverTypeWrapper<Buddy>;
     Int: ResolverTypeWrapper<Scalars['Int']>;
+    Talent: ResolverTypeWrapper<Talent>;
     NewbieTask: ResolverTypeWrapper<NewbieTask>;
-    Task: ResolverTypeWrapper<Task>;
+    Task: ResolversTypes['NewbieTask'] | ResolversTypes['BuddyTask'];
     TaskStatus: TaskStatus;
     BuddyTask: ResolverTypeWrapper<BuddyTask>;
     Mutation: ResolverTypeWrapper<{}>;
@@ -272,7 +305,7 @@ export declare type ResolversParentTypes = {
     Query: {};
     ID: Scalars['ID'];
     Newbie: Newbie;
-    User: User;
+    User: ResolversParentTypes['Newbie'] | ResolversParentTypes['Buddy'] | ResolversParentTypes['Talent'];
     EmailAddress: Scalars['EmailAddress'];
     String: Scalars['String'];
     UserRole: UserRole;
@@ -282,8 +315,9 @@ export declare type ResolversParentTypes = {
     Boolean: Scalars['Boolean'];
     Buddy: Buddy;
     Int: Scalars['Int'];
+    Talent: Talent;
     NewbieTask: NewbieTask;
-    Task: Task;
+    Task: ResolversParentTypes['NewbieTask'] | ResolversParentTypes['BuddyTask'];
     TaskStatus: TaskStatus;
     BuddyTask: BuddyTask;
     Mutation: {};
@@ -307,9 +341,11 @@ export declare type BuddyResolvers<ContextType = any, ParentType extends Resolve
     photo?: Resolver<Maybe<ResolversTypes['URL']>, ParentType, ContextType>;
     phoneNumber?: Resolver<Maybe<ResolversTypes['PhoneNumber']>, ParentType, ContextType>;
     startDate?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
-    allowPushedNotifications?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+    notes?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+    allowPushedNotifications?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
     newbiesCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
     newbies?: Resolver<Array<Maybe<ResolversTypes['Newbie']>>, ParentType, ContextType>;
+    talents?: Resolver<Array<Maybe<ResolversTypes['Talent']>>, ParentType, ContextType>;
     __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 export declare type BuddyTaskResolvers<ContextType = any, ParentType extends ResolversParentTypes['BuddyTask'] = ResolversParentTypes['BuddyTask']> = {
@@ -329,10 +365,12 @@ export interface EmailAddressScalarConfig extends GraphQLScalarTypeConfig<Resolv
     name: 'EmailAddress';
 }
 export declare type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-    addBuddy?: Resolver<ResolversTypes['Buddy'], ParentType, ContextType, RequireFields<MutationAddBuddyArgs, 'input'>>;
     addNewbie?: Resolver<ResolversTypes['Newbie'], ParentType, ContextType, RequireFields<MutationAddNewbieArgs, 'buddyId' | 'input'>>;
+    addBuddy?: Resolver<ResolversTypes['Buddy'], ParentType, ContextType, RequireFields<MutationAddBuddyArgs, 'input'>>;
+    addTalent?: Resolver<ResolversTypes['Talent'], ParentType, ContextType, RequireFields<MutationAddTalentArgs, 'input'>>;
     deleteNewbie?: Resolver<ResolversTypes['Buddy'], ParentType, ContextType, RequireFields<MutationDeleteNewbieArgs, 'newbieId'>>;
     deleteBuddy?: Resolver<ResolversTypes['Buddy'], ParentType, ContextType, RequireFields<MutationDeleteBuddyArgs, 'buddyId'>>;
+    deleteTalent?: Resolver<ResolversTypes['Talent'], ParentType, ContextType, RequireFields<MutationDeleteTalentArgs, 'talentId'>>;
     updateUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationUpdateUserArgs, 'userId' | 'input'>>;
     login?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>;
     sendResetPasswordLink?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationSendResetPasswordLinkArgs, 'email' | 'url'>>;
@@ -351,7 +389,7 @@ export declare type NewbieResolvers<ContextType = any, ParentType extends Resolv
     photo?: Resolver<Maybe<ResolversTypes['URL']>, ParentType, ContextType>;
     phoneNumber?: Resolver<Maybe<ResolversTypes['PhoneNumber']>, ParentType, ContextType>;
     startDate?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
-    allowPushedNotifications?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+    allowPushedNotifications?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
     buddy?: Resolver<ResolversTypes['Buddy'], ParentType, ContextType>;
     notes?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
     newbieTasks?: Resolver<Array<Maybe<ResolversTypes['NewbieTask']>>, ParentType, ContextType>;
@@ -375,10 +413,26 @@ export interface PhoneNumberScalarConfig extends GraphQLScalarTypeConfig<Resolve
 export declare type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
     newbie?: Resolver<ResolversTypes['Newbie'], ParentType, ContextType, RequireFields<QueryNewbieArgs, 'newbieId'>>;
     buddy?: Resolver<ResolversTypes['Buddy'], ParentType, ContextType, RequireFields<QueryBuddyArgs, 'buddyId'>>;
+    talent?: Resolver<ResolversTypes['Talent'], ParentType, ContextType, RequireFields<QueryTalentArgs, 'talentId'>>;
     task?: Resolver<ResolversTypes['Task'], ParentType, ContextType, RequireFields<QueryTaskArgs, 'taskId'>>;
-    newbies?: Resolver<Array<Maybe<ResolversTypes['Newbie']>>, ParentType, ContextType, QueryNewbiesArgs>;
-    newbieTasks?: Resolver<Array<Maybe<ResolversTypes['Task']>>, ParentType, ContextType, QueryNewbieTasksArgs>;
-    buddyTasks?: Resolver<Array<Maybe<ResolversTypes['Task']>>, ParentType, ContextType, QueryBuddyTasksArgs>;
+    newbies?: Resolver<Array<Maybe<ResolversTypes['Newbie']>>, ParentType, ContextType, RequireFields<QueryNewbiesArgs, never>>;
+    newbieTasks?: Resolver<Array<Maybe<ResolversTypes['Task']>>, ParentType, ContextType, RequireFields<QueryNewbieTasksArgs, never>>;
+    buddyTasks?: Resolver<Array<Maybe<ResolversTypes['Task']>>, ParentType, ContextType, RequireFields<QueryBuddyTasksArgs, never>>;
+};
+export declare type TalentResolvers<ContextType = any, ParentType extends ResolversParentTypes['Talent'] = ResolversParentTypes['Talent']> = {
+    id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+    email?: Resolver<ResolversTypes['EmailAddress'], ParentType, ContextType>;
+    name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+    role?: Resolver<ResolversTypes['UserRole'], ParentType, ContextType>;
+    position?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+    photo?: Resolver<Maybe<ResolversTypes['URL']>, ParentType, ContextType>;
+    phoneNumber?: Resolver<Maybe<ResolversTypes['PhoneNumber']>, ParentType, ContextType>;
+    startDate?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
+    notes?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+    allowPushedNotifications?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
+    buddiesCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+    buddies?: Resolver<Array<Maybe<ResolversTypes['Buddy']>>, ParentType, ContextType>;
+    __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 export declare type TaskResolvers<ContextType = any, ParentType extends ResolversParentTypes['Task'] = ResolversParentTypes['Task']> = {
     __resolveType: TypeResolveFn<'NewbieTask' | 'BuddyTask', ParentType, ContextType>;
@@ -394,7 +448,7 @@ export interface UrlScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes[
     name: 'URL';
 }
 export declare type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
-    __resolveType: TypeResolveFn<'Newbie' | 'Buddy', ParentType, ContextType>;
+    __resolveType: TypeResolveFn<'Newbie' | 'Buddy' | 'Talent', ParentType, ContextType>;
     id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
     email?: Resolver<ResolversTypes['EmailAddress'], ParentType, ContextType>;
     name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -403,7 +457,8 @@ export declare type UserResolvers<ContextType = any, ParentType extends Resolver
     photo?: Resolver<Maybe<ResolversTypes['URL']>, ParentType, ContextType>;
     phoneNumber?: Resolver<Maybe<ResolversTypes['PhoneNumber']>, ParentType, ContextType>;
     startDate?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>;
-    allowPushedNotifications?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>;
+    notes?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+    allowPushedNotifications?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>;
 };
 export declare type Resolvers<ContextType = any> = {
     AuthPayload?: AuthPayloadResolvers<ContextType>;
@@ -416,6 +471,7 @@ export declare type Resolvers<ContextType = any> = {
     NewbieTask?: NewbieTaskResolvers<ContextType>;
     PhoneNumber?: GraphQLScalarType;
     Query?: QueryResolvers<ContextType>;
+    Talent?: TalentResolvers<ContextType>;
     Task?: TaskResolvers;
     URL?: GraphQLScalarType;
     User?: UserResolvers;

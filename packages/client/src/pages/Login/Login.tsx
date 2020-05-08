@@ -10,6 +10,7 @@ import { useDialog } from 'contexts/DialogContext';
 import { useAuth } from 'contexts/AuthContext';
 import RoundedButton from 'atoms/RoundedButton';
 import { ROUTES } from 'shared/routes';
+import { emailRegExp } from 'utils';
 import DICTIONARY from './dictionary';
 import { FormData } from './types';
 
@@ -64,7 +65,7 @@ const Login: React.FC = () => {
           inputRef={register({
             required: DICTIONARY.EMAIL.REQUIRED,
             pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+              value: emailRegExp,
               message: DICTIONARY.EMAIL.INVALID,
             },
           })}

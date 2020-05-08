@@ -1,21 +1,24 @@
 import React from 'react';
 import { create, act } from 'react-test-renderer';
 import waitForExpect from 'wait-for-expect';
-
+import { AuthProvider } from 'contexts/AuthContext';
 import { MemoryRouter, Route } from 'react-router';
 import { MockedProvider } from '@apollo/react-testing';
-import { taskListResponse, newbieTasksListMock } from '__mocks__';
+import {
+  taskListResponse,
+  newbieTasksListMock,
+  mockedBuddyContext,
+} from '__mocks__';
 import { SnackbarProvider } from 'contexts/SnackbarContext';
 import TasksList from '../TasksList';
 
-jest.mock('@material-ui/core/AppBar', () => 'AppBar');
+jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/Tabs', () => 'Tabs');
 jest.mock('@material-ui/core/Tab', () => 'Tab');
-jest.mock('atoms/TabPanel', () => 'TabPanel');
 jest.mock('components/AvatarHeader', () => 'AvatarHeader');
-jest.mock('atoms/TaskListPlaceHolder', () => 'TaskListPlaceHolder');
 jest.mock('components/TaskTabsContent', () => 'TaskTabsContent');
 jest.mock('components/AddTaskOptions', () => 'AddTaskOptions');
+jest.mock('atoms/TabPanel', () => 'TabPanel');
 jest.doMock('components/Header');
 
 describe('Component - TasksList', () => {
@@ -30,13 +33,17 @@ describe('Component - TasksList', () => {
       const component = create(
         <MockedProvider
           mocks={taskListResponse(variables, newbieTasksListMock)}
-          addTypename={false}>
+          addTypename={false}
+          resolvers={{}}>
           <MemoryRouter initialEntries={[path]}>
-            <Route path={'/buddy/newbies/:newbieId/tasks'}>
-              <SnackbarProvider>
-                <TasksList />
-              </SnackbarProvider>
-            </Route>
+            <SnackbarProvider>
+              <AuthProvider value={mockedBuddyContext()}>
+                <Route
+                  path={'/buddy/newbies/:newbieId/tasks'}
+                  component={TasksList}
+                />
+              </AuthProvider>
+            </SnackbarProvider>
           </MemoryRouter>
         </MockedProvider>
       );
@@ -58,6 +65,8 @@ describe('Component - TasksList', () => {
 
     const newbieMockData = {
       id: '11111',
+      name: '',
+      email: '',
       buddyTasks: [],
       newbieTasks: [],
     };

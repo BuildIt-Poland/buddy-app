@@ -26,9 +26,11 @@ Array [
       />
     </Tabs>
   </header>,
-  <main
-    className="MuiBox-root MuiBox-root-9"
+  <Box
+    component="main"
     data-testid="task-list-page"
+    flex={1}
+    padding="2rem 2rem 5rem 3rem"
   >
     <TabPanel
       index={0}
@@ -52,7 +54,7 @@ Array [
     </TabPanel>
     <AddTaskOptions
       newbieId="1234"
-      title="Add new task"
+      title="Add New Task"
       to={
         Object {
           "pathname": "/buddy/newbies/1234/add-task",
@@ -62,7 +64,7 @@ Array [
         }
       }
     />
-  </main>,
+  </Box>,
 ]
 `;
 
@@ -92,9 +94,11 @@ Array [
       />
     </Tabs>
   </header>,
-  <main
-    className="MuiBox-root MuiBox-root-9"
+  <Box
+    component="main"
     data-testid="task-list-page"
+    flex={1}
+    padding="2rem 2rem 5rem 3rem"
   >
     <TabPanel
       index={0}
@@ -150,7 +154,7 @@ Array [
     </TabPanel>
     <AddTaskOptions
       newbieId="1234"
-      title="Add new task"
+      title="Add New Task"
       to={
         Object {
           "pathname": "/buddy/newbies/1234/add-task",
@@ -160,7 +164,7 @@ Array [
         }
       }
     />
-  </main>,
+  </Box>,
 ]
 `;
 
@@ -190,9 +194,11 @@ Array [
       />
     </Tabs>
   </header>,
-  <main
-    className="MuiBox-root MuiBox-root-10"
+  <Box
+    component="main"
     data-testid="task-list-page"
+    flex={1}
+    padding="2rem 2rem 5rem 3rem"
   >
     <TabPanel
       index={0}
@@ -218,7 +224,7 @@ Array [
     </TabPanel>
     <AddTaskOptions
       newbieId="1234"
-      title="Add new task"
+      title="Add New Task"
       to={
         Object {
           "pathname": "/buddy/newbies/1234/add-task",
@@ -228,6 +234,6 @@ Array [
         }
       }
     />
-  </main>,
+  </Box>,
 ]
 `;

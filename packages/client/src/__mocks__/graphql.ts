@@ -1,8 +1,10 @@
 import { BUDDY_MENU_DETAILS, NEWBIE_MENU_DETAILS } from 'graphql/user-menu.graphql';
 import { AVATAR_HEADER } from 'graphql/avatar-header.graphql';
 import { NEWBIE_SELECT } from 'graphql/newbie-select.graphql';
+import { BUDDY_SELECT } from 'graphql/buddy-select.graphql';
 import { TASK_DETAILS } from 'graphql/task-details.graphql';
 import { ADD_NEWBIE_TASK } from 'graphql/add-task.graphql';
+import { ADD_NEWBIE } from 'graphql/add-user.graphql';
 import { GraphQLError } from 'graphql';
 
 import {
@@ -17,6 +19,7 @@ import {
 import {
   NEWBIE_CONTACT_DETAILS,
   BUDDY_CONTACT_DETAILS,
+  TALENT_CONTACT_DETAILS,
 } from 'graphql/contact-details.graphql';
 import { TASK_LIST } from 'graphql/task-list.graphql';
 import { getBasicUserDetailsMock } from './general';
@@ -183,6 +186,20 @@ export const buddyContactDetails = (variables?: Partial<QueryBuddyArgs>) => [
   },
 ];
 
+export const talentContactDetails = (variables?: Partial<QueryBuddyArgs>) => [
+  {
+    request: {
+      query: TALENT_CONTACT_DETAILS,
+      variables,
+    },
+    result: {
+      data: {
+        buddy: getBasicUserDetailsMock(UserRole.Talent),
+      },
+    },
+  },
+];
+
 export const newbieSelectMock = [
   {
     request: {
@@ -238,6 +255,28 @@ export const newbieSelectMock = [
               ],
             },
           ],
+        },
+      },
+    },
+  },
+];
+
+export const buddySelectMock = [
+  {
+    request: {
+      query: BUDDY_SELECT,
+      variables: {
+        talentId: 'ck17sl83c9gya0b17dcvttzm4',
+      },
+    },
+    result: {
+      data: {
+        talent: {
+          id: 'ck17sl83c9gya0b17dcvttzm4',
+          name: 'Dummy',
+          role: 'BUDDY',
+          photo: null,
+          buddies: [],
         },
       },
     },
@@ -308,6 +347,45 @@ export const addTaskFailedMock = (
         description: '<h1>Hello world!</h1>',
       },
       ...variables,
+    },
+  },
+  result: {
+    errors: [new GraphQLError('No such user')],
+  },
+});
+
+export const addNewbieSuccessMock = () => ({
+  request: {
+    query: ADD_NEWBIE,
+    variables: {
+      buddyId: '1234',
+      input: {
+        email: 'test_newbie@email.com',
+        name: 'test newbie',
+      },
+    },
+  },
+  result: {
+    data: {
+      addNewbie: {
+        id: 'ck3sw1h1mqkd90964u4675qo2',
+        email: 'test_newbie@email.com',
+        name: 'test newbie',
+        role: UserRole.Newbie,
+      },
+    },
+  },
+});
+
+export const addNewbieFailedMock = () => ({
+  request: {
+    query: ADD_NEWBIE,
+    variables: {
+      buddyId: '1234',
+      input: {
+        email: 'test_newbie@email.com',
+        name: 'test newbie',
+      },
     },
   },
   result: {

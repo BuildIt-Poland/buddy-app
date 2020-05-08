@@ -11,6 +11,7 @@ export interface OptionItem {
   access: {
     [UserRole.Newbie]?: boolean;
     [UserRole.Buddy]?: boolean;
+    [UserRole.Talent]?: boolean;
   };
   disabled?: boolean;
 }

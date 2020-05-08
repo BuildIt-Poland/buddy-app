@@ -15,6 +15,7 @@ const NotAuthenticatedApp: React.FC = () => (
     <Redirect path={ROUTES.BASE} exact to={ROUTES.LOGIN} />
     <Redirect path={ROUTES.NEWBIE} to={ROUTES.BASE} />
     <Redirect path={ROUTES.BUDDY} to={ROUTES.BASE} />
+    <Redirect path={ROUTES.TALENT} to={ROUTES.BASE} />
     <Redirect to={ROUTES.ROUTE_404} />
   </Switch>
 );

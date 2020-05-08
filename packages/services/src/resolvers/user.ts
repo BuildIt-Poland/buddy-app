@@ -2,6 +2,9 @@ import { UserResolvers, UserRole } from "@buddy-app/schema";
 
 const __resolveType: UserResolvers["__resolveType"] = ({ role }) => {
   switch (role) {
+    case UserRole.Talent:
+      return "Talent";
+
     case UserRole.Buddy:
       return "Buddy";
 

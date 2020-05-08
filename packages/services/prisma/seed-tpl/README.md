@@ -24,7 +24,7 @@
   ```
   export const newbie = {
     email: TaskTemplates.Tpl{country},
-    name: "",
+    name: TaskTemplates.Tpl{country},
     password: ""
   };
   ```

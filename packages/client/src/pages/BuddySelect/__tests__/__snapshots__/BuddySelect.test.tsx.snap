@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - BuddySelect renders correctly 1`] = `
+Array [
+  <header
+    type="menu"
+  />,
+  <PageContainer
+    backGroundShape={true}
+    data-testid="buddy-select-page"
+  >
+    <Box
+      className="makeStyles-title-1"
+      component="section"
+    >
+      <Typography
+        component="h1"
+        variant="h2"
+      >
+        Buddies List
+      </Typography>
+      <Typography
+        color="textSecondary"
+        component="p"
+        variant="body2"
+      >
+        Choose your buddy or create a new one
+      </Typography>
+    </Box>
+    <NiewbieGridPlaceHolder />
+    <AddUserOptions
+      title="Add New User"
+    />
+  </PageContainer>,
+]
+`;
+
+exports[`Component - BuddySelect renders correctly 2`] = `
+Array [
+  <header
+    type="menu"
+  />,
+  <PageContainer
+    backGroundShape={true}
+    data-testid="buddy-select-page"
+  >
+    <Box
+      className="makeStyles-title-1"
+      component="section"
+    >
+      <Typography
+        component="h1"
+        variant="h2"
+      >
+        Buddies List
+      </Typography>
+      <Typography
+        color="textSecondary"
+        component="p"
+        variant="body2"
+      >
+        Choose your buddy or create a new one
+      </Typography>
+    </Box>
+    <AddUserOptions
+      title="Add New User"
+    />
+  </PageContainer>,
+]
+`;

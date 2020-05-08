@@ -86,7 +86,7 @@ describe('Custom Hooks - useTaskDelete', () => {
   test('should delete task properly', async () => {
     await wait(() => {
       const updatedCache = cache.extract();
-      const tasksLength = updatedCache[typedNewbieId].newbieTasks.length;
+      const tasksLength = updatedCache[typedNewbieId].buddyTasks.length;
       expect(tasksLength).toBe(0);
     });
   });

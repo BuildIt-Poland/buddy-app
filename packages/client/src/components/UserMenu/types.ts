@@ -1,16 +1,22 @@
 import {
-  Buddy,
-  MutationDeleteBuddyArgs,
-  MutationDeleteNewbieArgs,
   Newbie,
+  Buddy,
+  Talent,
+  QueryNewbieArgs,
+  QueryBuddyArgs,
+  QueryTalentArgs,
 } from '@buddy-app/schema';
 
 export type UserMenuProps = {
   onCloseClick?: Function;
 };
 
-export type BasicDetailsParams = MutationDeleteNewbieArgs | MutationDeleteBuddyArgs;
+export type ToRoute = (route: string) => void;
+
+export type User = Newbie & Buddy & Talent;
+
+export type BasicDetailsParams = QueryNewbieArgs | QueryBuddyArgs | QueryTalentArgs;
 
 export type UserBasicDetails = {
-  [key: string]: Partial<Newbie> | Partial<Buddy>;
+  [key: string]: User;
 };

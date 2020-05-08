@@ -5,6 +5,7 @@ import schema, { IResolvers } from "@buddy-app/schema";
 import { prisma } from "./generated/prisma-client";
 import Query from "./resolvers/query";
 import Mutation from "./resolvers/mutation";
+import Talent from "./resolvers/talent";
 import Buddy from "./resolvers/buddy";
 import Newbie from "./resolvers/newbie";
 import BuddyTask from "./resolvers/buddy-task";
@@ -23,6 +24,7 @@ type StringIndexed<T> = T & StringIndexSignatureInterface;
 const resolvers: StringIndexed<IResolvers> = {
   Query,
   Mutation,
+  Talent,
   Buddy,
   Newbie,
   BuddyTask,

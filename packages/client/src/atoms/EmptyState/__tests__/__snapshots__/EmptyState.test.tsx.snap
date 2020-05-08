@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - EmptyState renders correctly 1`] = `
+<Box
+  className="makeStyles-container-1"
+>
+  <Typography
+    className="makeStyles-title-2"
+    component="h2"
+    variant="h2"
+  >
+    Whoops! No data found..
+  </Typography>
+  <R2d2 />
+</Box>
+`;

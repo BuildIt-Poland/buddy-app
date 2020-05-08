@@ -5,17 +5,78 @@ import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useQuery } from '@apollo/react-hooks';
 import { useHistory } from 'react-router-dom';
-import { BUDDY_MENU_DETAILS, NEWBIE_MENU_DETAILS } from 'graphql/user-menu.graphql';
-import UserMenuNewbies from 'atoms/UserMenuNewbies';
+import {
+  NEWBIE_MENU_DETAILS,
+  BUDDY_MENU_DETAILS,
+  TALENT_MENU_DETAILS,
+} from 'graphql/user-menu.graphql';
+import UserMenuUsers from 'atoms/UserMenuUsers';
 import UserMenuDetails from 'atoms/UserMenuDetails';
 import UserMenuSettings from 'atoms/UserMenuSettings';
 import UserMenuBuddy from 'atoms/UserMenuBuddy';
-import { isBuddy, isNewbie } from 'utils';
 import { ROUTES } from 'shared/routes';
-import { Buddy, Newbie, UserRole } from '@buddy-app/schema';
+import { UserRole } from '@buddy-app/schema';
 import { useAuth } from 'contexts/AuthContext';
-import { DocumentNode } from 'graphql';
-import { BasicDetailsParams, UserMenuProps, UserBasicDetails } from './types';
+import {
+  BasicDetailsParams,
+  UserMenuProps,
+  UserBasicDetails,
+  User,
+  ToRoute,
+} from './types';
+import DICTIONARY from './dictionary';
+
+const { Newbie, Buddy, Talent } = UserRole;
+
+const userDetails = {
+  [Newbie]: {
+    route: ROUTES.NEWBIE_DETAILS,
+    query: (newbieId: string) => ({
+      query: NEWBIE_MENU_DETAILS,
+      variables: { newbieId },
+    }),
+    component: ({ buddy }: User, toRoute: ToRoute) => (
+      <UserMenuBuddy
+        buddy={buddy}
+        onSelect={(id: string) =>
+          toRoute(ROUTES.NEWBIE_BUDDY_DETAILS.replace(':buddyId', id))
+        }
+      />
+    ),
+  },
+  [Buddy]: {
+    route: ROUTES.BUDDY_DETAILS,
+    query: (buddyId: string) => ({
+      query: BUDDY_MENU_DETAILS,
+      variables: { buddyId },
+    }),
+    component: ({ newbies }: User, toRoute: ToRoute) => (
+      <UserMenuUsers
+        title={DICTIONARY.TITLES.NEWBIES}
+        users={newbies}
+        onSelect={(id: string) =>
+          toRoute(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', id))
+        }
+      />
+    ),
+  },
+  [Talent]: {
+    route: ROUTES.TALENT_DETAILS,
+    query: (talentId: string) => ({
+      query: TALENT_MENU_DETAILS,
+      variables: { talentId },
+    }),
+    component: ({ buddies }: User, toRoute: ToRoute) => (
+      <UserMenuUsers
+        title={DICTIONARY.TITLES.BUDDIES}
+        users={buddies}
+        onSelect={(id: string) =>
+          toRoute(ROUTES.TALENT_BUDDY_DETAILS.replace(':buddyId', id))
+        }
+      />
+    ),
+  },
+};
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -40,9 +101,9 @@ const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
     logout,
   } = useAuth();
 
-  const userDetailsRoutes = {
-    [UserRole.Buddy]: ROUTES.BUDDY_DETAILS,
-    [UserRole.Newbie]: ROUTES.NEWBIE_DETAILS,
+  const toRoute = (route: string) => {
+    history.push(route);
+    onCloseClick && onCloseClick();
   };
 
   const onLogoutClick = () => {
@@ -50,36 +111,12 @@ const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
     history.push(ROUTES.BASE);
   };
 
-  const getQueryByRole = (role: UserRole, id: string) => {
-    if (isBuddy(role)) {
-      return { query: BUDDY_MENU_DETAILS, variables: { buddyId: id } };
-    } else if (isNewbie(role)) {
-      return { query: NEWBIE_MENU_DETAILS, variables: { newbieId: id } };
-    }
-  };
+  const userClickHandler = () => toRoute(userDetails[role].route);
 
-  const selectNewbie = (id: string) => {
-    history.push(ROUTES.BUDDY_TASKS_LIST.replace(':newbieId', id));
-    onCloseClick && onCloseClick();
-  };
-
-  const selectBuddy = (id: string) => {
-    history.push(ROUTES.NEWBIE_BUDDY_DETAILS.replace(':buddyId', id));
-    onCloseClick && onCloseClick();
-  };
-
-  const userClickHandler = () => {
-    history.push(userDetailsRoutes[role]);
-    onCloseClick && onCloseClick();
-  };
-
-  const { query, variables } = getQueryByRole(role, userId) || {};
-  const { data, loading } = useQuery<UserBasicDetails, BasicDetailsParams>(
-    query as DocumentNode,
-    {
-      variables,
-    }
-  );
+  const { query, variables } = userDetails[role].query(userId) || {};
+  const { data, loading } = useQuery<UserBasicDetails, BasicDetailsParams>(query, {
+    variables,
+  });
   const user = data && data[role.toLowerCase()];
 
   return (
@@ -88,15 +125,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ onCloseClick }) => {
         <Box data-testid='slide-menu-body'>
           <UserMenuDetails user={user} onClick={userClickHandler} />
           <Divider />
-          {isBuddy(role) && (
-            <UserMenuNewbies
-              newbies={(user as Buddy).newbies}
-              onSelect={selectNewbie}
-            />
-          )}
-          {isNewbie(role) && (
-            <UserMenuBuddy buddy={(user as Newbie).buddy} onSelect={selectBuddy} />
-          )}
+          {userDetails[role].component(user, toRoute)}
           <Divider />
           <UserMenuSettings
             allowPushedNotifications={!!user.allowPushedNotifications}

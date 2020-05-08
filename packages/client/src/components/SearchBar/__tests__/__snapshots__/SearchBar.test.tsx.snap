@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - SearchBar renders correctly 1`] = `
+<div
+  className="makeStyles-search-1"
+>
+  <div
+    className="makeStyles-searchIcon-3"
+  >
+    <Search />
+  </div>
+  <InputBase
+    autoFocus={true}
+    classes={
+      Object {
+        "input": "makeStyles-inputInput-5",
+      }
+    }
+    inputProps={
+      Object {
+        "aria-label": "search",
+      }
+    }
+    onChange={[Function]}
+    placeholder="Search..."
+    value=""
+  />
+  
+</div>
+`;

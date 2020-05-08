@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - EditTask renders correctly 1`] = `
+<BackPageContainer
+  backGroundShape={true}
+  id="edit-task-page"
+  title="Edit Task"
+/>
+`;

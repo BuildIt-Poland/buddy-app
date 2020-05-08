@@ -3,7 +3,7 @@ import List from '@material-ui/core/List';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
 import { makeStyles } from '@material-ui/core/styles';
-import TaskListItem from '../../components/TaskListItem';
+import TaskListItem from 'components/TaskListItem';
 import { TasksSubListProps } from './types';
 
 const useStyles = makeStyles(() => ({

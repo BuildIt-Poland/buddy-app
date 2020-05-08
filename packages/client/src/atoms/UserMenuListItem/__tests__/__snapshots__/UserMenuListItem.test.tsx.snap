@@ -9,12 +9,6 @@ exports[`Component - UserMenuListItem renders correctly 1`] = `
   <Box
     className="makeStyles-list-2"
   >
-    <Typography
-      component="p"
-      variant="body2"
-    >
-      Tom
-    </Typography>
     <Box
       className="makeStyles-avatar-1"
     >
@@ -23,6 +17,12 @@ exports[`Component - UserMenuListItem renders correctly 1`] = `
         type="small"
       />
     </Box>
+    <Typography
+      component="p"
+      variant="body2"
+    >
+      Tom
+    </Typography>
   </Box>
 </ListItem>
 `;

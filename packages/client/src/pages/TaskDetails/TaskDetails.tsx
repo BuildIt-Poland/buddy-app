@@ -1,6 +1,6 @@
 import React from 'react';
 import get from 'lodash/get';
-import { useParams, useLocation, useHistory } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import htmlParser from 'react-html-parser';
 import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
@@ -12,18 +12,23 @@ import { colors } from 'styles/theme';
 import { useAuth } from 'contexts/AuthContext';
 import { useSnackBar } from 'contexts/SnackbarContext';
 import {
+  UserRole,
   TaskStatus,
   Query,
   QueryTaskArgs,
   QueryNewbieArgs,
+  NewbieTask,
+  BuddyTask,
 } from '@buddy-app/schema';
 import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
-import { isBuddy, isNewbieTask } from 'utils';
-import PageContainer from 'atoms/PageContainer';
+import { isBuddy, isNewbie, isNewbieTask, isTemplateTask } from 'utils';
+import EditButton from 'atoms/EditButton';
+import BackPageContainer from 'atoms/BackPageContainer';
 import TaskDetailsPlaceHolder from 'atoms/TaskDetailsPlaceHolder';
 import ReminderButton from 'atoms/ReminderButton';
-import Header, { MenuTypes } from 'components/Header';
-import TaskCheckbox from '../../atoms/TaskCheckbox';
+import TaskCheckbox from 'atoms/TaskCheckbox';
+import { ROUTES } from 'shared/routes';
+import { TaskDetailsProps } from './types';
 import DICTIONARY from './dictionary';
 
 const useStyles = makeStyles(theme => ({
@@ -61,36 +66,43 @@ const STATUS_TEXT = {
   [TaskStatus.Uncompleted]: DICTIONARY.UNCOMPLETED,
 };
 
-const TaskDetails: React.FC = () => {
+const TaskDetails: React.FC<TaskDetailsProps> = ({ history }) => {
   const {
     data: { role, userId },
   } = useAuth();
   const { newbieId, taskId } = useParams<QueryTaskArgs & QueryNewbieArgs>();
   const { wrapper, header, status, description } = useStyles();
-  const { pathname, state } = useLocation();
   const { showSnackbar } = useSnackBar();
-  const history = useHistory();
   const { loading, data } = useQuery<Query, QueryTaskArgs>(TASK_DETAILS, {
     variables: { taskId },
   });
 
-  const [updateTaskStatus] = useTaskStatusUpdate(newbieId || userId, {
+  const EditRoutes = {
+    [UserRole.Newbie]: ROUTES.BASE,
+    [UserRole.Buddy]: ROUTES.BUDDY_EDIT_TASK.replace(':taskId', taskId),
+    [UserRole.Talent]: ROUTES.TALENT_EDIT_TASK.replace(':taskId', taskId),
+  };
+
+  const [mutation] = useTaskStatusUpdate(newbieId || userId, {
     onCompleted: () => showSnackbar(DICTIONARY.SUCCESS_MESSAGE),
     onError: () => showSnackbar(DICTIONARY.ERROR_MESSAGE),
   });
 
+  const updateTaskStatus = (task: NewbieTask | BuddyTask) => {
+    if (data && isTemplateTask(data.task.newbie.name)) {
+      showSnackbar(DICTIONARY.TEMPLATE_MESSAGE);
+    } else {
+      mutation(task);
+    }
+  };
+
   const taskType: string = get(data, 'task.__typename', '');
   const taskStatus: TaskStatus = get(data, 'task.status', TaskStatus.Uncompleted);
   const hasReminderBtn = isBuddy(role) && isNewbieTask(taskType) && isBuddy;
-  const defaultTabIndex = (state && state.tabIndex) || 0;
-  const taskListPath = pathname.replace(/tasks.+/, 'tasks');
   const stausLabelStyles = {
     background: BACKGROUND_COLORS[taskStatus],
     color: TEXT_COLORS[taskStatus],
   };
-
-  const onBackClick = () =>
-    history.push({ pathname: taskListPath, state: { defaultTabIndex } });
 
   const renderTaskDetails = ({ task }: Query) => (
     <Box className={wrapper}>
@@ -117,17 +129,21 @@ const TaskDetails: React.FC = () => {
   );
 
   return (
-    <>
-      <Header
-        type={MenuTypes.BACK}
-        onButtonClick={onBackClick}
-        navItems={hasReminderBtn && <ReminderButton disabled />}
-      />
-      <PageContainer data-testid='task-details-page' backGroundShape>
-        {loading && <TaskDetailsPlaceHolder />}
-        {data && renderTaskDetails(data)}
-      </PageContainer>
-    </>
+    <BackPageContainer
+      id='task-details-page'
+      backGroundShape
+      navItems={hasReminderBtn && <ReminderButton disabled />}>
+      {loading && <TaskDetailsPlaceHolder />}
+      {data && renderTaskDetails(data)}
+      {!isNewbie(role) && (
+        <Link to={EditRoutes[role]}>
+          <EditButton
+            aria-label='Edit task details'
+            title={DICTIONARY.EDIT_BUTTON_TITLE}
+          />
+        </Link>
+      )}
+    </BackPageContainer>
   );
 };
 

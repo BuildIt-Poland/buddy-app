@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - FormPlaceHolder renders correctly 1`] = `
+Array [
+  <Skeleton
+    className="makeStyles-description-1"
+    variant="text"
+  />,
+  <Skeleton
+    className="makeStyles-input-2"
+    variant="text"
+  />,
+  <Skeleton
+    className="makeStyles-description-1"
+    variant="text"
+  />,
+  <Skeleton
+    className="makeStyles-input-2"
+    variant="text"
+  />,
+  <Skeleton
+    className="makeStyles-description-1"
+    variant="text"
+  />,
+  <Skeleton
+    className="makeStyles-input-2"
+    variant="text"
+  />,
+  <Skeleton
+    className="makeStyles-submit-3"
+    variant="text"
+  />,
+]
+`;

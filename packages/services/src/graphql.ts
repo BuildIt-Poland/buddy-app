@@ -38,3 +38,15 @@ export const taskQuery = `
     }
   }
 `;
+
+export const newbieQuery = `
+  query ($id: ID!){
+    newbie(where: {
+      id: $id
+    }) {
+      buddy {
+        id
+      }
+    }
+  }
+`;

@@ -1,22 +1,23 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useAuth } from 'contexts/AuthContext';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Typography from '@material-ui/core/Typography';
-
 import Avatar from 'atoms/Avatar';
 import { isNewbie } from 'utils';
-import { UserRole } from '@buddy-app/schema';
 import { UserDetailsProps, ContactDetail } from './types';
 import DICTIONARY from './dictionary';
 
 const useStyles = makeStyles(theme => ({
   notesTextarea: {
-    width: '15rem',
-    minHeight: '10rem',
+    width: '20rem',
+    minHeight: '5rem',
     borderWidth: '1px',
     borderColor: theme.palette.primary.dark,
+    borderRadius: '5px',
+    padding: theme.spacing(0.5),
   },
   wrapper: {
     display: 'flex',
@@ -35,7 +36,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const UserDetails: React.FC<UserDetailsProps> = props => {
+const UserDetails: React.FC<UserDetailsProps> = ({ details }) => {
+  const {
+    data: { role },
+  } = useAuth();
   const { wrapper, avatar, notesTextarea, label, detailText } = useStyles();
   const {
     photo,
@@ -45,10 +49,10 @@ const UserDetails: React.FC<UserDetailsProps> = props => {
     email,
     phoneNumber,
     notes,
-    role,
-  } = props.details;
+    role: userRole,
+  } = details;
 
-  const isNotesVisible = (role: UserRole) => isNewbie(role);
+  const hasNotes = notes && isNewbie(userRole) && !isNewbie(role);
 
   const contactDetails: ContactDetail[] = [
     {
@@ -110,7 +114,7 @@ const UserDetails: React.FC<UserDetailsProps> = props => {
               </React.Fragment>
             )
         )}
-        {isNotesVisible(role as UserRole) && (
+        {hasNotes && (
           <>
             <Typography component='p' className={label}>
               Notes

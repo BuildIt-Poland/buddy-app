@@ -3,227 +3,263 @@ export type Maybe<T> = T | null;
 export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string,
-  String: string,
-  Boolean: boolean,
-  Int: number,
-  Float: number,
-  EmailAddress: any,
-  URL: any,
-  PhoneNumber: any,
-  DateTime: any,
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+  EmailAddress: any;
+  URL: any;
+  PhoneNumber: any;
+  DateTime: any;
 };
 
 export type AuthPayload = {
-   __typename?: 'AuthPayload',
-  token: Scalars['String'],
-  role: UserRole,
-  userId: Scalars['ID'],
+   __typename?: 'AuthPayload';
+  token: Scalars['String'];
+  role: UserRole;
+  userId: Scalars['ID'];
 };
 
 export type Buddy = User & {
-   __typename?: 'Buddy',
-  id: Scalars['ID'],
-  email: Scalars['EmailAddress'],
-  name: Scalars['String'],
-  role: UserRole,
-  position?: Maybe<Scalars['String']>,
-  photo?: Maybe<Scalars['URL']>,
-  phoneNumber?: Maybe<Scalars['PhoneNumber']>,
-  startDate?: Maybe<Scalars['DateTime']>,
-  allowPushedNotifications: Scalars['Boolean'],
-  newbiesCount: Scalars['Int'],
-  newbies: Array<Maybe<Newbie>>,
+   __typename?: 'Buddy';
+  id: Scalars['ID'];
+  email: Scalars['EmailAddress'];
+  name: Scalars['String'];
+  role: UserRole;
+  position?: Maybe<Scalars['String']>;
+  photo?: Maybe<Scalars['URL']>;
+  phoneNumber?: Maybe<Scalars['PhoneNumber']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  notes?: Maybe<Scalars['String']>;
+  allowPushedNotifications?: Maybe<Scalars['Boolean']>;
+  newbiesCount: Scalars['Int'];
+  newbies: Array<Maybe<Newbie>>;
+  talents: Array<Maybe<Talent>>;
 };
 
 export type BuddyTask = Task & {
-   __typename?: 'BuddyTask',
-  id: Scalars['ID'],
-  title: Scalars['String'],
-  description: Scalars['String'],
-  createdAt: Scalars['DateTime'],
-  status: TaskStatus,
-  newbie: Newbie,
-  implementationDate?: Maybe<Scalars['DateTime']>,
+   __typename?: 'BuddyTask';
+  id: Scalars['ID'];
+  title: Scalars['String'];
+  description: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  status: TaskStatus;
+  newbie: Newbie;
+  implementationDate?: Maybe<Scalars['DateTime']>;
 };
 
 
 
 export type Mutation = {
-   __typename?: 'Mutation',
-  addBuddy: Buddy,
-  addNewbie: Newbie,
-  deleteNewbie: Buddy,
-  deleteBuddy: Buddy,
-  updateUser: User,
-  login: AuthPayload,
-  sendResetPasswordLink: AuthPayload,
-  addNewbieTask: Task,
-  addBuddyTask: Task,
-  addFromTemplate: Newbie,
-  deleteTask: Newbie,
-  updateTask: Task,
-};
-
-
-export type MutationAddBuddyArgs = {
-  input: UserInput
+   __typename?: 'Mutation';
+  addNewbie: Newbie;
+  addBuddy: Buddy;
+  addTalent: Talent;
+  deleteNewbie: Buddy;
+  deleteBuddy: Buddy;
+  deleteTalent: Talent;
+  updateUser: User;
+  login: AuthPayload;
+  sendResetPasswordLink: AuthPayload;
+  addNewbieTask: Task;
+  addBuddyTask: Task;
+  addFromTemplate: Newbie;
+  deleteTask: Newbie;
+  updateTask: Task;
 };
 
 
 export type MutationAddNewbieArgs = {
-  buddyId: Scalars['ID'],
-  input: UserInput
+  buddyId: Scalars['ID'];
+  input: UserInput;
+};
+
+
+export type MutationAddBuddyArgs = {
+  input: UserInput;
+};
+
+
+export type MutationAddTalentArgs = {
+  input: UserInput;
 };
 
 
 export type MutationDeleteNewbieArgs = {
-  newbieId: Scalars['ID']
+  newbieId: Scalars['ID'];
 };
 
 
 export type MutationDeleteBuddyArgs = {
-  buddyId: Scalars['ID']
+  buddyId: Scalars['ID'];
+};
+
+
+export type MutationDeleteTalentArgs = {
+  talentId: Scalars['ID'];
 };
 
 
 export type MutationUpdateUserArgs = {
-  userId: Scalars['String'],
-  input: UserInput
+  userId: Scalars['String'];
+  input: UserInput;
 };
 
 
 export type MutationLoginArgs = {
-  email: Scalars['String'],
-  password: Scalars['String']
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 
 export type MutationSendResetPasswordLinkArgs = {
-  email: Scalars['String'],
-  url: Scalars['String']
+  email: Scalars['String'];
+  url: Scalars['String'];
 };
 
 
 export type MutationAddNewbieTaskArgs = {
-  newbieId: Scalars['ID'],
-  input: TaskInput
+  newbieId: Scalars['ID'];
+  input: TaskInput;
 };
 
 
 export type MutationAddBuddyTaskArgs = {
-  newbieId: Scalars['ID'],
-  input: TaskInput
+  newbieId: Scalars['ID'];
+  input: TaskInput;
 };
 
 
 export type MutationAddFromTemplateArgs = {
-  newbieId: Scalars['ID'],
-  template: TaskTemplates
+  newbieId: Scalars['ID'];
+  template: TaskTemplates;
 };
 
 
 export type MutationDeleteTaskArgs = {
-  taskId: Scalars['ID']
+  taskId: Scalars['ID'];
 };
 
 
 export type MutationUpdateTaskArgs = {
-  taskId: Scalars['ID'],
-  input: TaskInput
+  taskId: Scalars['ID'];
+  input: TaskInput;
 };
 
 export type Newbie = User & {
-   __typename?: 'Newbie',
-  id: Scalars['ID'],
-  email: Scalars['EmailAddress'],
-  name: Scalars['String'],
-  role: UserRole,
-  position?: Maybe<Scalars['String']>,
-  photo?: Maybe<Scalars['URL']>,
-  phoneNumber?: Maybe<Scalars['PhoneNumber']>,
-  startDate?: Maybe<Scalars['DateTime']>,
-  allowPushedNotifications: Scalars['Boolean'],
-  buddy: Buddy,
-  notes?: Maybe<Scalars['String']>,
-  newbieTasks: Array<Maybe<NewbieTask>>,
-  buddyTasks: Array<Maybe<BuddyTask>>,
+   __typename?: 'Newbie';
+  id: Scalars['ID'];
+  email: Scalars['EmailAddress'];
+  name: Scalars['String'];
+  role: UserRole;
+  position?: Maybe<Scalars['String']>;
+  photo?: Maybe<Scalars['URL']>;
+  phoneNumber?: Maybe<Scalars['PhoneNumber']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  allowPushedNotifications?: Maybe<Scalars['Boolean']>;
+  buddy: Buddy;
+  notes?: Maybe<Scalars['String']>;
+  newbieTasks: Array<Maybe<NewbieTask>>;
+  buddyTasks: Array<Maybe<BuddyTask>>;
 };
 
 export type NewbieTask = Task & {
-   __typename?: 'NewbieTask',
-  id: Scalars['ID'],
-  title: Scalars['String'],
-  description: Scalars['String'],
-  createdAt: Scalars['DateTime'],
-  status: TaskStatus,
-  newbie: Newbie,
-  implementationDate?: Maybe<Scalars['DateTime']>,
-  notes?: Maybe<Scalars['String']>,
+   __typename?: 'NewbieTask';
+  id: Scalars['ID'];
+  title: Scalars['String'];
+  description: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  status: TaskStatus;
+  newbie: Newbie;
+  implementationDate?: Maybe<Scalars['DateTime']>;
+  notes?: Maybe<Scalars['String']>;
 };
 
 
 export type Query = {
-   __typename?: 'Query',
-  newbie: Newbie,
-  buddy: Buddy,
-  task: Task,
-  newbies: Array<Maybe<Newbie>>,
-  newbieTasks: Array<Maybe<Task>>,
-  buddyTasks: Array<Maybe<Task>>,
+   __typename?: 'Query';
+  newbie: Newbie;
+  buddy: Buddy;
+  talent: Talent;
+  task: Task;
+  newbies: Array<Maybe<Newbie>>;
+  newbieTasks: Array<Maybe<Task>>;
+  buddyTasks: Array<Maybe<Task>>;
 };
 
 
 export type QueryNewbieArgs = {
-  newbieId: Scalars['ID']
+  newbieId: Scalars['ID'];
 };
 
 
 export type QueryBuddyArgs = {
-  buddyId: Scalars['ID']
+  buddyId: Scalars['ID'];
+};
+
+
+export type QueryTalentArgs = {
+  talentId: Scalars['ID'];
 };
 
 
 export type QueryTaskArgs = {
-  taskId: Scalars['ID']
+  taskId: Scalars['ID'];
 };
 
 
 export type QueryNewbiesArgs = {
-  filter?: Maybe<Scalars['String']>,
-  first?: Maybe<Scalars['Int']>
+  filter?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
 };
 
 
 export type QueryNewbieTasksArgs = {
-  title?: Maybe<Scalars['String']>,
-  status?: Maybe<TaskStatus>,
-  first?: Maybe<Scalars['Int']>
+  title?: Maybe<Scalars['String']>;
+  status?: Maybe<TaskStatus>;
+  first?: Maybe<Scalars['Int']>;
 };
 
 
 export type QueryBuddyTasksArgs = {
-  title?: Maybe<Scalars['String']>,
-  status?: Maybe<TaskStatus>,
-  first?: Maybe<Scalars['Int']>
+  title?: Maybe<Scalars['String']>;
+  status?: Maybe<TaskStatus>;
+  first?: Maybe<Scalars['Int']>;
+};
+
+export type Talent = User & {
+   __typename?: 'Talent';
+  id: Scalars['ID'];
+  email: Scalars['EmailAddress'];
+  name: Scalars['String'];
+  role: UserRole;
+  position?: Maybe<Scalars['String']>;
+  photo?: Maybe<Scalars['URL']>;
+  phoneNumber?: Maybe<Scalars['PhoneNumber']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  notes?: Maybe<Scalars['String']>;
+  allowPushedNotifications?: Maybe<Scalars['Boolean']>;
+  buddiesCount: Scalars['Int'];
+  buddies: Array<Maybe<Buddy>>;
 };
 
 export type Task = {
-  id: Scalars['ID'],
-  title: Scalars['String'],
-  description: Scalars['String'],
-  createdAt: Scalars['DateTime'],
-  implementationDate?: Maybe<Scalars['DateTime']>,
-  status: TaskStatus,
-  newbie: Newbie,
+  id: Scalars['ID'];
+  title: Scalars['String'];
+  description: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  implementationDate?: Maybe<Scalars['DateTime']>;
+  status: TaskStatus;
+  newbie: Newbie;
 };
 
 export type TaskInput = {
-  title?: Maybe<Scalars['String']>,
-  description?: Maybe<Scalars['String']>,
-  status?: Maybe<TaskStatus>,
-  implementationDate?: Maybe<Scalars['DateTime']>,
-  notes?: Maybe<Scalars['String']>,
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  status?: Maybe<TaskStatus>;
+  implementationDate?: Maybe<Scalars['DateTime']>;
+  notes?: Maybe<Scalars['String']>;
 };
 
 export enum TaskStatus {
@@ -240,42 +276,38 @@ export enum TaskTemplates {
 
 
 export type User = {
-  id: Scalars['ID'],
-  email: Scalars['EmailAddress'],
-  name: Scalars['String'],
-  role: UserRole,
-  position?: Maybe<Scalars['String']>,
-  photo?: Maybe<Scalars['URL']>,
-  phoneNumber?: Maybe<Scalars['PhoneNumber']>,
-  startDate?: Maybe<Scalars['DateTime']>,
-  allowPushedNotifications: Scalars['Boolean'],
+  id: Scalars['ID'];
+  email: Scalars['EmailAddress'];
+  name: Scalars['String'];
+  role: UserRole;
+  position?: Maybe<Scalars['String']>;
+  photo?: Maybe<Scalars['URL']>;
+  phoneNumber?: Maybe<Scalars['PhoneNumber']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  notes?: Maybe<Scalars['String']>;
+  allowPushedNotifications?: Maybe<Scalars['Boolean']>;
 };
 
 export type UserInput = {
-  email?: Maybe<Scalars['EmailAddress']>,
-  name?: Maybe<Scalars['String']>,
-  password?: Maybe<Scalars['String']>,
-  position?: Maybe<Scalars['String']>,
-  photo?: Maybe<Scalars['URL']>,
-  phoneNumber?: Maybe<Scalars['PhoneNumber']>,
-  startDate?: Maybe<Scalars['DateTime']>,
+  email?: Maybe<Scalars['EmailAddress']>;
+  name?: Maybe<Scalars['String']>;
+  password?: Maybe<Scalars['String']>;
+  position?: Maybe<Scalars['String']>;
+  photo?: Maybe<Scalars['URL']>;
+  phoneNumber?: Maybe<Scalars['PhoneNumber']>;
+  startDate?: Maybe<Scalars['DateTime']>;
+  notes?: Maybe<Scalars['String']>;
 };
 
 export enum UserRole {
   Newbie = 'NEWBIE',
-  Buddy = 'BUDDY'
+  Buddy = 'BUDDY',
+  Talent = 'TALENT'
 }
 
 
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
-
-export type ResolverFn<TResult, TParent, TContext, TArgs> = (
-  parent: TParent,
-  args: TArgs,
-  context: TContext,
-  info: GraphQLResolveInfo
-) => Promise<TResult> | TResult;
 
 
 export type StitchingResolver<TResult, TParent, TContext, TArgs> = {
@@ -286,6 +318,13 @@ export type StitchingResolver<TResult, TParent, TContext, TArgs> = {
 export type Resolver<TResult, TParent = {}, TContext = {}, TArgs = {}> =
   | ResolverFn<TResult, TParent, TContext, TArgs>
   | StitchingResolver<TResult, TParent, TContext, TArgs>;
+
+export type ResolverFn<TResult, TParent, TContext, TArgs> = (
+  parent: TParent,
+  args: TArgs,
+  context: TContext,
+  info: GraphQLResolveInfo
+) => Promise<TResult> | TResult;
 
 export type SubscriptionSubscribeFn<TResult, TParent, TContext, TArgs> = (
   parent: TParent,
@@ -323,9 +362,9 @@ export type TypeResolveFn<TTypes, TParent = {}, TContext = {}> = (
   parent: TParent,
   context: TContext,
   info: GraphQLResolveInfo
-) => Maybe<TTypes>;
+) => Maybe<TTypes> | Promise<Maybe<TTypes>>;
 
-export type isTypeOfResolverFn<T = {}> = (obj: T, info: GraphQLResolveInfo) => boolean;
+export type isTypeOfResolverFn<T = {}> = (obj: T, info: GraphQLResolveInfo) => boolean | Promise<boolean>;
 
 export type NextResolverFn<T> = () => Promise<T>;
 
@@ -342,7 +381,7 @@ export type ResolversTypes = {
   Query: ResolverTypeWrapper<{}>,
   ID: ResolverTypeWrapper<Scalars['ID']>,
   Newbie: ResolverTypeWrapper<Newbie>,
-  User: ResolverTypeWrapper<User>,
+  User: ResolversTypes['Newbie'] | ResolversTypes['Buddy'] | ResolversTypes['Talent'],
   EmailAddress: ResolverTypeWrapper<Scalars['EmailAddress']>,
   String: ResolverTypeWrapper<Scalars['String']>,
   UserRole: UserRole,
@@ -352,8 +391,9 @@ export type ResolversTypes = {
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>,
   Buddy: ResolverTypeWrapper<Buddy>,
   Int: ResolverTypeWrapper<Scalars['Int']>,
+  Talent: ResolverTypeWrapper<Talent>,
   NewbieTask: ResolverTypeWrapper<NewbieTask>,
-  Task: ResolverTypeWrapper<Task>,
+  Task: ResolversTypes['NewbieTask'] | ResolversTypes['BuddyTask'],
   TaskStatus: TaskStatus,
   BuddyTask: ResolverTypeWrapper<BuddyTask>,
   Mutation: ResolverTypeWrapper<{}>,
@@ -368,7 +408,7 @@ export type ResolversParentTypes = {
   Query: {},
   ID: Scalars['ID'],
   Newbie: Newbie,
-  User: User,
+  User: ResolversParentTypes['Newbie'] | ResolversParentTypes['Buddy'] | ResolversParentTypes['Talent'],
   EmailAddress: Scalars['EmailAddress'],
   String: Scalars['String'],
   UserRole: UserRole,
@@ -378,8 +418,9 @@ export type ResolversParentTypes = {
   Boolean: Scalars['Boolean'],
   Buddy: Buddy,
   Int: Scalars['Int'],
+  Talent: Talent,
   NewbieTask: NewbieTask,
-  Task: Task,
+  Task: ResolversParentTypes['NewbieTask'] | ResolversParentTypes['BuddyTask'],
   TaskStatus: TaskStatus,
   BuddyTask: BuddyTask,
   Mutation: {},
@@ -405,9 +446,11 @@ export type BuddyResolvers<ContextType = any, ParentType extends ResolversParent
   photo?: Resolver<Maybe<ResolversTypes['URL']>, ParentType, ContextType>,
   phoneNumber?: Resolver<Maybe<ResolversTypes['PhoneNumber']>, ParentType, ContextType>,
   startDate?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>,
-  allowPushedNotifications?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>,
+  notes?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
+  allowPushedNotifications?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
   newbiesCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
   newbies?: Resolver<Array<Maybe<ResolversTypes['Newbie']>>, ParentType, ContextType>,
+  talents?: Resolver<Array<Maybe<ResolversTypes['Talent']>>, ParentType, ContextType>,
   __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
@@ -431,10 +474,12 @@ export interface EmailAddressScalarConfig extends GraphQLScalarTypeConfig<Resolv
 }
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
-  addBuddy?: Resolver<ResolversTypes['Buddy'], ParentType, ContextType, RequireFields<MutationAddBuddyArgs, 'input'>>,
   addNewbie?: Resolver<ResolversTypes['Newbie'], ParentType, ContextType, RequireFields<MutationAddNewbieArgs, 'buddyId' | 'input'>>,
+  addBuddy?: Resolver<ResolversTypes['Buddy'], ParentType, ContextType, RequireFields<MutationAddBuddyArgs, 'input'>>,
+  addTalent?: Resolver<ResolversTypes['Talent'], ParentType, ContextType, RequireFields<MutationAddTalentArgs, 'input'>>,
   deleteNewbie?: Resolver<ResolversTypes['Buddy'], ParentType, ContextType, RequireFields<MutationDeleteNewbieArgs, 'newbieId'>>,
   deleteBuddy?: Resolver<ResolversTypes['Buddy'], ParentType, ContextType, RequireFields<MutationDeleteBuddyArgs, 'buddyId'>>,
+  deleteTalent?: Resolver<ResolversTypes['Talent'], ParentType, ContextType, RequireFields<MutationDeleteTalentArgs, 'talentId'>>,
   updateUser?: Resolver<ResolversTypes['User'], ParentType, ContextType, RequireFields<MutationUpdateUserArgs, 'userId' | 'input'>>,
   login?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationLoginArgs, 'email' | 'password'>>,
   sendResetPasswordLink?: Resolver<ResolversTypes['AuthPayload'], ParentType, ContextType, RequireFields<MutationSendResetPasswordLinkArgs, 'email' | 'url'>>,
@@ -454,7 +499,7 @@ export type NewbieResolvers<ContextType = any, ParentType extends ResolversParen
   photo?: Resolver<Maybe<ResolversTypes['URL']>, ParentType, ContextType>,
   phoneNumber?: Resolver<Maybe<ResolversTypes['PhoneNumber']>, ParentType, ContextType>,
   startDate?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>,
-  allowPushedNotifications?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>,
+  allowPushedNotifications?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
   buddy?: Resolver<ResolversTypes['Buddy'], ParentType, ContextType>,
   notes?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
   newbieTasks?: Resolver<Array<Maybe<ResolversTypes['NewbieTask']>>, ParentType, ContextType>,
@@ -481,10 +526,27 @@ export interface PhoneNumberScalarConfig extends GraphQLScalarTypeConfig<Resolve
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   newbie?: Resolver<ResolversTypes['Newbie'], ParentType, ContextType, RequireFields<QueryNewbieArgs, 'newbieId'>>,
   buddy?: Resolver<ResolversTypes['Buddy'], ParentType, ContextType, RequireFields<QueryBuddyArgs, 'buddyId'>>,
+  talent?: Resolver<ResolversTypes['Talent'], ParentType, ContextType, RequireFields<QueryTalentArgs, 'talentId'>>,
   task?: Resolver<ResolversTypes['Task'], ParentType, ContextType, RequireFields<QueryTaskArgs, 'taskId'>>,
-  newbies?: Resolver<Array<Maybe<ResolversTypes['Newbie']>>, ParentType, ContextType, QueryNewbiesArgs>,
-  newbieTasks?: Resolver<Array<Maybe<ResolversTypes['Task']>>, ParentType, ContextType, QueryNewbieTasksArgs>,
-  buddyTasks?: Resolver<Array<Maybe<ResolversTypes['Task']>>, ParentType, ContextType, QueryBuddyTasksArgs>,
+  newbies?: Resolver<Array<Maybe<ResolversTypes['Newbie']>>, ParentType, ContextType, RequireFields<QueryNewbiesArgs, never>>,
+  newbieTasks?: Resolver<Array<Maybe<ResolversTypes['Task']>>, ParentType, ContextType, RequireFields<QueryNewbieTasksArgs, never>>,
+  buddyTasks?: Resolver<Array<Maybe<ResolversTypes['Task']>>, ParentType, ContextType, RequireFields<QueryBuddyTasksArgs, never>>,
+};
+
+export type TalentResolvers<ContextType = any, ParentType extends ResolversParentTypes['Talent'] = ResolversParentTypes['Talent']> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
+  email?: Resolver<ResolversTypes['EmailAddress'], ParentType, ContextType>,
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
+  role?: Resolver<ResolversTypes['UserRole'], ParentType, ContextType>,
+  position?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
+  photo?: Resolver<Maybe<ResolversTypes['URL']>, ParentType, ContextType>,
+  phoneNumber?: Resolver<Maybe<ResolversTypes['PhoneNumber']>, ParentType, ContextType>,
+  startDate?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>,
+  notes?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
+  allowPushedNotifications?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
+  buddiesCount?: Resolver<ResolversTypes['Int'], ParentType, ContextType>,
+  buddies?: Resolver<Array<Maybe<ResolversTypes['Buddy']>>, ParentType, ContextType>,
+  __isTypeOf?: isTypeOfResolverFn<ParentType>,
 };
 
 export type TaskResolvers<ContextType = any, ParentType extends ResolversParentTypes['Task'] = ResolversParentTypes['Task']> = {
@@ -503,7 +565,7 @@ export interface UrlScalarConfig extends GraphQLScalarTypeConfig<ResolversTypes[
 }
 
 export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
-  __resolveType: TypeResolveFn<'Newbie' | 'Buddy', ParentType, ContextType>,
+  __resolveType: TypeResolveFn<'Newbie' | 'Buddy' | 'Talent', ParentType, ContextType>,
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>,
   email?: Resolver<ResolversTypes['EmailAddress'], ParentType, ContextType>,
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>,
@@ -512,7 +574,8 @@ export type UserResolvers<ContextType = any, ParentType extends ResolversParentT
   photo?: Resolver<Maybe<ResolversTypes['URL']>, ParentType, ContextType>,
   phoneNumber?: Resolver<Maybe<ResolversTypes['PhoneNumber']>, ParentType, ContextType>,
   startDate?: Resolver<Maybe<ResolversTypes['DateTime']>, ParentType, ContextType>,
-  allowPushedNotifications?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType>,
+  notes?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>,
+  allowPushedNotifications?: Resolver<Maybe<ResolversTypes['Boolean']>, ParentType, ContextType>,
 };
 
 export type Resolvers<ContextType = any> = {
@@ -526,6 +589,7 @@ export type Resolvers<ContextType = any> = {
   NewbieTask?: NewbieTaskResolvers<ContextType>,
   PhoneNumber?: GraphQLScalarType,
   Query?: QueryResolvers<ContextType>,
+  Talent?: TalentResolvers<ContextType>,
   Task?: TaskResolvers,
   URL?: GraphQLScalarType,
   User?: UserResolvers,

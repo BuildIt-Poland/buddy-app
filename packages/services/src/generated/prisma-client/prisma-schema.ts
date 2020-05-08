@@ -18,6 +18,10 @@ type AggregateNewbieTask {
   count: Int!
 }
 
+type AggregateTalent {
+  count: Int!
+}
+
 type BatchPayload {
   count: Long!
 }
@@ -620,6 +624,12 @@ type Mutation {
   upsertNewbieTask(where: NewbieTaskWhereUniqueInput!, create: NewbieTaskCreateInput!, update: NewbieTaskUpdateInput!): NewbieTask!
   deleteNewbieTask(where: NewbieTaskWhereUniqueInput!): NewbieTask
   deleteManyNewbieTasks(where: NewbieTaskWhereInput): BatchPayload!
+  createTalent(data: TalentCreateInput!): Talent!
+  updateTalent(data: TalentUpdateInput!, where: TalentWhereUniqueInput!): Talent
+  updateManyTalents(data: TalentUpdateManyMutationInput!, where: TalentWhereInput): BatchPayload!
+  upsertTalent(where: TalentWhereUniqueInput!, create: TalentCreateInput!, update: TalentUpdateInput!): Talent!
+  deleteTalent(where: TalentWhereUniqueInput!): Talent
+  deleteManyTalents(where: TalentWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -1553,6 +1563,9 @@ type Query {
   newbieTask(where: NewbieTaskWhereUniqueInput!): NewbieTask
   newbieTasks(where: NewbieTaskWhereInput, orderBy: NewbieTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [NewbieTask]!
   newbieTasksConnection(where: NewbieTaskWhereInput, orderBy: NewbieTaskOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): NewbieTaskConnection!
+  talent(where: TalentWhereUniqueInput!): Talent
+  talents(where: TalentWhereInput, orderBy: TalentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Talent]!
+  talentsConnection(where: TalentWhereInput, orderBy: TalentOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TalentConnection!
   node(id: ID!): Node
 }
 
@@ -1561,6 +1574,245 @@ type Subscription {
   buddyTask(where: BuddyTaskSubscriptionWhereInput): BuddyTaskSubscriptionPayload
   newbie(where: NewbieSubscriptionWhereInput): NewbieSubscriptionPayload
   newbieTask(where: NewbieTaskSubscriptionWhereInput): NewbieTaskSubscriptionPayload
+  talent(where: TalentSubscriptionWhereInput): TalentSubscriptionPayload
+}
+
+type Talent {
+  id: ID!
+  name: String!
+  email: String!
+  role: UserRole!
+  password: String!
+  position: String
+  photo: String
+  phoneNumber: String
+  startDate: DateTime
+  allowPushedNotifications: Boolean!
+}
+
+type TalentConnection {
+  pageInfo: PageInfo!
+  edges: [TalentEdge]!
+  aggregate: AggregateTalent!
+}
+
+input TalentCreateInput {
+  id: ID
+  name: String!
+  email: String!
+  role: UserRole
+  password: String!
+  position: String
+  photo: String
+  phoneNumber: String
+  startDate: DateTime
+  allowPushedNotifications: Boolean
+}
+
+type TalentEdge {
+  node: Talent!
+  cursor: String!
+}
+
+enum TalentOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+  role_ASC
+  role_DESC
+  password_ASC
+  password_DESC
+  position_ASC
+  position_DESC
+  photo_ASC
+  photo_DESC
+  phoneNumber_ASC
+  phoneNumber_DESC
+  startDate_ASC
+  startDate_DESC
+  allowPushedNotifications_ASC
+  allowPushedNotifications_DESC
+}
+
+type TalentPreviousValues {
+  id: ID!
+  name: String!
+  email: String!
+  role: UserRole!
+  password: String!
+  position: String
+  photo: String
+  phoneNumber: String
+  startDate: DateTime
+  allowPushedNotifications: Boolean!
+}
+
+type TalentSubscriptionPayload {
+  mutation: MutationType!
+  node: Talent
+  updatedFields: [String!]
+  previousValues: TalentPreviousValues
+}
+
+input TalentSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: TalentWhereInput
+  AND: [TalentSubscriptionWhereInput!]
+  OR: [TalentSubscriptionWhereInput!]
+  NOT: [TalentSubscriptionWhereInput!]
+}
+
+input TalentUpdateInput {
+  name: String
+  email: String
+  role: UserRole
+  password: String
+  position: String
+  photo: String
+  phoneNumber: String
+  startDate: DateTime
+  allowPushedNotifications: Boolean
+}
+
+input TalentUpdateManyMutationInput {
+  name: String
+  email: String
+  role: UserRole
+  password: String
+  position: String
+  photo: String
+  phoneNumber: String
+  startDate: DateTime
+  allowPushedNotifications: Boolean
+}
+
+input TalentWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  role: UserRole
+  role_not: UserRole
+  role_in: [UserRole!]
+  role_not_in: [UserRole!]
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  position: String
+  position_not: String
+  position_in: [String!]
+  position_not_in: [String!]
+  position_lt: String
+  position_lte: String
+  position_gt: String
+  position_gte: String
+  position_contains: String
+  position_not_contains: String
+  position_starts_with: String
+  position_not_starts_with: String
+  position_ends_with: String
+  position_not_ends_with: String
+  photo: String
+  photo_not: String
+  photo_in: [String!]
+  photo_not_in: [String!]
+  photo_lt: String
+  photo_lte: String
+  photo_gt: String
+  photo_gte: String
+  photo_contains: String
+  photo_not_contains: String
+  photo_starts_with: String
+  photo_not_starts_with: String
+  photo_ends_with: String
+  photo_not_ends_with: String
+  phoneNumber: String
+  phoneNumber_not: String
+  phoneNumber_in: [String!]
+  phoneNumber_not_in: [String!]
+  phoneNumber_lt: String
+  phoneNumber_lte: String
+  phoneNumber_gt: String
+  phoneNumber_gte: String
+  phoneNumber_contains: String
+  phoneNumber_not_contains: String
+  phoneNumber_starts_with: String
+  phoneNumber_not_starts_with: String
+  phoneNumber_ends_with: String
+  phoneNumber_not_ends_with: String
+  startDate: DateTime
+  startDate_not: DateTime
+  startDate_in: [DateTime!]
+  startDate_not_in: [DateTime!]
+  startDate_lt: DateTime
+  startDate_lte: DateTime
+  startDate_gt: DateTime
+  startDate_gte: DateTime
+  allowPushedNotifications: Boolean
+  allowPushedNotifications_not: Boolean
+  AND: [TalentWhereInput!]
+  OR: [TalentWhereInput!]
+  NOT: [TalentWhereInput!]
+}
+
+input TalentWhereUniqueInput {
+  id: ID
+  email: String
 }
 
 enum TaskStatus {
@@ -1571,5 +1823,6 @@ enum TaskStatus {
 enum UserRole {
   NEWBIE
   BUDDY
+  TALENT
 }
 `

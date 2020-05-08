@@ -1,24 +1,11 @@
 import React, { useMemo } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import { TaskStatus } from '@buddy-app/schema';
 import TaskListPlaceHolder from 'atoms/TaskListPlaceHolder';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import TasksSubList, { TasksSubListProps } from '../../atoms/TasksSubList';
+import TasksSubList, { TasksSubListProps } from 'atoms/TasksSubList';
+import EmptyState from 'atoms/EmptyState';
 import { TaskTabsContentProps, TransformedTasks } from './types';
 import DICTIONARY from './dictionary';
-
-const useStyles = makeStyles(() => ({
-  emptyContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-  },
-}));
 
 const transformTasks = (tasks: TaskTabsContentProps['tasks']): TransformedTasks => {
   const emptyTransformedTasks = {
@@ -46,7 +33,6 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
   loading,
   tabIndex = 0,
 }) => {
-  const { emptyContainer } = useStyles();
   const { uncompletedTasks, completedTasks } = useMemo(() => transformTasks(tasks), [
     tasks,
   ]);
@@ -62,18 +48,10 @@ const TaskTabsContent: React.FC<TaskTabsContentProps> = ({
   ];
   const isEmptyList = uncompletedTasks.length === 0 && completedTasks.length === 0;
 
-  const EmptyStateTaskList = () => (
-    <Box className={emptyContainer}>
-      <Typography variant={'h2'} component={'h2'}>
-        {DICTIONARY.NO_TASKS_TITLE}
-      </Typography>
-    </Box>
-  );
-
   return (
     <>
       {loading && <TaskListPlaceHolder />}
-      {!loading && isEmptyList && <EmptyStateTaskList />}
+      {!loading && isEmptyList && <EmptyState />}
       {!loading && !isEmptyList && (
         <List>
           {tasksList.map((props, key) => (
