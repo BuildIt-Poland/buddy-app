@@ -5,7 +5,5 @@ exports[`Component - EditTask renders correctly 1`] = `
   backGroundShape={true}
   id="edit-task-page"
   title="Edit Task"
->
-  <FormPlaceHolder />
-</BackPageContainer>
+/>
 `;

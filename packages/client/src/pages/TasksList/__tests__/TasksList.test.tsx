@@ -33,15 +33,17 @@ describe('Component - TasksList', () => {
       const component = create(
         <MockedProvider
           mocks={taskListResponse(variables, newbieTasksListMock)}
-          addTypename={false}>
+          addTypename={false}
+          resolvers={{}}>
           <MemoryRouter initialEntries={[path]}>
-            <Route path={'/buddy/newbies/:newbieId/tasks'}>
-              <SnackbarProvider>
-                <AuthProvider value={mockedBuddyContext()}>
-                  <TasksList />
-                </AuthProvider>
-              </SnackbarProvider>
-            </Route>
+            <SnackbarProvider>
+              <AuthProvider value={mockedBuddyContext()}>
+                <Route
+                  path={'/buddy/newbies/:newbieId/tasks'}
+                  component={TasksList}
+                />
+              </AuthProvider>
+            </SnackbarProvider>
           </MemoryRouter>
         </MockedProvider>
       );
@@ -63,6 +65,8 @@ describe('Component - TasksList', () => {
 
     const newbieMockData = {
       id: '11111',
+      name: '',
+      email: '',
       buddyTasks: [],
       newbieTasks: [],
     };

@@ -40,6 +40,8 @@ export const uncompletedTask = {
 
 export const newbieTasksListMock = {
   id: '33',
+  name: '',
+  email: '',
   buddyTasks: [uncompletedTask, completedTask],
   newbieTasks: [completedTask, completedTask],
 } as Newbie;

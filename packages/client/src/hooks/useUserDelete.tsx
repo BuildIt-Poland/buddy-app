@@ -8,7 +8,7 @@ import {
 } from 'graphql/delete-user.graphql';
 import { NEWBIE_SELECT } from 'graphql/newbie-select.graphql';
 import { BUDDY_SELECT } from 'graphql/buddy-select.graphql';
-
+/* istanbul ignore file */
 type UserDeleteHook = [(userId: string) => void, MutationResult];
 
 const mutationQueries = {

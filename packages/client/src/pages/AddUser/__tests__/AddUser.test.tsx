@@ -16,7 +16,7 @@ describe('Component - AddUser', () => {
 
   const triggerAddUser = (mocks: any) => {
     const addUserRoute = render(
-      <MockedProvider mocks={[mocks]} addTypename={false}>
+      <MockedProvider mocks={[mocks]} addTypename={false} resolvers={{}}>
         <MemoryRouter initialEntries={[path]}>
           <SnackbarProvider>
             <AuthProvider value={mockedBuddyContext()}>

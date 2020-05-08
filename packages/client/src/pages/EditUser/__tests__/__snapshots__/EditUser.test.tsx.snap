@@ -5,7 +5,5 @@ exports[`Component - EditUser renders correctly 1`] = `
   backGroundShape={true}
   id="add-user-page"
   title="Update Contact Details"
->
-  <FormPlaceHolder />
-</BackPageContainer>
+/>
 `;

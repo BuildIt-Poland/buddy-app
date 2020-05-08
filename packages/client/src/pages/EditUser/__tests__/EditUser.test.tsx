@@ -1,5 +1,6 @@
 import React from 'react';
-import { create } from 'react-test-renderer';
+import { create, act } from 'react-test-renderer';
+import waitForExpect from 'wait-for-expect';
 import { MockedProvider } from '@apollo/react-testing';
 import { MemoryRouter, Route } from 'react-router';
 import { mockedBuddyContext } from '__mocks__';
@@ -12,10 +13,11 @@ jest.mock('atoms/FormPlaceHolder', () => 'FormPlaceHolder');
 jest.mock('atoms/BackPageContainer', () => 'BackPageContainer');
 
 describe('Component - EditUser', () => {
-  test('renders correctly', () => {
-    const path = '/buddy/edit-details';
+  const path = '/buddy/edit-details';
+
+  it('renders correctly', async () => {
     const component = create(
-      <MockedProvider addTypename={false}>
+      <MockedProvider addTypename={false} resolvers={{}}>
         <MemoryRouter initialEntries={[path]}>
           <SnackbarProvider>
             <AuthProvider value={mockedBuddyContext()}>
@@ -26,6 +28,10 @@ describe('Component - EditUser', () => {
       </MockedProvider>
     );
 
-    expect(component.toJSON()).toMatchSnapshot();
+    await act(async () => {
+      await waitForExpect(() => {
+        expect(component.toJSON()).toMatchSnapshot();
+      });
+    });
   });
 });

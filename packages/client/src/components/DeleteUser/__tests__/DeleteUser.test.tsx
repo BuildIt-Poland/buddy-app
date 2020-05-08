@@ -16,7 +16,7 @@ describe('Component - DeleteUser', () => {
     const path = '/buddy/newbies';
 
     const component = create(
-      <MockedProvider>
+      <MockedProvider addTypename={false} resolvers={{}}>
         <MemoryRouter initialEntries={[path]}>
           <Route path={'/buddy/newbies/:newbieId/tasks'}>
             <DialogProvider>

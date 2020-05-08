@@ -20,7 +20,7 @@ describe('Component - TaskOptions', () => {
   const path = '/buddy/newbies/1/tasks';
 
   const component = create(
-    <MockedProvider>
+    <MockedProvider addTypename={false} resolvers={{}}>
       <MemoryRouter initialEntries={[path]}>
         <Route path={'/buddy/newbies/:newbieId/tasks'}>
           <DialogProvider>

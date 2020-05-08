@@ -12,7 +12,7 @@ import BackPageContainer from 'atoms/BackPageContainer';
 import { goBack } from 'utils';
 import { EditTaskProps } from './types';
 import DICTIONARY from './dictionary';
-
+/* istanbul ignore file */
 const EditTask: React.FC<EditTaskProps> = ({ history }) => {
   const { taskId } = useParams<QueryTaskArgs>();
   const { showSnackbar } = useSnackBar();

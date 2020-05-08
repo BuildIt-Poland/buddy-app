@@ -21,7 +21,7 @@ import {
 } from 'pages/ContactDetails';
 import DICTIONARY from './dictionary';
 import { EditUserProps } from './types';
-
+/* istanbul ignore file */
 const EditUser: React.FC<EditUserProps> = ({ history }) => {
   const {
     data: { role, userId },

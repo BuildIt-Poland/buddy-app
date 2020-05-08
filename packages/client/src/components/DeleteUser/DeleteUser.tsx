@@ -9,7 +9,7 @@ import { useSnackBar } from 'contexts/SnackbarContext';
 import useUserDelete from 'hooks/useUserDelete';
 import { DeleteUserProps } from './types';
 import DICTIONARY from './dictionary';
-
+/* istanbul ignore file */
 const DeleteUser: React.FC<DeleteUserProps> = ({ userId, userRole }) => {
   const { buddyId } = useParams<QueryBuddyArgs>();
   const { data } = useAuth();

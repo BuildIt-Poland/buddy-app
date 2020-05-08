@@ -3,7 +3,6 @@
 exports[`Component - BuddySelect renders correctly 1`] = `
 Array [
   <header
-    navItems={<SearchBar />}
     type="menu"
   />,
   <PageContainer
@@ -39,7 +38,6 @@ Array [
 exports[`Component - BuddySelect renders correctly 2`] = `
 Array [
   <header
-    navItems={<SearchBar />}
     type="menu"
   />,
   <PageContainer

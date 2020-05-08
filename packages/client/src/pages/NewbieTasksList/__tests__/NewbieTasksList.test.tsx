@@ -60,6 +60,8 @@ describe('Component - TasksList', () => {
 
     const newbieMockData = {
       id: '1',
+      name: '',
+      email: '',
       newbieTasks: [],
       buddyTasks: [],
     };
