@@ -3,11 +3,12 @@
 exports[`Component - BuddySelect renders correctly 1`] = `
 Array [
   <header
+    navItems={<SearchBar />}
     type="menu"
   />,
   <PageContainer
     backGroundShape={true}
-    data-testid="newbie-select-page"
+    data-testid="buddy-select-page"
   >
     <Box
       className="makeStyles-title-1"
@@ -28,9 +29,8 @@ Array [
       </Typography>
     </Box>
     <NiewbieGridPlaceHolder />
-    <PlusButton
-      aria-label="Add newbie"
-      disabled={true}
+    <AddUserOptions
+      title="Add New User"
     />
   </PageContainer>,
 ]
@@ -39,11 +39,12 @@ Array [
 exports[`Component - BuddySelect renders correctly 2`] = `
 Array [
   <header
+    navItems={<SearchBar />}
     type="menu"
   />,
   <PageContainer
     backGroundShape={true}
-    data-testid="newbie-select-page"
+    data-testid="buddy-select-page"
   >
     <Box
       className="makeStyles-title-1"
@@ -63,9 +64,8 @@ Array [
         Choose your buddy or create a new one
       </Typography>
     </Box>
-    <PlusButton
-      aria-label="Add newbie"
-      disabled={true}
+    <AddUserOptions
+      title="Add New User"
     />
   </PageContainer>,
 ]

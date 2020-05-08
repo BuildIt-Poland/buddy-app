@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - PlusButton renders correctly 1`] = `
+exports[`Component - EditButton renders correctly 1`] = `
 <Fab
-  aria-label="add"
+  aria-label="edit"
   className="makeStyles-button-1"
   color="primary"
   size="medium"
 >
-  <AddIcon />
+  <EditIcon />
 </Fab>
 `;

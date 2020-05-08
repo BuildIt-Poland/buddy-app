@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Component - TaskForm renders correctly 1`] = `
+<form
+  className="makeStyles-form-1"
+  data-testid="form"
+  noValidate={true}
+  onSubmit={[Function]}
+>
+  <Box
+    className="makeStyles-inputWrapper-2"
+  >
+    <TextField
+      autoFocus={true}
+      error={false}
+      fullWidth={true}
+      inputProps={
+        Object {
+          "data-testid": "title",
+        }
+      }
+      inputRef={[Function]}
+      label="Title"
+      margin="normal"
+      name="title"
+    />
+    <TextField
+      autoComplete="current-password"
+      error={false}
+      fullWidth={true}
+      helperText="HTML syntax is accepted"
+      inputProps={
+        Object {
+          "data-testid": "description",
+        }
+      }
+      inputRef={[Function]}
+      label="Description"
+      margin="normal"
+      multiline={true}
+      name="description"
+    />
+  </Box>
+  <RoundedButton
+    className="makeStyles-addButton-3"
+    color="primary"
+    data-testid="add-task-button"
+    disabled={true}
+    fullWidth={true}
+    type="submit"
+    variant="contained"
+  >
+    <CircularProgress
+      data-testid="add-task-progress"
+      size={32}
+      variant="indeterminate"
+    />
+  </RoundedButton>
+</form>
+`;

@@ -9,8 +9,10 @@ import { AuthProvider } from 'contexts/AuthContext';
 import { SnackbarProvider } from 'contexts/SnackbarContext';
 import TaskDetails from '../TaskDetails';
 
+jest.mock('@material-ui/core/Box', () => 'Box');
+jest.mock('@material-ui/core/Chip', () => 'Chip');
+jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('atoms/BackPageContainer', () => 'BackPageContainer');
-jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
 jest.mock('atoms/TaskCheckbox', () => 'TaskCheckbox');
 jest.mock('atoms/ReminderButton', () => 'ReminderButton');
 jest.mock('atoms/EditButton', () => 'EditButton');

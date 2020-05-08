@@ -4,7 +4,7 @@ import { NEWBIE_SELECT } from 'graphql/newbie-select.graphql';
 import { BUDDY_SELECT } from 'graphql/buddy-select.graphql';
 import { TASK_DETAILS } from 'graphql/task-details.graphql';
 import { ADD_NEWBIE_TASK } from 'graphql/add-task.graphql';
-import { UPDATE_TASK } from 'graphql/update-task.graphql';
+import { ADD_NEWBIE } from 'graphql/add-user.graphql';
 import { GraphQLError } from 'graphql';
 
 import {
@@ -354,52 +354,41 @@ export const addTaskFailedMock = (
   },
 });
 
-export const editTaskSuccessMock = (
-  variables?: Partial<MutationAddNewbieTaskArgs>,
-  data?: Partial<AuthPayload>
-) => ({
+export const addNewbieSuccessMock = () => ({
   request: {
-    query: UPDATE_TASK,
+    query: ADD_NEWBIE,
     variables: {
-      taskId: '1234',
+      buddyId: '1234',
       input: {
-        title: 'Test task',
-        description: '<h1>Hello world!</h1>',
+        email: 'test_newbie@email.com',
+        name: 'test newbie',
       },
-      ...variables,
     },
   },
   result: {
     data: {
-      updateTask: {
+      addNewbie: {
         id: 'ck3sw1h1mqkd90964u4675qo2',
-        title: 'Test task',
-        description: '<h1>Hello world!</h1>',
-        newbie: {
-          id: '1',
-          newbieTasks: [],
-        },
-        ...data,
+        email: 'test_newbie@email.com',
+        name: 'test newbie',
+        role: UserRole.Newbie,
       },
     },
   },
 });
 
-export const editTaskFailedMock = (
-  variables?: Partial<MutationAddNewbieTaskArgs>
-) => ({
+export const addNewbieFailedMock = () => ({
   request: {
-    query: UPDATE_TASK,
+    query: ADD_NEWBIE,
     variables: {
-      taskId: '12',
+      buddyId: '1234',
       input: {
-        title: 'Test task',
-        description: '<h1>Hello world!</h1>',
+        email: 'test_newbie@email.com',
+        name: 'test newbie',
       },
-      ...variables,
     },
   },
   result: {
-    errors: [new GraphQLError('No such task')],
+    errors: [new GraphQLError('No such user')],
   },
 });

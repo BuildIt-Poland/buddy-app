@@ -1,5 +1,6 @@
 import schema, { UserRole } from '@buddy-app/schema';
 import { ROUTES } from '../../src/shared/routes';
+import commonMocks from '../fixtures/graphql-mocks';
 
 describe('Router Tests', () => {
   beforeEach(() => {
@@ -38,7 +39,7 @@ describe('Router Tests', () => {
       });
 
       it(`should redirect from any not existing route to ${ROUTES.TALENT_SELECT_BUDDY}`, () => {
-        cy.visit(ROUTES.NEWBIE_TASK_DETAILS);
+        cy.visit(ROUTES.NEWBIE_DETAILS);
         cy.url().should('includes', ROUTES.ROUTE_404);
         cy.visit('no/such/route');
         cy.url().should('includes', ROUTES.ROUTE_404);
@@ -60,7 +61,7 @@ describe('Router Tests', () => {
       });
 
       it(`should redirect from any not existing route to ${ROUTES.BUDDY_SELECT_NEWBIE}`, () => {
-        cy.visit(ROUTES.NEWBIE_TASK_DETAILS);
+        cy.visit(ROUTES.NEWBIE_DETAILS);
         cy.url().should('includes', ROUTES.ROUTE_404);
         cy.visit('no/such/route');
         cy.url().should('includes', ROUTES.ROUTE_404);
@@ -78,11 +79,17 @@ describe('Router Tests', () => {
       });
 
       it(`should redirect after login to ${ROUTES.NEWBIE_TASKS_LIST}`, () => {
-        cy.url().should('includes', ROUTES.NEWBIE_TASKS_LIST);
+        cy.url().should(
+          'includes',
+          ROUTES.NEWBIE_TASKS_LIST.replace(
+            ':newbieId',
+            commonMocks.AuthPayload().userId
+          )
+        );
       });
 
       it(`should redirect from any not existing route to ${ROUTES.NEWBIE_TASKS_LIST}`, () => {
-        cy.visit(ROUTES.BUDDY_TASK_DETAILS);
+        cy.visit(ROUTES.BUDDY_DETAILS);
         cy.url().should('includes', ROUTES.ROUTE_404);
         cy.visit('no/such/route');
         cy.url().should('includes', ROUTES.ROUTE_404);

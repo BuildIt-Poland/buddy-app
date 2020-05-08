@@ -1,47 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - TaskDetailsPlaceHolder renders correctly 1`] = `
+exports[`Component - FormPlaceHolder renders correctly 1`] = `
 Array [
-  <Box
-    className="makeStyles-wrapper-5"
-  >
-    <Box
-      alignItems="center"
-      display="flex"
-      justifyContent="space-between"
-    >
-      <Skeleton
-        className="makeStyles-title-1"
-        variant="text"
-      />
-      <Skeleton
-        className="makeStyles-checkbox-3"
-        variant="circle"
-      />
-    </Box>
-    <Skeleton
-      className="makeStyles-status-4"
-      variant="circle"
-    />
-  </Box>,
   <Skeleton
-    className="makeStyles-description-2"
+    className="makeStyles-description-1"
     variant="text"
   />,
   <Skeleton
-    className="makeStyles-description-2"
+    className="makeStyles-input-2"
     variant="text"
   />,
   <Skeleton
-    className="makeStyles-description-2"
+    className="makeStyles-description-1"
     variant="text"
   />,
   <Skeleton
-    className="makeStyles-description-2"
+    className="makeStyles-input-2"
     variant="text"
   />,
   <Skeleton
-    className="makeStyles-description-2"
+    className="makeStyles-description-1"
+    variant="text"
+  />,
+  <Skeleton
+    className="makeStyles-input-2"
+    variant="text"
+  />,
+  <Skeleton
+    className="makeStyles-submit-3"
     variant="text"
   />,
 ]

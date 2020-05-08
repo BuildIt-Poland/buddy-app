@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import TabPanel from 'atoms/TabPanel';
-import AvatarHeader from 'components/AvatarHeader';
+import { useParams, useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
-import { useSnackBar } from 'contexts/SnackbarContext';
-import { useAuth } from 'contexts/AuthContext';
 import {
   QueryNewbieArgs,
   Query,
@@ -14,14 +9,19 @@ import {
   BuddyTask,
 } from '@buddy-app/schema';
 import { TASK_LIST } from 'graphql/task-list.graphql';
-import { useParams, useLocation } from 'react-router-dom';
-import Box from '@material-ui/core/Box';
-import TaskTabsContent from 'components/TaskTabsContent';
-import { ROUTES } from 'shared/routes';
 import useTaskProgress from 'hooks/useTaskProgress';
 import useTaskStatusUpdate from 'hooks/useTaskStatusUpdate';
+import { useSnackBar } from 'contexts/SnackbarContext';
+import { useAuth } from 'contexts/AuthContext';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Box from '@material-ui/core/Box';
+import AvatarHeader from 'components/AvatarHeader';
+import TaskTabsContent from 'components/TaskTabsContent';
 import Header, { MenuTypes, MenuColors } from 'components/Header';
 import AddTaskOptions from 'components/AddTaskOptions';
+import TabPanel from 'atoms/TabPanel';
+import { ROUTES } from 'shared/routes';
 import { isTemplateTask, isTalent, goBack } from 'utils';
 import { TasksListProps } from './types';
 import DICTIONARY from './dictionary';

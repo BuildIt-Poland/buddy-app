@@ -1,117 +1,101 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Component - ContactDetails when logged in as buddy renders correctly 1`] = `
-Array [
-  "Header",
-  <PageContainer
-    backGroundShape={true}
+<BackPageContainer
+  backGroundShape={true}
+  id="contact-details-page"
+  title="Contact Details"
+>
+  <ContactDetailsPlaceHolder />
+  <a
+    href="/buddy/newbies/1234/edit-details"
+    onClick={[Function]}
   >
-    <Box>
-      <Typography
-        component="h2"
-        variant="h2"
-      >
-        Contact Details
-      </Typography>
-      <ContactDetailsPlaceHolder />
-    </Box>
-  </PageContainer>,
-]
+    <EditButton
+      aria-label="Edit contact details"
+      disabled={false}
+      title="Update Contact Details"
+    />
+  </a>
+</BackPageContainer>
 `;
 
 exports[`Component - ContactDetails when logged in as buddy renders correctly 2`] = `
-Array [
-  "Header",
-  <PageContainer
-    backGroundShape={true}
+<BackPageContainer
+  backGroundShape={true}
+  id="contact-details-page"
+  title="Contact Details"
+>
+  <UserDetails
+    details={
+      Object {
+        "email": "tom@wipro.com",
+        "id": "1234",
+        "name": "Tom Hanks",
+        "notes": "Nice guy",
+        "phoneNumber": "1234567",
+        "photo": "some-url",
+        "position": "Dev Ops",
+        "role": "NEWBIE",
+        "startDate": "2010-01-01",
+      }
+    }
+  />
+  <a
+    href="/buddy/newbies/1234/edit-details"
+    onClick={[Function]}
   >
-    <Box>
-      <Typography
-        component="h2"
-        variant="h2"
-      >
-        Contact Details
-      </Typography>
-      <UserDetails
-        details={
-          Object {
-            "email": "tom@wipro.com",
-            "id": "1234",
-            "name": "Tom Hanks",
-            "notes": "Nice guy",
-            "phoneNumber": "1234567",
-            "photo": "some-url",
-            "position": "Dev Ops",
-            "role": "NEWBIE",
-            "startDate": "2010-01-01",
-          }
-        }
-      />
-    </Box>
-  </PageContainer>,
-]
+    <EditButton
+      aria-label="Edit contact details"
+      disabled={false}
+      title="Update Contact Details"
+    />
+  </a>
+</BackPageContainer>
 `;
 
 exports[`Component - ContactDetails when logged in as newbie renders correctly 1`] = `
-Array [
-  "Header",
-  <PageContainer
-    backGroundShape={true}
-  >
-    <Box>
-      <Typography
-        component="h2"
-        variant="h2"
-      >
-        Contact Details
-      </Typography>
-      <UserDetails
-        details={
-          Object {
-            "email": "tom@wipro.com",
-            "id": "1234",
-            "name": "Tom Hanks",
-            "phoneNumber": "1234567",
-            "photo": "some-url",
-            "position": "Dev Ops",
-            "role": "BUDDY",
-            "startDate": "2010-01-01",
-          }
-        }
-      />
-    </Box>
-  </PageContainer>,
-]
+<BackPageContainer
+  backGroundShape={true}
+  id="contact-details-page"
+  title="Contact Details"
+>
+  <UserDetails
+    details={
+      Object {
+        "email": "tom@wipro.com",
+        "id": "1234",
+        "name": "Tom Hanks",
+        "phoneNumber": "1234567",
+        "photo": "some-url",
+        "position": "Dev Ops",
+        "role": "BUDDY",
+        "startDate": "2010-01-01",
+      }
+    }
+  />
+</BackPageContainer>
 `;
 
 exports[`Component - ContactDetails when logged in as newbie renders correctly 2`] = `
-Array [
-  "Header",
-  <PageContainer
-    backGroundShape={true}
-  >
-    <Box>
-      <Typography
-        component="h2"
-        variant="h2"
-      >
-        Contact Details
-      </Typography>
-      <UserDetails
-        details={
-          Object {
-            "email": "tom@wipro.com",
-            "id": "1234",
-            "name": "Tom Hanks",
-            "phoneNumber": "1234567",
-            "photo": "some-url",
-            "position": "Dev Ops",
-            "role": "BUDDY",
-            "startDate": "2010-01-01",
-          }
-        }
-      />
-    </Box>
-  </PageContainer>,
-]
+<BackPageContainer
+  backGroundShape={true}
+  id="contact-details-page"
+  title="Contact Details"
+>
+  <UserDetails
+    details={
+      Object {
+        "email": "tom@wipro.com",
+        "id": "1234",
+        "name": "Tom Hanks",
+        "phoneNumber": "1234567",
+        "photo": "some-url",
+        "position": "Dev Ops",
+        "role": "BUDDY",
+        "startDate": "2010-01-01",
+      }
+    }
+  />
+</BackPageContainer>
 `;

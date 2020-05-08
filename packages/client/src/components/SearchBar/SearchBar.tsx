@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSearch } from 'contexts/SearchContext';
-import InputBase from '@material-ui/core/InputBase';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import IconButton from '@material-ui/core/IconButton';
 import HighlightOffOutlined from '@material-ui/icons/HighlightOffOutlined';

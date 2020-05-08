@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - EditUser renders correctly 1`] = `
+exports[`Component - EditTask renders correctly 1`] = `
 <BackPageContainer
   backGroundShape={true}
-  id="add-user-page"
-  title="Update Contact Details"
+  id="edit-task-page"
+  title="Edit Task"
 >
   <FormPlaceHolder />
 </BackPageContainer>

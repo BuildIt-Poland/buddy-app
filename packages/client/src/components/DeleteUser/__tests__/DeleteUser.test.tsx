@@ -1,28 +1,35 @@
 import React from 'react';
 import { create } from 'react-test-renderer';
-import ThemeProvider from '@material-ui/styles/ThemeProvider';
-import { MemoryRouter } from 'react-router';
-import { newbieSelectMock } from '__mocks__';
-import theme from 'styles/theme';
+import { MemoryRouter, Route } from 'react-router';
+import { MockedProvider } from '@apollo/react-testing';
+import { AuthProvider } from 'contexts/AuthContext';
+import { SnackbarProvider } from 'contexts/SnackbarContext';
+import { DialogProvider } from 'contexts/DialogContext';
+import { UserRole, mockedBuddyContext } from '__mocks__';
 import DeleteUser from '../DeleteUser';
 
-jest.mock('@material-ui/core/Grid', () => 'Grid');
-jest.mock('@material-ui/core/Card', () => 'Card');
-jest.mock('@material-ui/core/CardContent', () => 'CardContent');
-jest.mock('@material-ui/core/Typography', () => 'Typography');
-jest.mock('atoms/Avatar', () => 'Avatar');
+jest.mock('@material-ui/icons/RemoveCircleOutline', () => 'RemoveCircleOutline');
+jest.mock('@material-ui/core/IconButton', () => 'IconButton');
 
 describe('Component - DeleteUser', () => {
-  describe('renders correctly', () => {
-    test('Should render correctly DeleteUser', () => {
-      const component = create(
-        <MemoryRouter>
-          <ThemeProvider theme={theme}>
-            <DeleteUser users={newbieSelectMock[0].result.data.buddy.newbies} />
-          </ThemeProvider>
+  test('renders correctly', () => {
+    const path = '/buddy/newbies';
+
+    const component = create(
+      <MockedProvider>
+        <MemoryRouter initialEntries={[path]}>
+          <Route path={'/buddy/newbies/:newbieId/tasks'}>
+            <DialogProvider>
+              <SnackbarProvider>
+                <AuthProvider value={mockedBuddyContext()}>
+                  <DeleteUser userId='1' userRole={UserRole.Newbie} />
+                </AuthProvider>
+              </SnackbarProvider>
+            </DialogProvider>
+          </Route>
         </MemoryRouter>
-      );
-      expect(component.toJSON()).toMatchSnapshot();
-    });
+      </MockedProvider>
+    );
+    expect(component.toJSON()).toMatchSnapshot();
   });
 });

@@ -12,14 +12,13 @@ import {
 import { SnackbarProvider } from 'contexts/SnackbarContext';
 import TasksList from '../TasksList';
 
-jest.mock('@material-ui/core/AppBar', () => 'AppBar');
+jest.mock('@material-ui/core/Box', () => 'Box');
 jest.mock('@material-ui/core/Tabs', () => 'Tabs');
 jest.mock('@material-ui/core/Tab', () => 'Tab');
-jest.mock('atoms/TabPanel', () => 'TabPanel');
 jest.mock('components/AvatarHeader', () => 'AvatarHeader');
-jest.mock('atoms/TaskListPlaceHolder', () => 'TaskListPlaceHolder');
 jest.mock('components/TaskTabsContent', () => 'TaskTabsContent');
 jest.mock('components/AddTaskOptions', () => 'AddTaskOptions');
+jest.mock('atoms/TabPanel', () => 'TabPanel');
 jest.doMock('components/Header');
 
 describe('Component - TasksList', () => {

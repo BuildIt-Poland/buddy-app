@@ -1,5 +1,5 @@
-import React from 'atoms/R2d2/__tests__/node_modules/react';
-import { create } from 'atoms/R2d2/__tests__/node_modules/react-test-renderer';
+import React from 'react';
+import { create } from 'react-test-renderer';
 
 import R2d2 from '../R2d2';
 

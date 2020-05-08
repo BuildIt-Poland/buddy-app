@@ -10,9 +10,10 @@ jest.doMock('components/Header');
 
 describe('Component - BackPageContainer', () => {
   it('renders correctly', async () => {
+    const path = '/buddy/newbies/1234/details';
     const component = create(
-      <MemoryRouter initialEntries={[]}>
-        <Route path={''}>
+      <MemoryRouter initialEntries={[path]}>
+        <Route path={'/buddy/newbies/:newbieId/details'}>
           <BackPageContainer>hello world</BackPageContainer>
         </Route>
       </MemoryRouter>

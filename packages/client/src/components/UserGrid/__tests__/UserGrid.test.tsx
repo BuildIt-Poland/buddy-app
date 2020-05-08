@@ -8,6 +8,7 @@ import UserGrid from '../UserGrid';
 
 jest.mock('@material-ui/core/Grid', () => 'Grid');
 jest.mock('@material-ui/core/Card', () => 'Card');
+jest.mock('@material-ui/core/CardActions', () => 'CardActions');
 jest.mock('@material-ui/core/CardContent', () => 'CardContent');
 jest.mock('@material-ui/core/Typography', () => 'Typography');
 jest.mock('components/DeleteUser', () => 'DeleteUser');

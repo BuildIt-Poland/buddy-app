@@ -2,27 +2,34 @@
 
 exports[`Component - UserGrid renders correctly Should render correctly UserGrid 1`] = `
 <Grid
-  className="makeStyles-grid-4"
+  className="makeStyles-grid-5"
   component="ul"
   container={true}
   justify="center"
   wrap="wrap"
 >
   <Grid
-    className="makeStyles-gridItem-3"
+    className="makeStyles-gridItem-4"
     component="li"
     item={true}
   >
     <a
-      className="makeStyles-link-5"
+      className="makeStyles-link-6"
       href="/talent/buddies/ck17svulh9k2k0b17j31ansfk/newbies"
       onClick={[Function]}
     >
       <Card
         className="makeStyles-card-1"
       >
+        <CardActions
+          className="makeStyles-cardActions-2"
+        >
+          <DeleteUser
+            userId="ck17svulh9k2k0b17j31ansfk"
+          />
+        </CardActions>
         <CardContent
-          className="makeStyles-cardInfo-2"
+          className="makeStyles-cardInfo-3"
         >
           <Avatar
             imgSrc={null}
@@ -34,20 +41,27 @@ exports[`Component - UserGrid renders correctly Should render correctly UserGrid
     </a>
   </Grid>
   <Grid
-    className="makeStyles-gridItem-3"
+    className="makeStyles-gridItem-4"
     component="li"
     item={true}
   >
     <a
-      className="makeStyles-link-5"
+      className="makeStyles-link-6"
       href="/talent/buddies/ck17swp2m9kcv0b17we0ibrdn/newbies"
       onClick={[Function]}
     >
       <Card
         className="makeStyles-card-1"
       >
+        <CardActions
+          className="makeStyles-cardActions-2"
+        >
+          <DeleteUser
+            userId="ck17swp2m9kcv0b17we0ibrdn"
+          />
+        </CardActions>
         <CardContent
-          className="makeStyles-cardInfo-2"
+          className="makeStyles-cardInfo-3"
         >
           <Avatar
             imgSrc={null}

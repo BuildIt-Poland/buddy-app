@@ -37,6 +37,7 @@ const commonMocks = {
     status: TaskStatus.Uncompleted,
   }),
   AuthPayload: () => ({
+    userId: '1',
     token: 'token-secret',
     role: UserRole.Buddy,
   }),

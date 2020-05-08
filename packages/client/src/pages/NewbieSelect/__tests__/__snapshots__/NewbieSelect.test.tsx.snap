@@ -28,10 +28,15 @@ Array [
       </Typography>
     </Box>
     <NiewbieGridPlaceHolder />
-    <PlusButton
-      aria-label="Add newbie"
-      disabled={true}
-    />
+    <a
+      href="/buddy/add-newbie"
+      onClick={[Function]}
+    >
+      <PlusButton
+        aria-label="Add newbie"
+        title="Add New Joiner"
+      />
+    </a>
   </PageContainer>,
 ]
 `;
@@ -63,10 +68,15 @@ Array [
         Don’t forget to complete all tasks
       </Typography>
     </Box>
-    <PlusButton
-      aria-label="Add newbie"
-      disabled={true}
-    />
+    <a
+      href="/buddy/add-newbie"
+      onClick={[Function]}
+    >
+      <PlusButton
+        aria-label="Add newbie"
+        title="Add New Joiner"
+      />
+    </a>
   </PageContainer>,
 ]
 `;

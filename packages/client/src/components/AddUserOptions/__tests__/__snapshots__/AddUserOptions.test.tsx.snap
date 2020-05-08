@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Component - AddTaskOptions renders correctly 1`] = `
+exports[`Component - AddUserOptions renders correctly 1`] = `
 <DropDown
-  id="add-tasks-options"
+  id="add-user-options"
   marginThreshold={50}
   renderAnchor={[Function]}
   renderOptions={[Function]}

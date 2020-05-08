@@ -2,7 +2,7 @@ import React from 'react';
 import { create } from 'react-test-renderer';
 import UserForm from '../UserForm';
 
-jest.mock('@material-ui/icons/CircularProgress', () => 'CircularProgress');
+jest.mock('@material-ui/core/CircularProgress', () => 'CircularProgress');
 jest.mock('@material-ui/core/TextField', () => 'TextField');
 jest.mock('atoms/RoundedButton', () => 'RoundedButton');
 

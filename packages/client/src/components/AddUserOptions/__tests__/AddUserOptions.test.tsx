@@ -9,8 +9,9 @@ jest.mock('atoms/PlusButton', () => 'PlusButton');
 jest.mock('components/DropDown', () => 'DropDown');
 
 describe('Component - AddUserOptions', () => {
+  const path = '/buddy/newbies/123';
   const component = create(
-    <MemoryRouter initialEntries={[]}>
+    <MemoryRouter initialEntries={[path]}>
       <Route path={'/buddy/newbies/:newbieId'}>
         <AddUserOptions />
       </Route>
