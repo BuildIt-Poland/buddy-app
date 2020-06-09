@@ -24,7 +24,7 @@ const TASK_OPTIONS_DICTIONARY: TaskOptionsDictionary = {
     DELETE: 'Delete',
   },
   COPY_LINK: {
-    MESSAGE: 'Link has been coppied to clipboard',
+    MESSAGE: 'Link coppied',
   },
   DELETE_DIALOG: {
     TITLE: 'Delete Task',

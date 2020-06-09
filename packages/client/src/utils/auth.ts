@@ -4,10 +4,12 @@ import { AuthPayload } from '@buddy-app/schema';
 enum AUTH {
   USER = 'auth/user',
   FORGOT_PASSWORD = 'auth/forgot-password-user',
+  QUERY_INFO = 'auth/query_info',
 }
 
 const userKey: string = process.env.REACT_APP_AUTH || AUTH.USER;
 const forgotPasswordKey: string = AUTH.FORGOT_PASSWORD;
+const queryInfoKey: string = AUTH.QUERY_INFO;
 
 class Auth {
   _getData = (key: string): AuthPayload | null => {
@@ -59,6 +61,18 @@ class Auth {
 
   removeForgotPasswordUser() {
     return Cookies.remove(forgotPasswordKey);
+  }
+
+  getQueryInfo() {
+    return JSON.parse(window.localStorage.getItem(queryInfoKey) || '{}');
+  }
+
+  setQueryInfo(data: any) {
+    return window.localStorage.setItem(queryInfoKey, JSON.stringify(data));
+  }
+
+  removeQueryInfo() {
+    return window.localStorage.removeItem(queryInfoKey);
   }
 }
 

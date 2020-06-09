@@ -10,6 +10,7 @@ export const isBuddy = (role: UserRole) => role === UserRole.Buddy;
 export const isTalent = (role: UserRole) => role === UserRole.Talent;
 export const isCompleted = (status: TaskStatus) => status === TaskStatus.Completed;
 export const isNewbieTask = (type?: string) => type === 'NewbieTask';
+export const isBuddyTask = (type?: string) => type === 'BuddyTask';
 export const isTemplate = (name: string) => name.includes('_TEMPLATES');
 export const isTemplateTask = (name: string) => name.includes('TPL_');
 export const isTemplateCase = (name: string) =>

@@ -6,6 +6,7 @@ import {
   isTemplate,
   isCompleted,
   isNewbieTask,
+  isBuddyTask,
   isTemplateTask,
   convertDirectionToAnchor,
   changeTaskStatus,
@@ -68,6 +69,16 @@ describe('Utils - helpers', () => {
 
   it('helpers - isNewbieTask should return false', () => {
     const result = isNewbieTask();
+    expect(result).toBe(false);
+  });
+
+  it('helpers - isBuddyTask should return true', () => {
+    const result = isBuddyTask('BuddyTask');
+    expect(result).toBe(true);
+  });
+
+  it('helpers - isBuddyTask should return false', () => {
+    const result = isBuddyTask();
     expect(result).toBe(false);
   });
 

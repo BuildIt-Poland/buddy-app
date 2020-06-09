@@ -133,6 +133,7 @@ const AuthProvider = ({ children, ...props }: AuthProviderProps) => {
 
   const logout = () => {
     auth.removeUser();
+    auth.removeQueryInfo();
     apolloClient.writeData({
       data: {
         ...setCacheToken(false),
