@@ -1,5 +1,6 @@
 import { MutationHookOptions, useMutation } from '@apollo/react-hooks';
 import { MutationResult } from '@apollo/react-common';
+import localForage from 'localforage';
 import { Mutation, Newbie, Query } from '@buddy-app/schema';
 import { DELETE_TASK } from 'graphql/delete-task.graphql';
 import { TASK_LIST } from 'graphql/task-list.graphql';
@@ -17,9 +18,9 @@ const useTaskDelete = (
     mutationOptions
   );
 
-  const deleteTask = (taskId: string) => {
+  const deleteTask = async (taskId: string) => {
     try {
-      let cache = localStorage.getItem(CACHE_STORAGE_KEY) || '';
+      let cache: string = await localForage.getItem(CACHE_STORAGE_KEY);
       const taskListData: Query | null = client.readQuery({
         query: TASK_LIST,
         variables: { newbieId },
@@ -40,7 +41,7 @@ const useTaskDelete = (
 
         onCacheUpdate(() => {
           if (cache) {
-            localStorage.setItem(CACHE_STORAGE_KEY, cache);
+            localStorage.setItem(CACHE_STORAGE_KEY, cache || '');
             cache = '';
           }
         });

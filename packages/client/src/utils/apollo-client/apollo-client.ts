@@ -1,4 +1,5 @@
 import { ApolloClient, from } from 'apollo-boost';
+import localForage from 'localforage';
 import { auth } from 'utils';
 import { cache, setCacheToken, CACHE_STORAGE_KEY } from './cache';
 import { queueLink, serializingLink, retryLink, trackerLink } from './offline-links';
@@ -8,19 +9,23 @@ import httpLink from './http-link';
 
 window.addEventListener('offline', () => queueLink.close());
 window.addEventListener('online', () => queueLink.open());
-window.addEventListener('beforeunload', () => {
+window.addEventListener('load', async () => {
   if (window.navigator.onLine) {
-    const path = window.location.pathname;
-    const queryInfo = auth.getQueryInfo();
-    const queryIds = queryInfo[path];
-    const cache = window.localStorage.getItem(CACHE_STORAGE_KEY) || '';
-    const state = JSON.parse(cache);
+    try {
+      const path = window.location.pathname;
+      const queryInfo = auth.getQueryInfo();
+      const queryIds = queryInfo[path];
+      const cache: string = await localForage.getItem(CACHE_STORAGE_KEY);
 
-    queryIds.forEach((queryId: string) => {
-      const key = Object.keys(state.ROOT_QUERY).find(k => k.includes(queryId)) || '';
-      delete state.ROOT_QUERY[key];
-    });
-    window.localStorage.setItem(CACHE_STORAGE_KEY, JSON.stringify(state));
+      const state = JSON.parse(cache || '');
+
+      queryIds.forEach((queryId: string) => {
+        const key =
+          Object.keys(state.ROOT_QUERY).find(k => k.includes(queryId)) || '';
+        delete state.ROOT_QUERY[key];
+      });
+      localForage.setItem(CACHE_STORAGE_KEY, JSON.stringify(state));
+    } catch {}
   }
 });
 
@@ -36,6 +41,7 @@ const client = new ApolloClient({
   ]),
   cache,
   resolvers: {},
+  assumeImmutableResults: true,
 });
 
 cache.writeData({
