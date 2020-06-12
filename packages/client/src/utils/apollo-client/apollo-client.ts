@@ -9,7 +9,7 @@ import httpLink from './http-link';
 
 window.addEventListener('offline', () => queueLink.close());
 window.addEventListener('online', () => queueLink.open());
-window.addEventListener('load', async () => {
+window.addEventListener('beforeunload', async () => {
   if (window.navigator.onLine) {
     try {
       const path = window.location.pathname;

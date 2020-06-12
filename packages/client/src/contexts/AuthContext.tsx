@@ -1,11 +1,16 @@
 import React, { useReducer, useEffect, useContext } from 'react';
+import localForage from 'localforage';
 import { Mutation, AuthPayload } from '@buddy-app/schema';
 import { useQuery } from '@apollo/react-hooks';
 import { FetchResult } from 'apollo-link';
 import { auth } from 'utils';
 import { LOGIN_MUTATION } from 'graphql/login.graphql';
 import { GET_LOCAL_AUTH } from 'graphql/get-auth.graphql';
-import { AuthCache, setCacheToken } from 'utils/apollo-client/cache';
+import {
+  AuthCache,
+  setCacheToken,
+  CACHE_STORAGE_KEY,
+} from 'utils/apollo-client/cache';
 import { apolloClient } from 'utils';
 
 enum ActionTypes {
@@ -131,7 +136,8 @@ const AuthProvider = ({ children, ...props }: AuthProviderProps) => {
     }
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await localForage.removeItem(CACHE_STORAGE_KEY);
     auth.removeUser();
     auth.removeQueryInfo();
     apolloClient.writeData({

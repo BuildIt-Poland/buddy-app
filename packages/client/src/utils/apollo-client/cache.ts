@@ -8,6 +8,18 @@ let updateCacheHandler = () => {};
 export const CACHE_STORAGE_KEY = 'apollo-state';
 export const cache = new InMemoryCache({
   freezeResults: true,
+  cacheRedirects: {
+    Query: {
+      newbie: (_, args, { getCacheKey }) =>
+        getCacheKey({ __typename: 'Newbie', id: args.newbieId }),
+      buddy: (_, args, { getCacheKey }) =>
+        getCacheKey({ __typename: 'Buddy', id: args.buddyId }),
+      talent: (_, args, { getCacheKey }) =>
+        getCacheKey({ __typename: 'Talent', id: args.talentId }),
+      task: (_, args, { getCacheKey }) =>
+        getCacheKey({ __typename: 'NewbieTask', id: args.taskId }),
+    },
+  },
 });
 export const onCacheUpdate = (fn: () => void) => {
   updateCacheHandler = fn;
