@@ -10,12 +10,18 @@ export const TASK_LIST = gql`
         title
         description
         status
+        newbie {
+          name
+        }
       }
       buddyTasks {
         id
         title
         description
         status
+        newbie {
+          name
+        }
       }
     }
   }

@@ -5,14 +5,23 @@ export const BUDDY_SELECT = gql`
     talent(talentId: $talentId) {
       id
       name
-      role
+      position
+      startDate
+      email
+      phoneNumber
       photo
+      role
+      allowPushedNotifications
       buddies {
         id
-        photo
         name
         position
+        startDate
+        email
+        phoneNumber
+        photo
         role
+        allowPushedNotifications
         talents {
           id
           buddies {

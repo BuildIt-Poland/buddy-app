@@ -5,14 +5,23 @@ export const NEWBIE_SELECT = gql`
     buddy(buddyId: $buddyId) {
       id
       name
-      role
+      position
+      startDate
+      email
+      phoneNumber
       photo
+      role
+      allowPushedNotifications
       newbies {
         id
-        photo
         name
         position
+        startDate
+        email
+        phoneNumber
+        photo
         role
+        allowPushedNotifications
         newbieTasks {
           id
           status
