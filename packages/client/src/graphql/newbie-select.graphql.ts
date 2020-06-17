@@ -22,6 +22,7 @@ export const NEWBIE_SELECT = gql`
         photo
         role
         allowPushedNotifications
+        notes
         newbieTasks {
           id
           status
