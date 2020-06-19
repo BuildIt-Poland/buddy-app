@@ -69,6 +69,7 @@ const Login: React.FC = () => {
               message: DICTIONARY.EMAIL.INVALID,
             },
           })}
+          id='email'
           margin={'dense'}
           fullWidth
           label={DICTIONARY.EMAIL.LABEL}
@@ -83,6 +84,7 @@ const Login: React.FC = () => {
           inputRef={register({
             required: DICTIONARY.PASSWORD.REQUIRED,
           })}
+          id='password'
           margin={'dense'}
           fullWidth
           name='password'
